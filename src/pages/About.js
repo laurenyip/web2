@@ -25,7 +25,7 @@ function About() {
 
   useEffect(() => {
     const header = document.querySelector(".navbar");
-
+  
     if (header) {
       const handleScroll = () => {
         const top = window.scrollY;
@@ -35,17 +35,18 @@ function About() {
           header.classList.remove("navbarDark");
         }
       };
-
+  
       window.addEventListener("scroll", handleScroll);
-
+  
       // Initial display of slides
       showAboutSlides(aboutSlideIndex);
-
+  
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
     }
-  }, []);
+  }, [aboutSlideIndex, showAboutSlides]); // Include the missing dependencies here
+  
 
   return (
     <div className="About">
@@ -127,9 +128,9 @@ function About() {
             </div>
 
             {/* Next button */}
-            <a className="nextA" onClick={() => plusAboutSlides(1)}>
+            <button className="nextA" onClick={() => plusAboutSlides(1)}>
               &#10095;
-            </a>
+            </button>
           </div>
         </div>
         <div className="col-lg-6">
