@@ -87,51 +87,51 @@ function About() {
           <div id="aboutImageSlideshow" className="slideshow-container">
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/1.jpg"
+                src="/images/about/sunrise/1.jpg"
                 alt="Sunrise 1"
                 style={{ width: "63%" }}
               />
             </div>
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/2.jpg"
+                src="/images/about/sunrise/2.jpg"
                 alt="Sunrise 2"
                 style={{ width: "63%" }}
               />
             </div>
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/3.jpg"
+                src="/images/about/sunrise/3.jpg"
                 alt="Sunrise 3"
                 style={{ width: "63%" }}
               />
             </div>
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/4.jpg"
+                src="/images/about/sunrise/4.jpg"
                 alt="Sunrise 4"
                 style={{ width: "63%" }}
               />
             </div>
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/5.jpg"
+                src="/images/about/sunrise/5.jpg"
                 alt="Sunrise 5"
                 style={{ width: "63%" }}
               />
             </div>
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/6.jpg"
+                src="/images/about/sunrise/6.jpg"
                 alt="Sunrise 6"
                 style={{ width: "63%" }}
               />
             </div>
 
             {/* Next button */}
-            <a className="nextA" onClick={() => plusAboutSlides(1)}>
+            <button className="nextA" onClick={() => plusAboutSlides(1)}>
               &#10095;
-            </a>
+            </button>
           </div>
         </div>
         <div className="col-lg-6">
