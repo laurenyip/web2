@@ -32,7 +32,7 @@ function Projects() {
         <h1 className="text-left">Projects</h1>
         <div className="project-list">
           <div className="project-item">
-            <a href="https://github.com/laurenyip/ai4good" target="_blank">
+            <a href="https://github.com/laurenyip/ai4good" target="_blank" rel="noreferrer">
               <button class="btn custom-btn">Brig.AI</button>
             </a>
             <p>
@@ -46,7 +46,7 @@ function Projects() {
           <div className="project-item">
             <a
               href="https://devpost.com/software/emergency-response-bc-erbc"
-              target="_blank"
+              target="_blank" rel="noreferrer"
             >
               <button class="btn custom-btn">Emergency Response BC</button>
             </a>
@@ -68,7 +68,7 @@ function Projects() {
             </p>
           </div>
           <div className="project-item">
-            <a href="https://rosielab.github.io/react-to-this/" target="_blank">
+            <a href="https://rosielab.github.io/react-to-this/" target="_blank" rel="noreferrer">
               <button class="btn custom-btn">React to This!</button>
             </a>
             <p>
@@ -91,7 +91,7 @@ function Projects() {
         </div>
 
         <div className="project-item">
-          <a href="https://github.com/laurenyip" target="_blank">
+          <a href="https://github.com/laurenyip" target="_blank" rel="noreferrer">
             <button class="btn custom-btn">GITHUB</button>
 
            

@@ -1,31 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import "./About.css";
 import { Link } from "react-router-dom";
 
 function About() {
-  let aboutSlideIndex = 1;
+  // Use useRef to persist aboutSlideIndex between renders
+  const aboutSlideIndexRef = useRef(1);
 
   const plusAboutSlides = (n) => {
-    showAboutSlides((aboutSlideIndex += n));
+    showAboutSlides((aboutSlideIndexRef.current += n));
   };
 
-  const showAboutSlides = (n) => {
+  // Use useCallback to memoize showAboutSlides and use aboutSlideIndexRef.current
+  const showAboutSlides = useCallback((n) => {
     const slides = document.getElementsByClassName("mySlides1");
     if (n > slides.length) {
-      aboutSlideIndex = 1;
+      aboutSlideIndexRef.current = 1;
     }
     if (n < 1) {
-      aboutSlideIndex = slides.length;
+      aboutSlideIndexRef.current = slides.length;
     }
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
     }
-    slides[aboutSlideIndex - 1].style.display = "block";
-  };
+    slides[aboutSlideIndexRef.current - 1].style.display = "block";
+  }, []); // Empty dependency array because it relies on useRef
 
   useEffect(() => {
     const header = document.querySelector(".navbar");
-  
+
     if (header) {
       const handleScroll = () => {
         const top = window.scrollY;
@@ -35,18 +37,17 @@ function About() {
           header.classList.remove("navbarDark");
         }
       };
-  
+
       window.addEventListener("scroll", handleScroll);
-  
+
       // Initial display of slides
-      showAboutSlides(aboutSlideIndex);
-  
+      showAboutSlides(aboutSlideIndexRef.current);
+
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
     }
-  }, [aboutSlideIndex, showAboutSlides]); // Include the missing dependencies here
-  
+  }, [showAboutSlides]); // Use showAboutSlides as dependency since it's memoized with useCallback
 
   return (
     <div className="About">
@@ -128,9 +129,9 @@ function About() {
             </div>
 
             {/* Next button */}
-            <button className="nextA" onClick={() => plusAboutSlides(1)}>
+            <a className="nextA" onClick={() => plusAboutSlides(1)}>
               &#10095;
-            </button>
+            </a>
           </div>
         </div>
         <div className="col-lg-6">
