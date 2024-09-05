@@ -150,7 +150,7 @@ p1 {
 /* Assuming .btn-outline-secondary is the class for your button */
 .btn.btn-outline-secondary:hover {
   background-color: #ffb2b2;
-  color: /* Specify the text color you want on hover */ ;
+  color:#a3b5f6 /* Specify the text color you want on hover */ ;
 }
 
 .btn.custom-btn {
