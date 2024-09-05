@@ -1,52 +1,49 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import "./About.css";
 import { Link } from "react-router-dom";
 
 function About() {
-  let aboutSlideIndex = 1;
+  const aboutSlideIndexRef = useRef(1);
 
-  const plusAboutSlides = (n) => {
-    showAboutSlides((aboutSlideIndex += n));
-  };
-
-  const showAboutSlides = (n) => {
+  const showAboutSlides = useCallback((n) => {
     const slides = document.getElementsByClassName("mySlides1");
     if (n > slides.length) {
-      aboutSlideIndex = 1;
+      aboutSlideIndexRef.current = 1;
     }
     if (n < 1) {
-      aboutSlideIndex = slides.length;
+      aboutSlideIndexRef.current = slides.length;
     }
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
     }
-    slides[aboutSlideIndex - 1].style.display = "block";
+    slides[aboutSlideIndexRef.current - 1].style.display = "block";
+  }, []);
+
+  const plusAboutSlides = (n) => {
+    showAboutSlides(aboutSlideIndexRef.current += n);
   };
 
   useEffect(() => {
     const header = document.querySelector(".navbar");
-  
-    if (header) {
-      const handleScroll = () => {
-        const top = window.scrollY;
-        if (top >= 0) {
-          header.classList.add("navbarDark");
-        } else {
-          header.classList.remove("navbarDark");
-        }
-      };
-  
-      window.addEventListener("scroll", handleScroll);
-  
-      // Initial display of slides
-      showAboutSlides(aboutSlideIndex);
-  
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, [aboutSlideIndex, showAboutSlides]); // Include the missing dependencies here
-  
+
+    const handleScroll = () => {
+      const top = window.scrollY;
+      if (top >= 0) {
+        header.classList.add("navbarDark");
+      } else {
+        header.classList.remove("navbarDark");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Initial display of slides
+    showAboutSlides(aboutSlideIndexRef.current);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [showAboutSlides]); // Remove aboutSlideIndex from dependency array
 
   return (
     <div className="About">
@@ -86,42 +83,42 @@ function About() {
           <div id="aboutImageSlideshow" className="slideshow-container">
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/1.jpg"
+                src="/images/about/sunrise/1.jpg"
                 alt="Sunrise 1"
                 style={{ width: "63%" }}
               />
             </div>
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/2.jpg"
+                src="/images/about/sunrise/2.jpg"
                 alt="Sunrise 2"
                 style={{ width: "63%" }}
               />
             </div>
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/3.jpg"
+                src="/images/about/sunrise/3.jpg"
                 alt="Sunrise 3"
                 style={{ width: "63%" }}
               />
             </div>
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/4.jpg"
+                src="/images/about/sunrise/4.jpg"
                 alt="Sunrise 4"
                 style={{ width: "63%" }}
               />
             </div>
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/5.jpg"
+                src="/images/about/sunrise/5.jpg"
                 alt="Sunrise 5"
                 style={{ width: "63%" }}
               />
             </div>
             <div className="mySlides1">
               <img
-                src="images/about/sunrise/6.jpg"
+                src="/images/about/sunrise/6.jpg"
                 alt="Sunrise 6"
                 style={{ width: "63%" }}
               />
