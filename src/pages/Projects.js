@@ -12,17 +12,17 @@ function Projects() {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/about">
+          <Link className="nav-link" to="/About">
             About |
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/projects">
+          <Link className="nav-link" to="/Projects">
             Projects |
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/portfolio">
+          <Link className="nav-link" to="/Portfolio">
             Portfolio
           </Link>
         </li>
