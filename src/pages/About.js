@@ -3,10 +3,6 @@ import "./About.css";
 import { Link } from "react-router-dom";
 
 function About() {
-<<<<<<< HEAD
-  const aboutSlideIndexRef = useRef(1);
-
-=======
   // Use useRef to persist aboutSlideIndex between renders
   const aboutSlideIndexRef = useRef(1);
 
@@ -15,7 +11,6 @@ function About() {
   };
 
   // Use useCallback to memoize showAboutSlides and use aboutSlideIndexRef.current
->>>>>>> 6540821fb50f69c94cb347d43733aac82facde99
   const showAboutSlides = useCallback((n) => {
     const slides = document.getElementsByClassName("mySlides1");
     if (n > slides.length) {
@@ -28,39 +23,11 @@ function About() {
       slides[i].style.display = "none";
     }
     slides[aboutSlideIndexRef.current - 1].style.display = "block";
-<<<<<<< HEAD
-  }, []);
-
-  const plusAboutSlides = (n) => {
-    showAboutSlides(aboutSlideIndexRef.current += n);
-  };
-=======
   }, []); // Empty dependency array because it relies on useRef
->>>>>>> 6540821fb50f69c94cb347d43733aac82facde99
 
   useEffect(() => {
     const header = document.querySelector(".navbar");
 
-<<<<<<< HEAD
-    const handleScroll = () => {
-      const top = window.scrollY;
-      if (top >= 0) {
-        header.classList.add("navbarDark");
-      } else {
-        header.classList.remove("navbarDark");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Initial display of slides
-    showAboutSlides(aboutSlideIndexRef.current);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [showAboutSlides]); // Remove aboutSlideIndex from dependency array
-=======
     if (header) {
       const handleScroll = () => {
         const top = window.scrollY;
@@ -81,7 +48,6 @@ function About() {
       };
     }
   }, [showAboutSlides]); // Use showAboutSlides as dependency since it's memoized with useCallback
->>>>>>> 6540821fb50f69c94cb347d43733aac82facde99
 
   return (
     <div className="About">
