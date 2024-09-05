@@ -1,7 +1,7 @@
 import "./App.css";
 import { Link } from "react-router-dom";
 
-function App() {
+function Home() {
   return (
     <div className="App">
       <ul className="navbar">
@@ -11,17 +11,17 @@ function App() {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/about">
+          <Link className="nav-link" to="/About">
             About |
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/projects">
+          <Link className="nav-link" to="/Projects">
             Projects |
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/portfolio">
+          <Link className="nav-link" to="/Portfolio">
             Portfolio
           </Link>
         </li>
@@ -41,13 +41,14 @@ function App() {
         <br></br>
         <br></br>
         <p2>
-          &nbsp;&nbsp;Age&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status @ SFU
+          &nbsp;&nbsp;Age&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status
+          @ SFU
         </p2>
         <br></br> <p3b>21A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YEAR4</p3b>
         <br></br>
         <p3>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="/Resume___Lauren_Yip.pdf" target="blank" >
+          <a href="/Resume___Lauren_Yip.pdf" target="blank">
             RESUME
           </a>
         </p3>
@@ -58,4 +59,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
