@@ -31,9 +31,11 @@ function Portfolio() {
       <div className="container">
         <h1 className="text-left">Portfolio</h1>
         <br></br>
-        <img src="/images/portfolio/lily.jpg" alt="Portfolio 1" style={{ width: "30%" }}/>
-
-        
+        <img
+          src="/images/portfolio/lily.jpg"
+          alt="Portfolio 1"
+          style={{ width: "30%" }}
+        />
       </div>
     </div>
   );
