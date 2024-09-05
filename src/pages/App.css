@@ -6,7 +6,7 @@
 
 body.main {
   background-color: #ffffff;
-  
+
   /* border: rgb(18, 79, 120, 0.8) solid 1.5vw;*/
 }
 
@@ -15,7 +15,6 @@ body {
   font-size: 16px;
   color: #0a085d;
   background-color: #ffffff;
-
 }
 
 /* hero background image */
@@ -121,13 +120,13 @@ p {
 p3 {
   position: relative;
   text-align: left; /* Center-align the text */
-  font-family:"F25", serif;
+  font-family: "F25", serif;
   color: #0a085d;
 }
 p3b {
   position: relative;
   text-align: left; /* Center-align the text */
-  font-family:"F25", serif;
+  font-family: "F25", serif;
   font-size: xx-large;
   color: #0a085d;
 }
@@ -135,7 +134,7 @@ p3b {
 p2 {
   position: relative;
   text-align: left; /* Center-align the text */
-  font-family:"Arial", serif;
+  font-family: "Arial", serif;
   font-size: 10px;
   color: #0a085d;
 }
@@ -151,7 +150,7 @@ p1 {
 /* Assuming .btn-outline-secondary is the class for your button */
 .btn.btn-outline-secondary:hover {
   background-color: #ffb2b2;
-  color: /* Specify the text color you want on hover */ ;
+  color: #a7b7f4/* Specify the text color you want on hover */ ;
 }
 
 /* ~~~ CONTENT CONTAINER STYLING ~~~ */
@@ -166,8 +165,8 @@ p1 {
 .containermain {
   border: #001c80 solid 1px;
   padding: 8%;
-  background-image: url('stamp.png');
- 
+  background-image: url("stamp.png");
+
   background-repeat: no-repeat;
   max-width: fit-content;
 }

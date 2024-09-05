@@ -12,17 +12,17 @@ function Portfolio() {
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/about">
+          <Link className="nav-link" to="/About">
             About |
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/projects">
+          <Link className="nav-link" to="/Projects">
             Projects |
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/portfolio">
+          <Link className="nav-link" to="/Portfolio">
             Portfolio
           </Link>
         </li>
@@ -31,9 +31,11 @@ function Portfolio() {
       <div className="container">
         <h1 className="text-left">Portfolio</h1>
         <br></br>
-        <img src="images/portfolio/lily.jpg" alt="Portfolio 1" style={{ width: "30%" }}/>
-
-        
+        <img
+          src="/images/portfolio/lily.jpg"
+          alt="Portfolio 1"
+          style={{ width: "30%" }}
+        />
       </div>
     </div>
   );

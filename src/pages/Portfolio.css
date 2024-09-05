@@ -150,30 +150,29 @@ p1 {
 /* Assuming .btn-outline-secondary is the class for your button */
 .btn.btn-outline-secondary:hover {
   background-color: #ffb2b2;
-  color: /* Specify the text color you want on hover */ ;
+  color:#a3b5f6 /* Specify the text color you want on hover */ ;
 }
 
 .btn.custom-btn {
-    background-color: #ffc2c2;
-    border: none;
-    color: #0a085d;
-    font-family: "Moto", serif;
-    font-size: large;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 12px; /* Rounded corners */
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .btn.custom-btn:hover {
-    background-color: #ffb2b2;
-    color: #ffffff;
-  }
-  
+  background-color: #ffc2c2;
+  border: none;
+  color: #0a085d;
+  font-family: "Moto", serif;
+  font-size: large;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px; /* Rounded corners */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn.custom-btn:hover {
+  background-color: #ffb2b2;
+  color: #ffffff;
+}
 
 /* ~~~ CONTENT CONTAINER STYLING ~~~ */
 
@@ -375,7 +374,6 @@ p1 {
   background-color: rgb(112, 162, 255);
 }
 
- 
 @font-face {
   font-family: "Chobani";
   src: url("fonts/Chobani.ttf") format("truetype"); /* Specify the correct path to your font file */
