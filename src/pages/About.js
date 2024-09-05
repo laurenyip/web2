@@ -137,14 +137,17 @@ function About() {
         <div className="col-lg-6">
           <div className="left-aligned">
             <p>
-              Hi, my name is Lauren! I'm a 4th year Computer Science student at Simon Fraser University. 
-              My technical interests include visual and interactive computing, Artificial Intelligence, and UI/UX design.
-              I'm working on a portfolio of projects to improve my development and design skills.
+              Hi, my name is Lauren! I'm a 4th year Computer Science student at
+              Simon Fraser University. My technical interests include visual and
+              interactive computing, Artificial Intelligence, and UI/UX design.
+              I'm working on a portfolio of projects to improve my development
+              and design skills.
             </p>
             <p>
-              I also love to read and paint in my spare time, and play the guitar and piano. I love exploring new places on long walks while travelling, 
-              and while I'm here, by hiking and swimming.
-              (Currently working on my Open Water Diving certification!)
+              I also love to read and paint in my spare time, and play the
+              guitar and piano. I love exploring new places on long walks while
+              travelling, and while I'm here, by hiking and swimming. (Currently
+              working on my Open Water Diving certification!)
             </p>
           </div>
         </div>
