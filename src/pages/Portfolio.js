@@ -32,10 +32,31 @@ function Portfolio() {
         <h1 className="text-left">Portfolio</h1>
         <br></br>
         <img
-          src="/images/portfolio/lily.jpg"
+          src="/images/portfolio/lily.png"
           alt="Portfolio 1"
-          style={{ width: "30%" }}
+          style={{ width: "50%" }}
         />
+        <img
+          src="/images/portfolio/dance.png"
+          alt="Portfolio 4"
+          style={{ width: "50%" }}
+        />
+        <img
+          src="/images/portfolio/backy.png"
+          alt="Portfolio 5"
+          style={{ width: "50%" }}
+        />
+        <img
+          src="/images/portfolio/tidepool.png"
+          alt="Portfolio 2"
+          style={{ width: "50%" }}
+        />
+        <img
+          src="/images/portfolio/blue.png"
+          alt="Portfolio 3"
+          style={{ width: "50%" }}
+        />
+        
       </div>
     </div>
   );
