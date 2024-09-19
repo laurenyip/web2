@@ -32,7 +32,7 @@ function About() {
       const handleScroll = () => {
         const top = window.scrollY;
         if (top >= 0) {
-          header.classList.add("navbarDark");
+          header.classList .add("navbarDark");
         } else {
           header.classList.remove("navbarDark");
         }
