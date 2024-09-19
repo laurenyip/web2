@@ -226,8 +226,6 @@ p1 {
   color: inherit;
 }
 
-/* footer styling */
-
 /* spacing on all sections */
 #about,
 #services,
@@ -242,30 +240,6 @@ p1 {
   box-sizing: border-box;
 }
 
-/* social media icons styling */
-.social-icons {
-  font-size: 25px;
-  cursor: pointer;
-  text-align: center;
-}
-.social-icons:hover {
-  color: #ffb2b2;
-}
-
-/* additional styling for positioning */
-.d-flex.justify-content-center {
-  position: relative;
-  padding-top: 10%;
-}
-
-.fab,
-.fa-solid {
-  color: #092c79;
-}
-.fab:hover,
-.fa-solid:hover {
-  color: #ffb2b2;
-}
 
 /* ~~~ SLIDESHOW CSS ~~~ */
 /* Slideshow container */
