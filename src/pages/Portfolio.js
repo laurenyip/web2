@@ -1,8 +1,45 @@
-import React from "react";
-import "./Portfolio.css"; // Assuming you have a CSS file for styling
+import React, { useState } from "react";
+import "./Portfolio.css";
 import { Link } from "react-router-dom";
 
 function Portfolio() {
+  // Array to manage the flip state of each card
+  const [flippedCards, setFlippedCards] = useState([false, false, false, false, false]);
+
+  const handleCardClick = (index) => {
+    setFlippedCards(prevState => 
+      prevState.map((flipped, i) => (i === index ? !flipped : flipped))
+    );
+  };
+
+  const cardData = [
+    {
+      imgSrc: "/images/portfolio/lily.png",
+      
+      description: "dedicated to my friends - 2021-08"
+    },
+    {
+      imgSrc: "/images/portfolio/dance.png",
+     
+      description: "winter, dancing - 2021-01"
+    },
+    {
+      imgSrc: "/images/portfolio/backy.png",
+     
+      description: "my backyard - 2022"
+    },
+    {
+      imgSrc: "/images/portfolio/tidepool.png",
+     
+      description: "a belcarra tidepool - 2022-02"
+    },
+    {
+      imgSrc: "/images/portfolio/blue.png",
+      
+      description: "blue hydrangeas flower meaning: forgiveness, gratitude, heartfelt emotion - 2021-07"
+    }
+  ];
+
   return (
     <div className="Portfolio">
       <ul className="navbar">
@@ -30,33 +67,31 @@ function Portfolio() {
 
       <div className="container">
         <h1 className="text-left">Portfolio</h1>
-        <br></br>
-        <img
-          src="/images/portfolio/lily.png"
-          alt="Portfolio 1"
-          style={{ width: "50%" }}
-        />
-        <img
-          src="/images/portfolio/dance.png"
-          alt="Portfolio 4"
-          style={{ width: "50%" }}
-        />
-        <img
-          src="/images/portfolio/backy.png"
-          alt="Portfolio 5"
-          style={{ width: "50%" }}
-        />
-        <img
-          src="/images/portfolio/tidepool.png"
-          alt="Portfolio 2"
-          style={{ width: "50%" }}
-        />
-        <img
-          src="/images/portfolio/blue.png"
-          alt="Portfolio 3"
-          style={{ width: "50%" }}
-        />
-        
+        <br />
+        <div className="card-container">
+          {cardData.map((card, index) => (
+            <div
+              key={index}
+              className={`card ${flippedCards[index] ? 'is-flipped' : ''}`}
+              onClick={() => handleCardClick(index)}
+            >
+              <div className="card__inner">
+                <div className="card__face card__face--front">
+                  <img src={card.imgSrc} alt={card.title} width="100%" />
+                </div>
+                <div className="card__face card__face--back">
+                  <div className="card__content">
+                    <div className="card__body">
+                      <h3>{card.title}</h3>
+                      <p>{card.description}</p>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
