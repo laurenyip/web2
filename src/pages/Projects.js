@@ -69,7 +69,7 @@ function Projects() {
             </a>
             <p>
               Was coded with the help of HTML, Bootstrap CSS, JS, and lots of
-              edits... [Dec 2023]
+              edits... and later redone in REACT with a fresh look[Dec 2023]
             </p>
           </div>
           <div className="project-item">
