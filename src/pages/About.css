@@ -84,6 +84,7 @@ h1.text-left {
   font-family: "Moto", serif;
   text-align: left;
   background-color: #ffc2c2;
+  border-radius: 15px;
   /* You can change the color (#000) and border width (2px) as needed */
   /* Adjust the padding to create space between the text and the border */
   display: inline-block; /* Ensures that the border wraps around the text */

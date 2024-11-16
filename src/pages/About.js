@@ -138,16 +138,22 @@ function About() {
           <div className="left-aligned">
             <p>
               Hi, my name is Lauren! I'm a 4th year Computer Science student at
-              Simon Fraser University. My technical interests include visual and
-              interactive computing, Artificial Intelligence, and UI/UX design.
-              I'm working on a portfolio of projects to improve my development
-              and design skills.
+              Simon Fraser University. my main professional interests are AI &
+              Data Science, Visual & Interactive Computing + Design, and Product
+              Management. I would love to apply my work to areas like ocean
+              conservation & sustainability, or visual effects and animation :)
             </p>
             <p>
-              I also love to read and paint in my spare time, and play the
+              I also love to read and write and paint in my spare time, and play the
               guitar and piano. I love exploring new places on long walks while
               travelling, and while I'm here, by hiking and swimming. (Currently
               working on my Open Water Diving certification!)
+            </p>
+            <p>My life goal is to collect as many new experiences as possible. I want to see the world and be present in each moment.
+              I'm always looking for new opportunities to learn and grow, so
+              feel free to reach out to me!
+            
+           
             </p>
           </div>
         </div>
