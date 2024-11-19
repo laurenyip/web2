@@ -95,7 +95,7 @@ function Projects() {
               proofread the paper, and participated and collaborated in
               meetings. I also created a supplementary video and designed a
               website, overviewing our project to submit to CHI '24 and IROS
-              '24.
+              '24. Check out our lab here : https://www.rosielab.ca/projects
             </p>
           </div>
         </div>
