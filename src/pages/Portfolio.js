@@ -37,6 +37,11 @@ function Portfolio() {
       imgSrc: "/images/portfolio/blue.png",
       
       description: "blue hydrangeas flower meaning: forgiveness, gratitude, heartfelt emotion - 2021-07"
+    },
+    {
+      imgSrc: "/images/portfolio/ten.jpg",
+      
+      description: "10 things i hate about u - 2025-01"
     }
   ];
 
