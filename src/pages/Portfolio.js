@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Portfolio() {
   // Array to manage the flip state of each card
-  const [flippedCards, setFlippedCards] = useState([false, false, false, false, false]);
+  const [flippedCards, setFlippedCards] = useState([false, false, false, false, false, false]);
 
   const handleCardClick = (index) => {
     setFlippedCards(prevState => 
@@ -73,6 +73,17 @@ function Portfolio() {
       <div className="container">
         <h1 className="text-left">Portfolio</h1>
         <br />
+        <div className="project-item">
+            <a
+              href="https://alyssasong.substack.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <button class="btn custom-btn">my writing</button>
+            </a>
+            
+            <p>I just started posting on substack :) enjoy </p>
+          </div>
         <div className="card-container">
           {cardData.map((card, index) => (
             <div
