@@ -129,12 +129,10 @@ body {
   box-sizing: border-box;
 }
 
-
+/* Font face declarations */
 @font-face {
   font-family: "Chobani";
-  src: url("fonts/Chobani.ttf") format("truetype"); /* Specify the correct path to your font file */
-
-  /* Add other font formats as needed */
+  src: url("fonts/Chobani.ttf") format("truetype");
 }
 
 @font-face {
