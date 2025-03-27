@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function Portfolio() {
   const [currentImage, setCurrentImage] = useState(null);
+  const [currentDescription, setCurrentDescription] = useState("");
 
   useEffect(() => {
     const handleEscape = (event) => {
@@ -42,48 +43,67 @@ function Portfolio() {
     }
   ];
 
+  const handleImageClick = (imgSrc, description) => {
+    setCurrentImage(imgSrc);
+    setCurrentDescription(description);
+  };
+
   return (
     <div className="bg-white">
-      <ul className="bg-white text-[#0a085d] font-['Moto'] opacity-70 p-[2%] mt-[1%] z-10 text-lg flex list-none justify-start">
-        <li className="mr-[10px]">
-          <Link className="no-underline text-inherit" to="/">
-            Home |
-          </Link>
-        </li>
-        <li className="mr-[10px]">
-          <Link className="no-underline text-inherit" to="/About">
-            About |
-          </Link>
-        </li>
-        <li className="mr-[10px]">
-          <Link className="no-underline text-inherit" to="/Projects">
-            Projects |
-          </Link>
-        </li>
-        <li>
-          <Link className="no-underline text-inherit" to="/Portfolio">
-            Portfolio
-          </Link>
-        </li>
-      </ul>
+      {/* Centered Navbar */}
+      <div className="w-full mx-auto max-w-xl">
+        <ul className="bg-white text-[#0a085d] font-['Moto'] opacity-70 p-[2%] mt-[1%] z-10 text-lg flex list-none justify-center">
+          <li className="mr-[10px]">
+            <Link className="no-underline text-inherit" to="/">
+              Home |
+            </Link>
+          </li>
+          <li className="mr-[10px]">
+            <Link className="no-underline text-inherit" to="/About">
+              About |
+            </Link>
+          </li>
+          <li className="mr-[10px]">
+            <Link className="no-underline text-inherit" to="/Projects">
+              Projects |
+            </Link>
+          </li>
+          <li>
+            <Link className="no-underline text-inherit" to="/Portfolio">
+              Portfolio
+            </Link>
+          </li>
+        </ul>
+      </div>
 
-      <div className="w-full mx-auto max-w-xl flex flex-col lg:h-svh justify-center py-24 lg:py-96 relative p-8">
+      <div className="w-full mx-auto max-w-xl flex flex-col lg:h-svh justify-center py-12 lg:py-24 relative p-8">
         <div className="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl">
           <div>
-            <h1>Portfolio</h1>
+            <h1>Paintings</h1>
             <p className="text-balance">
-              Click on the image to view it in full screen and click outside the
-              image or press ESC to close it.
+              Click on any image to view it in full screen
             </p>
           </div>
         </div>
 
-        <div className="mt-6 border-t pt-12">
+        {/* Substack button */}
+        <div className="flex justify-center my-6">
+          <a 
+            href="https://alyssasong.substack.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="rounded-full bg-[#ffc2c2] px-8 py-2 text-sm font-semibold text-[#0a085d] hover:bg-[#ffb2b2] focus:outline-none focus:ring-2 focus:ring-[#ffc2c2] focus:ring-offset-2"
+          >
+            Visit My Substack
+          </a>
+        </div>
+
+        <div className="mt-6 border-t pt-8">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {cardData.map((card, index) => (
               <div 
                 key={index}
-                onClick={() => setCurrentImage(card.imgSrc)}
+                onClick={() => handleImageClick(card.imgSrc, card.description)}
                 className="cursor-pointer"
               >
                 <img 
@@ -91,43 +111,38 @@ function Portfolio() {
                   alt={`Portfolio image ${index + 1}`}
                   className="w-full h-auto aspect-[3/4] object-cover"
                 />
-                <p className="text-sm text-gray-600 mt-2">{card.description}</p>
               </div>
             ))}
           </div>
 
-          {/* Modal */}
+          {/* Modal with large image display */}
           {currentImage && (
             <div 
-              className="fixed inset-0 flex items-center justify-center bg-gray-200 bg-opacity-80 transition-opacity duration-300" 
-              role="dialog" 
-              aria-modal="true"
+              className="fixed inset-0 flex items-center justify-center bg-gray-200 bg-opacity-80 transition-opacity duration-300 z-50" 
               onClick={() => setCurrentImage(null)}
             >
               <div 
-                className="max-w-full max-h-full overflow-auto py-12"
+                className="max-w-[100%] max-h-[100%] overflow-auto py-8"
                 onClick={e => e.stopPropagation()}
               >
                 <div className="prose text-gray-500 mx-auto prose-sm prose-headings:font-normal prose-headings:text-xl">
                   <div className="text-center max-w-sm mx-auto">
-                    <h1>Image Details</h1>
-                    <p className="text-balance">
-                      To close the modal, click outside the modal, press ESC, or
-                      click the close button.
-                    </p>
+                    <h1>{currentDescription}</h1>
                   </div>
                 </div>
                 <button 
                   onClick={() => setCurrentImage(null)}
-                  className="rounded-full bg-[#ffc2c2] px-8 py-2 h-12 text-sm font-semibold flex items-center text-[#0a085d] hover:bg-[#ffb2b2] focus:outline-none focus:ring-2 focus:ring-[#ffc2c2] justify-center mx-auto w-auto focus:ring-offset-2"
+                  className="rounded-full bg-[#ffc2c2] px-8 py-2 h-12 text-sm font-semibold flex items-center text-[#0a085d] hover:bg-[#ffb2b2] focus:outline-none focus:ring-2 focus:ring-[#ffc2c2] justify-center mx-auto w-auto focus:ring-offset-2 mt-4"
                 >
                   Close
                 </button>
-                <img 
-                  src={currentImage} 
-                  alt="Full Size Image" 
-                  className="max-w-full max-h-full mx-auto mt-12"
-                />
+                <div className="flex justify-center mt-8">
+                  <img 
+                    src={currentImage} 
+                    alt="Full Size Image" 
+                    className="max-w-[150vw] max-h-[120vh] object-contain"
+                  />
+                </div>
               </div>
             </div>
           )}
