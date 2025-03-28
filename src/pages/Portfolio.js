@@ -19,7 +19,7 @@ function Portfolio() {
   const cardData = [
     {
       imgSrc: "/images/portfolio/lily.png",
-      description: "dedicated to my friends - 2021-08"
+      description: "dedicated to my friends -- 2021-08"
     },
     {
       imgSrc: "/images/portfolio/dance.png",
