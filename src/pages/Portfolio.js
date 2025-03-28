@@ -50,31 +50,28 @@ function Portfolio() {
 
   return (
     <div className="bg-white">
-      {/* Centered Navbar */}
-      <div className="w-full mx-auto max-w-xl">
-        <ul className="bg-white text-[#0a085d] font-['Moto'] opacity-70 p-[2%] mt-[1%] z-10 text-lg flex list-none justify-center">
-          <li className="mr-[10px]">
-            <Link className="no-underline text-inherit" to="/">
-              Home |
-            </Link>
-          </li>
-          <li className="mr-[10px]">
-            <Link className="no-underline text-inherit" to="/About">
-              About |
-            </Link>
-          </li>
-          <li className="mr-[10px]">
-            <Link className="no-underline text-inherit" to="/Projects">
-              Projects |
-            </Link>
-          </li>
-          <li>
-            <Link className="no-underline text-inherit" to="/Portfolio">
-              Portfolio
-            </Link>
-          </li>
-        </ul>
-      </div>
+      <ul className="navbar">
+        <li className="nav-item">
+          <Link className="nav-link" to="/">
+            Home |
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/About">
+            About |
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/Projects">
+            Projects |
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/Portfolio">
+            Portfolio
+          </Link>
+        </li>
+      </ul>
 
       <div className="w-full mx-auto max-w-xl flex flex-col lg:h-svh justify-center py-12 lg:py-24 relative p-8">
         <div className="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl">
