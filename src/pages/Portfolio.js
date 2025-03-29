@@ -137,7 +137,7 @@ function Portfolio() {
                 <div className="flex justify-center mt-8">
                   <img
                     src={currentImage}
-                    alt="Full Size "
+                    alt="Full Size"
                     className="max-w-[150vw] max-h-[120vh] object-contain"
                   />
                 </div>
