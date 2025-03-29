@@ -35,7 +35,7 @@ function Projects() {
             <a
               href="https://github.com/laurenyip/ai4good"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               <button class="btn custom-btn">Brig.AI</button>
             </a>
@@ -51,7 +51,7 @@ function Projects() {
             <a
               href="https://devpost.com/software/emergency-response-bc-erbc"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               <button class="btn custom-btn">Emergency Response BC</button>
             </a>
@@ -64,7 +64,7 @@ function Projects() {
           </div>
 
           <div className="project-item">
-            <a href="laurenyip.com" target="_blank">
+            <a href="laurenyip.com" target="_blank" rel="noopener noreferrer">
               <button class="btn custom-btn">This Website!</button>
             </a>
             <p>
@@ -76,7 +76,7 @@ function Projects() {
             <a
               href="https://rosielab.github.io/react-to-this/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               <button class="btn custom-btn">React to This!</button>
             </a>
@@ -104,7 +104,7 @@ function Projects() {
           <a
             href="https://github.com/laurenyip"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <button class="btn custom-btn">GITHUB</button>
           </a>

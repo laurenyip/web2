@@ -108,7 +108,7 @@ function Portfolio() {
               >
                 <img 
                   src={card.imgSrc} 
-                  alt={`Portfolio image ${index + 1}`}
+                  alt={`Portfolio ${index + 1}`}
                   className="w-full h-auto aspect-[3/4] object-cover"
                 />
               </div>
@@ -139,7 +139,7 @@ function Portfolio() {
                 <div className="flex justify-center mt-8">
                   <img 
                     src={currentImage} 
-                    alt="Full Size Image" 
+                    alt="Full Size" 
                     className="max-w-[150vw] max-h-[120vh] object-contain"
                   />
                 </div>
