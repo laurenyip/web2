@@ -415,6 +415,11 @@ p1 {
 }
 
 @font-face {
+  font-family: "Melo";
+  src: url("fonts/melo.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "URWGeometricRegular";
   src: url("fonts/URWGeometricRegular.otf") format("OpenType");
 }

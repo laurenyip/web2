@@ -8,12 +8,12 @@ function About() {
 
   // Carousel data - using your existing sunrise images
   const carouselItems = [
-    { image: "/images/about/sunrise/1.jpg", text: "Sunrise view 1" },
-    { image: "/images/about/sunrise/2.jpg", text: "Sunrise view 2" },
-    { image: "/images/about/sunrise/3.jpg", text: "Sunrise view 3" },
-    { image: "/images/about/sunrise/4.jpg", text: "Sunrise view 4" },
-    { image: "/images/about/sunrise/5.jpg", text: "Sunrise view 5" },
-    { image: "/images/about/sunrise/6.jpg", text: "Sunrise view 6" }
+    { image: "/images/about/current/romeo.jpg", text: "play" },
+    { image: "/images/about/current/insect.jpg", text: "insect" },
+    { image: "/images/about/current/milena.jpg", text: "milena" },
+    { image: "/images/about/current/atel.jpg", text: "atel" },
+    { image: "/images/about/current/white.jpg", text: "white" },
+    { image: "/images/about/current/babel.jpg", text: "babel" }
   ];
 
   // Your existing functions remain unchanged
@@ -183,7 +183,7 @@ function About() {
           <h3 style={{ 
             textAlign: 'center', 
             marginBottom: '20px',
-            fontFamily: 'inherit',
+            fontFamily: 'melo',
             fontWeight: 'normal',
             color: '#333'
           }}>More Moments</h3>
