@@ -11,7 +11,7 @@ body.main {
 }
 
 body {
-  font-family: "Moto", serif;
+  font-family: 'Moto', serif;
   font-size: 16px;
   color: #0a085d;
   background-color: #ffffff;
@@ -48,21 +48,21 @@ body {
 
 .centered p {
   margin: 1px 0; /* Add some margin between paragraphs */
-  font-family: "Moto", sans-serif;
+  font-family: 'Moto', sans-serif;
   font-size: large;
   font-weight: 300;
 }
 
 .middle p {
   margin: 1px 0; /* Add some margin between paragraphs */
-  font-family: "Moto", serif;
+  font-family: 'Moto', serif;
   text-align: center;
   font-size: large;
 }
 
 .middle p1 {
   margin: 1px 0; /* Add some margin between paragraphs */
-  font-family: "URWGeometricRegular", sans-serif;
+  font-family: 'URWGeometricRegular', sans-serif;
   text-align: left;
   font-size: medium;
 }
@@ -74,14 +74,14 @@ body {
 
 .centered p1 {
   margin: 1px 0; /* Add some margin between paragraphs */
-  font-family: "Moto", serif;
+  font-family: 'Moto', serif;
   font-size: medium;
   font-weight: lighter;
   justify-content: left;
 }
 
 h1.text-left {
-  font-family: "Moto", serif;
+  font-family: 'Moto', serif;
   text-align: left;
   background-color: #ffc2c2;
   border-radius: 15px;
@@ -92,7 +92,7 @@ h1.text-left {
 }
 
 h1.text-center {
-  font-family: "Moto", serif;
+  font-family: 'Moto', serif;
   text-align: center;
   font-size: 20px;
   /* You can change the color (#000) and border width (2px) as needed */
@@ -108,26 +108,26 @@ h1.text-center {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -45%);
-  font-family: "Moto", serif;
+  font-family: 'Moto', serif;
   text-align: center; /* Center-align the text */
 }
 
 p {
   position: relative;
   text-align: left; /* Center-align the text */
-  font-family: "Moto", serif;
+  font-family: 'Moto', serif;
   color: #0a085d;
 }
 p3 {
   position: relative;
   text-align: left; /* Center-align the text */
-  font-family: "F25", serif;
+  font-family: 'F25', serif;
   color: #0a085d;
 }
 p3b {
   position: relative;
   text-align: left; /* Center-align the text */
-  font-family: "F25", serif;
+  font-family: 'F25', serif;
   font-size: xx-large;
   color: #0a085d;
 }
@@ -135,12 +135,12 @@ p3b {
 p2 {
   position: relative;
   text-align: left; /* Center-align the text */
-  font-family: "Arial", serif;
+  font-family: 'Arial', serif;
   font-size: 10px;
   color: #0a085d;
 }
 p1 {
-  font-family: "URWGeometricRegular", sans-serif;
+  font-family: 'URWGeometricRegular', sans-serif;
   font-weight: 100;
 }
 
@@ -151,7 +151,7 @@ p1 {
 /* Assuming .btn-outline-secondary is the class for your button */
 .btn.btn-outline-secondary:hover {
   background-color: #ffb2b2;
-  color: /* Specify the text color you want on hover */ ;
+  color: /* Specify the text color you want on hover */;
 }
 
 /* ~~~ CONTENT CONTAINER STYLING ~~~ */
@@ -179,7 +179,7 @@ p1 {
     255
   ); /* Change to your desired background color */
   color: rgb(10, 7, 72); /* Add any other styles you want */
-  font-family: "Moto", serif;
+  font-family: 'Moto', serif;
   opacity: 0.7;
   padding: 2%;
   margin-top: 1%;
@@ -388,43 +388,43 @@ p1 {
 }
 
 @font-face {
-  font-family: "Chobani";
-  src: url("fonts/Chobani.ttf") format("truetype"); /* Specify the correct path to your font file */
+  font-family: 'Chobani';
+  src: url('fonts/Chobani.ttf') format('truetype'); /* Specify the correct path to your font file */
 
   /* Add other font formats as needed */
 }
 
 @font-face {
-  font-family: "Apercu";
-  src: url("fonts/Apercu.otf") format("OpenType");
+  font-family: 'Apercu';
+  src: url('fonts/Apercu.otf') format('OpenType');
 }
 
 @font-face {
-  font-family: "URWGeometricHeavy";
-  src: url("fonts/URWGeometricHeavy.otf") format("OpenType");
+  font-family: 'URWGeometricHeavy';
+  src: url('fonts/URWGeometricHeavy.otf') format('OpenType');
 }
 
 @font-face {
-  font-family: "URWGeometricSemiBold";
-  src: url("fonts/URWGeometricSemiBold.otf") format("OpenType");
+  font-family: 'URWGeometricSemiBold';
+  src: url('fonts/URWGeometricSemiBold.otf') format('OpenType');
 }
 
 @font-face {
-  font-family: "Moto";
-  src: url("fonts/Moto.otf") format("OpenType");
+  font-family: 'Moto';
+  src: url('fonts/Moto.otf') format('OpenType');
 }
 
 @font-face {
-  font-family: "Melo";
-  src: url("fonts/melo.ttf") format("truetype");
+  font-family: 'Melo';
+  src: url('fonts/melo.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "URWGeometricRegular";
-  src: url("fonts/URWGeometricRegular.otf") format("OpenType");
+  font-family: 'URWGeometricRegular';
+  src: url('fonts/URWGeometricRegular.otf') format('OpenType');
 }
 
 @font-face {
-  font-family: "F25";
-  src: url("fonts/f25.otf") format("OpenType");
+  font-family: 'F25';
+  src: url('fonts/f25.otf') format('OpenType');
 }

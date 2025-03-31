@@ -1,13 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./public/index.html"
-  ],
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        melo: ['Melo', 'sans-serif'],
+      },
+    },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
-} 
+  plugins: [require('@tailwindcss/typography')],
+}
