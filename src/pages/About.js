@@ -1,69 +1,66 @@
-import React, { useEffect, useCallback, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import "./About.css";
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import './About.css'
+import InfiniteCarousel from './InfiniteCarousel'
 
 function About() {
-  const aboutSlideIndexRef = useRef(1);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Carousel data - using your existing sunrise images
+  // Carousel data - 8 items
   const carouselItems = [
-    { image: "/images/about/current/romeo.jpg", text: "play" },
-    { image: "/images/about/current/insect.jpg", text: "insect" },
-    { image: "/images/about/current/milena.jpg", text: "milena" },
-    { image: "/images/about/current/atel.jpg", text: "atel" },
-    { image: "/images/about/current/white.jpg", text: "white" },
-    { image: "/images/about/current/babel.jpg", text: "babel" }
-  ];
+    {
+      image: '/images/about/current/romeo.jpg',
+      text: 'Romeo & Juliet performance',
+      link: 'https://www.youtube.com/watch?v=5FsKvp5mME0&list=TLPQMzAwMzIwMjWHzTbqBTJFCA&index=2&pp=gAQBiAQB8AUB',
+      buttonText: 'favourite play',
+    },
+    {
+      image: '/images/about/current/insect.jpg',
+      text: 'Insectarium, Montreal',
+    },
+    {
+      image: '/images/about/current/milena.jpg',
+      text: 'Letters to Milena by Franz Kafka',
+    },
+    {
+      image: '/images/about/current/atel.jpg',
+      text: 'recent life archive',
+      link: 'https://open.spotify.com/playlist/33M9IYi906TrPaxU9dMrL3?si=aa3a043f764b4d56',
+      buttonText: 'Listen here',
+    },
+    {
+      image: '/images/about/current/white.jpg',
+      text: 'White Nights by Fyodor Doestoevsky - obsessed',
+    },
+    { image: '/images/about/current/babel.jpg', text: 'Babel by R. F. Kuang' },
+    {
+      image: '/images/about/current/under.jpg',
+      text: 'working on my open water diving certification',
+    },
+    {
+      image: '/images/about/current/hen.jpg',
+      text: 'My favourite essay',
+      link: 'https://www.henrikkarlsson.xyz/p/doestoevsky-as-lover',
+      buttonText: 'Read here',
+    },
+  ]
 
-  // Your existing functions remain unchanged
-  const plusAboutSlides = (n) => {
-    showAboutSlides((aboutSlideIndexRef.current += n));
-  };
-
-  const showAboutSlides = useCallback((n) => {
-    const slides = document.getElementsByClassName("mySlides1");
-    if (n > slides.length) {
-      aboutSlideIndexRef.current = 1;
-    }
-    if (n < 1) {
-      aboutSlideIndexRef.current = slides.length;
-    }
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    slides[aboutSlideIndexRef.current - 1].style.display = "block";
-  }, []);
-
-  // Auto-advance carousel
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex(prev => (prev === carouselItems.length - 1 ? 0 : prev + 1));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Your existing useEffect remains unchanged
-  useEffect(() => {
-    const header = document.querySelector(".navbar");
+    const header = document.querySelector('.navbar')
     if (header) {
       const handleScroll = () => {
-        const top = window.scrollY;
+        const top = window.scrollY
         if (top >= 0) {
-          header.classList.add("navbarDark");
+          header.classList.add('navbarDark')
         } else {
-          header.classList.remove("navbarDark");
+          header.classList.remove('navbarDark')
         }
-      };
-      window.addEventListener("scroll", handleScroll);
-      showAboutSlides(aboutSlideIndexRef.current);
-      return () => window.removeEventListener("scroll", handleScroll);
+      }
+      window.addEventListener('scroll', handleScroll)
+      return () => window.removeEventListener('scroll', handleScroll)
     }
-  }, [showAboutSlides]);
+  }, [])
 
   return (
     <div className="About">
-      {/* Everything above remains exactly the same */}
       <ul className="navbar">
         <li className="nav-item">
           <Link className="nav-link" to="/">
@@ -87,180 +84,86 @@ function About() {
         </li>
       </ul>
 
-      <div className="container">
-        <h1 className="text-left">About Me</h1>
-        <div className="row mt-3 about-content">
-          <img
-            src="/images/about/green.png"
-            className="imageAboutPage"
-            alt="Green"
-            style={{ width: "30%" }}
-          />
-
-          <div id="aboutImageSlideshow" className="slideshow-container">
-            <div className="mySlides1">
-              <img
-                src="/images/about/sunrise/1.jpg"
-                alt="Sunrise 1"
-                style={{ width: "63%" }}
-              />
-            </div>
-            <div className="mySlides1">
-              <img
-                src="/images/about/sunrise/2.jpg"
-                alt="Sunrise 2"
-                style={{ width: "63%" }}
-              />
-            </div>
-            <div className="mySlides1">
-              <img
-                src="/images/about/sunrise/3.jpg"
-                alt="Sunrise 3"
-                style={{ width: "63%" }}
-              />
-            </div>
-            <div className="mySlides1">
-              <img
-                src="/images/about/sunrise/4.jpg"
-                alt="Sunrise 4"
-                style={{ width: "63%" }}
-              />
-            </div>
-            <div className="mySlides1">
-              <img
-                src="/images/about/sunrise/5.jpg"
-                alt="Sunrise 5"
-                style={{ width: "63%" }}
-              />
-            </div>
-            <div className="mySlides1">
-              <img
-                src="/images/about/sunrise/6.jpg"
-                alt="Sunrise 6"
-                style={{ width: "63%" }}
-              />
-            </div>
-
-            <button className="nextA" onClick={() => plusAboutSlides(1)}>
-              &#10095;
-            </button>
-          </div>
-        </div>
-        <div className="col-lg-6">
-          <div className="left-aligned">
-            <p>
-              Hi, my name is Lauren! I'm a 4th year Computer Science student at
-              Simon Fraser University. my main professional interests are AI &
-              Data Science, Visual & Interactive Computing + Design, and Product
-              Management. I would love to apply my work to areas like ocean
-              conservation & sustainability, or visual effects and animation :)
-            </p>
-            <p>
-              I also love to read and write and paint in my spare time, and play the
-              guitar and piano. I love exploring new places on long walks while
-              travelling, and while I'm here, by hiking and swimming. (Currently
-              working on my Open Water Diving certification!)
-            </p>
-            <p>My life goal is to collect as many new experiences as possible. I want to see the world and be present in each moment.
-              I'm always looking for new opportunities to learn and grow, so
-              feel free to reach out to me!</p>
-          </div>
-        </div>
+      {/* Name in top right */}
+      <div
+        className="mb-16 text-right text-8xl text-gray-700"
+        style={{ fontFamily: "'Melo', sans-serif" }}
+      >
+        Lauren Yip
       </div>
 
-      {/* ONLY ADDITION: Simple Square Carousel - Added outside the container */}
-      <div style={{
-        margin: '40px 0',
-        padding: '20px 0',
-        backgroundColor: '#f8f9fa',
-        width: '100%'
-      }}>
-        <div style={{
-          maxWidth: '800px',
-          margin: '0 auto',
-          position: 'relative'
-        }}>
-          <h3 style={{ 
-            textAlign: 'center', 
-            marginBottom: '20px',
-            fontFamily: 'melo',
-            fontWeight: 'normal',
-            color: '#333'
-          }}>More Moments</h3>
-          
-          <div style={{
-            display: 'flex',
-            overflow: 'hidden',
-            justifyContent: 'center'
-          }}>
-            {carouselItems.map((item, idx) => (
-              <div 
-                key={idx}
-                style={{
-                  width: '150px',
-                  height: '150px',
-                  margin: '0 10px',
-                  position: 'relative',
-                  flexShrink: 0,
-                  transition: 'transform 0.3s',
-                  transform: `translateX(${(idx - currentIndex) * 170}px)`
-                }}
-              >
-                <img 
-                  src={item.image} 
-                  alt="" 
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    borderRadius: '4px',
-                    boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
-                  }} 
-                />
-                <div style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  backgroundColor: 'rgba(0,0,0,0.7)',
-                  color: 'white',
-                  padding: '8px',
-                  textAlign: 'center',
-                  opacity: 0,
-                  transition: 'opacity 0.3s',
-                  fontSize: '12px'
-                }}>
-                  {item.text}
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div style={{ 
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '20px'
-          }}>
-            {carouselItems.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentIndex(idx)}
-                style={{
-                  width: '10px',
-                  height: '10px',
-                  borderRadius: '50%',
-                  border: 'none',
-                  margin: '0 5px',
-                  backgroundColor: currentIndex === idx ? '#333' : '#ccc',
-                  cursor: 'pointer'
-                }}
-              />
-            ))}
-          </div>
-        </div>
+      {/* Love image in top left */}
+      <img
+        src="/images/about/main/love.jpg"
+        className="aboutImage"
+        alt="love"
+        style={{
+          position: 'absolute',
+          top: '15%',
+          left: '20%',
+          width: '40%',
+          maxWidth: '250px',
+          borderRadius: '5px',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
+        }}
+      />
+
+      {/* Sitting image in bottom right */}
+      <img
+        src="/images/about/main/sitting.jpg"
+        className="aboutImage"
+        alt="sit"
+        style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '15%',
+          width: '30%',
+          maxWidth: '350px',
+          borderRadius: '5px',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
+        }}
+      />
+
+      {/* Text in bottom left, between images */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '20%',
+          left: '20%',
+          maxWidth: '350px',
+          zIndex: '2',
+        }}
+      >
+        <ul
+          style={{
+            listStyleType: 'disc',
+            paddingLeft: '20px',
+            fontSize: '18px',
+            lineHeight: '1.8',
+          }}
+        >
+          <li>4th year Computer Science @ SFU</li>
+          <li>Aspiring Product Manager</li>
+          <li>Artist and Explorer</li>
+        </ul>
+      </div>
+
+      {/* Infinite Looping Carousel - kept exactly as is */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '-30%',
+          left: '20%',
+
+          zIndex: '2',
+
+          overflow: 'hidden',
+        }}
+      >
+        <InfiniteCarousel items={carouselItems} />
       </div>
     </div>
-  );
+  )
 }
 
-export default About;
+export default About

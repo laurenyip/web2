@@ -410,3 +410,8 @@ p1 {
   font-family: "F25";
   src: url("fonts/f25.otf") format("OpenType");
 }
+
+@font-face {
+  font-family: "Melo";
+  src: url("fonts/melo.ttf") format("truetype");
+}

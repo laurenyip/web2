@@ -1,6 +1,6 @@
-import "./App.css";
-import { Link } from "react-router-dom";
-import React from "react";
+import './App.css'
+import { Link } from 'react-router-dom'
+import React from 'react'
 function Home() {
   return (
     <div className="App">
@@ -56,7 +56,7 @@ function Home() {
         <p2>laurenyip20@gmail.com --- linkedin.com/in/lauren-yip</p2>
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
