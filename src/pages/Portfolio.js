@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-
 function Portfolio() {
   const [currentImage, setCurrentImage] = useState(null)
   const [currentDescription, setCurrentDescription] = useState('')
@@ -51,38 +50,41 @@ function Portfolio() {
   }
 
   return (
-    <div className="bg-white">
-      {/* Centered Navbar */}
-      <div className="w-full mx-auto max-w-xl">
-        <ul className="navbar">
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
-              Home |
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/about">
-              About |
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/projects">
-              Projects |
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/portfolio">
-              Portfolio
-            </Link>
-          </li>
-        </ul>
-      </div>
+    <div className="bg-white min-h-screen">
+      {/* Fixed Navbar at the top */}
+      <nav className="w-full fixed top-0 bg-white z-10 shadow-sm">
+        <div className="max-w-xl mx-auto">
+          <ul className="flex justify-center space-x-4 py-4">
+            <li>
+              <Link to="/" className="hover:underline text-sm">
+                Home |
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="hover:underline text-sm">
+                About |
+              </Link>
+            </li>
+            <li>
+              <Link to="/projects" className="hover:underline text-sm">
+                Projects |
+              </Link>
+            </li>
+            <li>
+              <Link to="/portfolio" className="hover:underline text-sm">
+                Portfolio
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-      <div className="w-full mx-auto max-w-xl flex flex-col lg:h-svh justify-center py-12 lg:py-24 relative p-8">
-        <div className="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl">
+      {/* Main content with padding to account for fixed navbar */}
+      <div className="pt-20 pb-12 px-8 max-w-xl mx-auto">
+        <div className="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl mt-16 mb-8">
           <div>
-            <h1>Paintings</h1>
-            <p className="text-balance">
+            <h1 className="text-3xl">Paintings</h1>
+            <p className="text-balance mt-2">
               Click on any image to view it in full screen
             </p>
           </div>
