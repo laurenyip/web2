@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
 
 function Projects() {
   const projects = [
@@ -55,34 +56,8 @@ function Projects() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      {/* Fixed Navbar at top - aligned with left box */}
-      <nav className="fixed top-0 left-1/4 py-4 bg-white z-10 transform -translate-x-1/4">
-        <div className="flex">
-          <ul className="flex space-x-4">
-            <li>
-              <Link to="/" className="text-sm hover:underline">
-                Home |
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className="text-sm hover:underline">
-                About |
-              </Link>
-            </li>
-            <li>
-              <Link to="/projects" className="text-sm hover:underline">
-                Projects |
-              </Link>
-            </li>
-            <li>
-              <Link to="/portfolio" className="text-sm hover:underline">
-                Portfolio
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
+      <Navbar />
+      
       {/* Main content with top padding to account for fixed navbar */}
       <div className="pt-20">
         {/* Top Left Grid - shifted down by 15% */}

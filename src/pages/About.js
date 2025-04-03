@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import './About.css'
 import InfiniteCarousel from './InfiniteCarousel'
+import Navbar from '../components/Navbar'
 
 function About() {
   // Carousel data - 8 items
@@ -61,29 +61,8 @@ function About() {
 
   return (
     <div className="About">
-      <ul className="navbar">
-        <li className="nav-item">
-          <Link className="nav-link" to="/">
-            Home |
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/about">
-            About |
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/projects">
-            Projects |
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/portfolio">
-            Portfolio
-          </Link>
-        </li>
-      </ul>
-
+      <Navbar />
+      
       {/* Name in top right */}
       <div
         className="mb-16 text-right text-8xl text-gray-700"
@@ -99,10 +78,10 @@ function About() {
         alt="love"
         style={{
           position: 'absolute',
-          top: '15%',
+          top: '18%',
           left: '20%',
           width: '40%',
-          maxWidth: '250px',
+          maxWidth: '220px',
           borderRadius: '5px',
           boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
         }}
@@ -118,7 +97,7 @@ function About() {
           bottom: '15%',
           right: '15%',
           width: '30%',
-          maxWidth: '350px',
+          maxWidth: '320px',
           borderRadius: '5px',
           boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
         }}
@@ -128,7 +107,7 @@ function About() {
       <div
         style={{
           position: 'absolute',
-          bottom: '20%',
+          bottom: '10%',
           left: '20%',
           maxWidth: '350px',
           zIndex: '2',
@@ -152,9 +131,9 @@ function About() {
       <div
         style={{
           position: 'absolute',
-          bottom: '-30%',
+          bottom: '-35%',
           left: '20%',
-
+          maxWidth: '65%',
           zIndex: '2',
 
           overflow: 'hidden',

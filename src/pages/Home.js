@@ -1,33 +1,13 @@
 import './App.css'
-import { Link } from 'react-router-dom'
 import React from 'react'
+import Navbar from '../components/Navbar'
+
 function Home() {
   return (
     <div className="App">
-      <ul className="navbar">
-        <li className="nav-item">
-          <Link className="nav-link" to="/">
-            Home |
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/About">
-            About |
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/Projects">
-            Projects |
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/Portfolio">
-            Portfolio
-          </Link>
-        </li>
-      </ul>
-
-      <div class="containermain">
+      <Navbar />
+      
+      <div className="containermain">
         <p3>YIP/LAUREN宝怡</p3>
         <br></br>
         <br></br>
