@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
 
 function Portfolio() {
   const [currentImage, setCurrentImage] = useState(null)
@@ -51,34 +51,8 @@ function Portfolio() {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Fixed Navbar at the top */}
-      <nav className="w-full fixed top-0 bg-white z-10 shadow-sm">
-        <div className="max-w-xl mx-auto">
-          <ul className="flex justify-center space-x-4 py-4">
-            <li>
-              <Link to="/" className="hover:underline text-sm">
-                Home |
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className="hover:underline text-sm">
-                About |
-              </Link>
-            </li>
-            <li>
-              <Link to="/projects" className="hover:underline text-sm">
-                Projects |
-              </Link>
-            </li>
-            <li>
-              <Link to="/portfolio" className="hover:underline text-sm">
-                Portfolio
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
+      <Navbar />
+      
       {/* Main content with padding to account for fixed navbar */}
       <div className="pt-20 pb-12 px-8 max-w-xl mx-auto">
         <div className="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl mt-16 mb-8">
