@@ -5,16 +5,19 @@ import About from './pages/About'
 import Projects from './pages/Projects'
 import Portfolio from './pages/Portfolio'
 import './index.css'
+import './pages/App.css'
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/portfolio" element={<Portfolio />} />
-      </Routes>
+      <div className="app-container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+        </Routes>
+      </div>
     </Router>
   )
 }
