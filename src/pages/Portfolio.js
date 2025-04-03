@@ -83,7 +83,7 @@ function Portfolio() {
       <div className="pt-20 pb-12 px-8 max-w-xl mx-auto">
         <div className="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl mt-16 mb-8">
           <div>
-            <h1 className="text-3xl">Paintings</h1>
+            <div className="text-3xl" style={{ fontFamily: "'Melo', sans-serif" }} >Paintings</div>
             <p className="text-balance mt-2">
               Click on any image to view it in full screen
             </p>
