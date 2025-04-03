@@ -172,39 +172,6 @@ p1 {
 
 /* ~~~ NAVBAR STYLING ~~~ */
 
-.navbar {
-  background-color: rgb(
-    255,
-    255,
-    255
-  ); /* Change to your desired background color */
-  color: rgb(10, 7, 72); /* Add any other styles you want */
-  font-family: 'Moto', serif;
-  opacity: 0.7;
-  padding: 2%;
-  margin-top: 1%;
-  z-index: 10; /* Lower z-index than the header */
-  font-size: large;
-
-  display: flex;
-  list-style: none;
-  justify-content: flex-start;
-}
-
-.nav-item {
-  margin-right: 10px; /* Adjust as needed for spacing between items */
-  text-decoration: none;
-}
-
-.nav-item a {
-  text-decoration: none;
-  color: inherit; /* Inherit the color from the parent (.navbar) */
-}
-
-/* Style for visited links */
-.nav-item a:visited {
-  color: inherit;
-}
 
 /* footer styling */
 

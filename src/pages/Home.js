@@ -1,13 +1,17 @@
-import './App.css'
+
 import React from 'react'
 import Navbar from '../components/Navbar'
+import './App.css'
+import '../components/Navbar.css'
 
 function Home() {
   return (
     <div className="App">
-      <Navbar />
+     
+          <Navbar />
+       
       
-      <div className="containermain">
+      <div className="containermain absolute top-[15%] left-[22%]">
         <p3>YIP/LAUREN宝怡</p3>
         <br></br>
         <br></br>

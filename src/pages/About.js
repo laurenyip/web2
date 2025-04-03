@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import './About.css'
 import InfiniteCarousel from './InfiniteCarousel'
 import Navbar from '../components/Navbar'
+import '../components/Navbar.css'
+import './App.css'
 
 function About() {
   // Carousel data - 8 items
@@ -61,11 +62,13 @@ function About() {
 
   return (
     <div className="About">
-      <Navbar />
+     
+          <Navbar />
+       
       
       {/* Name in top right */}
       <div
-        className="mb-16 text-right text-8xl text-gray-700"
+        className="ml-[65%] absolute top-[15%] text-8xl text-gray-700"
         style={{ fontFamily: "'Melo', sans-serif" }}
       >
         Lauren Yip
@@ -79,7 +82,7 @@ function About() {
         style={{
           position: 'absolute',
           top: '18%',
-          left: '20%',
+          left: '22%',
           width: '40%',
           maxWidth: '220px',
           borderRadius: '5px',
@@ -107,8 +110,8 @@ function About() {
       <div
         style={{
           position: 'absolute',
-          bottom: '10%',
-          left: '20%',
+          bottom: '15%',
+          left: '22%',
           maxWidth: '350px',
           zIndex: '2',
         }}
