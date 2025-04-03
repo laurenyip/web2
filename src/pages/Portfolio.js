@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
+import './App.css'
+import '../components/Navbar.css'
 
 function Portfolio() {
   const [currentImage, setCurrentImage] = useState(null)
@@ -51,8 +53,9 @@ function Portfolio() {
 
   return (
     <div className="bg-white min-h-screen">
-      <Navbar />
       
+          <Navbar />
+       
       {/* Main content with padding to account for fixed navbar */}
       <div className="pt-20 pb-12 px-8 max-w-xl mx-auto">
         <div className="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl mt-16 mb-8">

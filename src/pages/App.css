@@ -24,25 +24,8 @@ body {
   width: auto; /* To maintain the aspect ratio */
 }
 
-.overlay-home {
-  position: relative;
-  top: 24%;
-  left: 12%;
-  width: 5%;
-  height: 11%;
-  object-fit: 20; /* Maintain aspect ratio and cover the container */
-  z-index: 1; /* Set the overlay "width: 100%; max-width: 100%; height: auto;" above the background image */
-}
 
-.overlay-head {
-  position: absolute;
-  top: 20%;
-  left: 3%;
-  width: 2%;
-  height: 70%;
-  object-fit: 80; /* Maintain aspect ratio and cover the container */
-  z-index: 1; /* Set the overlay image above the background image */
-}
+
 
 /* ~~~ TEXT STYLING ~~~ */
 
@@ -164,203 +147,18 @@ p1 {
 
 .containermain {
   border: #001c80 solid 1px;
-  padding: 8%;
+  padding: 5%;
   background-image: url("stamp.png");
 
   background-repeat: no-repeat;
   max-width: fit-content;
 }
 
-.container {
-  border: #001c80 solid 1px;
-  padding: 8%;
 
-  max-width: fit-content;
-}
 
-/* ~~~ NAVBAR STYLING ~~~ */
 
-.navbar {
-  background-color: rgb(
-    255,
-    255,
-    255
-  ); /* Change to your desired background color */
-  color: rgb(10, 7, 72); /* Add any other styles you want */
-  font-family: "Moto", serif;
-  opacity: 0.7;
-  padding: 2%;
-  margin-top: 1%;
-  z-index: 10; /* Lower z-index than the header */
-  font-size: large;
 
-  display: flex;
-  list-style: none;
-  justify-content: flex-start;
-}
 
-.nav-item {
-  margin-right: 10px; /* Adjust as needed for spacing between items */
-  text-decoration: none;
-}
-
-.nav-item a {
-  text-decoration: none;
-  color: inherit; /* Inherit the color from the parent (.navbar) */
-}
-
-/* Style for visited links */
-.nav-item a:visited {
-  color: inherit;
-}
-
-/* footer styling */
-
-/* spacing on all sections */
-#about,
-#services,
-#portfolio {
-  margin-top: 4rem;
-  padding: 2rem;
-  max-width: 1100px;
-  background-color: rgb(255, 255, 255);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* social media icons styling */
-.social-icons {
-  font-size: 25px;
-  cursor: pointer;
-  text-align: center;
-}
-.social-icons:hover {
-  color: #ffb2b2;
-}
-
-/* additional styling for positioning */
-.d-flex.justify-content-center {
-  position: relative;
-  padding-top: 10%;
-}
-
-.fab,
-.fa-solid {
-  color: #092c79;
-}
-.fab:hover,
-.fa-solid:hover {
-  color: #ffb2b2;
-}
-
-/* ~~~ SLIDESHOW CSS ~~~ */
-/* Slideshow container */
-
-.slideshow-container {
-  max-width: 1100px;
-  position: relative;
-  margin: 25px;
-}
-
-.slide-container {
-  overflow: auto;
-  white-space: nowrap;
-}
-
-/* Hide the images by default */
-.mySlides {
-  display: block;
-}
-
-/* Next & previous buttons */
-.prevR,
-.nextR {
-  cursor: pointer;
-  position: rel;
-  top: 40%;
-  padding: 3px;
-  padding-left: 8px;
-  padding-right: 8px;
-  color: rgb(40, 0, 202);
-  font-weight: bold;
-  font-size: 12px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  background-color: #ffb2b2;
-  z-index: 2; /* Ensure buttons appear above images */
-}
-
-/* Position the "next button" to the right */
-.nextR {
-  border-radius: 3px 0 0 3px;
-}
-
-.nextA {
-  color: rgb(40, 0, 202);
-  background-color: #ffc2c2;
-  padding: 3px;
-  padding-right: 9px;
-  padding-left: 9px;
-
-  border-radius: 3px 0 0 3px;
-  user-select: none;
-}
-
-.nextA:hover {
-  background-color: rgba(93, 150, 255, 0.811);
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prevR:hover,
-.nextR:hover {
-  background-color: rgba(93, 150, 255, 0.811);
-}
-
-/* Caption text */
-.text {
-  color: rgb(8, 0, 84);
-  font-size: 15px;
-  font-weight: normal;
-  padding: 8px 16px;
-  position: relative;
-  bottom: 0px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 7px;
-  width: 7px;
-  margin: 0 4px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.swipe {
-  overflow: auto;
-  white-space: nowrap;
-}
-
-.active,
-.dot:hover {
-  background-color: rgb(112, 162, 255);
-}
 
 @font-face {
   font-family: "Chobani";
@@ -397,4 +195,9 @@ p1 {
 @font-face {
   font-family: "F25";
   src: url("fonts/f25.otf") format("OpenType");
+}
+
+@font-face {
+  font-family: 'Melo';
+  src: url('fonts/melo.ttf') format('truetype');
 }

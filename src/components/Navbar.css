@@ -5,15 +5,16 @@
   opacity: 0.7;
   padding: 2%;
   margin-top: 1%;
-  z-index: 999; /* Ensure navbar is above all other content */
+  z-index: 999; /* Ensure navbar stays above other content */
   font-size: large;
   display: flex;
   list-style: none;
   justify-content: flex-start;
-  position: fixed; /* Make the navbar fixed at the top */
+  position: fixed; /* Fixed positioning */
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 20%; /* Start 20% from the left edge */
+  width: 80%; /* Take up remaining 80% of the width */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .nav-item {
@@ -34,3 +35,4 @@
 .content-container {
   margin-top: 60px; /* Adjust based on navbar height */
 } 
+

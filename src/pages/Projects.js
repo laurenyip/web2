@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './App.css'
+import '../components/Navbar.css'
 import Navbar from '../components/Navbar'
 
 function Projects() {
@@ -41,9 +43,9 @@ function Projects() {
       image: '/images/projects/wics.jpg',
     },
     {
-      title: 'Project 7',
+      title: 'Community!',
       link: '#',
-      description: 'Coming soon',
+      description: 'Hackathon judge at Fall Hacks 2024, judge + workshop host at XD Hacks 2025',
       image: '/images/projects/placeholder.jpg',
     },
     {
@@ -56,12 +58,13 @@ function Projects() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      <Navbar />
-      
+     
+          <Navbar />
+       
       {/* Main content with top padding to account for fixed navbar */}
       <div className="pt-20">
         {/* Top Left Grid - shifted down by 15% */}
-        <div className="absolute top-[30%] left-1/4 transform -translate-x-1/4 -translate-y-1/4 w-[30%]">
+        <div className="absolute top-[40%] left-[28%] transform -translate-x-1/4 -translate-y-1/4 w-[25%]">
           <div className="grid grid-cols-2 gap-6">
           {projects.slice(4, 8).map((project, index) => (
               <ProjectCard key={`bottom-${index}`} project={project} />
@@ -77,7 +80,7 @@ function Projects() {
         </div>
 
         {/* Bottom Right Grid - shifted down by 15% */}
-        <div className="absolute bottom-[20%] right-1/4 transform translate-x-1/4 translate-y-1/4 w-[30%]">
+        <div className="absolute bottom-[15%] right-1/4 transform translate-x-1/4 translate-y-1/4 w-[25%]">
           {/* "Experiences" text directly above */}
           <div
             className="mb-20 text-right text-8xl text-gray-700"
