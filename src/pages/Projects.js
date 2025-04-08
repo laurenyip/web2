@@ -36,8 +36,8 @@ function Projects() {
     },
     {
       title: 'WiCS',
-      link: '#',
-      description: 'Technical Events Coordinator 2024-25, Organizing team for Try/CATCH 2024 and Networking Night 2025, Mentorship program',
+      link: 'https://www.linkedin.com/feed/update/urn:li:activity:7304615915566874624?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7304615915566874624%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Bga5FoYxFTMW1ZaKJmD1Brw%3D%3D',
+      description: 'Technical Events Coordinator 2024-25, Organizing team and panelist for Try/CATCH 2024 and Networking Night 2025, Mentorship program',
       image: '/images/projects/wics.jpg',
     },
     {
@@ -48,7 +48,7 @@ function Projects() {
     },
     {
       title: 'Project 8',
-      link: '#',
+      link: 'https://www.linkedin.com/in/lauren-yip/',
       description: 'Coming soon... message me to do a project together!',
       image: '/images/projects/placeholder.jpg',
     },
