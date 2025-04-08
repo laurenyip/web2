@@ -7,7 +7,7 @@ const InfiniteCarousel = ({ items }) => {
   const [flippedCards, setFlippedCards] = useState(
     new Array(items.length).fill(false)
   )
-  const autoScrollTimerRef = useRef(null)
+  
 
   // Carousel parameters
   const cardWidth = 160
