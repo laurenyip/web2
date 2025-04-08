@@ -151,7 +151,7 @@ const InfiniteCarousel = ({ items }) => {
                   position: 'relative',
                   flexShrink: 0,
                   transformStyle: 'preserve-3d',
-                  transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)`,
+                  transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
                   transition: 'transform 0.6s ease',
                   cursor: 'pointer',
                   marginRight: `${cardGap}px`,
