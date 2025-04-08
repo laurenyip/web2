@@ -4,7 +4,8 @@ import '../pages/App.css'
 
 function Navbar() {
   return (
-    <ul className="navbar">
+    <ul className="fixed top-10  w-full md:left-[21%] md:w-[80%] z-[50] bg-white opacity-70 text-[#0a0748] font-[Moto] text-lg flex list-none justify-start p-4">
+
       <li className="nav-item">
         <Link className="nav-link" to="/">
           Home |
@@ -12,17 +13,17 @@ function Navbar() {
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="/about">
-          About |
+        &nbsp;About |
         </Link>
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="/projects">
-          Projects |
+        &nbsp;Projects |
         </Link>
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="/portfolio">
-          Portfolio
+        &nbsp;Portfolio
         </Link>
       </li>
     </ul>

@@ -2,7 +2,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import './App.css'
-import '../components/Navbar.css'
+
 
 function Home() {
   return (

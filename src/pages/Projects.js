@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import './App.css'
-import '../components/Navbar.css'
+
 import Navbar from '../components/Navbar'
 
 function Projects() {
