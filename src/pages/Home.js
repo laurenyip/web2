@@ -11,7 +11,8 @@ function Home() {
           <Navbar />
        
       
-      <div className="containermain absolute top-[15%] left-[22%]">
+          <div className="containermain absolute top-[15%] left-1/2 -translate-x-1/2 px-4 w-full max-w-md md:left-[22%] md:translate-x-0">
+
         <p3>YIP/LAUREN宝怡</p3>
         <br></br>
         <br></br>
