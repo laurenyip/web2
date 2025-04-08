@@ -113,7 +113,7 @@ const InfiniteCarousel = ({ items }) => {
         style={{
           textAlign: 'center',
           marginBottom: '30px',
-          color: '#333',
+          color: '#092c79',
           fontSize: '24px',
         }}
       >
@@ -121,57 +121,30 @@ const InfiniteCarousel = ({ items }) => {
       </h3>
 
       {/* Navigation Arrows */}
-      <button
-        onClick={() => navigateCarousel('prev')}
-        style={{
-          position: 'absolute',
-          left: '20px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          background: 'rgba(0,0,0,0.7)',
-          border: 'none',
-          borderRadius: '50%',
-          width: '50px',
-          height: '50px',
-          fontSize: '24px',
-          color: 'white',
-          cursor: 'pointer',
-          zIndex: 10,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          transition: 'all 0.3s ease',
-          outline: 'none',
-        }}
-      >
-        &#10094;
-      </button>
+      <>
+      <>
+      <>
+  {/* Left Arrow - only visible on md and up */}
+  <button
+    onClick={() => navigateCarousel('prev')}
+    className="hidden md:flex absolute left-5 top-[40%] -translate-y-1/2 z-50 bg-[#001c80] bg-opacity-70 text-white w-12 h-12 text-2xl rounded-full items-center justify-center transition-all duration-300 shadow-lg"
+  >
+    ❮
+  </button>
 
-      <button
-        onClick={() => navigateCarousel('next')}
-        style={{
-          position: 'absolute',
-          right: '20px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          background: 'rgba(0,0,0,0.7)',
-          border: 'none',
-          borderRadius: '50%',
-          width: '50px',
-          height: '50px',
-          fontSize: '24px',
-          color: 'white',
-          cursor: 'pointer',
-          zIndex: 10,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          transition: 'all 0.3s ease',
-          outline: 'none',
-        }}
-      >
-        &#10095;
-      </button>
+  {/* Right Arrow - only visible on md and up */}
+  <button
+    onClick={() => navigateCarousel('next')}
+    className="hidden md:flex absolute right-5 top-[40%] -translate-y-1/2 z-50 bg-[#001c80] bg-opacity-70 text-white w-12 h-12 text-2xl rounded-full items-center justify-center transition-all duration-300 shadow-lg"
+  >
+    ❯
+  </button>
+</>
+
+</>
+
+</>
+
 
       {/* Carousel Viewport - shows 4 full cards + 2 half cards */}
       <div

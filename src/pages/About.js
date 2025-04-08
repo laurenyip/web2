@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import InfiniteCarousel from './InfiniteCarousel'
+import InfiniteCarousel from '../components/InfiniteCarousel'
 import Navbar from '../components/Navbar'
 
 import './App.css'
@@ -61,75 +61,48 @@ function About() {
   }, [])
 
   return (
-    <div className="About">
+    <div className="About relative min-h-screen overflow-x-hidden">
+
      
           <Navbar />
        
       
-      {/* Name in top right */}
-      <div
-        className="ml-[65%] absolute top-[15%] text-8xl text-gray-700"
-        style={{ fontFamily: "'Melo', sans-serif" }}
-      >
-        Lauren Yip
-      </div>
+          <div className="absolute top-[18%] left-1/2  text-5xl md:text-8xl text-center z-20 text-gray-700" style={{ fontFamily: "'Melo', sans-serif" }}>
+  Lauren Yip
+</div>
+
 
       {/* Love image in top left */}
       <img
         src="/images/about/main/love.jpg"
-        className="aboutImage"
+        className="aboutImage absolute top-[18%] left-[25%] rounded-md -translate-x-1/2 md:top-[18%] md:left-[22%] md:translate-x-0 w-[40%] max-w-[220px]"
         alt="love"
-        style={{
-          position: 'absolute',
-          top: '18%',
-          left: '22%',
-          width: '40%',
-          maxWidth: '220px',
-          borderRadius: '5px',
-          boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
-        }}
+       
       />
 
-      {/* Sitting image in bottom right */}
-      <img
-        src="/images/about/main/sitting.jpg"
-        className="aboutImage"
-        alt="sit"
-        style={{
-          position: 'absolute',
-          bottom: '15%',
-          right: '15%',
-          width: '30%',
-          maxWidth: '320px',
-          borderRadius: '5px',
-          boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
-        }}
-      />
+<img
+  src="/images/about/main/sitting.jpg"
+  className="aboutImage absolute bottom-[5%] left-1/2 -translate-x-1/2 w-[80%] max-w-[360px] md:bottom-[15%] md:right-[15%] md:left-auto md:translate-x-0 md:w-[30%] md:max-w-[320px] z-10 rounded-md shadow-md"
+  alt="sit"
+/>
+<img
+  src="/images/about/main/fish.gif"
+  className="aboutImage absolute top-[25%] left-[75%] -translate-x-1/2 w-[40%] max-w-[360px] md:bottom-[6%] md:right-[40%] md:left-auto md:translate-x-0 md:w-[20%] md:max-w-[320px] z-0"
+  alt="fish"
+/>
 
 
-      {/* Text in bottom left, between images */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '15%',
-          left: '22%',
-          maxWidth: '350px',
-          zIndex: '2',
-        }}
-      >
-        <ul
-          style={{
-            listStyleType: 'disc',
-            paddingLeft: '20px',
-            fontSize: '18px',
-            lineHeight: '1.8',
-          }}
-        >
-          <li>4th year Computer Science @ SFU</li>
-          <li>Aspiring Product Manager</li>
-          <li>Artist and Explorer</li>
-        </ul>
-      </div>
+
+  {/* Text block - responsive vertical position */}
+<div className="absolute top-[50%] md:top-[65%] md:left-[37%] left-1/2 -translate-x-1/2 text-left w-[90%] max-w-md z-[10] text-#001c80">
+  <ul className="list-disc list-inside text-base leading-relaxed">
+    <li>4th year Computer Science @ SFU</li>
+    <li>Aspiring Product Manager</li>
+    <li>Artist and Explorer</li>
+  </ul>
+</div>
+
+      
 
       {/* Infinite Looping Carousel - kept exactly as is */}
       <div
