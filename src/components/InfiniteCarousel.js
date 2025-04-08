@@ -1,103 +1,71 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 
 const InfiniteCarousel = ({ items }) => {
   const [position, setPosition] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
   const carouselRef = useRef(null)
   const [flippedCards, setFlippedCards] = useState(
-    new Array(items.length).fill(false),
+    new Array(items.length).fill(false)
   )
   const autoScrollTimerRef = useRef(null)
 
   // Carousel parameters
-  const cardWidth = 160 // Width of each card
-  const cardGap = 50 // Gap between cards
-  const itemWidth = cardWidth + cardGap // Total width including gap
+  const cardWidth = 160
+  const cardGap = 50
+  const itemWidth = cardWidth + cardGap
 
-  // Create a triple-sized array for smooth infinite scrolling
+  // Create triple-sized array for looping
   const extendedItems = [...items, ...items, ...items]
 
-  // Initialize position to show the middle set of items
+  // Center on middle set of cards
   useEffect(() => {
     setPosition(-items.length * itemWidth)
   }, [items.length, itemWidth])
 
-  // Set up auto rotation
-  useEffect(() => {
-    const startAutoRotation = () => {
-      if (autoScrollTimerRef.current) {
-        clearInterval(autoScrollTimerRef.current)
-      }
-  
-      autoScrollTimerRef.current = setInterval(() => {
-        if (!isAnimating) {
-          navigateCarousel('next')
+  // Wrapped navigateCarousel in useCallback
+  const navigateCarousel = useCallback(
+    (direction) => {
+      if (isAnimating) return
+      setIsAnimating(true)
+
+      const moveAmount = direction === 'next' ? -itemWidth : itemWidth
+      setPosition((prev) => prev + moveAmount)
+
+      setFlippedCards(new Array(items.length).fill(false))
+
+      setTimeout(() => {
+        const threshold = -items.length * itemWidth
+        const newPosition = position + moveAmount
+
+        if (
+          newPosition <= threshold - items.length * itemWidth + itemWidth
+        ) {
+          setPosition(threshold)
+        } else if (
+          newPosition >= threshold + items.length * itemWidth - itemWidth
+        ) {
+          setPosition(threshold)
         }
-      }, 5000)
-    }
-  
-    startAutoRotation()
-  
-    return () => {
-      if (autoScrollTimerRef.current) {
-        clearInterval(autoScrollTimerRef.current)
-      }
-    }
-  }, [position, isAnimating])
-  
 
-  const startAutoRotation = () => {
-    if (autoScrollTimerRef.current) {
-      clearInterval(autoScrollTimerRef.current)
-    }
+        setIsAnimating(false)
+      }, 500)
+    },
+    [isAnimating, itemWidth, items.length, position]
+  )
 
-    autoScrollTimerRef.current = setInterval(() => {
+  // Auto-scroll every 5s
+  useEffect(() => {
+    const interval = setInterval(() => {
       if (!isAnimating) {
         navigateCarousel('next')
       }
     }, 5000)
-  }
 
-  // Handle carousel navigation
-  const navigateCarousel = (direction) => {
-    if (isAnimating) return
-    setIsAnimating(true)
+    return () => clearInterval(interval)
+  }, [isAnimating, navigateCarousel])
 
-    const moveAmount = direction === 'next' ? -itemWidth : itemWidth
-    setPosition((prev) => prev + moveAmount)
-
-    // Reset flipped cards
-    setFlippedCards(new Array(items.length).fill(false))
-
-    // Handle infinite scrolling logic after animation completes
-    setTimeout(() => {
-      // If we've scrolled too far in either direction, jump to the equivalent position
-      // in the middle set without animation
-      const threshold = -items.length * itemWidth
-
-      if (
-        position + moveAmount <=
-        threshold - items.length * itemWidth + itemWidth
-      ) {
-        // If we've gone too far forward, jump back
-        setPosition(threshold)
-      } else if (
-        position + moveAmount >=
-        threshold + items.length * itemWidth - itemWidth
-      ) {
-        // If we've gone too far backward, jump forward
-        setPosition(threshold)
-      }
-
-      setIsAnimating(false)
-    }, 500)
-  }
-
-  // Toggle card flip
   const toggleFlip = (index) => {
-    // Find the equivalent index in the original items array
     const originalIndex = index % items.length
-
     setFlippedCards((prev) => {
       const newFlipped = [...prev]
       newFlipped[originalIndex] = !newFlipped[originalIndex]
@@ -105,9 +73,8 @@ const InfiniteCarousel = ({ items }) => {
     })
   }
 
-  // Handle link click without toggling the card
   const handleLinkClick = (e, link) => {
-    e.stopPropagation() // Prevent card flip when clicking the button
+    e.stopPropagation()
     window.open(link, '_blank')
   }
 
@@ -133,51 +100,41 @@ const InfiniteCarousel = ({ items }) => {
         current
       </h3>
 
-      {/* Navigation Arrows */}
+      {/* Desktop-only arrows */}
       <>
-      <>
-      <>
-  {/* Left Arrow - only visible on md and up */}
-  <button
-    onClick={() => navigateCarousel('prev')}
-    className="hidden md:flex absolute left-5 top-[40%] -translate-y-1/2 z-50 bg-[#001c80] bg-opacity-70 text-white w-12 h-12 text-2xl rounded-full items-center justify-center transition-all duration-300 shadow-lg"
-  >
-    ❮
-  </button>
+        <button
+          onClick={() => navigateCarousel('prev')}
+          className="hidden md:flex absolute left-5 top-[40%] -translate-y-1/2 z-50 bg-[#001c80] bg-opacity-70 text-white w-12 h-12 text-2xl rounded-full items-center justify-center transition-all duration-300 shadow-lg"
+        >
+          ❮
+        </button>
 
-  {/* Right Arrow - only visible on md and up */}
-  <button
-    onClick={() => navigateCarousel('next')}
-    className="hidden md:flex absolute right-5 top-[40%] -translate-y-1/2 z-50 bg-[#001c80] bg-opacity-70 text-white w-12 h-12 text-2xl rounded-full items-center justify-center transition-all duration-300 shadow-lg"
-  >
-    ❯
-  </button>
-</>
+        <button
+          onClick={() => navigateCarousel('next')}
+          className="hidden md:flex absolute right-5 top-[40%] -translate-y-1/2 z-50 bg-[#001c80] bg-opacity-70 text-white w-12 h-12 text-2xl rounded-full items-center justify-center transition-all duration-300 shadow-lg"
+        >
+          ❯
+        </button>
+      </>
 
-</>
-
-</>
-
-
-      {/* Carousel Viewport - shows 4 full cards + 2 half cards */}
+      {/* Carousel Viewport */}
       <div
         style={{
           position: 'relative',
           width: '100%',
           overflow: 'hidden',
-          maxWidth: `${4 * itemWidth + cardWidth}px`, // Width for 4 full cards + 2 half cards
+          maxWidth: `${4 * itemWidth + cardWidth}px`,
           margin: '0 auto',
           height: `${cardWidth}px`,
         }}
       >
-        {/* Carousel Track */}
         <div
           ref={carouselRef}
           style={{
             display: 'flex',
             transform: `translateX(${position}px)`,
             transition: isAnimating ? 'transform 0.5s ease' : 'none',
-            marginLeft: `${cardWidth / 2}px`, // Start with half card visible
+            marginLeft: `${cardWidth / 2}px`,
           }}
         >
           {extendedItems.map((item, index) => {
@@ -194,13 +151,13 @@ const InfiniteCarousel = ({ items }) => {
                   position: 'relative',
                   flexShrink: 0,
                   transformStyle: 'preserve-3d',
-                  transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                  transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)`,
                   transition: 'transform 0.6s ease',
                   cursor: 'pointer',
                   marginRight: `${cardGap}px`,
                 }}
               >
-                {/* Front - Image */}
+                {/* Front */}
                 <div
                   style={{
                     position: 'absolute',
@@ -223,7 +180,7 @@ const InfiniteCarousel = ({ items }) => {
                   />
                 </div>
 
-                {/* Back - Text and Link Button */}
+                {/* Back */}
                 <div
                   style={{
                     position: 'absolute',
@@ -268,9 +225,6 @@ const InfiniteCarousel = ({ items }) => {
                         cursor: 'pointer',
                         transition: 'background-color 0.3s ease',
                         marginTop: 'auto',
-                        ':hover': {
-                          backgroundColor: '#3a7bc8',
-                        },
                       }}
                     >
                       {item.buttonText || 'View Link'}
