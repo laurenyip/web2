@@ -7,7 +7,6 @@ const InfiniteCarousel = ({ items }) => {
   const [flippedCards, setFlippedCards] = useState(
     new Array(items.length).fill(false)
   )
-  
 
   // Carousel parameters
   const cardWidth = 160
@@ -188,7 +187,7 @@ const InfiniteCarousel = ({ items }) => {
                     height: '100%',
                     backfaceVisibility: 'hidden',
                     backgroundColor: '#eeeeee',
-                    color: 'black',
+                    color: '#0e0d50',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -206,6 +205,7 @@ const InfiniteCarousel = ({ items }) => {
                       margin: item.link ? '0 0 10px 0' : 0,
                       fontWeight: '500',
                       lineHeight: '1.4',
+                      color: '#0e0d50',
                     }}
                   >
                     {item.text}
@@ -216,8 +216,8 @@ const InfiniteCarousel = ({ items }) => {
                       onClick={(e) => handleLinkClick(e, item.link)}
                       style={{
                         backgroundColor: '#eeeeee',
-                        color: 'white',
-                        border: 'none',
+                        color: '#0e0d50',
+                        border: '1px solid #0e0d50',
                         borderRadius: '4px',
                         padding: '8px 12px',
                         fontSize: '14px',
