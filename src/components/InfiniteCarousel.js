@@ -24,14 +24,27 @@ const InfiniteCarousel = ({ items }) => {
 
   // Set up auto rotation
   useEffect(() => {
+    const startAutoRotation = () => {
+      if (autoScrollTimerRef.current) {
+        clearInterval(autoScrollTimerRef.current)
+      }
+  
+      autoScrollTimerRef.current = setInterval(() => {
+        if (!isAnimating) {
+          navigateCarousel('next')
+        }
+      }, 5000)
+    }
+  
     startAutoRotation()
-
+  
     return () => {
       if (autoScrollTimerRef.current) {
         clearInterval(autoScrollTimerRef.current)
       }
     }
   }, [position, isAnimating])
+  
 
   const startAutoRotation = () => {
     if (autoScrollTimerRef.current) {
