@@ -1,13 +1,12 @@
 import React from 'react'
 import './App.css'
-
 import Navbar from '../components/Navbar'
 
 function Projects() {
   const projects = [
     {
       title: 'Brig.AI',
-      link: 'https://www.linkedin.com/posts/lauren-yip_ai4goodlab-activity-7214685350546276352-jnh0?utm_source=share&utm_medium=member_desktop&rcm=ACoAACyz3KoB4I2e1afxgO2P1KYhFYW3VHS337Y',
+      link: 'https://www.linkedin.com/posts/lauren-yip_ai4goodlab-activity-7214685350546276352-jnh0?utm_source=share&utm_medium=member_desktop',
       description: 'Health tech for PCOS/Endometriosis',
       image: '/images/projects/ai4.jpg',
     },
@@ -19,7 +18,7 @@ function Projects() {
     },
     {
       title: 'PRD+',
-      link: 'https://www.linkedin.com/posts/lauren-yip_%F0%9D%90%92%F0%9D%90%AE%F0%9D%90%A9%F0%9D%90%9E%F0%9D%90%AB-%F0%9D%90%9E%F0%9D%90%B1%F0%9D%90%9C%F0%9D%90%A2%F0%9D%90%AD%F0%9D%90%A2%F0%9D%90%A7%F0%9D%90%A0-%F0%9D%90%A9%F0%9D%90%A8%F0%9D%90%AC%F0%9D%90%AD-activity-7305352139243929601-_6gj?utm_source=share&utm_medium=member_desktop&rcm=ACoAACyz3KoB4I2e1afxgO2P1KYhFYW3VHS337Ym',
+      link: 'https://www.linkedin.com/posts/lauren-yip_%F0%9D%90%92%F0%9D%90%AE%F0%9D%90%A9%F0%9D%90%9E%F0%9D%90%AB-%F0%9D%90%9E%F0%9D%90%B1%F0%9D%90%9C%F0%9D%90%A2%F0%9D%90%AD%F0%9D%90%A2%F0%9D%90%A7%F0%9D%90%A0-%F0%9D%90%A9%F0%9D%90%A8%F0%9D%90%AC%F0%9D%90%AD-activity-7305352139243929601-_6gj',
       description: "UBC PMC's Product Sprint, 1st Place",
       image: '/images/projects/prd.jpg',
     },
@@ -33,12 +32,12 @@ function Projects() {
       title: 'BC Hydro',
       link: '#',
       description: 'IT Cybersecurity Infrastructure and Platforms Intern',
-      image: '/images/projects/bch.png',
+      image: '/images/projects/bch.jpg',
     },
     {
       title: 'WiCS',
       link: '#',
-      description: 'Coming soon',
+      description: 'Technical Events Coordinator 2024-25, Organizing team for Try/CATCH 2024 and Networking Night 2025, Mentorship program',
       image: '/images/projects/wics.jpg',
     },
     {
@@ -50,39 +49,38 @@ function Projects() {
     {
       title: 'Project 8',
       link: '#',
-      description: 'Coming soon',
+      description: 'Coming soon... message me to do a project together!',
       image: '/images/projects/placeholder.jpg',
     },
   ]
 
   return (
     <div className="min-h-screen bg-white relative">
-     
-          <Navbar />
-       
-      {/* Main content with top padding to account for fixed navbar */}
-      <div className="pt-20">
-        {/* Top Left Grid - shifted down by 15% */}
+      <Navbar />
+
+      {/* Desktop Layout - same as before */}
+      <div className="hidden md:block pt-20">
+        {/* Top Left Grid */}
         <div className="absolute top-[40%] left-[28%] transform -translate-x-1/4 -translate-y-1/4 w-[25%]">
           <div className="grid grid-cols-2 gap-6">
-          {projects.slice(4, 8).map((project, index) => (
+            {projects.slice(4, 8).map((project, index) => (
               <ProjectCard key={`bottom-${index}`} project={project} />
             ))}
           </div>
-          {/* "Projects" text directly below */}
+          {/* Projects Title */}
           <div
-            className="mt-20 text-left text-8xl text-gray-700"
+            className="mt-20 left-[5%] md:left-[20%] text-5xl md:text-8xl text-gray-700"
             style={{ fontFamily: "'Melo', sans-serif" }}
           >
             Projects
           </div>
         </div>
 
-        {/* Bottom Right Grid - shifted down by 15% */}
+        {/* Bottom Right Grid */}
         <div className="absolute bottom-[15%] right-1/4 transform translate-x-1/4 translate-y-1/4 w-[25%]">
-          {/* "Experiences" text directly above */}
+          {/* Experiences Title */}
           <div
-            className="mb-20 text-right text-8xl text-gray-700"
+            className="mb-20 md:right-[20%] right-[15%] bottom-[5%] text-5xl md:text-8xl text-gray-700"
             style={{ fontFamily: "'Melo', sans-serif" }}
           >
             Experiences
@@ -94,11 +92,43 @@ function Projects() {
           </div>
         </div>
       </div>
+
+      {/* Mobile Layout */}
+      <div className="block md:hidden pt-24 px-4 max-w-xl mx-auto text-center">
+        {/* Top Grid (1x4) */}
+        <div className="grid grid-cols-1 gap-6 mb-12">
+          {projects.slice(0, 4).map((project, index) => (
+            <ProjectCard key={`mobile-top-${index}`} project={project} />
+          ))}
+        </div>
+
+        {/* Center Titles */}
+        <div className="mb-10">
+          <h2
+            className="text-3xl text-gray-800 mb-2"
+            style={{ fontFamily: "'Melo', sans-serif" }}
+          >
+            Projects
+          </h2>
+          <h3
+            className="text-3xl text-gray-800"
+            style={{ fontFamily: "'Melo', sans-serif" }}
+          >
+            Experiences
+          </h3>
+        </div>
+
+        {/* Bottom Grid (1x4) */}
+        <div className="grid grid-cols-1 gap-6 mt-6">
+          {projects.slice(4, 8).map((project, index) => (
+            <ProjectCard key={`mobile-bottom-${index}`} project={project} />
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
 
-// Project Card Component
 function ProjectCard({ project }) {
   return (
     <div className="group relative aspect-square w-full rounded-lg shadow-md overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105">
