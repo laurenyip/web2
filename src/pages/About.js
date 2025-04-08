@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import InfiniteCarousel from './InfiniteCarousel'
 import Navbar from '../components/Navbar'
-import '../components/Navbar.css'
+
 import './App.css'
 
 function About() {
@@ -106,6 +106,7 @@ function About() {
         }}
       />
 
+
       {/* Text in bottom left, between images */}
       <div
         style={{
@@ -144,7 +145,9 @@ function About() {
       >
         <InfiniteCarousel items={carouselItems} />
       </div>
+      
     </div>
+ 
   )
 }
 
