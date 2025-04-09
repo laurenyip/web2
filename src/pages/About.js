@@ -75,7 +75,7 @@ function About() {
       {/* Love image in top left */}
       <img
         src="/images/about/main/love.jpg"
-        className="aboutImage absolute top-[18%] left-[25%] rounded-md -translate-x-1/2 md:top-[18%] md:left-[22%] md:translate-x-0 w-[40%] max-w-[220px]"
+        className="aboutImage absolute top-[18%] left-[25%] rounded-md -translate-x-1/2 md:top-[18%] md:left-[22%] md:translate-x-0 w-[40%] max-w-[220px] z-20"
         alt="love"
        
       />
