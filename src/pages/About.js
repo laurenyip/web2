@@ -114,13 +114,14 @@ function About() {
           zIndex: '2',
 
           overflow: 'hidden',
+          paddingBottom: '70px'
         }}
       >
         <InfiniteCarousel items={carouselItems} />
+        
       </div>
       
     </div>
- 
   )
 }
 
