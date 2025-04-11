@@ -90,7 +90,7 @@ function Portfolio() {
         {/* Substack button */}
         <div className="flex justify-center my-6">
           <a
-            href="https://alyssasong.substack.com/"
+            href="https://laurenyip.substack.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full bg-[#ffc2c2] px-8 py-2 text-sm font-semibold text-[#0a085d] hover:bg-[#ffb2b2] focus:outline-none focus:ring-2 focus:ring-[#ffc2c2] focus:ring-offset-2"
