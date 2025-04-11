@@ -94,7 +94,7 @@ function About() {
 
 
   {/* Text block - responsive vertical position */}
-<div className="absolute top-[50%] md:top-[65%] md:left-[37%] left-1/2 -translate-x-1/2 text-left w-[90%] max-w-md z-[10] text-#001c80">
+<div className="absolute top-[50%] md:top-[80%] md:left-[37%] left-1/2 -translate-x-1/2 text-left w-[90%] max-w-md z-[10] text-#001c80">
   <ul className="list-disc list-inside text-base leading-relaxed">
     <li>4th year Computer Science @ SFU</li>
     <li>Aspiring Product Manager</li>
@@ -108,7 +108,7 @@ function About() {
       <div
         style={{
           position: 'absolute',
-          bottom: '-35%',
+          bottom: '-45%',
           left: '20%',
           maxWidth: '65%',
           zIndex: '2',
