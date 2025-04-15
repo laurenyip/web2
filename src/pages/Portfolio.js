@@ -42,28 +42,28 @@ function Portfolio() {
   const cardData = [
     {
       imgSrc: '/images/portfolio/lily.png',
-      description: 'dedicated to my friends - 2021-08',
+      description: 'dedicated to my friends [2021-08]',
     },
     {
       imgSrc: '/images/portfolio/dance.png',
-      description: 'winter, dancing - 2021-01',
+      description: '2021-01]',
     },
     {
       imgSrc: '/images/portfolio/backy.png',
-      description: 'my backyard - 2022',
+      description: 'my backyard [2023]',
     },
     {
       imgSrc: '/images/portfolio/tidepool.png',
-      description: 'a belcarra tidepool - 2022-02',
+      description: 'belcarra tidepool [2022-02]',
     },
     {
       imgSrc: '/images/portfolio/blue.png',
       description:
-        'blue hydrangeas flower meaning: forgiveness, gratitude, heartfelt emotion - 2021-07',
+        'blue hydrangeas [2021-07]',
     },
     {
       imgSrc: '/images/portfolio/ten.jpg',
-      description: '10 things i hate about u - 2025-01',
+      description: 'movie [2025-01]',
     },
   ]
 
@@ -80,7 +80,7 @@ function Portfolio() {
       <div className="pt-20 pb-12 px-8 max-w-xl mx-auto">
         <div className="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl mt-16 mb-8">
           <div>
-            <div className="text-3xl" style={{ fontFamily: "'Melo', sans-serif" }} >Paintings</div>
+            <div className="text-4xl" style={{ fontFamily: "'Melo', sans-serif" }} >Paintings</div>
             <p className="text-balance mt-2">
               Click on any image to view it in full screen
             </p>
