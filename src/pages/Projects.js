@@ -42,7 +42,7 @@ function Projects() {
     },
     {
       title: 'Community!',
-      link: '#',
+      link: 'https://www.linkedin.com/feed/update/urn:li:activity:7345123125371486208/',
       description: 'Hackathon judge at Fall Hacks 2024, judge + workshop host at XD Hacks 2025',
       image: '/images/projects/placeholder.jpg',
     },
