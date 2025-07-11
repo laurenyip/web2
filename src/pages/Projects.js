@@ -49,7 +49,7 @@ function Projects() {
     {
       title: 'Cansbridge x Simple Ventures',
       link: 'https://www.linkedin.com/in/lauren-yip/',
-      description: 'Top 4 in the Cansbridge x Simple Ventures pitch competition, best design',
+      description: 'Top 4 in the Cansbridge x Simple Ventures pitch competition, best design. Won an invite to the next partner dinner :)',
       image: '/images/projects/placeholder.jpg',
     },
   ]
