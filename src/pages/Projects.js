@@ -29,10 +29,10 @@ function Projects() {
       image: './images/Rosie/elan.png',
     },
     {
-      title: 'BC Hydro',
-      link: '#',
-      description: 'IT Cybersecurity Infrastructure and Platforms Intern',
-      image: '/images/projects/bch.jpg',
+      title: 'Canadian Space Agency',
+      link: 'https://www.linkedin.com/feed/update/urn:li:activity:7348846522555342848/',
+      description: 'Mission Science Apprentice',
+      image: '/images/projects/csa.jpg',
     },
     {
       title: 'WiCS',
@@ -47,9 +47,9 @@ function Projects() {
       image: '/images/projects/placeholder.jpg',
     },
     {
-      title: 'Project 8',
+      title: 'Cansbridge x Simple Ventures',
       link: 'https://www.linkedin.com/in/lauren-yip/',
-      description: 'Coming soon... message me to do a project together!',
+      description: 'Top 4 in the Cansbridge x Simple Ventures pitch competition, best design',
       image: '/images/projects/placeholder.jpg',
     },
   ]
