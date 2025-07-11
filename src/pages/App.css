@@ -149,15 +149,29 @@ p1 {
   border: #001c80 solid 1px;
   padding: 5%;
   background-image: url("stamp.png");
-
   background-repeat: no-repeat;
   max-width: fit-content;
 }
 
+/* About page: Centered container for images and text */
+.about-center-container {
+  width: 100%;
+  max-width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  /* Add some vertical spacing if needed */
+  min-height: 500px;
+}
 
-
-
-
+@media (min-width: 768px) {
+  .about-center-container {
+    width: 60%;
+    max-width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
 
 @font-face {

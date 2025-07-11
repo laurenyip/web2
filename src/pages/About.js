@@ -63,26 +63,23 @@ function About() {
   return (
     <div className="About relative min-h-screen overflow-x-hidden">
 
-     
           <Navbar />
-       
-      
+
           <div className="absolute top-[18%] left-1/2  text-5xl md:text-8xl text-center z-20 text-gray-700" style={{ fontFamily: "'Melo', sans-serif" }}>
   Lauren Yip
 </div>
-
 
       {/* Love image in top left */}
       <img
         src="/images/about/main/love.jpg"
         className="aboutImage absolute top-[18%] left-[25%] rounded-md -translate-x-1/2 md:top-[18%] md:left-[22%] md:translate-x-0 w-[40%] max-w-[220px] z-20"
         alt="love"
-       
+
       />
 
 <img
   src="/images/about/main/sitting.jpg"
-  className="aboutImage absolute bottom-[5%] left-1/2 -translate-x-1/2 w-[80%] max-w-[360px] md:bottom-[15%] md:right-[15%] md:left-auto md:translate-x-0 md:w-[30%] md:max-w-[320px] z-10 rounded-md shadow-md"
+  className="aboutImage absolute bottom-[5%] left-1/2 -translate-x-1/2 w-[80%] max-w-[360px] md:bottom-[15%] md:right-[20%] md:left-auto md:translate-x-0 md:w-[30%] md:max-w-[320px] z-10 rounded-md shadow-md"
   alt="sit"
 />
 <img
@@ -91,18 +88,15 @@ function About() {
   alt="fish"
 />
 
-
-
   {/* Text block - responsive vertical position */}
-<div className="absolute top-[50%] md:top-[80%] md:left-[37%] left-1/2 -translate-x-1/2 text-left w-[90%] max-w-md z-[10] text-#001c80">
+<div className="absolute top-[50%] md:top-[80%] md:left-[37%] left-1/2 -translate-x-1/2 text-left w-[90%] max-w-md z-[10] text-
+#001c80">
   <ul className="list-disc list-inside text-base leading-relaxed">
     <li>4th year Computer Science @ SFU</li>
     <li>Aspiring Product Manager</li>
     <li>Artist and Explorer</li>
   </ul>
 </div>
-
-      
 
       {/* Infinite Looping Carousel - kept exactly as is */}
       <div
@@ -118,9 +112,9 @@ function About() {
         }}
       >
         <InfiniteCarousel items={carouselItems} />
-        
+
       </div>
-      
+
     </div>
   )
 }
