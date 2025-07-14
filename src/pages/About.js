@@ -24,7 +24,7 @@ function About() {
     {
       image: '/images/about/current/atel.jpg',
       text: 'recent life archive',
-      link: 'https://open.spotify.com/playlist/33M9IYi906TrPaxU9dMrL3?si=aa3a043f764b4d56',
+      link: 'https://open.spotify.com/playlist/0ss3dIdHPgoPVt4eoVa9ud?si=be41dd5ccd7641d5',
       buttonText: 'Listen here',
     },
     {
