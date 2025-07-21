@@ -96,7 +96,7 @@ function About() {
             <li>4th year Computer Science @ SFU</li>
             <li>Aspiring Product Manager</li>
             <li>Artist and Explorer</li>
-            Working on life design and following all my curiosities :)
+            <p>Working on life design and following all my curiosities :) </p>
           </ul>
         </div>
 
