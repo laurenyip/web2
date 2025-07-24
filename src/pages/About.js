@@ -127,7 +127,7 @@ function About() {
             style={{ 
               fontFamily: "'Melo', sans-serif",
               top: '120px',
-              left: '500px',
+              left: '450px',
               width: '400px'
             }}
           >
@@ -151,8 +151,8 @@ function About() {
             src="/images/about/main/sitting.jpg"
             className="aboutImage absolute rounded-md shadow-md z-10"
             style={{
-              bottom: '200px',
-              right: '00px',
+              bottom: '0px',
+              right: '10px',
               width: '360px'
             }}
             alt="sit"
@@ -163,7 +163,7 @@ function About() {
             src="/images/about/main/fish.gif"
             className="aboutImage absolute z-0"
             style={{
-              bottom: '360px',
+              bottom: '50px',
               right: '460px',
               width: '250px'
             }}
@@ -174,7 +174,7 @@ function About() {
           <div 
             className="absolute text-left z-[10]  text-[#001c80]"
             style={{
-              top: '530px',
+              top: '550px',
               left: '25px',
               width: '400px'
             }}
@@ -190,7 +190,7 @@ function About() {
           <div 
             className="absolute z-[2] overflow-hidden"
             style={{
-              bottom: '-45%',
+              bottom: '-85%',
               left: '0',
               width: '1100px',
               paddingBottom: '70px'
