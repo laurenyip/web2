@@ -151,7 +151,7 @@ function About() {
             src="/images/about/main/sitting.jpg"
             className="aboutImage absolute rounded-md shadow-md z-10"
             style={{
-              bottom: '0px',
+              top: '380px',
               right: '10px',
               width: '360px'
             }}
@@ -163,7 +163,7 @@ function About() {
             src="/images/about/main/fish.gif"
             className="aboutImage absolute z-0"
             style={{
-              bottom: '50px',
+              top: '300px',
               right: '460px',
               width: '250px'
             }}
@@ -190,7 +190,7 @@ function About() {
           <div 
             className="absolute z-[2] overflow-hidden"
             style={{
-              bottom: '-85%',
+              top: '800px',
               left: '0',
               width: '1100px',
               paddingBottom: '70px'
