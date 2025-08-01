@@ -101,17 +101,8 @@ function About() {
         </div>
 
         {/* Infinite Looping Carousel - kept exactly as is */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '-45%',
-            left: '20%',
-            maxWidth: '65%',
-            zIndex: '2',
-            overflow: 'hidden',
-            paddingBottom: '70px'
-          }}
-        >
+        <div>
+         
           <InfiniteCarousel items={carouselItems} />
         </div>
       </div>
@@ -119,7 +110,7 @@ function About() {
       {/* Desktop Layout - Fixed container with static positioning */}
       <div className="hidden lg:block">
         {/* Fixed container - 1200px wide, centered */}
-        <div className="absolute left-1/2 -translate-x-1/2 w-[1100px] h-screen">
+        <div className="absolute left-1/2 -translate-x-1/2 w-[950px] h-screen">
           
           {/* Title - Static position within container */}
           <div 
@@ -164,7 +155,7 @@ function About() {
             className="aboutImage absolute z-0"
             style={{
               top: '300px',
-              right: '460px',
+              right: '400px',
               width: '250px'
             }}
             alt="fish"
@@ -191,8 +182,8 @@ function About() {
             className="absolute z-[2] overflow-hidden"
             style={{
               top: '800px',
-              left: '0',
-              width: '1100px',
+              left: '10px',
+              width: '930px',
               paddingBottom: '70px'
             }}
           >
