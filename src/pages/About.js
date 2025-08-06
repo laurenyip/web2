@@ -24,12 +24,14 @@ function About() {
     {
       image: '/images/about/current/atel.jpg',
       text: 'recent life archive',
-      link: 'https://open.spotify.com/playlist/0ss3dIdHPgoPVt4eoVa9ud?si=be41dd5ccd7641d5',
+      link: 'https://open.spotify.com/playlist/3JFfkbhtFpoG9Iz4mE3SKh?si=8268c2e702464af6',
       buttonText: 'Listen here',
     },
     {
       image: '/images/about/current/white.jpg',
-      text: 'White Nights by Fyodor Doestoevsky - obsessed',
+      text: 'serendipity',
+      link: 'https://letterboxd.com/laurenyip/film/stop-making-sense/',
+      buttonText: 'change your life',
     },
     { image: '/images/about/current/babel.jpg', text: 'hiking in the mountains' },
     {

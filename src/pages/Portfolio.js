@@ -63,7 +63,7 @@ function Portfolio() {
     },
     {
       imgSrc: '/images/portfolio/ten.jpg',
-      description: 'movie [2025-01]',
+      description: 'movie [2025-01] I submitted to Lyre Magazine and it got published as the cover :)',
     },
   ]
 
