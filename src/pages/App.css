@@ -151,6 +151,7 @@ p1 {
   background-image: url("stamp.png");
   background-repeat: no-repeat;
   max-width: fit-content;
+  border-radius: 10px;
 }
 
 /* About page: Centered container for images and text */
