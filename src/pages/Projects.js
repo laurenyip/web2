@@ -42,15 +42,15 @@ function Projects() {
     },
     {
       title: 'Community!',
-      link: 'https://www.linkedin.com/feed/update/urn:li:activity:7345123125371486208/',
-      description: 'Hackathon judge at Fall Hacks 2024, judge + workshop host at XD Hacks 2025',
-      image: '/images/projects/placeholder.jpg',
+      link: 'https://treehouse.place/',
+      description: 'Designed the Treehouse Place website',
+      image: '/images/projects/treehouse.png',
     },
     {
-      title: 'Cansbridge x Simple Ventures',
-      link: 'https://www.linkedin.com/in/lauren-yip/',
-      description: 'Top 4 in the Cansbridge x Simple Ventures pitch competition, best design. Won an invite to the next partner dinner :)',
-      image: '/images/projects/placeholder.jpg',
+      title: 'Simple Ventures (Consultant)',
+      link: 'https://framer.com/projects/Aurora-Pet-Co--1Nqr9CaWcgbGtWCJijK3-2x9Gy',
+      description: 'Top 4 in the Cansbridge x Simple Ventures pitch competition, best design.',
+      image: '/images/projects/sv.png',
     },
   ]
 
