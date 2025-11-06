@@ -2,6 +2,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import './App.css'
+import resumePdf from './Resume___Lauren_Yip.pdf'
 
 
 function Home() {
@@ -33,7 +34,7 @@ function Home() {
         <br></br>
         <p3>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="/Resume___Lauren_Yip.pdf" target="blank">
+          <a href={resumePdf} target="_blank" rel="noopener noreferrer">
             RESUME
           </a>
         </p3>

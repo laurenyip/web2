@@ -63,7 +63,7 @@ function Portfolio() {
     },
     {
       imgSrc: '/images/portfolio/ten.jpg',
-      description: 'movie [2025-01] I submitted to Lyre Magazine and it got published as the cover :)',
+      description: 'movie [2025-01] I submitted to Lyre Magazine and it got published as the cover :) + I will be joining the next issue as lead designer',
     },
   ]
 
@@ -78,7 +78,7 @@ function Portfolio() {
       
       {/* Main content with padding to account for fixed navbar */}
       <div className="pt-20 pb-12 px-8 max-w-xl mx-auto">
-        <div className="prose text-gray-500 prose-sm prose-headings:font-normal prose-headings:text-xl mt-16 mb-8">
+        <div className="prose text-black-500 prose-sm prose-headings:font-normal prose-headings:text-xl mt-16 mb-8">
           <div>
             <div className="text-4xl" style={{ fontFamily: "'Melo', sans-serif" }} >Paintings</div>
             <p className="text-balance mt-2">
@@ -93,7 +93,7 @@ function Portfolio() {
             href="https://laurenyip.substack.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-[#ffc2c2] px-8 py-2 text-sm font-semibold text-[#0a085d] hover:bg-[#ffb2b2] focus:outline-none focus:ring-2 focus:ring-[#ffc2c2] focus:ring-offset-2"
+            className="rounded-full bg-[#ffc2c2] px-8 py-2 text-sm font-semibold text-black hover:bg-[#ffb2b2] focus:outline-none focus:ring-2 focus:ring-[#ffc2c2] focus:ring-offset-2"
           >
             Visit My Substack
           </a>
@@ -126,7 +126,7 @@ function Portfolio() {
                 className="max-w-[100%] max-h-[100%] overflow-auto py-8"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="prose text-gray-500 mx-auto prose-sm prose-headings:font-normal prose-headings:text-xl">
+                <div className="prose text-black-500 mx-auto prose-sm prose-headings:font-normal prose-headings:text-xl">
                   <div className="text-center max-w-sm mx-auto">
                     <h1>{currentDescription}</h1>
                   </div>
