@@ -49,7 +49,7 @@ function Projects() {
     {
       title: 'Simple Ventures (Consultant)',
       link: 'https://framer.com/projects/Aurora-Pet-Co--1Nqr9CaWcgbGtWCJijK3-2x9Gy',
-      description: 'Top 4 in the Cansbridge x Simple Ventures pitch competition, best design.',
+      description: 'Cansbridge x SV pitch competition top 4, best design.',
       image: '/images/projects/sv.png',
     },
   ]
