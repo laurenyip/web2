@@ -4,52 +4,90 @@ import Navbar from '../components/Navbar'
 import './App.css'
 
 function About() {
-  // Archive gallery data - 8 items with dates
+  // Archive gallery data with different content types
+  // Types: 'image', 'essay', 'book', 'movie', 'food', 'quote', 'music', 'place'
   const archiveItems = [
     {
+      type: 'image',
       image: '/images/about/current/romeo.jpg',
       text: 'Romeo & Juliet performance',
       link: 'https://www.youtube.com/watch?v=5FsKvp5mME0&list=TLPQMzAwMzIwMjWHzTbqBTJFCA&index=2&pp=gAQBiAQB8AUB',
       date: '2024-03-15',
     },
     {
+      type: 'image',
       image: '/images/about/current/insect.jpg',
       text: 'Insectarium, Montreal',
       date: '2024-02-20',
     },
     {
-      image: '/images/about/current/milena.jpg',
+      type: 'book',
       text: 'Letters to Milena by Franz Kafka',
+      author: 'Franz Kafka',
       date: '2024-01-10',
+      // Optional: link to review or purchase
+      // link: 'https://example.com',
     },
     {
-      image: '/images/about/current/atel.jpg',
+      type: 'music',
       text: 'recent life archive',
       link: 'https://open.spotify.com/playlist/3JFfkbhtFpoG9Iz4mE3SKh?si=8268c2e702464af6',
       date: '2024-04-05',
+      // Optional: image for album art
+      // image: '/images/about/current/atel.jpg',
     },
     {
-      image: '/images/about/current/white.jpg',
-      text: 'serendipity',
+      type: 'movie',
+      text: 'Stop Making Sense',
       link: 'https://letterboxd.com/laurenyip/film/stop-making-sense/',
       date: '2024-03-28',
+      // Optional: image for poster
+      // image: '/images/about/current/white.jpg',
     },
     { 
+      type: 'image',
       image: '/images/about/current/babel.jpg', 
       text: 'hiking in the mountains',
       date: '2024-02-14',
     },
     {
+      type: 'image',
       image: '/images/about/current/under.jpg',
       text: 'working on my open water diving certification',
       date: '2024-05-01',
     },
     {
-      image: '/images/about/current/hen.jpg',
-      text: 'My favourite essay',
+      type: 'essay',
+      text: 'Dostoevsky as Lover',
+      author: 'Henrik Karlsson',
       link: 'https://www.henrikkarlsson.xyz/p/doestoevsky-as-lover',
       date: '2024-01-25',
     },
+    // Template examples (commented out - uncomment and customize to use):
+    /*
+    {
+      type: 'food',
+      text: 'Ramen at Menya Itto',
+      location: 'Vancouver, BC',
+      date: '2024-03-10',
+      // Optional: image or link
+      // image: '/images/about/food/ramen.jpg',
+    },
+    {
+      type: 'quote',
+      text: 'The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion.',
+      author: 'Albert Camus',
+      date: '2024-02-05',
+    },
+    {
+      type: 'place',
+      text: 'Montreal Botanical Garden',
+      location: 'Montreal, QC',
+      date: '2024-04-20',
+      // Optional: image or link
+      // image: '/images/about/places/botanical.jpg',
+    },
+    */
   ]
 
   // Scattered positions for gallery items (different for mobile and desktop)
@@ -90,6 +128,180 @@ function About() {
   // Calculate positions once for mobile and desktop
   const mobilePositions = useMemo(() => getScatteredPositions(archiveItems.length, true), [archiveItems.length])
   const desktopPositions = useMemo(() => getScatteredPositions(archiveItems.length, false), [archiveItems.length])
+
+  // Render different card templates based on content type
+  const renderArchiveCard = (item, isMobile) => {
+    const cardWidth = isMobile ? '150px' : '180px'
+    const cardClasses = "bg-white rounded-lg shadow-lg overflow-hidden"
+    const textSize = isMobile ? 'text-xs' : 'text-sm'
+    const dateSize = isMobile ? 'text-xs' : 'text-xs'
+    const padding = isMobile ? 'p-2' : 'p-3'
+
+    // Image card (default)
+    if (item.type === 'image' || !item.type) {
+      const imageHeight = isMobile ? 'h-32' : 'h-40'
+      return (
+        <div className={cardClasses}>
+          {item.image && (
+            <img
+              src={item.image}
+              alt={item.text}
+              className={`w-full ${imageHeight} object-cover`}
+            />
+          )}
+          <div className={`${padding} bg-white`}>
+            <p className={`${textSize} text-gray-700 mb-1`}>{item.text}</p>
+            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+          </div>
+        </div>
+      )
+    }
+
+    // Essay card
+    if (item.type === 'essay') {
+      return (
+        <div className={cardClasses} style={{ backgroundColor: '#f8f9fa' }}>
+          <div className={`${padding} bg-[#f8f9fa]`}>
+            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Essay</div>
+            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
+            {item.author && (
+              <p className={`${dateSize} text-gray-600 mb-2`}>by {item.author}</p>
+            )}
+            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+          </div>
+        </div>
+      )
+    }
+
+    // Book card
+    if (item.type === 'book') {
+      return (
+        <div className={cardClasses} style={{ backgroundColor: '#fff8e1' }}>
+          <div className={`${padding} bg-[#fff8e1]`}>
+            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Book</div>
+            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
+            {item.author && (
+              <p className={`${dateSize} text-gray-600 mb-2`}>by {item.author}</p>
+            )}
+            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+          </div>
+        </div>
+      )
+    }
+
+    // Movie card
+    if (item.type === 'movie') {
+      const imageHeight = isMobile ? 'h-32' : 'h-40'
+      return (
+        <div className={cardClasses} style={{ backgroundColor: '#e3f2fd' }}>
+          {item.image && (
+            <img
+              src={item.image}
+              alt={item.text}
+              className={`w-full ${imageHeight} object-cover`}
+            />
+          )}
+          <div className={`${padding} bg-[#e3f2fd]`}>
+            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Movie</div>
+            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
+            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+          </div>
+        </div>
+      )
+    }
+
+    // Music/Playlist card
+    if (item.type === 'music') {
+      return (
+        <div className={cardClasses} style={{ backgroundColor: '#f3e5f5' }}>
+          {item.image && (
+            <img
+              src={item.image}
+              alt={item.text}
+              className="w-full h-32 object-cover"
+            />
+          )}
+          <div className={`${padding} bg-[#f3e5f5]`}>
+            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Music</div>
+            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
+            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+          </div>
+        </div>
+      )
+    }
+
+    // Food card
+    if (item.type === 'food') {
+      return (
+        <div className={cardClasses} style={{ backgroundColor: '#fff3e0' }}>
+          {item.image && (
+            <img
+              src={item.image}
+              alt={item.text}
+              className="w-full h-32 object-cover"
+            />
+          )}
+          <div className={`${padding} bg-[#fff3e0]`}>
+            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Food</div>
+            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
+            {item.location && (
+              <p className={`${dateSize} text-gray-600 mb-1`}>{item.location}</p>
+            )}
+            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+          </div>
+        </div>
+      )
+    }
+
+    // Quote card
+    if (item.type === 'quote') {
+      return (
+        <div className={cardClasses} style={{ backgroundColor: '#fce4ec' }}>
+          <div className={`${padding} bg-[#fce4ec]`}>
+            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Quote</div>
+            <p className={`${textSize} text-gray-800 mb-2 italic leading-relaxed`}>"{item.text}"</p>
+            {item.author && (
+              <p className={`${dateSize} text-gray-600 mb-2 text-right`}>— {item.author}</p>
+            )}
+            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+          </div>
+        </div>
+      )
+    }
+
+    // Place card
+    if (item.type === 'place') {
+      return (
+        <div className={cardClasses} style={{ backgroundColor: '#e8f5e9' }}>
+          {item.image && (
+            <img
+              src={item.image}
+              alt={item.text}
+              className="w-full h-32 object-cover"
+            />
+          )}
+          <div className={`${padding} bg-[#e8f5e9]`}>
+            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Place</div>
+            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
+            {item.location && (
+              <p className={`${dateSize} text-gray-600 mb-2`}>{item.location}</p>
+            )}
+            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+          </div>
+        </div>
+      )
+    }
+
+    // Default fallback
+    return (
+      <div className={cardClasses}>
+        <div className={`${padding} bg-white`}>
+          <p className={`${textSize} text-gray-700 mb-1`}>{item.text}</p>
+          <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+        </div>
+      </div>
+    )
+  }
 
   useEffect(() => {
     const header = document.querySelector('.navbar')
@@ -148,7 +360,7 @@ function About() {
         </div>
 
         {/* Archive Gallery - Scattered cards */}
-        <div className="relative w-full mt-[200%] md:mt-[100%] pb-20">
+        <div className="relative w-full mt-[200%] md:top-[30%] md:mt-[100%] pb-20">
           <h3
             className="text-center mb-12 text-2xl md:text-3xl text-[#092c79]"
             style={{ fontFamily: "'Melo', sans-serif" }}
@@ -175,17 +387,7 @@ function About() {
                     }
                   }}
                 >
-                  <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.text}
-                      className="w-full h-32 object-cover"
-                    />
-                    <div className="p-2 bg-white">
-                      <p className="text-xs text-gray-700 mb-1">{item.text}</p>
-                      <p className="text-xs text-gray-500">{item.date}</p>
-                    </div>
-                  </div>
+                  {renderArchiveCard(item, true)}
                 </div>
               )
             })}
@@ -267,7 +469,7 @@ function About() {
           <div 
             className="relative z-[2]"
             style={{
-              marginTop: '900px',
+              marginTop: '750px',
               left: '10px',
               width: '930px',
               paddingBottom: '100px'
@@ -298,17 +500,7 @@ function About() {
                       }
                     }}
                   >
-                    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.text}
-                        className="w-full h-40 object-cover"
-                      />
-                      <div className="p-3 bg-white">
-                        <p className="text-sm text-gray-700 mb-1">{item.text}</p>
-                        <p className="text-xs text-gray-500">{item.date}</p>
-                      </div>
-                    </div>
+                    {renderArchiveCard(item, false)}
                   </div>
                 )
               })}
