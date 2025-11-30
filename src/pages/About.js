@@ -10,51 +10,62 @@ function About() {
     {
       type: 'image',
       image: '/images/about/current/romeo.jpg',
-      text: 'Romeo & Juliet performance',
+      text: 'My first Broadway performance: Romeo & Juliet',
       link: 'https://www.youtube.com/watch?v=5FsKvp5mME0&list=TLPQMzAwMzIwMjWHzTbqBTJFCA&index=2&pp=gAQBiAQB8AUB',
-      date: '2024-03-15',
+      date: '2024-10-15',
     },
     {
       type: 'image',
       image: '/images/about/current/insect.jpg',
       text: 'Insectarium, Montreal',
-      date: '2024-02-20',
+      date: '2024-06-22',
     },
     {
       type: 'book',
-      text: 'Letters to Milena by Franz Kafka',
+      text: 'Letters to Milena',
+      image: '/images/about/current/milena.jpg',
       author: 'Franz Kafka',
-      date: '2024-01-10',
+      date: '2025-02-02',
+      // Optional: link to review or purchase
+      // link: 'https://example.com',
+    },
+    {
+      type: 'book',
+      text: "Anne's House of Dreams",
+      image: '/images/about/current/anne.png',
+      author: 'Lucy Maud Montgomery',
+      date: '2025-11-28',
       // Optional: link to review or purchase
       // link: 'https://example.com',
     },
     {
       type: 'music',
       text: 'recent life archive',
-      link: 'https://open.spotify.com/playlist/3JFfkbhtFpoG9Iz4mE3SKh?si=8268c2e702464af6',
-      date: '2024-04-05',
+      link: 'https://open.spotify.com/playlist/17R042dZUt10LOSqVG8rUm?si=78b5299694014d05',
+      date: '2025-11-22',
       // Optional: image for album art
       // image: '/images/about/current/atel.jpg',
     },
     {
-      type: 'movie',
+      type: 'music',
       text: 'Stop Making Sense',
       link: 'https://letterboxd.com/laurenyip/film/stop-making-sense/',
-      date: '2024-03-28',
+      date: '2025-08-04',
       // Optional: image for poster
-      // image: '/images/about/current/white.jpg',
+      image: '/images/about/current/sms.png',
     },
     { 
       type: 'image',
       image: '/images/about/current/babel.jpg', 
-      text: 'hiking in the mountains',
-      date: '2024-02-14',
+      text: 'the best hike ever?',
+      date: '2025-07-18',
     },
     {
       type: 'image',
-      image: '/images/about/current/under.jpg',
-      text: 'working on my open water diving certification',
-      date: '2024-05-01',
+      image: '/images/about/current/hightide.png',
+      text: 'Hightide by Jan Toorop',
+      caption: 'instant favourite painting',
+      date: '2025-09-05',
     },
     {
       type: 'essay',
@@ -63,22 +74,25 @@ function About() {
       link: 'https://www.henrikkarlsson.xyz/p/doestoevsky-as-lover',
       date: '2024-01-25',
     },
-    // Template examples (commented out - uncomment and customize to use):
-    /*
     {
-      type: 'food',
-      text: 'Ramen at Menya Itto',
-      location: 'Vancouver, BC',
-      date: '2024-03-10',
-      // Optional: image or link
-      // image: '/images/about/food/ramen.jpg',
+      type: 'essay',
+      text: "AGI isn't for happy people",
+      author: 'Stefan Kelly',
+      link: 'https://alreadyhappened.xyz/p/agi-isnt-for-happy-people',
+      date: '2025-01-22',
     },
     {
       type: 'quote',
-      text: 'The only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion.',
-      author: 'Albert Camus',
-      date: '2024-02-05',
+      text: "Watch out, you might get what you're after",
+      author: 'Talking Heads',
+      date: '2024-03-28',
     },
+    {
+      type: 'quote',
+      text: "Is this enough?",
+     
+    },
+    /*
     {
       type: 'place',
       text: 'Montreal Botanical Garden',
@@ -90,14 +104,25 @@ function About() {
     */
   ]
 
+  // Sort archive items by date (most recent first)
+  const sortedArchiveItems = useMemo(() => {
+    return [...archiveItems].sort((a, b) => {
+      // Convert date strings to Date objects for comparison
+      const dateA = new Date(a.date)
+      const dateB = new Date(b.date)
+      // Sort in descending order (most recent first)
+      return dateB - dateA
+    })
+  }, [archiveItems])
+
   // Scattered positions for gallery items (different for mobile and desktop)
   // Uses pixel-based positioning to prevent overlaps and allow scrolling
   const getScatteredPositions = (count, isMobile) => {
     const positions = []
     const cardWidth = isMobile ? 150 : 180
-    const cardHeight = isMobile ? 180 : 220 // Approximate card height with image and text
-    const horizontalSpacing = isMobile ? 180 : 250 // Minimum horizontal spacing
-    const verticalSpacing = isMobile ? 220 : 260 // Minimum vertical spacing to prevent overlap
+    // Increased spacing to account for natural image sizes and prevent overlap
+    const horizontalSpacing = isMobile ? 200 : 280 // Increased horizontal spacing
+    const verticalSpacing = isMobile ? 300 : 350 // Increased vertical spacing for natural image heights
     const colsPerRow = isMobile ? 2 : 3
     
     // Starting position in pixels from top
@@ -108,26 +133,25 @@ function About() {
       const row = Math.floor(i / colsPerRow)
       const col = i % colsPerRow
       
-      // Base position with grid layout
+      // Base position with grid layout - no random offsets to prevent overlap
       const baseTop = startTop + row * verticalSpacing
       const baseLeft = startLeft + col * horizontalSpacing
       
-      // Small random offsets for scattered effect (but not enough to cause overlap)
-      const randomOffsetX = (Math.random() - 0.5) * (isMobile ? 30 : 40)
-      const randomOffsetY = (Math.random() - 0.5) * (isMobile ? 20 : 30)
+      // Very small rotation for visual interest (reduced to prevent overlap from rotation)
+      const rotation = (Math.random() - 0.5) * 4 // Reduced rotation between -2 and 2 degrees
       
       positions.push({
-        top: `${baseTop + randomOffsetY}px`,
-        left: `${baseLeft + randomOffsetX}px`,
-        rotation: (Math.random() - 0.5) * 8, // Random rotation between -4 and 4 degrees
+        top: `${baseTop}px`,
+        left: `${baseLeft}px`,
+        rotation: rotation,
       })
     }
     return positions
   }
 
   // Calculate positions once for mobile and desktop
-  const mobilePositions = useMemo(() => getScatteredPositions(archiveItems.length, true), [archiveItems.length])
-  const desktopPositions = useMemo(() => getScatteredPositions(archiveItems.length, false), [archiveItems.length])
+  const mobilePositions = useMemo(() => getScatteredPositions(sortedArchiveItems.length, true), [sortedArchiveItems.length])
+  const desktopPositions = useMemo(() => getScatteredPositions(sortedArchiveItems.length, false), [sortedArchiveItems.length])
 
   // Render different card templates based on content type
   const renderArchiveCard = (item, isMobile) => {
@@ -139,17 +163,20 @@ function About() {
 
     // Image card (default)
     if (item.type === 'image' || !item.type) {
-      const imageHeight = isMobile ? 'h-32' : 'h-40'
       return (
         <div className={cardClasses}>
           {item.image && (
             <img
               src={item.image}
               alt={item.text}
-              className={`w-full ${imageHeight} object-cover`}
+              className="w-full object-contain"
+              style={{ maxHeight: 'none' }}
             />
           )}
           <div className={`${padding} bg-white`}>
+            {item.caption && (
+              <p className={`${textSize} text-gray-700 mb-1`}>{item.caption}</p>
+            )}
             <p className={`${textSize} text-gray-700 mb-1`}>{item.text}</p>
             <p className={`${dateSize} text-gray-500`}>{item.date}</p>
           </div>
@@ -177,6 +204,14 @@ function About() {
     if (item.type === 'book') {
       return (
         <div className={cardClasses} style={{ backgroundColor: '#fff8e1' }}>
+          {item.image && (
+            <img
+              src={item.image}
+              alt={item.text}
+              className="w-full object-contain"
+              style={{ maxHeight: 'none' }}
+            />
+          )}
           <div className={`${padding} bg-[#fff8e1]`}>
             <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Book</div>
             <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
@@ -191,14 +226,14 @@ function About() {
 
     // Movie card
     if (item.type === 'movie') {
-      const imageHeight = isMobile ? 'h-32' : 'h-40'
       return (
         <div className={cardClasses} style={{ backgroundColor: '#e3f2fd' }}>
           {item.image && (
             <img
               src={item.image}
               alt={item.text}
-              className={`w-full ${imageHeight} object-cover`}
+              className="w-full object-contain"
+              style={{ maxHeight: 'none' }}
             />
           )}
           <div className={`${padding} bg-[#e3f2fd]`}>
@@ -218,7 +253,8 @@ function About() {
             <img
               src={item.image}
               alt={item.text}
-              className="w-full h-32 object-cover"
+              className="w-full object-contain"
+              style={{ maxHeight: 'none' }}
             />
           )}
           <div className={`${padding} bg-[#f3e5f5]`}>
@@ -238,7 +274,8 @@ function About() {
             <img
               src={item.image}
               alt={item.text}
-              className="w-full h-32 object-cover"
+              className="w-full object-contain"
+              style={{ maxHeight: 'none' }}
             />
           )}
           <div className={`${padding} bg-[#fff3e0]`}>
@@ -277,7 +314,8 @@ function About() {
             <img
               src={item.image}
               alt={item.text}
-              className="w-full h-32 object-cover"
+              className="w-full object-contain"
+              style={{ maxHeight: 'none' }}
             />
           )}
           <div className={`${padding} bg-[#e8f5e9]`}>
@@ -367,8 +405,8 @@ function About() {
           >
             archive
           </h3>
-          <div className="relative w-full" style={{ minHeight: `${Math.ceil(archiveItems.length / 2) * 220}px` }}>
-            {archiveItems.map((item, index) => {
+          <div className="relative w-full" style={{ minHeight: `${Math.ceil(sortedArchiveItems.length / 2) * 220}px` }}>
+            {sortedArchiveItems.map((item, index) => {
               const pos = mobilePositions[index]
               return (
                 <div
@@ -481,8 +519,8 @@ function About() {
             >
               archive
             </h3>
-            <div className="relative w-full" style={{ minHeight: `${Math.ceil(archiveItems.length / 3) * 260}px` }}>
-              {archiveItems.map((item, index) => {
+            <div className="relative w-full" style={{ minHeight: `${Math.ceil(sortedArchiveItems.length / 3) * 260}px` }}>
+              {sortedArchiveItems.map((item, index) => {
                 const pos = desktopPositions[index]
                 return (
                   <div
