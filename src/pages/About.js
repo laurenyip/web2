@@ -3,10 +3,9 @@ import Navbar from '../components/Navbar'
 
 import './App.css'
 
-function About() {
-  // Archive gallery data with different content types
-  // Types: 'image', 'essay', 'book', 'movie', 'food', 'quote', 'music', 'place'
-  const archiveItems = [
+// Archive gallery data with different content types
+// Types: 'image', 'essay', 'book', 'movie', 'food', 'quote', 'music', 'place'
+const ARCHIVE_ITEMS = [
     {
       type: 'image',
       image: '/images/about/current/romeo.jpg',
@@ -92,34 +91,35 @@ function About() {
       text: "Is this enough?",
      
     },
-    /*
-    {
-      type: 'place',
-      text: 'Montreal Botanical Garden',
-      location: 'Montreal, QC',
-      date: '2024-04-20',
-      // Optional: image or link
-      // image: '/images/about/places/botanical.jpg',
-    },
-    */
-  ]
+  /*
+  {
+    type: 'place',
+    text: 'Montreal Botanical Garden',
+    location: 'Montreal, QC',
+    date: '2024-04-20',
+    // Optional: image or link
+    // image: '/images/about/places/botanical.jpg',
+  },
+  */
+]
+
+function About() {
 
   // Sort archive items by date (most recent first)
   const sortedArchiveItems = useMemo(() => {
-    return [...archiveItems].sort((a, b) => {
+    return [...ARCHIVE_ITEMS].sort((a, b) => {
       // Convert date strings to Date objects for comparison
       const dateA = new Date(a.date)
       const dateB = new Date(b.date)
       // Sort in descending order (most recent first)
       return dateB - dateA
     })
-  }, [archiveItems])
+  }, [])
 
   // Scattered positions for gallery items (different for mobile and desktop)
   // Uses pixel-based positioning to prevent overlaps and allow scrolling
   const getScatteredPositions = (count, isMobile) => {
     const positions = []
-    const cardWidth = isMobile ? 150 : 180
     // Increased spacing to account for natural image sizes and prevent overlap
     const horizontalSpacing = isMobile ? 200 : 280 // Increased horizontal spacing
     const verticalSpacing = isMobile ? 300 : 350 // Increased vertical spacing for natural image heights
@@ -155,10 +155,10 @@ function About() {
 
   // Render different card templates based on content type
   const renderArchiveCard = (item, isMobile) => {
-    const cardWidth = isMobile ? '150px' : '180px'
     const cardClasses = "bg-white rounded-lg shadow-lg overflow-hidden"
     const textSize = isMobile ? 'text-xs' : 'text-sm'
     const dateSize = isMobile ? 'text-xs' : 'text-xs'
+    const captionSize = isMobile ? 'text-[10px]' : 'text-xs'
     const padding = isMobile ? 'p-2' : 'p-3'
 
     // Image card (default)
@@ -174,10 +174,10 @@ function About() {
             />
           )}
           <div className={`${padding} bg-white`}>
-            {item.caption && (
-              <p className={`${textSize} text-gray-700 mb-1`}>{item.caption}</p>
-            )}
             <p className={`${textSize} text-gray-700 mb-1`}>{item.text}</p>
+            {item.caption && (
+              <p className={`${captionSize} text-gray-500`}>{item.caption}</p>
+            )}
             <p className={`${dateSize} text-gray-500`}>{item.date}</p>
           </div>
         </div>
@@ -187,9 +187,8 @@ function About() {
     // Essay card
     if (item.type === 'essay') {
       return (
-        <div className={cardClasses} style={{ backgroundColor: '#f8f9fa' }}>
-          <div className={`${padding} bg-[#f8f9fa]`}>
-            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Essay</div>
+        <div className={cardClasses}>
+          <div className={padding}>
             <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
             {item.author && (
               <p className={`${dateSize} text-gray-600 mb-2`}>by {item.author}</p>
@@ -203,7 +202,7 @@ function About() {
     // Book card
     if (item.type === 'book') {
       return (
-        <div className={cardClasses} style={{ backgroundColor: '#fff8e1' }}>
+        <div className={cardClasses}>
           {item.image && (
             <img
               src={item.image}
@@ -212,8 +211,7 @@ function About() {
               style={{ maxHeight: 'none' }}
             />
           )}
-          <div className={`${padding} bg-[#fff8e1]`}>
-            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Book</div>
+          <div className={padding}>
             <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
             {item.author && (
               <p className={`${dateSize} text-gray-600 mb-2`}>by {item.author}</p>
@@ -227,7 +225,7 @@ function About() {
     // Movie card
     if (item.type === 'movie') {
       return (
-        <div className={cardClasses} style={{ backgroundColor: '#e3f2fd' }}>
+        <div className={cardClasses}>
           {item.image && (
             <img
               src={item.image}
@@ -236,8 +234,7 @@ function About() {
               style={{ maxHeight: 'none' }}
             />
           )}
-          <div className={`${padding} bg-[#e3f2fd]`}>
-            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Movie</div>
+          <div className={padding}>
             <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
             <p className={`${dateSize} text-gray-500`}>{item.date}</p>
           </div>
@@ -248,7 +245,7 @@ function About() {
     // Music/Playlist card
     if (item.type === 'music') {
       return (
-        <div className={cardClasses} style={{ backgroundColor: '#f3e5f5' }}>
+        <div className={cardClasses}>
           {item.image && (
             <img
               src={item.image}
@@ -257,8 +254,7 @@ function About() {
               style={{ maxHeight: 'none' }}
             />
           )}
-          <div className={`${padding} bg-[#f3e5f5]`}>
-            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Music</div>
+          <div className={padding}>
             <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
             <p className={`${dateSize} text-gray-500`}>{item.date}</p>
           </div>
@@ -269,7 +265,7 @@ function About() {
     // Food card
     if (item.type === 'food') {
       return (
-        <div className={cardClasses} style={{ backgroundColor: '#fff3e0' }}>
+        <div className={cardClasses}>
           {item.image && (
             <img
               src={item.image}
@@ -278,8 +274,7 @@ function About() {
               style={{ maxHeight: 'none' }}
             />
           )}
-          <div className={`${padding} bg-[#fff3e0]`}>
-            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Food</div>
+          <div className={padding}>
             <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
             {item.location && (
               <p className={`${dateSize} text-gray-600 mb-1`}>{item.location}</p>
@@ -293,9 +288,8 @@ function About() {
     // Quote card
     if (item.type === 'quote') {
       return (
-        <div className={cardClasses} style={{ backgroundColor: '#fce4ec' }}>
-          <div className={`${padding} bg-[#fce4ec]`}>
-            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Quote</div>
+        <div className={cardClasses}>
+          <div className={padding}>
             <p className={`${textSize} text-gray-800 mb-2 italic leading-relaxed`}>"{item.text}"</p>
             {item.author && (
               <p className={`${dateSize} text-gray-600 mb-2 text-right`}>— {item.author}</p>
@@ -309,7 +303,7 @@ function About() {
     // Place card
     if (item.type === 'place') {
       return (
-        <div className={cardClasses} style={{ backgroundColor: '#e8f5e9' }}>
+        <div className={cardClasses}>
           {item.image && (
             <img
               src={item.image}
@@ -318,8 +312,7 @@ function About() {
               style={{ maxHeight: 'none' }}
             />
           )}
-          <div className={`${padding} bg-[#e8f5e9]`}>
-            <div className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Place</div>
+          <div className={padding}>
             <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
             {item.location && (
               <p className={`${dateSize} text-gray-600 mb-2`}>{item.location}</p>
