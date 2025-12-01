@@ -176,9 +176,9 @@ function About() {
           <div className={`${padding} bg-white`}>
             <p className={`${textSize} text-gray-700 mb-1`}>{item.text}</p>
             {item.caption && (
-              <p className={`${captionSize} text-gray-500`}>{item.caption}</p>
+              <p className={`${captionSize} text-gray-700`}>{item.caption}</p>
             )}
-            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+            <p className={`${dateSize} text-gray-700`}>{item.date}</p>
           </div>
         </div>
       )
@@ -189,11 +189,11 @@ function About() {
       return (
         <div className={cardClasses}>
           <div className={padding}>
-            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
+            <p className={`${textSize} text-gray-700 mb-1 font-medium`}>{item.text}</p>
             {item.author && (
-              <p className={`${dateSize} text-gray-600 mb-2`}>by {item.author}</p>
+              <p className={`${dateSize} text-gray-700 mb-2`}>by {item.author}</p>
             )}
-            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+            <p className={`${dateSize} text-gray-700`}>{item.date}</p>
           </div>
         </div>
       )
@@ -212,11 +212,11 @@ function About() {
             />
           )}
           <div className={padding}>
-            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
+            <p className={`${textSize} text-gray-700 mb-1 font-medium`}>{item.text}</p>
             {item.author && (
-              <p className={`${dateSize} text-gray-600 mb-2`}>by {item.author}</p>
+              <p className={`${dateSize} text-gray-700 mb-2`}>by {item.author}</p>
             )}
-            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+            <p className={`${dateSize} text-gray-700`}>{item.date}</p>
           </div>
         </div>
       )
@@ -235,8 +235,8 @@ function About() {
             />
           )}
           <div className={padding}>
-            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
-            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+            <p className={`${textSize} text-gray-700 mb-1 font-medium`}>{item.text}</p>
+            <p className={`${dateSize} text-gray-700`}>{item.date}</p>
           </div>
         </div>
       )
@@ -255,8 +255,8 @@ function About() {
             />
           )}
           <div className={padding}>
-            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
-            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+            <p className={`${textSize} text-gray-700 mb-1 font-medium`}>{item.text}</p>
+            <p className={`${dateSize} text-gray-700`}>{item.date}</p>
           </div>
         </div>
       )
@@ -275,11 +275,11 @@ function About() {
             />
           )}
           <div className={padding}>
-            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
+            <p className={`${textSize} text-gray-700 mb-1 font-medium`}>{item.text}</p>
             {item.location && (
-              <p className={`${dateSize} text-gray-600 mb-1`}>{item.location}</p>
+              <p className={`${dateSize} text-gray-700 mb-1`}>{item.location}</p>
             )}
-            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+            <p className={`${dateSize} text-gray-700`}>{item.date}</p>
           </div>
         </div>
       )
@@ -290,11 +290,11 @@ function About() {
       return (
         <div className={cardClasses}>
           <div className={padding}>
-            <p className={`${textSize} text-gray-800 mb-2 italic leading-relaxed`}>"{item.text}"</p>
+            <p className={`${textSize} text-gray-700 mb-2 italic leading-relaxed`}>"{item.text}"</p>
             {item.author && (
-              <p className={`${dateSize} text-gray-600 mb-2 text-right`}>— {item.author}</p>
+              <p className={`${dateSize} text-gray-700 mb-2 text-right`}>— {item.author}</p>
             )}
-            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+            <p className={`${dateSize} text-gray-700`}>{item.date}</p>
           </div>
         </div>
       )
@@ -313,11 +313,11 @@ function About() {
             />
           )}
           <div className={padding}>
-            <p className={`${textSize} text-gray-800 mb-1 font-medium`}>{item.text}</p>
+            <p className={`${textSize} text-gray-700 mb-1 font-medium`}>{item.text}</p>
             {item.location && (
-              <p className={`${dateSize} text-gray-600 mb-2`}>{item.location}</p>
+              <p className={`${dateSize} text-gray-700 mb-2`}>{item.location}</p>
             )}
-            <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+            <p className={`${dateSize} text-gray-700`}>{item.date}</p>
           </div>
         </div>
       )
@@ -328,7 +328,7 @@ function About() {
       <div className={cardClasses}>
         <div className={`${padding} bg-white`}>
           <p className={`${textSize} text-gray-700 mb-1`}>{item.text}</p>
-          <p className={`${dateSize} text-gray-500`}>{item.date}</p>
+          <p className={`${dateSize} text-gray-700`}>{item.date}</p>
         </div>
       </div>
     )
@@ -381,7 +381,7 @@ function About() {
         />
 
         {/* Text block - responsive vertical position */}
-        <div className="absolute top-[18%] md:top-[80%] md:left-[37%] left-1/2 -translate-x-1/2 text-left w-[90%] max-w-md z-[10] text-[#001c80]">
+        <div className="absolute top-[18%] md:top-[80%] md:left-[37%] left-1/2 -translate-x-1/2 text-left w-[90%] max-w-md z-[10] text-gray-700">
           <ul className="list-disc list-inside text-base leading-relaxed">
             <li>4th year Computer Science @ SFU</li>
             <li>Aspiring Product Manager</li>
@@ -393,7 +393,7 @@ function About() {
         {/* Archive Gallery - Scattered cards */}
         <div className="relative w-full mt-[200%] md:top-[30%] md:mt-[100%] pb-20">
           <h3
-            className="text-center mb-12 text-2xl md:text-3xl text-[#092c79]"
+            className="text-center mb-12 text-2xl md:text-3xl text-gray-700"
             style={{ fontFamily: "'Melo', sans-serif" }}
           >
             archive
@@ -482,7 +482,7 @@ function About() {
 
           {/* Text block - Static position */}
           <div 
-            className="absolute text-left z-[10]  text-[#001c80]"
+            className="absolute text-left z-[10]  text-gray-700"
             style={{
               top: '550px',
               left: '25px',
@@ -507,7 +507,7 @@ function About() {
             }}
           >
             <h3
-              className="text-center mb-12 text-3xl text-[#092c79]"
+              className="text-center mb-12 text-3xl text-gray-700"
               style={{ fontFamily: "'Melo', sans-serif" }}
             >
               archive
