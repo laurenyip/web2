@@ -13,7 +13,7 @@ body.main {
 body {
   font-family: "Moto", serif;
   font-size: 16px;
-  color: #0a085d;
+  color: #374151;
   background-color: #ffffff;
 }
 
@@ -115,20 +115,20 @@ p {
   position: relative;
   text-align: left; /* Center-align the text */
   font-family: "Moto", serif;
-  color: #0a085d;
+  color: #374151;
 }
 p3 {
   position: relative;
   text-align: left; /* Center-align the text */
   font-family: "F25", serif;
-  color: #0a085d;
+  color: #374151;
 }
 p3b {
   position: relative;
   text-align: left; /* Center-align the text */
   font-family: "F25", serif;
   font-size: xx-large;
-  color: #0a085d;
+  color: #374151;
 }
 
 p2 {
@@ -136,7 +136,7 @@ p2 {
   text-align: left; /* Center-align the text */
   font-family: "Arial", serif;
   font-size: 10px;
-  color: #0a085d;
+  color: #374151;
 }
 p1 {
   font-family: "URWGeometricRegular", sans-serif;
@@ -156,7 +156,7 @@ p1 {
 .btn.custom-btn {
   background-color: #ffc2c2;
   border: none;
-  color: #0a085d;
+  color: #374151;
   font-family: "Moto", serif;
   font-size: large;
   padding: 10px 20px;
