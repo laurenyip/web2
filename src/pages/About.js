@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Navbar from '../components/Navbar'
 
 import './App.css'
@@ -42,16 +42,28 @@ const ARCHIVE_ITEMS = [
       text: 'recent life archive',
       link: 'https://open.spotify.com/playlist/17R042dZUt10LOSqVG8rUm?si=78b5299694014d05',
       date: '2025-11-22',
-      // Optional: image for album art
-      // image: '/images/about/current/atel.jpg',
+      image: '/images/about/current/atel.jpg',
+      songs: [
+        'Song 1 - Artist Name',
+        'Song 2 - Artist Name',
+        'Song 3 - Artist Name',
+        'Song 4 - Artist Name',
+        'Song 5 - Artist Name',
+      ],
     },
     {
       type: 'music',
       text: 'Stop Making Sense',
       link: 'https://letterboxd.com/laurenyip/film/stop-making-sense/',
       date: '2025-08-04',
-      // Optional: image for poster
       image: '/images/about/current/sms.png',
+      songs: [
+        'Psycho Killer - Talking Heads',
+        'Heaven - Talking Heads',
+        'Once in a Lifetime - Talking Heads',
+        'Burning Down the House - Talking Heads',
+        'Life During Wartime - Talking Heads',
+      ],
     },
     { 
       type: 'image',
@@ -89,7 +101,6 @@ const ARCHIVE_ITEMS = [
     {
       type: 'quote',
       text: "Is this enough?",
-     
     },
   /*
   {
@@ -104,6 +115,7 @@ const ARCHIVE_ITEMS = [
 ]
 
 function About() {
+  const [openedVinyl, setOpenedVinyl] = useState(null)
 
   // Sort archive items by date (most recent first)
   const sortedArchiveItems = useMemo(() => {
@@ -242,21 +254,171 @@ function About() {
       )
     }
 
-    // Music/Playlist card
+    // Music/Playlist card - Vinyl Record Design
     if (item.type === 'music') {
+      const isOpened = openedVinyl === item.text
+      const vinylSize = isMobile ? 140 : 170
+      const centerHole = vinylSize * 0.15
+      
       return (
-        <div className={cardClasses}>
-          {item.image && (
-            <img
-              src={item.image}
-              alt={item.text}
-              className="w-full object-contain"
-              style={{ maxHeight: 'none' }}
-            />
-          )}
-          <div className={padding}>
-            <p className={`${textSize} text-gray-700 mb-1 font-medium`}>{item.text}</p>
-            <p className={`${dateSize} text-gray-700`}>{item.date}</p>
+        <div className="relative" style={{ width: `${vinylSize}px`, height: `${vinylSize}px` }}>
+          {/* Album Sleeve (Cover) */}
+          <div 
+            className={`absolute inset-0 bg-white rounded-lg shadow-lg transition-all duration-700 ease-in-out cursor-pointer ${
+              isOpened ? 'opacity-0 scale-0 rotate-180' : 'opacity-100 scale-100 rotate-0'
+            }`}
+            style={{
+              transformOrigin: 'center center',
+              zIndex: isOpened ? 1 : 2,
+            }}
+          >
+            {item.image ? (
+              <img
+                src={item.image}
+                alt={item.text}
+                className="w-full h-full object-cover rounded-lg"
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-600 rounded-lg flex items-center justify-center">
+                <div className="text-white text-center px-2">
+                  <p className={`${textSize} font-medium mb-1`}>{item.text}</p>
+                  <p className={`${dateSize} opacity-80`}>{item.date}</p>
+                </div>
+              </div>
+            )}
+            {/* Sleeve edge shadow */}
+            <div className="absolute right-0 top-0 bottom-0 w-1 bg-black opacity-10 rounded-r-lg"></div>
+          </div>
+
+          {/* Vinyl Record (revealed when opened) */}
+          <div 
+            className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+              isOpened ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-0 rotate-180'
+            }`}
+            style={{
+              transformOrigin: 'center center',
+              zIndex: isOpened ? 2 : 1,
+            }}
+          >
+            {/* Close button */}
+            {isOpened && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setOpenedVinyl(null)
+                }}
+                className="absolute -top-2 -right-2 z-20 w-6 h-6 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors font-bold"
+                style={{ fontSize: '16px', lineHeight: '1' }}
+              >
+                ×
+              </button>
+            )}
+            
+            {/* Vinyl Record Circle */}
+            <div 
+              className="relative rounded-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 shadow-2xl cursor-pointer hover:scale-105 transition-transform vinyl-grooves"
+              style={{ 
+                width: `${vinylSize}px`, 
+                height: `${vinylSize}px`,
+                boxShadow: 'inset 0 0 20px rgba(0,0,0,0.5), 0 4px 20px rgba(0,0,0,0.3)',
+              }}
+              onClick={(e) => {
+                e.stopPropagation()
+                if (item.link) {
+                  window.open(item.link, '_blank')
+                }
+              }}
+            >
+              {/* Vinyl Grooves (concentric circles) */}
+              {[0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9].map((radius, idx) => (
+                <div
+                  key={idx}
+                  className="absolute rounded-full border border-gray-700 opacity-30"
+                  style={{
+                    width: `${vinylSize * radius}px`,
+                    height: `${vinylSize * radius}px`,
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                />
+              ))}
+
+              {/* Center Label Area */}
+              <div 
+                className="absolute rounded-full bg-white shadow-inner"
+                style={{
+                  width: `${centerHole * 2}px`,
+                  height: `${centerHole * 2}px`,
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  boxShadow: 'inset 0 0 10px rgba(0,0,0,0.2)',
+                }}
+              >
+                {/* Center Hole */}
+                <div 
+                  className="absolute rounded-full bg-black"
+                  style={{
+                    width: `${centerHole * 0.4}px`,
+                    height: `${centerHole * 0.4}px`,
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                />
+                {/* Label Text */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-1">
+                  <p className={`${isMobile ? 'text-[6px]' : 'text-[8px]'} font-semibold text-gray-700 leading-tight`}>
+                    {item.text}
+                  </p>
+                  <p className={`${isMobile ? 'text-[4px]' : 'text-[6px]'} text-gray-500 mt-0.5`}>
+                    {item.date}
+                  </p>
+                </div>
+              </div>
+
+              {/* Realistic Circular Song List */}
+              {item.songs && item.songs.length > 0 && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div 
+                    className="absolute rounded-full"
+                    style={{
+                      width: `${vinylSize * 0.65}px`,
+                      height: `${vinylSize * 0.65}px`,
+                    }}
+                  >
+                    {item.songs.slice(0, 5).map((song, index) => {
+                      // Calculate position on a circle
+                      const angle = (index / item.songs.length) * 360;
+                      const radius = vinylSize * 0.325;
+                      const x = radius * Math.cos((angle - 90) * (Math.PI / 180));
+                      const y = radius * Math.sin((angle - 90) * (Math.PI / 180));
+                      
+                      return (
+                        <div
+                          key={index}
+                          className="absolute text-center"
+                          style={{
+                            left: `calc(50% + ${x}px)`,
+                            top: `calc(50% + ${y}px)`,
+                            transform: `translate(-50%, -50%) rotate(${angle}deg)`,
+                            transformOrigin: 'center center',
+                            fontSize: isMobile ? '5px' : '6px',
+                            color: '#E5E7EB',
+                            fontWeight: 400,
+                            textShadow: '0 1px 3px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)',
+                            whiteSpace: 'nowrap',
+                          }}
+                        >
+                          {song}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )
@@ -413,7 +575,9 @@ function About() {
                     maxWidth: '45%',
                   }}
                   onClick={() => {
-                    if (item.link) {
+                    if (item.type === 'music') {
+                      setOpenedVinyl(openedVinyl === item.text ? null : item.text)
+                    } else if (item.link) {
                       window.open(item.link, '_blank')
                     }
                   }}
@@ -526,7 +690,9 @@ function About() {
                       width: '180px',
                     }}
                     onClick={() => {
-                      if (item.link) {
+                      if (item.type === 'music') {
+                        setOpenedVinyl(openedVinyl === item.text ? null : item.text)
+                      } else if (item.link) {
                         window.open(item.link, '_blank')
                       }
                     }}
