@@ -149,8 +149,8 @@ function About() {
       const baseTop = startTop + row * verticalSpacing
       const baseLeft = startLeft + col * horizontalSpacing
       
-      // Very small rotation for visual interest (reduced to prevent overlap from rotation)
-      const rotation = (Math.random() - 0.5) * 4 // Reduced rotation between -2 and 2 degrees
+      // No rotation for normal alignment
+      const rotation = 0
       
       positions.push({
         top: `${baseTop}px`,
@@ -167,7 +167,7 @@ function About() {
 
   // Render different card templates based on content type
   const renderArchiveCard = (item, isMobile) => {
-    const cardClasses = "bg-white rounded-lg shadow-lg overflow-hidden"
+    const cardClasses = "bg-white rounded-[5px] overflow-hidden"
     const textSize = isMobile ? 'text-xs' : 'text-sm'
     const dateSize = isMobile ? 'text-xs' : 'text-xs'
     const captionSize = isMobile ? 'text-[10px]' : 'text-xs'
@@ -261,11 +261,11 @@ function About() {
       const centerHole = vinylSize * 0.15
       
       return (
-        <div className="relative" style={{ width: `${vinylSize}px`, height: `${vinylSize}px` }}>
+        <div className="relative" style={{ width: isOpened ? `${vinylSize}px` : 'auto', minHeight: isOpened ? 'auto' : 'auto' }}>
           {/* Album Sleeve (Cover) */}
           <div 
-            className={`absolute inset-0 bg-white rounded-lg shadow-lg transition-all duration-700 ease-in-out cursor-pointer ${
-              isOpened ? 'opacity-0 scale-0 rotate-180' : 'opacity-100 scale-100 rotate-0'
+            className={`bg-white rounded-[5px] transition-all duration-700 ease-in-out cursor-pointer ${
+              isOpened ? 'opacity-0 scale-0 rotate-180 absolute inset-0' : 'opacity-100 scale-100 rotate-0'
             }`}
             style={{
               transformOrigin: 'center center',
@@ -276,24 +276,27 @@ function About() {
               <img
                 src={item.image}
                 alt={item.text}
-                className="w-full h-full object-cover rounded-lg"
+                className="rounded-[5px]"
+                style={{ width: 'auto', height: 'auto', maxWidth: '100%', display: 'block' }}
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-600 rounded-lg flex items-center justify-center">
-                <div className="text-white text-center px-2">
+              <div className="bg-gradient-to-br from-gray-800 to-gray-600 rounded-[5px] flex items-center justify-center" style={{ minWidth: `${vinylSize}px`, minHeight: `${vinylSize}px` }}>
+                <div className="text-white text-center px-2 py-4">
                   <p className={`${textSize} font-medium mb-1`}>{item.text}</p>
                   <p className={`${dateSize} opacity-80`}>{item.date}</p>
                 </div>
               </div>
             )}
             {/* Sleeve edge shadow */}
-            <div className="absolute right-0 top-0 bottom-0 w-1 bg-black opacity-10 rounded-r-lg"></div>
+            {!isOpened && (
+              <div className="absolute right-0 top-0 bottom-0 w-1 bg-black opacity-10 rounded-r-[5px]"></div>
+            )}
           </div>
 
           {/* Vinyl Record (revealed when opened) */}
           <div 
-            className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-              isOpened ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-0 rotate-180'
+            className={`transition-all duration-700 ease-in-out ${
+              isOpened ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-0 rotate-180 absolute inset-0'
             }`}
             style={{
               transformOrigin: 'center center',
@@ -307,7 +310,7 @@ function About() {
                   e.stopPropagation()
                   setOpenedVinyl(null)
                 }}
-                className="absolute -top-2 -right-2 z-20 w-6 h-6 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors font-bold"
+                className="absolute -top-2 -right-2 z-20 w-6 h-6 bg-white rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors font-bold shadow-lg"
                 style={{ fontSize: '16px', lineHeight: '1' }}
               >
                 ×
@@ -316,7 +319,7 @@ function About() {
             
             {/* Vinyl Record Circle */}
             <div 
-              className="relative rounded-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 shadow-2xl cursor-pointer hover:scale-105 transition-transform vinyl-grooves"
+              className="relative rounded-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 shadow-2xl cursor-pointer hover:scale-105 transition-transform mx-auto"
               style={{ 
                 width: `${vinylSize}px`, 
                 height: `${vinylSize}px`,
@@ -367,58 +370,18 @@ function About() {
                     transform: 'translate(-50%, -50%)',
                   }}
                 />
-                {/* Label Text */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-1">
-                  <p className={`${isMobile ? 'text-[6px]' : 'text-[8px]'} font-semibold text-gray-700 leading-tight`}>
-                    {item.text}
-                  </p>
-                  <p className={`${isMobile ? 'text-[4px]' : 'text-[6px]'} text-gray-500 mt-0.5`}>
-                    {item.date}
-                  </p>
-                </div>
               </div>
-
-              {/* Realistic Circular Song List */}
-              {item.songs && item.songs.length > 0 && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div 
-                    className="absolute rounded-full"
-                    style={{
-                      width: `${vinylSize * 0.65}px`,
-                      height: `${vinylSize * 0.65}px`,
-                    }}
-                  >
-                    {item.songs.slice(0, 5).map((song, index) => {
-                      // Calculate position on a circle
-                      const angle = (index / item.songs.length) * 360;
-                      const radius = vinylSize * 0.325;
-                      const x = radius * Math.cos((angle - 90) * (Math.PI / 180));
-                      const y = radius * Math.sin((angle - 90) * (Math.PI / 180));
-                      
-                      return (
-                        <div
-                          key={index}
-                          className="absolute text-center"
-                          style={{
-                            left: `calc(50% + ${x}px)`,
-                            top: `calc(50% + ${y}px)`,
-                            transform: `translate(-50%, -50%) rotate(${angle}deg)`,
-                            transformOrigin: 'center center',
-                            fontSize: isMobile ? '5px' : '6px',
-                            color: '#E5E7EB',
-                            fontWeight: 400,
-                            textShadow: '0 1px 3px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5)',
-                            whiteSpace: 'nowrap',
-                          }}
-                        >
-                          {song}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
             </div>
+
+            {/* Album Title - below the vinyl */}
+            {isOpened && (
+              <div className="mt-3 text-center">
+                <p className={`${textSize} text-gray-700 font-medium`}>{item.text}</p>
+                {item.date && (
+                  <p className={`${dateSize} text-gray-500 mt-1`}>{item.date}</p>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )
@@ -532,7 +495,7 @@ function About() {
 
         <img
           src="/images/about/main/sitting.jpg"
-          className="aboutImage absolute top-[25%] left-1/2 -translate-x-1/2 w-[80%] max-w-[360px] md:bottom-[15%] md:right-[20%] md:left-auto md:translate-x-0 md:w-[30%] md:max-w-[320px] z-10 rounded-md shadow-md"
+          className="aboutImage absolute top-[25%] left-1/2 -translate-x-1/2 w-[80%] max-w-[360px] md:bottom-[15%] md:right-[20%] md:left-auto md:translate-x-0 md:w-[30%] md:max-w-[320px] z-10 rounded-md"
           alt="sit"
         />
 
@@ -623,7 +586,7 @@ function About() {
           {/* Sitting image - Static position */}
           <img
             src="/images/about/main/sitting.jpg"
-            className="aboutImage absolute rounded-md shadow-md z-10"
+            className="aboutImage absolute rounded-md z-10"
             style={{
               top: '380px',
               right: '10px',
@@ -662,11 +625,10 @@ function About() {
 
           {/* Archive Gallery - Scattered cards */}
           <div 
-            className="relative z-[2]"
+            className="relative z-[2] left-1/2 -translate-x-1/2"
             style={{
               marginTop: '750px',
-              left: '10px',
-              width: '930px',
+              width: '950px',
               paddingBottom: '100px'
             }}
           >

@@ -49,6 +49,7 @@ function Projects() {
       link: 'https://rosielab.github.io/react-to-this/',
       description: 'Research assistantship with ROSIE Lab',
       image: './images/Rosie/elan.png',
+      hasCaseStudy: true,
     },
     {
       title: 'Canadian Space Agency',
@@ -59,7 +60,7 @@ function Projects() {
     {
       title: 'WiCS',
       link: 'https://www.linkedin.com/feed/update/urn:li:activity:7304615915566874624?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7304615915566874624%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Bga5FoYxFTMW1ZaKJmD1Brw%3D%3D',
-      description: 'Technical Events Coordinator 2024-25, organizing team, panelist, mentor]',
+      description: 'Technical Events Coordinator 2024-25, organizing team, panelist, mentor',
       image: '/images/projects/wics.jpg',
     },
     {
@@ -164,35 +165,33 @@ function Projects() {
 function CaseStudyModal({ projectTitle, onClose, project }) {
   const caseStudies = {
     'Brig.AI': {
-      overview: 'Brig.AI aims to empower women by providing them with tools to advocate for their health, particularly addressing issues like medical dismissal and misdiagnosis in conditions such as PCOS and Endometriosis. We help women understand their symptoms and provide tangible next steps to self-advocate with their healthcare providers.',
-      role: 'Backend Developer',
+      overview: 'Brig.AI provides women with tools to advocate for their health, particularly addressing issues like medical dismissal and misdiagnosis in conditions such as PCOS and Endometriosis. We help women understand their symptoms and provide tangible next steps to self-advocate with their healthcare providers.',
+      role: 'Product Manager & Backend Developer',
       timeline: 'AI4Good Lab, Summer 2024',
       challenge: 'Women face significant diagnostic delays and medical gaslighting due to gaps in understanding and biases in medical practice. Many women struggle to get proper diagnoses and appropriate care for conditions like PCOS and Endometriosis.',
       solution: 'Brig.AI provides a platform where women can educate themselves about diagnostic tests and empower themselves to advocate for proper healthcare. The platform uses machine learning to recommend appropriate diagnostic pathways based on symptoms, helping users understand what tests to ask for and how to effectively communicate with healthcare providers.',
-      myContribution: 'I implemented Adaboost and clustering integration to enhance diagnostic accuracy and recommend appropriate tests based on symptoms. Utilized machine learning models including Logistic Regression, Adaboost, and K-means clustering to predict and recommend diagnostic pathways.',
+      myContribution: 'I implemented Adaboost and clustering integration to enhance diagnostic accuracy and recommend appropriate tests based on symptoms. I utilized machine learning models including Logistic Regression, Adaboost, and K-means clustering to predict and recommend diagnostic pathways.',
       impact: [
         'Built during AI4Good Lab with focus on healthcare accessibility and empowerment',
         'ML-powered diagnostic recommendations based on symptom patterns',
-        'No storage of user health data with clear disclaimers for responsible use',
         'Future collaboration planned with doctors and health leaders to further develop the product',
       ],
       keyFeatures: [
         'Educational resources about diagnostic tests for PCOS and Endometriosis',
         'AI-powered symptom analysis and test recommendations',
-        'Tools to help users advocate effectively with healthcare providers',
         'Privacy-first approach with no health data storage',
       ],
     },
     'PRD+': {
       overview: 'PRD+ is a Chrome extension that ensures best practices in the product requirements documentation process at TELUS. Built for UBC Product Management Club\'s flagship Product Sprint competition, PRD+ addresses the challenge of improving how product teams align on and communicate product requirements.',
-      role: 'Product Manager & Team Member',
-      timeline: 'UBC PMC Product Sprint, 2024',
+      role: 'Team Member, Product Designer',
+      timeline: 'UBC PMC Product Sprint, 2025',
       challenge: 'Product teams at TELUS struggle with aligning on and communicating product requirements and processes. Creating comprehensive PRDs is time-consuming, and teams often miss critical documentation elements, leading to misalignment and inefficient workflows.',
       solution: 'PRD+ is a Chrome extension featuring an in-built AI assistant (PRDude), a quick checklist to identify gaps in PRD criteria, and a centralized PRD database. The solution saves valuable time from PRD-related meetings, PRD writing, and knowledge search by ensuring teams follow best practices and have easy access to relevant documentation.',
       impact: [
-        'Won 1st Place out of 20 teams at UBC PMC Product Sprint',
-        'Won top prize: $800, llama stuffies, and a year of PM Exercises',
-        'Addressed real-world challenge from TELUS product teams',
+        'Won 1st Place out of 20 teams',
+        'Top prize: $800, llama stuffies, and a year of PM Exercises',
+        'Addressed a real-world challenge from TELUS product teams',
         'Demonstrated practical experience across Discovery, Solution, Construction, and Presentation phases',
       ],
       keyFeatures: [
@@ -203,15 +202,28 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
       ],
       designLink: 'https://www.figma.com/design/3qY3c5FyRSYmdIhgryyZvm/PMC?node-id=183-452&t=KnR4gTzBg4mFkVCs-1',
     },
+    'React to This!': {
+      overview: 'React to This! is a research project with ROSIE Lab (Robots with Social Intelligence and Empathy) that explores how people interact with and respond to virtual agents. As a research assistant, I contributed across multiple dimensions of the project, from participant recruitment to multimedia production and data analysis.',
+      role: 'Research Assistant',
+      timeline: '2023-2024',
+      solution: 'The project focuses on creating a comprehensive, annotated dataset of common physical and emotional reactions to virtual agents. The dataset is used to train and evaluate the performance of virtual agents in social interaction tasks.',
+      myContribution: 'I made significant contributions across multiple areas: created a descriptive/documentary video to communicate the research, designed and built the project website, edited the research paper, annotated data for analysis, and recruited participants and volunteers for data collection.',
+      impact: [
+        'Enhanced project visibility through website design and development',
+        'Improved research communication through documentary video production',
+        'Contributed to data quality through annotation and participant recruitment',
+        'Supported academic publication by editing and formatting the paper',
+      ],
+    },
     'Simple Ventures': {
       overview: 'Aurora Pet Co. is a seamless subscription platform with vet-backed delivery and a focus on chronic conditions, designed to make pet health more affordable and accessible across Canada. The solution addresses the unmet need for an online pet pharmacy in the Canadian market.',
-      role: 'Product Designer & Team Member',
+      role: 'Product Designer & Product Manager',
       timeline: 'Cansbridge x Simple Ventures, 2024',
       challenge: 'Rising pet ownership, growing demand for affordable care, and no dominant online pet pharmacy in Canada create a perfect storm of unmet need, regulatory barriers, and timing. Canada\'s 16M+ pet owners struggle with high medication costs and limited access to affordable pet healthcare.',
-      solution: 'We built a seamless subscription platform with vet-backed delivery and a focus on chronic conditions to make pet health more affordable and accessible across Canada. The platform features transparent pricing, convenient subscription management, and reliable delivery, helping pet owners save $50–$100+ per year on medications.',
+      solution: 'A seamless subscription platform with vet-backed delivery and a focus on chronic conditions to make pet health more affordable and accessible across Canada. The platform features transparent pricing, convenient subscription management, and reliable delivery, helping pet owners save $50–$100+ per year on medications.',
       impact: [
         'Top 4 finalist in Cansbridge x Simple Ventures pitch competition',
-        'Won Best Design award',
+        'Acknowledged for best prototype and slide design',
         'Addresses unmet need for 16M+ Canadian pet owners',
         'Potential savings of $50–$100+ per year per pet owner',
       ],
@@ -263,10 +275,12 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           </section>
 
           {/* Challenge */}
-          <section>
-            <h3 className="text-xl font-semibold text-gray-700 mb-3">The Challenge</h3>
-            <p className="text-gray-700 leading-relaxed">{caseStudy.challenge}</p>
-          </section>
+          {caseStudy.challenge && (
+            <section>
+              <h3 className="text-xl font-semibold text-gray-700 mb-3">The Challenge</h3>
+              <p className="text-gray-700 leading-relaxed">{caseStudy.challenge}</p>
+            </section>
+          )}
 
           {/* Solution */}
           <section>
@@ -283,17 +297,19 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           )}
 
           {/* Key Features */}
-          <section>
-            <h3 className="text-xl font-semibold text-gray-700 mb-3">Key Features</h3>
-            <ul className="space-y-2">
-              {caseStudy.keyFeatures.map((feature, index) => (
-                <li key={index} className="text-gray-700 flex items-start">
-                  <span className="text-gray-700 mr-2">•</span>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+          {caseStudy.keyFeatures && caseStudy.keyFeatures.length > 0 && (
+            <section>
+              <h3 className="text-xl font-semibold text-gray-700 mb-3">Key Features</h3>
+              <ul className="space-y-2">
+                {caseStudy.keyFeatures.map((feature, index) => (
+                  <li key={index} className="text-gray-700 flex items-start">
+                    <span className="text-gray-700 mr-2">•</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {/* Impact */}
           <section>
@@ -319,7 +335,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
                     rel="noopener noreferrer"
                     className="inline-block px-6 py-3 bg-gray-700 text-white rounded-md hover:bg-gray-800 transition-colors text-sm font-medium"
                   >
-                    View Project →
+                    {projectTitle === 'Simple Ventures' ? 'View Design →' : 'View Project →'}
                   </a>
                 )}
                 {caseStudy.designLink && (
@@ -329,7 +345,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
                     rel="noopener noreferrer"
                     className="inline-block px-6 py-3 bg-white border-2 border-gray-700 text-gray-700 rounded-md hover:bg-gray-50 transition-colors text-sm font-medium"
                   >
-                    View Design on Figma →
+                    View Design →
                   </a>
                 )}
               </div>
