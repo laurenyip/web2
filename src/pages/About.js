@@ -65,6 +65,14 @@ const ARCHIVE_ITEMS = [
         'Life During Wartime - Talking Heads',
       ],
     },
+    {
+      type: 'music',
+      text: 'Graceland',
+      link: 'https://open.spotify.com/album/6WgGWYw6XXQyLTsWt7tXky',
+      date: '2025-12-26',
+      image: '/images/about/current/graceland.jpg',
+      songs: [],
+    },
     { 
       type: 'image',
       image: '/images/about/current/babel.jpg', 
@@ -101,6 +109,16 @@ const ARCHIVE_ITEMS = [
     {
       type: 'quote',
       text: "Is this enough?",
+    },
+    {
+      type: 'food',
+      image: '/images/about/current/nam.jpg',
+      date: '2025-09-07',
+    },
+    {
+      type: 'food',
+      image: '/images/about/current/pof.jpg',
+      date: '2025-11-20',
     },
   /*
   {
