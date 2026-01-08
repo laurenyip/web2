@@ -3,8 +3,8 @@ import Navbar from '../components/Navbar'
 
 import './App.css'
 
-// Archive gallery data with different content types
-// Types: 'image', 'essay', 'book', 'movie', 'food', 'quote', 'music', 'place'
+  // Archive gallery data with different content types
+  // Types: 'image', 'essay', 'book', 'movie', 'food', 'quote', 'music', 'place'
 const ARCHIVE_ITEMS = [
     {
       type: 'image',
@@ -39,24 +39,17 @@ const ARCHIVE_ITEMS = [
     },
     {
       type: 'music',
-      text: 'recent life archive',
-      link: 'https://open.spotify.com/playlist/17R042dZUt10LOSqVG8rUm?si=78b5299694014d05',
-      date: '2025-11-22',
-      image: '/images/about/current/atel.jpg',
-      songs: [
-        'Song 1 - Artist Name',
-        'Song 2 - Artist Name',
-        'Song 3 - Artist Name',
-        'Song 4 - Artist Name',
-        'Song 5 - Artist Name',
-      ],
+      text: 'Clash',
+      date: '2025-12-28',
+      image: '/images/about/current/clash.jpg',
+      songs: [],
     },
     {
       type: 'music',
       text: 'Stop Making Sense',
       link: 'https://letterboxd.com/laurenyip/film/stop-making-sense/',
       date: '2025-08-04',
-      image: '/images/about/current/sms.png',
+      image: '/images/about/current/sms.jpg',
       songs: [
         'Psycho Killer - Talking Heads',
         'Heaven - Talking Heads',
@@ -71,6 +64,21 @@ const ARCHIVE_ITEMS = [
       link: 'https://open.spotify.com/album/6WgGWYw6XXQyLTsWt7tXky',
       date: '2025-12-26',
       image: '/images/about/current/graceland.jpg',
+      songs: [],
+    },
+    {
+      type: 'music',
+      text: 'YN',
+      date: '2025-12-27',
+      image: '/images/about/current/yn.jpg',
+      songs: [],
+    },
+    {
+      type: 'music',
+      text: 'recent life archive',
+      link: 'https://open.spotify.com/playlist/17R042dZUt10LOSqVG8rUm?si=78b5299694014d05',
+      date: '2025-11-22',
+      image: '/images/about/current/atel.jpg',
       songs: [],
     },
     { 
@@ -120,17 +128,17 @@ const ARCHIVE_ITEMS = [
       image: '/images/about/current/pof.jpg',
       date: '2025-11-20',
     },
-  /*
-  {
-    type: 'place',
-    text: 'Montreal Botanical Garden',
-    location: 'Montreal, QC',
-    date: '2024-04-20',
-    // Optional: image or link
-    // image: '/images/about/places/botanical.jpg',
-  },
-  */
-]
+    /*
+    {
+      type: 'place',
+      text: 'Montreal Botanical Garden',
+      location: 'Montreal, QC',
+      date: '2024-04-20',
+      // Optional: image or link
+      // image: '/images/about/places/botanical.jpg',
+    },
+    */
+  ]
 
 function About() {
   const [openedVinyl, setOpenedVinyl] = useState(null)
@@ -146,42 +154,198 @@ function About() {
     })
   }, [])
 
-  // Scattered positions for gallery items (different for mobile and desktop)
-  // Uses pixel-based positioning to prevent overlaps and allow scrolling
-  const getScatteredPositions = (count, isMobile) => {
+  // Separate music items from other items
+  const musicItems = useMemo(() => sortedArchiveItems.filter(item => item.type === 'music'), [sortedArchiveItems])
+  const otherItems = useMemo(() => sortedArchiveItems.filter(item => item.type !== 'music'), [sortedArchiveItems])
+
+  // Get positions for music items on shelf (like vinyl records)
+  const getMusicShelfPositions = (musicItems, isMobile) => {
     const positions = []
-    // Increased spacing to account for natural image sizes and prevent overlap
-    const horizontalSpacing = isMobile ? 200 : 280 // Increased horizontal spacing
-    const verticalSpacing = isMobile ? 300 : 350 // Increased vertical spacing for natural image heights
-    const colsPerRow = isMobile ? 2 : 3
+    const vinylSize = isMobile ? 140 : 170
+    const containerWidth = isMobile ? 400 : 950
+    const padding = isMobile ? 20 : 30
+    const shelfSpacing = isMobile ? 20 : 25
+    const shelfHeight = 250 // Height for the shelf section (moved down 50px)
+    const shelfThickness = 12 // Thickness of the wooden shelf
     
-    // Starting position in pixels from top
-    const startTop = isMobile ? 0 : 0
-    const startLeft = isMobile ? 20 : 30
+    // Music items are placed horizontally on the shelf
+    let currentLeft = padding
     
-    for (let i = 0; i < count; i++) {
-      const row = Math.floor(i / colsPerRow)
-      const col = i % colsPerRow
-      
-      // Base position with grid layout - no random offsets to prevent overlap
-      const baseTop = startTop + row * verticalSpacing
-      const baseLeft = startLeft + col * horizontalSpacing
-      
-      // No rotation for normal alignment
-      const rotation = 0
-      
-      positions.push({
-        top: `${baseTop}px`,
-        left: `${baseLeft}px`,
-        rotation: rotation,
+    musicItems.forEach((item, index) => {
+      // Make sure we don't exceed container width
+      if (currentLeft + vinylSize <= containerWidth - padding) {
+        positions.push({
+          top: `${shelfHeight - vinylSize}px`, // Position above shelf
+          left: `${currentLeft}px`,
+          rotation: 0,
+          height: vinylSize,
+          isMusic: true,
+        })
+        
+        currentLeft += vinylSize + shelfSpacing
+      }
+    })
+    
+    return { positions, shelfBottom: shelfHeight + shelfThickness }
+  }
+
+  // Natural gallery/mosaic positions for non-music archive items
+  // Uses collision detection to ensure no overlaps with varied heights
+  const getGalleryPositions = (items, isMobile, startTop) => {
+    const positions = []
+    const cardWidth = isMobile ? 150 : 180
+    const baseCardHeight = isMobile ? 200 : 240
+    const containerWidth = isMobile ? 400 : 950
+    const padding = isMobile ? 20 : 30
+    const spacing = isMobile ? 80 : 90 // Increased spacing for better separation
+    const postItWidth = isMobile ? 160 : 200
+    const postItHeight = isMobile ? 120 : 150
+    const totalItems = items.length
+    
+    // Use a seed for consistent randomness per item
+    const getRandom = (seed) => {
+      const x = Math.sin(seed) * 10000
+      return x - Math.floor(x)
+    }
+    
+    // Generate varied heights for each item (80% to 120% of base height)
+    const getCardHeight = (index) => {
+      const variation = getRandom(index * 11) * 0.4 + 0.8 // 0.8 to 1.2
+      return Math.round(baseCardHeight * variation)
+    }
+    
+    // Track all placed rectangles with padding for collision detection
+    const placedRects = []
+    
+    // Reserve space for post-it note at top left (with padding)
+    placedRects.push({
+      top: 0,
+      left: 0,
+      right: postItWidth + spacing,
+      bottom: postItHeight + spacing,
+    })
+    
+    // Helper function to check if a rectangle overlaps with any placed rectangle
+    const checkCollision = (rect) => {
+      return placedRects.some(placed => {
+        return !(rect.right <= placed.left || 
+                rect.left >= placed.right ||
+                rect.bottom <= placed.top ||
+                rect.top >= placed.bottom)
       })
     }
+    
+    for (let i = 0; i < totalItems; i++) {
+      const cardHeight = getCardHeight(i) // Get varied height for this item
+      let placed = false
+      let attempts = 0
+      const maxAttempts = 300
+      
+      // Calculate available width (full container minus padding and post-it)
+      const availableWidth = containerWidth - (padding * 2)
+      const startOffset = isMobile ? padding : padding // Start from left edge, not after post-it
+      
+      // Try different positions until we find one that doesn't overlap
+      while (!placed && attempts < maxAttempts) {
+        // Distribute items across the full width, not just right side
+        const itemsPerRow = isMobile ? 2 : 4
+        
+        // Calculate row and column
+        const row = Math.floor(i / itemsPerRow)
+        const colInRow = i % itemsPerRow
+        
+        // Spread items evenly across available width
+        const itemsInPreviousRows = row * itemsPerRow
+        const remainingItems = totalItems - itemsInPreviousRows
+        const itemsInThisRow = Math.min(itemsPerRow, remainingItems)
+        const rowWidth = availableWidth - (spacing * (itemsInThisRow - 1))
+        const itemSpacing = rowWidth / itemsInThisRow
+        const baseLeft = startOffset + colInRow * (itemSpacing + spacing)
+        
+        // Position rows with good vertical spacing - use average height for row spacing
+        // Start from the provided startTop (below shelf)
+        const avgHeight = baseCardHeight
+        const baseTop = startTop + row * (avgHeight + spacing)
+        
+        // Small random variation for natural look (much smaller)
+        const variationX = (getRandom(i * 3 + attempts) - 0.5) * (spacing * 0.3)
+        const variationY = (getRandom(i * 5 + attempts) - 0.5) * (spacing * 0.3)
+        
+        const left = Math.max(padding, Math.min(baseLeft + variationX, containerWidth - cardWidth - padding))
+        const top = Math.max(startTop, baseTop + variationY)
+        
+        // Bounding box with spacing padding using the actual varied card height
+        const rect = {
+          top: top - spacing / 2,
+          left: left - spacing / 2,
+          right: left + cardWidth + spacing / 2,
+          bottom: top + cardHeight + spacing / 2,
+        }
+        
+        // Check if this position would overlap and is within bounds
+        if (!checkCollision(rect) && rect.right <= containerWidth - padding && rect.left >= padding) {
+          // Place the item with NO rotation (straight/aligned)
+      positions.push({
+            top: `${top}px`,
+            left: `${left}px`,
+            rotation: 0,
+            height: cardHeight, // Store the height for rendering
+          })
+          
+          // Record this rectangle as occupied
+          placedRects.push(rect)
+          placed = true
+        }
+        
+        attempts++
+      }
+      
+      // Fallback: place in a simple grid if all attempts fail
+      if (!placed) {
+        const itemsPerRow = isMobile ? 2 : 4
+        const row = Math.floor(i / itemsPerRow)
+        const col = i % itemsPerRow
+        
+        const itemsInRow = Math.min(itemsPerRow, items.length - row * itemsPerRow)
+        const rowWidth = availableWidth - (spacing * (itemsInRow - 1))
+        const itemSpacing = rowWidth / itemsInRow
+        const fallbackLeft = startOffset + col * (itemSpacing + spacing)
+        const fallbackTop = startTop + row * (baseCardHeight + spacing)
+      
+      positions.push({
+          top: `${fallbackTop}px`,
+          left: `${fallbackLeft}px`,
+          rotation: 0,
+          height: cardHeight, // Store the height for rendering
+        })
+        
+        // Record fallback position using actual card height
+        placedRects.push({
+          top: fallbackTop - spacing / 2,
+          left: fallbackLeft - spacing / 2,
+          right: fallbackLeft + cardWidth + spacing / 2,
+          bottom: fallbackTop + cardHeight + spacing / 2,
+        })
+      }
+    }
+    
     return positions
   }
 
-  // Calculate positions once for mobile and desktop
-  const mobilePositions = useMemo(() => getScatteredPositions(sortedArchiveItems.length, true), [sortedArchiveItems.length])
-  const desktopPositions = useMemo(() => getScatteredPositions(sortedArchiveItems.length, false), [sortedArchiveItems.length])
+  // Calculate positions for music items on shelf
+  const mobileMusicPositions = useMemo(() => getMusicShelfPositions(musicItems, true), [musicItems])
+  const desktopMusicPositions = useMemo(() => getMusicShelfPositions(musicItems, false), [musicItems])
+  
+  // Calculate positions for other items below shelf
+  const mobileOtherPositions = useMemo(() => {
+    const shelfBottom = mobileMusicPositions.shelfBottom || 262
+    return getGalleryPositions(otherItems, true, shelfBottom + 70)
+  }, [otherItems, mobileMusicPositions])
+  
+  const desktopOtherPositions = useMemo(() => {
+    const shelfBottom = desktopMusicPositions.shelfBottom || 262
+    return getGalleryPositions(otherItems, false, shelfBottom + 70)
+  }, [otherItems, desktopMusicPositions])
 
   // Render different card templates based on content type
   const renderArchiveCard = (item, isMobile) => {
@@ -193,15 +357,26 @@ function About() {
 
     // Image card (default)
     if (item.type === 'image' || !item.type) {
+      const isHightide = item.text && item.text.toLowerCase().includes('hightide')
       return (
         <div className={cardClasses}>
           {item.image && (
+            <div className={isHightide ? "p-4 bg-amber-50" : ""}>
+              <div 
+                className={isHightide ? "border-4 shadow-lg" : ""}
+                style={isHightide ? {
+                  borderColor: '#D4AF37',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06), inset 0 1px 2px rgba(212, 175, 55, 0.3)'
+                } : {}}
+              >
             <img
               src={item.image}
               alt={item.text}
               className="w-full object-contain"
               style={{ maxHeight: 'none' }}
             />
+              </div>
+            </div>
           )}
           <div className={`${padding} bg-white`}>
             <p className={`${textSize} text-gray-700 mb-1`}>{item.text}</p>
@@ -279,26 +454,32 @@ function About() {
       const centerHole = vinylSize * 0.15
       
       return (
-        <div className="relative" style={{ width: isOpened ? `${vinylSize}px` : 'auto', minHeight: isOpened ? 'auto' : 'auto' }}>
+        <div className="relative" style={{ width: isOpened ? `${vinylSize}px` : `${vinylSize}px`, minHeight: isOpened ? 'auto' : `${vinylSize}px` }}>
           {/* Album Sleeve (Cover) */}
           <div 
-            className={`bg-white rounded-[5px] transition-all duration-700 ease-in-out cursor-pointer ${
+            className={`bg-white transition-all duration-700 ease-in-out cursor-pointer ${
               isOpened ? 'opacity-0 scale-0 rotate-180 absolute inset-0' : 'opacity-100 scale-100 rotate-0'
             }`}
             style={{
               transformOrigin: 'center center',
               zIndex: isOpened ? 1 : 2,
+              width: `${vinylSize}px`,
+              height: `${vinylSize}px`,
+              boxShadow: !isOpened ? '0 4px 8px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)' : 'none',
             }}
           >
             {item.image ? (
-              <img
-                src={item.image}
-                alt={item.text}
-                className="rounded-[5px]"
-                style={{ width: 'auto', height: 'auto', maxWidth: '100%', display: 'block' }}
+            <img
+              src={item.image}
+              alt={item.text}
+                className="w-full h-full"
+                style={{ 
+                  objectFit: 'cover',
+                  display: 'block',
+                }}
               />
             ) : (
-              <div className="bg-gradient-to-br from-gray-800 to-gray-600 rounded-[5px] flex items-center justify-center" style={{ minWidth: `${vinylSize}px`, minHeight: `${vinylSize}px` }}>
+              <div className="bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center w-full h-full">
                 <div className="text-white text-center px-2 py-4">
                   <p className={`${textSize} font-medium mb-1`}>{item.text}</p>
                   <p className={`${dateSize} opacity-80`}>{item.date}</p>
@@ -307,7 +488,7 @@ function About() {
             )}
             {/* Sleeve edge shadow */}
             {!isOpened && (
-              <div className="absolute right-0 top-0 bottom-0 w-1 bg-black opacity-10 rounded-r-[5px]"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-1 bg-black opacity-10"></div>
             )}
           </div>
 
@@ -337,11 +518,11 @@ function About() {
             
             {/* Vinyl Record Circle */}
             <div 
-              className="relative rounded-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 shadow-2xl cursor-pointer hover:scale-105 transition-transform mx-auto"
+              className="relative rounded-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 cursor-pointer hover:scale-105 transition-transform mx-auto"
               style={{ 
                 width: `${vinylSize}px`, 
                 height: `${vinylSize}px`,
-                boxShadow: 'inset 0 0 20px rgba(0,0,0,0.5), 0 4px 20px rgba(0,0,0,0.3)',
+                boxShadow: 'inset 0 0 20px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.3)',
               }}
               onClick={(e) => {
                 e.stopPropagation()
@@ -541,24 +722,113 @@ function About() {
           >
             archive
           </h3>
-          <div className="relative w-full" style={{ minHeight: `${Math.ceil(sortedArchiveItems.length / 2) * 220}px` }}>
-            {sortedArchiveItems.map((item, index) => {
-              const pos = mobilePositions[index]
+          
+          {/* Pinned Post-it Note */}
+          <div className="absolute top-0 left-4 md:left-8 z-10" style={{ transform: 'rotate(-2deg)' }}>
+            {/* Thumbtack */}
+            <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
+              <div className="w-3 h-3 bg-gray-400 rounded-full shadow-md"></div>
+              <div className="absolute top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
+            </div>
+            {/* Post-it Note */}
+            <div 
+              className="bg-yellow-200 shadow-lg p-3 rounded-sm"
+              style={{
+                width: '140px',
+                minHeight: '100px',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)',
+                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
+              }}
+            >
+              <p className="text-xs text-gray-800 leading-tight font-normal" style={{ fontFamily: 'Arial, sans-serif' }}>
+                recent → not recent<br/>
+                collection of books, essays, quotes, music, food, and pictures i like
+              </p>
+            </div>
+          </div>
+
+          <div className="relative w-full" style={{ minHeight: `${mobileMusicPositions.shelfBottom + Math.ceil(otherItems.length / 2) * 250}px` }}>
+            {/* Wooden Shelf for Music Items */}
+            {musicItems.length > 0 && (
+              <div 
+                className="absolute z-15"
+                style={{
+                  top: `${mobileMusicPositions.shelfBottom - 12}px`,
+                  left: '0',
+                  right: '0',
+                  height: '12px',
+                }}
+              >
+                {/* Wooden shelf with wood grain effect */}
+                <div
+                  className="w-full h-full"
+                  style={{
+                    background: 'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
+                    boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
+                    borderTop: '1px solid rgba(139, 105, 20, 0.5)',
+                    borderBottom: '1px solid rgba(107, 78, 15, 0.8)',
+                  }}
+                >
+                  {/* Wood grain lines */}
+                  {[...Array(5)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-full opacity-20"
+                      style={{
+                        height: '1px',
+                        top: `${i * 2.4}px`,
+                        background: i % 2 === 0 
+                          ? 'linear-gradient(to right, transparent, rgba(107, 78, 15, 0.5), transparent)'
+                          : 'linear-gradient(to left, transparent, rgba(139, 105, 20, 0.5), transparent)',
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Music Items on Shelf */}
+            {musicItems.map((item, index) => {
+              const pos = mobileMusicPositions.positions[index]
+              if (!pos) return null
               return (
                 <div
-                  key={index}
-                  className="absolute cursor-pointer transition-transform hover:scale-105"
+                  key={`music-${index}`}
+                  className="absolute cursor-pointer transition-transform hover:scale-105 z-20"
+                  style={{
+                    top: pos.top,
+                    left: pos.left,
+                    transform: `rotate(${pos.rotation}deg)`,
+                    width: `${pos.height}px`,
+                    height: `${pos.height}px`,
+                  }}
+                  onClick={() => {
+                    setOpenedVinyl(openedVinyl === item.text ? null : item.text)
+                  }}
+                >
+                  {renderArchiveCard(item, true)}
+                </div>
+              )
+            })}
+
+            {/* Other Items Below Shelf */}
+            {otherItems.map((item, index) => {
+              const pos = mobileOtherPositions[index]
+              if (!pos) return null
+              return (
+                <div
+                  key={`other-${index}`}
+                  className="absolute cursor-pointer transition-transform hover:scale-105 z-20"
                   style={{
                     top: pos.top,
                     left: pos.left,
                     transform: `rotate(${pos.rotation}deg)`,
                     width: '150px',
                     maxWidth: '45%',
+                    height: pos.height ? `${pos.height}px` : 'auto',
                   }}
                   onClick={() => {
-                    if (item.type === 'music') {
-                      setOpenedVinyl(openedVinyl === item.text ? null : item.text)
-                    } else if (item.link) {
+                    if (item.link) {
                       window.open(item.link, '_blank')
                     }
                   }}
@@ -656,23 +926,112 @@ function About() {
             >
               archive
             </h3>
-            <div className="relative w-full" style={{ minHeight: `${Math.ceil(sortedArchiveItems.length / 3) * 260}px` }}>
-              {sortedArchiveItems.map((item, index) => {
-                const pos = desktopPositions[index]
+
+            {/* Pinned Post-it Note */}
+            <div className="absolute top-0 left-8 z-10" style={{ transform: 'rotate(-2deg)' }}>
+              {/* Thumbtack */}
+              <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
+                <div className="w-4 h-4 bg-gray-400 rounded-full shadow-lg"></div>
+                <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-300 rounded-full"></div>
+              </div>
+              {/* Post-it Note */}
+              <div 
+                className="bg-yellow-200 shadow-xl p-4 rounded-sm"
+                style={{
+                  width: '180px',
+                  minHeight: '120px',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)',
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
+                }}
+              >
+                <p className="text-sm text-gray-800 leading-tight font-normal" style={{ fontFamily: 'Arial, sans-serif' }}>
+                  recent → not recent<br/>
+                  collection of books, essays, music, quotes, food, and pictures i like
+                </p>
+              </div>
+            </div>
+
+            <div className="relative w-full" style={{ minHeight: `${desktopMusicPositions.shelfBottom + Math.ceil(otherItems.length / 3) * 280}px` }}>
+              {/* Wooden Shelf for Music Items */}
+              {musicItems.length > 0 && (
+                <div 
+                  className="absolute z-15"
+                  style={{
+                    top: `${desktopMusicPositions.shelfBottom - 12}px`,
+                    left: '0',
+                    right: '0',
+                    height: '12px',
+                  }}
+                >
+                  {/* Wooden shelf with wood grain effect */}
+                  <div
+                    className="w-full h-full"
+                    style={{
+                      background: 'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
+                      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
+                      borderTop: '1px solid rgba(139, 105, 20, 0.5)',
+                      borderBottom: '1px solid rgba(107, 78, 15, 0.8)',
+                    }}
+                  >
+                    {/* Wood grain lines */}
+                    {[...Array(5)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute w-full opacity-20"
+                        style={{
+                          height: '1px',
+                          top: `${i * 2.4}px`,
+                          background: i % 2 === 0 
+                            ? 'linear-gradient(to right, transparent, rgba(107, 78, 15, 0.5), transparent)'
+                            : 'linear-gradient(to left, transparent, rgba(139, 105, 20, 0.5), transparent)',
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Music Items on Shelf */}
+              {musicItems.map((item, index) => {
+                const pos = desktopMusicPositions.positions[index]
+                if (!pos) return null
                 return (
                   <div
-                    key={index}
-                    className="absolute cursor-pointer transition-transform hover:scale-105"
+                    key={`music-${index}`}
+                    className="absolute cursor-pointer transition-transform hover:scale-105 z-20"
+                    style={{
+                      top: pos.top,
+                      left: pos.left,
+                      transform: `rotate(${pos.rotation}deg)`,
+                      width: `${pos.height}px`,
+                      height: `${pos.height}px`,
+                    }}
+                    onClick={() => {
+                      setOpenedVinyl(openedVinyl === item.text ? null : item.text)
+                    }}
+                  >
+                    {renderArchiveCard(item, false)}
+                  </div>
+                )
+              }              )}
+
+              {/* Other Items Below Shelf */}
+              {otherItems.map((item, index) => {
+                const pos = desktopOtherPositions[index]
+                if (!pos) return null
+                return (
+                  <div
+                    key={`other-${index}`}
+                    className="absolute cursor-pointer transition-transform hover:scale-105 z-20"
                     style={{
                       top: pos.top,
                       left: pos.left,
                       transform: `rotate(${pos.rotation}deg)`,
                       width: '180px',
+                      height: pos.height ? `${pos.height}px` : 'auto',
                     }}
                     onClick={() => {
-                      if (item.type === 'music') {
-                        setOpenedVinyl(openedVinyl === item.text ? null : item.text)
-                      } else if (item.link) {
+                      if (item.link) {
                         window.open(item.link, '_blank')
                       }
                     }}
