@@ -38,6 +38,27 @@ const ARCHIVE_ITEMS = [
       // link: 'https://example.com',
     },
     {
+      type: 'book',
+      text: 'Six of Crows',
+      image: '/images/about/current/sixofcrows.jpg',
+      author: 'Leigh Bardugo',
+      date: '2025-01-15',
+    },
+    {
+      type: 'book',
+      text: 'Crooked Kingdom',
+      image: '/images/about/current/crookedkingdom.jpg',
+      author: 'Leigh Bardugo',
+      date: '2025-01-20',
+    },
+    {
+      type: 'book',
+      text: 'Middlemarch',
+      image: '/images/about/current/middlemarch.jpg',
+      author: 'George Eliot',
+      date: '2024-12-10',
+    },
+    {
       type: 'music',
       text: 'Clash',
       date: '2025-12-28',
@@ -74,12 +95,11 @@ const ARCHIVE_ITEMS = [
       songs: [],
     },
     {
-      type: 'music',
+      type: 'image',
       text: 'recent life archive',
       link: 'https://open.spotify.com/playlist/17R042dZUt10LOSqVG8rUm?si=78b5299694014d05',
       date: '2025-11-22',
       image: '/images/about/current/atel.jpg',
-      songs: [],
     },
     { 
       type: 'image',
@@ -112,7 +132,7 @@ const ARCHIVE_ITEMS = [
       type: 'quote',
       text: "Watch out, you might get what you're after",
       author: 'Talking Heads',
-      date: '2024-03-28',
+  
     },
     {
       type: 'quote',
@@ -142,6 +162,7 @@ const ARCHIVE_ITEMS = [
 
 function About() {
   const [openedVinyl, setOpenedVinyl] = useState(null)
+  const [openedBook, setOpenedBook] = useState(null)
 
   // Sort archive items by date (most recent first)
   const sortedArchiveItems = useMemo(() => {
@@ -154,39 +175,84 @@ function About() {
     })
   }, [])
 
-  // Separate music items from other items
+  // Separate music items, books, and other items
   const musicItems = useMemo(() => sortedArchiveItems.filter(item => item.type === 'music'), [sortedArchiveItems])
-  const otherItems = useMemo(() => sortedArchiveItems.filter(item => item.type !== 'music'), [sortedArchiveItems])
+  const bookItems = useMemo(() => sortedArchiveItems.filter(item => item.type === 'book'), [sortedArchiveItems])
+  const otherItems = useMemo(() => sortedArchiveItems.filter(item => item.type !== 'music' && item.type !== 'book'), [sortedArchiveItems])
 
   // Get positions for music items on shelf (like vinyl records)
   const getMusicShelfPositions = (musicItems, isMobile) => {
     const positions = []
-    const vinylSize = isMobile ? 140 : 170
+    const vinylSize = isMobile ? 98 : 119 // 70% of original (140->98, 170->119)
     const containerWidth = isMobile ? 400 : 950
     const padding = isMobile ? 20 : 30
-    const shelfSpacing = isMobile ? 20 : 25
-    const shelfHeight = 250 // Height for the shelf section (moved down 50px)
-    const shelfThickness = 12 // Thickness of the wooden shelf
+    const shelfSpacing = isMobile ? 14 : 18 // 70% of original spacing
+    const shelfHeight = 175 // 70% of original 250
+    const shelfThickness = 12 // Keep same for visibility
     
-    // Music items are placed horizontally on the shelf
+    // Calculate shelf width needed
+    const shelfWidth = Math.min(
+      musicItems.length * vinylSize + (musicItems.length - 1) * shelfSpacing + padding * 2,
+      containerWidth * 0.7 // Max 70% of container width
+    )
+    
+    // Music items are placed horizontally on the shelf, right-aligned
+    // Calculate left position from right edge
+    let currentLeft = containerWidth - padding - vinylSize
+    
+    // Build positions from right to left, then reverse to maintain item order
+    for (let i = musicItems.length - 1; i >= 0; i--) {
+      positions.push({
+        top: `${shelfHeight - vinylSize}px`, // Position above shelf
+        left: `${currentLeft}px`, // Position from left (calculated from right edge)
+        rotation: 0,
+        height: vinylSize,
+        isMusic: true,
+      })
+      
+      currentLeft -= (vinylSize + shelfSpacing)
+    }
+    
+    // Reverse positions array to maintain original item order
+    positions.reverse()
+    
+    return { positions, shelfBottom: shelfHeight + shelfThickness, shelfWidth }
+  }
+
+  // Get positions for books on bookshelf (spines showing)
+  const getBookShelfPositions = (bookItems, isMobile, startTop) => {
+    const positions = []
+    const bookSpineWidth = isMobile ? 30 : 40 // Width of book spine when viewed from side
+    const bookHeight = isMobile ? 120 : 150 // Height of book standing on shelf
+    const containerWidth = isMobile ? 400 : 950
+    const padding = isMobile ? 20 : 30
+    const shelfSpacing = isMobile ? 5 : 8 // Small spacing between books
+    const shelfHeight = startTop // Start below music shelf
+    const shelfThickness = 12
+    
+    // Limit to 4 books
+    const displayBooks = bookItems.slice(0, 4)
+    const shelfWidth = displayBooks.length * bookSpineWidth + (displayBooks.length - 1) * shelfSpacing + padding * 2
+    
+    // Books are placed horizontally on the shelf, left-aligned
     let currentLeft = padding
     
-    musicItems.forEach((item, index) => {
-      // Make sure we don't exceed container width
-      if (currentLeft + vinylSize <= containerWidth - padding) {
-        positions.push({
-          top: `${shelfHeight - vinylSize}px`, // Position above shelf
-          left: `${currentLeft}px`,
-          rotation: 0,
-          height: vinylSize,
-          isMusic: true,
-        })
-        
-        currentLeft += vinylSize + shelfSpacing
-      }
+    // Build positions from left to right
+    displayBooks.forEach((item, index) => {
+      positions.push({
+        top: `${shelfHeight - bookHeight}px`, // Position above shelf
+        left: `${currentLeft}px`,
+        rotation: 0,
+        spineWidth: bookSpineWidth,
+        bookHeight: bookHeight,
+        isBook: true,
+        index: index, // Store index for z-index ordering
+      })
+      
+      currentLeft += bookSpineWidth + shelfSpacing
     })
     
-    return { positions, shelfBottom: shelfHeight + shelfThickness }
+    return { positions, shelfBottom: shelfHeight + shelfThickness, shelfWidth, displayBooks }
   }
 
   // Natural gallery/mosaic positions for non-music archive items
@@ -336,16 +402,31 @@ function About() {
   const mobileMusicPositions = useMemo(() => getMusicShelfPositions(musicItems, true), [musicItems])
   const desktopMusicPositions = useMemo(() => getMusicShelfPositions(musicItems, false), [musicItems])
   
-  // Calculate positions for other items below shelf
+  // Calculate positions for books on bookshelf (below music shelf)
+  const mobileBookPositions = useMemo(() => {
+    const musicShelfBottom = mobileMusicPositions.shelfBottom || 187
+    return getBookShelfPositions(bookItems, true, musicShelfBottom + 170) // Moved down 100px
+  }, [bookItems, mobileMusicPositions])
+  
+  const desktopBookPositions = useMemo(() => {
+    const musicShelfBottom = desktopMusicPositions.shelfBottom || 187
+    return getBookShelfPositions(bookItems, false, musicShelfBottom + 170) // Moved down 100px
+  }, [bookItems, desktopMusicPositions])
+  
+  // Calculate positions for other items below shelves
   const mobileOtherPositions = useMemo(() => {
-    const shelfBottom = mobileMusicPositions.shelfBottom || 262
-    return getGalleryPositions(otherItems, true, shelfBottom + 70)
-  }, [otherItems, mobileMusicPositions])
+    const bottomShelf = bookItems.length > 0 
+      ? (mobileBookPositions.shelfBottom || 300)
+      : (mobileMusicPositions.shelfBottom || 187)
+    return getGalleryPositions(otherItems, true, bottomShelf + 70)
+  }, [otherItems, mobileMusicPositions, mobileBookPositions, bookItems])
   
   const desktopOtherPositions = useMemo(() => {
-    const shelfBottom = desktopMusicPositions.shelfBottom || 262
-    return getGalleryPositions(otherItems, false, shelfBottom + 70)
-  }, [otherItems, desktopMusicPositions])
+    const bottomShelf = bookItems.length > 0 
+      ? (desktopBookPositions.shelfBottom || 300)
+      : (desktopMusicPositions.shelfBottom || 187)
+    return getGalleryPositions(otherItems, false, bottomShelf + 70)
+  }, [otherItems, desktopMusicPositions, desktopBookPositions, bookItems])
 
   // Render different card templates based on content type
   const renderArchiveCard = (item, isMobile) => {
@@ -450,7 +531,7 @@ function About() {
     // Music/Playlist card - Vinyl Record Design
     if (item.type === 'music') {
       const isOpened = openedVinyl === item.text
-      const vinylSize = isMobile ? 140 : 170
+      const vinylSize = isMobile ? 98 : 119 // 70% of original size
       const centerHole = vinylSize * 0.15
       
       return (
@@ -747,15 +828,15 @@ function About() {
             </div>
           </div>
 
-          <div className="relative w-full" style={{ minHeight: `${mobileMusicPositions.shelfBottom + Math.ceil(otherItems.length / 2) * 250}px` }}>
-            {/* Wooden Shelf for Music Items */}
+          <div className="relative w-full" style={{ minHeight: `${(bookItems.length > 0 ? mobileBookPositions.shelfBottom : mobileMusicPositions.shelfBottom) + Math.ceil(otherItems.length / 2) * 250}px` }}>
+            {/* Wooden Shelf for Music Items - Right Aligned */}
             {musicItems.length > 0 && (
               <div 
                 className="absolute z-15"
                 style={{
                   top: `${mobileMusicPositions.shelfBottom - 12}px`,
-                  left: '0',
                   right: '0',
+                  width: `${mobileMusicPositions.shelfWidth || 300}px`,
                   height: '12px',
                 }}
               >
@@ -807,6 +888,151 @@ function About() {
                   }}
                 >
                   {renderArchiveCard(item, true)}
+                </div>
+              )
+            })}
+
+            {/* Wooden Bookshelf for Books - Left Aligned */}
+            {bookItems.length > 0 && (
+              <div 
+                className="absolute z-15"
+                style={{
+                  top: `${mobileBookPositions.shelfBottom - 12}px`,
+                  left: '0',
+                  width: `${mobileBookPositions.shelfWidth || 200}px`,
+                  height: '12px',
+                }}
+              >
+                {/* Wooden shelf with wood grain effect */}
+                <div
+                  className="w-full h-full"
+                  style={{
+                    background: 'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
+                    boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
+                    borderTop: '1px solid rgba(139, 105, 20, 0.5)',
+                    borderBottom: '1px solid rgba(107, 78, 15, 0.8)',
+                  }}
+                >
+                  {/* Wood grain lines */}
+                  {[...Array(5)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-full opacity-20"
+                      style={{
+                        height: '1px',
+                        top: `${i * 2.4}px`,
+                        background: i % 2 === 0 
+                          ? 'linear-gradient(to right, transparent, rgba(107, 78, 15, 0.5), transparent)'
+                          : 'linear-gradient(to left, transparent, rgba(139, 105, 20, 0.5), transparent)',
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Books on Shelf with Spines */}
+            {mobileBookPositions.displayBooks && mobileBookPositions.displayBooks.map((item, index) => {
+              const pos = mobileBookPositions.positions[index]
+              if (!pos) return null
+              const isOpened = openedBook === item.text
+              
+              return (
+                <div
+                  key={`book-${index}`}
+                  className="absolute"
+                  style={{
+                    top: pos.top,
+                    left: pos.left,
+                    width: `${pos.spineWidth}px`,
+                    height: `${pos.bookHeight}px`,
+                    zIndex: isOpened ? 50 : 20, // Higher z-index when opened
+                  }}
+                >
+                  {/* Book Cover (shown when clicked) */}
+                  {isOpened && (
+                    <div
+                      className="absolute cursor-pointer transition-all duration-300"
+                      style={{
+                        top: 0,
+                        left: 0,
+                        width: '120px',
+                        height: '180px',
+                        transform: 'translateX(-45px) translateY(-30px)',
+                        boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
+                        zIndex: 60, // Highest z-index for the cover popup
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setOpenedBook(null)
+                      }}
+                    >
+                      {item.image ? (
+                        <img
+                          src={item.image}
+                          alt={item.text}
+                          className="w-full h-full object-cover rounded-sm"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center rounded-sm">
+                          <div className="text-white text-center px-2">
+                            <p className="text-xs font-medium mb-1">{item.text}</p>
+                            {item.author && (
+                              <p className="text-[10px] opacity-80">{item.author}</p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {/* Close indicator */}
+                      <div className="absolute -top-2 -right-2 w-5 h-5 bg-white rounded-full flex items-center justify-center text-gray-700 font-bold text-sm shadow-lg">
+                        ×
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Book Spine (always visible) */}
+                  <div
+                    className={`cursor-pointer transition-all duration-300 ${
+                      isOpened ? 'opacity-50' : 'hover:scale-105'
+                    }`}
+                    style={{
+                      width: `${pos.spineWidth}px`,
+                      height: `${pos.bookHeight}px`,
+                      background: item.image 
+                        ? `linear-gradient(to right, #2c3e50, #34495e, #2c3e50)`
+                        : 'linear-gradient(to right, #8B4513, #A0522D, #8B4513)',
+                      boxShadow: 'inset -2px 0 4px rgba(0,0,0,0.3), 2px 0 2px rgba(255,255,255,0.1)',
+                      borderLeft: '1px solid rgba(0,0,0,0.2)',
+                      borderRight: '1px solid rgba(255,255,255,0.1)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      position: 'relative',
+                      zIndex: isOpened ? 40 : 20, // Lower z-index when opened so cover appears on top
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setOpenedBook(openedBook === item.text ? null : item.text)
+                    }}
+                  >
+                    {/* Title on spine (vertical text) */}
+                    <div
+                      style={{
+                        writingMode: 'vertical-rl',
+                        textOrientation: 'mixed',
+                        transform: 'rotate(180deg)',
+                        color: '#ffffff',
+                        fontSize: '10px',
+                        fontWeight: '600',
+                        textAlign: 'center',
+                        padding: '8px 4px',
+                        letterSpacing: '0.5px',
+                        textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                      }}
+                    >
+                      {item.text}
+                    </div>
+                  </div>
                 </div>
               )
             })}
@@ -951,15 +1177,15 @@ function About() {
               </div>
             </div>
 
-            <div className="relative w-full" style={{ minHeight: `${desktopMusicPositions.shelfBottom + Math.ceil(otherItems.length / 3) * 280}px` }}>
-              {/* Wooden Shelf for Music Items */}
+            <div className="relative w-full" style={{ minHeight: `${(bookItems.length > 0 ? desktopBookPositions.shelfBottom : desktopMusicPositions.shelfBottom) + Math.ceil(otherItems.length / 3) * 280}px` }}>
+              {/* Wooden Shelf for Music Items - Right Aligned */}
               {musicItems.length > 0 && (
                 <div 
                   className="absolute z-15"
                   style={{
                     top: `${desktopMusicPositions.shelfBottom - 12}px`,
-                    left: '0',
                     right: '0',
+                    width: `${desktopMusicPositions.shelfWidth || 400}px`,
                     height: '12px',
                   }}
                 >
@@ -1013,7 +1239,152 @@ function About() {
                     {renderArchiveCard(item, false)}
                   </div>
                 )
-              }              )}
+              })}
+
+              {/* Wooden Bookshelf for Books - Left Aligned */}
+              {bookItems.length > 0 && (
+                <div 
+                  className="absolute z-15"
+                  style={{
+                    top: `${desktopBookPositions.shelfBottom - 12}px`,
+                    left: '0',
+                    width: `${desktopBookPositions.shelfWidth || 250}px`,
+                    height: '12px',
+                  }}
+                >
+                  {/* Wooden shelf with wood grain effect */}
+                  <div
+                    className="w-full h-full"
+                    style={{
+                      background: 'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
+                      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
+                      borderTop: '1px solid rgba(139, 105, 20, 0.5)',
+                      borderBottom: '1px solid rgba(107, 78, 15, 0.8)',
+                    }}
+                  >
+                    {/* Wood grain lines */}
+                    {[...Array(5)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute w-full opacity-20"
+                        style={{
+                          height: '1px',
+                          top: `${i * 2.4}px`,
+                          background: i % 2 === 0 
+                            ? 'linear-gradient(to right, transparent, rgba(107, 78, 15, 0.5), transparent)'
+                            : 'linear-gradient(to left, transparent, rgba(139, 105, 20, 0.5), transparent)',
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Books on Shelf with Spines */}
+              {desktopBookPositions.displayBooks && desktopBookPositions.displayBooks.map((item, index) => {
+                const pos = desktopBookPositions.positions[index]
+                if (!pos) return null
+                const isOpened = openedBook === item.text
+                
+                return (
+                  <div
+                    key={`book-${index}`}
+                    className="absolute"
+                    style={{
+                      top: pos.top,
+                      left: pos.left,
+                      width: `${pos.spineWidth}px`,
+                      height: `${pos.bookHeight}px`,
+                      zIndex: isOpened ? 50 : 20, // Higher z-index when opened
+                    }}
+                  >
+                    {/* Book Cover (shown when clicked) */}
+                    {isOpened && (
+                      <div
+                        className="absolute cursor-pointer transition-all duration-300"
+                        style={{
+                          top: 0,
+                          left: 0,
+                          width: '150px',
+                          height: '225px',
+                          transform: 'translateX(-55px) translateY(-37px)',
+                          boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
+                          zIndex: 60, // Highest z-index for the cover popup
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          setOpenedBook(null)
+                        }}
+                      >
+                        {item.image ? (
+                          <img
+                            src={item.image}
+                            alt={item.text}
+                            className="w-full h-full object-cover rounded-sm"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center rounded-sm">
+                            <div className="text-white text-center px-2">
+                              <p className="text-sm font-medium mb-1">{item.text}</p>
+                              {item.author && (
+                                <p className="text-xs opacity-80">{item.author}</p>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                        {/* Close indicator */}
+                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center text-gray-700 font-bold text-base shadow-lg">
+                          ×
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Book Spine (always visible) */}
+                    <div
+                      className={`cursor-pointer transition-all duration-300 ${
+                        isOpened ? 'opacity-50' : 'hover:scale-105'
+                      }`}
+                      style={{
+                        width: `${pos.spineWidth}px`,
+                        height: `${pos.bookHeight}px`,
+                        background: item.image 
+                          ? `linear-gradient(to right, #2c3e50, #34495e, #2c3e50)`
+                          : 'linear-gradient(to right, #8B4513, #A0522D, #8B4513)',
+                        boxShadow: 'inset -2px 0 4px rgba(0,0,0,0.3), 2px 0 2px rgba(255,255,255,0.1)',
+                        borderLeft: '1px solid rgba(0,0,0,0.2)',
+                        borderRight: '1px solid rgba(255,255,255,0.1)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        position: 'relative',
+                        zIndex: isOpened ? 40 : 20, // Lower z-index when opened so cover appears on top
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setOpenedBook(openedBook === item.text ? null : item.text)
+                      }}
+                    >
+                      {/* Title on spine (vertical text) */}
+                      <div
+                        style={{
+                          writingMode: 'vertical-rl',
+                          textOrientation: 'mixed',
+                          transform: 'rotate(180deg)',
+                          color: '#ffffff',
+                          fontSize: '11px',
+                          fontWeight: '600',
+                          textAlign: 'center',
+                          padding: '10px 5px',
+                          letterSpacing: '0.5px',
+                          textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                        }}
+                      >
+                        {item.text}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
 
               {/* Other Items Below Shelf */}
               {otherItems.map((item, index) => {
