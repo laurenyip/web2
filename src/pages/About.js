@@ -224,7 +224,6 @@ function About() {
     const positions = []
     const bookSpineWidth = isMobile ? 30 : 40 // Width of book spine when viewed from side
     const bookHeight = isMobile ? 120 : 150 // Height of book standing on shelf
-    const containerWidth = isMobile ? 400 : 950
     const padding = isMobile ? 20 : 30
     const shelfSpacing = isMobile ? 5 : 8 // Small spacing between books
     const shelfHeight = startTop // Start below music shelf
