@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import './App.css'
 
@@ -76,27 +77,41 @@ function Portfolio() {
     <div className="bg-white min-h-screen">
       <Navbar />
       
+      {/* Links column positioned at 30% from left */}
+      <div className="absolute flex flex-col gap-4 justify-center px-4 py-6" style={{ 
+        left: '22%', 
+        top: '50%',
+        transform: 'translateX(-100%) translateY(-50%)',
+        background: 'linear-gradient(135deg, rgba(237, 190, 228, 0.3) 0%, rgba(161, 168, 190, 0.3) 25%, rgba(243, 208, 195, 0.3) 50%, rgba(234, 120, 91, 0.3) 75%, rgba(95, 84, 32, 0.3) 100%)',
+        borderRadius: '5px'
+      }}>
+        <Link
+          to="/portfolio"
+          className="text-gray-700 hover:text-gray-900 transition-colors"
+          style={{ fontFamily: "'Moto', serif" }}
+        >
+          Painting
+        </Link>
+        <a
+          href="https://laurenyip.substack.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-700 hover:text-gray-900 transition-colors"
+          style={{ fontFamily: "'Moto', serif" }}
+        >
+          Writing
+        </a>
+      </div>
+
       {/* Main content with padding to account for fixed navbar */}
       <div className="pt-20 pb-12 px-8 max-w-xl mx-auto">
         <div className="prose text-gray-700 prose-sm prose-headings:font-normal prose-headings:text-xl mt-16 mb-8">
           <div>
-            <div className="text-4xl text-gray-700" style={{ fontFamily: "'Melo', sans-serif" }} >Paintings</div>
+            <div className="text-4xl text-gray-700" style={{ fontFamily: "'Melo', sans-serif" }} >Side B of what I like to work on</div>
             <p className="text-balance mt-2">
               Click on any image to view it in full screen
             </p>
           </div>
-        </div>
-
-        {/* Substack button */}
-        <div className="flex justify-center my-6">
-          <a
-            href="https://laurenyip.substack.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-white border-2 border-gray-700 px-8 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 transition-colors"
-          >
-            My writing here → visit my Substack
-          </a>
         </div>
 
         <div className="mt-6 border-t pt-8">
