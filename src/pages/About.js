@@ -39,13 +39,6 @@ const ARCHIVE_ITEMS = [
     },
     {
       type: 'book',
-      text: 'Six of Crows',
-      image: '/images/about/current/sixofcrows.jpg',
-      author: 'Leigh Bardugo',
-      date: '2025-01-15',
-    },
-    {
-      type: 'book',
       text: 'Crooked Kingdom',
       image: '/images/about/current/crookedkingdom.jpg',
       author: 'Leigh Bardugo',
@@ -138,16 +131,6 @@ const ARCHIVE_ITEMS = [
       type: 'quote',
       text: "Is this enough?",
     },
-    {
-      type: 'food',
-      image: '/images/about/current/nam.jpg',
-      date: '2025-09-07',
-    },
-    {
-      type: 'food',
-      image: '/images/about/current/pof.jpg',
-      date: '2025-11-20',
-    },
     /*
     {
       type: 'place',
@@ -203,7 +186,7 @@ function About() {
     // Build positions from right to left, then reverse to maintain item order
     for (let i = musicItems.length - 1; i >= 0; i--) {
       positions.push({
-        top: `${shelfHeight - vinylSize}px`, // Position above shelf
+        top: `${shelfHeight - vinylSize }px`, // Position above shelf
         left: `${currentLeft}px`, // Position from left (calculated from right edge)
         rotation: 0,
         height: vinylSize,
@@ -219,38 +202,44 @@ function About() {
     return { positions, shelfBottom: shelfHeight + shelfThickness, shelfWidth }
   }
 
-  // Get positions for books on bookshelf (spines showing)
+  // Get positions for books stacked flat (spines showing)
   const getBookShelfPositions = (bookItems, isMobile, startTop) => {
     const positions = []
-    const bookSpineWidth = isMobile ? 30 : 40 // Width of book spine when viewed from side
-    const bookHeight = isMobile ? 120 : 150 // Height of book standing on shelf
+    const spineWidth = isMobile ? 12 : 15 // Width of spine (thickness of book when flat)
+    const bookHeight = isMobile ? 140 : 180 // Height of spine (width of book when flat) - increased to fit full titles
     const padding = isMobile ? 20 : 30
-    const shelfSpacing = isMobile ? 5 : 8 // Small spacing between books
-    const shelfHeight = startTop // Start below music shelf
+    const shelfHeight = startTop // Top of the shelf board
     const shelfThickness = 12
     
     // Limit to 4 books
     const displayBooks = bookItems.slice(0, 4)
-    const shelfWidth = displayBooks.length * bookSpineWidth + (displayBooks.length - 1) * shelfSpacing + padding * 2
+    const shelfWidth = bookHeight + padding * 2
     
-    // Books are placed horizontally on the shelf, left-aligned
+    // Books are stacked on the shelf with no overlap
+    // After 90deg rotation, spineWidth becomes visual height, bookHeight becomes visual width
+    // With transformOrigin: 'bottom center', the bottom center stays fixed during rotation
+    // Position books so they sit on the shelf - the visual bottom edge should align with shelfHeight
+    // After rotation, books extend down by spineWidth (the visual height)
+    // Position books higher so their visual bottom edge aligns with shelf top
+    let currentTop = shelfHeight - bookHeight - spineWidth // Position books on shelf
     let currentLeft = padding
     
-    // Build positions from left to right
+    // Build positions from bottom to top (last book on top)
+    // Each book is offset by its full visual height (spineWidth) to prevent overlap
     displayBooks.forEach((item, index) => {
       positions.push({
-        top: `${shelfHeight - bookHeight}px`, // Position above shelf
-        left: `${currentLeft}px`,
+        top: `${currentTop - (index * spineWidth)}px`, // Stack upward, no overlap
+        left: `${currentLeft}px`, // All books aligned vertically
         rotation: 0,
-        spineWidth: bookSpineWidth,
+        spineWidth: spineWidth,
         bookHeight: bookHeight,
         isBook: true,
         index: index, // Store index for z-index ordering
       })
-      
-      currentLeft += bookSpineWidth + shelfSpacing
     })
     
+    // shelfBottom accounts for shelf thickness
+    // Books sit on the shelf, so shelfBottom is just shelfHeight + shelfThickness
     return { positions, shelfBottom: shelfHeight + shelfThickness, shelfWidth, displayBooks }
   }
 
@@ -891,7 +880,7 @@ function About() {
               )
             })}
 
-            {/* Wooden Bookshelf for Books - Left Aligned */}
+            {/* Wooden Shelf for Books - Left Aligned */}
             {bookItems.length > 0 && (
               <div 
                 className="absolute z-15"
@@ -930,7 +919,7 @@ function About() {
               </div>
             )}
 
-            {/* Books on Shelf with Spines */}
+            {/* Books Stacked Flat with Spines */}
             {mobileBookPositions.displayBooks && mobileBookPositions.displayBooks.map((item, index) => {
               const pos = mobileBookPositions.positions[index]
               if (!pos) return null
@@ -945,21 +934,23 @@ function About() {
                     left: pos.left,
                     width: `${pos.spineWidth}px`,
                     height: `${pos.bookHeight}px`,
-                    zIndex: isOpened ? 50 : 20, // Higher z-index when opened
+                    zIndex: isOpened ? 50 : (20 + index),
+                    transform: 'rotate(90deg)',
+                    transformOrigin: 'bottom center',
                   }}
                 >
-                  {/* Book Cover (shown when clicked) */}
+                  {/* Book Cover (shown when clicked - enlarged) */}
                   {isOpened && (
                     <div
                       className="absolute cursor-pointer transition-all duration-300"
                       style={{
                         top: 0,
                         left: 0,
-                        width: '120px',
-                        height: '180px',
-                        transform: 'translateX(-45px) translateY(-30px)',
+                        width: '200px',
+                        height: '280px',
+                        transform: 'translateX(-40px) translateY(-100px) rotate(-90deg)',
                         boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
-                        zIndex: 60, // Highest z-index for the cover popup
+                        zIndex: 60,
                       }}
                       onClick={(e) => {
                         e.stopPropagation()
@@ -970,14 +961,14 @@ function About() {
                         <img
                           src={item.image}
                           alt={item.text}
-                          className="w-full h-full object-cover rounded-sm"
+                          className="w-full h-full object-contain rounded-sm bg-white"
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center rounded-sm">
                           <div className="text-white text-center px-2">
-                            <p className="text-xs font-medium mb-1">{item.text}</p>
+                            <p className="text-sm font-medium mb-1">{item.text}</p>
                             {item.author && (
-                              <p className="text-[10px] opacity-80">{item.author}</p>
+                              <p className="text-xs opacity-80">{item.author}</p>
                             )}
                           </div>
                         </div>
@@ -998,16 +989,16 @@ function About() {
                       width: `${pos.spineWidth}px`,
                       height: `${pos.bookHeight}px`,
                       background: item.image 
-                        ? `linear-gradient(to right, #2c3e50, #34495e, #2c3e50)`
-                        : 'linear-gradient(to right, #8B4513, #A0522D, #8B4513)',
-                      boxShadow: 'inset -2px 0 4px rgba(0,0,0,0.3), 2px 0 2px rgba(255,255,255,0.1)',
-                      borderLeft: '1px solid rgba(0,0,0,0.2)',
-                      borderRight: '1px solid rgba(255,255,255,0.1)',
+                        ? `linear-gradient(to right, #4B5563 0%, #6B7280 50%, #4B5563 100%)`
+                        : `linear-gradient(to right, #9CA3AF 0%, #D1D5DB 30%, #E5E7EB 50%, #D1D5DB 70%, #9CA3AF 100%)`,
+                      boxShadow: 'inset -1px 0 3px rgba(0,0,0,0.2), 1px 0 1px rgba(255,255,255,0.3), 0 1px 2px rgba(0,0,0,0.1)',
+                      borderLeft: '1px solid rgba(0,0,0,0.15)',
+                      borderRight: '1px solid rgba(255,255,255,0.4)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       position: 'relative',
-                      zIndex: isOpened ? 40 : 20, // Lower z-index when opened so cover appears on top
+                      zIndex: isOpened ? 40 : (20 + index),
                     }}
                     onClick={(e) => {
                       e.stopPropagation()
@@ -1020,13 +1011,14 @@ function About() {
                         writingMode: 'vertical-rl',
                         textOrientation: 'mixed',
                         transform: 'rotate(180deg)',
-                        color: '#ffffff',
+                        color: item.image ? '#FFFFFF' : '#374151',
                         fontSize: '10px',
-                        fontWeight: '600',
+                        fontWeight: '500',
                         textAlign: 'center',
-                        padding: '8px 4px',
+                        padding: '8px 2px',
                         letterSpacing: '0.5px',
-                        textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                        textShadow: item.image ? '0 1px 2px rgba(0,0,0,0.4)' : '0 1px 1px rgba(255,255,255,0.8)',
+                        fontFamily: "'Moto', serif",
                       }}
                     >
                       {item.text}
@@ -1240,7 +1232,7 @@ function About() {
                 )
               })}
 
-              {/* Wooden Bookshelf for Books - Left Aligned */}
+              {/* Wooden Shelf for Books - Left Aligned */}
               {bookItems.length > 0 && (
                 <div 
                   className="absolute z-15"
@@ -1279,7 +1271,7 @@ function About() {
                 </div>
               )}
 
-              {/* Books on Shelf with Spines */}
+              {/* Books Stacked Flat with Spines */}
               {desktopBookPositions.displayBooks && desktopBookPositions.displayBooks.map((item, index) => {
                 const pos = desktopBookPositions.positions[index]
                 if (!pos) return null
@@ -1294,21 +1286,23 @@ function About() {
                       left: pos.left,
                       width: `${pos.spineWidth}px`,
                       height: `${pos.bookHeight}px`,
-                      zIndex: isOpened ? 50 : 20, // Higher z-index when opened
+                      zIndex: isOpened ? 50 : (20 + index),
+                      transform: 'rotate(90deg)',
+                      transformOrigin: 'bottom center',
                     }}
                   >
-                    {/* Book Cover (shown when clicked) */}
+                    {/* Book Cover (shown when clicked - enlarged) */}
                     {isOpened && (
                       <div
                         className="absolute cursor-pointer transition-all duration-300"
                         style={{
                           top: 0,
                           left: 0,
-                          width: '150px',
-                          height: '225px',
-                          transform: 'translateX(-55px) translateY(-37px)',
+                          width: '250px',
+                          height: '350px',
+                          transform: 'translateX(-65px) translateY(-130px) rotate(-90deg)',
                           boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
-                          zIndex: 60, // Highest z-index for the cover popup
+                          zIndex: 60,
                         }}
                         onClick={(e) => {
                           e.stopPropagation()
@@ -1319,14 +1313,14 @@ function About() {
                           <img
                             src={item.image}
                             alt={item.text}
-                            className="w-full h-full object-cover rounded-sm"
+                            className="w-full h-full object-contain rounded-sm bg-white"
                           />
                         ) : (
                           <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center rounded-sm">
                             <div className="text-white text-center px-2">
-                              <p className="text-sm font-medium mb-1">{item.text}</p>
+                              <p className="text-base font-medium mb-1">{item.text}</p>
                               {item.author && (
-                                <p className="text-xs opacity-80">{item.author}</p>
+                                <p className="text-sm opacity-80">{item.author}</p>
                               )}
                             </div>
                           </div>
@@ -1347,16 +1341,16 @@ function About() {
                         width: `${pos.spineWidth}px`,
                         height: `${pos.bookHeight}px`,
                         background: item.image 
-                          ? `linear-gradient(to right, #2c3e50, #34495e, #2c3e50)`
-                          : 'linear-gradient(to right, #8B4513, #A0522D, #8B4513)',
-                        boxShadow: 'inset -2px 0 4px rgba(0,0,0,0.3), 2px 0 2px rgba(255,255,255,0.1)',
-                        borderLeft: '1px solid rgba(0,0,0,0.2)',
-                        borderRight: '1px solid rgba(255,255,255,0.1)',
+                          ? `linear-gradient(to right, #4B5563 0%, #6B7280 50%, #4B5563 100%)`
+                          : `linear-gradient(to right, #9CA3AF 0%, #D1D5DB 30%, #E5E7EB 50%, #D1D5DB 70%, #9CA3AF 100%)`,
+                        boxShadow: 'inset -1px 0 3px rgba(0,0,0,0.2), 1px 0 1px rgba(255,255,255,0.3), 0 1px 2px rgba(0,0,0,0.1)',
+                        borderLeft: '1px solid rgba(0,0,0,0.15)',
+                        borderRight: '1px solid rgba(255,255,255,0.4)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         position: 'relative',
-                        zIndex: isOpened ? 40 : 20, // Lower z-index when opened so cover appears on top
+                        zIndex: isOpened ? 40 : (20 + index),
                       }}
                       onClick={(e) => {
                         e.stopPropagation()
@@ -1369,13 +1363,14 @@ function About() {
                           writingMode: 'vertical-rl',
                           textOrientation: 'mixed',
                           transform: 'rotate(180deg)',
-                          color: '#ffffff',
+                          color: item.image ? '#FFFFFF' : '#374151',
                           fontSize: '11px',
-                          fontWeight: '600',
+                          fontWeight: '500',
                           textAlign: 'center',
-                          padding: '10px 5px',
+                          padding: '10px 3px',
                           letterSpacing: '0.5px',
-                          textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                          textShadow: item.image ? '0 1px 2px rgba(0,0,0,0.4)' : '0 1px 1px rgba(255,255,255,0.8)',
+                          fontFamily: "'Moto', serif",
                         }}
                       >
                         {item.text}
