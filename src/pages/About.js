@@ -418,7 +418,7 @@ function About() {
 
   // Render different card templates based on content type
   const renderArchiveCard = (item, isMobile) => {
-    const cardClasses = "bg-white rounded-[5px] overflow-hidden"
+    const cardClasses = "bg-white rounded-[5px] overflow-hidden border border-gray-300"
     const textSize = isMobile ? 'text-xs' : 'text-sm'
     const dateSize = isMobile ? 'text-xs' : 'text-xs'
     const captionSize = isMobile ? 'text-[10px]' : 'text-xs'

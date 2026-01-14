@@ -78,29 +78,30 @@ function Portfolio() {
       <Navbar />
       
       {/* Links column positioned at 30% from left */}
-      <div className="absolute flex flex-col gap-4 justify-center px-4 py-6" style={{ 
+      <div className="absolute flex flex-col gap-4 justify-center" style={{ 
         left: '22%', 
         top: '50%',
         transform: 'translateX(-100%) translateY(-50%)',
+        padding: '2px',
         background: 'linear-gradient(135deg, rgba(237, 190, 228, 0.3) 0%, rgba(161, 168, 190, 0.3) 25%, rgba(243, 208, 195, 0.3) 50%, rgba(234, 120, 91, 0.3) 75%, rgba(95, 84, 32, 0.3) 100%)',
         borderRadius: '5px'
       }}>
-        <Link
-          to="/portfolio"
-          className="text-gray-700 hover:text-gray-900 transition-colors"
-          style={{ fontFamily: "'Moto', serif" }}
-        >
-          Painting
-        </Link>
-        <a
-          href="https://laurenyip.substack.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-700 hover:text-gray-900 transition-colors"
-          style={{ fontFamily: "'Moto', serif" }}
-        >
-          Writing
-        </a>
+        <div className="bg-white rounded-[3px] px-4 py-6 flex flex-col gap-4">
+          <Link
+            to="/portfolio"
+            className="text-gray-700 hover:text-gray-900 transition-colors"
+            style={{ fontFamily: "'Moto', serif" }}
+          >
+            Painting
+          </Link>
+          <Link
+            to="/writing"
+            className="text-gray-700 hover:text-gray-900 transition-colors"
+            style={{ fontFamily: "'Moto', serif" }}
+          >
+            Writing
+          </Link>
+        </div>
       </div>
 
       {/* Main content with padding to account for fixed navbar */}
