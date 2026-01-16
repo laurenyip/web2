@@ -112,14 +112,63 @@ const ARCHIVE_ITEMS = [
       text: 'Dostoevsky as Lover',
       author: 'Henrik Karlsson',
       link: 'https://www.henrikkarlsson.xyz/p/doestoevsky-as-lover',
-      date: '2024-01-25',
+      date: '2025-01-25',
     },
     {
       type: 'essay',
       text: "AGI isn't for happy people",
       author: 'Stefan Kelly',
       link: 'https://alreadyhappened.xyz/p/agi-isnt-for-happy-people',
-      date: '2025-01-22',
+      date: '2025-03-22',
+    },
+    {
+      type: 'essay',
+      text: 'How Hayao Miyazaki Builds a Story',
+      author: 'Wren Petkov',
+      link: 'https://storyfieldnotes.substack.com/p/how-hayao-miyazaki-builds-a-story',
+      date: '2025-05-15',
+    },
+    {
+      type: 'essay',
+      text: 'Honesty in Relationships',
+      author: 'Ava Huang',
+      link: 'https://www.avabear.xyz/p/honesty-in-relationships?lli=1&utm_source=%2Finbox&utm_medium=reader2',
+      date: '2025-10-23',
+    },
+    {
+      type: 'essay',
+      text: 'How to Dress a Monster, His Creator, and the Woman Who Loves Him',
+      author: 'Tara Gonzalez',
+      link: 'https://open.substack.com/pub/taramariagonzalez/p/how-to-dress-a-monster-his-creator?utm_campaign=post-expanded-share&utm_medium=web',
+      date: '2025-11-30',
+    },
+    {
+      type: 'essay',
+      text: 'Are You Serious?',
+      author: 'Visakan Veerasamy',
+      link: 'https://visakanv.substack.com/p/are-you-serious',
+      date: '2025-09-18',
+    },
+    {
+      type: 'essay',
+      text: "What's the Winning Strategy in China's 'low-trust' society?",
+      author: 'Robert Wu',
+      link: 'https://open.substack.com/pub/robertwoo/p/whats-the-winning-strategy-in-chinas?utm_campaign=post-expanded-share&utm_medium=web',
+      date: '2025-08-25',
+    },
+    {
+      type: 'essay',
+      text: 'The Rare People Who Are Solid',
+      author: 'Sasha Chapin',
+      link: 'https://open.substack.com/pub/sashachapin/p/the-rare-people-who-are-solid?utm_campaign=post&utm_medium=email',
+      date: '2026-01-14',
+    },
+    {
+      type: 'essay',
+      text: "Quick Take: How the French Invented Love",
+      author: 'David Roman',
+      link: 'https://open.substack.com/pub/mankind/p/quick-take-how-the-french-invented?utm_campaign=post&utm_medium=email',
+      date: '2025-06-08',
     },
     {
       type: 'quote',
@@ -143,9 +192,34 @@ const ARCHIVE_ITEMS = [
     */
   ]
 
+// Colors from Portfolio.js gradient (full opacity) - outside component to avoid dependency issues
+const portfolioColors = [
+  'rgba(237, 190, 228, 1)', // pink
+  'rgba(161, 168, 190, 1)', // blue-gray
+  'rgba(243, 208, 195, 1)', // peach
+  'rgba(234, 120, 91, 1)',  // coral
+  'rgba(95, 84, 32, 1)',    // brown
+]
+
 function About() {
   const [openedVinyl, setOpenedVinyl] = useState(null)
-  const [openedBook, setOpenedBook] = useState(null)
+  const [scrollY, setScrollY] = useState(0)
+
+  // Get color based on scroll position
+  const essayColor = useMemo(() => {
+    const colorIndex = Math.floor(scrollY / 150) % portfolioColors.length
+    return portfolioColors[colorIndex]
+  }, [scrollY])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+    // Set initial scroll position
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Sort archive items by date (most recent first)
   const sortedArchiveItems = useMemo(() => {
@@ -158,10 +232,10 @@ function About() {
     })
   }, [])
 
-  // Separate music items, books, and other items
+  // Separate music items, essays, and other items (books are now included in otherItems)
   const musicItems = useMemo(() => sortedArchiveItems.filter(item => item.type === 'music'), [sortedArchiveItems])
-  const bookItems = useMemo(() => sortedArchiveItems.filter(item => item.type === 'book'), [sortedArchiveItems])
-  const otherItems = useMemo(() => sortedArchiveItems.filter(item => item.type !== 'music' && item.type !== 'book'), [sortedArchiveItems])
+  const essayItems = useMemo(() => sortedArchiveItems.filter(item => item.type === 'essay'), [sortedArchiveItems])
+  const otherItems = useMemo(() => sortedArchiveItems.filter(item => item.type !== 'music' && item.type !== 'essay'), [sortedArchiveItems])
 
   // Get positions for music items on shelf (like vinyl records)
   const getMusicShelfPositions = (musicItems, isMobile) => {
@@ -202,50 +276,9 @@ function About() {
     return { positions, shelfBottom: shelfHeight + shelfThickness, shelfWidth }
   }
 
-  // Get positions for books stacked flat (spines showing)
-  const getBookShelfPositions = (bookItems, isMobile, startTop) => {
-    const positions = []
-    const spineWidth = isMobile ? 12 : 15 // Width of spine (thickness of book when flat)
-    const bookHeight = isMobile ? 140 : 180 // Height of spine (width of book when flat) - increased to fit full titles
-    const padding = isMobile ? 20 : 30
-    const shelfHeight = startTop // Top of the shelf board
-    const shelfThickness = 12
-    
-    // Limit to 4 books
-    const displayBooks = bookItems.slice(0, 4)
-    const shelfWidth = bookHeight + padding * 2
-    
-    // Books are stacked on the shelf with no overlap
-    // After 90deg rotation, spineWidth becomes visual height, bookHeight becomes visual width
-    // With transformOrigin: 'bottom center', the bottom center stays fixed during rotation
-    // Position books so they sit on the shelf - the visual bottom edge should align with shelfHeight
-    // After rotation, books extend down by spineWidth (the visual height)
-    // Position books higher so their visual bottom edge aligns with shelf top
-    let currentTop = shelfHeight - bookHeight - spineWidth // Position books on shelf
-    let currentLeft = padding
-    
-    // Build positions from bottom to top (last book on top)
-    // Each book is offset by its full visual height (spineWidth) to prevent overlap
-    displayBooks.forEach((item, index) => {
-      positions.push({
-        top: `${currentTop - (index * spineWidth)}px`, // Stack upward, no overlap
-        left: `${currentLeft}px`, // All books aligned vertically
-        rotation: 0,
-        spineWidth: spineWidth,
-        bookHeight: bookHeight,
-        isBook: true,
-        index: index, // Store index for z-index ordering
-      })
-    })
-    
-    // shelfBottom accounts for shelf thickness
-    // Books sit on the shelf, so shelfBottom is just shelfHeight + shelfThickness
-    return { positions, shelfBottom: shelfHeight + shelfThickness, shelfWidth, displayBooks }
-  }
-
   // Natural gallery/mosaic positions for non-music archive items
   // Uses collision detection to ensure no overlaps with varied heights
-  const getGalleryPositions = (items, isMobile, startTop) => {
+  const getGalleryPositions = (items, isMobile, startTop, essayWindowTop = null, essayWindowHeight = 0) => {
     const positions = []
     const cardWidth = isMobile ? 150 : 180
     const baseCardHeight = isMobile ? 200 : 240
@@ -255,6 +288,11 @@ function About() {
     const postItWidth = isMobile ? 160 : 200
     const postItHeight = isMobile ? 120 : 150
     const totalItems = items.length
+    
+    // Calculate essay window bounds (60% width on the right)
+    const essayWindowRight = containerWidth - padding
+    const essayWindowLeft = essayWindowRight - (containerWidth * 0.6)
+    const essayWindowBottom = essayWindowTop !== null ? essayWindowTop + essayWindowHeight : -1
     
     // Use a seed for consistent randomness per item
     const getRandom = (seed) => {
@@ -278,6 +316,16 @@ function About() {
       right: postItWidth + spacing,
       bottom: postItHeight + spacing,
     })
+    
+    // Always reserve space for essay window on the right if it exists
+    if (essayWindowTop !== null) {
+      placedRects.push({
+        top: Math.max(0, essayWindowTop - spacing / 2),
+        left: essayWindowLeft - spacing / 2,
+        right: essayWindowRight + spacing / 2,
+        bottom: essayWindowBottom + spacing / 2,
+      })
+    }
     
     // Helper function to check if a rectangle overlaps with any placed rectangle
     const checkCollision = (rect) => {
@@ -390,31 +438,40 @@ function About() {
   const mobileMusicPositions = useMemo(() => getMusicShelfPositions(musicItems, true), [musicItems])
   const desktopMusicPositions = useMemo(() => getMusicShelfPositions(musicItems, false), [musicItems])
   
-  // Calculate positions for books on bookshelf (below music shelf)
-  const mobileBookPositions = useMemo(() => {
+  // Calculate essay scrolling window position (below music shelf)
+  const essayWindowHeight = 394 // Height of the essay scrolling window (315px + 25% = 394px)
+  const mobileEssayWindowTop = useMemo(() => {
     const musicShelfBottom = mobileMusicPositions.shelfBottom || 187
-    return getBookShelfPositions(bookItems, true, musicShelfBottom + 170) // Moved down 100px
-  }, [bookItems, mobileMusicPositions])
+    return musicShelfBottom + 170 // Below music shelf
+  }, [mobileMusicPositions])
   
-  const desktopBookPositions = useMemo(() => {
+  const desktopEssayWindowTop = useMemo(() => {
     const musicShelfBottom = desktopMusicPositions.shelfBottom || 187
-    return getBookShelfPositions(bookItems, false, musicShelfBottom + 170) // Moved down 100px
-  }, [bookItems, desktopMusicPositions])
+    return musicShelfBottom + 170 // Below music shelf
+  }, [desktopMusicPositions])
   
-  // Calculate positions for other items below shelves
+  // Calculate positions for other items (below essay window)
   const mobileOtherPositions = useMemo(() => {
-    const bottomShelf = bookItems.length > 0 
-      ? (mobileBookPositions.shelfBottom || 300)
-      : (mobileMusicPositions.shelfBottom || 187)
-    return getGalleryPositions(otherItems, true, bottomShelf + 70)
-  }, [otherItems, mobileMusicPositions, mobileBookPositions, bookItems])
+    const musicShelfBottom = mobileMusicPositions.shelfBottom || 187
+    // Position items starting below essay window
+    const startPosition = essayItems.length > 0 
+      ? mobileEssayWindowTop + essayWindowHeight + 70 
+      : musicShelfBottom + 70
+    return getGalleryPositions(otherItems, true, startPosition, 
+      essayItems.length > 0 ? mobileEssayWindowTop : null, 
+      essayItems.length > 0 ? essayWindowHeight : 0)
+  }, [otherItems, mobileMusicPositions, mobileEssayWindowTop, essayItems, essayWindowHeight])
   
   const desktopOtherPositions = useMemo(() => {
-    const bottomShelf = bookItems.length > 0 
-      ? (desktopBookPositions.shelfBottom || 300)
-      : (desktopMusicPositions.shelfBottom || 187)
-    return getGalleryPositions(otherItems, false, bottomShelf + 70)
-  }, [otherItems, desktopMusicPositions, desktopBookPositions, bookItems])
+    const musicShelfBottom = desktopMusicPositions.shelfBottom || 187
+    // Position items starting below essay window
+    const startPosition = essayItems.length > 0 
+      ? desktopEssayWindowTop + essayWindowHeight + 70 
+      : musicShelfBottom + 70
+    return getGalleryPositions(otherItems, false, startPosition,
+      essayItems.length > 0 ? desktopEssayWindowTop : null,
+      essayItems.length > 0 ? essayWindowHeight : 0)
+  }, [otherItems, desktopMusicPositions, desktopEssayWindowTop, essayItems, essayWindowHeight])
 
   // Render different card templates based on content type
   const renderArchiveCard = (item, isMobile) => {
@@ -816,7 +873,7 @@ function About() {
             </div>
           </div>
 
-          <div className="relative w-full" style={{ minHeight: `${(bookItems.length > 0 ? mobileBookPositions.shelfBottom : mobileMusicPositions.shelfBottom) + Math.ceil(otherItems.length / 2) * 250}px` }}>
+          <div className="relative w-full" style={{ minHeight: `${((mobileMusicPositions.shelfBottom || 187) + (essayItems.length > 0 ? 200 : 0)) + Math.ceil(otherItems.length / 2) * 250}px` }}>
             {/* Wooden Shelf for Music Items - Right Aligned */}
             {musicItems.length > 0 && (
               <div 
@@ -880,155 +937,57 @@ function About() {
               )
             })}
 
-            {/* Wooden Shelf for Books - Left Aligned */}
-            {bookItems.length > 0 && (
-              <div 
-                className="absolute z-15"
+            {/* Essay Scrolling Window */}
+            {essayItems.length > 0 && (
+              <div
+                className="absolute rounded-[5px] bg-white overflow-hidden"
                 style={{
-                  top: `${mobileBookPositions.shelfBottom - 12}px`,
-                  left: '0',
-                  width: `${mobileBookPositions.shelfWidth || 200}px`,
-                  height: '12px',
+                  top: `${mobileEssayWindowTop}px`,
+                  left: '20px',
+                  width: '60%',
+                  height: '375px',
+                  zIndex: 10,
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                  border: `2px solid ${essayColor}`,
+                  transition: 'border-color 0.3s ease',
                 }}
               >
-                {/* Wooden shelf with wood grain effect */}
-                <div
-                  className="w-full h-full"
-                  style={{
-                    background: 'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
-                    boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-                    borderTop: '1px solid rgba(139, 105, 20, 0.5)',
-                    borderBottom: '1px solid rgba(107, 78, 15, 0.8)',
+                <div 
+                  className="h-full overflow-y-auto px-4 py-3 essay-scrollbar"
+                  style={{ 
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: `${essayColor} transparent`,
+                    '--scrollbar-color': essayColor,
                   }}
                 >
-                  {/* Wood grain lines */}
-                  {[...Array(5)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-full opacity-20"
-                      style={{
-                        height: '1px',
-                        top: `${i * 2.4}px`,
-                        background: i % 2 === 0 
-                          ? 'linear-gradient(to right, transparent, rgba(107, 78, 15, 0.5), transparent)'
-                          : 'linear-gradient(to left, transparent, rgba(139, 105, 20, 0.5), transparent)',
-                      }}
-                    />
-                  ))}
+                  <div className="flex flex-col gap-3">
+                    {essayItems.map((item, index) => (
+                      <div
+                        key={`essay-${index}`}
+                        className="cursor-pointer hover:opacity-70 transition-opacity border-b pb-2 last:border-b-0"
+                        style={{
+                          borderColor: index < essayItems.length - 1 ? essayColor : 'transparent',
+                          transition: 'border-color 0.3s ease',
+                        }}
+                        onClick={() => {
+                          if (item.link) {
+                            window.open(item.link, '_blank')
+                          }
+                        }}
+                      >
+                        <p className="text-xs text-gray-700 font-medium mb-1">{item.text}</p>
+                        {item.author && (
+                          <p className="text-[10px] text-gray-600 mb-1 font-normal">{item.author}</p>
+                        )}
+                        <p className="text-[10px] text-gray-400">{item.date}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* Books Stacked Flat with Spines */}
-            {mobileBookPositions.displayBooks && mobileBookPositions.displayBooks.map((item, index) => {
-              const pos = mobileBookPositions.positions[index]
-              if (!pos) return null
-              const isOpened = openedBook === item.text
-              
-              return (
-                <div
-                  key={`book-${index}`}
-                  className="absolute"
-                  style={{
-                    top: pos.top,
-                    left: pos.left,
-                    width: `${pos.spineWidth}px`,
-                    height: `${pos.bookHeight}px`,
-                    zIndex: isOpened ? 50 : (20 + index),
-                    transform: 'rotate(90deg)',
-                    transformOrigin: 'bottom center',
-                  }}
-                >
-                  {/* Book Cover (shown when clicked - enlarged) */}
-                  {isOpened && (
-                    <div
-                      className="absolute cursor-pointer transition-all duration-300"
-                      style={{
-                        top: 0,
-                        left: 0,
-                        width: '200px',
-                        height: '280px',
-                        transform: 'translateX(-40px) translateY(-100px) rotate(-90deg)',
-                        boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
-                        zIndex: 60,
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        setOpenedBook(null)
-                      }}
-                    >
-                      {item.image ? (
-                        <img
-                          src={item.image}
-                          alt={item.text}
-                          className="w-full h-full object-contain rounded-sm bg-white"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center rounded-sm">
-                          <div className="text-white text-center px-2">
-                            <p className="text-sm font-medium mb-1">{item.text}</p>
-                            {item.author && (
-                              <p className="text-xs opacity-80">{item.author}</p>
-                            )}
-                          </div>
-                        </div>
-                      )}
-                      {/* Close indicator */}
-                      <div className="absolute -top-2 -right-2 w-5 h-5 bg-white rounded-full flex items-center justify-center text-gray-700 font-bold text-sm shadow-lg">
-                        ×
-                      </div>
-                    </div>
-                  )}
-                  
-                  {/* Book Spine (always visible) */}
-                  <div
-                    className={`cursor-pointer transition-all duration-300 ${
-                      isOpened ? 'opacity-50' : 'hover:scale-105'
-                    }`}
-                    style={{
-                      width: `${pos.spineWidth}px`,
-                      height: `${pos.bookHeight}px`,
-                      background: item.image 
-                        ? `linear-gradient(to right, #4B5563 0%, #6B7280 50%, #4B5563 100%)`
-                        : `linear-gradient(to right, #9CA3AF 0%, #D1D5DB 30%, #E5E7EB 50%, #D1D5DB 70%, #9CA3AF 100%)`,
-                      boxShadow: 'inset -1px 0 3px rgba(0,0,0,0.2), 1px 0 1px rgba(255,255,255,0.3), 0 1px 2px rgba(0,0,0,0.1)',
-                      borderLeft: '1px solid rgba(0,0,0,0.15)',
-                      borderRight: '1px solid rgba(255,255,255,0.4)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      position: 'relative',
-                      zIndex: isOpened ? 40 : (20 + index),
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setOpenedBook(openedBook === item.text ? null : item.text)
-                    }}
-                  >
-                    {/* Title on spine (vertical text) */}
-                    <div
-                      style={{
-                        writingMode: 'vertical-rl',
-                        textOrientation: 'mixed',
-                        transform: 'rotate(180deg)',
-                        color: item.image ? '#FFFFFF' : '#374151',
-                        fontSize: '10px',
-                        fontWeight: '500',
-                        textAlign: 'center',
-                        padding: '8px 2px',
-                        letterSpacing: '0.5px',
-                        textShadow: item.image ? '0 1px 2px rgba(0,0,0,0.4)' : '0 1px 1px rgba(255,255,255,0.8)',
-                        fontFamily: "'Moto', serif",
-                      }}
-                    >
-                      {item.text}
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-
-            {/* Other Items Below Shelf */}
+            {/* Other Items (including books) */}
             {otherItems.map((item, index) => {
               const pos = mobileOtherPositions[index]
               if (!pos) return null
@@ -1168,7 +1127,7 @@ function About() {
               </div>
             </div>
 
-            <div className="relative w-full" style={{ minHeight: `${(bookItems.length > 0 ? desktopBookPositions.shelfBottom : desktopMusicPositions.shelfBottom) + Math.ceil(otherItems.length / 3) * 280}px` }}>
+            <div className="relative w-full" style={{ minHeight: `${((desktopMusicPositions.shelfBottom || 187) + (essayItems.length > 0 ? 200 : 0)) + Math.ceil(otherItems.length / 3) * 280}px` }}>
               {/* Wooden Shelf for Music Items - Right Aligned */}
               {musicItems.length > 0 && (
                 <div 
@@ -1232,155 +1191,57 @@ function About() {
                 )
               })}
 
-              {/* Wooden Shelf for Books - Left Aligned */}
-              {bookItems.length > 0 && (
-                <div 
-                  className="absolute z-15"
+              {/* Essay Scrolling Window */}
+              {essayItems.length > 0 && (
+                <div
+                  className="absolute rounded-[5px] bg-white overflow-hidden"
                   style={{
-                    top: `${desktopBookPositions.shelfBottom - 12}px`,
-                    left: '0',
-                    width: `${desktopBookPositions.shelfWidth || 250}px`,
-                    height: '12px',
+                    top: `${desktopEssayWindowTop}px`,
+                    left: '30px',
+                    width: '60%',
+                    height: '394px',
+                    zIndex: 10,
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                    border: `2px solid ${essayColor}`,
+                    transition: 'border-color 0.3s ease',
                   }}
                 >
-                  {/* Wooden shelf with wood grain effect */}
-                  <div
-                    className="w-full h-full"
-                    style={{
-                      background: 'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
-                      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-                      borderTop: '1px solid rgba(139, 105, 20, 0.5)',
-                      borderBottom: '1px solid rgba(107, 78, 15, 0.8)',
+                  <div 
+                    className="h-full overflow-y-auto px-6 py-4 essay-scrollbar"
+                    style={{ 
+                      scrollbarWidth: 'thin',
+                      scrollbarColor: `${essayColor} transparent`,
+                      '--scrollbar-color': essayColor,
                     }}
                   >
-                    {/* Wood grain lines */}
-                    {[...Array(5)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute w-full opacity-20"
-                        style={{
-                          height: '1px',
-                          top: `${i * 2.4}px`,
-                          background: i % 2 === 0 
-                            ? 'linear-gradient(to right, transparent, rgba(107, 78, 15, 0.5), transparent)'
-                            : 'linear-gradient(to left, transparent, rgba(139, 105, 20, 0.5), transparent)',
-                        }}
-                      />
-                    ))}
+                    <div className="flex flex-col gap-3">
+                      {essayItems.map((item, index) => (
+                        <div
+                          key={`essay-${index}`}
+                          className="cursor-pointer hover:opacity-70 transition-opacity border-b pb-2 last:border-b-0"
+                          style={{
+                            borderColor: index < essayItems.length - 1 ? essayColor : 'transparent',
+                            transition: 'border-color 0.3s ease',
+                          }}
+                          onClick={() => {
+                            if (item.link) {
+                              window.open(item.link, '_blank')
+                            }
+                          }}
+                        >
+                          <p className="text-sm text-gray-700 font-medium mb-1">{item.text}</p>
+                          {item.author && (
+                            <p className="text-xs text-gray-600 mb-1 font-normal">{item.author}</p>
+                          )}
+                          <p className="text-xs text-gray-400">{item.date}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
 
-              {/* Books Stacked Flat with Spines */}
-              {desktopBookPositions.displayBooks && desktopBookPositions.displayBooks.map((item, index) => {
-                const pos = desktopBookPositions.positions[index]
-                if (!pos) return null
-                const isOpened = openedBook === item.text
-                
-                return (
-                  <div
-                    key={`book-${index}`}
-                    className="absolute"
-                    style={{
-                      top: pos.top,
-                      left: pos.left,
-                      width: `${pos.spineWidth}px`,
-                      height: `${pos.bookHeight}px`,
-                      zIndex: isOpened ? 50 : (20 + index),
-                      transform: 'rotate(90deg)',
-                      transformOrigin: 'bottom center',
-                    }}
-                  >
-                    {/* Book Cover (shown when clicked - enlarged) */}
-                    {isOpened && (
-                      <div
-                        className="absolute cursor-pointer transition-all duration-300"
-                        style={{
-                          top: 0,
-                          left: 0,
-                          width: '250px',
-                          height: '350px',
-                          transform: 'translateX(-65px) translateY(-130px) rotate(-90deg)',
-                          boxShadow: '0 8px 16px rgba(0,0,0,0.3)',
-                          zIndex: 60,
-                        }}
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          setOpenedBook(null)
-                        }}
-                      >
-                        {item.image ? (
-                          <img
-                            src={item.image}
-                            alt={item.text}
-                            className="w-full h-full object-contain rounded-sm bg-white"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center rounded-sm">
-                            <div className="text-white text-center px-2">
-                              <p className="text-base font-medium mb-1">{item.text}</p>
-                              {item.author && (
-                                <p className="text-sm opacity-80">{item.author}</p>
-                              )}
-                            </div>
-                          </div>
-                        )}
-                        {/* Close indicator */}
-                        <div className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center text-gray-700 font-bold text-base shadow-lg">
-                          ×
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* Book Spine (always visible) */}
-                    <div
-                      className={`cursor-pointer transition-all duration-300 ${
-                        isOpened ? 'opacity-50' : 'hover:scale-105'
-                      }`}
-                      style={{
-                        width: `${pos.spineWidth}px`,
-                        height: `${pos.bookHeight}px`,
-                        background: item.image 
-                          ? `linear-gradient(to right, #4B5563 0%, #6B7280 50%, #4B5563 100%)`
-                          : `linear-gradient(to right, #9CA3AF 0%, #D1D5DB 30%, #E5E7EB 50%, #D1D5DB 70%, #9CA3AF 100%)`,
-                        boxShadow: 'inset -1px 0 3px rgba(0,0,0,0.2), 1px 0 1px rgba(255,255,255,0.3), 0 1px 2px rgba(0,0,0,0.1)',
-                        borderLeft: '1px solid rgba(0,0,0,0.15)',
-                        borderRight: '1px solid rgba(255,255,255,0.4)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        position: 'relative',
-                        zIndex: isOpened ? 40 : (20 + index),
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        setOpenedBook(openedBook === item.text ? null : item.text)
-                      }}
-                    >
-                      {/* Title on spine (vertical text) */}
-                      <div
-                        style={{
-                          writingMode: 'vertical-rl',
-                          textOrientation: 'mixed',
-                          transform: 'rotate(180deg)',
-                          color: item.image ? '#FFFFFF' : '#374151',
-                          fontSize: '11px',
-                          fontWeight: '500',
-                          textAlign: 'center',
-                          padding: '10px 3px',
-                          letterSpacing: '0.5px',
-                          textShadow: item.image ? '0 1px 2px rgba(0,0,0,0.4)' : '0 1px 1px rgba(255,255,255,0.8)',
-                          fontFamily: "'Moto', serif",
-                        }}
-                      >
-                        {item.text}
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-
-              {/* Other Items Below Shelf */}
+              {/* Other Items (including books) */}
               {otherItems.map((item, index) => {
                 const pos = desktopOtherPositions[index]
                 if (!pos) return null
