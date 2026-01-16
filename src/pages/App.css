@@ -216,3 +216,33 @@ p1 {
   font-family: 'Melo';
   src: url('fonts/melo.ttf') format('truetype');
 }
+
+/* Custom scrollbar for essay window */
+.essay-scrollbar {
+  --scrollbar-color: rgba(237, 190, 228, 0.3);
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.essay-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.essay-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.essay-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.essay-scrollbar::-webkit-scrollbar-thumb:hover {
+  opacity: 0.8;
+}
+
+/* Firefox */
+.essay-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-color) transparent;
+}
