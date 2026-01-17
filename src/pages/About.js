@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Navbar from '../components/Navbar'
 
 import './App.css'
@@ -204,6 +204,8 @@ const portfolioColors = [
 function About() {
   const [openedVinyl, setOpenedVinyl] = useState(null)
   const [scrollY, setScrollY] = useState(0)
+  const mobileEssayScrollRef = useRef(null)
+  const desktopEssayScrollRef = useRef(null)
 
   // Get color based on scroll position
   const essayColor = useMemo(() => {
@@ -212,13 +214,72 @@ function About() {
   }, [scrollY])
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
+    // Update scroll position based on window and essay window scrolls
+    const updateScrollY = () => {
+      const windowScroll = window.scrollY
+      const mobileEssayScroll = mobileEssayScrollRef.current?.scrollTop || 0
+      const desktopEssayScroll = desktopEssayScrollRef.current?.scrollTop || 0
+      // Use whichever essay scroll is active (they're mutually exclusive based on screen size)
+      const essayScroll = mobileEssayScroll || desktopEssayScroll
+      setScrollY(windowScroll + essayScroll)
     }
+
+    // Track window scroll
+    const handleWindowScroll = () => {
+      updateScrollY()
+    }
+
+    // Track essay window scroll (mobile)
+    const handleMobileEssayScroll = () => {
+      updateScrollY()
+    }
+
+    // Track essay window scroll (desktop)
+    const handleDesktopEssayScroll = () => {
+      updateScrollY()
+    }
+
     // Set initial scroll position
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    updateScrollY()
+
+    // Add listeners
+    window.addEventListener('scroll', handleWindowScroll, { passive: true })
+    
+    // Set up essay scroll listeners (check refs periodically or use MutationObserver)
+    const setupEssayListeners = () => {
+      const mobileEssayEl = mobileEssayScrollRef.current
+      const desktopEssayEl = desktopEssayScrollRef.current
+
+      if (mobileEssayEl) {
+        mobileEssayEl.addEventListener('scroll', handleMobileEssayScroll, { passive: true })
+      }
+      if (desktopEssayEl) {
+        desktopEssayEl.addEventListener('scroll', handleDesktopEssayScroll, { passive: true })
+      }
+
+      return { mobileEssayEl, desktopEssayEl }
+    }
+
+    // Initial setup
+    let { mobileEssayEl, desktopEssayEl } = setupEssayListeners()
+
+    // Retry setup if refs aren't ready (for when component first mounts)
+    const retryTimeout = setTimeout(() => {
+      const retry = setupEssayListeners()
+      mobileEssayEl = retry.mobileEssayEl
+      desktopEssayEl = retry.desktopEssayEl
+    }, 100)
+
+    return () => {
+      clearTimeout(retryTimeout)
+      window.removeEventListener('scroll', handleWindowScroll)
+      if (mobileEssayEl) {
+        mobileEssayEl.removeEventListener('scroll', handleMobileEssayScroll)
+      }
+      if (desktopEssayEl) {
+        desktopEssayEl.removeEventListener('scroll', handleDesktopEssayScroll)
+      }
+    }
   }, [])
 
   // Sort archive items by date (most recent first)
@@ -994,6 +1055,7 @@ function About() {
                 }}
               >
                 <div 
+                  ref={mobileEssayScrollRef}
                   className="h-full overflow-y-auto px-4 py-3 essay-scrollbar"
                   style={{ 
                     scrollbarWidth: 'thin',
@@ -1285,10 +1347,12 @@ function About() {
                   }}
                 >
                   <div 
+                    ref={desktopEssayScrollRef}
                     className="h-full overflow-y-auto px-6 py-4 essay-scrollbar"
                     style={{ 
                       scrollbarWidth: 'thin',
                       scrollbarColor: `${essayColor} transparent`,
+                      '--scrollbar-color': essayColor,
                     }}
                   >
                     <div className="flex flex-col gap-3">
