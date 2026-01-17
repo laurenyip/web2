@@ -151,7 +151,7 @@ p1 {
 /* Assuming .btn-outline-secondary is the class for your button */
 .btn.btn-outline-secondary:hover {
   background-color: #ffb2b2;
-  color: /* Specify the text color you want on hover */;
+  color: #a7b7f4 /* Specify the text color you want on hover */;
 }
 
 /* ~~~ CONTENT CONTAINER STYLING ~~~ */
@@ -394,4 +394,23 @@ p1 {
 @font-face {
   font-family: 'F25';
   src: url('fonts/f25.otf') format('OpenType');
+}
+
+/* Spray paint effect animations for essay hover */
+@keyframes sprayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sprayFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
