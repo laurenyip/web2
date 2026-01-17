@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Navbar from '../components/Navbar'
 
 import './App.css'
@@ -40,14 +40,14 @@ const ARCHIVE_ITEMS = [
     {
       type: 'book',
       text: 'Crooked Kingdom',
-      image: '/images/about/current/crookedkingdom.jpg',
+      image: '/images/about/current/crooked.jpg',
       author: 'Leigh Bardugo',
       date: '2025-01-20',
     },
     {
       type: 'book',
       text: 'Middlemarch',
-      image: '/images/about/current/middlemarch.jpg',
+      image: '/images/about/current/middle.jpg',
       author: 'George Eliot',
       date: '2024-12-10',
     },
@@ -212,6 +212,60 @@ function About() {
     const colorIndex = Math.floor(scrollY / 150) % portfolioColors.length
     return portfolioColors[colorIndex]
   }, [scrollY])
+
+  // Helper function to extract RGB from color string
+  const extractRGB = (color) => {
+    const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
+    if (match) {
+      return { r: match[1], g: match[2], b: match[3] }
+    }
+    return { r: 237, g: 190, b: 228 }
+  }
+
+  // Generate flower scrollbar pattern SVG with better encoding
+  const getFlowerScrollbarSVG = useCallback((color) => {
+    const { r, g, b } = extractRGB(color)
+    // Make colors more visible and vibrant
+    const r1 = r, g1 = Math.min(255, parseInt(g) + 15), b1 = b
+    const r2 = Math.min(255, parseInt(r) + 20), g2 = Math.min(255, parseInt(g) + 30), b2 = Math.min(255, parseInt(b) + 10)
+    
+    // URL encode the SVG properly
+    const svg = `<svg width='14' height='18' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='flower${r}${g}${b}' x='0' y='0' width='14' height='18' patternUnits='userSpaceOnUse'><circle cx='7' cy='9' r='3' fill='rgb(${r1},${g1},${b1})' opacity='0.8'/><circle cx='7' cy='4.5' r='2.2' fill='rgb(${r2},${g2},${b2})' opacity='0.85'/><circle cx='3.5' cy='9' r='2.2' fill='rgb(${r2},${g2},${b2})' opacity='0.85'/><circle cx='10.5' cy='9' r='2.2' fill='rgb(${r2},${g2},${b2})' opacity='0.85'/><circle cx='7' cy='13.5' r='2.2' fill='rgb(${r2},${g2},${b2})' opacity='0.85'/><circle cx='7' cy='9' r='1.2' fill='rgb(255,240,250)'/></pattern></defs><rect width='14' height='100%' fill='url(#flower${r}${g}${b})'/></svg>`
+    return `data:image/svg+xml,${encodeURIComponent(svg)}`
+  }, [])
+
+  // Update scrollbar flower pattern when color changes
+  useEffect(() => {
+    const flowerPattern = getFlowerScrollbarSVG(essayColor)
+    const styleId = 'essay-scrollbar-flower-style'
+    
+    // Remove existing style if present
+    let styleElement = document.getElementById(styleId)
+    if (styleElement) {
+      styleElement.remove()
+    }
+    
+    // Create new style element
+    styleElement = document.createElement('style')
+    styleElement.id = styleId
+    styleElement.type = 'text/css'
+    
+    // Escape quotes in the data URL for CSS
+    const escapedPattern = flowerPattern.replace(/"/g, '\\"')
+    
+    // Update the scrollbar thumb background with flower pattern
+    styleElement.textContent = `.essay-scrollbar::-webkit-scrollbar-thumb { background-image: url("${escapedPattern}") !important; background-repeat: repeat-y !important; background-position: center !important; background-size: 14px 18px !important; }`
+    
+    document.head.appendChild(styleElement)
+    
+    return () => {
+      // Cleanup on unmount
+      const style = document.getElementById(styleId)
+      if (style) {
+        style.remove()
+      }
+    }
+  }, [essayColor, getFlowerScrollbarSVG])
 
   useEffect(() => {
     // Update scroll position based on window and essay window scrolls
@@ -628,7 +682,7 @@ function About() {
               src={item.image}
               alt={item.text}
               className="w-full object-contain"
-              style={{ maxHeight: 'none' }}
+              style={{ maxHeight: '300px' }}
             />
           )}
           <div className={padding}>
@@ -1017,8 +1071,8 @@ function About() {
                 {musicItems.map((item, index) => {
                   const pos = mobileMusicPositions.positions[index]
                   if (!pos) return null
-                  return (
-                    <div
+              return (
+                <div
                       key={`music-${index}`}
                       className="absolute cursor-pointer transition-transform hover:scale-105 z-20"
                       style={{
@@ -1067,44 +1121,21 @@ function About() {
                     {essayItems.map((item, index) => (
                       <div
                         key={`essay-${index}`}
-                        className="cursor-pointer transition-all border-b pb-2 last:border-b-0 relative overflow-hidden"
+                        className="cursor-pointer transition-all border-b pb-2 last:border-b-0 relative overflow-visible px-3"
                         style={{
                           borderColor: index < essayItems.length - 1 ? essayColor : 'transparent',
-                          transition: 'border-color 0.3s ease',
+                          borderLeft: '3px solid transparent',
+                          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                         }}
                         onMouseEnter={(e) => {
-                          // Add hover color effect
-                          const hoverOverlay = document.createElement('div')
-                          hoverOverlay.className = 'essay-hover-overlay'
-                          hoverOverlay.style.cssText = `
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            bottom: 0;
-                            background: ${essayColor}30;
-                            pointer-events: none;
-                            z-index: 1;
-                            opacity: 0;
-                            transition: opacity 0.3s ease;
-                          `
-                          e.currentTarget.appendChild(hoverOverlay)
-                          e.currentTarget.style.position = 'relative'
-                          // Trigger fade in
-                          setTimeout(() => {
-                            hoverOverlay.style.opacity = '1'
-                          }, 10)
+                          e.currentTarget.style.transform = 'translateX(8px) scale(1.02)'
+                          e.currentTarget.style.borderLeftColor = essayColor
+                          e.currentTarget.style.borderLeftWidth = '4px'
                         }}
                         onMouseLeave={(e) => {
-                          const hoverOverlay = e.currentTarget.querySelector('.essay-hover-overlay')
-                          if (hoverOverlay) {
-                            hoverOverlay.style.opacity = '0'
-                            setTimeout(() => {
-                              if (hoverOverlay && hoverOverlay.parentNode) {
-                                hoverOverlay.remove()
-                              }
-                            }, 300)
-                          }
+                          e.currentTarget.style.transform = 'translateX(0) scale(1)'
+                          e.currentTarget.style.borderLeftColor = 'transparent'
+                          e.currentTarget.style.borderLeftWidth = '3px'
                         }}
                         onClick={() => {
                           if (item.link) {
@@ -1112,7 +1143,7 @@ function About() {
                           }
                         }}
                       >
-                        <p className="text-xs text-gray-700 font-medium mb-1 relative z-10">{item.text}</p>
+                        <p className="text-xs text-gray-700 font-medium mb-1 relative z-10 transition-all duration-400">{item.text}</p>
                         {item.author && (
                           <p className="text-[10px] text-gray-600 mb-1 font-normal relative z-10">{item.author}</p>
                         )}
@@ -1359,70 +1390,23 @@ function About() {
                       {essayItems.map((item, index) => (
                         <div
                           key={`essay-${index}`}
-                          className="cursor-pointer transition-all border-b pb-2 last:border-b-0 relative overflow-hidden"
+                          className="cursor-pointer transition-all border-b pb-2 last:border-b-0 relative overflow-visible px-3"
                           style={{
                             borderColor: index < essayItems.length - 1 ? essayColor : 'transparent',
-                            transition: 'border-color 0.3s ease',
+                            borderLeft: '4px solid transparent',
+                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                           }}
                           onMouseEnter={(e) => {
-                            // Add hover color effect with dynamic color updates
-                            const hoverOverlay = document.createElement('div')
-                            hoverOverlay.className = 'essay-hover-overlay'
-                            
-                            const updateHoverColor = () => {
-                              const currentColor = essayColor // Get current color dynamically
-                              hoverOverlay.style.cssText = `
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                right: 0;
-                                bottom: 0;
-                                background: ${currentColor}30;
-                                pointer-events: none;
-                                z-index: 1;
-                                opacity: 0;
-                                transition: opacity 0.3s ease;
-                              `
-                            }
-                            
-                            updateHoverColor()
-                            e.currentTarget.appendChild(hoverOverlay)
-                            e.currentTarget.style.position = 'relative'
-                            
-                            // Trigger fade in
-                            setTimeout(() => {
-                              hoverOverlay.style.opacity = '1'
-                            }, 10)
-                            
-                            // Update color periodically while hovering to match scroll
-                            const colorUpdateInterval = setInterval(() => {
-                              if (hoverOverlay.parentNode) {
-                                updateHoverColor()
-                                // Update opacity to maintain visibility
-                                if (hoverOverlay.style.opacity !== '0') {
-                                  hoverOverlay.style.opacity = '1'
-                                }
-                              } else {
-                                clearInterval(colorUpdateInterval)
-                              }
-                            }, 100)
-                            
-                            hoverOverlay.dataset.intervalId = colorUpdateInterval.toString()
+                            e.currentTarget.style.transform = 'translateX(12px) scale(1.03)'
+                            e.currentTarget.style.borderLeftColor = essayColor
+                            e.currentTarget.style.borderLeftWidth = '5px'
+                            e.currentTarget.style.paddingLeft = '15px'
                           }}
                           onMouseLeave={(e) => {
-                            const hoverOverlay = e.currentTarget.querySelector('.essay-hover-overlay')
-                            if (hoverOverlay) {
-                              // Clear interval if it exists
-                              if (hoverOverlay.dataset.intervalId) {
-                                clearInterval(parseInt(hoverOverlay.dataset.intervalId))
-                              }
-                              hoverOverlay.style.opacity = '0'
-                              setTimeout(() => {
-                                if (hoverOverlay && hoverOverlay.parentNode) {
-                                  hoverOverlay.remove()
-                                }
-                              }, 300)
-                            }
+                            e.currentTarget.style.transform = 'translateX(0) scale(1)'
+                            e.currentTarget.style.borderLeftColor = 'transparent'
+                            e.currentTarget.style.borderLeftWidth = '4px'
+                            e.currentTarget.style.paddingLeft = '12px'
                           }}
                           onClick={() => {
                             if (item.link) {
@@ -1430,7 +1414,7 @@ function About() {
                             }
                           }}
                         >
-                          <p className="text-sm text-gray-700 font-medium mb-1 relative z-10">{item.text}</p>
+                          <p className="text-sm text-gray-700 font-medium mb-1 relative z-10 transition-all duration-400">{item.text}</p>
                           {item.author && (
                             <p className="text-xs text-gray-600 mb-1 font-normal relative z-10">{item.author}</p>
                           )}
