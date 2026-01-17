@@ -240,38 +240,65 @@ function About() {
   // Get positions for music items on shelf (like vinyl records)
   const getMusicShelfPositions = (musicItems, isMobile) => {
     const positions = []
-    const vinylSize = isMobile ? 98 : 119 // 70% of original (140->98, 170->119)
     const containerWidth = isMobile ? 400 : 950
     const padding = isMobile ? 20 : 30
-    const shelfSpacing = isMobile ? 14 : 18 // 70% of original spacing
-    const shelfHeight = 175 // 70% of original 250
-    const shelfThickness = 12 // Keep same for visibility
     
-    // Calculate shelf width needed
-    const shelfWidth = Math.min(
-      musicItems.length * vinylSize + (musicItems.length - 1) * shelfSpacing + padding * 2,
-      containerWidth * 0.7 // Max 70% of container width
-    )
-    
-    // Music items are placed horizontally on the shelf, right-aligned
-    // Calculate left position from right edge
-    let currentLeft = containerWidth - padding - vinylSize
-    
-    // Build positions from right to left, then reverse to maintain item order
-    for (let i = musicItems.length - 1; i >= 0; i--) {
-      positions.push({
-        top: `${shelfHeight - vinylSize }px`, // Position above shelf
-        left: `${currentLeft}px`, // Position from left (calculated from right edge)
-        rotation: 0,
-        height: vinylSize,
-        isMusic: true,
-      })
-      
-      currentLeft -= (vinylSize + shelfSpacing)
+    // Calculate vinyl size to fit all items across in mobile
+    let vinylSize, shelfSpacing
+    if (isMobile && musicItems.length > 0) {
+      // Calculate size to fit all vinyls across the full container width with exactly 5px spacing
+      // No left padding - leftmost vinyl at edge of screen
+      // Formula: containerWidth = numVinyls * vinylSize + (numVinyls - 1) * 5px
+      const availableWidth = containerWidth // Full width, no padding
+      const numVinyls = musicItems.length
+      const spacingBetweenVinyls = 3 // Fixed 5px spacing
+      // vinylSize * numVinyls + (numVinyls - 1) * 5 = containerWidth
+      // vinylSize * numVinyls = containerWidth - (numVinyls - 1) * 5
+      // vinylSize = (containerWidth - (numVinyls - 1) * 5) / numVinyls
+      vinylSize = Math.floor((availableWidth  - (numVinyls - 1) * spacingBetweenVinyls)  / numVinyls)
+      shelfSpacing = spacingBetweenVinyls // Exactly 5px
+    } else {
+      vinylSize = 119
+      shelfSpacing = 18
     }
     
-    // Reverse positions array to maintain original item order
-    positions.reverse()
+    const shelfHeight = isMobile ? 340 : 175 // Position shelf below post-it note (moved down 100px more)
+    const shelfThickness = 12 // Keep same for visibility
+    
+    // Calculate shelf width needed - full width for mobile
+    const shelfWidth = isMobile ? containerWidth : Math.min(
+      musicItems.length * vinylSize + (musicItems.length - 1) * shelfSpacing + padding * 2,
+      containerWidth * 0.9
+    )
+    
+    // Music items are placed horizontally on the shelf
+    if (isMobile) {
+      // For mobile: space evenly across full width
+      for (let i = 0; i < musicItems.length; i++) {
+        const leftPosition = i * (vinylSize + shelfSpacing)
+        positions.push({
+          top: `${shelfHeight - vinylSize}px`, // Position above shelf so bottom aligns with shelf top
+          left: `${leftPosition}px`, // Evenly spaced across full width
+          rotation: 0,
+          height: vinylSize,
+          isMusic: true,
+        })
+      }
+    } else {
+      // For desktop: right-aligned as before
+      let currentLeft = containerWidth - padding - vinylSize
+      for (let i = musicItems.length - 1; i >= 0; i--) {
+        positions.push({
+          top: `${shelfHeight - vinylSize}px`,
+          left: `${currentLeft}px`,
+          rotation: 0,
+          height: vinylSize,
+          isMusic: true,
+        })
+        currentLeft -= (vinylSize + shelfSpacing)
+      }
+      positions.reverse()
+    }
     
     return { positions, shelfBottom: shelfHeight + shelfThickness, shelfWidth }
   }
@@ -438,11 +465,12 @@ function About() {
   const mobileMusicPositions = useMemo(() => getMusicShelfPositions(musicItems, true), [musicItems])
   const desktopMusicPositions = useMemo(() => getMusicShelfPositions(musicItems, false), [musicItems])
   
-  // Calculate essay scrolling window position (below music shelf)
+  // Calculate essay scrolling window position (below music shelf and post-it)
   const essayWindowHeight = 394 // Height of the essay scrolling window (315px + 25% = 394px)
   const mobileEssayWindowTop = useMemo(() => {
-    const musicShelfBottom = mobileMusicPositions.shelfBottom || 187
-    return musicShelfBottom + 170 // Below music shelf
+    const musicShelfBottom = mobileMusicPositions.shelfBottom || 252
+    const postItBottom = 220 // Post-it note height + spacing (moved down 100px)
+    return Math.max(musicShelfBottom, postItBottom) + 40 // Below music shelf and post-it with spacing
   }, [mobileMusicPositions])
   
   const desktopEssayWindowTop = useMemo(() => {
@@ -452,11 +480,11 @@ function About() {
   
   // Calculate positions for other items (below essay window)
   const mobileOtherPositions = useMemo(() => {
-    const musicShelfBottom = mobileMusicPositions.shelfBottom || 187
+    const musicShelfBottom = mobileMusicPositions.shelfBottom || 352
     // Position items starting below essay window
     const startPosition = essayItems.length > 0 
-      ? mobileEssayWindowTop + essayWindowHeight + 70 
-      : musicShelfBottom + 70
+      ? mobileEssayWindowTop + essayWindowHeight + 40 
+      : Math.max(musicShelfBottom, 220) + 40 // Below shelf or post-it, whichever is lower
     return getGalleryPositions(otherItems, true, startPosition, 
       essayItems.length > 0 ? mobileEssayWindowTop : null, 
       essayItems.length > 0 ? essayWindowHeight : 0)
@@ -820,7 +848,8 @@ function About() {
 
         <img
           src="/images/about/main/sitting.jpg"
-          className="aboutImage absolute top-[25%] left-1/2 -translate-x-1/2 w-[80%] max-w-[360px] md:bottom-[15%] md:right-[20%] md:left-auto md:translate-x-0 md:w-[30%] md:max-w-[320px] z-10 rounded-md"
+          className="aboutImage absolute left-1/2 -translate-x-1/2 w-[80%] max-w-[360px] md:bottom-[15%] md:right-[20%] md:left-auto md:translate-x-0 md:w-[30%] md:max-w-[320px] z-10 rounded-md"
+          style={{ top: 'calc(25% - 250px)' }}
           alt="sit"
         />
 
@@ -831,7 +860,7 @@ function About() {
         />
 
         {/* Text block - responsive vertical position */}
-        <div className="absolute top-[18%] md:top-[80%] md:left-[37%] left-1/2 -translate-x-1/2 text-left w-[90%] max-w-md z-[10] text-gray-700">
+        <div className="absolute md:top-[80%] md:left-[37%] left-1/2 -translate-x-1/2 text-left w-[90%] max-w-md z-[10] text-gray-700" style={{ top: 'calc(18% - 150px)' }}>
           <ul className="list-disc list-inside text-base leading-relaxed">
             <li>4th year Computer Science @ SFU</li>
             <li>Aspiring Product Manager</li>
@@ -841,103 +870,115 @@ function About() {
         </div>
 
         {/* Archive Gallery - Scattered cards */}
-        <div className="relative w-full mt-[200%] md:top-[30%] md:mt-[100%] pb-20">
+        {/* Archive section positioned below text and sit image */}
+        <div className="relative w-full pb-20" style={{ marginTop: 'calc(max(18vh + 120px, 25vh + min(80vw, 360px)) + 550px)' }}>
+          {/* Archive title */}
           <h3
             className="text-center mb-12 text-2xl md:text-3xl text-gray-700"
-            style={{ fontFamily: "'Melo', sans-serif" }}
+            style={{ 
+              fontFamily: "'Melo', sans-serif",
+              zIndex: 15
+            }}
           >
             archive
           </h3>
           
-          {/* Pinned Post-it Note */}
-          <div className="absolute top-0 left-4 md:left-8 z-10" style={{ transform: 'rotate(-2deg)' }}>
-            {/* Thumbtack */}
-            <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
-              <div className="w-3 h-3 bg-gray-400 rounded-full shadow-md"></div>
-              <div className="absolute top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
-            </div>
-            {/* Post-it Note */}
-            <div 
-              className="bg-yellow-200 shadow-lg p-3 rounded-sm"
-              style={{
-                width: '140px',
-                minHeight: '100px',
-                boxShadow: '0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)',
-                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
-              }}
-            >
-              <p className="text-xs text-gray-800 leading-tight font-normal" style={{ fontFamily: 'Arial, sans-serif' }}>
-                recent → not recent<br/>
-                collection of books, essays, quotes, music, food, and pictures i like
-              </p>
-            </div>
-          </div>
-
-          <div className="relative w-full" style={{ minHeight: `${((mobileMusicPositions.shelfBottom || 187) + (essayItems.length > 0 ? 200 : 0)) + Math.ceil(otherItems.length / 2) * 250}px` }}>
-            {/* Wooden Shelf for Music Items - Right Aligned */}
-            {musicItems.length > 0 && (
+          {/* Archive content container */}
+          <div className="relative w-full">
+          
+          <div className="relative w-full" style={{ minHeight: `${((mobileMusicPositions.shelfBottom || 352) + (essayItems.length > 0 ? essayWindowHeight + 30 : 0)) + Math.ceil(otherItems.length / 2) * 280}px` }}>
+            {/* Pinned Post-it Note - FIRST (Below sit image) */}
+            <div className="absolute left-4 z-10" style={{ top: '50px', transform: 'rotate(-2deg)' }}>
+              {/* Thumbtack */}
+              <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
+                <div className="w-3 h-3 bg-gray-400 rounded-full shadow-md"></div>
+                <div className="absolute top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-gray-300 rounded-full"></div>
+              </div>
+              {/* Post-it Note */}
               <div 
-                className="absolute z-15"
+                className="bg-yellow-200 shadow-lg p-3 rounded-sm"
                 style={{
-                  top: `${mobileMusicPositions.shelfBottom - 12}px`,
-                  right: '0',
-                  width: `${mobileMusicPositions.shelfWidth || 300}px`,
-                  height: '12px',
+                  width: '140px',
+                  minHeight: '100px',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)',
+                  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
                 }}
               >
-                {/* Wooden shelf with wood grain effect */}
-                <div
-                  className="w-full h-full"
+                <p className="text-xs text-gray-800 leading-tight font-normal" style={{ fontFamily: 'Arial, sans-serif' }}>
+                  recent → not recent<br/>
+                  collection of books, essays, quotes, music, food, and pictures i like
+                </p>
+              </div>
+            </div>
+
+            {/* Music Items Section - SECOND (Vinyls on Shelf, below post-it) */}
+            {musicItems.length > 0 && (
+              <>
+                {/* Wooden Shelf for Music Items - Full Width in Mobile */}
+                <div 
+                  className="absolute z-15"
                   style={{
-                    background: 'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
-                    boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-                    borderTop: '1px solid rgba(139, 105, 20, 0.5)',
-                    borderBottom: '1px solid rgba(107, 78, 15, 0.8)',
+                    top: `${mobileMusicPositions.shelfBottom - 12}px`,
+                    left: '0',
+                    right: '0',
+                    width: `${mobileMusicPositions.shelfWidth || 400}px`,
+                    height: '12px',
                   }}
                 >
-                  {/* Wood grain lines */}
-                  {[...Array(5)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-full opacity-20"
-                      style={{
-                        height: '1px',
-                        top: `${i * 2.4}px`,
-                        background: i % 2 === 0 
-                          ? 'linear-gradient(to right, transparent, rgba(107, 78, 15, 0.5), transparent)'
-                          : 'linear-gradient(to left, transparent, rgba(139, 105, 20, 0.5), transparent)',
-                      }}
-                    />
-                  ))}
+                  {/* Wooden shelf with wood grain effect */}
+                  <div
+                    className="w-full h-full"
+                    style={{
+                      background: 'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
+                      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
+                      borderTop: '1px solid rgba(139, 105, 20, 0.5)',
+                      borderBottom: '1px solid rgba(107, 78, 15, 0.8)',
+                    }}
+                  >
+                    {/* Wood grain lines */}
+                    {[...Array(5)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute w-full opacity-20"
+                        style={{
+                          height: '1px',
+                          top: `${i * 2.4}px`,
+                          background: i % 2 === 0 
+                            ? 'linear-gradient(to right, transparent, rgba(107, 78, 15, 0.5), transparent)'
+                            : 'linear-gradient(to left, transparent, rgba(139, 105, 20, 0.5), transparent)',
+                        }}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
+
+                {/* Music Items on Shelf - Pinned */}
+                {musicItems.map((item, index) => {
+                  const pos = mobileMusicPositions.positions[index]
+                  if (!pos) return null
+                  return (
+                    <div
+                      key={`music-${index}`}
+                      className="absolute cursor-pointer transition-transform hover:scale-105 z-20"
+                      style={{
+                        top: pos.top,
+                        left: pos.left,
+                        transform: `rotate(${pos.rotation}deg)`,
+                        width: `${pos.height}px`,
+                        height: `${pos.height}px`,
+                      }}
+                      onClick={() => {
+                        setOpenedVinyl(openedVinyl === item.text ? null : item.text)
+                      }}
+                    >
+                      {renderArchiveCard(item, true)}
+                    </div>
+                  )
+                })}
+              </>
             )}
 
-            {/* Music Items on Shelf */}
-            {musicItems.map((item, index) => {
-              const pos = mobileMusicPositions.positions[index]
-              if (!pos) return null
-              return (
-                <div
-                  key={`music-${index}`}
-                  className="absolute cursor-pointer transition-transform hover:scale-105 z-20"
-                  style={{
-                    top: pos.top,
-                    left: pos.left,
-                    transform: `rotate(${pos.rotation}deg)`,
-                    width: `${pos.height}px`,
-                    height: `${pos.height}px`,
-                  }}
-                  onClick={() => {
-                    setOpenedVinyl(openedVinyl === item.text ? null : item.text)
-                  }}
-                >
-                  {renderArchiveCard(item, true)}
-                </div>
-              )
-            })}
-
-            {/* Essay Scrolling Window */}
+            {/* Essay Scrolling Window - THIRD (Below vinyls and post-it) */}
             {essayItems.length > 0 && (
               <div
                 className="absolute rounded-[5px] bg-white overflow-hidden"
@@ -964,10 +1005,44 @@ function About() {
                     {essayItems.map((item, index) => (
                       <div
                         key={`essay-${index}`}
-                        className="cursor-pointer hover:opacity-70 transition-opacity border-b pb-2 last:border-b-0"
+                        className="cursor-pointer transition-all border-b pb-2 last:border-b-0 relative overflow-hidden"
                         style={{
                           borderColor: index < essayItems.length - 1 ? essayColor : 'transparent',
                           transition: 'border-color 0.3s ease',
+                        }}
+                        onMouseEnter={(e) => {
+                          // Add hover color effect
+                          const hoverOverlay = document.createElement('div')
+                          hoverOverlay.className = 'essay-hover-overlay'
+                          hoverOverlay.style.cssText = `
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: ${essayColor}30;
+                            pointer-events: none;
+                            z-index: 1;
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                          `
+                          e.currentTarget.appendChild(hoverOverlay)
+                          e.currentTarget.style.position = 'relative'
+                          // Trigger fade in
+                          setTimeout(() => {
+                            hoverOverlay.style.opacity = '1'
+                          }, 10)
+                        }}
+                        onMouseLeave={(e) => {
+                          const hoverOverlay = e.currentTarget.querySelector('.essay-hover-overlay')
+                          if (hoverOverlay) {
+                            hoverOverlay.style.opacity = '0'
+                            setTimeout(() => {
+                              if (hoverOverlay && hoverOverlay.parentNode) {
+                                hoverOverlay.remove()
+                              }
+                            }, 300)
+                          }
                         }}
                         onClick={() => {
                           if (item.link) {
@@ -975,11 +1050,11 @@ function About() {
                           }
                         }}
                       >
-                        <p className="text-xs text-gray-700 font-medium mb-1">{item.text}</p>
+                        <p className="text-xs text-gray-700 font-medium mb-1 relative z-10">{item.text}</p>
                         {item.author && (
-                          <p className="text-[10px] text-gray-600 mb-1 font-normal">{item.author}</p>
+                          <p className="text-[10px] text-gray-600 mb-1 font-normal relative z-10">{item.author}</p>
                         )}
-                        <p className="text-[10px] text-gray-400">{item.date}</p>
+                        <p className="text-[10px] text-gray-400 relative z-10">{item.date}</p>
                       </div>
                     ))}
                   </div>
@@ -987,7 +1062,7 @@ function About() {
               </div>
             )}
 
-            {/* Other Items (including books) */}
+            {/* Other Items (including books) - FOURTH (Below essays) */}
             {otherItems.map((item, index) => {
               const pos = mobileOtherPositions[index]
               if (!pos) return null
@@ -1013,6 +1088,7 @@ function About() {
                 </div>
               )
             })}
+          </div>
           </div>
         </div>
       </div>
@@ -1202,7 +1278,9 @@ function About() {
                     height: '394px',
                     zIndex: 10,
                     boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                    border: `2px solid ${essayColor}`,
+                    borderWidth: '2px',
+                    borderStyle: 'solid',
+                    borderColor: essayColor,
                     transition: 'border-color 0.3s ease',
                   }}
                 >
@@ -1211,17 +1289,76 @@ function About() {
                     style={{ 
                       scrollbarWidth: 'thin',
                       scrollbarColor: `${essayColor} transparent`,
-                      '--scrollbar-color': essayColor,
                     }}
                   >
                     <div className="flex flex-col gap-3">
                       {essayItems.map((item, index) => (
                         <div
                           key={`essay-${index}`}
-                          className="cursor-pointer hover:opacity-70 transition-opacity border-b pb-2 last:border-b-0"
+                          className="cursor-pointer transition-all border-b pb-2 last:border-b-0 relative overflow-hidden"
                           style={{
                             borderColor: index < essayItems.length - 1 ? essayColor : 'transparent',
                             transition: 'border-color 0.3s ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            // Add hover color effect with dynamic color updates
+                            const hoverOverlay = document.createElement('div')
+                            hoverOverlay.className = 'essay-hover-overlay'
+                            
+                            const updateHoverColor = () => {
+                              const currentColor = essayColor // Get current color dynamically
+                              hoverOverlay.style.cssText = `
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                background: ${currentColor}30;
+                                pointer-events: none;
+                                z-index: 1;
+                                opacity: 0;
+                                transition: opacity 0.3s ease;
+                              `
+                            }
+                            
+                            updateHoverColor()
+                            e.currentTarget.appendChild(hoverOverlay)
+                            e.currentTarget.style.position = 'relative'
+                            
+                            // Trigger fade in
+                            setTimeout(() => {
+                              hoverOverlay.style.opacity = '1'
+                            }, 10)
+                            
+                            // Update color periodically while hovering to match scroll
+                            const colorUpdateInterval = setInterval(() => {
+                              if (hoverOverlay.parentNode) {
+                                updateHoverColor()
+                                // Update opacity to maintain visibility
+                                if (hoverOverlay.style.opacity !== '0') {
+                                  hoverOverlay.style.opacity = '1'
+                                }
+                              } else {
+                                clearInterval(colorUpdateInterval)
+                              }
+                            }, 100)
+                            
+                            hoverOverlay.dataset.intervalId = colorUpdateInterval.toString()
+                          }}
+                          onMouseLeave={(e) => {
+                            const hoverOverlay = e.currentTarget.querySelector('.essay-hover-overlay')
+                            if (hoverOverlay) {
+                              // Clear interval if it exists
+                              if (hoverOverlay.dataset.intervalId) {
+                                clearInterval(parseInt(hoverOverlay.dataset.intervalId))
+                              }
+                              hoverOverlay.style.opacity = '0'
+                              setTimeout(() => {
+                                if (hoverOverlay && hoverOverlay.parentNode) {
+                                  hoverOverlay.remove()
+                                }
+                              }, 300)
+                            }
                           }}
                           onClick={() => {
                             if (item.link) {
@@ -1229,11 +1366,11 @@ function About() {
                             }
                           }}
                         >
-                          <p className="text-sm text-gray-700 font-medium mb-1">{item.text}</p>
+                          <p className="text-sm text-gray-700 font-medium mb-1 relative z-10">{item.text}</p>
                           {item.author && (
-                            <p className="text-xs text-gray-600 mb-1 font-normal">{item.author}</p>
+                            <p className="text-xs text-gray-600 mb-1 font-normal relative z-10">{item.author}</p>
                           )}
-                          <p className="text-xs text-gray-400">{item.date}</p>
+                          <p className="text-xs text-gray-400 relative z-10">{item.date}</p>
                         </div>
                       ))}
                     </div>
