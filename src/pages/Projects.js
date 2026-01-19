@@ -32,10 +32,10 @@ function Projects() {
       hasCaseStudy: true,
     },
     {
-      title: 'Emergency Response BC',
-      link: 'https://devpost.com/software/emergency-response-bc-erbc',
-      description: 'ER wait times webapp',
-      image: '/images/projects/landing.png',
+      title: 'Spruce',
+      link: 'https://devpost.com/software/spruce',
+      description: "Finding third spaces for kids in Vancouver — =Best UI Design Award",
+      image: '/images/projects/spruce.png',
     },
     {
       title: 'PRD+',
@@ -45,11 +45,10 @@ function Projects() {
       hasCaseStudy: true,
     },
     {
-      title: 'React to This!',
-      link: 'https://rosielab.github.io/react-to-this/',
-      description: 'Research assistantship with ROSIE Lab',
-      image: './images/Rosie/elan.png',
-      hasCaseStudy: true,
+      title: 'Community!',
+      link: 'https://treehouse.place/',
+      description: 'Designed the Treehouse Place website',
+      image: '/images/projects/treehouse.png',
     },
     {
       title: 'Canadian Space Agency',
@@ -64,10 +63,11 @@ function Projects() {
       image: '/images/projects/wics.jpg',
     },
     {
-      title: 'Community!',
-      link: 'https://treehouse.place/',
-      description: 'Designed the Treehouse Place website',
-      image: '/images/projects/treehouse.png',
+      title: 'React to This!',
+      link: 'https://rosielab.github.io/react-to-this/',
+      description: 'Research assistantship with ROSIE Lab',
+      image: './images/Rosie/elan.png',
+      hasCaseStudy: true,
     },
     {
       title: 'Simple Ventures',
