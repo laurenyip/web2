@@ -32,10 +32,11 @@ function Projects() {
       hasCaseStudy: true,
     },
     {
-      title: 'Emergency Response BC',
-      link: 'https://devpost.com/software/emergency-response-bc-erbc',
-      description: 'ER wait times webapp',
-      image: '/images/projects/landing.png',
+      title: 'Spruce',
+      link: 'https://devpost.com/software/spruce',
+      description: "Finding third spaces for kids in Vancouver — =Best UI Design Award",
+      image: '/images/projects/spruce.png',
+      hasCaseStudy: true,
     },
     {
       title: 'PRD+',
@@ -45,11 +46,10 @@ function Projects() {
       hasCaseStudy: true,
     },
     {
-      title: 'React to This!',
-      link: 'https://rosielab.github.io/react-to-this/',
-      description: 'Research assistantship with ROSIE Lab',
-      image: './images/Rosie/elan.png',
-      hasCaseStudy: true,
+      title: 'Community!',
+      link: 'https://treehouse.place/',
+      description: 'Designed the Treehouse Place website',
+      image: '/images/projects/treehouse.png',
     },
     {
       title: 'Canadian Space Agency',
@@ -64,10 +64,11 @@ function Projects() {
       image: '/images/projects/wics.jpg',
     },
     {
-      title: 'Community!',
-      link: 'https://treehouse.place/',
-      description: 'Designed the Treehouse Place website',
-      image: '/images/projects/treehouse.png',
+      title: 'React to This!',
+      link: 'https://rosielab.github.io/react-to-this/',
+      description: 'Research assistantship with ROSIE Lab',
+      image: './images/Rosie/elan.png',
+      hasCaseStudy: true,
     },
     {
       title: 'Simple Ventures',
@@ -215,6 +216,31 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
         'Supported academic publication by editing and formatting the paper',
       ],
     },
+    Spruce: {
+      overview: 'Spruce helps low-income families in Vancouver discover free and low-cost “third-space” activities so kids can learn, play, and socialize offline. Built for UXathon 2026, the product won Best UI Design by delivering a warm, trustable experience that feels socially safe and easy to keep up.',
+      role: 'Product Designer',
+      timeline: 'UXathon 2026',
+      challenge: 'The original prompt: “In a world that rewards being always on, how might we design an experience that helps people set and keep boundaries to make recovery time feel socially safe, rewarding, and easy to sustain?” \n Our reframed problem: How might we help low-income families give their children opportunities to participate in third-spaces, to create self-sustainable habits that prevent digital fatigue and long-term phone addiction?',
+      solution: 'A free platform that helps low-income families discover free and low-cost “third-space” activities so kids can learn, play, and socialize offline. What if art gallery workshops, swim lessons, concerts, and coding camps could all be found in one simple search?',
+      myContribution: 'Reframed the prompt into our problem statement, mapped and presented the journey for low-income families, built the visual system (logo, palette, typography), slide design, collaboration on profile, home, and activities pages.',
+      keyFeatures: [
+        'Location-aware, free and low-cost activity discovery with descriptive type tags',
+        'Resources page for grants and other resources for low-income families',
+        'Translate feature that makes the website accessible to non-English speakers',
+        'User and child profiles for filtered search results',
+      ],
+      impact: [
+        'Won Best UI Design at UXathon 2026',
+        'Creates a safer, more rewarding path to offline habits for kids',
+        'Reduces search friction for cost-sensitive families by curating vetted options',
+      ],
+      showcaseImages: [
+        '/images/projects/spruce-1.png',
+        '/images/projects/spruce-2.png',
+        '/images/projects/spruce-3.png',
+        '/images/projects/spruce-4.png',
+      ],
+    },
     'Simple Ventures': {
       overview: 'Aurora Pet Co. is a seamless subscription platform with vet-backed delivery and a focus on chronic conditions, designed to make pet health more affordable and accessible across Canada. The solution addresses the unmet need for an online pet pharmacy in the Canadian market.',
       role: 'Product Designer & Product Manager',
@@ -279,6 +305,26 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
             <section>
               <h3 className="text-xl font-semibold text-gray-700 mb-3">The Challenge</h3>
               <p className="text-gray-700 leading-relaxed">{caseStudy.challenge}</p>
+            </section>
+          )}
+
+          {/* Showcase Images */}
+          {caseStudy.showcaseImages && caseStudy.showcaseImages.length > 0 && (
+            <section>
+              <h3 className="text-xl font-semibold text-gray-700 mb-3">Design Showcase</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {caseStudy.showcaseImages.slice(0, 4).map((img, index) => (
+                  <div
+                    key={index}
+                    className="w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100 shadow-sm"
+                  >
+                    <div
+                      className="w-full h-full bg-center bg-cover"
+                      style={{ backgroundImage: `url(${img})` }}
+                    />
+                  </div>
+                ))}
+              </div>
             </section>
           )}
 
