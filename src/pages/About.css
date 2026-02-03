@@ -1,5 +1,6 @@
 .About {
-  margin: 2% 20%;
+  margin: 0;
+  padding: 0;
 }
 
 /* logo image */
@@ -15,6 +16,7 @@ body {
   font-size: 16px;
   color: #374151;
   background-color: #ffffff;
+  overflow-x: hidden;
 }
 
 /* hero background image */
@@ -413,4 +415,51 @@ p1 {
   to {
     opacity: 0;
   }
+}
+
+/* Slow rotation animation for vinyl records */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+/* Mystical moving border animation for secret albums */
+@keyframes mystical-border-glow {
+  0%, 100% {
+    border-color: rgba(138, 43, 226, 0.5);
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.3), 
+                0 0 20px rgba(75, 0, 130, 0.2),
+                inset 0 0 10px rgba(138, 43, 226, 0.1);
+  }
+  25% {
+    border-color: rgba(75, 0, 130, 0.6);
+    box-shadow: 0 0 15px rgba(75, 0, 130, 0.4), 
+                0 0 25px rgba(138, 43, 226, 0.3),
+                inset 0 0 15px rgba(75, 0, 130, 0.2);
+  }
+  50% {
+    border-color: rgba(138, 43, 226, 0.7);
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5), 
+                0 0 30px rgba(75, 0, 130, 0.4),
+                inset 0 0 20px rgba(138, 43, 226, 0.3);
+  }
+  75% {
+    border-color: rgba(75, 0, 130, 0.6);
+    box-shadow: 0 0 15px rgba(75, 0, 130, 0.4), 
+                0 0 25px rgba(138, 43, 226, 0.3),
+                inset 0 0 15px rgba(75, 0, 130, 0.2);
+  }
+}
+
+.mystical-border {
+  animation: mystical-border-glow 3s ease-in-out infinite;
+  pointer-events: none;
 }

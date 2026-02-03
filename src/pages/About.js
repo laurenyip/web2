@@ -8,13 +8,6 @@ import './App.css'
 const ARCHIVE_ITEMS = [
     {
       type: 'image',
-      image: '/images/about/current/romeo.jpg',
-      text: 'My first Broadway performance: Romeo & Juliet',
-      link: 'https://www.youtube.com/watch?v=5FsKvp5mME0&list=TLPQMzAwMzIwMjWHzTbqBTJFCA&index=2&pp=gAQBiAQB8AUB',
-      date: '2024-10-15',
-    },
-    {
-      type: 'image',
       image: '/images/about/current/insect.jpg',
       text: 'Insectarium, Montreal',
       date: '2024-06-22',
@@ -36,20 +29,6 @@ const ARCHIVE_ITEMS = [
       date: '2025-11-28',
       // Optional: link to review or purchase
       // link: 'https://example.com',
-    },
-    {
-      type: 'book',
-      text: 'Crooked Kingdom',
-      image: '/images/about/current/crookedkingdom.jpg',
-      author: 'Leigh Bardugo',
-      date: '2025-01-20',
-    },
-    {
-      type: 'book',
-      text: 'Middlemarch',
-      image: '/images/about/current/middlemarch.jpg',
-      author: 'George Eliot',
-      date: '2024-12-10',
     },
     {
       type: 'music',
@@ -94,18 +73,55 @@ const ARCHIVE_ITEMS = [
       date: '2025-11-22',
       image: '/images/about/current/atel.jpg',
     },
-    { 
-      type: 'image',
-      image: '/images/about/current/babel.jpg', 
-      text: 'the best hike ever?',
-      date: '2025-07-18',
-    },
     {
       type: 'image',
       image: '/images/about/current/hightide.png',
       text: 'Hightide by Jan Toorop',
       caption: 'instant favourite painting',
       date: '2025-09-05',
+    },
+    {
+      type: 'gallery',
+      text: 'Broadway',
+      date: '2024-10-15',
+      photos: [
+        '/images/about/current/romeo.jpg',
+        null, // Empty slot - can be edited later
+        null, // Empty slot - can be edited later
+        null, // Empty slot - can be edited later
+      ],
+    },
+    {
+      type: 'gallery',
+      text: 'Hike',
+      date: '2025-07-18',
+      photos: [
+        '/images/about/current/babel.jpg',
+      ],
+      style: 'secret', // Secret album with mystical border
+    },
+    {
+      type: 'gallery',
+      text: 'Gallery 3',
+      date: '2025-01-01',
+      photos: [
+        null, // Empty slot - can be edited later
+        null, // Empty slot - can be edited later
+        null, // Empty slot - can be edited later
+        null, // Empty slot - can be edited later
+      ],
+      style: 'photobooth', // Photobooth style
+    },
+    {
+      type: 'gallery',
+      text: 'Gallery 4',
+      date: '2025-01-01',
+      photos: [
+        null, // Empty slot - can be edited later
+        null, // Empty slot - can be edited later
+        null, // Empty slot - can be edited later
+        null, // Empty slot - can be edited later
+      ],
     },
     {
       type: 'essay',
@@ -202,8 +218,9 @@ const portfolioColors = [
 ]
 
 function About() {
-  const [openedVinyl, setOpenedVinyl] = useState(null)
   const [scrollY, setScrollY] = useState(0)
+  const [albumColors, setAlbumColors] = useState({})
+  const [openGallery, setOpenGallery] = useState(null)
 
   // Get color based on scroll position
   const essayColor = useMemo(() => {
@@ -603,29 +620,84 @@ function About() {
 
     // Music/Playlist card - Vinyl Record Design
     if (item.type === 'music') {
-      const isOpened = openedVinyl === item.text
-      const vinylSize = isMobile ? 98 : 119 // 70% of original size
+      const vinylSize = isMobile ? 98 : 119
       const centerHole = vinylSize * 0.15
       
+      // Get colors from album cover or use defaults
+      const defaultColors = { from: '#1a1a1a', via: '#0d0d0d', to: '#000000' }
+      const colors = albumColors[item.text] || defaultColors
+      
       return (
-        <div className="relative" style={{ width: isOpened ? `${vinylSize}px` : `${vinylSize}px`, minHeight: isOpened ? 'auto' : `${vinylSize}px` }}>
+        <div 
+          className="relative group cursor-pointer"
+          style={{ width: `${vinylSize}px`, height: `${vinylSize}px` }}
+          onMouseEnter={(e) => {
+            // Extract colors from album cover image
+            if (item.image && !albumColors[item.text]) {
+              const img = new Image()
+              img.crossOrigin = 'anonymous'
+              img.onload = () => {
+                const canvas = document.createElement('canvas')
+                const ctx = canvas.getContext('2d')
+                canvas.width = img.width
+                canvas.height = img.height
+                ctx.drawImage(img, 0, 0)
+                
+                // Sample pixels from center area of image
+                const sampleSize = Math.min(50, Math.floor(img.width / 4))
+                const startX = Math.floor((img.width - sampleSize) / 2)
+                const startY = Math.floor((img.height - sampleSize) / 2)
+                
+                const imageData = ctx.getImageData(startX, startY, sampleSize, sampleSize)
+                const pixels = imageData.data
+                
+                // Calculate average RGB values
+                let r = 0, g = 0, b = 0, count = 0
+                for (let i = 0; i < pixels.length; i += 4) {
+                  r += pixels[i]
+                  g += pixels[i + 1]
+                  b += pixels[i + 2]
+                  count++
+                }
+                
+                r = Math.floor(r / count)
+                g = Math.floor(g / count)
+                b = Math.floor(b / count)
+                
+                // Create gradient colors (darker variants)
+                const from = `rgb(${Math.min(255, r + 20)}, ${Math.min(255, g + 20)}, ${Math.min(255, b + 20)})`
+                const via = `rgb(${r}, ${g}, ${b})`
+                const to = `rgb(${Math.max(0, r - 40)}, ${Math.max(0, g - 40)}, ${Math.max(0, b - 40)})`
+                
+                setAlbumColors(prev => ({
+                  ...prev,
+                  [item.text]: { from, via, to }
+                }))
+              }
+              img.src = item.image
+            }
+          }}
+          onClick={() => {
+            if (item.link) {
+              window.open(item.link, '_blank')
+            }
+          }}
+        >
           {/* Album Sleeve (Cover) */}
           <div 
-            className={`bg-white transition-all duration-700 ease-in-out cursor-pointer ${
-              isOpened ? 'opacity-0 scale-0 rotate-180 absolute inset-0' : 'opacity-100 scale-100 rotate-0'
-            }`}
+            className="absolute inset-0 bg-white transition-all duration-700 ease-in-out group-hover:opacity-0 group-hover:scale-90 group-hover:rotate-180"
             style={{
               transformOrigin: 'center center',
-              zIndex: isOpened ? 1 : 2,
+              zIndex: 2,
               width: `${vinylSize}px`,
               height: `${vinylSize}px`,
-              boxShadow: !isOpened ? '0 4px 8px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)' : 'none',
+              boxShadow: '0 4px 8px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
             }}
           >
             {item.image ? (
-            <img
-              src={item.image}
-              alt={item.text}
+              <img
+                src={item.image}
+                alt={item.text}
                 className="w-full h-full"
                 style={{ 
                   objectFit: 'cover',
@@ -641,61 +713,39 @@ function About() {
               </div>
             )}
             {/* Sleeve edge shadow */}
-            {!isOpened && (
-              <div className="absolute right-0 top-0 bottom-0 w-1 bg-black opacity-10"></div>
-            )}
+            <div className="absolute right-0 top-0 bottom-0 w-1 bg-black opacity-10"></div>
           </div>
 
-          {/* Vinyl Record (revealed when opened) */}
+          {/* Vinyl Record (revealed on hover) */}
           <div 
-            className={`transition-all duration-700 ease-in-out ${
-              isOpened ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-0 rotate-180 absolute inset-0'
-            }`}
+            className="absolute inset-0 transition-all duration-700 ease-in-out opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100"
             style={{
               transformOrigin: 'center center',
-              zIndex: isOpened ? 2 : 1,
+              zIndex: 1,
             }}
           >
-            {/* Close button */}
-            {isOpened && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setOpenedVinyl(null)
-                }}
-                className="absolute -top-2 -right-2 z-20 w-6 h-6 bg-white rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-100 transition-colors font-bold shadow-lg"
-                style={{ fontSize: '16px', lineHeight: '1' }}
-              >
-                ×
-              </button>
-            )}
-            
-            {/* Vinyl Record Circle */}
+            {/* Vinyl Record Circle with slow rotation */}
             <div 
-              className="relative rounded-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 cursor-pointer hover:scale-105 transition-transform mx-auto"
+              className="relative rounded-full mx-auto group-hover:animate-spin-slow"
               style={{ 
                 width: `${vinylSize}px`, 
                 height: `${vinylSize}px`,
+                background: `linear-gradient(135deg, ${colors.from} 0%, ${colors.via} 50%, ${colors.to} 100%)`,
                 boxShadow: 'inset 0 0 20px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.3)',
-              }}
-              onClick={(e) => {
-                e.stopPropagation()
-                if (item.link) {
-                  window.open(item.link, '_blank')
-                }
               }}
             >
               {/* Vinyl Grooves (concentric circles) */}
               {[0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9].map((radius, idx) => (
                 <div
                   key={idx}
-                  className="absolute rounded-full border border-gray-700 opacity-30"
+                  className="absolute rounded-full border opacity-20"
                   style={{
                     width: `${vinylSize * radius}px`,
                     height: `${vinylSize * radius}px`,
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
+                    borderColor: 'rgba(0,0,0,0.3)',
                   }}
                 />
               ))}
@@ -725,16 +775,173 @@ function About() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      )
+    }
 
-            {/* Album Title - below the vinyl */}
-            {isOpened && (
-              <div className="mt-3 text-center">
-                <p className={`${textSize} text-gray-700 font-medium`}>{item.text}</p>
-                {item.date && (
-                  <p className={`${dateSize} text-gray-500 mt-1`}>{item.date}</p>
+    // Gallery card - Editorial style
+    if (item.type === 'gallery') {
+      // Secret album style - single cover with mystical border
+      if (item.style === 'secret') {
+        return (
+          <div 
+            className="cursor-pointer transition-all duration-300 hover:scale-[1.02] relative overflow-hidden bg-white"
+            onClick={() => setOpenGallery(item.text)}
+            style={{
+              boxShadow: '0 2px 8px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05)',
+            }}
+          >
+            <div className="relative p-4">
+              {item.photos[0] ? (
+                <div className="relative group">
+                  <img
+                    src={item.photos[0]}
+                    alt={item.text}
+                    className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
+                    style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                  />
+                  {/* Mystical moving border */}
+                  <div className="absolute inset-0 border-2 border-transparent mystical-border"></div>
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              ) : (
+                <div className="w-full aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                  <span className="text-gray-300 text-2xl">+</span>
+                </div>
+              )}
+            </div>
+            <div className="px-4 pb-4 pt-2">
+              <p className={`${textSize} text-gray-900 mb-1 font-light tracking-wide uppercase`} style={{ 
+                fontFamily: "'Georgia', serif",
+                letterSpacing: '0.1em',
+                fontSize: isMobile ? '11px' : '12px'
+              }}>
+                {item.text}
+              </p>
+              <p className={`${dateSize} text-gray-500`} style={{ 
+                fontFamily: "'Arial', sans-serif",
+                fontSize: isMobile ? '9px' : '10px',
+                letterSpacing: '0.05em'
+              }}>
+                {item.date}
+              </p>
+            </div>
+          </div>
+        )
+      }
+      
+      // Photobooth style - Editorial vintage look
+      if (item.style === 'photobooth') {
+        return (
+          <div 
+            className="cursor-pointer transition-all duration-300 hover:shadow-xl relative bg-white"
+            onClick={() => setOpenGallery(item.text)}
+            style={{
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)',
+              border: '1px solid rgba(212, 165, 116, 0.3)',
+            }}
+          >
+            <div className="grid grid-cols-2 gap-3 p-4" style={{ background: '#fafafa' }}>
+              {item.photos.map((photo, idx) => (
+                <div 
+                  key={idx}
+                  className="aspect-square bg-white flex items-center justify-center overflow-hidden group relative"
+                  style={{
+                    border: '1px solid rgba(212, 165, 116, 0.2)',
+                    boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.05)',
+                  }}
+                >
+                  {photo ? (
+                    <>
+                      <img
+                        src={photo}
+                        alt={`${item.text} ${idx + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        style={{ filter: 'sepia(10%) contrast(1.1)' }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+                      <span className="text-gray-300 text-lg">📷</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="px-4 pb-4 pt-3" style={{ background: '#fff', borderTop: '1px solid rgba(212, 165, 116, 0.1)' }}>
+              <p className={`${textSize} text-gray-900 mb-1 font-light tracking-wide`} style={{ 
+                fontFamily: "'Georgia', serif",
+                fontSize: isMobile ? '13px' : '14px',
+                letterSpacing: '0.05em'
+              }}>
+                {item.text}
+              </p>
+              <p className={`${dateSize} text-gray-500`} style={{ 
+                fontFamily: "'Arial', sans-serif",
+                fontSize: isMobile ? '9px' : '10px',
+                letterSpacing: '0.05em'
+              }}>
+                {item.date}
+              </p>
+            </div>
+          </div>
+        )
+      }
+      
+      // Default gallery style - Editorial 4 photo grid
+      return (
+        <div 
+          className="cursor-pointer transition-all duration-300 hover:shadow-xl relative bg-white overflow-hidden"
+          onClick={() => setOpenGallery(item.text)}
+          style={{
+            boxShadow: '0 2px 8px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05)',
+          }}
+        >
+          <div className="grid grid-cols-2 gap-2 p-3">
+            {item.photos.map((photo, idx) => (
+              <div 
+                key={idx}
+                className="aspect-square bg-gray-50 flex items-center justify-center overflow-hidden group relative"
+                style={{
+                  boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.05)',
+                }}
+              >
+                {photo ? (
+                  <>
+                    <img
+                      src={photo}
+                      alt={`${item.text} ${idx + 1}`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      style={{ filter: 'grayscale(15%) contrast(1.05)' }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </>
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                    <span className="text-gray-300 text-sm font-light">+</span>
+                  </div>
                 )}
               </div>
-            )}
+            ))}
+          </div>
+          <div className="px-4 pb-4 pt-3 border-t border-gray-100">
+            <p className={`${textSize} text-gray-900 mb-1 font-light tracking-wide uppercase`} style={{ 
+              fontFamily: "'Georgia', serif",
+              letterSpacing: '0.1em',
+              fontSize: isMobile ? '11px' : '12px'
+            }}>
+              {item.text}
+            </p>
+            <p className={`${dateSize} text-gray-500`} style={{ 
+              fontFamily: "'Arial', sans-serif",
+              fontSize: isMobile ? '9px' : '10px',
+              letterSpacing: '0.05em'
+            }}>
+              {item.date}
+            </p>
           </div>
         </div>
       )
@@ -828,50 +1035,153 @@ function About() {
     }
   }, [])
 
+  // Find the open gallery item
+  const openGalleryItem = useMemo(() => {
+    if (!openGallery) return null
+    return sortedArchiveItems.find(item => item.type === 'gallery' && item.text === openGallery)
+  }, [openGallery, sortedArchiveItems])
+
   return (
-    <div className="About relative min-h-screen overflow-x-hidden">
+    <div className="About relative" style={{ overflowX: 'hidden', minHeight: '100vh' }}>
       
       <Navbar />
       
-      {/* Mobile Layout - original setup */}
-      <div className="lg:hidden">
-        <div className="absolute top-[6%] left-1/2  text-5xl md:text-8xl text-center z-20 text-gray-700" style={{ fontFamily: "'Melo', sans-serif" }}>
-          Lauren Yip
+      {/* Gallery Modal */}
+      {openGalleryItem && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
+          onClick={() => setOpenGallery(null)}
+        >
+          <div 
+            className="bg-white rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              boxShadow: '0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.05)',
+            }}
+          >
+            <div className="px-8 py-6 border-b border-gray-200 flex justify-between items-center bg-gradient-to-r from-gray-50 to-white">
+              <div>
+                <h3 className="text-2xl font-light text-gray-900 tracking-wide uppercase" style={{ 
+                  fontFamily: "'Georgia', serif",
+                  letterSpacing: '0.1em'
+                }}>
+                  {openGalleryItem.text}
+                </h3>
+                <p className="text-xs text-gray-500 mt-1" style={{ 
+                  fontFamily: "'Arial', sans-serif",
+                  letterSpacing: '0.05em'
+                }}>
+                  {openGalleryItem.date}
+                </p>
+              </div>
+              <button
+                onClick={() => setOpenGallery(null)}
+                className="text-gray-400 hover:text-gray-700 text-3xl font-light transition-colors duration-200"
+                style={{ lineHeight: '1' }}
+              >
+                ×
+              </button>
+            </div>
+            <div className={`grid gap-4 p-8 ${openGalleryItem.style === 'secret' ? 'grid-cols-1 max-w-2xl mx-auto' : 'grid-cols-2'}`}>
+              {openGalleryItem.photos.map((photo, idx) => (
+                <div 
+                  key={idx}
+                  className="aspect-square bg-gray-50 overflow-hidden relative group"
+                  style={{
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06)',
+                  }}
+                >
+                  {photo ? (
+                    <>
+                      <img
+                        src={photo}
+                        alt={`${openGalleryItem.text} ${idx + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        style={{ filter: 'grayscale(10%) contrast(1.05)' }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </>
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                      <span className="text-gray-300 text-sm font-light">Empty</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
+      )}
+      
+      {/* Mobile Layout - Editorial style */}
+      <div className="lg:hidden" style={{ marginTop: '15vh' }}>
+        {/* Static header section - always at top above archive */}
+        <div className="relative w-full" style={{ minHeight: '400px', paddingTop: '80px' }}>
+          {/* Centered main title */}
+          <div className="relative text-center z-30" style={{ width: '100%' }}>
+            <h1 className="text-5xl md:text-8xl text-gray-700 mb-4" style={{ 
+              fontFamily: "'Melo', sans-serif"
+            }}>
+              Lauren Yip
+            </h1>
+            {/* Subtitle in one line */}
+            <p className="text-gray-600 font-light text-center" style={{
+              fontFamily: "'Arial', sans-serif",
+              letterSpacing: '0.02em',
+              fontSize: '14px',
+              transform: 'none'
+            }}>
+              4th year Computer Science @ SFU · Aspiring Product Manager · Artist and Explorer
+            </p>
+          </div>
 
-        {/* Love image in top left */}
-        <img
-          src="/images/about/main/love.jpg"
-          className="aboutImage absolute top-[6%] left-[25%] rounded-md -translate-x-1/2 md:top-[18%] md:left-[22%] md:translate-x-0 w-[40%] max-w-[220px] z-20"
-          alt="love"
-        />
+          {/* Scattered images around the title */}
+          {/* Love image - top left */}
+          <img
+            src="/images/about/main/love.jpg"
+            className="aboutImage absolute z-20"
+            style={{
+              top: '60px',
+              left: '10%',
+              width: '15%',
+              maxWidth: '108px',
+              borderRadius: '5px',
+            }}
+            alt="love"
+          />
 
-        <img
-          src="/images/about/main/sitting.jpg"
-          className="aboutImage absolute left-1/2 -translate-x-1/2 w-[80%] max-w-[360px] md:bottom-[15%] md:right-[20%] md:left-auto md:translate-x-0 md:w-[30%] md:max-w-[320px] z-10 rounded-md"
-          style={{ top: 'calc(25% - 250px)' }}
-          alt="sit"
-        />
+          {/* Sitting image - positioned above archive */}
+          <img
+            src="/images/about/main/sitting.jpg"
+            className="aboutImage absolute z-10"
+            style={{
+              top: '250px',
+              right: '8%',
+              width: '18%',
+              maxWidth: '144px',
+              borderRadius: '5px',
+            }}
+            alt="sit"
+          />
 
-        <img
-          src="/images/about/main/fish.gif"
-          className="aboutImage absolute top-[9%] left-[70%] -translate-x-1/2 w-[40%] max-w-[360px] md:bottom-[6%] md:right-[40%] md:left-auto md:translate-x-0 md:w-[20%] md:max-w-[320px] z-0"
-          alt="fish"
-        />
-
-        {/* Text block - responsive vertical position */}
-        <div className="absolute md:top-[80%] md:left-[37%] left-1/2 -translate-x-1/2 text-left w-[90%] max-w-md z-[10] text-gray-700" style={{ top: 'calc(18% - 150px)' }}>
-          <ul className="list-disc list-inside text-base leading-relaxed">
-            <li>4th year Computer Science @ SFU</li>
-            <li>Aspiring Product Manager</li>
-            <li>Artist and Explorer</li>
-          
-          </ul>
+          {/* Fish gif - top right */}
+          <img
+            src="/images/about/main/fish.gif"
+            className="aboutImage absolute z-0"
+            style={{
+              top: '30px',
+              right: '12%',
+              width: '22%',
+              maxWidth: '160px',
+              transform: 'rotate(-1deg)',
+            }}
+            alt="fish"
+          />
         </div>
 
         {/* Archive Gallery - Scattered cards */}
-        {/* Archive section positioned below text and sit image */}
-        <div className="relative w-full pb-20" style={{ marginTop: 'calc(max(18vh + 120px, 25vh + min(80vw, 360px)) + 550px)' }}>
+        {/* Archive section positioned below static header */}
+        <div className="relative w-full pb-20">
           {/* Archive title */}
           <h3
             className="text-center mb-12 text-2xl md:text-3xl text-gray-700"
@@ -968,7 +1278,9 @@ function About() {
                         height: `${pos.height}px`,
                       }}
                       onClick={() => {
-                        setOpenedVinyl(openedVinyl === item.text ? null : item.text)
+                        if (item.link) {
+                          window.open(item.link, '_blank')
+                        }
                       }}
                     >
                       {renderArchiveCard(item, true)}
@@ -1093,94 +1405,86 @@ function About() {
         </div>
       </div>
 
-      {/* Desktop Layout - Fixed container with static positioning */}
-      <div className="hidden lg:block">
-        {/* Fixed container - 1200px wide, centered */}
-        <div className="absolute left-1/2 -translate-x-1/2 w-[950px] min-h-screen">
-          
-          {/* Title - Static position within container */}
-          <div 
-            className="absolute text-[120px] text-center z-20 text-gray-700"
-            style={{ 
-              fontFamily: "'Melo', sans-serif",
-              top: '120px',
-              left: '450px',
-              width: '400px'
-            }}
-          >
-            Lauren Yip
+      {/* Desktop Layout - Editorial style */}
+      <div className="hidden lg:block" style={{ marginTop: '15vh' }}>
+        {/* Static header section - always at top above archive */}
+        <div className="relative w-full" style={{ minHeight: '500px', paddingTop: '100px' }}>
+          {/* Centered main title */}
+          <div className="relative text-center z-30 left-1/2 -translate-x-1/2" style={{ width: '100%' }}>
+            <h1 className="text-[120px] text-gray-700 mb-6" style={{ 
+              fontFamily: "'Melo', sans-serif"
+            }}>
+              Lauren Yip
+            </h1>
+            {/* Subtitle in one line */}
+            <p className="text-gray-600 font-light text-center" style={{
+              fontFamily: "'Arial', sans-serif",
+              letterSpacing: '0.02em',
+              fontSize: '14px',
+              transform: 'none'
+            }}>
+              4th year Computer Science @ SFU · Aspiring Product Manager · Artist and Explorer
+            </p>
           </div>
 
-          {/* Love image - Static position */}
+          {/* Scattered images around the title */}
+          {/* Love image - top left */}
           <img
             src="/images/about/main/love.jpg"
-            className="aboutImage absolute rounded-md z-20"
+            className="aboutImage absolute z-20"
             style={{
-              top: '120px',
-              left: '20px',
-              width: '250px'
+              top: '80px',
+              left: '8%',
+              width: '132px',
+              borderRadius: '5px',
             }}
             alt="love"
           />
 
-          {/* Sitting image - Static position */}
+          {/* Sitting image - positioned above archive */}
           <img
             src="/images/about/main/sitting.jpg"
-            className="aboutImage absolute rounded-md z-10"
+            className="aboutImage absolute z-10"
             style={{
-              top: '380px',
-              right: '10px',
-              width: '360px'
+              top: '300px',
+              right: '10%',
+              width: '192px',
+              borderRadius: '5px',
             }}
             alt="sit"
           />
 
-          {/* Fish gif - Static position */}
+          {/* Fish gif - top right */}
           <img
             src="/images/about/main/fish.gif"
             className="aboutImage absolute z-0"
             style={{
-              top: '300px',
-              right: '400px',
-              width: '250px'
+              top: '50px',
+              right: '15%',
+              width: '200px',
+              transform: 'rotate(-1deg)',
             }}
             alt="fish"
           />
+        </div>
 
-          {/* Text block - Static position */}
-          <div 
-            className="absolute text-left z-[10]  text-gray-700"
-            style={{
-              top: '550px',
-              left: '25px',
-              width: '400px'
-            }}
+        {/* Archive Gallery - Scattered cards */}
+        <div 
+          className="relative z-[2] left-1/2 -translate-x-1/2"
+          style={{
+            width: '950px',
+            paddingBottom: '100px'
+          }}
+        >
+          <h3
+            className="text-center mb-12 text-3xl text-gray-700"
+            style={{ fontFamily: "'Melo', sans-serif" }}
           >
-            <ul className="list-disc list-inside text-[16px] text-base leading-relaxed">
-              <li>4th year Computer Science @ SFU</li>
-              <li>Aspiring Product Manager</li>
-              <li>Artist and Explorer</li>
-            </ul>
-          </div>
+            archive
+          </h3>
 
-          {/* Archive Gallery - Scattered cards */}
-          <div 
-            className="relative z-[2] left-1/2 -translate-x-1/2"
-            style={{
-              marginTop: '750px',
-              width: '950px',
-              paddingBottom: '100px'
-            }}
-          >
-            <h3
-              className="text-center mb-12 text-3xl text-gray-700"
-              style={{ fontFamily: "'Melo', sans-serif" }}
-            >
-              archive
-            </h3>
-
-            {/* Pinned Post-it Note */}
-            <div className="absolute top-0 left-8 z-10" style={{ transform: 'rotate(-2deg)' }}>
+          {/* Pinned Post-it Note */}
+          <div className="absolute top-0 left-8 z-10" style={{ transform: 'rotate(-2deg)' }}>
               {/* Thumbtack */}
               <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
                 <div className="w-4 h-4 bg-gray-400 rounded-full shadow-lg"></div>
@@ -1203,9 +1507,9 @@ function About() {
               </div>
             </div>
 
-            <div className="relative w-full" style={{ minHeight: `${((desktopMusicPositions.shelfBottom || 187) + (essayItems.length > 0 ? 200 : 0)) + Math.ceil(otherItems.length / 3) * 280}px` }}>
-              {/* Wooden Shelf for Music Items - Right Aligned */}
-              {musicItems.length > 0 && (
+          <div className="relative w-full" style={{ minHeight: `${((desktopMusicPositions.shelfBottom || 187) + (essayItems.length > 0 ? 200 : 0)) + Math.ceil(otherItems.length / 3) * 280}px` }}>
+            {/* Wooden Shelf for Music Items - Right Aligned */}
+            {musicItems.length > 0 && (
                 <div 
                   className="absolute z-15"
                   style={{
@@ -1241,10 +1545,10 @@ function About() {
                     ))}
                   </div>
                 </div>
-              )}
+            )}
 
-              {/* Music Items on Shelf */}
-              {musicItems.map((item, index) => {
+            {/* Music Items on Shelf */}
+            {musicItems.map((item, index) => {
                 const pos = desktopMusicPositions.positions[index]
                 if (!pos) return null
                 return (
@@ -1259,16 +1563,18 @@ function About() {
                       height: `${pos.height}px`,
                     }}
                     onClick={() => {
-                      setOpenedVinyl(openedVinyl === item.text ? null : item.text)
+                      if (item.link) {
+                        window.open(item.link, '_blank')
+                      }
                     }}
                   >
                     {renderArchiveCard(item, false)}
                   </div>
                 )
-              })}
+            })}
 
-              {/* Essay Scrolling Window */}
-              {essayItems.length > 0 && (
+            {/* Essay Scrolling Window */}
+            {essayItems.length > 0 && (
                 <div
                   className="absolute rounded-[5px] bg-white overflow-hidden"
                   style={{
@@ -1402,8 +1708,7 @@ function About() {
                     {renderArchiveCard(item, false)}
                   </div>
                 )
-              })}
-            </div>
+            })}
           </div>
         </div>
       </div>
