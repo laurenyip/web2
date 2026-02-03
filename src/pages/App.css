@@ -224,7 +224,7 @@ p1 {
 
 /* Webkit browsers (Chrome, Safari, Edge) */
 .essay-scrollbar::-webkit-scrollbar {
-  width: 8px;
+  width: 14px;
 }
 
 .essay-scrollbar::-webkit-scrollbar-track {
@@ -232,13 +232,12 @@ p1 {
 }
 
 .essay-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-color);
-  border-radius: 4px;
-  transition: background 0.3s ease;
-}
-
-.essay-scrollbar::-webkit-scrollbar-thumb:hover {
-  opacity: 0.8;
+  background-color: rgba(237, 190, 228, 0.3);
+  background-repeat: repeat-y;
+  background-position: center;
+  border-radius: 7px;
+  transition: opacity 0.3s ease;
+  border: 1px solid rgba(237, 190, 228, 0.3);
 }
 
 /* Firefox */
