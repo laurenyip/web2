@@ -31,20 +31,6 @@ const ARCHIVE_ITEMS = [
       // link: 'https://example.com',
     },
     {
-      type: 'book',
-      text: 'Crooked Kingdom',
-      image: '/images/about/current/crooked.jpg',
-      author: 'Leigh Bardugo',
-      date: '2025-01-20',
-    },
-    {
-      type: 'book',
-      text: 'Middlemarch',
-      image: '/images/about/current/middle.jpg',
-      author: 'George Eliot',
-      date: '2024-12-10',
-    },
-    {
       type: 'music',
       text: 'Clash',
       date: '2025-12-28',
@@ -209,6 +195,10 @@ const ARCHIVE_ITEMS = [
     {
       type: 'quote',
       text: "Is this enough?",
+    },
+    {
+      type: 'quote',
+      text: "The only real test of intelligence is if you get what you want out of life.",
     },
     /*
     {
@@ -1099,16 +1089,64 @@ function About() {
       )
     }
 
-    // Quote card
+    // Quote card - Paper strip design
     if (item.type === 'quote') {
+      const paperWidth = isMobile ? 140 : 180
+      const paperHeight = isMobile ? 80 : 100
+      
       return (
-        <div className={cardClasses}>
-          <div className={padding}>
-            <p className={`${textSize} text-gray-700 mb-2 italic leading-relaxed`}>"{item.text}"</p>
+        <div 
+          className="relative"
+          style={{
+            width: `${paperWidth}px`,
+            height: `${paperHeight}px`,
+            margin: '0 auto',
+          }}
+        >
+          {/* Paper strip with quote */}
+          <div
+            className="relative"
+            style={{
+              width: `${paperWidth}px`,
+              height: `${paperHeight}px`,
+              transform: 'rotate(-2deg)',
+              background: '#fffef7',
+              border: '1px solid #e8e6d9',
+              boxShadow: 'inset 0 0 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.2)',
+              padding: '10px 12px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <p 
+              className="text-center leading-tight"
+              style={{
+                fontSize: isMobile ? '11px' : '12px',
+                color: '#2c2c2c',
+                fontFamily: "'Arial', sans-serif",
+                fontWeight: 400,
+                lineHeight: '1.4',
+                margin: 0,
+              }}
+            >
+              {item.text}
+            </p>
             {item.author && (
-              <p className={`${dateSize} text-gray-700 mb-2 text-right`}>— {item.author}</p>
+              <p 
+                className="text-center mt-2"
+                style={{
+                  fontSize: isMobile ? '9px' : '10px',
+                  color: '#666',
+                  fontFamily: "'Arial', sans-serif",
+                  fontStyle: 'italic',
+                  margin: '6px 0 0 0',
+                }}
+              >
+                — {item.author}
+              </p>
             )}
-            <p className={`${dateSize} text-gray-700`}>{item.date}</p>
           </div>
         </div>
       )
