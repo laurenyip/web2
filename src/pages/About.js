@@ -638,7 +638,7 @@ function About() {
   }, [otherItems, desktopMusicPositions, desktopEssayWindowTop, essayItems, essayWindowHeight])
 
   // Render different card templates based on content type
-  const renderArchiveCard = (item, isMobile) => {
+  const renderArchiveCard = useCallback((item, isMobile) => {
     const cardClasses = "bg-white rounded-[5px] overflow-hidden border border-gray-300"
     const textSize = isMobile ? 'text-xs' : 'text-sm'
     const dateSize = isMobile ? 'text-xs' : 'text-xs'
@@ -704,6 +704,7 @@ function About() {
               alt={item.text}
               className="w-full object-contain"
               style={{ maxHeight: '300px' }}
+              loading="lazy"
             />
           )}
           <div className={padding}>
@@ -822,6 +823,7 @@ function About() {
                   objectFit: 'cover',
                   display: 'block',
                 }}
+                loading="lazy"
               />
             ) : (
               <div className="bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center w-full h-full">
@@ -979,6 +981,7 @@ function About() {
                         alt={`${item.text} ${idx + 1}`}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         style={{ filter: 'sepia(10%) contrast(1.1)' }}
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </>
@@ -1076,6 +1079,7 @@ function About() {
               alt={item.text}
               className="w-full object-contain"
               style={{ maxHeight: 'none' }}
+              loading="lazy"
             />
           )}
           <div className={padding}>
@@ -1184,7 +1188,7 @@ function About() {
         </div>
       </div>
     )
-  }
+  }, [albumColors])
 
   useEffect(() => {
     const header = document.querySelector('.navbar')
@@ -1265,6 +1269,7 @@ function About() {
                         alt={`${openGalleryItem.text} ${idx + 1}`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         style={{ filter: 'grayscale(10%) contrast(1.05)' }}
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </>
@@ -1303,32 +1308,200 @@ function About() {
           </div>
 
           {/* Scattered images around the title */}
-          {/* Love image - top left */}
+          {/* About images - scattered around */}
           <img
-            src="/images/about/main/love.jpg"
+            src="/images/about/main/about1.jpg"
             className="aboutImage absolute z-20"
             style={{
               top: '60px',
               left: '10%',
-              width: '15%',
-              maxWidth: '108px',
-              borderRadius: '5px',
+              width: '7.5%',
+              maxWidth: '54px',
             }}
-            alt="love"
+            alt="about1"
+            loading="eager"
           />
 
-          {/* Sitting image - positioned above archive */}
           <img
-            src="/images/about/main/sitting.jpg"
+            src="/images/about/main/about2.jpg"
             className="aboutImage absolute z-10"
             style={{
               top: '250px',
               right: '8%',
-              width: '18%',
-              maxWidth: '144px',
-              borderRadius: '5px',
+              width: '9%',
+              maxWidth: '72px',
             }}
-            alt="sit"
+            alt="about2"
+            loading="eager"
+          />
+
+          <img
+            src="/images/about/main/about3.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '80px',
+              left: '5%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about3"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about4.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '120px',
+              left: '20%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about4"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about5.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '180px',
+              left: '3%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about5"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about6.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '220px',
+              left: '15%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about6"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about7.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '280px',
+              left: '8%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about7"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about8.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '100px',
+              right: '5%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about8"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about9.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '140px',
+              right: '15%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about9"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about10.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '200px',
+              right: '3%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about10"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about11.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '240px',
+              right: '18%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about11"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about12.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '300px',
+              right: '12%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about12"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about13.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '120px',
+              left: '25%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about13"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about14.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '60px',
+              right: '22%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about14"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about15.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '340px',
+              left: '22%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about15"
+            loading="lazy"
           />
 
           {/* Fish gif - top right */}
@@ -1348,7 +1521,7 @@ function About() {
 
         {/* Archive Gallery - Scattered cards */}
         {/* Archive section positioned below static header */}
-        <div className="relative w-full pb-20">
+        <div className="relative w-full pb-20" style={{ marginTop: '200px' }}>
           {/* Archive title */}
           <h3
             className="text-center mb-12 text-2xl md:text-3xl text-gray-700"
@@ -1573,30 +1746,186 @@ function About() {
           </div>
 
           {/* Scattered images around the title */}
-          {/* Love image - top left */}
+          {/* About images - scattered around */}
           <img
-            src="/images/about/main/love.jpg"
+            src="/images/about/main/about1.jpg"
             className="aboutImage absolute z-20"
             style={{
               top: '80px',
               left: '8%',
-              width: '132px',
-              borderRadius: '5px',
+              width: '66px',
             }}
-            alt="love"
+            alt="about1"
+            loading="eager"
           />
 
-          {/* Sitting image - positioned above archive */}
           <img
-            src="/images/about/main/sitting.jpg"
+            src="/images/about/main/about2.jpg"
             className="aboutImage absolute z-10"
             style={{
               top: '300px',
               right: '10%',
-              width: '192px',
-              borderRadius: '5px',
+              width: '96px',
             }}
-            alt="sit"
+            alt="about2"
+            loading="eager"
+          />
+
+          <img
+            src="/images/about/main/about3.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '100px',
+              left: '3%',
+              width: '66px',
+            }}
+            alt="about3"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about4.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '140px',
+              left: '15%',
+              width: '66px',
+            }}
+            alt="about4"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about5.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '200px',
+              left: '1%',
+              width: '66px',
+            }}
+            alt="about5"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about6.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '240px',
+              left: '12%',
+              width: '66px',
+            }}
+            alt="about6"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about7.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '320px',
+              left: '6%',
+              width: '66px',
+            }}
+            alt="about7"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about8.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '120px',
+              right: '3%',
+              width: '66px',
+            }}
+            alt="about8"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about9.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '160px',
+              right: '12%',
+              width: '66px',
+            }}
+            alt="about9"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about10.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '220px',
+              right: '1%',
+              width: '66px',
+            }}
+            alt="about10"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about11.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '260px',
+              right: '15%',
+              width: '66px',
+            }}
+            alt="about11"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about12.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '340px',
+              right: '8%',
+              width: '66px',
+            }}
+            alt="about12"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about13.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '140px',
+              left: '22%',
+              width: '66px',
+            }}
+            alt="about13"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about14.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '80px',
+              right: '20%',
+              width: '66px',
+            }}
+            alt="about14"
+            loading="lazy"
+          />
+
+          <img
+            src="/images/about/main/about15.jpg"
+            className="aboutImage absolute z-15"
+            style={{
+              top: '360px',
+              right: '15%',
+              width: '82.5px',
+              borderRadius: '1px',
+            }}
+            alt="about15"
+            loading="lazy"
           />
 
           {/* Fish gif - top right */}
@@ -1618,7 +1947,8 @@ function About() {
           className="relative z-[2] left-1/2 -translate-x-1/2"
           style={{
             width: '950px',
-            paddingBottom: '100px'
+            paddingBottom: '100px',
+            marginTop: '100px'
           }}
         >
           <h3
