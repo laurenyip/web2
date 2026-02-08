@@ -115,7 +115,7 @@ function Writing() {
                   <img
                     src={piece.imgSrc}
                     alt={piece.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full md:h-48 object-contain md:object-cover"
                   />
                 </div>
               </a>

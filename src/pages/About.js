@@ -86,8 +86,8 @@ const ARCHIVE_ITEMS = [
       date: '2024-10-15',
       photos: [
         '/images/about/current/romeo.jpg',
-        null, // Empty slot - can be edited later
-        null, // Empty slot - can be edited later
+        '/images/about/main/About16.jpg',
+        '/images/about/main/About17.jpg',
         null, // Empty slot - can be edited later
       ],
     },
@@ -105,10 +105,39 @@ const ARCHIVE_ITEMS = [
       text: 'Gallery 3',
       date: '2025-01-01',
       photos: [
-        null, // Empty slot - can be edited later
-        null, // Empty slot - can be edited later
-        null, // Empty slot - can be edited later
-        null, // Empty slot - can be edited later
+        '/images/about/gallery/20250718_205003.jpg',
+        '/images/about/gallery/20250718_205258.jpg',
+        '/images/about/gallery/20250719_213528.jpg',
+        '/images/about/gallery/20250824_145333.jpg',
+        '/images/about/gallery/20250825_083333.jpg',
+        '/images/about/gallery/20250904_174733.jpg',
+        '/images/about/gallery/20250905_205032.jpg',
+        '/images/about/gallery/20250906_113038.jpg',
+        '/images/about/gallery/20250909_144543.jpg',
+        '/images/about/gallery/20250912_114259.jpg',
+        '/images/about/gallery/20250912_121446.jpg',
+        '/images/about/gallery/20250912_123804.jpg',
+        '/images/about/gallery/20250912_145518.jpg',
+        '/images/about/gallery/20250915_104335.jpg',
+        '/images/about/gallery/20250918_160851.jpg',
+        '/images/about/gallery/20250918_191351.jpg',
+        '/images/about/gallery/20250919_193319.jpg',
+        '/images/about/gallery/20250924_170606.jpg',
+        '/images/about/gallery/20251004_112837.jpg',
+        '/images/about/gallery/20251012_113901.jpg',
+        '/images/about/gallery/20251018_131634.jpg',
+        '/images/about/gallery/20251020_173039.jpg',
+        '/images/about/gallery/20251107_134721.jpg',
+        '/images/about/gallery/20251114_110949.jpg',
+        '/images/about/gallery/20251115_172928.jpg',
+        '/images/about/gallery/20251120_101419.jpg',
+        '/images/about/gallery/20251120_181302.jpg',
+        '/images/about/gallery/20251122_180126.jpg',
+        '/images/about/gallery/20260127_103755.jpg',
+        '/images/about/gallery/20260127_191216.jpg',
+        '/images/about/gallery/20260129_191226.jpg',
+        '/images/about/gallery/20260129_191236.jpg',
+        '/images/about/gallery/3b73dbbe-9bb2-406b-9d64-ed931c607fc4.jpg',
       ],
       style: 'photobooth', // Photobooth style
     },
@@ -117,8 +146,8 @@ const ARCHIVE_ITEMS = [
       text: 'Gallery 4',
       date: '2025-01-01',
       photos: [
-        null, // Empty slot - can be edited later
-        null, // Empty slot - can be edited later
+        '/images/about/main/About16.jpg',
+        '/images/about/main/About17.jpg',
         null, // Empty slot - can be edited later
         null, // Empty slot - can be edited later
       ],
@@ -225,6 +254,7 @@ function About() {
   const [scrollY, setScrollY] = useState(0)
   const [albumColors, setAlbumColors] = useState({})
   const [openGallery, setOpenGallery] = useState(null)
+  const [openAboutImage, setOpenAboutImage] = useState(null)
   const mobileEssayScrollRef = useRef(null)
   const desktopEssayScrollRef = useRef(null)
 
@@ -1217,6 +1247,41 @@ function About() {
       
       <Navbar />
       
+      {/* About Image Modal */}
+      {openAboutImage && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-90 z-[60] flex items-center justify-center p-4"
+          onClick={() => setOpenAboutImage(null)}
+          style={{
+            animation: 'fadeIn 0.3s ease-in-out',
+          }}
+        >
+          <div 
+            className="relative max-w-[95vw] max-h-[95vh] flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              animation: 'scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            }}
+          >
+            <img
+              src={openAboutImage}
+              alt="Enlarged view"
+              className="max-w-full max-h-[95vh] object-contain rounded-lg shadow-2xl"
+              style={{
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+              }}
+            />
+            <button
+              onClick={() => setOpenAboutImage(null)}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light transition-colors duration-200 bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center"
+              style={{ lineHeight: '1' }}
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Gallery Modal */}
       {openGalleryItem && (
         <div 
@@ -1311,7 +1376,7 @@ function About() {
           {/* About images - scattered around */}
           <img
             src="/images/about/main/about1.jpg"
-            className="aboutImage absolute z-20"
+            className="aboutImage absolute z-20 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '10px',
               left: '40%',
@@ -1320,11 +1385,12 @@ function About() {
             }}
             alt="about1"
             loading="eager"
+            onClick={() => setOpenAboutImage('/images/about/main/about1.jpg')}
           />
 
           <img
             src="/images/about/main/about2.jpg"
-            className="aboutImage absolute z-10"
+            className="aboutImage absolute z-10 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '250px',
               right: '8%',
@@ -1333,11 +1399,12 @@ function About() {
             }}
             alt="about2"
             loading="eager"
+            onClick={() => setOpenAboutImage('/images/about/main/about2.jpg')}
           />
 
           <img
             src="/images/about/main/about3.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '80px',
               left: '5%',
@@ -1346,11 +1413,12 @@ function About() {
             }}
             alt="about3"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About3.jpg')}
           />
 
           <img
             src="/images/about/main/about4.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '20px',
               left: '20%',
@@ -1359,11 +1427,12 @@ function About() {
             }}
             alt="about4"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About4.jpg')}
           />
 
           <img
             src="/images/about/main/about5.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '180px',
               left: '3%',
@@ -1372,11 +1441,12 @@ function About() {
             }}
             alt="about5"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/about5.jpg')}
           />
 
           <img
             src="/images/about/main/about6.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '220px',
               left: '15%',
@@ -1385,11 +1455,12 @@ function About() {
             }}
             alt="about6"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About6.jpg')}
           />
 
           <img
             src="/images/about/main/about7.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '280px',
               left: '8%',
@@ -1398,11 +1469,12 @@ function About() {
             }}
             alt="about7"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/about7.jpg')}
           />
 
           <img
             src="/images/about/main/about8.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '100px',
               right: '5%',
@@ -1411,11 +1483,12 @@ function About() {
             }}
             alt="about8"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About8.jpg')}
           />
 
           <img
             src="/images/about/main/about9.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '240px',
               right: '44%',
@@ -1424,11 +1497,12 @@ function About() {
             }}
             alt="about9"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/about9.jpg')}
           />
 
           <img
             src="/images/about/main/about10.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '200px',
               right: '3%',
@@ -1437,11 +1511,12 @@ function About() {
             }}
             alt="about10"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About10.jpg')}
           />
 
           <img
             src="/images/about/main/about11.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '240px',
               right: '18%',
@@ -1450,11 +1525,12 @@ function About() {
             }}
             alt="about11"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/about11.jpg')}
           />
 
           <img
             src="/images/about/main/about12.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '300px',
               right: '12%',
@@ -1463,11 +1539,12 @@ function About() {
             }}
             alt="about12"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About12.jpg')}
           />
 
           <img
             src="/images/about/main/about13.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '220px',
               left: '35%',
@@ -1476,11 +1553,12 @@ function About() {
             }}
             alt="about13"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/about13.jpg')}
           />
 
           <img
             src="/images/about/main/about14.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '60px',
               right: '22%',
@@ -1489,11 +1567,12 @@ function About() {
             }}
             alt="about14"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About14.jpg')}
           />
 
           <img
             src="/images/about/main/about15.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '340px',
               left: '22%',
@@ -1502,6 +1581,35 @@ function About() {
             }}
             alt="about15"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About15.jpg')}
+          />
+
+          <img
+            src="/images/about/main/About16.jpg"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            style={{
+              top: '400px',
+              left: '30%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about16"
+            loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About16.jpg')}
+          />
+
+          <img
+            src="/images/about/main/About17.jpg"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            style={{
+              top: '460px',
+              left: '38%',
+              width: '7.5%',
+              maxWidth: '54px',
+            }}
+            alt="about17"
+            loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About17.jpg')}
           />
 
           {/* Fish gif - top right */}
@@ -1749,7 +1857,7 @@ function About() {
           {/* About images - scattered around */}
           <img
             src="/images/about/main/about1.jpg"
-            className="aboutImage absolute z-20"
+            className="aboutImage absolute z-20 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '80px',
               left: '8%',
@@ -1757,11 +1865,12 @@ function About() {
             }}
             alt="about1"
             loading="eager"
+            onClick={() => setOpenAboutImage('/images/about/main/about1.jpg')}
           />
 
           <img
             src="/images/about/main/about2.jpg"
-            className="aboutImage absolute z-10"
+            className="aboutImage absolute z-10 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '380px',
               right: '14%',
@@ -1769,11 +1878,12 @@ function About() {
             }}
             alt="about2"
             loading="eager"
+            onClick={() => setOpenAboutImage('/images/about/main/about2.jpg')}
           />
 
           <img
             src="/images/about/main/about3.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '100px',
               left: '3%',
@@ -1781,11 +1891,12 @@ function About() {
             }}
             alt="about3"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About3.jpg')}
           />
 
           <img
             src="/images/about/main/about4.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '140px',
               left: '15%',
@@ -1793,11 +1904,12 @@ function About() {
             }}
             alt="about4"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About4.jpg')}
           />
 
           <img
             src="/images/about/main/about5.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '200px',
               left: '1%',
@@ -1805,11 +1917,12 @@ function About() {
             }}
             alt="about5"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/about5.jpg')}
           />
 
           <img
             src="/images/about/main/about6.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '240px',
               left: '12%',
@@ -1817,11 +1930,12 @@ function About() {
             }}
             alt="about6"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About6.jpg')}
           />
 
           <img
             src="/images/about/main/about7.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '320px',
               left: '6%',
@@ -1829,11 +1943,12 @@ function About() {
             }}
             alt="about7"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/about7.jpg')}
           />
 
           <img
             src="/images/about/main/about8.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '120px',
               right: '3%',
@@ -1841,11 +1956,12 @@ function About() {
             }}
             alt="about8"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About8.jpg')}
           />
 
           <img
             src="/images/about/main/about9.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '160px',
               right: '12%',
@@ -1853,11 +1969,12 @@ function About() {
             }}
             alt="about9"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/about9.jpg')}
           />
 
           <img
             src="/images/about/main/about10.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '220px',
               right: '1%',
@@ -1865,11 +1982,12 @@ function About() {
             }}
             alt="about10"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About10.jpg')}
           />
 
           <img
             src="/images/about/main/about11.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '260px',
               right: '15%',
@@ -1877,11 +1995,12 @@ function About() {
             }}
             alt="about11"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/about11.jpg')}
           />
 
           <img
             src="/images/about/main/about12.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '340px',
               right: '8%',
@@ -1889,11 +2008,12 @@ function About() {
             }}
             alt="about12"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About12.jpg')}
           />
 
           <img
             src="/images/about/main/about13.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '140px',
               left: '22%',
@@ -1901,11 +2021,12 @@ function About() {
             }}
             alt="about13"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/about13.jpg')}
           />
 
           <img
             src="/images/about/main/about14.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '80px',
               right: '20%',
@@ -1913,11 +2034,12 @@ function About() {
             }}
             alt="about14"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About14.jpg')}
           />
 
           <img
             src="/images/about/main/about15.jpg"
-            className="aboutImage absolute z-15"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '380px',
               left: '20%',
@@ -1925,6 +2047,33 @@ function About() {
             }}
             alt="about15"
             loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About15.jpg')}
+          />
+
+          <img
+            src="/images/about/main/About16.jpg"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            style={{
+              top: '420px',
+              left: '28%',
+              width: '66px',
+            }}
+            alt="about16"
+            loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About16.jpg')}
+          />
+
+          <img
+            src="/images/about/main/About17.jpg"
+            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            style={{
+              top: '460px',
+              left: '36%',
+              width: '66px',
+            }}
+            alt="about17"
+            loading="lazy"
+            onClick={() => setOpenAboutImage('/images/about/main/About17.jpg')}
           />
 
           {/* Fish gif - top right */}
