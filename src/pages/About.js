@@ -82,17 +82,7 @@ const ARCHIVE_ITEMS = [
     },
     {
       type: 'gallery',
-      text: 'Hike',
-      date: '2025-07-18',
-      photos: [
-        '/images/about/hike/hike.jpg',
-        '/images/about/hike/englishbay.jpg',
-        '/images/about/hike/hike1.jpg',
-      ],
-    },
-    {
-      type: 'gallery',
-      text: 'Gallery 3',
+      text: 'Euro Fall',
       date: '2025-01-01',
       photos: [
         '/images/about/gallery/batu.jpg',
@@ -1052,25 +1042,22 @@ function About() {
               </div>
             ))}
           </div>
-          {/* Hide title/date for Hike gallery */}
-          {item.text !== 'Hike' && (
-            <div className="px-4 pb-4 pt-3 border-t border-gray-100">
-              <p className={`${textSize} text-gray-900 mb-1 font-light tracking-wide uppercase`} style={{ 
-                fontFamily: "'Georgia', serif",
-                letterSpacing: '0.1em',
-                fontSize: isMobile ? '11px' : '12px'
-              }}>
-                {item.text}
-              </p>
-              <p className={`${dateSize} text-gray-500`} style={{ 
-                fontFamily: "'Arial', sans-serif",
-                fontSize: isMobile ? '9px' : '10px',
-                letterSpacing: '0.05em'
-              }}>
-                {item.date}
-              </p>
-            </div>
-          )}
+          <div className="px-4 pb-4 pt-3 border-t border-gray-100">
+            <p className={`${textSize} text-gray-900 mb-1 font-light tracking-wide uppercase`} style={{ 
+              fontFamily: "'Georgia', serif",
+              letterSpacing: '0.1em',
+              fontSize: isMobile ? '11px' : '12px'
+            }}>
+              {item.text}
+            </p>
+            <p className={`${dateSize} text-gray-500`} style={{ 
+              fontFamily: "'Arial', sans-serif",
+              fontSize: isMobile ? '9px' : '10px',
+              letterSpacing: '0.05em'
+            }}>
+              {item.date}
+            </p>
+          </div>
         </div>
       )
     }
@@ -1407,7 +1394,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about5.jpg"
+            src="/images/about/main/About5.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '180px',
@@ -1417,7 +1404,7 @@ function About() {
             }}
             alt="about5"
             loading="lazy"
-            onClick={() => setOpenAboutImage('/images/about/main/about5.jpg')}
+            onClick={() => setOpenAboutImage('/images/about/main/About5.jpg')}
           />
 
           <img
@@ -1435,7 +1422,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about7.jpg"
+            src="/images/about/main/About7.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '280px',
@@ -1445,7 +1432,7 @@ function About() {
             }}
             alt="about7"
             loading="lazy"
-            onClick={() => setOpenAboutImage('/images/about/main/about7.jpg')}
+            onClick={() => setOpenAboutImage('/images/about/main/About7.jpg')}
           />
 
           <img
@@ -1491,7 +1478,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about11.jpg"
+            src="/images/about/main/About11.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '240px',
@@ -1501,11 +1488,11 @@ function About() {
             }}
             alt="about11"
             loading="lazy"
-            onClick={() => setOpenAboutImage('/images/about/main/about11.jpg')}
+            onClick={() => setOpenAboutImage('/images/about/main/About11.jpg')}
           />
 
           <img
-            src="/images/about/main/about12.jpg"
+            src="/images/about/main/About12.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '300px',
@@ -1519,7 +1506,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about13.jpg"
+            src="/images/about/main/About13.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '220px',
@@ -1529,11 +1516,11 @@ function About() {
             }}
             alt="about13"
             loading="lazy"
-            onClick={() => setOpenAboutImage('/images/about/main/about13.jpg')}
+            onClick={() => setOpenAboutImage('/images/about/main/About13.jpg')}
           />
 
           <img
-            src="/images/about/main/about14.jpg"
+            src="/images/about/main/About14.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '60px',
@@ -1547,7 +1534,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about15.jpg"
+            src="/images/about/main/About15.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '340px',
@@ -1867,7 +1854,7 @@ function About() {
               width: '66px',
             }}
             alt="about3"
-            loading="lazy"
+            loading="eager"
             onClick={() => setOpenAboutImage('/images/about/main/About3.jpg')}
           />
 
@@ -1880,12 +1867,12 @@ function About() {
               width: '66px',
             }}
             alt="about4"
-            loading="lazy"
+            loading="eager"
             onClick={() => setOpenAboutImage('/images/about/main/About4.jpg')}
           />
 
           <img
-            src="/images/about/main/about5.jpg"
+            src="/images/about/main/About5.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '200px',
@@ -1893,8 +1880,8 @@ function About() {
               width: '66px',
             }}
             alt="about5"
-            loading="lazy"
-            onClick={() => setOpenAboutImage('/images/about/main/about5.jpg')}
+            loading="eager"
+            onClick={() => setOpenAboutImage('/images/about/main/About5.jpg')}
           />
 
           <img
@@ -1906,7 +1893,7 @@ function About() {
               width: '66px',
             }}
             alt="about6"
-            loading="lazy"
+            loading="eager"
             onClick={() => setOpenAboutImage('/images/about/main/About6.jpg')}
           />
 
@@ -1919,8 +1906,8 @@ function About() {
               width: '66px',
             }}
             alt="about7"
-            loading="lazy"
-            onClick={() => setOpenAboutImage('/images/about/main/about7.jpg')}
+            loading="eager"
+            onClick={() => setOpenAboutImage('/images/about/main/About7.jpg')}
           />
 
           <img
@@ -1932,12 +1919,12 @@ function About() {
               width: '66px',
             }}
             alt="about8"
-            loading="lazy"
+            loading="eager"
             onClick={() => setOpenAboutImage('/images/about/main/About8.jpg')}
           />
 
           <img
-            src="/images/about/main/about9.jpg"
+            src="/images/about/main/About9.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '160px',
@@ -1945,8 +1932,8 @@ function About() {
               width: '66px',
             }}
             alt="about9"
-            loading="lazy"
-            onClick={() => setOpenAboutImage('/images/about/main/about9.jpg')}
+            loading="eager"
+            onClick={() => setOpenAboutImage('/images/about/main/About9.jpg')}
           />
 
           <img
@@ -1958,7 +1945,7 @@ function About() {
               width: '66px',
             }}
             alt="about10"
-            loading="lazy"
+            loading="eager"
             onClick={() => setOpenAboutImage('/images/about/main/About10.jpg')}
           />
 
@@ -1971,8 +1958,8 @@ function About() {
               width: '66px',
             }}
             alt="about11"
-            loading="lazy"
-            onClick={() => setOpenAboutImage('/images/about/main/about11.jpg')}
+            loading="eager"
+            onClick={() => setOpenAboutImage('/images/about/main/About11.jpg')}
           />
 
           <img
@@ -1984,12 +1971,12 @@ function About() {
               width: '66px',
             }}
             alt="about12"
-            loading="lazy"
+            loading="eager"
             onClick={() => setOpenAboutImage('/images/about/main/About12.jpg')}
           />
 
           <img
-            src="/images/about/main/about13.jpg"
+            src="/images/about/main/About13.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '140px',
@@ -1997,8 +1984,8 @@ function About() {
               width: '66px',
             }}
             alt="about13"
-            loading="lazy"
-            onClick={() => setOpenAboutImage('/images/about/main/about13.jpg')}
+            loading="eager"
+            onClick={() => setOpenAboutImage('/images/about/main/About13.jpg')}
           />
 
           <img
@@ -2010,7 +1997,7 @@ function About() {
               width: '66px',
             }}
             alt="about14"
-            loading="lazy"
+            loading="eager"
             onClick={() => setOpenAboutImage('/images/about/main/About14.jpg')}
           />
 
@@ -2023,7 +2010,7 @@ function About() {
               width: '66px',
             }}
             alt="about15"
-            loading="lazy"
+            loading="eager"
             onClick={() => setOpenAboutImage('/images/about/main/About15.jpg')}
           />
 
@@ -2036,7 +2023,7 @@ function About() {
               width: '66px',
             }}
             alt="about16"
-            loading="lazy"
+            loading="eager"
             onClick={() => setOpenAboutImage('/images/about/main/About16.jpg')}
           />
 
