@@ -1313,8 +1313,8 @@ function About() {
             src="/images/about/main/about1.jpg"
             className="aboutImage absolute z-20"
             style={{
-              top: '60px',
-              left: '10%',
+              top: '10px',
+              left: '40%',
               width: '7.5%',
               maxWidth: '54px',
             }}
@@ -1352,7 +1352,7 @@ function About() {
             src="/images/about/main/about4.jpg"
             className="aboutImage absolute z-15"
             style={{
-              top: '120px',
+              top: '20px',
               left: '20%',
               width: '7.5%',
               maxWidth: '54px',
@@ -1417,8 +1417,8 @@ function About() {
             src="/images/about/main/about9.jpg"
             className="aboutImage absolute z-15"
             style={{
-              top: '140px',
-              right: '15%',
+              top: '240px',
+              right: '44%',
               width: '7.5%',
               maxWidth: '54px',
             }}
@@ -1469,8 +1469,8 @@ function About() {
             src="/images/about/main/about13.jpg"
             className="aboutImage absolute z-15"
             style={{
-              top: '120px',
-              left: '25%',
+              top: '220px',
+              left: '35%',
               width: '7.5%',
               maxWidth: '54px',
             }}
@@ -1763,8 +1763,8 @@ function About() {
             src="/images/about/main/about2.jpg"
             className="aboutImage absolute z-10"
             style={{
-              top: '300px',
-              right: '10%',
+              top: '380px',
+              right: '14%',
               width: '96px',
             }}
             alt="about2"
@@ -1919,10 +1919,9 @@ function About() {
             src="/images/about/main/about15.jpg"
             className="aboutImage absolute z-15"
             style={{
-              top: '360px',
-              right: '15%',
-              width: '82.5px',
-              borderRadius: '1px',
+              top: '380px',
+              left: '20%',
+              width: '66px',
             }}
             alt="about15"
             loading="lazy"
