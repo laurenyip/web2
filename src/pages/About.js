@@ -82,75 +82,46 @@ const ARCHIVE_ITEMS = [
     },
     {
       type: 'gallery',
-      text: 'Broadway',
-      date: '2024-10-15',
-      photos: [
-        '/images/about/current/romeo.jpg',
-        '/images/about/main/About16.jpg',
-        '/images/about/main/About17.jpg',
-        null, // Empty slot - can be edited later
-      ],
-    },
-    {
-      type: 'gallery',
       text: 'Hike',
       date: '2025-07-18',
       photos: [
-        '/images/about/current/babel.jpg',
+        '/images/about/hike/hike.jpg',
+        '/images/about/hike/englishbay.jpg',
+        '/images/about/hike/hike1.jpg',
       ],
-      style: 'secret', // Secret album with mystical border
     },
     {
       type: 'gallery',
       text: 'Gallery 3',
       date: '2025-01-01',
       photos: [
-        '/images/about/gallery/20250718_205003.jpg',
-        '/images/about/gallery/20250718_205258.jpg',
-        '/images/about/gallery/20250719_213528.jpg',
-        '/images/about/gallery/20250824_145333.jpg',
-        '/images/about/gallery/20250825_083333.jpg',
-        '/images/about/gallery/20250904_174733.jpg',
-        '/images/about/gallery/20250905_205032.jpg',
-        '/images/about/gallery/20250906_113038.jpg',
-        '/images/about/gallery/20250909_144543.jpg',
-        '/images/about/gallery/20250912_114259.jpg',
-        '/images/about/gallery/20250912_121446.jpg',
-        '/images/about/gallery/20250912_123804.jpg',
-        '/images/about/gallery/20250912_145518.jpg',
-        '/images/about/gallery/20250915_104335.jpg',
-        '/images/about/gallery/20250918_160851.jpg',
-        '/images/about/gallery/20250918_191351.jpg',
-        '/images/about/gallery/20250919_193319.jpg',
-        '/images/about/gallery/20250924_170606.jpg',
-        '/images/about/gallery/20251004_112837.jpg',
-        '/images/about/gallery/20251012_113901.jpg',
-        '/images/about/gallery/20251018_131634.jpg',
-        '/images/about/gallery/20251020_173039.jpg',
-        '/images/about/gallery/20251107_134721.jpg',
-        '/images/about/gallery/20251114_110949.jpg',
-        '/images/about/gallery/20251115_172928.jpg',
-        '/images/about/gallery/20251120_101419.jpg',
-        '/images/about/gallery/20251120_181302.jpg',
-        '/images/about/gallery/20251122_180126.jpg',
-        '/images/about/gallery/20260127_103755.jpg',
-        '/images/about/gallery/20260127_191216.jpg',
-        '/images/about/gallery/20260129_191226.jpg',
-        '/images/about/gallery/20260129_191236.jpg',
-        '/images/about/gallery/3b73dbbe-9bb2-406b-9d64-ed931c607fc4.jpg',
+        '/images/about/gallery/batu.jpg',
+        '/images/about/gallery/bones.jpg',
+        '/images/about/gallery/buda.jpg',
+        '/images/about/gallery/clothes.jpg',
+        '/images/about/gallery/dali.jpg',
+        '/images/about/gallery/dam.jpg',
+        '/images/about/gallery/dresden.jpg',
+        '/images/about/gallery/giv.jpg',
+        '/images/about/gallery/green.jpg',
+        '/images/about/gallery/guell.jpg',
+        '/images/about/gallery/hk.jpg',
+        '/images/about/gallery/hk1.jpg',
+        '/images/about/gallery/hyde.jpg',
+        '/images/about/gallery/liffy.jpg',
+        '/images/about/gallery/lisbon.jpg',
+        '/images/about/gallery/monceau.jpg',
+        '/images/about/gallery/monet.jpg',
+        '/images/about/gallery/montp.jpg',
+        '/images/about/gallery/noodles.jpg',
+        '/images/about/gallery/oxford.jpg',
+        '/images/about/gallery/parapluie.jpg',
+        '/images/about/gallery/sintra.jpg',
+        '/images/about/gallery/stairs.jpg',
+        '/images/about/gallery/strawberry.jpg',
+        '/images/about/gallery/wien.jpg',
       ],
       style: 'photobooth', // Photobooth style
-    },
-    {
-      type: 'gallery',
-      text: 'Gallery 4',
-      date: '2025-01-01',
-      photos: [
-        '/images/about/main/About16.jpg',
-        '/images/about/main/About17.jpg',
-        null, // Empty slot - can be edited later
-        null, // Empty slot - can be edited later
-      ],
     },
     {
       type: 'essay',
@@ -983,7 +954,7 @@ function About() {
         )
       }
       
-      // Photobooth style - Editorial vintage look
+      // Photobooth style - Editorial vintage look (shows preview only)
       if (item.style === 'photobooth') {
         return (
           <div 
@@ -995,7 +966,8 @@ function About() {
             }}
           >
             <div className="grid grid-cols-2 gap-3 p-4" style={{ background: '#fafafa' }}>
-              {item.photos.map((photo, idx) => (
+              {/* Show only first 4 photos as preview */}
+              {item.photos.slice(0, 4).map((photo, idx) => (
                 <div 
                   key={idx}
                   className="aspect-square bg-white flex items-center justify-center overflow-hidden group relative"
@@ -1043,7 +1015,7 @@ function About() {
         )
       }
       
-      // Default gallery style - Editorial 4 photo grid
+      // Default gallery style - Editorial 4 photo grid (shows preview only, no title/date for Hike)
       return (
         <div 
           className="cursor-pointer transition-all duration-300 hover:shadow-xl relative bg-white overflow-hidden"
@@ -1053,7 +1025,8 @@ function About() {
           }}
         >
           <div className="grid grid-cols-2 gap-2 p-3">
-            {item.photos.map((photo, idx) => (
+            {/* Show only first 4 photos as preview */}
+            {item.photos.slice(0, 4).map((photo, idx) => (
               <div 
                 key={idx}
                 className="aspect-square bg-gray-50 flex items-center justify-center overflow-hidden group relative"
@@ -1079,22 +1052,25 @@ function About() {
               </div>
             ))}
           </div>
-          <div className="px-4 pb-4 pt-3 border-t border-gray-100">
-            <p className={`${textSize} text-gray-900 mb-1 font-light tracking-wide uppercase`} style={{ 
-              fontFamily: "'Georgia', serif",
-              letterSpacing: '0.1em',
-              fontSize: isMobile ? '11px' : '12px'
-            }}>
-              {item.text}
-            </p>
-            <p className={`${dateSize} text-gray-500`} style={{ 
-              fontFamily: "'Arial', sans-serif",
-              fontSize: isMobile ? '9px' : '10px',
-              letterSpacing: '0.05em'
-            }}>
-              {item.date}
-            </p>
-          </div>
+          {/* Hide title/date for Hike gallery */}
+          {item.text !== 'Hike' && (
+            <div className="px-4 pb-4 pt-3 border-t border-gray-100">
+              <p className={`${textSize} text-gray-900 mb-1 font-light tracking-wide uppercase`} style={{ 
+                fontFamily: "'Georgia', serif",
+                letterSpacing: '0.1em',
+                fontSize: isMobile ? '11px' : '12px'
+              }}>
+                {item.text}
+              </p>
+              <p className={`${dateSize} text-gray-500`} style={{ 
+                fontFamily: "'Arial', sans-serif",
+                fontSize: isMobile ? '9px' : '10px',
+                letterSpacing: '0.05em'
+              }}>
+                {item.date}
+              </p>
+            </div>
+          )}
         </div>
       )
     }
@@ -1403,7 +1379,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about3.jpg"
+            src="/images/about/main/About3.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '80px',
@@ -1417,7 +1393,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about4.jpg"
+            src="/images/about/main/About4.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '20px',
@@ -1445,7 +1421,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about6.jpg"
+            src="/images/about/main/About6.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '220px',
@@ -1473,7 +1449,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about8.jpg"
+            src="/images/about/main/About8.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '100px',
@@ -1501,7 +1477,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about10.jpg"
+            src="/images/about/main/About10.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '200px',
@@ -1615,7 +1591,7 @@ function About() {
           {/* Fish gif - top right */}
           <img
             src="/images/about/main/fish.gif"
-            className="aboutImage absolute z-0"
+            className="aboutImage absolute z-0 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '30px',
               right: '12%',
@@ -1624,6 +1600,7 @@ function About() {
               transform: 'rotate(-1deg)',
             }}
             alt="fish"
+            onClick={() => setOpenAboutImage('/images/about/main/fish.gif')}
           />
         </div>
 
@@ -1882,7 +1859,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about3.jpg"
+            src="/images/about/main/About3.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '100px',
@@ -1895,7 +1872,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about4.jpg"
+            src="/images/about/main/About4.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '140px',
@@ -1921,7 +1898,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about6.jpg"
+            src="/images/about/main/About6.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '240px',
@@ -1947,7 +1924,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about8.jpg"
+            src="/images/about/main/About8.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '120px',
@@ -1973,7 +1950,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about10.jpg"
+            src="/images/about/main/About10.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '220px',
@@ -1999,7 +1976,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about12.jpg"
+            src="/images/about/main/About12.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '340px',
@@ -2025,7 +2002,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about14.jpg"
+            src="/images/about/main/About14.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '80px',
@@ -2038,7 +2015,7 @@ function About() {
           />
 
           <img
-            src="/images/about/main/about15.jpg"
+            src="/images/about/main/About15.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '380px',
@@ -2079,7 +2056,7 @@ function About() {
           {/* Fish gif - top right */}
           <img
             src="/images/about/main/fish.gif"
-            className="aboutImage absolute z-0"
+            className="aboutImage absolute z-0 cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '50px',
               right: '15%',
@@ -2087,6 +2064,7 @@ function About() {
               transform: 'rotate(-1deg)',
             }}
             alt="fish"
+            onClick={() => setOpenAboutImage('/images/about/main/fish.gif')}
           />
         </div>
 
