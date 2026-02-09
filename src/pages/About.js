@@ -1704,6 +1704,7 @@ function About() {
 
             {/* Essay Scrolling Window - THIRD (Below vinyls and post-it) */}
             {essayItems.length > 0 && (
+              <>
               <div
                 className="absolute rounded-[5px] bg-white overflow-hidden"
                 style={{
@@ -1762,6 +1763,18 @@ function About() {
                   </div>
                 </div>
               </div>
+              <img
+                src="/images/about/current/charm.png"
+                alt=""
+                className="absolute z-10 object-contain"
+                style={{
+                  top: `${mobileEssayWindowTop}px`,
+                  right: '20px',
+                  height: '375px',
+                  maxWidth: '35%',
+                }}
+              />
+              </>
             )}
 
             {/* Other Items (including books) - FOURTH (Below essays) */}
@@ -2163,6 +2176,7 @@ function About() {
 
             {/* Essay Scrolling Window */}
             {essayItems.length > 0 && (
+                <>
                 <div
                   className="absolute rounded-[5px] bg-white overflow-hidden"
                   style={{
@@ -2225,6 +2239,18 @@ function About() {
                     </div>
                   </div>
                 </div>
+                <img
+                  src="/images/about/current/charm.png"
+                  alt=""
+                  className="absolute z-10 object-contain"
+                  style={{
+                    top: `${desktopEssayWindowTop}px`,
+                    right: '30px',
+                    height: '394px',
+                    maxWidth: '35%',
+                  }}
+                />
+                </>
               )}
 
               {/* Other Items (including books) */}
