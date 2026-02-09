@@ -1771,7 +1771,7 @@ function About() {
                   top: `${mobileEssayWindowTop}px`,
                   right: '20px',
                   height: '375px',
-                  maxWidth: '35%',
+                  maxWidth: '30%',
                 }}
               />
               </>
