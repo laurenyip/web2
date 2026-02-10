@@ -93,7 +93,7 @@ const ARCHIVE_ITEMS = [
         '/images/about/gallery/dam.jpg',
         '/images/about/gallery/dresden.jpg',
         '/images/about/gallery/giv.jpg',
-        '/images/about/gallery/green.jpg',
+        '/images/about/gallery/green.png',
         '/images/about/gallery/guell.jpg',
         '/images/about/gallery/hk.jpg',
         '/images/about/gallery/hk1.jpg',
