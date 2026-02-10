@@ -177,44 +177,50 @@ p1 {
 
 @font-face {
   font-family: "Chobani";
-  src: url("fonts/Chobani.ttf") format("truetype"); /* Specify the correct path to your font file */
-
-  /* Add other font formats as needed */
+  src: url("fonts/Chobani.ttf") format("truetype");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Apercu";
   src: url("fonts/Apercu.otf") format("OpenType");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "URWGeometricHeavy";
   src: url("fonts/URWGeometricHeavy.otf") format("OpenType");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "URWGeometricSemiBold";
   src: url("fonts/URWGeometricSemiBold.otf") format("OpenType");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Moto";
   src: url("fonts/Moto.otf") format("OpenType");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "URWGeometricRegular";
   src: url("fonts/URWGeometricRegular.otf") format("OpenType");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "F25";
   src: url("fonts/f25.otf") format("OpenType");
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Melo';
   src: url('fonts/melo.ttf') format('truetype');
+  font-display: swap;
 }
 
 /* Custom scrollbar for essay window */

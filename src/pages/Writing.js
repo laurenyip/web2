@@ -116,6 +116,9 @@ function Writing() {
                     src={piece.imgSrc}
                     alt={piece.title}
                     className="w-full md:h-48 object-contain md:object-cover"
+                    loading="lazy"
+                    width={300}
+                    height={200}
                   />
                 </div>
               </a>
