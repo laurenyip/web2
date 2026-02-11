@@ -131,6 +131,9 @@ function Portfolio() {
                   src={card.imgSrc}
                   alt={`Portfolio ${index + 1}`}
                   className="w-full h-auto aspect-[3/4] object-cover"
+                  loading="lazy"
+                  width={300}
+                  height={400}
                 />
               </div>
             ))}
@@ -162,6 +165,8 @@ function Portfolio() {
                     src={currentImage}
                     alt="Full Size"
                     className="max-w-[150vw] max-h-[120vh] object-contain"
+                    width={800}
+                    height={600}
                   />
                 </div>
               </div>

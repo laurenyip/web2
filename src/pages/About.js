@@ -93,7 +93,7 @@ const ARCHIVE_ITEMS = [
         '/images/about/gallery/dam.jpg',
         '/images/about/gallery/dresden.jpg',
         '/images/about/gallery/giv.jpg',
-        '/images/about/gallery/green.jpg',
+        '/images/about/gallery/green.png',
         '/images/about/gallery/guell.jpg',
         '/images/about/gallery/hk.jpg',
         '/images/about/gallery/hk1.jpg',
@@ -665,6 +665,9 @@ function About() {
               alt={item.text}
               className="w-full object-contain"
               style={{ maxHeight: 'none' }}
+              loading="lazy"
+              width={200}
+              height={200}
             />
               </div>
             </div>
@@ -729,6 +732,9 @@ function About() {
               alt={item.text}
               className="w-full object-contain"
               style={{ maxHeight: 'none' }}
+              loading="lazy"
+              width={200}
+              height={200}
             />
           )}
           <div className={padding}>
@@ -922,6 +928,9 @@ function About() {
                     alt={item.text}
                     className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
                     style={{ filter: 'grayscale(20%) contrast(1.05)' }}
+                    loading="lazy"
+                    width={200}
+                    height={200}
                   />
                   {/* Mystical moving border */}
                   <div className="absolute inset-0 border-2 border-transparent mystical-border"></div>
@@ -1041,6 +1050,9 @@ function About() {
                       alt={`${item.text} ${idx + 1}`}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       style={{ filter: 'grayscale(15%) contrast(1.05)' }}
+                      loading="lazy"
+                      width={100}
+                      height={100}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </>
@@ -1169,6 +1181,9 @@ function About() {
               alt={item.text}
               className="w-full object-contain"
               style={{ maxHeight: 'none' }}
+              loading="lazy"
+              width={200}
+              height={200}
             />
           )}
           <div className={padding}>
@@ -1350,6 +1365,8 @@ function About() {
           <img
             src="/images/about/main/about1.jpg"
             className="aboutImage absolute z-20 cursor-pointer transition-transform hover:scale-110"
+            width={54}
+            height={72}
             style={{
               top: '10px',
               left: '40%',
@@ -1364,6 +1381,8 @@ function About() {
           <img
             src="/images/about/main/about2.jpg"
             className="aboutImage absolute z-10 cursor-pointer transition-transform hover:scale-110"
+            width={72}
+            height={54}
             style={{
               top: '250px',
               right: '8%',
@@ -1378,6 +1397,8 @@ function About() {
           <img
             src="/images/about/main/About3.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={54}
+            height={72}
             style={{
               top: '80px',
               left: '5%',
@@ -1406,6 +1427,8 @@ function About() {
           <img
             src="/images/about/main/About5.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={54}
+            height={72}
             style={{
               top: '180px',
               left: '3%',
@@ -1420,6 +1443,8 @@ function About() {
           <img
             src="/images/about/main/About6.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={54}
+            height={72}
             style={{
               top: '220px',
               left: '15%',
@@ -1434,6 +1459,8 @@ function About() {
           <img
             src="/images/about/main/About7.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={54}
+            height={72}
             style={{
               top: '280px',
               left: '8%',
@@ -1448,6 +1475,8 @@ function About() {
           <img
             src="/images/about/main/About8.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={54}
+            height={72}
             style={{
               top: '100px',
               right: '5%',
@@ -1476,6 +1505,8 @@ function About() {
           <img
             src="/images/about/main/About10.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={54}
+            height={72}
             style={{
               top: '200px',
               right: '3%',
@@ -1504,6 +1535,8 @@ function About() {
           <img
             src="/images/about/main/About12.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={54}
+            height={72}
             style={{
               top: '300px',
               right: '12%',
@@ -1518,6 +1551,8 @@ function About() {
           <img
             src="/images/about/main/About13.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={54}
+            height={72}
             style={{
               top: '220px',
               left: '35%',
@@ -1532,6 +1567,8 @@ function About() {
           <img
             src="/images/about/main/About14.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={54}
+            height={72}
             style={{
               top: '60px',
               right: '22%',
@@ -1560,6 +1597,8 @@ function About() {
           <img
             src="/images/about/main/About16.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={54}
+            height={72}
             style={{
               top: '400px',
               left: '30%',
@@ -1589,6 +1628,9 @@ function About() {
           <img
             src="/images/about/main/fish.gif"
             className="aboutImage absolute z-0 cursor-pointer transition-transform hover:scale-110"
+            width={120}
+            height={90}
+            loading="lazy"
             style={{
               top: '30px',
               right: '12%',
@@ -1714,6 +1756,7 @@ function About() {
 
             {/* Essay Scrolling Window - THIRD (Below vinyls and post-it) */}
             {essayItems.length > 0 && (
+              <>
               <div
                 className="absolute rounded-[5px] bg-white overflow-hidden"
                 style={{
@@ -1772,6 +1815,21 @@ function About() {
                   </div>
                 </div>
               </div>
+              <img
+                src="/images/about/current/charm.png"
+                alt=""
+                className="absolute z-10 object-contain"
+                width={200}
+                height={375}
+                loading="lazy"
+                style={{
+                  top: `${mobileEssayWindowTop}px`,
+                  right: '20px',
+                  height: '375px',
+                  maxWidth: '30%',
+                }}
+              />
+              </>
             )}
 
             {/* Other Items (including books) - FOURTH (Below essays) */}
@@ -1834,6 +1892,8 @@ function About() {
           <img
             src="/images/about/main/about1.jpg"
             className="aboutImage absolute z-20 cursor-pointer transition-transform hover:scale-110"
+            width={66}
+            height={88}
             style={{
               top: '80px',
               left: '8%',
@@ -1847,6 +1907,8 @@ function About() {
           <img
             src="/images/about/main/about2.jpg"
             className="aboutImage absolute z-10 cursor-pointer transition-transform hover:scale-110"
+            width={96}
+            height={72}
             style={{
               top: '380px',
               right: '14%',
@@ -1873,6 +1935,8 @@ function About() {
           <img
             src="/images/about/main/About4.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={66}
+            height={88}
             style={{
               top: '140px',
               left: '15%',
@@ -1899,6 +1963,8 @@ function About() {
           <img
             src="/images/about/main/About6.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={66}
+            height={88}
             style={{
               top: '240px',
               left: '12%',
@@ -1912,6 +1978,8 @@ function About() {
           <img
             src="/images/about/main/about7.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={66}
+            height={88}
             style={{
               top: '320px',
               left: '6%',
@@ -1925,6 +1993,8 @@ function About() {
           <img
             src="/images/about/main/About8.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={66}
+            height={88}
             style={{
               top: '120px',
               right: '3%',
@@ -1951,6 +2021,8 @@ function About() {
           <img
             src="/images/about/main/About10.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={66}
+            height={88}
             style={{
               top: '220px',
               right: '1%',
@@ -1964,6 +2036,8 @@ function About() {
           <img
             src="/images/about/main/about11.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={66}
+            height={88}
             style={{
               top: '260px',
               right: '15%',
@@ -1990,6 +2064,8 @@ function About() {
           <img
             src="/images/about/main/About13.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={66}
+            height={88}
             style={{
               top: '140px',
               left: '22%',
@@ -2016,6 +2092,8 @@ function About() {
           <img
             src="/images/about/main/About15.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={66}
+            height={88}
             style={{
               top: '380px',
               left: '20%',
@@ -2029,6 +2107,8 @@ function About() {
           <img
             src="/images/about/main/About16.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={66}
+            height={88}
             style={{
               top: '420px',
               left: '28%',
@@ -2042,6 +2122,8 @@ function About() {
           <img
             src="/images/about/main/About17.jpg"
             className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            width={66}
+            height={88}
             style={{
               top: '460px',
               left: '36%',
@@ -2056,6 +2138,9 @@ function About() {
           <img
             src="/images/about/main/fish.gif"
             className="aboutImage absolute z-0 cursor-pointer transition-transform hover:scale-110"
+            width={200}
+            height={150}
+            loading="lazy"
             style={{
               top: '50px',
               right: '15%',
@@ -2175,6 +2260,7 @@ function About() {
 
             {/* Essay Scrolling Window */}
             {essayItems.length > 0 && (
+                <>
                 <div
                   className="absolute rounded-[5px] bg-white overflow-hidden"
                   style={{
@@ -2237,6 +2323,21 @@ function About() {
                     </div>
                   </div>
                 </div>
+                <img
+                  src="/images/about/current/charm.png"
+                  alt=""
+                  className="absolute z-10 object-contain"
+                  width={200}
+                  height={394}
+                  loading="lazy"
+                  style={{
+                    top: `${desktopEssayWindowTop}px`,
+                    right: '30px',
+                    height: '394px',
+                    maxWidth: '35%',
+                  }}
+                />
+                </>
               )}
 
               {/* Other Items (including books) */}
