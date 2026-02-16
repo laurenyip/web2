@@ -216,6 +216,12 @@ You get hate for it
 But you get nothing if you (wait for it, wait for it)`,
       author: 'Hamilton',
     },
+    {
+      type: 'image',
+      image: '/images/about/current/paris_wip.jpeg',
+      text: 'in progress',
+      date: '2025-02-11',
+    },
     /*
     {
       type: 'place',
@@ -668,7 +674,11 @@ function About() {
       return (
         <div className={cardClasses}>
           {item.image && (
-            <div className={isHightide ? "p-4 bg-amber-50" : ""}>
+            <div 
+              className={isHightide ? "p-4 bg-amber-50" : ""}
+              onClick={() => setOpenAboutImage(item.image)}
+              style={{ cursor: 'pointer' }}
+            >
               <div 
                 className={isHightide ? "border-4 shadow-lg" : ""}
                 style={isHightide ? {
@@ -1868,6 +1878,8 @@ function About() {
                   onClick={() => {
                     if (item.link) {
                       window.open(item.link, '_blank')
+                    } else if (item.type === 'image' && item.image) {
+                      setOpenAboutImage(item.image)
                     }
                   }}
                 >
