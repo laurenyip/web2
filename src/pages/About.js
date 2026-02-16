@@ -144,7 +144,7 @@ const ARCHIVE_ITEMS = [
     {
       type: 'essay',
       text: 'How to Dress a Monster, His Creator, and the Woman Who Loves Him',
-      author: 'Tara Gonzalez',
+      author: 'Tara Maria Gonzalez',
       link: 'https://open.substack.com/pub/taramariagonzalez/p/how-to-dress-a-monster-his-creator?utm_campaign=post-expanded-share&utm_medium=web',
       date: '2025-11-30',
     },
@@ -177,6 +177,20 @@ const ARCHIVE_ITEMS = [
       date: '2025-06-08',
     },
     {
+      type: 'essay',
+      text: 'Magic alfredo, romcoms, and asian tiger parents',
+      author: 'Jesse',
+      link: 'https://open.substack.com/pub/fishinapool/p/magic-alfredo-romcoms-and-asian-tiger?utm_campaign=post-expanded-share&utm_medium=post%20viewer',
+      date: '2026-01-09',
+    },
+    {
+      type: 'essay',
+      text: 'Marty Mauser Is Deeply Unlikeable But His Clothing Is Not',
+      author: 'Tara Maria Gonzalez',
+      link: 'https://open.substack.com/pub/taramariagonzalez/p/marty-mauser-is-deeply-unlikeable?utm_campaign=post-expanded-share&utm_medium=post%20viewer',
+      date: '2025-12-31',
+    },
+    {
       type: 'quote',
       text: "Watch out, you might get what you're after",
       author: 'Talking Heads',
@@ -189,6 +203,18 @@ const ARCHIVE_ITEMS = [
     {
       type: 'quote',
       text: "The only real test of intelligence is if you get what you want out of life.",
+    },
+    {
+      type: 'quote',
+      text: `You got more than you gave
+
+And I wanted what I got
+When you got skin in the game, you stay in the game
+But you don't get a win unless you play in the game
+Oh, you get love for it
+You get hate for it
+But you get nothing if you (wait for it, wait for it)`,
+      author: 'Hamilton',
     },
     /*
     {
@@ -1100,15 +1126,14 @@ function About() {
 
     // Quote card - Paper strip design
     if (item.type === 'quote') {
-      const paperWidth = isMobile ? 140 : 180
-      const paperHeight = isMobile ? 80 : 100
+      const paperWidth = isMobile ? 180 : 240
+      const hasMultipleLines = item.text && item.text.includes('\n')
       
       return (
         <div 
-          className="relative"
+          className="relative w-full"
           style={{
-            width: `${paperWidth}px`,
-            height: `${paperHeight}px`,
+            minWidth: `${paperWidth}px`,
             margin: '0 auto',
           }}
         >
@@ -1117,7 +1142,7 @@ function About() {
             className="relative"
             style={{
               width: `${paperWidth}px`,
-              height: `${paperHeight}px`,
+              minHeight: hasMultipleLines ? (isMobile ? 180 : 220) : (isMobile ? 80 : 100),
               transform: 'rotate(-2deg)',
               background: '#fffef7',
               border: '1px solid #e8e6d9',
@@ -1130,7 +1155,7 @@ function About() {
             }}
           >
             <p 
-              className="text-center leading-tight"
+              className="text-center leading-tight w-full"
               style={{
                 fontSize: isMobile ? '11px' : '12px',
                 color: '#2c2c2c',
@@ -1138,6 +1163,7 @@ function About() {
                 fontWeight: 400,
                 lineHeight: '1.4',
                 margin: 0,
+                whiteSpace: 'pre-line',
               }}
             >
               {item.text}
@@ -1826,6 +1852,7 @@ function About() {
             {otherItems.map((item, index) => {
               const pos = mobileOtherPositions[index]
               if (!pos) return null
+              const isLongQuote = item.type === 'quote' && item.text?.includes('\n')
               return (
                 <div
                   key={`other-${index}`}
@@ -1834,8 +1861,8 @@ function About() {
                     top: pos.top,
                     left: pos.left,
                     transform: `rotate(${pos.rotation}deg)`,
-                    width: '150px',
-                    maxWidth: '45%',
+                    width: isLongQuote ? '180px' : '150px',
+                    maxWidth: isLongQuote ? '50%' : '45%',
                     height: pos.height ? `${pos.height}px` : 'auto',
                   }}
                   onClick={() => {
@@ -2332,6 +2359,7 @@ function About() {
               {otherItems.map((item, index) => {
                 const pos = desktopOtherPositions[index]
                 if (!pos) return null
+                const isLongQuote = item.type === 'quote' && item.text?.includes('\n')
                 return (
                   <div
                     key={`other-${index}`}
@@ -2340,7 +2368,7 @@ function About() {
                       top: pos.top,
                       left: pos.left,
                       transform: `rotate(${pos.rotation}deg)`,
-                      width: '180px',
+                      width: isLongQuote ? '250px' : '180px',
                       height: pos.height ? `${pos.height}px` : 'auto',
                     }}
                     onClick={() => {
