@@ -42,12 +42,20 @@ function Portfolio() {
 
   const cardData = [
     {
+      imgSrc: '/images/portfolio/ten.jpg',
+      description: 'movie [2025-01] I submitted to Lyre Magazine and it got published as the cover :) + I will be joining the next issue as lead designer',
+    },
+    {
       imgSrc: '/images/portfolio/lily.png',
       description: 'dedicated to my friends [2021-08]',
     },
     {
       imgSrc: '/images/portfolio/dance.png',
       description: '2021-01]',
+    },
+    {
+      imgSrc: '/images/portfolio/ecola.png',
+      description: '',
     },
     {
       imgSrc: '/images/portfolio/backy.png',
@@ -61,10 +69,6 @@ function Portfolio() {
       imgSrc: '/images/portfolio/blue.png',
       description:
         'blue hydrangeas [2021-07]',
-    },
-    {
-      imgSrc: '/images/portfolio/ten.jpg',
-      description: 'movie [2025-01] I submitted to Lyre Magazine and it got published as the cover :) + I will be joining the next issue as lead designer',
     },
   ]
 
