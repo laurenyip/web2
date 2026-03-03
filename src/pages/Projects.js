@@ -77,6 +77,12 @@ function Projects() {
       image: '/images/projects/sv.png',
       hasCaseStudy: true,
     },
+    {
+      title: 'jellyfish umbrella',
+      link: '/rolypolyzine.pdf',
+      description: 'zine',
+      image: '/images/projects/jellyfish-umbrella.png',
+    },
   ]
 
   return (
@@ -116,6 +122,17 @@ function Projects() {
             ))}
           </div>
         </div>
+
+        {/* Extra project(s) below the 8 squares - in line with top left square */}
+        {projects.length > 8 && (
+          <div className="absolute left-[28%] transform -translate-x-1/4 w-[25%]" style={{ bottom: 'calc(2% - 250px)' }}>
+            <div className="grid grid-cols-2 gap-6 place-items-start">
+              {projects.slice(8).map((project, index) => (
+                <ProjectCard key={`extra-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Mobile Layout */}
@@ -149,6 +166,15 @@ function Projects() {
             <ProjectCard key={`mobile-bottom-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} />
           ))}
         </div>
+
+        {/* Extra project(s) below the 8 squares */}
+        {projects.length > 8 && (
+          <div className="grid grid-cols-1 gap-6 mt-6 max-w-sm mx-auto">
+            {projects.slice(8).map((project, index) => (
+              <ProjectCard key={`mobile-extra-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Case Study Modal */}
