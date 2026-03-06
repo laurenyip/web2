@@ -369,12 +369,12 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
       ],
     },
     'jellyfish umbrella': {
-      overview: 'Jellyfish umbrella is a creative project that combines product design, print, and wearable art: a zine (Roly Poly Zine) and a one-of-a-kind umbrella that reimagines the everyday object as a jellyfish, with a transparent canopy and hand-designed fabric and tentacle elements.',
-      role: 'Product Designer, UX/UI & Artistic Director',
-      timeline: 'Personal project',
-      challenge: 'Blending functional product design with a strong artistic concept—creating something that reads clearly as both umbrella and jellyfish while staying usable, distinctive, and coherent across the zine and the physical object.',
-      solution: 'A cohesive vision across two outputs: a zine that documents and extends the world of the project, and a custom umbrella with a transparent canopy and blue, segmented tentacle-like appendages around the rim. The fabric, form, and graphic language were all designed to support the same jellyfish concept.',
-      myContribution: 'I led the project end-to-end as product designer, UX/UI designer, and artistic director. I created the zine from concept to final design, defined the jellyfish umbrella concept, and designed the fabric and tentacle elements so the object reads as a single, recognizable artifact.',
+      overview: "We wanted to create a project where art imitates nature. Inspired by our summers swimming with jellyfish on the BC Coast, we combined the familiar form of an umbrella with the novelty of engineering, to spark childrens' interest in engineering.",
+      role: 'Product Designer & Artistic Director',
+      timeline: 'January 2026 - March 2026',
+      challenge: "Inspiring kids to learn and build by showing them what engineering can be.",
+      solution: 'A cohesive vision across two outputs: a zine that documents and extends the world of the project, and a jellyfish umbrella with moving, light-up tentacles.',
+      myContribution: 'I created the zine from concept to final design, defined the jellyfish umbrella concept, and designed the fabric and decorative elements so the object reads as a single, recognizable artifact. I also designed the interactive website.',
       impact: [
         'Unified product and print experience under one creative direction',
         'Custom-designed umbrella that doubles as art and functional object',
