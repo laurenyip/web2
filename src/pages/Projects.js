@@ -36,7 +36,7 @@ function Projects() {
     {
       title: 'Spruce',
       link: 'https://devpost.com/software/spruce',
-      description: "Finding third spaces for kids in Vancouver — =Best UI Design Award",
+      description: "Finding third spaces for kids in Vancouver — Best UI Design Award",
       image: '/images/projects/spruce.png',
       hasCaseStudy: true,
     },
@@ -278,6 +278,9 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
         'Centralized PRD database for knowledge search',
         'Chrome extension for seamless integration into existing workflows',
       ],
+      showcaseImages: [
+        '/images/projects/prd-plus-ui.png',
+      ],
       designLink: 'https://www.figma.com/design/3qY3c5FyRSYmdIhgryyZvm/PMC?node-id=183-452&t=KnR4gTzBg4mFkVCs-1',
     },
     'React to This!': {
@@ -291,6 +294,9 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
         'Improved research communication through documentary video production',
         'Contributed to data quality through annotation and participant recruitment',
         'Supported academic publication by editing and formatting the paper',
+      ],
+      showcaseImages: [
+        '/images/projects/react-to-this.png',
       ],
     },
     Spruce: {
@@ -329,7 +335,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
         'Distinct, thematic visuals (January–March) that reinforce brand and event details',
       ],
       keyFeatures: [
-        'Treehouse Place website design and UX',
+        'Treehouse Place website design, drawing, and UX',
         'Monthly instagram post and website updates',
       ],
       showcaseImages: [
@@ -386,6 +392,15 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
         'Roly Poly Zine—full zine design and art direction',
         'Coherent visual and conceptual system across zine and product',
       ],
+      showcaseImages: [
+        '/images/projects/roly-frame-1.png',
+        '/images/projects/roly-frame-2.png',
+        '/images/projects/roly-frame-3.png',
+        '/images/projects/roly-frame-4.png',
+        '/images/projects/jellyfish-ui-1.png',
+        '/images/projects/jellyfish-ui-2.png',
+        '/images/projects/jellyfish-ui-3.png',
+      ],
       projectProgress: [
         '/images/projects/jellyfish-progress-1.png',
         '/images/projects/jellyfish-progress-2.png',
@@ -394,16 +409,15 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
         '/images/projects/jellyfish-progress-5.png',
         '/images/projects/jellyfish-progress-6.png',
         '/images/projects/jellyfish-progress-7.png',
-        '/images/projects/jellyfish-progress-8.png',
       ],
       projectVideo: '/images/projects/jellyfish-progress-video.mp4',
     },
     'The Lyre': {
-      overview: "The Lyre is SFU’s literary magazine under World Languages and Literatures, publishing poetry, prose, translations, short stories, photography, and art. ",
+      overview: "The Lyre is SFU's literary magazine under World Languages and Literatures, publishing poetry, prose, translations, short stories, photography, and art.",
       role: 'Editorial Designer (Vol. 17)',
       timeline: '2025–2026',
       challenge: 'Creating a clear visual identity for Vol. 17 and recruiting editors and driving submissions through promotional materials that communicate the necessary information, theme, and artistic tone.',
-      myContribution: 'I am the editorial designer for Lyre Mag Vol. 17 this year, and I contributed my art to the cover of Vol 16 (Passage). Right now I’m designing promotional posters and I’ll be designing the full issue this summer.',
+      myContribution: "I am the editorial designer for Lyre Mag Vol. 17 this year, and I contributed my art to the cover of Vol 16 (Passage). I'm currently designing promotional posters and I'll be working on the full issue this summer.",
       impact: [
         'Promotional posters for Vol. 17 that communicate the FLUX theme and submission details',
         'Cover art for Vol. 16 (Passage)',
@@ -485,10 +499,12 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           )}
 
           {/* Solution */}
-          <section>
-            <h3 className="text-xl font-semibold text-gray-700 mb-3">The Solution</h3>
-            <p className="text-gray-700 leading-relaxed">{caseStudy.solution}</p>
-          </section>
+          {caseStudy.solution && (
+            <section>
+              <h3 className="text-xl font-semibold text-gray-700 mb-3">The Solution</h3>
+              <p className="text-gray-700 leading-relaxed">{caseStudy.solution}</p>
+            </section>
+          )}
 
           {/* Project Progress */}
           {caseStudy.projectProgress && caseStudy.projectProgress.length > 0 && (
@@ -652,7 +668,7 @@ function ProjectCard({ project, onCaseStudyClick, onImageExpand }) {
             }}
             className="px-3 py-1.5 bg-white text-gray-800 rounded text-xs hover:bg-gray-200 transition-colors"
           >
-            View Case Study
+            View More
           </button>
         ) : (
           <a
