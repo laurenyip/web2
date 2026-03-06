@@ -399,22 +399,15 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
       projectVideo: '/images/projects/jellyfish-progress-video.mp4',
     },
     'The Lyre': {
-      overview: 'The Lyre is SFU’s literary magazine under World Languages and Literatures, publishing poetry, prose, translations, short stories, photography, and art. I’m the editorial designer for Vol. 17 and have contributed as an artist to Vol. 16.',
+      overview: "The Lyre is SFU’s literary magazine under World Languages and Literatures, publishing poetry, prose, translations, short stories, photography, and art. ",
       role: 'Editorial Designer (Vol. 17)',
       timeline: '2025–2026',
-      challenge: 'Creating a clear visual identity for each volume and driving submissions through promotional materials that communicate the theme and deadline while staying true to the magazine’s literary and artistic tone.',
-      solution: 'A consistent editorial system for the magazine plus themed call-for-submissions posters. For Vol. 17 the theme is FLUX; the posters use typography, colour, and illustration (e.g. botanical motifs, “Constant Motion Experiment” artwork) to convey the theme and key information (deadline, categories, QR code).',
-      myContribution: 'I am the editorial designer for Lyre Mag Vol. 17 this year. Right now I’m designing promotional posters for the call for submissions (e.g. the FLUX-themed poster and the Constant Motion Experiment poster), and I’ll be designing the full issue this summer. For Vol. 16 (Issue 16: Passage, Fall 2025), my painting appeared on the cover.',
+      challenge: 'Creating a clear visual identity for Vol. 17 and recruiting editors and driving submissions through promotional materials that communicate the necessary information, theme, and artistic tone.',
+      myContribution: 'I am the editorial designer for Lyre Mag Vol. 17 this year, and I contributed my art to the cover of Vol 16 (Passage). Right now I’m designing promotional posters and I’ll be designing the full issue this summer.',
       impact: [
         'Promotional posters for Vol. 17 that communicate the FLUX theme and submission details',
         'Cover art for Vol. 16 (Passage)',
         'Upcoming full-issue design for Vol. 17',
-      ],
-      keyFeatures: [
-        'Vol. 17 call-for-submissions posters (theme: FLUX)',
-        'Editorial design for the Vol. 17 issue (in progress, summer)',
-        'Cover painting for Vol. 16: Passage',
-        'SFU World Languages and Literatures / The Lyre branding',
       ],
       showcaseImages: [
         '/images/projects/lyre-poster-flux.png',
