@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'Moto';
+  src: url('fonts/Moto.otf') format('OpenType');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Melo';
+  src: url('fonts/melo.ttf') format('truetype');
+  font-display: swap;
+}
+
+.community-page {
+  min-height: 100vh;
+  background-color: #fefefd;
+  position: relative;
+}
+
+/* Grid Background */
+.grid-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to right, #eaeaea 1px, transparent 1px),
+    linear-gradient(to bottom, #eaeaea 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.community-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 5% 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.section-image-container,
+.landing-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 90vh;
+}
+
+
+/* Scrolling Text Strip */
+.scrolling-text-strip {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #fefefd;
+  border-top: 1px solid #eaeaea;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.scrolling-wrapper {
+  display: flex;
+  width: fit-content;
+  animation: scroll-horizontal 30s linear infinite;
+}
+
+.scrolling-content {
+  display: inline-block;
+  white-space: nowrap;
+  font-family: 'Moto', sans-serif;
+  font-size: 0.85rem;
+  color: #2d3a2f;
+  padding: 15px 50px;
+  flex-shrink: 0;
+}
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .community-section {
+    padding: 100px 3% 60px;
+  }
+
+  .section-image-container,
+  .landing-image-container {
+    max-width: 100%;
+  }
+
+  .section-image {
+    max-height: 85vh;
+  }
+
+  .scrolling-text-strip {
+    height: 45px;
+  }
+
+  .scrolling-content {
+    font-size: 0.75rem;
+    padding: 12px 0;
+  }
+}

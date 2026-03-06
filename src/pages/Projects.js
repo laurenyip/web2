@@ -4,14 +4,16 @@ import Navbar from '../components/Navbar'
 
 function Projects() {
   const [openCaseStudy, setOpenCaseStudy] = useState(null)
+  const [expandedImage, setExpandedImage] = useState(null)
 
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
         setOpenCaseStudy(null)
+        setExpandedImage(null)
       }
     }
-    if (openCaseStudy) {
+    if (openCaseStudy || expandedImage) {
       window.addEventListener('keydown', handleEscape)
       document.body.style.overflow = 'hidden'
     } else {
@@ -21,7 +23,7 @@ function Projects() {
       window.removeEventListener('keydown', handleEscape)
       document.body.style.overflow = 'unset'
     }
-  }, [openCaseStudy])
+  }, [openCaseStudy, expandedImage])
 
   const projects = [
     {
@@ -104,7 +106,7 @@ function Projects() {
         <div className="absolute top-[40%] left-[28%] transform -translate-x-1/4 -translate-y-1/4 w-[25%]">
           <div className="grid grid-cols-2 gap-6">
             {projects.slice(4, 8).map((project, index) => (
-              <ProjectCard key={`bottom-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} />
+              <ProjectCard key={`bottom-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} onImageExpand={() => setExpandedImage(project.image)} />
             ))}
           </div>
           {/* Projects Title */}
@@ -127,7 +129,7 @@ function Projects() {
           </div>
           <div className="grid grid-cols-2 gap-6">
             {projects.slice(0, 4).map((project, index) => (
-              <ProjectCard key={`bottom-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} />
+              <ProjectCard key={`bottom-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} onImageExpand={() => setExpandedImage(project.image)} />
             ))}
           </div>
         </div>
@@ -137,7 +139,7 @@ function Projects() {
           <div className="absolute left-[28%] transform -translate-x-1/4 w-[25%]" style={{ bottom: 'calc(2% - 250px)' }}>
             <div className="grid grid-cols-2 gap-6 place-items-start">
               {projects.slice(8).map((project, index) => (
-                <ProjectCard key={`extra-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} />
+                <ProjectCard key={`extra-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} onImageExpand={() => setExpandedImage(project.image)} />
               ))}
             </div>
           </div>
@@ -149,7 +151,7 @@ function Projects() {
         {/* Top Grid (1x4) */}
         <div className="grid grid-cols-1 gap-6 mb-12">
           {projects.slice(0, 4).map((project, index) => (
-            <ProjectCard key={`mobile-top-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} />
+            <ProjectCard key={`mobile-top-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} onImageExpand={() => setExpandedImage(project.image)} />
           ))}
         </div>
 
@@ -180,7 +182,7 @@ function Projects() {
         {projects.length > 8 && (
           <div className="grid grid-cols-1 gap-6 mt-6 max-w-sm mx-auto">
             {projects.slice(8).map((project, index) => (
-              <ProjectCard key={`mobile-extra-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} />
+              <ProjectCard key={`mobile-extra-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} onImageExpand={() => setExpandedImage(project.image)} />
             ))}
           </div>
         )}
@@ -194,11 +196,51 @@ function Projects() {
           project={projects.find(p => p.title === openCaseStudy)}
         />
       )}
+
+      {/* Expanded Image Modal */}
+      {expandedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 transition-opacity duration-300"
+          onClick={() => setExpandedImage(null)}
+        >
+          <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+            <button
+              onClick={() => setExpandedImage(null)}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <img
+              src={expandedImage}
+              alt="Expanded project"
+              className="max-w-full max-h-[90vh] object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
 
 function CaseStudyModal({ projectTitle, onClose, project }) {
+  const [expandedShowcaseImage, setExpandedShowcaseImage] = useState(null)
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape' && expandedShowcaseImage) {
+        setExpandedShowcaseImage(null)
+      }
+    }
+    if (expandedShowcaseImage) {
+      window.addEventListener('keydown', handleEscape)
+    }
+    return () => {
+      window.removeEventListener('keydown', handleEscape)
+    }
+  }, [expandedShowcaseImage])
+
   const caseStudies = {
     'Brig.AI': {
       overview: 'Brig.AI provides women with tools to advocate for their health, particularly addressing issues like medical dismissal and misdiagnosis in conditions such as PCOS and Endometriosis. We help women understand their symptoms and provide tangible next steps to self-advocate with their healthcare providers.',
@@ -295,6 +337,9 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
         'March graphic: St. Patrick’s/luck theme, “Every Friday this March,” be lucky / make stuff / have fun',
       ],
       showcaseImages: [
+        '/images/projects/treehouse-landing.png',
+        '/images/projects/treehouse-how-it-works.png',
+        '/images/projects/treehouse-community.png',
         '/images/projects/treehouse-jan.png',
         '/images/projects/treehouse-feb.png',
         '/images/projects/treehouse-mar.png',
@@ -318,6 +363,14 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
         'Transparent pricing model',
         'Focus on affordability and accessibility across Canada',
       ],
+      showcaseImages: [
+        '/images/projects/aurora-home.png',
+        '/images/projects/aurora-allergy.png',
+        '/images/projects/aurora-cart.png',
+        '/images/projects/aurora-dropdown.png',
+        '/images/projects/aurora-counting.png',
+        '/images/projects/aurora-footer.png',
+      ],
     },
     'jellyfish umbrella': {
       overview: 'Jellyfish umbrella is a creative project that combines product design, print, and wearable art: a zine (Roly Poly Zine) and a one-of-a-kind umbrella that reimagines the everyday object as a jellyfish, with a transparent canopy and hand-designed fabric and tentacle elements.',
@@ -337,6 +390,17 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
         'Roly Poly Zine—full zine design and art direction',
         'Coherent visual and conceptual system across zine and product',
       ],
+      projectProgress: [
+        '/images/projects/jellyfish-progress-1.png',
+        '/images/projects/jellyfish-progress-2.png',
+        '/images/projects/jellyfish-progress-3.png',
+        '/images/projects/jellyfish-progress-4.png',
+        '/images/projects/jellyfish-progress-5.png',
+        '/images/projects/jellyfish-progress-6.png',
+        '/images/projects/jellyfish-progress-7.png',
+        '/images/projects/jellyfish-progress-8.png',
+      ],
+      projectVideo: '/images/projects/jellyfish-progress-video.mp4',
     },
     'The Lyre': {
       overview: 'The Lyre is SFU’s literary magazine under World Languages and Literatures, publishing poetry, prose, translations, short stories, photography, and art. I’m the editorial designer for Vol. 17 and have contributed as an artist to Vol. 16.',
@@ -414,11 +478,12 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           {caseStudy.showcaseImages && caseStudy.showcaseImages.length > 0 && (
             <section>
               <h3 className="text-xl font-semibold text-gray-700 mb-3">Design Showcase</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {caseStudy.showcaseImages.slice(0, 4).map((img, index) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {caseStudy.showcaseImages.map((img, index) => (
                   <div
                     key={index}
-                    className="w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100 shadow-sm"
+                    className="w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100 shadow-sm cursor-zoom-in hover:shadow-md transition-shadow"
+                    onClick={() => setExpandedShowcaseImage(img)}
                   >
                     <div
                       className="w-full h-full bg-center bg-cover"
@@ -435,6 +500,43 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
             <h3 className="text-xl font-semibold text-gray-700 mb-3">The Solution</h3>
             <p className="text-gray-700 leading-relaxed">{caseStudy.solution}</p>
           </section>
+
+          {/* Project Progress */}
+          {caseStudy.projectProgress && caseStudy.projectProgress.length > 0 && (
+            <section>
+              <h3 className="text-xl font-semibold text-gray-700 mb-3">Project Progress</h3>
+              
+              {/* Video if available */}
+              {caseStudy.projectVideo && (
+                <div className="mb-6">
+                  <video
+                    controls
+                    className="w-full rounded-md shadow-sm"
+                    style={{ maxHeight: '500px' }}
+                  >
+                    <source src={caseStudy.projectVideo} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )}
+
+              {/* Progress Images Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {caseStudy.projectProgress.map((img, index) => (
+                  <div
+                    key={index}
+                    className="w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100 shadow-sm cursor-zoom-in hover:shadow-md transition-shadow"
+                    onClick={() => setExpandedShowcaseImage(img)}
+                  >
+                    <div
+                      className="w-full h-full bg-center bg-cover"
+                      style={{ backgroundImage: `url(${img})` }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* My Contribution - only show if it exists */}
           {caseStudy.myContribution && (
@@ -501,26 +603,58 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           )}
         </div>
       </div>
+
+      {/* Expanded Showcase Image Modal */}
+      {expandedShowcaseImage && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black bg-opacity-90 transition-opacity duration-300"
+          onClick={() => setExpandedShowcaseImage(null)}
+        >
+          <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+            <button
+              onClick={() => setExpandedShowcaseImage(null)}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <img
+              src={expandedShowcaseImage}
+              alt="Expanded showcase"
+              className="max-w-full max-h-[90vh] object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
 
-function ProjectCard({ project, onCaseStudyClick }) {
+function ProjectCard({ project, onCaseStudyClick, onImageExpand }) {
+  const handleImageClick = (e) => {
+    // Expand image when clicking on the image area (not on buttons)
+    if (!e.target.closest('button') && !e.target.closest('a')) {
+      onImageExpand()
+    }
+  }
+
   return (
     <div className="group relative aspect-square w-full rounded-lg shadow-md overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105">
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center cursor-zoom-in"
         style={{ backgroundImage: `url(${project.image})` }}
+        onClick={handleImageClick}
       >
         <div className="absolute inset-0 bg-black opacity-20 group-hover:opacity-20 transition-opacity duration-300"></div>
       </div>
 
-      <div className="absolute inset-0 flex items-end p-4">
+      <div className="absolute inset-0 flex items-end p-4 pointer-events-none">
         <h3 className="text-white text-sm font-medium z-10">{project.title}</h3>
       </div>
 
       <div className="absolute inset-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center bg-black bg-opacity-70">
-        <p className="text-white text-xs mb-3">{project.description}</p>
+        <p className="text-white text-xs mb-3 pointer-events-none">{project.description}</p>
         {project.hasCaseStudy ? (
           <button
             onClick={(e) => {
