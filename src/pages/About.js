@@ -218,9 +218,9 @@ But you get nothing if you (wait for it, wait for it)`,
     },
     {
       type: 'image',
-      image: '/images/about/current/paris_wip.jpeg',
+      image: '/images/about/current/paris_wip.png',
       text: 'in progress',
-      date: '2025-02-11',
+      date: '2025-03-05',
     },
     /*
     {
