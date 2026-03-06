@@ -226,20 +226,34 @@ function Projects() {
 
 function CaseStudyModal({ projectTitle, onClose, project }) {
   const [expandedShowcaseImage, setExpandedShowcaseImage] = useState(null)
+  const [expandedShowcaseGallery, setExpandedShowcaseGallery] = useState(null)
+
+  const openExpandedImage = (img, gallery) => {
+    setExpandedShowcaseImage(img)
+    setExpandedShowcaseGallery(gallery?.length ? gallery : [img])
+  }
+  const closeExpandedImage = () => {
+    setExpandedShowcaseImage(null)
+    setExpandedShowcaseGallery(null)
+  }
 
   useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === 'Escape' && expandedShowcaseImage) {
-        setExpandedShowcaseImage(null)
+    const handleKeyDown = (event) => {
+      if (!expandedShowcaseImage || !expandedShowcaseGallery?.length) return
+      if (event.key === 'Escape') {
+        closeExpandedImage()
+        return
+      }
+      const idx = expandedShowcaseGallery.indexOf(expandedShowcaseImage)
+      if (event.key === 'ArrowRight' && idx < expandedShowcaseGallery.length - 1) {
+        setExpandedShowcaseImage(expandedShowcaseGallery[idx + 1])
+      } else if (event.key === 'ArrowLeft' && idx > 0) {
+        setExpandedShowcaseImage(expandedShowcaseGallery[idx - 1])
       }
     }
-    if (expandedShowcaseImage) {
-      window.addEventListener('keydown', handleEscape)
-    }
-    return () => {
-      window.removeEventListener('keydown', handleEscape)
-    }
-  }, [expandedShowcaseImage])
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [expandedShowcaseImage, expandedShowcaseGallery])
 
   const caseStudies = {
     'Brig.AI': {
@@ -483,7 +497,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
                   <div
                     key={index}
                     className="w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100 shadow-sm cursor-zoom-in hover:shadow-md transition-shadow"
-                    onClick={() => setExpandedShowcaseImage(img)}
+                    onClick={() => openExpandedImage(img, caseStudy.showcaseImages)}
                   >
                     <div
                       className="w-full h-full bg-center bg-cover"
@@ -528,7 +542,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
                   <div
                     key={index}
                     className="w-full aspect-[4/3] rounded-md overflow-hidden bg-gray-100 shadow-sm cursor-zoom-in hover:shadow-md transition-shadow"
-                    onClick={() => setExpandedShowcaseImage(img)}
+                    onClick={() => openExpandedImage(img, caseStudy.projectProgress)}
                   >
                     <div
                       className="w-full h-full bg-center bg-cover"
@@ -612,16 +626,48 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
       {expandedShowcaseImage && (
         <div
           className="fixed inset-0 z-[60] flex items-center justify-center bg-black bg-opacity-90 transition-opacity duration-300"
-          onClick={() => setExpandedShowcaseImage(null)}
+          onClick={closeExpandedImage}
         >
           <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
             <button
-              onClick={() => setExpandedShowcaseImage(null)}
+              onClick={closeExpandedImage}
               className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
               aria-label="Close"
             >
               ×
             </button>
+            {(() => {
+              const gallery = expandedShowcaseGallery || [expandedShowcaseImage]
+              const idx = gallery.indexOf(expandedShowcaseImage)
+              return (
+                <>
+                  {idx > 0 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setExpandedShowcaseImage(gallery[idx - 1])
+                      }}
+                      className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 text-4xl font-light w-10 h-10 flex items-center justify-center z-10"
+                      aria-label="Previous image"
+                    >
+                      ‹
+                    </button>
+                  )}
+                  {idx >= 0 && idx < gallery.length - 1 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setExpandedShowcaseImage(gallery[idx + 1])
+                      }}
+                      className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 text-4xl font-light w-10 h-10 flex items-center justify-center z-10"
+                      aria-label="Next image"
+                    >
+                      ›
+                    </button>
+                  )}
+                </>
+              )
+            })()}
             <img
               src={expandedShowcaseImage}
               alt="Expanded showcase"
