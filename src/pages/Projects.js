@@ -319,12 +319,10 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
       ],
     },
     'Community!': {
-      overview: 'Community! is Treehouse Place—weekly co-working sessions at SFU (Burnaby and Surrey) for people to work on passion projects together. I designed the Treehouse Place website and create the monthly promotional graphics that announce sessions and bring a distinct visual identity to each month.',
+      overview: "Treehouse is SFU's Socratica node: weekly co-working sessions at SFU (Burnaby and Surrey) for building anything and everything (outside of school and work!)",
       role: 'Design (website + promotional graphics)',
       timeline: 'Ongoing',
-      challenge: 'Building a recognizable brand and consistent sign-up flow for recurring weekly sessions, while giving each month its own personality so the community stays engaged and the events feel fresh and inviting.',
-      solution: 'A clear website (treehouse.place) for sign-up and context, plus a series of monthly Instagram graphics that tie into seasonal themes—cosmic/return in January, Valentine’s in February, and St. Patrick’s/luck in March—so each month has a distinct look while staying on-brand.',
-      myContribution: 'I designed the Treehouse Place website and lead the visual direction for community promotion. I created the January, February, and March graphics: the January “treehouse is back” cosmic/nebula invite for SFU East Tower and SRYE sessions; the February Valentine’s graphic with cherubs and hearts for the horses, lovers, and crafters; and the March “Every Friday this March” St. Patrick’s/luck graphic with the green palette and playful characters. Each graphic includes dates, locations, and a clear call-to-action (link in bio/caption to sign up).',
+      myContribution: 'I designed the Treehouse Place website and lead the visual direction for community promotion. I am creating the monthly instagram post and keeping the website updated.',
       impact: [
         'Unified web presence and sign-up flow for Treehouse Place',
         'Monthly graphics that drive sign-ups and keep the community engaged',
@@ -332,9 +330,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
       ],
       keyFeatures: [
         'Treehouse Place website design and UX',
-        'January graphic: cosmic/nebula “is back” invite (East Tower & SRYE, SFU)',
-        'February graphic: Valentine’s theme, cherubs, session dates and locations',
-        'March graphic: St. Patrick’s/luck theme, “Every Friday this March,” be lucky / make stuff / have fun',
+        'Monthly instagram post and website updates',
       ],
       showcaseImages: [
         '/images/projects/treehouse-landing.png',
