@@ -5,30 +5,19 @@ import './App.css'
 
   // Archive gallery data with different content types
   // Types: 'image', 'essay', 'book', 'movie', 'food', 'quote', 'music', 'place'
+const SHELF_BOOKS = [
+  { text: 'From Third World to First', author: 'Lee Kuan Yew', image: '/images/about/current/third-world-cover.png' },
+  { text: 'Letters to Milena', author: 'Franz Kafka', image: '/images/about/current/milena.jpg' },
+  { text: "Anne's House of Dreams", author: 'Lucy Maud Montgomery', image: '/images/about/current/anne.png' },
+  { text: 'Middlemarch', author: 'George Eliot', image: '/images/about/current/middlemarch-cover.png' },
+  { text: 'The Power Broker', author: 'Robert Caro', image: '/images/about/current/power-broker-cover.png' },
+]
 const ARCHIVE_ITEMS = [
     {
       type: 'image',
       image: '/images/about/current/insect.jpg',
       text: 'Insectarium, Montreal',
       date: '2024-06-22',
-    },
-    {
-      type: 'book',
-      text: 'Letters to Milena',
-      image: '/images/about/current/milena.jpg',
-      author: 'Franz Kafka',
-      date: '2025-02-02',
-      // Optional: link to review or purchase
-      // link: 'https://example.com',
-    },
-    {
-      type: 'book',
-      text: "Anne's House of Dreams",
-      image: '/images/about/current/anne.png',
-      author: 'Lucy Maud Montgomery',
-      date: '2025-11-28',
-      // Optional: link to review or purchase
-      // link: 'https://example.com',
     },
     {
       type: 'music',
@@ -82,7 +71,7 @@ const ARCHIVE_ITEMS = [
     },
     {
       type: 'gallery',
-      text: 'Euro Fall',
+      text: '2025!',
       date: '2025-01-01',
       photos: [
         '/images/about/gallery/batu.jpg',
@@ -391,7 +380,7 @@ function About() {
     })
   }, [])
 
-  // Separate music items, essays, and other items (books are now included in otherItems)
+  // Separate music items, essays, and other items (shelf books are from SHELF_BOOKS)
   const musicItems = useMemo(() => sortedArchiveItems.filter(item => item.type === 'music'), [sortedArchiveItems])
   const essayItems = useMemo(() => sortedArchiveItems.filter(item => item.type === 'essay'), [sortedArchiveItems])
   const otherItems = useMemo(() => sortedArchiveItems.filter(item => item.type !== 'music' && item.type !== 'essay'), [sortedArchiveItems])
@@ -637,13 +626,15 @@ function About() {
     return musicShelfBottom + 170 // Below music shelf
   }, [desktopMusicPositions])
   
-  // Calculate positions for other items (below essay window)
+  // Calculate positions for other items (below essay window and book shelf)
+  const bookSectionHeightMobile = 125 + 150
+  const bookSectionHeightDesktop = 130 + 150
   const mobileOtherPositions = useMemo(() => {
     const musicShelfBottom = mobileMusicPositions.shelfBottom || 352
-    // Position items starting below essay window
+    const bookGap = SHELF_BOOKS.length > 0 ? bookSectionHeightMobile : 0
     const startPosition = essayItems.length > 0 
-      ? mobileEssayWindowTop + essayWindowHeight + 40 
-      : Math.max(musicShelfBottom, 220) + 40 // Below shelf or post-it, whichever is lower
+      ? mobileEssayWindowTop + essayWindowHeight + 40 + bookGap
+      : Math.max(musicShelfBottom, 220) + 40 + bookGap
     return getGalleryPositions(otherItems, true, startPosition, 
       essayItems.length > 0 ? mobileEssayWindowTop : null, 
       essayItems.length > 0 ? essayWindowHeight : 0)
@@ -651,10 +642,10 @@ function About() {
   
   const desktopOtherPositions = useMemo(() => {
     const musicShelfBottom = desktopMusicPositions.shelfBottom || 187
-    // Position items starting below essay window
+    const bookGap = SHELF_BOOKS.length > 0 ? bookSectionHeightDesktop : 0
     const startPosition = essayItems.length > 0 
-      ? desktopEssayWindowTop + essayWindowHeight + 70 
-      : musicShelfBottom + 70
+      ? desktopEssayWindowTop + essayWindowHeight + 70 + bookGap
+      : musicShelfBottom + 70 + bookGap
     return getGalleryPositions(otherItems, false, startPosition,
       essayItems.length > 0 ? desktopEssayWindowTop : null,
       essayItems.length > 0 ? essayWindowHeight : 0)
@@ -1686,7 +1677,7 @@ function About() {
           {/* Archive content container */}
           <div className="relative w-full">
           
-          <div className="relative w-full" style={{ minHeight: `${((mobileMusicPositions.shelfBottom || 352) + (essayItems.length > 0 ? essayWindowHeight + 30 : 0)) + Math.ceil(otherItems.length / 2) * 280}px` }}>
+          <div className="relative w-full" style={{ minHeight: `${((mobileMusicPositions.shelfBottom || 352) + (essayItems.length > 0 ? essayWindowHeight + 30 : 0)) + (SHELF_BOOKS.length > 0 ? bookSectionHeightMobile : 0) + Math.ceil(otherItems.length / 2) * 280}px` }}>
             {/* Pinned Post-it Note - FIRST (Below sit image) */}
             <div className="absolute left-4 z-10" style={{ top: '50px', transform: 'rotate(-2deg)' }}>
               {/* Thumbtack */}
@@ -1858,7 +1849,49 @@ function About() {
               </>
             )}
 
-            {/* Other Items (including books) - FOURTH (Below essays) */}
+            {/* Bookshelf - full width, covers like vinyls, same width as vinyl shelf */}
+            {SHELF_BOOKS.length > 0 && (
+              <div
+                className="absolute left-0 z-10 flex flex-col items-center"
+                style={{
+                  top: (essayItems.length > 0 ? mobileEssayWindowTop + essayWindowHeight + 10 : mobileMusicPositions.shelfBottom + 10) + 100,
+                  width: `${mobileMusicPositions.shelfWidth || 400}px`,
+                  paddingLeft: '8px',
+                  paddingRight: '8px',
+                  boxSizing: 'border-box',
+                }}
+              >
+                <div className="flex w-full justify-center items-end gap-2" style={{ height: '100px', minHeight: '100px' }}>
+                  {SHELF_BOOKS.map((book, index) => (
+                    <div
+                      key={index}
+                      className="flex-shrink-0 rounded-sm overflow-hidden shadow-md bg-gray-200"
+                      style={{
+                        width: '60px',
+                        height: '100px',
+                        backgroundColor: book.image ? 'transparent' : '#8B7355',
+                        backgroundImage: book.image ? `url(${book.image})` : undefined,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+                      }}
+                    />
+                  ))}
+                </div>
+                <div
+                  className="w-full rounded-b"
+                  style={{
+                    height: '12px',
+                    marginTop: '0',
+                    background: 'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
+                    boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
+                    borderTop: '1px solid rgba(139, 105, 20, 0.5)',
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Other Items - FOURTH (Below essays and books) */}
             {otherItems.map((item, index) => {
               const pos = mobileOtherPositions[index]
               if (!pos) return null
@@ -2219,7 +2252,7 @@ function About() {
               </div>
             </div>
 
-          <div className="relative w-full" style={{ minHeight: `${((desktopMusicPositions.shelfBottom || 187) + (essayItems.length > 0 ? 200 : 0)) + Math.ceil(otherItems.length / 3) * 280}px` }}>
+          <div className="relative w-full" style={{ minHeight: `${((desktopMusicPositions.shelfBottom || 187) + (essayItems.length > 0 ? 200 : 0)) + (SHELF_BOOKS.length > 0 ? bookSectionHeightDesktop : 0) + Math.ceil(otherItems.length / 3) * 280}px` }}>
             {/* Wooden Shelf for Music Items - Right Aligned */}
             {musicItems.length > 0 && (
                 <div 
@@ -2367,7 +2400,49 @@ function About() {
                 </>
               )}
 
-              {/* Other Items (including books) */}
+              {/* Bookshelf - full width, covers like vinyls, same width as vinyl shelf */}
+              {SHELF_BOOKS.length > 0 && (
+                <div
+                  className="absolute right-0 z-10 flex flex-col items-end"
+                  style={{
+                    top: (essayItems.length > 0 ? desktopEssayWindowTop + essayWindowHeight + 20 : (desktopMusicPositions.shelfBottom || 187) + 20) + 100,
+                    width: `${desktopMusicPositions.shelfWidth || Math.min(5 * 72 + 4 * 12 + 60, 950 * 0.9)}px`,
+                    paddingLeft: '12px',
+                    paddingRight: '12px',
+                    boxSizing: 'border-box',
+                  }}
+                >
+                  <div className="flex w-full justify-center items-end gap-3" style={{ height: '115px', minHeight: '115px' }}>
+                    {SHELF_BOOKS.map((book, index) => (
+                      <div
+                        key={index}
+                        className="flex-shrink-0 rounded-sm overflow-hidden shadow-md bg-gray-200"
+                        style={{
+                          width: '72px',
+                          height: '115px',
+                          background: book.image ? undefined : '#8B7355',
+                          backgroundImage: book.image ? `url(${book.image})` : undefined,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <div
+                    className="w-full rounded-b"
+                    style={{
+                      height: '12px',
+                      marginTop: '0',
+                      background: 'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
+                      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
+                      borderTop: '1px solid rgba(139, 105, 20, 0.5)',
+                    }}
+                  />
+                </div>
+              )}
+
+              {/* Other Items */}
               {otherItems.map((item, index) => {
                 const pos = desktopOtherPositions[index]
                 if (!pos) return null
