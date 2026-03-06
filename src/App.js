@@ -8,8 +8,6 @@ const About = lazy(() => import('./pages/About'))
 const Projects = lazy(() => import('./pages/Projects'))
 const Portfolio = lazy(() => import('./pages/Portfolio'))
 const Writing = lazy(() => import('./pages/Writing'))
-const Community = lazy(() => import('./pages/Community'))
-
 function App() {
   return (
     <Router>
@@ -23,7 +21,6 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/writing" element={<Writing />} />
-            <Route path="/community" element={<Community />} />
           </Routes>
         </Suspense>
       </div>

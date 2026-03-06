@@ -297,6 +297,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
       ],
       showcaseImages: [
         '/images/projects/react-to-this.png',
+        '/images/projects/react-to-this-paper.png',
       ],
     },
     Spruce: {
@@ -375,17 +376,12 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
       ],
     },
     'jellyfish umbrella': {
-      overview: "We wanted to create a project where art imitates nature. Inspired by our summers swimming with jellyfish on the BC Coast, we combined the familiar form of an umbrella with the novelty of engineering, to spark childrens' interest in engineering.",
+      overview: "We wanted to create a project where art imitates nature. Inspired by our summers swimming with jellyfish on the BC Coast, we combined the familiar form of an umbrella with the novelty of lights and movement, to spark childrens' interest in engineering.",
       role: 'Product Designer & Artistic Director',
       timeline: 'January 2026 - March 2026',
       challenge: "Inspiring kids to learn and build by showing them what engineering can be.",
       solution: 'A cohesive vision across two outputs: a zine that documents and extends the world of the project, and a jellyfish umbrella with moving, light-up tentacles.',
       myContribution: 'I created the zine from concept to final design, defined the jellyfish umbrella concept, and designed the fabric and decorative elements so the object reads as a single, recognizable artifact. I also designed the interactive website.',
-      impact: [
-        'Unified product and print experience under one creative direction',
-        'Custom-designed umbrella that doubles as art and functional object',
-        'Zine that captures and extends the project narrative and visual language',
-      ],
       keyFeatures: [
         'Original jellyfish umbrella concept and form language',
         'Custom fabric and tentacle design for the umbrella',
@@ -416,10 +412,10 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
       overview: "The Lyre is SFU's literary magazine under World Languages and Literatures, publishing poetry, prose, translations, short stories, photography, and art.",
       role: 'Editorial Designer (Vol. 17)',
       timeline: '2025–2026',
-      challenge: 'Creating a clear visual identity for Vol. 17 and recruiting editors and driving submissions through promotional materials that communicate the necessary information, theme, and artistic tone.',
-      myContribution: "I am the editorial designer for Lyre Mag Vol. 17 this year, and I contributed my art to the cover of Vol 16 (Passage). I'm currently designing promotional posters and I'll be working on the full issue this summer.",
+      challenge: 'Creating a clear visual identity for Vol. 17 (FLUX) and recruiting associate editors and driving submissions through promotional materials that communicate the necessary information, theme, and artistic tone.',
+      myContribution: "I am the editorial designer for The Lyre this year, and I contributed my art to the cover of Vol 16 (Passage). I'm currently designing promotional posters and I'll be working on the full issue this summer.",
       impact: [
-        'Promotional posters for Vol. 17 that communicate the FLUX theme and submission details',
+        'Promotional posters for Vol. 17 and the writing contest',
         'Cover art for Vol. 16 (Passage)',
         'Upcoming full-issue design for Vol. 17',
       ],
@@ -427,6 +423,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
         '/images/projects/lyre-poster-flux.png',
         '/images/projects/lyre-poster-constant-motion.png',
         '/images/projects/lyre-vol16-cover.png',
+        '/images/projects/lyre-painting.png',
       ],
     },
   }
@@ -567,17 +564,19 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           )}
 
           {/* Impact */}
-          <section>
-            <h3 className="text-xl font-semibold text-gray-700 mb-3">Impact</h3>
-            <ul className="space-y-2">
-              {caseStudy.impact.map((impact, index) => (
-                <li key={index} className="text-gray-700 flex items-start">
-                  <span className="text-gray-700 mr-2">•</span>
-                  <span>{impact}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+          {caseStudy.impact && caseStudy.impact.length > 0 && (
+            <section>
+              <h3 className="text-xl font-semibold text-gray-700 mb-3">Impact</h3>
+              <ul className="space-y-2">
+                {caseStudy.impact.map((impact, index) => (
+                  <li key={index} className="text-gray-700 flex items-start">
+                    <span className="text-gray-700 mr-2">•</span>
+                    <span>{impact}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {/* External Links */}
           {(project?.link || caseStudy.designLink) && (
@@ -654,7 +653,7 @@ function ProjectCard({ project, onCaseStudyClick, onImageExpand }) {
         <div className="absolute inset-0 bg-black opacity-20 group-hover:opacity-20 transition-opacity duration-300"></div>
       </div>
 
-      <div className="absolute inset-0 flex items-end p-4 pointer-events-none">
+      <div className="absolute inset-0 flex items-end p-4 pointer-events-none opacity-100 group-hover:opacity-0 transition-opacity duration-300">
         <h3 className="text-white text-sm font-medium z-10">{project.title}</h3>
       </div>
 
