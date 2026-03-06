@@ -43,7 +43,7 @@ function Portfolio() {
   const cardData = [
     {
       imgSrc: '/images/portfolio/ten.jpg',
-      description: 'movie [2025-01] I submitted to Lyre Magazine and it got published as the cover :) + I will be joining the next issue as lead designer',
+      description: 'paintball & hay scene [2025-01]',
     },
     {
       imgSrc: '/images/portfolio/lily.png',
@@ -51,11 +51,11 @@ function Portfolio() {
     },
     {
       imgSrc: '/images/portfolio/dance.png',
-      description: '2021-01]',
+      description: '[2021-01]',
     },
     {
       imgSrc: '/images/portfolio/ecola.png',
-      description: '',
+      description: 'ecola beach state park, oregon',
     },
     {
       imgSrc: '/images/portfolio/backy.png',
