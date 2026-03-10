@@ -638,7 +638,7 @@ function About() {
     return getGalleryPositions(otherItems, true, startPosition, 
       essayItems.length > 0 ? mobileEssayWindowTop : null, 
       essayItems.length > 0 ? essayWindowHeight : 0)
-  }, [otherItems, mobileMusicPositions, mobileEssayWindowTop, essayItems, essayWindowHeight])
+  }, [otherItems, mobileMusicPositions, mobileEssayWindowTop, essayItems, essayWindowHeight, bookSectionHeightMobile])
   
   const desktopOtherPositions = useMemo(() => {
     const musicShelfBottom = desktopMusicPositions.shelfBottom || 187
@@ -649,7 +649,7 @@ function About() {
     return getGalleryPositions(otherItems, false, startPosition,
       essayItems.length > 0 ? desktopEssayWindowTop : null,
       essayItems.length > 0 ? essayWindowHeight : 0)
-  }, [otherItems, desktopMusicPositions, desktopEssayWindowTop, essayItems, essayWindowHeight])
+  }, [otherItems, desktopMusicPositions, desktopEssayWindowTop, essayItems, essayWindowHeight, bookSectionHeightDesktop])
 
   // Render different card templates based on content type
   const renderArchiveCard = useCallback((item, isMobile) => {
