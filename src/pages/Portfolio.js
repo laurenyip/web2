@@ -48,10 +48,12 @@ function Portfolio() {
     {
       imgSrc: '/images/portfolio/lily.png',
       description: 'dedicated to my friends [2021-08]',
+      scale: 1.4,
     },
     {
       imgSrc: '/images/portfolio/dance.png',
       description: '[2021-01]',
+      scale: 1.6,
     },
     {
       imgSrc: '/images/portfolio/ecola.png',
@@ -60,6 +62,7 @@ function Portfolio() {
     {
       imgSrc: '/images/portfolio/backy.png',
       description: 'my backyard [2023]',
+      scale: 1.5,
     },
     {
       imgSrc: '/images/portfolio/tidepool.png',
@@ -125,12 +128,13 @@ function Portfolio() {
               <div
                 key={index}
                 onClick={() => handleImageClick(card.imgSrc, card.description)}
-                className="cursor-pointer"
+                className="cursor-pointer overflow-hidden aspect-[3/4]"
               >
                 <img
                   src={card.imgSrc}
                   alt={`Portfolio ${index + 1}`}
-                  className="w-full h-auto aspect-[3/4] object-cover"
+                  className="w-full h-full object-cover"
+                  style={{ transform: `scale(${card.scale || 1.3})` }}
                   loading="lazy"
                   width={300}
                   height={400}
@@ -156,7 +160,7 @@ function Portfolio() {
                 </div>
                 <button
                   onClick={() => setCurrentImage(null)}
-                  className="rounded-full bg-[#ffc2c2] px-8 py-2 h-12 text-sm font-semibold flex items-center text-gray-700 hover:bg-[#ffb2b2] focus:outline-none focus:ring-2 focus:ring-[#ffc2c2] justify-center mx-auto w-auto focus:ring-offset-2 mt-4"
+                  className="rounded-full bg-white border-2 border-slate-700 px-8 py-2 h-12 text-sm font-semibold flex items-center text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-slate-700 justify-center mx-auto w-auto focus:ring-offset-2 mt-4"
                 >
                   Close
                 </button>

@@ -1144,7 +1144,6 @@ function About() {
             style={{
               width: `${paperWidth}px`,
               minHeight: hasMultipleLines ? (isMobile ? 180 : 220) : (isMobile ? 80 : 100),
-              transform: 'rotate(-2deg)',
               background: '#fffef7',
               border: '1px solid #e8e6d9',
               boxShadow: 'inset 0 0 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.2)',
