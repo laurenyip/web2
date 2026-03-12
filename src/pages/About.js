@@ -459,6 +459,7 @@ function About() {
     const baseCardHeight = isMobile ? 200 : 240
     const containerWidth = isMobile ? 400 : 950
     const padding = isMobile ? 20 : 30
+    const minSpacing = 20 // Minimum 20px spacing between images
     const spacing = isMobile ? 80 : 90 // Increased spacing for better separation
     const postItWidth = isMobile ? 160 : 200
     const postItHeight = isMobile ? 120 : 150
@@ -495,16 +496,18 @@ function About() {
     // Always reserve space for essay window on the right if it exists
     if (essayWindowTop !== null) {
       placedRects.push({
-        top: Math.max(0, essayWindowTop - spacing / 2),
-        left: essayWindowLeft - spacing / 2,
-        right: essayWindowRight + spacing / 2,
-        bottom: essayWindowBottom + spacing / 2,
+        top: Math.max(0, essayWindowTop - minSpacing / 2),
+        left: essayWindowLeft - minSpacing / 2,
+        right: essayWindowRight + minSpacing / 2,
+        bottom: essayWindowBottom + minSpacing / 2,
       })
     }
     
     // Helper function to check if a rectangle overlaps with any placed rectangle
+    // The rectangles are already expanded by minSpacing/2, so checking overlap ensures minimum spacing
     const checkCollision = (rect) => {
       return placedRects.some(placed => {
+        // Check if rectangles overlap (they're already expanded by minSpacing/2)
         return !(rect.right <= placed.left || 
                 rect.left >= placed.right ||
                 rect.bottom <= placed.top ||
@@ -551,12 +554,12 @@ function About() {
         const left = Math.max(padding, Math.min(baseLeft + variationX, containerWidth - cardWidth - padding))
         const top = Math.max(startTop, baseTop + variationY)
         
-        // Bounding box with spacing padding using the actual varied card height
+        // Bounding box with minimum spacing padding using the actual varied card height
         const rect = {
-          top: top - spacing / 2,
-          left: left - spacing / 2,
-          right: left + cardWidth + spacing / 2,
-          bottom: top + cardHeight + spacing / 2,
+          top: top - minSpacing / 2,
+          left: left - minSpacing / 2,
+          right: left + cardWidth + minSpacing / 2,
+          bottom: top + cardHeight + minSpacing / 2,
         }
         
         // Check if this position would overlap and is within bounds
@@ -569,8 +572,13 @@ function About() {
             height: cardHeight, // Store the height for rendering
           })
           
-          // Record this rectangle as occupied
-          placedRects.push(rect)
+          // Record this rectangle as occupied with minimum spacing
+          placedRects.push({
+            top: top - minSpacing / 2,
+            left: left - minSpacing / 2,
+            right: left + cardWidth + minSpacing / 2,
+            bottom: top + cardHeight + minSpacing / 2,
+          })
           placed = true
         }
         
@@ -584,10 +592,10 @@ function About() {
         const col = i % itemsPerRow
         
         const itemsInRow = Math.min(itemsPerRow, items.length - row * itemsPerRow)
-        const rowWidth = availableWidth - (spacing * (itemsInRow - 1))
+        const rowWidth = availableWidth - (minSpacing * (itemsInRow - 1))
         const itemSpacing = rowWidth / itemsInRow
-        const fallbackLeft = startOffset + col * (itemSpacing + spacing)
-        const fallbackTop = startTop + row * (baseCardHeight + spacing)
+        const fallbackLeft = startOffset + col * (itemSpacing + minSpacing)
+        const fallbackTop = startTop + row * (baseCardHeight + minSpacing)
       
       positions.push({
           top: `${fallbackTop}px`,
@@ -596,12 +604,12 @@ function About() {
           height: cardHeight, // Store the height for rendering
         })
         
-        // Record fallback position using actual card height
+        // Record fallback position using actual card height with minimum spacing
         placedRects.push({
-          top: fallbackTop - spacing / 2,
-          left: fallbackLeft - spacing / 2,
-          right: fallbackLeft + cardWidth + spacing / 2,
-          bottom: fallbackTop + cardHeight + spacing / 2,
+          top: fallbackTop - minSpacing / 2,
+          left: fallbackLeft - minSpacing / 2,
+          right: fallbackLeft + cardWidth + minSpacing / 2,
+          bottom: fallbackTop + cardHeight + minSpacing / 2,
         })
       }
     }
@@ -1106,13 +1114,17 @@ function About() {
       return (
         <div className={cardClasses}>
           {item.image && (
-            <img
-              src={item.image}
-              alt={item.text}
-              className="w-full object-contain"
-              style={{ maxHeight: 'none' }}
-              loading="lazy"
-            />
+            <div 
+              style={{ cursor: 'pointer' }}
+            >
+              <img
+                src={item.image}
+                alt={item.text}
+                className="w-full object-contain"
+                style={{ maxHeight: 'none' }}
+                loading="lazy"
+              />
+            </div>
           )}
           <div className={padding}>
             <p className={`${textSize} text-gray-700 mb-1 font-medium`}>{item.text}</p>
@@ -1192,15 +1204,19 @@ function About() {
       return (
         <div className={cardClasses}>
           {item.image && (
-            <img
-              src={item.image}
-              alt={item.text}
-              className="w-full object-contain"
-              style={{ maxHeight: 'none' }}
-              loading="lazy"
-              width={200}
-              height={200}
-            />
+            <div 
+              style={{ cursor: 'pointer' }}
+            >
+              <img
+                src={item.image}
+                alt={item.text}
+                className="w-full object-contain"
+                style={{ maxHeight: 'none' }}
+                loading="lazy"
+                width={200}
+                height={200}
+              />
+            </div>
           )}
           <div className={padding}>
             <p className={`${textSize} text-gray-700 mb-1 font-medium`}>{item.text}</p>
@@ -1910,7 +1926,7 @@ function About() {
                   onClick={() => {
                     if (item.link) {
                       window.open(item.link, '_blank')
-                    } else if (item.type === 'image' && item.image) {
+                    } else if (item.image && (item.type === 'image' || item.type === 'food' || item.type === 'place')) {
                       setOpenAboutImage(item.image)
                     }
                   }}
@@ -2460,6 +2476,8 @@ function About() {
                     onClick={() => {
                       if (item.link) {
                         window.open(item.link, '_blank')
+                      } else if (item.image && (item.type === 'image' || item.type === 'food' || item.type === 'place')) {
+                        setOpenAboutImage(item.image)
                       }
                     }}
                   >
