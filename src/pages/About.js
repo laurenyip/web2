@@ -11,6 +11,10 @@ const SHELF_BOOKS = [
   { text: "Anne's House of Dreams", author: 'Lucy Maud Montgomery', image: '/images/about/current/anne.png' },
   { text: 'Middlemarch', author: 'George Eliot', image: '/images/about/current/middlemarch-cover.png' },
   { text: 'The Power Broker', author: 'Robert Caro', image: '/images/about/current/power-broker-cover.png' },
+  { text: 'Never Let Me Go', author: 'Kazuo Ishiguro', image: '/images/about/current/never-let-me-go.png' },
+  { text: 'The Oxford Book of American Essays', author: 'Various', image: '/images/about/current/oxford-american-essays.png' },
+  { text: 'Henry & June', author: 'Anaïs Nin', image: '/images/about/current/henry-and-june.png' },
+  { text: 'Pictures from Brueghel and other poems', author: 'William Carlos Williams', image: '/images/about/current/pictures-from-brueghel.png' },
 ]
 const ARCHIVE_ITEMS = [
     {
@@ -237,7 +241,9 @@ function About() {
   const [albumColors, setAlbumColors] = useState({})
   const [openGallery, setOpenGallery] = useState(null)
   const [openAboutImage, setOpenAboutImage] = useState(null)
+  const [visibleItems, setVisibleItems] = useState(new Set())
   const mobileEssayScrollRef = useRef(null)
+  const itemRefs = useRef({})
   const desktopEssayScrollRef = useRef(null)
 
   // Get color based on scroll position
@@ -1256,6 +1262,40 @@ function About() {
     }
   }, [])
 
+  // Intersection Observer for scroll-triggered animations
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '50px', // Start animation slightly before item enters viewport
+      threshold: 0.1, // Trigger when 10% of the item is visible
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const itemId = entry.target.getAttribute('data-item-id')
+          if (itemId) {
+            setVisibleItems((prev) => new Set([...prev, itemId]))
+          }
+        }
+      })
+    }, observerOptions)
+
+    // Copy refs to a variable for cleanup
+    const currentRefs = itemRefs.current
+
+    // Observe all item refs
+    Object.values(currentRefs).forEach((ref) => {
+      if (ref) observer.observe(ref)
+    })
+
+    return () => {
+      Object.values(currentRefs).forEach((ref) => {
+        if (ref) observer.unobserve(ref)
+      })
+    }
+  }, [otherItems, musicItems, essayItems])
+
   // Find the open gallery item
   const openGalleryItem = useMemo(() => {
     if (!openGallery) return null
@@ -1762,10 +1802,16 @@ function About() {
                 {musicItems.map((item, index) => {
                   const pos = mobileMusicPositions.positions[index]
                   if (!pos) return null
+                  const itemId = `mobile-music-${index}`
+                  const isVisible = visibleItems.has(itemId)
               return (
                 <div
                       key={`music-${index}`}
-                      className="absolute cursor-pointer transition-transform hover:scale-105 z-20"
+                      ref={(el) => {
+                        if (el) itemRefs.current[itemId] = el
+                      }}
+                      data-item-id={itemId}
+                      className={`absolute cursor-pointer transition-transform hover:scale-105 z-20 ${isVisible ? 'animate-bounce-in' : 'opacity-0'}`}
                       style={{
                         top: pos.top,
                         left: pos.left,
@@ -1812,10 +1858,17 @@ function About() {
                   }}
                 >
                   <div className="flex flex-col gap-3">
-                    {essayItems.map((item, index) => (
+                    {essayItems.map((item, index) => {
+                      const itemId = `mobile-essay-${index}`
+                      const isVisible = visibleItems.has(itemId)
+                      return (
                       <div
                         key={`essay-${index}`}
-                        className="cursor-pointer transition-all border-b pb-2 last:border-b-0 relative overflow-visible px-3"
+                        ref={(el) => {
+                          if (el) itemRefs.current[itemId] = el
+                        }}
+                        data-item-id={itemId}
+                        className={`cursor-pointer transition-all border-b pb-2 last:border-b-0 relative overflow-visible px-3 ${isVisible ? 'animate-bounce-in' : 'opacity-0'}`}
                         style={{
                           borderColor: index < essayItems.length - 1 ? essayColor : 'transparent',
                           borderLeft: '3px solid transparent',
@@ -1843,7 +1896,8 @@ function About() {
                         )}
                         <p className="text-[10px] text-gray-400 relative z-10">{item.date}</p>
                       </div>
-                    ))}
+                      )
+                    })}
                   </div>
                 </div>
               </div>
@@ -1877,10 +1931,17 @@ function About() {
                 }}
               >
                 <div className="flex w-full justify-center items-end gap-2" style={{ height: '100px', minHeight: '100px' }}>
-                  {SHELF_BOOKS.map((book, index) => (
+                  {SHELF_BOOKS.map((book, index) => {
+                    const itemId = `mobile-book-${index}`
+                    const isVisible = visibleItems.has(itemId)
+                    return (
                     <div
                       key={index}
-                      className="flex-shrink-0 rounded-sm overflow-hidden shadow-md bg-gray-200"
+                      ref={(el) => {
+                        if (el) itemRefs.current[itemId] = el
+                      }}
+                      data-item-id={itemId}
+                      className={`flex-shrink-0 rounded-sm overflow-hidden shadow-md bg-gray-200 ${isVisible ? 'animate-bounce-in' : 'opacity-0'}`}
                       style={{
                         width: '60px',
                         height: '100px',
@@ -1891,7 +1952,8 @@ function About() {
                         boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
                       }}
                     />
-                  ))}
+                    )
+                  })}
                 </div>
                 <div
                   className="w-full rounded-b"
@@ -1911,10 +1973,16 @@ function About() {
               const pos = mobileOtherPositions[index]
               if (!pos) return null
               const isLongQuote = item.type === 'quote' && item.text?.includes('\n')
+              const itemId = `mobile-other-${index}`
+              const isVisible = visibleItems.has(itemId)
               return (
                 <div
                   key={`other-${index}`}
-                  className="absolute cursor-pointer transition-transform hover:scale-105 z-20"
+                  ref={(el) => {
+                    if (el) itemRefs.current[itemId] = el
+                  }}
+                  data-item-id={itemId}
+                  className={`absolute cursor-pointer transition-transform hover:scale-105 z-20 ${isVisible ? 'animate-bounce-in' : 'opacity-0'}`}
                   style={{
                     top: pos.top,
                     left: pos.left,
@@ -2311,10 +2379,16 @@ function About() {
             {musicItems.map((item, index) => {
                 const pos = desktopMusicPositions.positions[index]
                 if (!pos) return null
+                const itemId = `desktop-music-${index}`
+                const isVisible = visibleItems.has(itemId)
                 return (
                   <div
                     key={`music-${index}`}
-                    className="absolute cursor-pointer transition-transform hover:scale-105 z-20"
+                    ref={(el) => {
+                      if (el) itemRefs.current[itemId] = el
+                    }}
+                    data-item-id={itemId}
+                    className={`absolute cursor-pointer transition-transform hover:scale-105 z-20 ${isVisible ? 'animate-bounce-in' : 'opacity-0'}`}
                     style={{
                       top: pos.top,
                       left: pos.left,
@@ -2361,10 +2435,17 @@ function About() {
                     }}
                   >
                     <div className="flex flex-col gap-3">
-                      {essayItems.map((item, index) => (
+                      {essayItems.map((item, index) => {
+                        const itemId = `desktop-essay-${index}`
+                        const isVisible = visibleItems.has(itemId)
+                        return (
                         <div
                           key={`essay-${index}`}
-                          className="cursor-pointer transition-all border-b pb-2 last:border-b-0 relative overflow-visible px-3"
+                          ref={(el) => {
+                            if (el) itemRefs.current[itemId] = el
+                          }}
+                          data-item-id={itemId}
+                          className={`cursor-pointer transition-all border-b pb-2 last:border-b-0 relative overflow-visible px-3 ${isVisible ? 'animate-bounce-in' : 'opacity-0'}`}
                           style={{
                             borderColor: index < essayItems.length - 1 ? essayColor : 'transparent',
                             borderLeft: '4px solid transparent',
@@ -2394,7 +2475,8 @@ function About() {
                           )}
                           <p className="text-xs text-gray-400 relative z-10">{item.date}</p>
                         </div>
-                      ))}
+                        )
+                      })}
                     </div>
                   </div>
                 </div>
@@ -2428,10 +2510,17 @@ function About() {
                   }}
                 >
                   <div className="flex w-full justify-center items-end gap-3" style={{ height: '115px', minHeight: '115px' }}>
-                    {SHELF_BOOKS.map((book, index) => (
+                    {SHELF_BOOKS.map((book, index) => {
+                      const itemId = `desktop-book-${index}`
+                      const isVisible = visibleItems.has(itemId)
+                      return (
                       <div
                         key={index}
-                        className="flex-shrink-0 rounded-sm overflow-hidden shadow-md bg-gray-200"
+                        ref={(el) => {
+                          if (el) itemRefs.current[itemId] = el
+                        }}
+                        data-item-id={itemId}
+                        className={`flex-shrink-0 rounded-sm overflow-hidden shadow-md bg-gray-200 ${isVisible ? 'animate-bounce-in' : 'opacity-0'}`}
                         style={{
                           width: '72px',
                           height: '115px',
@@ -2442,7 +2531,8 @@ function About() {
                           boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
                         }}
                       />
-                    ))}
+                      )
+                    })}
                   </div>
                   <div
                     className="w-full rounded-b"
@@ -2462,10 +2552,16 @@ function About() {
                 const pos = desktopOtherPositions[index]
                 if (!pos) return null
                 const isLongQuote = item.type === 'quote' && item.text?.includes('\n')
+                const itemId = `desktop-other-${index}`
+                const isVisible = visibleItems.has(itemId)
                 return (
                   <div
                     key={`other-${index}`}
-                    className="absolute cursor-pointer transition-transform hover:scale-105 z-20"
+                    ref={(el) => {
+                      if (el) itemRefs.current[itemId] = el
+                    }}
+                    data-item-id={itemId}
+                    className={`absolute cursor-pointer transition-transform hover:scale-105 z-20 ${isVisible ? 'animate-bounce-in' : 'opacity-0'}`}
                     style={{
                       top: pos.top,
                       left: pos.left,
@@ -2484,7 +2580,7 @@ function About() {
                     {renderArchiveCard(item, false)}
                   </div>
                 )
-            })}
+              })}
           </div>
         </div>
       </div>
