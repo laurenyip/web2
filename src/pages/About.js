@@ -523,6 +523,11 @@ function About() {
     
     for (let i = 0; i < totalItems; i++) {
       const cardHeight = getCardHeight(i) // Get varied height for this item
+      const currentItem = items[i]
+      const isGallery = currentItem.type === 'gallery'
+      const prevItem = i > 0 ? items[i - 1] : null
+      const prevIsGallery = prevItem && prevItem.type === 'gallery'
+      
       let placed = false
       let attempts = 0
       const maxAttempts = 300
@@ -551,7 +556,16 @@ function About() {
         // Position rows with good vertical spacing - use average height for row spacing
         // Start from the provided startTop (below shelf)
         const avgHeight = baseCardHeight
-        const baseTop = startTop + row * (avgHeight + spacing)
+        const verticalSpacing = spacing + minSpacing // Add extra spacing to prevent overlaps
+        
+        // Check if any item in the previous row was a gallery
+        const prevRowStart = Math.max(0, (row - 1) * itemsPerRow)
+        const prevRowEnd = Math.min(prevRowStart + itemsPerRow, i)
+        const prevRowHasGallery = prevRowStart < i && items.slice(prevRowStart, prevRowEnd).some(item => item.type === 'gallery')
+        
+        // Add extra spacing if previous row had a gallery or previous item was a gallery (30px minimum)
+        const gallerySpacing = (prevIsGallery || prevRowHasGallery) ? Math.max(30, verticalSpacing) : verticalSpacing
+        const baseTop = startTop + row * (avgHeight + gallerySpacing)
         
         // Small random variation for natural look (much smaller)
         const variationX = (getRandom(i * 3 + attempts) - 0.5) * (spacing * 0.3)
@@ -561,11 +575,13 @@ function About() {
         const top = Math.max(startTop, baseTop + variationY)
         
         // Bounding box with minimum spacing padding using the actual varied card height
+        // Add extra bottom spacing if previous item was a gallery (30px minimum after gallery)
+        const bottomSpacing = prevIsGallery ? Math.max(30, minSpacing) : minSpacing
         const rect = {
           top: top - minSpacing / 2,
           left: left - minSpacing / 2,
           right: left + cardWidth + minSpacing / 2,
-          bottom: top + cardHeight + minSpacing / 2,
+          bottom: top + cardHeight + bottomSpacing / 2,
         }
         
         // Check if this position would overlap and is within bounds
@@ -578,12 +594,14 @@ function About() {
             height: cardHeight, // Store the height for rendering
           })
           
-          // Record this rectangle as occupied with minimum spacing
+          // Record this rectangle as occupied with minimum spacing (extra bottom spacing for galleries)
+          // For galleries, ensure at least 30px spacing at the bottom
+          const galleryBottomSpacing = isGallery ? Math.max(30, minSpacing) : minSpacing
           placedRects.push({
             top: top - minSpacing / 2,
             left: left - minSpacing / 2,
             right: left + cardWidth + minSpacing / 2,
-            bottom: top + cardHeight + minSpacing / 2,
+            bottom: top + cardHeight + galleryBottomSpacing / 2,
           })
           placed = true
         }
@@ -601,7 +619,9 @@ function About() {
         const rowWidth = availableWidth - (minSpacing * (itemsInRow - 1))
         const itemSpacing = rowWidth / itemsInRow
         const fallbackLeft = startOffset + col * (itemSpacing + minSpacing)
-        const fallbackTop = startTop + row * (baseCardHeight + minSpacing)
+        // Add extra spacing if previous item was a gallery
+        const fallbackRowSpacing = prevIsGallery ? Math.max(30, minSpacing + 20) : minSpacing + 20
+        const fallbackTop = startTop + row * (baseCardHeight + fallbackRowSpacing)
       
       positions.push({
           top: `${fallbackTop}px`,
@@ -611,11 +631,13 @@ function About() {
         })
         
         // Record fallback position using actual card height with minimum spacing
+        // Add extra bottom spacing if this is a gallery
+        const fallbackBottomSpacing = isGallery ? Math.max(30, minSpacing) : minSpacing
         placedRects.push({
           top: fallbackTop - minSpacing / 2,
           left: fallbackLeft - minSpacing / 2,
           right: fallbackLeft + cardWidth + minSpacing / 2,
-          bottom: fallbackTop + cardHeight + minSpacing / 2,
+          bottom: fallbackTop + cardHeight + fallbackBottomSpacing / 2,
         })
       }
     }
@@ -1413,9 +1435,9 @@ function About() {
       {/* Mobile Layout - Editorial style */}
       <div className="lg:hidden" style={{ marginTop: '15vh' }}>
         {/* Static header section - always at top above archive */}
-        <div className="relative w-full" style={{ minHeight: '400px', paddingTop: '80px' }}>
+        <div className="relative w-full" style={{ minHeight: '400px', paddingTop: '80px', pointerEvents: 'none' }}>
           {/* Centered main title */}
-          <div className="relative text-center z-30" style={{ width: '100%' }}>
+          <div className="relative text-center z-30" style={{ width: '100%', pointerEvents: 'auto' }}>
             <h1 className="text-5xl md:text-8xl text-gray-700 mb-4" style={{ 
               fontFamily: "'Melo', sans-serif"
             }}>
@@ -1436,14 +1458,16 @@ function About() {
           {/* About images - scattered around */}
           <img
             src="/images/about/main/about1.jpg"
-            className="aboutImage absolute z-20 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={54}
             height={72}
             style={{
               top: '10px',
-              left: '40%',
+              left: '42%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about1"
             loading="eager"
@@ -1452,14 +1476,16 @@ function About() {
 
           <img
             src="/images/about/main/about2.jpg"
-            className="aboutImage absolute z-10 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={72}
             height={54}
             style={{
-              top: '250px',
-              right: '8%',
+              top: '290px',
+              right: '15%',
               width: '9%',
               maxWidth: '72px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about2"
             loading="eager"
@@ -1468,14 +1494,16 @@ function About() {
 
           <img
             src="/images/about/main/About3.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={54}
             height={72}
             style={{
-              top: '80px',
-              left: '5%',
+              top: '100px',
+              left: '8%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about3"
             loading="lazy"
@@ -1484,12 +1512,14 @@ function About() {
 
           <img
             src="/images/about/main/About4.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
-              top: '20px',
+              top: '40px',
               left: '20%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about4"
             loading="lazy"
@@ -1498,14 +1528,16 @@ function About() {
 
           <img
             src="/images/about/main/About5.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={54}
             height={72}
             style={{
-              top: '180px',
-              left: '3%',
+              top: '220px',
+              left: '8%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about5"
             loading="lazy"
@@ -1514,14 +1546,16 @@ function About() {
 
           <img
             src="/images/about/main/About6.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={54}
             height={72}
             style={{
-              top: '220px',
-              left: '15%',
+              top: '260px',
+              left: '18%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about6"
             loading="lazy"
@@ -1530,14 +1564,16 @@ function About() {
 
           <img
             src="/images/about/main/About7.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={54}
             height={72}
             style={{
-              top: '280px',
-              left: '8%',
+              top: '320px',
+              left: '12%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about7"
             loading="lazy"
@@ -1546,14 +1582,16 @@ function About() {
 
           <img
             src="/images/about/main/About8.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={54}
             height={72}
             style={{
-              top: '100px',
-              right: '5%',
+              top: '120px',
+              right: '10%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about8"
             loading="lazy"
@@ -1562,12 +1600,14 @@ function About() {
 
           <img
             src="/images/about/main/about9.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
-              top: '240px',
-              right: '44%',
+              top: '280px',
+              right: '35%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about9"
             loading="lazy"
@@ -1576,14 +1616,16 @@ function About() {
 
           <img
             src="/images/about/main/About10.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={54}
             height={72}
             style={{
-              top: '200px',
-              right: '3%',
+              top: '240px',
+              right: '8%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about10"
             loading="lazy"
@@ -1592,12 +1634,14 @@ function About() {
 
           <img
             src="/images/about/main/About11.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
-              top: '240px',
-              right: '18%',
+              top: '280px',
+              right: '20%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about11"
             loading="lazy"
@@ -1606,14 +1650,16 @@ function About() {
 
           <img
             src="/images/about/main/About12.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={54}
             height={72}
             style={{
-              top: '300px',
-              right: '12%',
+              top: '340px',
+              right: '15%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about12"
             loading="lazy"
@@ -1622,14 +1668,16 @@ function About() {
 
           <img
             src="/images/about/main/About13.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={54}
             height={72}
             style={{
-              top: '220px',
-              left: '35%',
+              top: '260px',
+              left: '28%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about13"
             loading="lazy"
@@ -1638,14 +1686,16 @@ function About() {
 
           <img
             src="/images/about/main/About14.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={54}
             height={72}
             style={{
-              top: '60px',
-              right: '22%',
+              top: '80px',
+              right: '25%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about14"
             loading="lazy"
@@ -1654,12 +1704,14 @@ function About() {
 
           <img
             src="/images/about/main/About15.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
-              top: '340px',
-              left: '22%',
+              top: '380px',
+              left: '25%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about15"
             loading="lazy"
@@ -1668,14 +1720,16 @@ function About() {
 
           <img
             src="/images/about/main/About16.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={54}
             height={72}
             style={{
-              top: '400px',
-              left: '30%',
+              top: '440px',
+              left: '32%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about16"
             loading="lazy"
@@ -1684,12 +1738,14 @@ function About() {
 
           <img
             src="/images/about/main/About17.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
-              top: '460px',
+              top: '500px',
               left: '38%',
               width: '7.5%',
               maxWidth: '54px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about17"
             loading="lazy"
@@ -1699,16 +1755,18 @@ function About() {
           {/* Fish gif - top right */}
           <img
             src="/images/about/main/fish.gif"
-            className="aboutImage absolute z-0 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={120}
             height={90}
             loading="lazy"
             style={{
               top: '30px',
-              right: '12%',
+              right: '18%',
               width: '22%',
               maxWidth: '160px',
-              transform: 'rotate(-1deg)',
+              transform: 'rotate(-1deg) translateX(-30px)',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="fish"
             onClick={() => setOpenAboutImage('/images/about/main/fish.gif')}
@@ -1732,7 +1790,7 @@ function About() {
           {/* Archive content container */}
           <div className="relative w-full">
           
-          <div className="relative w-full" style={{ minHeight: `${((mobileMusicPositions.shelfBottom || 352) + (essayItems.length > 0 ? essayWindowHeight + 30 : 0)) + (SHELF_BOOKS.length > 0 ? bookSectionHeightMobile : 0) + Math.ceil(otherItems.length / 2) * 280}px` }}>
+          <div className="relative w-full" style={{ minHeight: `${((mobileMusicPositions.shelfBottom || 352) + (essayItems.length > 0 ? essayWindowHeight + 30 : 0)) + (SHELF_BOOKS.length > 0 ? bookSectionHeightMobile : 0) + Math.ceil(otherItems.length / 2) * 280 + 100}px`, paddingBottom: '100px' }}>
             {/* Pinned Post-it Note - FIRST (Below sit image) */}
             <div className="absolute left-4 z-10" style={{ top: '50px', transform: 'rotate(-2deg)' }}>
               {/* Thumbtack */}
@@ -1924,7 +1982,7 @@ function About() {
                 className="absolute left-0 z-10 flex flex-col items-center"
                 style={{
                   top: (essayItems.length > 0 ? mobileEssayWindowTop + essayWindowHeight + 10 : mobileMusicPositions.shelfBottom + 10) + 100,
-                  width: `${mobileMusicPositions.shelfWidth || 400}px`,
+                  width: `${(mobileMusicPositions.shelfWidth || 400) + 200}px`,
                   paddingLeft: '8px',
                   paddingRight: '8px',
                   boxSizing: 'border-box',
@@ -2011,9 +2069,9 @@ function About() {
       {/* Desktop Layout - Editorial style */}
       <div className="hidden lg:block" style={{ marginTop: '15vh' }}>
         {/* Static header section - always at top above archive */}
-        <div className="relative w-full" style={{ minHeight: '500px', paddingTop: '100px' }}>
+        <div className="relative w-full" style={{ minHeight: '500px', paddingTop: '100px', pointerEvents: 'none' }}>
           {/* Centered main title */}
-          <div className="relative text-center z-30 left-1/2 -translate-x-1/2" style={{ width: '100%' }}>
+          <div className="relative text-center z-30 left-1/2 -translate-x-1/2" style={{ width: '100%', pointerEvents: 'auto' }}>
             <h1 className="text-[120px] text-gray-700 mb-6" style={{ 
               fontFamily: "'Melo', sans-serif"
             }}>
@@ -2034,13 +2092,15 @@ function About() {
           {/* About images - scattered around */}
           <img
             src="/images/about/main/about1.jpg"
-            className="aboutImage absolute z-20 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={66}
             height={88}
             style={{
-              top: '80px',
-              left: '8%',
+              top: '100px',
+              left: '10%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about1"
             loading="eager"
@@ -2049,13 +2109,15 @@ function About() {
 
           <img
             src="/images/about/main/about2.jpg"
-            className="aboutImage absolute z-10 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={96}
             height={72}
             style={{
-              top: '380px',
-              right: '14%',
+              top: '420px',
+              right: '20%',
               width: '96px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about2"
             loading="eager"
@@ -2064,11 +2126,13 @@ function About() {
 
           <img
             src="/images/about/main/About3.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
-              top: '100px',
-              left: '3%',
+              top: '120px',
+              left: '5%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about3"
             loading="eager"
@@ -2077,13 +2141,15 @@ function About() {
 
           <img
             src="/images/about/main/About4.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={66}
             height={88}
             style={{
-              top: '140px',
-              left: '15%',
+              top: '160px',
+              left: '18%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about4"
             loading="eager"
@@ -2092,11 +2158,13 @@ function About() {
 
           <img
             src="/images/about/main/About5.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
-              top: '200px',
-              left: '1%',
+              top: '220px',
+              left: '5%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about5"
             loading="eager"
@@ -2105,13 +2173,15 @@ function About() {
 
           <img
             src="/images/about/main/About6.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={66}
             height={88}
             style={{
-              top: '240px',
-              left: '12%',
+              top: '260px',
+              left: '15%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about6"
             loading="eager"
@@ -2120,13 +2190,15 @@ function About() {
 
           <img
             src="/images/about/main/about7.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={66}
             height={88}
             style={{
-              top: '320px',
-              left: '6%',
+              top: '340px',
+              left: '10%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about7"
             loading="eager"
@@ -2135,13 +2207,15 @@ function About() {
 
           <img
             src="/images/about/main/About8.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={66}
             height={88}
             style={{
-              top: '120px',
-              right: '3%',
+              top: '140px',
+              right: '8%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about8"
             loading="eager"
@@ -2150,11 +2224,13 @@ function About() {
 
           <img
             src="/images/about/main/About9.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
-              top: '160px',
-              right: '12%',
+              top: '180px',
+              right: '15%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about9"
             loading="eager"
@@ -2163,13 +2239,15 @@ function About() {
 
           <img
             src="/images/about/main/About10.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={66}
             height={88}
             style={{
-              top: '220px',
-              right: '1%',
+              top: '240px',
+              right: '5%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about10"
             loading="eager"
@@ -2178,13 +2256,15 @@ function About() {
 
           <img
             src="/images/about/main/about11.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={66}
             height={88}
             style={{
-              top: '260px',
-              right: '15%',
+              top: '280px',
+              right: '18%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about11"
             loading="eager"
@@ -2193,11 +2273,13 @@ function About() {
 
           <img
             src="/images/about/main/About12.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
-              top: '340px',
-              right: '8%',
+              top: '360px',
+              right: '12%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about12"
             loading="eager"
@@ -2206,13 +2288,15 @@ function About() {
 
           <img
             src="/images/about/main/About13.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={66}
             height={88}
             style={{
-              top: '140px',
-              left: '22%',
+              top: '160px',
+              left: '25%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about13"
             loading="eager"
@@ -2221,11 +2305,13 @@ function About() {
 
           <img
             src="/images/about/main/About14.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
-              top: '80px',
-              right: '20%',
+              top: '100px',
+              right: '23%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about14"
             loading="eager"
@@ -2234,13 +2320,15 @@ function About() {
 
           <img
             src="/images/about/main/About15.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={66}
             height={88}
             style={{
-              top: '380px',
-              left: '20%',
+              top: '400px',
+              left: '23%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about15"
             loading="eager"
@@ -2249,13 +2337,15 @@ function About() {
 
           <img
             src="/images/about/main/About16.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={66}
             height={88}
             style={{
-              top: '420px',
-              left: '28%',
+              top: '440px',
+              left: '31%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about16"
             loading="eager"
@@ -2264,13 +2354,15 @@ function About() {
 
           <img
             src="/images/about/main/About17.jpg"
-            className="aboutImage absolute z-15 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={66}
             height={88}
             style={{
-              top: '460px',
-              left: '36%',
+              top: '480px',
+              left: '39%',
               width: '66px',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="about17"
             loading="lazy"
@@ -2280,15 +2372,17 @@ function About() {
           {/* Fish gif - top right */}
           <img
             src="/images/about/main/fish.gif"
-            className="aboutImage absolute z-0 cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             width={200}
             height={150}
             loading="lazy"
             style={{
-              top: '50px',
-              right: '15%',
+              top: '40px',
+              right: '18%',
               width: '200px',
-              transform: 'rotate(-1deg)',
+              transform: 'rotate(-1deg) translateX(-30px)',
+              zIndex: 40,
+              pointerEvents: 'auto',
             }}
             alt="fish"
             onClick={() => setOpenAboutImage('/images/about/main/fish.gif')}
@@ -2335,7 +2429,7 @@ function About() {
               </div>
             </div>
 
-          <div className="relative w-full" style={{ minHeight: `${((desktopMusicPositions.shelfBottom || 187) + (essayItems.length > 0 ? 200 : 0)) + (SHELF_BOOKS.length > 0 ? bookSectionHeightDesktop : 0) + Math.ceil(otherItems.length / 3) * 280}px` }}>
+          <div className="relative w-full" style={{ minHeight: `${((desktopMusicPositions.shelfBottom || 187) + (essayItems.length > 0 ? 200 : 0)) + (SHELF_BOOKS.length > 0 ? bookSectionHeightDesktop : 0) + Math.ceil(otherItems.length / 3) * 280 + 100}px`, paddingBottom: '100px' }}>
             {/* Wooden Shelf for Music Items - Right Aligned */}
             {musicItems.length > 0 && (
                 <div 
@@ -2503,7 +2597,7 @@ function About() {
                   className="absolute right-0 z-10 flex flex-col items-end"
                   style={{
                     top: (essayItems.length > 0 ? desktopEssayWindowTop + essayWindowHeight + 20 : (desktopMusicPositions.shelfBottom || 187) + 20) + 100,
-                    width: `${desktopMusicPositions.shelfWidth || Math.min(5 * 72 + 4 * 12 + 60, 950 * 0.9)}px`,
+                    width: `${(desktopMusicPositions.shelfWidth || Math.min(5 * 72 + 4 * 12 + 60, 950 * 0.9)) + 200}px`,
                     paddingLeft: '12px',
                     paddingRight: '12px',
                     boxSizing: 'border-box',
