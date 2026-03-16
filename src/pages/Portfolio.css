@@ -2,6 +2,52 @@
   margin: 2% 20%;
 }
 
+/* File folder tabs */
+.folder-tabs {
+  display: flex;
+  gap: 0;
+  margin-top: 1.5rem;
+  border-bottom: 1px solid #d1d5db;
+  padding-bottom: 0;
+}
+
+.folder-tab {
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  color: #6b7280;
+  font-size: 0.95rem;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  margin-right: 2px;
+  transform: translateY(1px);
+  transition: color 0.2s, background 0.2s;
+}
+
+.folder-tab:hover {
+  color: #374151;
+  background: #e5e7eb;
+}
+
+.folder-tab-active {
+  background: #ffffff;
+  color: #374151;
+  font-weight: 500;
+  border-color: #d1d5db;
+  z-index: 1;
+  margin-bottom: -1px;
+  padding-bottom: 1px;
+}
+
+.folder-content {
+  border: 1px solid #d1d5db;
+  border-top: none;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 0 0 8px 8px;
+}
+
 /* General body styles */
 body {
   font-family: "Moto", serif;

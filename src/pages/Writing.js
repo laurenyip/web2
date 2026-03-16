@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import './App.css'
+import './Portfolio.css'
 
 function Writing() {
+  const location = useLocation()
   useEffect(() => {
     // Add the navbar dark effect on scroll, matching the About page
     const header = document.querySelector('.navbar')
@@ -65,43 +67,35 @@ function Writing() {
   return (
     <div className="bg-white min-h-screen">
       <Navbar />
-      
-      {/* Links column positioned at 30% from left */}
-      <div className="absolute flex flex-col gap-4 justify-center" style={{ 
-        left: '22%', 
-        top: '50%',
-        transform: 'translateX(-100%) translateY(-50%)',
-        padding: '2px',
-        background: 'linear-gradient(135deg, rgba(237, 190, 228, 0.3) 0%, rgba(161, 168, 190, 0.3) 25%, rgba(243, 208, 195, 0.3) 50%, rgba(234, 120, 91, 0.3) 75%, rgba(95, 84, 32, 0.3) 100%)',
-        borderRadius: '5px'
-      }}>
-        <div className="bg-white rounded-[3px] px-4 py-6 flex flex-col gap-4">
+
+      {/* Main content with padding to account for fixed navbar */}
+      <div className="pt-20 pb-12 px-8 max-w-xl mx-auto">
+        <div className="prose text-gray-700 prose-sm prose-headings:font-normal prose-headings:text-xl mt-16 mb-8">
+          <div>
+            <div className="text-4xl text-gray-700" style={{ fontFamily: "'Melo', sans-serif" }}>Side B of what I like to work on</div>
+            <p className="text-gray-500 text-sm mt-2">click to read</p>
+          </div>
+        </div>
+
+        {/* File folder tabs */}
+        <div className="folder-tabs">
           <Link
             to="/portfolio"
-            className="text-gray-700 hover:text-gray-900 transition-colors"
+            className={`folder-tab ${location.pathname === '/portfolio' ? 'folder-tab-active' : ''}`}
             style={{ fontFamily: "'Moto', serif" }}
           >
             Painting
           </Link>
           <Link
             to="/writing"
-            className="text-gray-700 hover:text-gray-900 transition-colors"
+            className={`folder-tab ${location.pathname === '/writing' ? 'folder-tab-active' : ''}`}
             style={{ fontFamily: "'Moto', serif" }}
           >
             Writing
           </Link>
         </div>
-      </div>
 
-      {/* Main content with padding to account for fixed navbar */}
-      <div className="pt-20 pb-12 px-8 max-w-xl mx-auto">
-        <div className="prose text-gray-700 prose-sm prose-headings:font-normal prose-headings:text-xl mt-16 mb-8">
-          <div>
-            <div className="text-4xl text-gray-700" style={{ fontFamily: "'Melo', sans-serif" }}>Writing</div>
-          </div>
-        </div>
-
-        <div className="mt-6 border-t pt-8">
+        <div className="folder-content">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {writingData.map((piece, index) => (
               <a
