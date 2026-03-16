@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import './App.css'
+import './Portfolio.css'
 
 
 function Portfolio() {
   const [currentImage, setCurrentImage] = useState(null)
   const [currentDescription, setCurrentDescription] = useState('')
+  const location = useLocation()
 
   useEffect(() => {
     // Add the navbar dark effect on scroll, matching the About page
@@ -23,8 +25,6 @@ function Portfolio() {
       window.addEventListener('scroll', handleScroll)
       return () => {
         window.removeEventListener('scroll', handleScroll)
-        // Remove this line below since handleEscape is not defined in this scope
-        // window.removeEventListener('keydown', handleEscape)
       }
     }
   }, [])
@@ -83,33 +83,6 @@ function Portfolio() {
   return (
     <div className="bg-white min-h-screen">
       <Navbar />
-      
-      {/* Links column positioned at 30% from left */}
-      <div className="absolute flex flex-col gap-4 justify-center" style={{ 
-        left: '22%', 
-        top: '50%',
-        transform: 'translateX(-100%) translateY(-50%)',
-        padding: '2px',
-        background: 'linear-gradient(135deg, rgba(237, 190, 228, 0.3) 0%, rgba(161, 168, 190, 0.3) 25%, rgba(243, 208, 195, 0.3) 50%, rgba(234, 120, 91, 0.3) 75%, rgba(95, 84, 32, 0.3) 100%)',
-        borderRadius: '5px'
-      }}>
-        <div className="bg-white rounded-[3px] px-4 py-6 flex flex-col gap-4">
-          <Link
-            to="/portfolio"
-            className="text-gray-700 hover:text-gray-900 transition-colors"
-            style={{ fontFamily: "'Moto', serif" }}
-          >
-            Painting
-          </Link>
-          <Link
-            to="/writing"
-            className="text-gray-700 hover:text-gray-900 transition-colors"
-            style={{ fontFamily: "'Moto', serif" }}
-          >
-            Writing
-          </Link>
-        </div>
-      </div>
 
       {/* Main content with padding to account for fixed navbar */}
       <div className="pt-20 pb-12 px-8 max-w-xl mx-auto">
@@ -122,7 +95,25 @@ function Portfolio() {
           </div>
         </div>
 
-        <div className="mt-6 border-t pt-8">
+        {/* File folder tabs */}
+        <div className="folder-tabs">
+          <Link
+            to="/portfolio"
+            className={`folder-tab ${location.pathname === '/portfolio' ? 'folder-tab-active' : ''}`}
+            style={{ fontFamily: "'Moto', serif" }}
+          >
+            Painting
+          </Link>
+          <Link
+            to="/writing"
+            className={`folder-tab ${location.pathname === '/writing' ? 'folder-tab-active' : ''}`}
+            style={{ fontFamily: "'Moto', serif" }}
+          >
+            Writing
+          </Link>
+        </div>
+
+        <div className="folder-content">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {cardData.map((card, index) => (
               <div
