@@ -1461,7 +1461,13 @@ function About() {
           </div>
 
           {/* Scattered images around the title */}
-          <div className="absolute inset-0" style={{ transform: 'translateY(-100px)', pointerEvents: 'none' }}>
+          <div
+            className="absolute left-0 right-0 bottom-0"
+            style={{
+              top: '-70px', // keep scattered images off the name/subtitle section (moved up +150px)
+              pointerEvents: 'none',
+            }}
+          >
             {/* About images - scattered around */}
             <img
               src="/images/about/main/about1.jpg"
