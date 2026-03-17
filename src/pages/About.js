@@ -1437,7 +1437,13 @@ function About() {
         {/* Static header section - always at top above archive */}
         <div className="relative w-full" style={{ minHeight: '400px', paddingTop: '80px', pointerEvents: 'none' }}>
           {/* Centered main title */}
-          <div className="relative text-center z-30" style={{ width: '100%', pointerEvents: 'auto' }}>
+          <div
+            className="relative text-center z-30"
+            style={{
+              width: '100%',
+              pointerEvents: 'auto',
+            }}
+          >
             <h1 className="text-5xl md:text-8xl text-gray-700 mb-4" style={{ 
               fontFamily: "'Melo', sans-serif"
             }}>
@@ -1455,24 +1461,25 @@ function About() {
           </div>
 
           {/* Scattered images around the title */}
-          {/* About images - scattered around */}
-          <img
-            src="/images/about/main/about1.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={54}
-            height={72}
-            style={{
-              top: '10px',
-              left: '42%',
-              width: '7.5%',
-              maxWidth: '54px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about1"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/about1.jpg')}
-          />
+          <div className="absolute inset-0" style={{ transform: 'translateY(-100px)', pointerEvents: 'none' }}>
+            {/* About images - scattered around */}
+            <img
+              src="/images/about/main/about1.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={54}
+              height={72}
+              style={{
+                top: '10px',
+                left: 'calc(42% - 25px)',
+                width: '7.5%',
+                maxWidth: '54px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about1"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/about1.jpg')}
+            />
 
           <img
             src="/images/about/main/about2.jpg"
@@ -1481,7 +1488,7 @@ function About() {
             height={54}
             style={{
               top: '290px',
-              right: '15%',
+              right: 'calc(15% - 25px)',
               width: '9%',
               maxWidth: '72px',
               zIndex: 40,
@@ -1498,8 +1505,8 @@ function About() {
             width={54}
             height={72}
             style={{
-              top: '100px',
-              left: '8%',
+              top: '20px',
+              left: 'calc(8% - 45px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1515,7 +1522,7 @@ function About() {
             className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '40px',
-              left: '20%',
+              left: 'calc(20% - 25px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1533,7 +1540,7 @@ function About() {
             height={72}
             style={{
               top: '220px',
-              left: '8%',
+              left: 'calc(8% - 45px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1551,7 +1558,7 @@ function About() {
             height={72}
             style={{
               top: '260px',
-              left: '18%',
+              left: 'calc(18% - 25px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1565,13 +1572,13 @@ function About() {
           <img
             src="/images/about/main/About7.jpg"
             className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={54}
-            height={72}
+            width={70}
+            height={94}
             style={{
-              top: '320px',
-              left: '12%',
-              width: '7.5%',
-              maxWidth: '54px',
+              top: '380px',
+              left: 'calc(12% - 55px)',
+              width: '9.75%',
+              maxWidth: '70px',
               zIndex: 40,
               pointerEvents: 'auto',
             }}
@@ -1587,7 +1594,7 @@ function About() {
             height={72}
             style={{
               top: '120px',
-              right: '10%',
+              right: 'calc(10% - 25px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1603,7 +1610,7 @@ function About() {
             className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '280px',
-              right: '35%',
+              right: 'calc(35% - 25px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1621,7 +1628,7 @@ function About() {
             height={72}
             style={{
               top: '240px',
-              right: '8%',
+              right: 'calc(8% - 25px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1637,7 +1644,7 @@ function About() {
             className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '280px',
-              right: '20%',
+              right: 'calc(20% - 25px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1655,7 +1662,7 @@ function About() {
             height={72}
             style={{
               top: '340px',
-              right: '15%',
+              right: 'calc(15% - 25px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1673,7 +1680,7 @@ function About() {
             height={72}
             style={{
               top: '260px',
-              left: '28%',
+              left: 'calc(28% - 25px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1690,8 +1697,8 @@ function About() {
             width={54}
             height={72}
             style={{
-              top: '80px',
-              right: '25%',
+              top: '0px',
+              right: '0px',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1707,7 +1714,7 @@ function About() {
             className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '380px',
-              left: '25%',
+              left: 'calc(25% - 25px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1725,7 +1732,7 @@ function About() {
             height={72}
             style={{
               top: '440px',
-              left: '32%',
+              left: 'calc(32% - 25px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1741,7 +1748,7 @@ function About() {
             className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
             style={{
               top: '500px',
-              left: '38%',
+              left: 'calc(38% - 25px)',
               width: '7.5%',
               maxWidth: '54px',
               zIndex: 40,
@@ -1753,24 +1760,25 @@ function About() {
           />
 
           {/* Fish gif - top right */}
-          <img
-            src="/images/about/main/fish.gif"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={120}
-            height={90}
-            loading="lazy"
-            style={{
-              top: '30px',
-              right: '18%',
-              width: '22%',
-              maxWidth: '160px',
-              transform: 'rotate(-1deg) translateX(-30px)',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="fish"
-            onClick={() => setOpenAboutImage('/images/about/main/fish.gif')}
-          />
+            <img
+              src="/images/about/main/fish.gif"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={120}
+              height={90}
+              loading="lazy"
+              style={{
+                top: '-35px',
+                right: 'calc(18% - 10px)',
+                width: '22%',
+                maxWidth: '160px',
+                transform: 'rotate(-1deg) translateX(-5px)',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="fish"
+              onClick={() => setOpenAboutImage('/images/about/main/fish.gif')}
+            />
+          </div>
         </div>
 
         {/* Archive Gallery - Scattered cards */}
@@ -2070,323 +2078,327 @@ function About() {
       <div className="hidden lg:block" style={{ marginTop: '15vh' }}>
         {/* Static header section - always at top above archive */}
         <div className="relative w-full" style={{ minHeight: '500px', paddingTop: '100px', pointerEvents: 'none' }}>
-          {/* Centered main title */}
-          <div className="relative text-center z-30 left-1/2 -translate-x-1/2" style={{ width: '100%', pointerEvents: 'auto' }}>
-            <h1 className="text-[120px] text-gray-700 mb-6" style={{ 
-              fontFamily: "'Melo', sans-serif"
-            }}>
-              Lauren Yip
-            </h1>
-            {/* Subtitle in one line */}
-            <p className="text-gray-600 font-light text-center" style={{
-              fontFamily: "'Arial', sans-serif",
-              letterSpacing: '0.02em',
-              fontSize: '14px',
-              transform: 'none'
-            }}>
-              4th year Computer Science @ SFU · Aspiring Product Manager · Artist and Explorer
-            </p>
+          {/* Desktop header: keep original look; only clamp on small screens */}
+          <div className="relative mx-auto" style={{ width: '100%', maxWidth: '1400px', height: '500px' }}>
+            {/* Centered main title */}
+            <div className="relative text-center z-30" style={{ width: '100%', pointerEvents: 'auto' }}>
+              <h1 className="text-[120px] text-gray-700 mb-6" style={{ fontFamily: "'Melo', sans-serif" }}>
+                Lauren Yip
+              </h1>
+              <p
+                className="text-gray-600 font-light text-center"
+                style={{
+                  fontFamily: "'Arial', sans-serif",
+                  letterSpacing: '0.02em',
+                  fontSize: '14px',
+                  transform: 'none',
+                }}
+              >
+                4th year Computer Science @ SFU · Aspiring Product Manager · Artist and Explorer
+              </p>
+            </div>
+
+            {/* Scattered images (percent-based within a max width so they don't drift on big screens) */}
+            <div className="absolute inset-0" style={{ transform: 'translateY(-100px)', pointerEvents: 'none' }}>
+              <img
+                src="/images/about/main/about1.jpg"
+                className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+                width={66}
+                height={88}
+                style={{
+                  top: '100px',
+                  left: 'calc(10% - 25px)',
+                  width: '66px',
+                  zIndex: 40,
+                  pointerEvents: 'auto',
+                }}
+                alt="about1"
+                loading="eager"
+                onClick={() => setOpenAboutImage('/images/about/main/about1.jpg')}
+              />
+
+            <img
+              src="/images/about/main/about2.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={96}
+              height={72}
+              style={{
+                top: '420px',
+                right: 'calc(20% - 25px)',
+                width: '96px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about2"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/about2.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About3.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              style={{
+                top: '40px',
+                left: 'calc(5% - 45px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about3"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About3.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About4.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={66}
+              height={88}
+              style={{
+                top: '160px',
+                left: 'calc(18% - 25px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about4"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About4.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About5.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              style={{
+                top: '220px',
+                left: 'calc(5% - 45px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about5"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About5.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About6.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={66}
+              height={88}
+              style={{
+                top: '260px',
+                left: 'calc(15% - 25px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about6"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About6.jpg')}
+            />
+
+            <img
+              src="/images/about/main/about7.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={86}
+              height={114}
+              style={{
+                top: '400px',
+                left: 'calc(10% - 55px)',
+                width: '86px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about7"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About7.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About8.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={66}
+              height={88}
+              style={{
+                top: '140px',
+                right: 'calc(8% - 25px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about8"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About8.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About9.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              style={{
+                top: '180px',
+                right: 'calc(15% - 25px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about9"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About9.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About10.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={66}
+              height={88}
+              style={{
+                top: '240px',
+                right: 'calc(5% - 25px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about10"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About10.jpg')}
+            />
+
+            <img
+              src="/images/about/main/about11.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={66}
+              height={88}
+              style={{
+                top: '280px',
+                right: 'calc(18% - 25px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about11"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About11.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About12.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              style={{
+                top: '360px',
+                right: 'calc(12% - 25px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about12"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About12.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About13.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={66}
+              height={88}
+              style={{
+                top: '160px',
+                left: 'calc(25% - 25px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about13"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About13.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About14.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              style={{
+                top: '0px',
+                right: '0px',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about14"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About14.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About15.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={66}
+              height={88}
+              style={{
+                top: '400px',
+                left: 'calc(23% - 25px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about15"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About15.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About16.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={66}
+              height={88}
+              style={{
+                top: '440px',
+                left: 'calc(31% - 25px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about16"
+              loading="eager"
+              onClick={() => setOpenAboutImage('/images/about/main/About16.jpg')}
+            />
+
+            <img
+              src="/images/about/main/About17.jpg"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              width={66}
+              height={88}
+              style={{
+                top: '480px',
+                left: 'calc(39% - 25px)',
+                width: '66px',
+                zIndex: 40,
+                pointerEvents: 'auto',
+              }}
+              alt="about17"
+              loading="lazy"
+              onClick={() => setOpenAboutImage('/images/about/main/About17.jpg')}
+            />
+
+            {/* Fish gif - top right */}
+              <img
+                src="/images/about/main/fish.gif"
+                className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+                width={200}
+                height={150}
+                loading="lazy"
+                style={{
+                  top: '-25px',
+                  right: 'calc(18% - 35px)',
+                  width: '200px',
+                  transform: 'rotate(-1deg) translateX(-5px)',
+                  zIndex: 40,
+                  pointerEvents: 'auto',
+                }}
+                alt="fish"
+                onClick={() => setOpenAboutImage('/images/about/main/fish.gif')}
+              />
+            </div>
           </div>
-
-          {/* Scattered images around the title */}
-          {/* About images - scattered around */}
-          <img
-            src="/images/about/main/about1.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={66}
-            height={88}
-            style={{
-              top: '100px',
-              left: '10%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about1"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/about1.jpg')}
-          />
-
-          <img
-            src="/images/about/main/about2.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={96}
-            height={72}
-            style={{
-              top: '420px',
-              right: '20%',
-              width: '96px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about2"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/about2.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About3.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            style={{
-              top: '120px',
-              left: '5%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about3"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About3.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About4.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={66}
-            height={88}
-            style={{
-              top: '160px',
-              left: '18%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about4"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About4.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About5.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            style={{
-              top: '220px',
-              left: '5%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about5"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About5.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About6.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={66}
-            height={88}
-            style={{
-              top: '260px',
-              left: '15%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about6"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About6.jpg')}
-          />
-
-          <img
-            src="/images/about/main/about7.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={66}
-            height={88}
-            style={{
-              top: '340px',
-              left: '10%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about7"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About7.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About8.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={66}
-            height={88}
-            style={{
-              top: '140px',
-              right: '8%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about8"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About8.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About9.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            style={{
-              top: '180px',
-              right: '15%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about9"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About9.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About10.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={66}
-            height={88}
-            style={{
-              top: '240px',
-              right: '5%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about10"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About10.jpg')}
-          />
-
-          <img
-            src="/images/about/main/about11.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={66}
-            height={88}
-            style={{
-              top: '280px',
-              right: '18%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about11"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About11.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About12.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            style={{
-              top: '360px',
-              right: '12%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about12"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About12.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About13.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={66}
-            height={88}
-            style={{
-              top: '160px',
-              left: '25%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about13"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About13.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About14.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            style={{
-              top: '100px',
-              right: '23%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about14"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About14.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About15.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={66}
-            height={88}
-            style={{
-              top: '400px',
-              left: '23%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about15"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About15.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About16.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={66}
-            height={88}
-            style={{
-              top: '440px',
-              left: '31%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about16"
-            loading="eager"
-            onClick={() => setOpenAboutImage('/images/about/main/About16.jpg')}
-          />
-
-          <img
-            src="/images/about/main/About17.jpg"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={66}
-            height={88}
-            style={{
-              top: '480px',
-              left: '39%',
-              width: '66px',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="about17"
-            loading="lazy"
-            onClick={() => setOpenAboutImage('/images/about/main/About17.jpg')}
-          />
-
-          {/* Fish gif - top right */}
-          <img
-            src="/images/about/main/fish.gif"
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
-            width={200}
-            height={150}
-            loading="lazy"
-            style={{
-              top: '40px',
-              right: '18%',
-              width: '200px',
-              transform: 'rotate(-1deg) translateX(-30px)',
-              zIndex: 40,
-              pointerEvents: 'auto',
-            }}
-            alt="fish"
-            onClick={() => setOpenAboutImage('/images/about/main/fish.gif')}
-          />
         </div>
 
         {/* Archive Gallery - Scattered cards */}
