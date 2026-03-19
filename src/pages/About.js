@@ -207,7 +207,7 @@ export default function About() {
   );
 
   return (
-    <div className="bg-white min-h-screen overflow-x-hidden">
+    <div className="bg-white min-h-screen overflow-x-visible">
       <Navbar />
 
       <div style={{ paddingTop: "100px" }}>
@@ -281,7 +281,7 @@ export default function About() {
 
           <img
             src={`${ABOUT_MAIN}/About6.jpg`}
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-105"
             width={120}
             height={160}
             loading="lazy"
@@ -298,7 +298,7 @@ export default function About() {
 
           <img
             src={`${ABOUT_MAIN}/About17.jpg`}
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-105"
             width={120}
             height={160}
             loading="lazy"
@@ -315,7 +315,7 @@ export default function About() {
 
           <img
             src={`${ABOUT_MAIN}/about2.jpg`}
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-105"
             width={120}
             height={90}
             loading="eager"
@@ -332,7 +332,7 @@ export default function About() {
 
           <img
             src={`${ABOUT_MAIN}/About11.jpg`}
-            className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+            className="aboutImage absolute cursor-pointer transition-transform hover:scale-105"
             width={120}
             height={160}
             loading="lazy"
@@ -395,13 +395,13 @@ export default function About() {
             {/* fish.gif positioned to the left of the name */}
             <img
               src={`${ABOUT_MAIN}/fish.gif`}
-              className="absolute cursor-pointer transition-transform hover:scale-110"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-105"
               width={200}
               height={150}
               loading="lazy"
               style={{
                 top: "-10px",
-                right: "500px",
+                right: "520px",
                 width: "200px",
                 transform: "rotate(-1deg)",
                 zIndex: 40,
@@ -442,7 +442,7 @@ export default function About() {
 
             <img
               src={`${ABOUT_MAIN}/about2.jpg`}
-              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-105"
               width={221}
               height={166}
               loading="eager"
@@ -459,7 +459,7 @@ export default function About() {
 
             <img
               src={`${ABOUT_MAIN}/About6.jpg`}
-              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-105"
               width={190}
               height={253}
               loading="lazy"
@@ -477,13 +477,13 @@ export default function About() {
 
             <img
               src={`${ABOUT_MAIN}/About11.jpg`}
-              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-105"
               width={158}
               height={211}
               loading="lazy"
               style={{
                 top: "325px",
-                left: "calc(2% - 25px)",
+                left: "calc(4%)",
                 width: "20.4%",
                 maxWidth: "130px",
                 zIndex: 40,
@@ -496,14 +496,14 @@ export default function About() {
               style={{
                 position: "absolute",
                 top: "325px",
-                left: "calc(2% - 55px)",
+                left: "calc(2%)",
                 zIndex: 55,
                 pointerEvents: "none",
                 writingMode: "vertical-rl",
                 textOrientation: "upright",
-                letterSpacing: "1px",
+                letterSpacing: "5px",
                 color: "#6b7280",
-                fontSize: "14px",
+                fontSize: "16px",
                 fontFamily: "'Arial', sans-serif",
               }}
             >
@@ -512,12 +512,12 @@ export default function About() {
 
             <img
               src={`${ABOUT_MAIN}/About17.jpg`}
-              className="aboutImage absolute cursor-pointer transition-transform hover:scale-110"
+              className="aboutImage absolute cursor-pointer transition-transform hover:scale-105"
               width={158}
               height={211}
               loading="lazy"
               style={{
-                top: "-45px",
+                top: "-55px",
                 left: "calc(36% - 25px)",
                 width: "180px",
                 zIndex: 40,
@@ -529,15 +529,15 @@ export default function About() {
             <div
               style={{
                 position: "absolute",
-                top: "-45px",
+                top: "-55px",
                 left: "calc(36% - 55px)",
                 zIndex: 55,
                 pointerEvents: "none",
                 writingMode: "vertical-rl",
                 textOrientation: "upright",
-                letterSpacing: "3px",
+                letterSpacing: "5px",
                 color: "#6b7280",
-                fontSize: "14px",
+                fontSize: "16px",
                 fontFamily: "'Arial', sans-serif",
               }}
             >
