@@ -496,7 +496,7 @@ export default function About() {
               style={{
                 position: "absolute",
                 top: "325px",
-                left: "calc(2% - 55px)",
+                left: "calc(2%)",
                 zIndex: 55,
                 pointerEvents: "none",
                 writingMode: "vertical-rl",
