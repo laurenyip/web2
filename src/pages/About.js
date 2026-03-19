@@ -272,9 +272,7 @@ export default function About() {
               }}
             >
               I'm passionate about visual storytelling and the intersection of
-              technology and art. I want to make something that matters. If
-              anything in this page resonates with you, please reach out to me!
-              I would love to be your friend.
+              technology and art. I want to make something that matters. Thanks for visiting my website!
             </p>
             </div>
           </div>
