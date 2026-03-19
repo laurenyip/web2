@@ -5,6 +5,7 @@ import About from './pages/About'
 import Projects from './pages/Projects'
 import Portfolio from './pages/Portfolio'
 import Writing from './pages/Writing'
+import ReadingList from './pages/ReadingList'
 import './index.css'
 import './pages/App.css'
 
@@ -18,6 +19,7 @@ function App() {
           <Route path='/projects' element={<Projects />} />
           <Route path='/portfolio' element={<Portfolio />} />
           <Route path='/writing' element={<Writing />} />
+          <Route path='/reading-list' element={<ReadingList />} />
         </Routes>
       </div>
     </Router>
