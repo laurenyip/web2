@@ -97,7 +97,7 @@ function Projects() {
   ]
 
   return (
-    <div className="min-h-screen bg-white relative">
+    <div className="min-h-screen bg-white relative pb-40">
       <Navbar />
 
       {/* Desktop Layout - same as before */}
@@ -136,7 +136,7 @@ function Projects() {
 
         {/* Extra project(s) below the 8 squares - in line with top left square */}
         {projects.length > 8 && (
-          <div className="absolute left-[28%] transform -translate-x-1/4 w-[25%]" style={{ bottom: 'calc(2% - 250px)' }}>
+          <div className="absolute left-[28%] transform -translate-x-1/4 w-[25%] pb-20" style={{ bottom: 'calc(2% - 350px)' }}>
             <div className="grid grid-cols-2 gap-6 place-items-start">
               {projects.slice(8).map((project, index) => (
                 <ProjectCard key={`extra-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} onImageExpand={() => setExpandedImage(project.image)} />
