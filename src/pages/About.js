@@ -5,7 +5,13 @@ import "./App.css";
 
 const ABOUT_MAIN = "/images/about/main";
 
-function AboutImageModal({ src, onClose }) {
+function AboutImageModal({
+  src,
+  subtitle,
+  subtitleTop,
+  subtitleBottom,
+  onClose,
+}) {
   if (!src) return null;
 
   return (
@@ -16,8 +22,13 @@ function AboutImageModal({ src, onClose }) {
       aria-modal="true"
     >
       <div
-        className="relative max-w-[95vw] max-h-[95vh]"
+        className="relative max-w-[95vw]"
         onClick={(e) => e.stopPropagation()}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
         <button
           onClick={onClose}
@@ -29,8 +40,54 @@ function AboutImageModal({ src, onClose }) {
         <img
           src={src}
           alt="Expanded about view"
-          className="max-w-full max-h-[95vh] object-contain rounded-lg shadow-2xl"
+          className="max-w-full object-contain rounded-lg shadow-2xl"
+          style={{
+            maxHeight: "calc(95vh - 120px)", // reserve room for subtitle lines
+          }}
         />
+
+        {subtitleTop || subtitleBottom ? (
+          <div
+            style={{
+              marginTop: "8px",
+              fontFamily: "'Arial', sans-serif",
+              textAlign: "center",
+              fontSize: "14px",
+              color: "#ffffff",
+              textShadow: "0 1px 2px rgba(0,0,0,0.5)",
+              width: "100%",
+              padding: "8px 12px",
+              background: "rgba(0,0,0,0.28)",
+              borderRadius: "10px",
+            }}
+          >
+            {subtitleTop ? (
+              <div style={{ fontWeight: 600, lineHeight: 1.2 }}>{subtitleTop}</div>
+            ) : null}
+            {subtitleBottom ? (
+              <div style={{ marginTop: "2px", lineHeight: 1.2 }}>
+                {subtitleBottom}
+              </div>
+            ) : null}
+          </div>
+        ) : subtitle ? (
+          <div
+            style={{
+              marginTop: "8px",
+              fontFamily: "'Arial', sans-serif",
+              fontSize: "14px",
+              color: "#ffffff",
+              textAlign: "center",
+              textShadow: "0 1px 2px rgba(0,0,0,0.5)",
+              width: "100%",
+              padding: "8px 12px",
+              background: "rgba(0,0,0,0.28)",
+              borderRadius: "10px",
+            }}
+          >
+            {subtitle}
+          </div>
+        ) : null}
       </div>
     </div>
   );
@@ -218,7 +275,9 @@ export default function About() {
               pointerEvents: "auto",
             }}
             alt="about6"
-            onClick={() => setOpenAboutImage(`${ABOUT_MAIN}/About6.jpg`)}
+            onClick={() =>
+              setOpenAboutImage({ src: `${ABOUT_MAIN}/About6.jpg` })
+            }
           />
 
           <img
@@ -235,7 +294,9 @@ export default function About() {
               pointerEvents: "auto",
             }}
             alt="about17"
-            onClick={() => setOpenAboutImage(`${ABOUT_MAIN}/About17.jpg`)}
+            onClick={() =>
+              setOpenAboutImage({ src: `${ABOUT_MAIN}/About17.jpg` })
+            }
           />
 
           <img
@@ -252,7 +313,9 @@ export default function About() {
               pointerEvents: "auto",
             }}
             alt="about2"
-            onClick={() => setOpenAboutImage(`${ABOUT_MAIN}/about2.jpg`)}
+            onClick={() =>
+              setOpenAboutImage({ src: `${ABOUT_MAIN}/about2.jpg` })
+            }
           />
 
           <img
@@ -269,7 +332,9 @@ export default function About() {
               pointerEvents: "auto",
             }}
             alt="about11"
-            onClick={() => setOpenAboutImage(`${ABOUT_MAIN}/About11.jpg`)}
+            onClick={() =>
+              setOpenAboutImage({ src: `${ABOUT_MAIN}/About11.jpg` })
+            }
           />
         </div>
 
@@ -333,7 +398,9 @@ export default function About() {
                 pointerEvents: "auto",
               }}
               alt="fish"
-              onClick={() => setOpenAboutImage(`${ABOUT_MAIN}/fish.gif`)}
+              onClick={() =>
+                setOpenAboutImage({ src: `${ABOUT_MAIN}/fish.gif` })
+              }
             />
 
             {/* Filler text in bottom half (centered) */}
@@ -377,7 +444,9 @@ export default function About() {
                 pointerEvents: "auto",
               }}
               alt="about2"
-              onClick={() => setOpenAboutImage(`${ABOUT_MAIN}/about2.jpg`)}
+              onClick={() =>
+                setOpenAboutImage({ src: `${ABOUT_MAIN}/about2.jpg` })
+              }
             />
 
             <img
@@ -395,7 +464,9 @@ export default function About() {
                 pointerEvents: "auto",
               }}
               alt="about6"
-              onClick={() => setOpenAboutImage(`${ABOUT_MAIN}/About6.jpg`)}
+              onClick={() =>
+                setOpenAboutImage({ src: `${ABOUT_MAIN}/About6.jpg` })
+              }
             />
 
             <img
@@ -413,13 +484,15 @@ export default function About() {
                 pointerEvents: "auto",
               }}
               alt="about11"
-              onClick={() => setOpenAboutImage(`${ABOUT_MAIN}/About11.jpg`)}
+              onClick={() =>
+                setOpenAboutImage({ src: `${ABOUT_MAIN}/About11.jpg` })
+              }
             />
             <div
               style={{
                 position: "absolute",
                 top: "325px",
-                left: "calc(2%)",
+                left: "calc(4% - 26px)",
                 zIndex: 55,
                 pointerEvents: "none",
                 writingMode: "vertical-rl",
@@ -447,13 +520,15 @@ export default function About() {
                 pointerEvents: "auto",
               }}
               alt="about17"
-              onClick={() => setOpenAboutImage(`${ABOUT_MAIN}/About17.jpg`)}
+              onClick={() =>
+                setOpenAboutImage({ src: `${ABOUT_MAIN}/About17.jpg` })
+              }
             />
             <div
               style={{
                 position: "absolute",
                 top: "-55px",
-                left: "calc(36% - 55px)",
+                left: "calc(36% - 52px)",
                 zIndex: 55,
                 pointerEvents: "none",
                 writingMode: "vertical-rl",
@@ -559,7 +634,13 @@ export default function About() {
                           window.open(item.link, "_blank", "noopener,noreferrer");
                           return;
                         }
-                        if (item.image) setOpenAboutImage(item.image);
+                        if (item.image)
+                          setOpenAboutImage({
+                            src: item.image,
+                            subtitle: item.subtitle,
+                            subtitleTop: item.subtitleTop,
+                            subtitleBottom: item.subtitleBottom,
+                          });
                       }}
                     >
                       {/* Album Sleeve (Cover) */}
@@ -666,32 +747,70 @@ export default function About() {
             </div>
           )}
 
-          {/* Reading list button (moved to /reading-list) */}
-          <div className="w-full mt-10" style={{ display: "flex", justifyContent: "center" }}>
-            <Link
-              to="/reading-list"
-              className="text-gray-700 hover:bg-gray-50"
-              style={{
-                fontFamily: "'Moto', serif",
-                fontSize: isMobile ? "13px" : "14px",
-                lineHeight: "1.35",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: isMobile ? "10px 12px" : "12px 14px",
-                borderRadius: "8px",
-                border: "1px solid rgba(0,0,0,0.08)",
-                background: "#ffffff",
-              }}
-            >
-              Reading List
-            </Link>
+          {/* Reading list button + Paris WIP (below shelf, right side) */}
+          <div
+            className="w-full mt-10"
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "space-between",
+              gap: "16px",
+            }}
+          >
+            <div style={{ flex: "1 1 auto", display: "flex", justifyContent: "center" }}>
+              <Link
+                to="/reading-list"
+                className="text-gray-700 hover:bg-gray-50"
+                style={{
+                  fontFamily: "'Moto', serif",
+                  fontSize: isMobile ? "13px" : "14px",
+                  lineHeight: "1.35",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: isMobile ? "10px 12px" : "12px 14px",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(0,0,0,0.08)",
+                  background: "#ffffff",
+                }}
+              >
+                Reading List
+              </Link>
+            </div>
+
+            <div style={{ flex: "0 0 auto", display: "flex", justifyContent: "flex-end" }}>
+              <img
+                src={"/images/about/current/paris_wip.png"}
+                className="aboutImage cursor-pointer transition-transform hover:scale-105"
+                width={isMobile ? 180 : 210}
+                height={isMobile ? 165 : 195}
+                loading="lazy"
+                style={{
+                  position: "relative",
+                  width: isMobile ? "138px" : "165px",
+                  height: "auto",
+                  zIndex: 60,
+                  pointerEvents: "auto",
+                }}
+                alt="Paris WIP"
+                onClick={() =>
+                  setOpenAboutImage({
+                    src: "/images/about/current/paris_wip.jpeg",
+                    subtitleTop: "Aux Artistes - Paris",
+                    subtitleBottom: "painting this right now",
+                  })
+                }
+              />
+            </div>
           </div>
         </div>
       </div>
 
       <AboutImageModal
-        src={openAboutImage}
+        src={openAboutImage?.src}
+        subtitle={openAboutImage?.subtitle}
+        subtitleTop={openAboutImage?.subtitleTop}
+        subtitleBottom={openAboutImage?.subtitleBottom}
         onClose={() => setOpenAboutImage(null)}
       />
     </div>

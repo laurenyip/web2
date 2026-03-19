@@ -1,9 +1,76 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
+
+function BookModal({ book, onClose }) {
+  if (!book) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-black/70 p-4"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div
+        className="relative flex flex-col items-center"
+        onClick={(e) => e.stopPropagation()}
+        style={{ maxWidth: "95vw", maxHeight: "95vh" }}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-0 right-0 -translate-y-2 translate-x-2 rounded-full bg-black/50 hover:bg-black/70 text-white text-4xl font-light leading-none w-10 h-10 flex items-center justify-center"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+        <img
+          src={book.src}
+          alt={book.title}
+          style={{
+            maxWidth: "95vw",
+            maxHeight: "80vh",
+            objectFit: "contain",
+            borderRadius: "12px",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
+          }}
+        />
+
+        {book.title ? (
+          <div
+            style={{
+              marginTop: "12px",
+              fontFamily: "'Arial', sans-serif",
+              fontSize: "13px",
+              color: "#6b7280",
+              textAlign: "center",
+            }}
+          >
+            {book.title}
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
 
 export default function ReadingList() {
   const isMobile = typeof window !== "undefined" ? window.innerWidth < 1024 : false;
+
+  const [openBook, setOpenBook] = useState(null);
+
+  const bookCovers = useMemo(
+    () => [
+      { src: "/images/about/current/milena.jpg", title: "Milena" },
+      { src: "/images/about/current/henry-and-june.png", title: "Henry and June" },
+      { src: "/images/about/current/anne.png", title: "Anne" },
+      { src: "/images/about/current/power-broker-cover.png", title: "The Power Broker" },
+      { src: "/images/about/current/third-world-cover.png", title: "Third World" },
+      { src: "/images/about/current/never-let-me-go.png", title: "Never Let Me Go" },
+      { src: "/images/about/current/oxford-american-essays.png", title: "Oxford American Essays" },
+    ],
+    []
+  );
 
   const essayItems = useMemo(() => {
     const items = [
@@ -83,7 +150,7 @@ export default function ReadingList() {
     <div className="bg-white min-h-screen">
       <Navbar />
 
-      <div className="pt-20 pb-12 px-8 max-w-2xl mx-auto" style={{ marginTop: "50px" }}>
+      <div className="pt-20 pb-12 px-8 max-w-2xl mx-auto" style={{ marginTop: "100px" }}>
         <div className="text-4xl text-gray-700 mb-2" style={{ fontFamily: "'Melo', sans-serif" }}>
           reading list
         </div>
@@ -95,6 +162,83 @@ export default function ReadingList() {
           className="bg-white border border-gray-200"
           style={{ borderRadius: "8px", boxShadow: "0 10px 28px rgba(0,0,0,0.05)", padding: isMobile ? "14px 14px" : "18px 20px" }}
         >
+          <div
+            className="text-gray-500 text-[11px] mb-4"
+            style={{
+              fontFamily: "'Arial', sans-serif",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              marginTop: "2px",
+            }}
+          >
+            books
+          </div>
+
+          <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", paddingTop: "16px" }}>
+            <div style={{ position: "relative", paddingBottom: "22px" }}>
+              {/* bookshelf base */}
+              <div
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  height: "14px",
+                  borderRadius: "8px",
+                  background:
+                    "linear-gradient(to bottom, rgba(139,105,20,0.95) 0%, rgba(107,78,15,0.95) 100%)",
+                  boxShadow:
+                    "inset 0 2px 4px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.10)",
+                  border: "1px solid rgba(0,0,0,0.08)",
+                  zIndex: 0,
+                }}
+              />
+
+              {/* 7 across shelf */}
+              <div
+                style={{
+                  position: "relative",
+                  zIndex: 1,
+                  display: "grid",
+                  gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
+                  gap: "clamp(6px, 1.2vw, 14px)",
+                  alignItems: "end",
+                }}
+              >
+                {bookCovers.map((b) => (
+                  <button
+                    key={b.src}
+                    type="button"
+                    onClick={() => setOpenBook({ src: b.src, title: b.title })}
+                    className="p-0 bg-transparent border-0 cursor-pointer"
+                    style={{
+                      height: "clamp(110px, 16vw, 175px)",
+                      width: "100%",
+                      display: "flex",
+                      alignItems: "flex-end",
+                      justifyContent: "center",
+                    }}
+                    aria-label={`Open ${b.title}`}
+                  >
+                    <img
+                      src={b.src}
+                      alt={b.title}
+                      loading="lazy"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        display: "block",
+                        userSelect: "none",
+                        pointerEvents: "none",
+                      }}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div
             className="text-gray-500 text-[11px] mb-4"
             style={{
@@ -139,17 +283,10 @@ export default function ReadingList() {
             ))}
           </div>
 
-          <div style={{ marginTop: "8px" }}>
-            <Link
-              to="/about"
-              className="text-gray-500 hover:underline"
-              style={{ fontFamily: "'Arial', sans-serif", fontSize: "13px" }}
-            >
-              Back to About
-            </Link>
-          </div>
         </div>
       </div>
+
+      <BookModal book={openBook} onClose={() => setOpenBook(null)} />
     </div>
   );
 }
