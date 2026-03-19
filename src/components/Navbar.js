@@ -8,26 +8,26 @@ function Navbar() {
 
       <li className="nav-item">
         <Link className="nav-link" to="/">
-          Home |
+          Home<span className="nav-pipe">&nbsp;|&nbsp;</span>
         </Link>
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="/about">
-        &nbsp;About |
+          About<span className="nav-pipe">&nbsp;|&nbsp;</span>
         </Link>
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="/projects">
-        &nbsp;Projects |
+          Projects<span className="nav-pipe">&nbsp;|&nbsp;</span>
         </Link>
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="/portfolio">
-        &nbsp;Portfolio
+          Portfolio
         </Link>
       </li>
     </ul>
   )
 }
 
-export default Navbar 
+export default Navbar
