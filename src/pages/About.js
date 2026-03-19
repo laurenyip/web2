@@ -401,7 +401,7 @@ export default function About() {
               loading="lazy"
               style={{
                 top: "-10px",
-                right: "520px",
+                right: "460px",
                 width: "200px",
                 transform: "rotate(-1deg)",
                 zIndex: 40,
@@ -496,7 +496,7 @@ export default function About() {
               style={{
                 position: "absolute",
                 top: "325px",
-                left: "calc(2%)",
+                left: "calc(2% - 55px)",
                 zIndex: 55,
                 pointerEvents: "none",
                 writingMode: "vertical-rl",
