@@ -13,6 +13,15 @@ function AboutImageModal({
   onClose,
 }) {
   if (!src) return null;
+  const derivedTop = src
+    ? src
+        .split("/")
+        .pop()
+        ?.replace(/\.[^.]+$/, "")
+        .replace(/[-_]/g, " ")
+    : "";
+  const displayTop = subtitleTop || subtitle || derivedTop || "photo";
+  const displayBottom = subtitleBottom || "";
 
   return (
     <div
@@ -46,7 +55,7 @@ function AboutImageModal({
           }}
         />
 
-        {subtitleTop || subtitleBottom ? (
+        {displayTop || displayBottom ? (
           <div
             style={{
               marginTop: "8px",
@@ -61,31 +70,14 @@ function AboutImageModal({
               borderRadius: "10px",
             }}
           >
-            {subtitleTop ? (
-              <div style={{ fontWeight: 600, lineHeight: 1.2 }}>{subtitleTop}</div>
+            {displayTop ? (
+              <div style={{ fontWeight: 600, lineHeight: 1.2 }}>{displayTop}</div>
             ) : null}
-            {subtitleBottom ? (
+            {displayBottom ? (
               <div style={{ marginTop: "2px", lineHeight: 1.2 }}>
-                {subtitleBottom}
+                {displayBottom}
               </div>
             ) : null}
-          </div>
-        ) : subtitle ? (
-          <div
-            style={{
-              marginTop: "8px",
-              fontFamily: "'Arial', sans-serif",
-              fontSize: "14px",
-              color: "#ffffff",
-              textAlign: "center",
-              textShadow: "0 1px 2px rgba(0,0,0,0.5)",
-              width: "100%",
-              padding: "8px 12px",
-              background: "rgba(0,0,0,0.28)",
-              borderRadius: "10px",
-            }}
-          >
-            {subtitle}
           </div>
         ) : null}
       </div>
@@ -747,7 +739,7 @@ export default function About() {
             </div>
           )}
 
-          {/* Reading list button + Paris WIP (below shelf, right side) */}
+          {/* About1 + Reading list button + Paris WIP (below shelf) */}
           <div
             className="w-full mt-10"
             style={{
@@ -757,6 +749,29 @@ export default function About() {
               gap: "16px",
             }}
           >
+            <div style={{ flex: "0 0 auto", display: "flex", justifyContent: "flex-start" }}>
+              <img
+                src={`${ABOUT_MAIN}/About1.jpg`}
+                className="aboutImage cursor-pointer transition-transform hover:scale-105"
+                width={isMobile ? 180 : 210}
+                height={isMobile ? 165 : 195}
+                loading="lazy"
+                style={{
+                  position: "relative",
+                  width: isMobile ? "138px" : "165px",
+                  height: "auto",
+                  zIndex: 60,
+                  pointerEvents: "auto",
+                }}
+                alt="About1"
+                onClick={() =>
+                  setOpenAboutImage({
+                    src: `${ABOUT_MAIN}/About1.jpg`,
+                  })
+                }
+              />
+            </div>
+
             <div style={{ flex: "1 1 auto", display: "flex", justifyContent: "center" }}>
               <Link
                 to="/reading-list"
