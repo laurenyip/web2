@@ -16,7 +16,15 @@ body {
   font-size: 16px;
   color: #374151;
   background-color: #ffffff;
-  overflow-x: hidden;
+  overflow-x: visible;
+}
+
+/* Ensure hero images don't get cropped by small viewports */
+img.aboutImage {
+  max-width: 100%;
+  height: auto !important;
+  object-fit: contain;
+  display: block;
 }
 
 /* hero background image */
