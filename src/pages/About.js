@@ -768,7 +768,7 @@ export default function About() {
                     textTransform: "uppercase",
                   }}
                 >
-                  essays
+                  essays i like
                 </div>
                 <div
                   className="space-y-4"
