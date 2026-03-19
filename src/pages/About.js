@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "./App.css";
 
@@ -40,80 +41,6 @@ export default function About() {
 
   // Vinyl shelf (same look/behavior as before; centered now)
   const isMobile = typeof window !== "undefined" ? window.innerWidth < 1024 : false;
-
-  const essayItems = useMemo(() => {
-    const items = [
-      {
-        text: "Dostoevsky as Lover",
-        author: "Henrik Karlsson",
-        link: "https://www.henrikkarlsson.xyz/p/doestoevsky-as-lover",
-        date: "2025-01-25",
-      },
-      {
-        text: "AGI isn't for happy people",
-        author: "Stefan Kelly",
-        link: "https://alreadyhappened.xyz/p/agi-isnt-for-happy-people",
-        date: "2025-03-22",
-      },
-      {
-        text: "How Hayao Miyazaki Builds a Story",
-        author: "Wren Petkov",
-        link: "https://storyfieldnotes.substack.com/p/how-hayao-miyazaki-builds-a-story",
-        date: "2025-05-15",
-      },
-      {
-        text: "Honesty in Relationships",
-        author: "Ava Huang",
-        link: "https://www.avabear.xyz/p/honesty-in-relationships?lli=1&utm_source=%2Finbox&utm_medium=reader2",
-        date: "2025-10-23",
-      },
-      {
-        text: "How to Dress a Monster, His Creator, and the Woman Who Loves Him",
-        author: "Tara Maria Gonzalez",
-        link: "https://open.substack.com/pub/taramariagonzalez/p/how-to-dress-a-monster-his-creator?utm_campaign=post-expanded-share&utm_medium=web",
-        date: "2025-11-30",
-      },
-      {
-        text: "Are You Serious?",
-        author: "Visakan Veerasamy",
-        link: "https://visakanv.substack.com/p/are-you-serious",
-        date: "2025-09-18",
-      },
-      {
-        text: "What's the Winning Strategy in China's 'low-trust' society?",
-        author: "Robert Wu",
-        link: "https://open.substack.com/pub/robertwoo/p/whats-the-winning-strategy-in-chinas?utm_campaign=post-expanded-share&utm_medium=web",
-        date: "2025-08-25",
-      },
-      {
-        text: "The Rare People Who Are Solid",
-        author: "Sasha Chapin",
-        link: "https://open.substack.com/pub/sashachapin/p/the-rare-people-who-are-solid?utm_campaign=post&utm_medium=email",
-        date: "2026-01-14",
-      },
-      {
-        text: "Quick Take: How the French Invented Love",
-        author: "David Roman",
-        link: "https://open.substack.com/pub/mankind/p/quick-take-how-the-french-invented?utm_campaign=post&utm_medium=email",
-        date: "2025-06-08",
-      },
-      {
-        text: "Magic alfredo, romcoms, and asian tiger parents",
-        author: "Jesse",
-        link: "https://open.substack.com/pub/fishinapool/p/magic-alfredo-romcoms-and-asian-tiger?utm_campaign=post-expanded-share&utm_medium=post%20viewer",
-        date: "2026-01-09",
-      },
-      {
-        text: "Marty Mauser Is Deeply Unlikeable But His Clothing Is Not",
-        author: "Tara Maria Gonzalez",
-        link: "https://open.substack.com/pub/taramariagonzalez/p/marty-mauser-is-deeply-unlikeable?utm_campaign=post-expanded-share&utm_medium=post%20viewer",
-        date: "2025-12-31",
-      },
-    ];
-
-    // Sort newest → oldest
-    return items.sort((a, b) => new Date(b.date) - new Date(a.date));
-  }, []);
 
   const musicItems = useMemo(
     () => [
@@ -432,9 +359,7 @@ export default function About() {
                 }}
               >
                 I'm passionate about visual storytelling and the intersection of
-                technology and art. I want to make something that matters. If
-                anything in this page resonates with you, please reach out to
-                me! I would love to be your friend.
+                technology and art. I want to make something that matters. Thanks for visiting my website! Check out more things I like below.
               </p>
             </div>
 
@@ -741,76 +666,27 @@ export default function About() {
             </div>
           )}
 
-          {/* Essay window (simple text links) */}
-          {essayItems.length > 0 && (
-            <div className="w-full mt-10">
-              <div
-                className="bg-white border border-gray-200"
-                style={{
-                  width: isMobile ? "min(86vw, 360px)" : "520px",
-                  maxWidth: "86vw",
-                  marginLeft: isMobile ? "calc(50% - 200px)" : "calc(50% - 475px)",
-                  marginRight: "auto",
-                  padding: isMobile ? "14px 14px" : "18px 20px",
-                  borderRadius: "8px",
-                  boxShadow: "0 10px 28px rgba(0,0,0,0.05)",
-                  height: isMobile ? "260px" : "210px",
-                  overflowY: "auto",
-                }}
-              >
-                <div
-                  className="text-gray-500 text-[11px] mb-4"
-                  style={{
-                    fontFamily: "'Arial', sans-serif",
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  essays i like
-                </div>
-                <div
-                  className="space-y-4"
-                  style={{
-                    borderTop: "1px solid rgba(0,0,0,0.06)",
-                    paddingTop: "16px",
-                  }}
-                >
-                  {essayItems.map((e) => (
-                    <div key={e.link}>
-                      <a
-                        href={e.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-gray-700 hover:underline"
-                        style={{
-                          fontFamily: "'Moto', serif",
-                          fontSize: isMobile ? "13px" : "14px",
-                          lineHeight: "1.35",
-                          textAlign: "left",
-                          display: "inline",
-                        }}
-                      >
-                        {e.text}
-                      </a>
-                      <div
-                        className="text-gray-500"
-                        style={{
-                          fontFamily: "'Arial', sans-serif",
-                          fontSize: "11px",
-                          marginTop: "2px",
-                          letterSpacing: "0.02em",
-                          textAlign: "left",
-                        }}
-                      >
-                        {e.author ? `${e.author} · ` : ""}
-                        {e.date}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
+          {/* Reading list button (moved to /reading-list) */}
+          <div className="w-full mt-10" style={{ display: "flex", justifyContent: "center" }}>
+            <Link
+              to="/reading-list"
+              className="text-gray-700 hover:bg-gray-50"
+              style={{
+                fontFamily: "'Moto', serif",
+                fontSize: isMobile ? "13px" : "14px",
+                lineHeight: "1.35",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: isMobile ? "10px 12px" : "12px 14px",
+                borderRadius: "8px",
+                border: "1px solid rgba(0,0,0,0.08)",
+                background: "#ffffff",
+              }}
+            >
+              Reading List
+            </Link>
+          </div>
         </div>
       </div>
 
