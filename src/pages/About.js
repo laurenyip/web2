@@ -131,7 +131,7 @@ export default function About() {
 
   const getMusicShelfPositions = (items, mobile) => {
     const positions = [];
-    const containerWidth = mobile ? 400 : 950;
+    const containerWidth = mobile ? 380 : 900;
     const padding = mobile ? 20 : 30;
 
     let vinylSize, shelfSpacing;
@@ -741,7 +741,7 @@ export default function About() {
 
           {/* About1 + Reading list button + Paris WIP (below shelf) */}
           <div
-            className="w-full mt-10"
+            className="w-full mt-0"
             style={{
               display: "flex",
               alignItems: "flex-start",
@@ -772,7 +772,16 @@ export default function About() {
               />
             </div>
 
-            <div style={{ flex: "1 1 auto", display: "flex", justifyContent: "center" }}>
+            <div
+              style={{
+                flex: "1 1 auto",
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
               <Link
                 to="/reading-list"
                 className="text-gray-700 hover:bg-gray-50"
@@ -791,6 +800,26 @@ export default function About() {
               >
                 Reading List
               </Link>
+
+              <img
+                src={`${ABOUT_MAIN}/About3.jpg`}
+                className="aboutImage cursor-pointer transition-transform hover:scale-105"
+                width={isMobile ? 154 : 185}
+                height={isMobile ? 204 : 246}
+                loading="lazy"
+                style={{
+                  width: isMobile ? "118px" : "140px",
+                  height: "auto",
+                  zIndex: 60,
+                  pointerEvents: "auto",
+                }}
+                alt="About3"
+                onClick={() =>
+                  setOpenAboutImage({
+                    src: `${ABOUT_MAIN}/About3.jpg`,
+                  })
+                }
+              />
             </div>
 
             <div style={{ flex: "0 0 auto", display: "flex", justifyContent: "flex-end" }}>
@@ -817,6 +846,57 @@ export default function About() {
                 }
               />
             </div>
+          </div>
+
+          {/* About4 + About5 (below the row above) */}
+          <div
+            className="w-full mt-4"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: isMobile ? "14px" : "20px",
+            }}
+          >
+            <img
+              src={`${ABOUT_MAIN}/About4.jpg`}
+              className="aboutImage cursor-pointer transition-transform hover:scale-105"
+              width={isMobile ? 132 : 160}
+              height={isMobile ? 176 : 213}
+              loading="lazy"
+              style={{
+                width: isMobile ? "102px" : "160px",
+                height: "auto",
+                transform: "translateX(-200px)",
+                zIndex: 60,
+                pointerEvents: "auto",
+              }}
+              alt="About4"
+              onClick={() =>
+                setOpenAboutImage({
+                  src: `${ABOUT_MAIN}/About4.jpg`,
+                })
+              }
+            />
+            <img
+              src={`${ABOUT_MAIN}/About5.jpg`}
+              className="aboutImage cursor-pointer transition-transform hover:scale-105"
+              width={isMobile ? 132 : 160}
+              height={isMobile ? 176 : 213}
+              loading="lazy"
+              style={{
+                width: isMobile ? "102px" : "160px",
+                height: "auto",
+                transform: "translateX(200px)",
+                zIndex: 60,
+                pointerEvents: "auto",
+              }}
+              alt="About5"
+              onClick={() =>
+                setOpenAboutImage({
+                  src: `${ABOUT_MAIN}/About5.jpg`,
+                })
+              }
+            />
           </div>
         </div>
       </div>
