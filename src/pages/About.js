@@ -199,7 +199,7 @@ export default function About() {
   );
 
   return (
-    <div className="bg-white min-h-screen overflow-x-visible">
+    <div className="bg-white min-h-screen overflow-x-hidden w-full max-w-[100vw]">
       <Navbar />
 
       <div style={{ paddingTop: "100px" }}>
