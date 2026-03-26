@@ -150,12 +150,15 @@ export default function ReadingList() {
     <div className="bg-white min-h-screen">
       <Navbar />
 
-      <div className="pt-20 pb-12 px-8 max-w-2xl mx-auto" style={{ marginTop: "100px" }}>
+      <div
+        className="pt-20 pb-12 px-8 max-w-2xl mx-auto"
+        style={{ marginTop: "100px", textAlign: isMobile ? "center" : "left" }}
+      >
         <div className="text-4xl text-gray-700 mb-2" style={{ fontFamily: "'Melo', sans-serif" }}>
           reading list
         </div>
         <div className="text-gray-500" style={{ fontFamily: "'Arial', sans-serif", fontSize: "14px", marginBottom: "24px" }}>
-          A small collection of essays I wholeheartedly recommend.
+          A small collection of essays and books I wholeheartedly recommend.
         </div>
 
         <div
@@ -174,7 +177,7 @@ export default function ReadingList() {
             books
           </div>
 
-          <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", paddingTop: "16px" }}>
+          <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", paddingTop: "0px" }}>
             <div style={{ position: "relative", paddingBottom: "22px" }}>
               {/* bookshelf base */}
               <div
@@ -182,8 +185,8 @@ export default function ReadingList() {
                   position: "absolute",
                   left: 0,
                   right: 0,
-                  bottom: 0,
-                  height: "14px",
+                  bottom: 45,
+                  height: "10px",
                   borderRadius: "8px",
                   background:
                     "linear-gradient(to bottom, rgba(139,105,20,0.95) 0%, rgba(107,78,15,0.95) 100%)",
