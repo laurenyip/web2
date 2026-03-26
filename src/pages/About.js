@@ -4,6 +4,16 @@ import Navbar from "../components/Navbar";
 import "./App.css";
 
 const ABOUT_MAIN = "/images/about/main";
+const ABOUT_CAPTIONS = {
+  about6: "found in Chinatown",
+  about17: "Ipoh",
+  about2: "LY",
+  about11: "Bruce Lee's house",
+  about3: "Datong after rain",
+  about4: "xi'an!",
+  about1: "I <3 NY",
+  about5: "IPOH <3",
+};
 
 function AboutImageModal({
   src,
@@ -20,7 +30,15 @@ function AboutImageModal({
         ?.replace(/\.[^.]+$/, "")
         .replace(/[-_]/g, " ")
     : "";
-  const displayTop = subtitleTop || subtitle || derivedTop || "photo";
+  const derivedKey = src
+    ? src
+        .split("/")
+        .pop()
+        ?.replace(/\.[^.]+$/, "")
+        .toLowerCase()
+    : "";
+  const mappedCaption = derivedKey ? ABOUT_CAPTIONS[derivedKey] : "";
+  const displayTop = subtitleTop || subtitle || mappedCaption || derivedTop || "photo";
   const displayBottom = subtitleBottom || "";
 
   return (
@@ -59,15 +77,13 @@ function AboutImageModal({
           <div
             style={{
               marginTop: "8px",
-              fontFamily: "'Arial', sans-serif",
+              fontFamily: "'Moto', serif",
               textAlign: "center",
               fontSize: "14px",
               color: "#ffffff",
-              textShadow: "0 1px 2px rgba(0,0,0,0.5)",
+              opacity: 0.8,
               width: "100%",
-              padding: "8px 12px",
-              background: "rgba(0,0,0,0.28)",
-              borderRadius: "10px",
+              padding: "4px 8px",
             }}
           >
             {displayTop ? (
