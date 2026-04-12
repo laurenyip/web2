@@ -3,7 +3,7 @@ import React from "react";
 export default function Webring() {
   return (
     <footer
-      className="text-gray-600"
+      className="relative z-10 flex-shrink-0 text-gray-600"
       style={{
         display: "flex",
         justifyContent: "center",
