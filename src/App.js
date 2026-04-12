@@ -13,15 +13,17 @@ import './pages/App.css'
 function App() {
   return (
     <Router>
-      <div className='app-container'>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/projects' element={<Projects />} />
-          <Route path='/portfolio' element={<Portfolio />} />
-          <Route path='/writing' element={<Writing />} />
-          <Route path='/reading-list' element={<ReadingList />} />
-        </Routes>
+      <div className='app-container flex min-h-screen flex-col'>
+        <div className='flex min-h-0 w-full flex-1 flex-col'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/projects' element={<Projects />} />
+            <Route path='/portfolio' element={<Portfolio />} />
+            <Route path='/writing' element={<Writing />} />
+            <Route path='/reading-list' element={<ReadingList />} />
+          </Routes>
+        </div>
         <Webring />
       </div>
     </Router>
