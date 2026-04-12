@@ -6,6 +6,7 @@ import Projects from './pages/Projects'
 import Portfolio from './pages/Portfolio'
 import Writing from './pages/Writing'
 import ReadingList from './pages/ReadingList'
+import Webring from './components/Webring'
 import './index.css'
 import './pages/App.css'
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/writing' element={<Writing />} />
           <Route path='/reading-list' element={<ReadingList />} />
         </Routes>
+        <Webring />
       </div>
     </Router>
   )
