@@ -12,7 +12,7 @@ body.main {
 }
 
 body {
-  font-family: 'Moto', serif;
+  font-family: 'Arial', sans-serif;
   font-size: 16px;
   color: #374151;
   background-color: #ffffff;
@@ -125,7 +125,7 @@ h1.text-center {
 p {
   position: relative;
   text-align: left; /* Center-align the text */
-  font-family: 'Moto', serif;
+  font-family: 'Arial', sans-serif;
   color: #374151;
 }
 p3 {
