@@ -42,36 +42,35 @@ function Portfolio() {
 
   const cardData = [
     {
-      imgSrc: '/images/portfolio/ten.jpg',
-      description: 'paintball & hay scene [2025-01]',
-    },
-    {
-      imgSrc: '/images/portfolio/lily.png',
+      imgSrc: '/images/art/lily.png',
       description: 'dedicated to my friends [2021-08]',
       scale: 1.4,
     },
     {
-      imgSrc: '/images/portfolio/dance.png',
+      imgSrc: '/images/art/dance.png',
       description: '[2021-01]',
       scale: 1.6,
     },
     {
-      imgSrc: '/images/portfolio/ecola.png',
+      imgSrc: '/images/art/ecola.png',
       description: 'ecola beach state park, oregon',
     },
     {
-      imgSrc: '/images/portfolio/backy.png',
-      description: 'my backyard [2023]',
+      imgSrc: '/images/art/bridge.png',
+      description: 'two figures by the water',
       scale: 1.5,
     },
     {
-      imgSrc: '/images/portfolio/tidepool.png',
-      description: 'belcarra tidepool [2022-02]',
+      imgSrc: '/images/art/pool.png',
+      description: 'abstract · light on water',
     },
     {
-      imgSrc: '/images/portfolio/blue.png',
-      description:
-        'blue hydrangeas [2021-07]',
+      imgSrc: '/images/art/blue.png',
+      description: 'blue hydrangeas [2021-07]',
+    },
+    {
+      imgSrc: '/images/art/optimist.png',
+      description: 'OPTIMIST mural · Vancouver',
     },
   ]
 
