@@ -130,24 +130,22 @@ function Home() {
             </button>
           </div>
 
-          {/* ── Row 2: three photos ── */}
+          {/* ── Row 2: three photos — sides fill row height; middle fills column width ── */}
           <div className="home-row2">
-            {FIGMA_HOME.row2.map(({ src, caption }) => (
-              <button
-                key={src}
-                type="button"
-                onClick={() => openModal(src, caption)}
-                aria-label={`Open image: ${caption}`}
-                style={{
-                  display: 'block', width: '100%', cursor: 'zoom-in',
-                  overflow: 'hidden', borderRadius: '10px',
-                  border: '1px solid rgba(209,213,219,0.8)',
-                  background: '#fff', padding: 0,
-                }}
-              >
-                <img src={src} alt={caption} style={{ aspectRatio: '4/3', width: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
-              </button>
-            ))}
+            {FIGMA_HOME.row2.map(({ src, caption }, index) => {
+              const isMiddle = index === 1
+              return (
+                <button
+                  key={src}
+                  type="button"
+                  className={isMiddle ? 'home-row2-btn home-row2-middle' : 'home-row2-btn home-row2-side'}
+                  onClick={() => openModal(src, caption)}
+                  aria-label={`Open image: ${caption}`}
+                >
+                  <img src={src} alt={caption} loading="lazy" />
+                </button>
+              )
+            })}
           </div>
 
           {/* ── Row 3: text card + three photos ── */}
@@ -158,7 +156,7 @@ function Home() {
               background: '#fff', padding: '12px',
             }}>
               <div className="home-f25-body">
-                Thanks for visiting my website! If anything on this website resonated, or you want to make something cool together, please reach out!
+                Thanks for visiting my website! <p>If anything on this website resonated, or you want to make something cool together,</p> please reach out!
               </div>
             </div>
             {FIGMA_HOME.row3.map(({ src, caption }) => (
@@ -195,14 +193,48 @@ function Home() {
           .home-row1 { flex-direction: row; align-items: flex-start; }
         }
 
-        /* Row 2: 1 col → 3 cols */
+        /* Row 2: stacked mobile; sm+ middle column wider, sides = full row height, middle = full cell width */
         .home-row2 {
           display: grid;
           grid-template-columns: 1fr;
           gap: 12px;
         }
+        .home-row2-btn {
+          display: block;
+          margin: 0;
+          padding: 0;
+          cursor: zoom-in;
+          overflow: hidden;
+          border-radius: 10px;
+          border: 1px solid rgba(209, 213, 219, 0.8);
+          background: #fff;
+          width: 100%;
+          height: 357px;
+        }
+        .home-row2-btn img {
+          display: block;
+        }
+        .home-row2-side img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .home-row2-middle img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
         @media (min-width: 640px) {
-          .home-row2 { grid-template-columns: repeat(3, 1fr); }
+          .home-row2 {
+            grid-template-columns: 1fr 2fr 1fr;
+            align-items: stretch;
+            height: 357px;
+          }
+          .home-row2-btn {
+            height: 100%;
+            min-height: 0;
+          }
         }
 
         /* Row 3: 1 col → text + 3 photos */
