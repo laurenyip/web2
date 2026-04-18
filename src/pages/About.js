@@ -214,12 +214,7 @@ export default function About() {
               >
                 00
               </div>
-              <div
-                className="mt-2 text-sm tracking-wide text-gray-500"
-                style={{ fontFamily: "'URWGeometricRegular', sans-serif" }}
-              >
-                Who Am I
-              </div>
+              <p className="about-body-text mt-2 m-0">Who Am I</p>
             </div>
 
             <div className="order-3 lg:order-2 lg:col-span-5">
@@ -321,13 +316,8 @@ export default function About() {
               >
                 01
               </div>
-              <div
-                className="mt-1 text-sm tracking-wide text-gray-500"
-                style={{ fontFamily: "'URWGeometricRegular', sans-serif" }}
-              >
-                Art
-              </div>
-              <p className="about-body-text mt-10 max-w-md text-left lg:ml-auto">
+              <p className="about-body-text mt-1 m-0">Art</p>
+              <p className="about-body-text mt-3 max-w-md text-left lg:ml-auto">
                 Painting to capture the big chapters of my life. Click on any to view in full screen.
               </p>
             </div>
@@ -344,12 +334,7 @@ export default function About() {
               >
                 02
               </div>
-              <div
-                className="mt-1 text-sm tracking-wide text-gray-500"
-                style={{ fontFamily: "'URWGeometricRegular', sans-serif" }}
-              >
-                Writing
-              </div>
+              <p className="about-body-text mt-1 m-0">Writing</p>
               <div className="about-body-text mt-8 space-y-4">
                 <p>
                   I want to write a book (or many) someday, but for now I write my life into personal essays that help
@@ -393,12 +378,7 @@ export default function About() {
             >
               03
             </div>
-            <div
-              className="mt-1 text-sm tracking-wide text-gray-500"
-              style={{ fontFamily: "'URWGeometricRegular', sans-serif" }}
-            >
-              Favorites
-            </div>
+            <p className="about-body-text mt-1 m-0">Favorites</p>
           </div>
 
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-start">
@@ -651,12 +631,7 @@ export default function About() {
               >
                 04
               </div>
-              <div
-                className="mt-1 text-sm tracking-wide text-gray-500"
-                style={{ fontFamily: "'URWGeometricRegular', sans-serif" }}
-              >
-                Sidequests
-              </div>
+              <p className="about-body-text mt-1 m-0">Sidequests</p>
               <div className="about-body-text mt-8 space-y-4">
                 <p>
                   I&apos;m also hosting treehouse.place, playing volleyball, snowboarding, dragonboating, swimming, hiking,
@@ -704,7 +679,7 @@ export default function About() {
             aria-label="Open favorite painting"
           >
             <img
-              src="/images/portfolio/ten.jpg"
+              src=".\images\about\current\hightide.png"
               alt="High Tide by Jan Toorop"
               className="h-auto w-full max-w-[220px] object-cover"
               loading="lazy"
