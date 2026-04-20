@@ -1,33 +1,11 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Navbar from '../components/Navbar'
 import ImageModal from '../components/ImageModal'
 import './App.css'
 
-const ABOUT_MAIN = '/images/about/main'
-
-const ABOUT_CAPTIONS = {
-  about6: 'found in Chinatown',
-  about17: 'Ipoh',
-  about2: 'LY',
-  about11: "Bruce Lee's house",
-  about3: 'Datong after rain',
-  about4: "xi'an!", 
-  about1: 'I <3 NY',
-  about5: 'IPOH <3',
-}
-
-function captionForAboutSrc(src) {
-  const base =
-    src
-      .split('/')
-      .pop()
-      ?.replace(/\.[^.]+$/, '')
-      ?.toLowerCase() || ''
-  return ABOUT_CAPTIONS[base] || 'photo'
-}
-
 /** §01 Art — carousel slides (`public/images/about/art/`) */
 const ART_CAROUSEL = [
+  { src: '/images/about/art/january.jpg', caption: 'January' },
   { src: '/images/about/art/blue.png', caption: 'blue hydrangeas [2021-07]' },
   { src: '/images/about/art/pool.png', caption: 'abstract · light on water' },
   { src: '/images/about/art/ecola.png', caption: 'ecola beach state park, oregon' },
@@ -83,25 +61,29 @@ const FAVORITES_LINKS = [
   { label: 'Movies that I rate 5 stars', href: 'https://letterboxd.com/laurenyip/' },
 ]
 
-const SIDEQUEST_PHOTOS = [
-  `${ABOUT_MAIN}/About6.jpg`,
-  `${ABOUT_MAIN}/About17.jpg`,
-  `${ABOUT_MAIN}/about2.jpg`,
-  `${ABOUT_MAIN}/About11.jpg`,
-  `${ABOUT_MAIN}/About3.jpg`,
-  `${ABOUT_MAIN}/About4.jpg`,
-  `${ABOUT_MAIN}/About1.jpg`,
-  `${ABOUT_MAIN}/About5.jpg`,
-]
-
-const SIDEQUEST_EXTRA = [
-  { src: '/images/home/beach.png', caption: 'beach at night' },
-  { src: '/images/home/dog.png', caption: 'Thor' },
-]
-
+/** §04 Sidequests — grid (`public/images/about/sidequests/`) */
 const SIDEQUEST_GRID_ITEMS = [
-  ...SIDEQUEST_PHOTOS.map((src) => ({ src, caption: captionForAboutSrc(src) })),
-  ...SIDEQUEST_EXTRA,
+  { src: '/images/about/sidequests/cz.jpg', caption: 'Market brass & trinkets' },
+  { src: '/images/about/sidequests/datong.jpg', caption: 'Datong · stone portal' },
+  { src: '/images/about/sidequests/gzapt.jpg', caption: 'Guangzhou · apartment block at night' },
+  { src: '/images/about/sidequests/gzbike.jpg', caption: 'Guangzhou · e-bike & wires' },
+  { src: '/images/about/sidequests/gzcat.jpg', caption: 'Guangzhou · Bliss Space neon' },
+  { src: '/images/about/sidequests/gzfish.jpg', caption: 'Guangzhou · koi in the window' },
+  { src: '/images/about/sidequests/gztree.jpg', caption: 'Guangzhou · banyan over Haizhu Bei Lu' },
+  {
+    src: '/images/about/sidequests/hike.jpg',
+    caption: 'Rocky summit · golden hour over the sound',
+  },
+  {
+    src: '/images/about/sidequests/ipoh.jpg',
+    caption: 'Ipoh · night break outside the shop',
+    /** Landscape photo — bias crop toward the lit shop & figures in the square thumb */
+    objectPosition: 'center 42%',
+  },
+  {
+    src: '/images/about/sidequests/kaya.jpg',
+    caption: 'Ipoh · Kaya Puff shophouse',
+  },
 ]
 
 /** Vinyl shelf — sleeve art (paths under `public/`); links match prior About. */
@@ -140,35 +122,28 @@ const MUSIC_ITEMS = [
   },
 ]
 
+const VINYL_SLEEVE_PX = 100
+
 function getMusicShelfPositions(items, mobile) {
   const positions = []
-  const containerWidth = mobile ? 380 : 900
-  const padding = mobile ? 20 : 30
+  const padding = mobile ? 10 : 16
+  const shelfSpacing = mobile ? 6 : 10
 
-  let vinylSize
-  let shelfSpacing
+  let vinylSize = VINYL_SLEEVE_PX
   if (mobile && items.length > 0) {
-    const availableWidth = containerWidth
-    const numVinyls = items.length
-    const spacingBetweenVinyls = 3
-    vinylSize = Math.floor((availableWidth - (numVinyls - 1) * spacingBetweenVinyls) / numVinyls)
-    shelfSpacing = spacingBetweenVinyls
-  } else {
-    vinylSize = 119
-    shelfSpacing = 18
+    const containerWidth = 360
+    const inner = containerWidth - padding * 2 - (items.length - 1) * shelfSpacing
+    vinylSize = Math.max(56, Math.floor(inner / items.length))
   }
 
-  const shelfHeight = mobile ? 340 : 175
+  const shelfHeight = vinylSize + 28
   const shelfThickness = 12
 
-  const shelfWidth = mobile
-    ? containerWidth
-    : Math.min(items.length * vinylSize + (items.length - 1) * shelfSpacing + padding * 2, containerWidth * 0.9)
-
-  const shelfLeft = Math.max(0, Math.floor((containerWidth - shelfWidth) / 2))
+  const shelfWidth = items.length * vinylSize + (items.length - 1) * shelfSpacing + padding * 2
+  const shelfLeft = 0
 
   for (let i = 0; i < items.length; i++) {
-    const leftPosition = shelfLeft + (mobile ? 0 : padding) + i * (vinylSize + shelfSpacing)
+    const leftPosition = shelfLeft + padding + i * (vinylSize + shelfSpacing)
     positions.push({
       top: `${shelfHeight - vinylSize}px`,
       left: `${leftPosition}px`,
@@ -184,16 +159,23 @@ function getMusicShelfPositions(items, mobile) {
 const imgTile =
   'block w-full cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200/80 bg-white p-0 shadow-sm transition hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400'
 
-const imgThumb =
-  'block h-20 w-[53px] shrink-0 cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200/80 bg-white p-0 shadow-sm transition hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 sm:h-[88px] sm:w-[59px]'
-
 export default function About() {
   const [modal, setModal] = useState(null)
   const [artSlide, setArtSlide] = useState(0)
+  const [viewportW, setViewportW] = useState(
+    () => (typeof window !== 'undefined' ? window.innerWidth : 1200)
+  )
   const open = (src, caption) => setModal({ src, caption })
   const close = () => setModal(null)
 
-  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : false
+  useEffect(() => {
+    const onResize = () => setViewportW(window.innerWidth)
+    onResize()
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  const isMobile = viewportW < 1024
 
   const musicShelf = useMemo(() => getMusicShelfPositions(MUSIC_ITEMS, isMobile), [isMobile])
 
@@ -274,10 +256,10 @@ export default function About() {
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
             <div className="w-full max-w-3xl lg:max-w-[58%]">
               <div className="about-art-carousel flex flex-col gap-3">
-                <div className="relative overflow-hidden rounded-[10px] border border-gray-200/80 bg-white shadow-sm">
+                <div className="about-art-carousel-frame relative flex min-h-[200px] items-center justify-center overflow-hidden rounded-[10px] border border-gray-200/80 bg-gray-50 shadow-sm sm:min-h-[280px]">
                   <button
                     type="button"
-                    className="block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+                    className="flex w-full cursor-zoom-in items-center justify-center border-0 bg-transparent p-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 sm:p-3"
                     onClick={() => {
                       const slide = ART_CAROUSEL[artSlide]
                       if (slide) open(slide.src, slide.caption)
@@ -287,7 +269,7 @@ export default function About() {
                     <img
                       src={ART_CAROUSEL[artSlide]?.src}
                       alt={ART_CAROUSEL[artSlide]?.caption || ''}
-                      className="aspect-[4/3] w-full object-cover sm:aspect-[5/3]"
+                      className="max-h-[min(70vh,620px)] w-full max-w-full object-contain"
                       loading="lazy"
                     />
                   </button>
@@ -390,39 +372,30 @@ export default function About() {
           </div>
         </section>
 
-        {/* —— SECTION 03 — Favorites + vinyl (Figma 155-544, 160-548) —— */}
+        {/*
+          SECTION 03 — Favorites (Figma dev nodes — layout reference):
+          162-708, 171-769, 167-736, 167-745, 167-739, 171-771, 167-742, 151-446, 152-530,
+          167-733, 152-534, 151-421, 152-525, 151-420
+          Left: koi, poster grid, favorite painting + copy. Right: 03 + subtitle (paired),
+          links, vinyl shelf aligned under that header group.
+        */}
         <section className="about-figma-section">
-          <div className="mb-10 text-center">
-            <div
-              className="text-[clamp(3rem,10vw,5rem)] leading-none text-gray-800"
-              style={{ fontFamily: "'Melo', sans-serif" }}
-            >
-              03
-            </div>
-            <p className="about-body-text mt-1 m-0">Favorites</p>
-          </div>
-
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-start">
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-7">
               <button
                 type="button"
-                className="mb-4 block max-h-32 w-auto cursor-zoom-in rounded-[10px] border-0 bg-transparent p-0"
-                onClick={() =>
-                  open(
-                    '/images/about/favorites/reading/paris_wip.png',
-                    'Aux Artistes — Paris · painting this right now'
-                  )
-                }
-                aria-label="Paris work in progress"
+                className="mb-4 block max-h-[228px] w-auto cursor-zoom-in rounded-[10px] border-0 bg-transparent p-0"
+                onClick={() => open('/images/about/favorites/fish.gif', 'Koi · ink sketch')}
+                aria-label="Open koi sketch"
               >
                 <img
-                  src="/images/about/favorites/reading/paris_wip.png"
-                  alt="Small illustration"
-                  className="max-h-32 w-auto rounded-[10px] object-contain shadow-sm"
+                  src="/images/about/favorites/fish.gif"
+                  alt="Koi fish ink sketch"
+                  className="max-h-[208px] w-auto rounded-[10px] object-contain shadow-sm"
                   loading="lazy"
                 />
               </button>
-              <div className="grid w-full max-w-[280px] grid-cols-2 gap-3 sm:max-w-[320px]">
+              <div className="grid w-full max-w-[100px] grid-cols-2 gap-3 sm:max-w-[170px] ml-[320px]">
                 {FAVORITES_POSTERS.map(({ src, caption }) => (
                   <button
                     key={src}
@@ -440,9 +413,40 @@ export default function About() {
                   </button>
                 ))}
               </div>
+              <div className="mt-[calc(2.5rem+50px)] flex max-w-xl flex-row flex-wrap items-center gap-4 sm:flex-nowrap">
+                <button
+                  type="button"
+                  className="shrink-0 cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200/80 bg-white p-0 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+                  onClick={() =>
+                    open('/images/about/favorites/hightide.png', 'High Tide by Jan Toorop — My favorite painting!')
+                  }
+                  aria-label="favorite painting"
+                >
+                  <img
+                    src="/images/about/favorites/hightide.png"
+                    alt="High Tide by Jan Toorop"
+                    className="block h-auto w-[min(220px,100%)] max-w-[220px] object-cover"
+                    loading="lazy"
+                  />
+                </button>
+                <div className="about-body-text min-w-0 space-y-1 text-left">
+                  <p className="m-0 text-gray-800">High Tide by Jan Toorop</p>
+                  <p className="m-0 italic text-gray-600">My favorite painting!</p>
+                </div>
+              </div>
             </div>
 
-            <div className="flex flex-col gap-8 lg:col-span-7">
+            <div className="flex flex-col items-start gap-8 text-left lg:col-span-5">
+              <div className="flex w-full flex-col items-start">
+                <div
+                  className="text-[clamp(3rem,10vw,5rem)] leading-none text-gray-800"
+                  style={{ fontFamily: "'Melo', sans-serif" }}
+                >
+                  03
+                </div>
+                <p className="about-body-text mt-1 m-0">Favorites</p>
+              </div>
+
               <ul className="m-0 list-none space-y-3 p-0">
                 {FAVORITES_LINKS.map((item) => (
                   <li key={item.href + item.label}>
@@ -457,28 +461,14 @@ export default function About() {
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-row flex-wrap gap-3">
-                {FAVORITES_POSTERS.map(({ src, caption }) => (
-                  <button
-                    key={`thumb-${src}`}
-                    type="button"
-                    className={imgThumb}
-                    onClick={() => open(src, caption)}
-                    aria-label={caption}
-                  >
-                    <img src={src} alt="" className="h-full w-full object-cover" loading="lazy" />
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
 
           {MUSIC_ITEMS.length > 0 && (
-            <div className="about-vinyl-shelf mt-12 flex w-full justify-center">
+            <div className="about-vinyl-shelf flex w-full justify-start">
               <div
                 className="relative"
                 style={{
-                  width: `${isMobile ? 400 : 950}px`,
+                  width: `${Math.max(musicShelf.shelfWidth || 0, 1)}px`,
+                  maxWidth: '100%',
                   height: `${(musicShelf.shelfBottom || 352) + 40}px`,
                 }}
               >
@@ -643,6 +633,8 @@ export default function About() {
               </div>
             </div>
           )}
+            </div>
+          </div>
         </section>
 
         {/* —— SECTION 04 — Sidequests (Figma 167-717) —— */}
@@ -677,7 +669,7 @@ export default function About() {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {SIDEQUEST_GRID_ITEMS.map(({ src, caption }) => (
+              {SIDEQUEST_GRID_ITEMS.map(({ src, caption, objectPosition }) => (
                 <button
                   key={src}
                   type="button"
@@ -685,35 +677,21 @@ export default function About() {
                   onClick={() => open(src, caption)}
                   aria-label="Open photo"
                 >
-                  <img src={src} alt={caption} className="aspect-square w-full object-cover" loading="lazy" />
+                  <img
+                    src={src}
+                    alt={caption}
+                    className="aspect-square w-full object-cover"
+                    style={objectPosition ? { objectPosition } : undefined}
+                    loading="lazy"
+                  />
                 </button>
               ))}
             </div>
           </div>
         </section>
 
-        {/* —— FOOTER — Favorite painting (Figma 160-548) —— */}
-        <footer className="about-figma-footer flex flex-col gap-10 border-t border-gray-200 sm:flex-row sm:items-end">
-          <button
-            type="button"
-            className="max-w-xs shrink-0 cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200 p-0 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
-            onClick={() =>
-              open('/images/about/favorites/hightide.png', 'High Tide by Jan Toorop — My favorite painting!')
-            }
-            aria-label="Open favorite painting"
-          >
-            <img
-              src="/images/about/favorites/hightide.png"
-              alt="High Tide by Jan Toorop"
-              className="h-auto w-full max-w-[220px] object-cover"
-              loading="lazy"
-            />
-          </button>
-          <div className="about-body-text space-y-1">
-            <p className="m-0 text-gray-800">High Tide by Jan Toorop</p>
-            <p className="m-0 italic text-gray-600">My favorite painting!</p>
-          </div>
-        </footer>
+        {/* —— FOOTER — section end (painting lives in §03 Favorites; Figma 160-548) —— */}
+        <div className="about-figma-footer border-t border-gray-200" role="presentation" />
       </main>
 
       <ImageModal open={!!modal} src={modal?.src} caption={modal?.caption} onClose={close} />
