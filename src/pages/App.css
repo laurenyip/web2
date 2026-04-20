@@ -245,7 +245,7 @@ p1 {
 
 /* Navbar — pre–Figma scale (larger than text-lg / 18px) */
 ul.navbar {
-  font-size: 1.375rem; /* 22px */
+  font-size: 1.15rem; /* 22px */
   line-height: 1.35;
 }
 
@@ -353,6 +353,49 @@ ul.navbar {
 
 .about-page a.about-writing-link:hover {
   color: #374151;
+}
+
+/* About §01 — art carousel */
+.about-page .about-art-carousel-nav {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #374151;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.about-page .about-art-carousel-nav:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.about-page .about-art-carousel-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  background: #d1d5db;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.about-page .about-art-carousel-dot:hover {
+  background: #9ca3af;
+}
+
+.about-page .about-art-carousel-dot--active {
+  background: #374151;
+  transform: scale(1.15);
 }
 
 /* About — vinyl record hover spin */

@@ -4,17 +4,18 @@ import ImageModal from '../components/ImageModal'
 import './App.css'
 import resumePdf from './Resume___Lauren_Yip.pdf'
 
+/** Images live under `public/images/home/` */
 const FIGMA_HOME = {
-  portrait: '/images/figma-home/portrait.png',
+  portrait: '/images/home/portrait.png',
   row2: [
-    { src: '/images/figma-home/love-you.png', caption: 'Love you' },
-    { src: '/images/figma-home/lion-dance.png', caption: 'Lion dance' },
-    { src: '/images/figma-home/1953-1954.png', caption: '1953 · 1954' },
+    { src: '/images/home/love-you.png', caption: 'Love you' },
+    { src: '/images/home/lion.png', caption: 'Lion dance' },
+    { src: '/images/home/chacha.png', caption: 'Cha cha' },
   ],
   row3: [
-    { src: '/images/figma-home/interior.png', caption: 'Interior scene' },
-    { src: '/images/figma-home/chilies.png', caption: 'Drying chilies' },
-    { src: '/images/figma-home/charms.png', caption: 'Market charms' },
+    { src: '/images/home/paris_wip.jpg', caption: 'in progress' },
+    { src: '/images/home/chilies.png', caption: 'Drying chilies' },
+    { src: '/images/home/beads.png', caption: 'Beads' },
   ],
 }
 
