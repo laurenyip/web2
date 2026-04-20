@@ -13,7 +13,7 @@ const FIGMA_HOME = {
     { src: '/images/home/chacha.png', caption: 'Cha cha' },
   ],
   row3: [
-    { src: '/images/home/paris_wip.jpg', caption: 'in progress' },
+    { src: '/images/home/paris_wip.png', caption: 'in progress' },
     { src: '/images/home/chilies.png', caption: 'Drying chilies' },
     { src: '/images/home/beads.png', caption: 'Beads' },
   ],
