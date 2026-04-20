@@ -191,6 +191,18 @@ p1 {
 }
 
 @font-face {
+  font-family: "ESrebond_title";
+  src: url("fonts/ESRebond_title.otf") format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ESrebond_regular";
+  src: url("fonts/ESRebond_regular.otf") format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Moto";
   src: url("fonts/Moto.otf") format("OpenType");
   font-display: swap;
