@@ -26,18 +26,15 @@ function captionForAboutSrc(src) {
   return ABOUT_CAPTIONS[base] || 'photo'
 }
 
-/** Figma §01 — art grid (top 4 + bottom 3) */
-const ART_GRID = [
-  { src: '/images/art/blue.png', caption: 'blue hydrangeas [2021-07]' },
-  { src: '/images/art/pool.png', caption: 'abstract · light on water' },
-  { src: '/images/art/ecola.png', caption: 'ecola beach state park, oregon' },
-  { src: '/images/art/bridge.png', caption: 'two figures by the water' },
-  { src: '/images/art/dance.png', caption: '[2021-01]' },
-  { src: '/images/art/lily.png', caption: 'dedicated to my friends [2021-08]' },
-  { src: '/images/about/current/optimist.png', caption: 'OPTIMIST mural · Vancouver' },
+/** §01 Art — carousel slides (`public/images/about/art/`) */
+const ART_CAROUSEL = [
+  { src: '/images/about/art/blue.png', caption: 'blue hydrangeas [2021-07]' },
+  { src: '/images/about/art/pool.png', caption: 'abstract · light on water' },
+  { src: '/images/about/art/ecola.png', caption: 'ecola beach state park, oregon' },
+  { src: '/images/about/art/bridge.png', caption: 'two figures by the water' },
+  { src: '/images/about/art/dance.png', caption: '[2021-01]' },
+  { src: '/images/about/art/lily.png', caption: 'dedicated to my friends [2021-08]' },
 ]
-const ART_GRID_TOP = ART_GRID.slice(0, 4)
-const ART_GRID_BOTTOM = ART_GRID.slice(4, 7)
 
 const WRITING_LINKS = [
   { label: 'aftersun (2025)', href: 'https://laurenyip.substack.com/p/aftersun-2025' },
@@ -52,19 +49,19 @@ const WRITING_LINKS = [
 
 const FAVORITES_POSTERS = [
   {
-    src: '/images/favorites/whisper-of-the-heart.png',
+    src: '/images/about/favorites/movies/whisper-of-the-heart.png',
     caption: 'Whisper of the Heart — Studio Ghibli',
   },
   {
-    src: '/images/favorites/before-sunrise.png',
+    src: '/images/about/favorites/movies/before-sunrise.png',
     caption: 'Before Sunrise',
   },
   {
-    src: '/images/favorites/marty-supreme.png',
+    src: '/images/about/favorites/movies/marty-supreme.png',
     caption: 'Marty Supreme',
   },
   {
-    src: '/images/favorites/enchanted.png',
+    src: '/images/about/favorites/movies/enchanted.png',
     caption: 'Enchanted',
   },
 ]
@@ -113,7 +110,7 @@ const MUSIC_ITEMS = [
     type: 'music',
     text: 'Clash',
     date: '2025-12-28',
-    image: '/images/about/current/never-let-me-go.png',
+    image: '/images/about/favorites/music/clash.jpg',
     link: 'https://en.wikipedia.org/wiki/London_Calling',
     songs: [],
   },
@@ -121,7 +118,7 @@ const MUSIC_ITEMS = [
     type: 'music',
     text: 'Stop Making Sense',
     date: '2025-08-04',
-    image: '/images/favorites/marty-supreme.png',
+    image: '/images/about/favorites/music/sms.jpg',
     link: 'https://letterboxd.com/laurenyip/film/stop-making-sense/',
     songs: [],
   },
@@ -129,7 +126,7 @@ const MUSIC_ITEMS = [
     type: 'music',
     text: 'Graceland',
     date: '2025-12-26',
-    image: '/images/about/current/third-world-cover.png',
+    image: '/images/about/favorites/music/graceland.jpg',
     link: 'https://open.spotify.com/album/6WgGWYw6XXQyLTsWt7tXky',
     songs: [],
   },
@@ -137,7 +134,7 @@ const MUSIC_ITEMS = [
     type: 'music',
     text: 'YN',
     date: '2025-12-27',
-    image: '/images/projects/lyre-vol16-cover.png',
+    image: '/images/about/favorites/music/yn.jpg',
     link: 'https://open.spotify.com/album/4qApTp9557qYZzRLEih4uP',
     songs: [],
   },
@@ -192,6 +189,7 @@ const imgThumb =
 
 export default function About() {
   const [modal, setModal] = useState(null)
+  const [artSlide, setArtSlide] = useState(0)
   const open = (src, caption) => setModal({ src, caption })
   const close = () => setModal(null)
 
@@ -241,11 +239,11 @@ export default function About() {
                 <button
                   type="button"
                   className="about-hero-optimist-btn"
-                  onClick={() => open('/images/about/current/optimist.png', 'OPTIMIST mural · Vancouver')}
+                  onClick={() => open('/images/about/whoami/optimist.png', 'OPTIMIST mural · Vancouver')}
                   aria-label="Open OPTIMIST mural"
                 >
                   <img
-                    src="/images/about/current/optimist.png"
+                    src="/images/about/whoami/optimist.png"
                     alt="OPTIMIST mural"
                     className="about-hero-optimist-img"
                     loading="lazy"
@@ -254,12 +252,12 @@ export default function About() {
                 <button
                   type="button"
                   className="about-hero-charm-btn"
-                  onClick={() => open('/images/about/current/charm.png', 'Charm study')}
+                  onClick={() => open('/images/about/whoami/charm.png', 'Charm study')}
                   aria-label="Open charm sketch"
                 >
                   <span className="charm-swing block w-full">
                     <img
-                      src="/images/about/current/charm.png"
+                      src="/images/about/whoami/charm.png"
                       alt="Charm sketch"
                       className="about-hero-charm-img rounded-[10px]"
                       loading="lazy"
@@ -275,36 +273,58 @@ export default function About() {
         <section className="about-figma-section">
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
             <div className="w-full max-w-3xl lg:max-w-[58%]">
-              <div className="flex flex-col gap-3">
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                  {ART_GRID_TOP.map(({ src, caption }) => (
-                    <button
-                      key={src}
-                      type="button"
-                      className={imgTile}
-                      onClick={() => open(src, caption)}
-                      aria-label={`Open painting: ${caption}`}
-                    >
-                      <img src={src} alt={caption} className="aspect-square w-full object-cover" loading="lazy" />
-                    </button>
-                  ))}
+              <div className="about-art-carousel flex flex-col gap-3">
+                <div className="relative overflow-hidden rounded-[10px] border border-gray-200/80 bg-white shadow-sm">
+                  <button
+                    type="button"
+                    className="block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+                    onClick={() => {
+                      const slide = ART_CAROUSEL[artSlide]
+                      if (slide) open(slide.src, slide.caption)
+                    }}
+                    aria-label={`Open painting: ${ART_CAROUSEL[artSlide]?.caption || ''}`}
+                  >
+                    <img
+                      src={ART_CAROUSEL[artSlide]?.src}
+                      alt={ART_CAROUSEL[artSlide]?.caption || ''}
+                      className="aspect-[4/3] w-full object-cover sm:aspect-[5/3]"
+                      loading="lazy"
+                    />
+                  </button>
                 </div>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  {ART_GRID_BOTTOM.map(({ src, caption }) => (
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <button
+                    type="button"
+                    className="about-art-carousel-nav"
+                    aria-label="Previous painting"
+                    onClick={() =>
+                      setArtSlide((i) => (i - 1 + ART_CAROUSEL.length) % ART_CAROUSEL.length)
+                    }
+                  >
+                    ‹
+                  </button>
+                  <p className="about-body-text m-0 min-w-0 flex-1 text-center text-sm sm:text-base">
+                    {ART_CAROUSEL[artSlide]?.caption}
+                  </p>
+                  <button
+                    type="button"
+                    className="about-art-carousel-nav"
+                    aria-label="Next painting"
+                    onClick={() => setArtSlide((i) => (i + 1) % ART_CAROUSEL.length)}
+                  >
+                    ›
+                  </button>
+                </div>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {ART_CAROUSEL.map((slide, i) => (
                     <button
-                      key={src}
+                      key={slide.src}
                       type="button"
-                      className={imgTile}
-                      onClick={() => open(src, caption)}
-                      aria-label={`Open painting: ${caption}`}
-                    >
-                      <img
-                        src={src}
-                        alt={caption}
-                        className="aspect-[16/11] w-full object-cover sm:aspect-[5/3]"
-                        loading="lazy"
-                      />
-                    </button>
+                      className={`about-art-carousel-dot ${i === artSlide ? 'about-art-carousel-dot--active' : ''}`}
+                      aria-label={`Show painting ${i + 1}`}
+                      aria-current={i === artSlide ? 'true' : undefined}
+                      onClick={() => setArtSlide(i)}
+                    />
                   ))}
                 </div>
               </div>
@@ -318,7 +338,8 @@ export default function About() {
               </div>
               <p className="about-body-text mt-1 m-0">Art</p>
               <p className="about-body-text mt-3 max-w-md text-left lg:ml-auto">
-                Painting to capture the big chapters of my life. Click on any to view in full screen.
+                Painting to capture the big chapters of my life. Use the arrows to browse, or click the image to view
+                full screen.
               </p>
             </div>
           </div>
@@ -387,12 +408,15 @@ export default function About() {
                 type="button"
                 className="mb-4 block max-h-32 w-auto cursor-zoom-in rounded-[10px] border-0 bg-transparent p-0"
                 onClick={() =>
-                  open('/images/about/current/paris_wip.png', 'Aux Artistes — Paris · painting this right now')
+                  open(
+                    '/images/about/favorites/reading/paris_wip.png',
+                    'Aux Artistes — Paris · painting this right now'
+                  )
                 }
                 aria-label="Paris work in progress"
               >
                 <img
-                  src="/images/about/current/paris_wip.png"
+                  src="/images/about/favorites/reading/paris_wip.png"
                   alt="Small illustration"
                   className="max-h-32 w-auto rounded-[10px] object-contain shadow-sm"
                   loading="lazy"
@@ -674,12 +698,12 @@ export default function About() {
             type="button"
             className="max-w-xs shrink-0 cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200 p-0 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
             onClick={() =>
-              open('/images/portfolio/ten.jpg', 'High Tide by Jan Toorop — My favorite painting!')
+              open('/images/about/favorites/hightide.png', 'High Tide by Jan Toorop — My favorite painting!')
             }
             aria-label="Open favorite painting"
           >
             <img
-              src=".\images\about\current\hightide.png"
+              src="/images/about/favorites/hightide.png"
               alt="High Tide by Jan Toorop"
               className="h-auto w-full max-w-[220px] object-cover"
               loading="lazy"
