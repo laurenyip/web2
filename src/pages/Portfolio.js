@@ -10,32 +10,38 @@ const CASE_STUDIES = [
     title: 'Starmap',
     meta: 'Founder · Product design & engineering',
     blurb: 'A personal relationship management tool to map people, connections, and social context over time.',
-    thumb: '/images/projects/starmap/starmap.lol.png',
+    thumb: '/images/projects/starmap/starmap_t.png',
     alt: 'Starmap landing page',
+    cardBg: '#000000',
+    darkCard: true,
   },
   {
     to: '/spruce',
     title: 'Spruce',
     meta: 'Product design · UXathon 2026',
     blurb: 'Helping low-income families in Vancouver find free and low-cost third-space activities.',
-    thumb: '/images/projects/spruce/spruce_home.png',
+    thumb: '/images/projects/spruce/spruce_t.png',
     alt: 'Spruce home screen',
+    cardBg: '#3E5D39',
+    darkCard: true,
   },
   {
     to: '/aurora',
     title: 'Simple Ventures — Aurora Pet Co.',
     meta: 'Product design & PM · 2025',
     blurb: 'Vet-backed subscription pet pharmacy focused on chronic conditions and affordability across Canada.',
-    thumb: '/images/projects/aurora/aurora_home.png',
+    thumb: '/images/projects/aurora/aurora_t.png',
     alt: 'Aurora Pet Co. home screen',
+    cardBg: '#FCBAFF',
   },
   {
     to: '/rosie',
     title: 'React to This!',
     meta: 'Research assistant · ROSIE Lab · 2023–2024',
     blurb: 'Dataset and study of how people physically and emotionally react to virtual social agents.',
-    thumb: '/images/projects/rosie/rosielab.github.io.png',
+    thumb: '/images/projects/rosie/rosie_t.png',
     alt: 'React to This! project site',
+    cardBg: '#61dafb',
   },
 ]
 
@@ -75,35 +81,33 @@ function Portfolio() {
           </p>
         </header>
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 list-none m-0 p-0">
+        <ul className="portfolio-grid list-none m-0 p-0">
           {CASE_STUDIES.map((project) => (
-            <li key={project.to}>
+            <li key={project.to} className="portfolio-card-item">
               <Link
                 to={project.to}
-                className="group block rounded-xl border border-gray-200 bg-white overflow-hidden shadow-sm transition hover:border-gray-300 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+                className={`portfolio-card group ${project.darkCard ? 'portfolio-card--dark' : ''}`}
               >
-                <div className="aspect-[4/3] w-full overflow-hidden bg-gray-50 border-b border-gray-100">
+                <div
+                  className="portfolio-card-media"
+                  style={{ backgroundColor: project.cardBg }}
+                >
                   <img
                     src={project.thumb}
                     alt={project.alt}
-                    className="h-full w-full object-cover object-top transition duration-300 group-hover:scale-[1.02]"
+                    className="portfolio-card-image"
                     loading="lazy"
                   />
                 </div>
-                <div className="p-4 md:p-5">
-                  <h2
-                    className="text-lg md:text-2xl text-gray-800 font-medium m-0 leading-snug"
-                    style={{ fontFamily: "'Moto', sans-serif" }}
-                  >
-                    {project.title}
-                  </h2>
-                  <p className="text-xs md:text-sm text-gray-500 mt-1 mb-2" style={{ fontFamily: 'Arial, sans-serif' }}>
+                <div className="portfolio-card-body">
+                  <h2 className="portfolio-card-title">{project.title}</h2>
+                  <p className="portfolio-card-meta">
                     {project.meta}
                   </p>
-                  <p className="text-sm text-gray-600 m-0 leading-relaxed" style={{ fontFamily: 'Arial, sans-serif' }}>
+                  <p className="portfolio-card-blurb">
                     {project.blurb}
                   </p>
-                  <span className="inline-block mt-3 text-m text-[#374151] font-medium group-hover:underline">
+                  <span className="portfolio-card-cta">
                     View project →
                   </span>
                 </div>
