@@ -143,15 +143,7 @@ p1 {
   font-weight: 100;
 }
 
-.btn.btn-success {
-  color: #ffb2b2; /* Set the text color for the blue button */
-  /* You can add more styles here if needed */
-}
-/* Assuming .btn-outline-secondary is the class for your button */
-.btn.btn-outline-secondary:hover {
-  background-color: #ffb2b2;
-  color: /* Specify the text color you want on hover */ ;
-}
+
 
 .btn.custom-btn {
   background-color: #ffc2c2;
@@ -169,10 +161,6 @@ p1 {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.btn.custom-btn:hover {
-  background-color: #ffb2b2;
-  color: #ffffff;
-}
 
 /* ~~~ CONTENT CONTAINER STYLING ~~~ */
 
@@ -242,15 +230,6 @@ p1 {
   box-sizing: border-box;
 }
 
-/* social media icons styling */
-.social-icons {
-  font-size: 25px;
-  cursor: pointer;
-  text-align: center;
-}
-.social-icons:hover {
-  color: #ffb2b2;
-}
 
 /* additional styling for positioning */
 .d-flex.justify-content-center {
@@ -258,14 +237,6 @@ p1 {
   padding-top: 10%;
 }
 
-.fab,
-.fa-solid {
-  color: #092c79;
-}
-.fab:hover,
-.fa-solid:hover {
-  color: #ffb2b2;
-}
 
 /* ~~~ SLIDESHOW CSS ~~~ */
 /* Slideshow container */

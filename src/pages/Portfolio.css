@@ -7,6 +7,114 @@
   letter-spacing: 1.15px;
 }
 
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.1rem;
+}
+
+.portfolio-card-item {
+  width: 100%;
+}
+
+.portfolio-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transform-style: preserve-3d;
+  transition: transform 260ms ease;
+}
+
+.portfolio-card:focus-visible {
+  outline: 2px solid #6b7280;
+  outline-offset: 4px;
+  border-radius: 18px;
+}
+
+.portfolio-card-media {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  border: none;
+  min-height: 280px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem 1rem 0;
+  box-shadow: 0 12px 24px rgba(55, 65, 81, 0.08);
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.portfolio-card-image {
+  width: 92%;
+  display: inline-block;
+  object-fit: contain;
+  object-position: bottom center;
+  transform: scale3d(1, 1, 1);
+  transform-style: preserve-3d;
+  transition: transform 320ms ease;
+}
+
+.portfolio-card-body {
+  padding: 0.95rem 0.2rem 0.1rem;
+}
+
+.portfolio-card-title {
+  margin: 0;
+  color: #1f2937;
+  font-family: 'Moto', sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  line-height: 1.25;
+}
+
+.portfolio-card-meta {
+  margin: 0.35rem 0 0;
+  color: #6b7280;
+  font-family: Arial, sans-serif;
+  font-size: 0.82rem;
+}
+
+.portfolio-card-blurb {
+  margin: 0.55rem 0 0;
+  color: #4b5563;
+  font-family: Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.52;
+}
+
+.portfolio-card-cta {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: #374151;
+  font-family: Arial, sans-serif;
+  font-size: 0.94rem;
+  font-weight: 600;
+  transition: transform 260ms ease;
+}
+
+.portfolio-card:hover {
+  transform: translate3d(0, -4px, 0);
+}
+
+.portfolio-card:hover .portfolio-card-media {
+  transform: translate3d(0, -2px, 0) scale3d(1.02, 1.02, 1);
+  box-shadow: 0 20px 32px rgba(55, 65, 81, 0.16);
+}
+
+.portfolio-card:hover .portfolio-card-image {
+  transform: scale3d(1.08, 1.08, 1);
+}
+
+.portfolio-card:hover .portfolio-card-cta {
+  transform: translate3d(3px, 0, 0);
+}
+
+@media (max-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* File folder tabs */
 .folder-tabs {
   display: flex;
