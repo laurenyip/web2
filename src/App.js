@@ -9,6 +9,7 @@ import ReadingList from './pages/ReadingList'
 import Spruce from './pages/portfolio/Spruce'
 import Aurora from './pages/portfolio/Aurora'
 import Rosie from './pages/portfolio/Rosie'
+import Starmap from './pages/portfolio/Starmap'
 import Webring from './components/Webring'
 import './index.css'
 import './pages/App.css'
@@ -28,6 +29,7 @@ function App() {
             <Route path='/spruce' element={<Spruce />} />
             <Route path='/aurora' element={<Aurora />} />
             <Route path='/rosie' element={<Rosie />} />
+            <Route path='/starmap' element={<Starmap />} />
           </Routes>
         </div>
         <Webring />

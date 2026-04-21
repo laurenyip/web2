@@ -6,6 +6,14 @@ import './Portfolio.css'
 
 const CASE_STUDIES = [
   {
+    to: '/starmap',
+    title: 'Starmap',
+    meta: 'Founder · Product design & engineering',
+    blurb: 'A personal relationship management tool to map people, connections, and social context over time.',
+    thumb: '/images/projects/starmap/starmap.lol.png',
+    alt: 'Starmap landing page',
+  },
+  {
     to: '/spruce',
     title: 'Spruce',
     meta: 'Product design · UXathon 2026',
@@ -16,7 +24,7 @@ const CASE_STUDIES = [
   {
     to: '/aurora',
     title: 'Simple Ventures — Aurora Pet Co.',
-    meta: 'Product design & PM · Cansbridge x Simple Ventures, 2024',
+    meta: 'Product design & PM · 2025',
     blurb: 'Vet-backed subscription pet pharmacy focused on chronic conditions and affordability across Canada.',
     thumb: '/images/projects/aurora/aurora_home.png',
     alt: 'Aurora Pet Co. home screen',
@@ -54,10 +62,10 @@ function Portfolio() {
     <div className="bg-white min-h-screen">
       <Navbar />
 
-      <div className="portfolio-case-studies pt-20 pb-16 px-6 md:px-10 max-w-5xl mx-auto">
+      <div className="portfolio-case-studies pt-[100px] pb-16 px-6 md:px-10 max-w-5xl mx-auto">
         <header className="mb-10 md:mb-12">
           <h1
-            className="text-3xl md:text-4xl text-gray-800 tracking-tight"
+            className="text-3xl md:text-5xl text-gray-800 tracking-tight"
             style={{ fontFamily: "'Melo', sans-serif" }}
           >
             Case studies
@@ -84,8 +92,8 @@ function Portfolio() {
                 </div>
                 <div className="p-4 md:p-5">
                   <h2
-                    className="text-lg md:text-xl text-gray-800 font-medium m-0 leading-snug"
-                    style={{ fontFamily: "'Melo', sans-serif" }}
+                    className="text-lg md:text-2xl text-gray-800 font-medium m-0 leading-snug"
+                    style={{ fontFamily: "'Moto', sans-serif" }}
                   >
                     {project.title}
                   </h2>
@@ -95,7 +103,7 @@ function Portfolio() {
                   <p className="text-sm text-gray-600 m-0 leading-relaxed" style={{ fontFamily: 'Arial, sans-serif' }}>
                     {project.blurb}
                   </p>
-                  <span className="inline-block mt-3 text-sm text-[#001c80] font-medium group-hover:underline">
+                  <span className="inline-block mt-3 text-m text-[#374151] font-medium group-hover:underline">
                     View project →
                   </span>
                 </div>
