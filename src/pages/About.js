@@ -64,26 +64,26 @@ const FAVORITES_LINKS = [
 
 /** §04 Sidequests — grid (`public/images/about/sidequests/`) */
 const SIDEQUEST_GRID_ITEMS = [
-  { src: '/images/about/sidequests/cz.jpg', caption: 'Market brass & trinkets' },
-  { src: '/images/about/sidequests/datong.jpg', caption: 'Datong · stone portal' },
-  { src: '/images/about/sidequests/gzapt.jpg', caption: 'Guangzhou · apartment block at night' },
-  { src: '/images/about/sidequests/gzbike.jpg', caption: 'Guangzhou · e-bike & wires' },
-  { src: '/images/about/sidequests/gzcat.jpg', caption: 'Guangzhou · Bliss Space neon' },
-  { src: '/images/about/sidequests/gzfish.jpg', caption: 'Guangzhou · koi in the window' },
-  { src: '/images/about/sidequests/gztree.jpg', caption: 'Guangzhou · banyan over Haizhu Bei Lu' },
+  { src: '/images/about/sidequests/cz.jpg', caption: '潮州 stone portal' },
+  { src: '/images/about/sidequests/datong.jpg', caption: '大同 after rain' },
+  { src: '/images/about/sidequests/gzapt.jpg', caption: '廣州' },
+  { src: '/images/about/sidequests/gzbike.jpg', caption: '廣州' },
+  { src: '/images/about/sidequests/gzcat.jpg', caption: '廣州' },
+  { src: '/images/about/sidequests/gzfish.jpg', caption: '锦鲤' },
+  { src: '/images/about/sidequests/gztree.jpg', caption: '廣州' },
   {
     src: '/images/about/sidequests/hike.jpg',
-    caption: 'Rocky summit · golden hour over the sound',
+    caption: 'best hike ever',
   },
   {
     src: '/images/about/sidequests/ipoh.jpg',
-    caption: 'Ipoh · night break outside the shop',
+    caption: '怡保',
     /** Landscape photo — bias crop toward the lit shop & figures in the square thumb */
     objectPosition: 'center 42%',
   },
   {
     src: '/images/about/sidequests/kaya.jpg',
-    caption: 'Ipoh · Kaya Puff shophouse',
+    caption: 'kaya puff shophouse',
   },
 ]
 
@@ -115,7 +115,7 @@ const MUSIC_ITEMS = [
   },
   {
     type: 'music',
-    text: 'YN',
+    text: '君の名は',
     date: '2025-12-27',
     image: '/images/about/favorites/music/yn.jpg',
     link: 'https://open.spotify.com/album/4qApTp9557qYZzRLEih4uP',
