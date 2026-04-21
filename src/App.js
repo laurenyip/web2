@@ -8,6 +8,7 @@ import Writing from './pages/Writing'
 import ReadingList from './pages/ReadingList'
 import Spruce from './pages/portfolio/Spruce'
 import Aurora from './pages/portfolio/Aurora'
+import Rosie from './pages/portfolio/Rosie'
 import Webring from './components/Webring'
 import './index.css'
 import './pages/App.css'
@@ -26,6 +27,7 @@ function App() {
             <Route path='/reading-list' element={<ReadingList />} />
             <Route path='/spruce' element={<Spruce />} />
             <Route path='/aurora' element={<Aurora />} />
+            <Route path='/rosie' element={<Rosie />} />
           </Routes>
         </div>
         <Webring />
