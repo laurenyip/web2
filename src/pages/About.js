@@ -9,7 +9,7 @@ const ART_CAROUSEL = [
   { src: '/images/about/art/blue.png', caption: 'blue hydrangeas [2021-07]' },
   { src: '/images/about/art/pool.png', caption: 'belcarra tidepools [2022-02]' },
   { src: '/images/about/art/ecola.png', caption: 'ecola beach [2025-04]' },
-  { src: '/images/about/art/bridge.png', caption: 'the bridge [2023-09' },
+  { src: '/images/about/art/bridge.png', caption: 'the bridge [2023-09]' },
   { src: '/images/about/art/dance.png', caption: 'high school dance [2021-01]' },
   { src: '/images/about/art/lily.png', caption: 'dedicated to my friends [2021-08]' },
 ]
@@ -269,7 +269,7 @@ export default function About() {
                     <img
                       src={ART_CAROUSEL[artSlide]?.src}
                       alt={ART_CAROUSEL[artSlide]?.caption || ''}
-                      className="max-h-[min(70vh,620px)] w-full max-w-full rounded-[5px] object-contain"
+                    className="max-h-[min(70vh,620px)] w-full max-w-full rounded-none lg:rounded-[5px] object-contain"
                       loading="lazy"
                     />
                   </button>
@@ -311,7 +311,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-1 flex-col items-end text-right lg:max-w-sm">
+            <div className="flex flex-1 flex-col items-start text-left lg:max-w-sm">
               <div
                 className="text-[clamp(3rem,10vw,5rem)] leading-none text-gray-800"
                 style={{ fontFamily: "'Melo', sans-serif" }}
@@ -319,7 +319,7 @@ export default function About() {
                 01
               </div>
               <p className="about-body-text mt-1 m-0">Art</p>
-              <p className="about-body-text mt-3 max-w-md text-left lg:ml-auto">
+              <p className="about-body-text mt-3 max-w-md text-left">
                 Painting to capture the big chapters of my life. Use the arrows to browse, or click the image to view
                 full screen.
               </p>
@@ -395,7 +395,7 @@ export default function About() {
                   loading="lazy"
                 />
               </button>
-              <div className="grid w-full max-w-[100px] grid-cols-2 gap-3 sm:max-w-[170px] ml-[320px]">
+              <div className="mx-auto grid w-full max-w-[220px] grid-cols-2 gap-3 sm:max-w-[240px] lg:mx-0 lg:max-w-[170px] lg:ml-[320px]">
                 {FAVORITES_POSTERS.map(({ src, caption }) => (
                   <button
                     key={src}
@@ -425,7 +425,7 @@ export default function About() {
                   <img
                     src="/images/about/favorites/hightide.png"
                     alt="High Tide by Jan Toorop"
-                    className="block h-auto w-[min(220px,100%)] max-w-[220px] object-cover"
+                    className="block h-auto w-[80vw] max-w-[220px] sm:w-[min(220px,100%)] sm:max-w-[220px] rounded-none lg:rounded-[5px] object-cover"
                     loading="lazy"
                   />
                 </button>
@@ -544,7 +544,7 @@ export default function About() {
                       }}
                     >
                       <div
-                        className="absolute inset-0 bg-white transition-all duration-700 ease-in-out group-hover:scale-90 group-hover:rotate-180 group-hover:opacity-0"
+                        className="absolute inset-0 bg-white transition-all duration-500 ease-out group-hover:-translate-x-[12%]"
                         style={{
                           transformOrigin: 'center center',
                           zIndex: 2,
@@ -575,9 +575,7 @@ export default function About() {
                         <div className="absolute top-0 right-0 bottom-0 w-1 bg-black opacity-10" />
                       </div>
 
-                      <div
-                        className="absolute inset-0 z-[1] origin-center scale-90 opacity-0 transition-all duration-700 ease-in-out group-hover:scale-100 group-hover:opacity-100"
-                      >
+                      <div className="absolute inset-0 z-[1] origin-center opacity-0 transition-all duration-500 ease-out group-hover:translate-x-[18%] group-hover:opacity-100">
                         <div
                           className="about-vinyl-disc relative mx-auto rounded-full"
                           style={{
