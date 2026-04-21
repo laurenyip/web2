@@ -140,6 +140,12 @@ export default function ReadingList() {
         link: "https://open.substack.com/pub/taramariagonzalez/p/marty-mauser-is-deeply-unlikeable?utm_campaign=post-expanded-share&utm_medium=post%20viewer",
         date: "2025-12-31",
       },
+      {
+        text: "How to Do Great Work",
+        author: "Paul Graham",
+        link: "https://paulgraham.com/greatwork.html",
+        date: "2026-04-20",
+      },
     ];
 
     // Sort newest → oldest

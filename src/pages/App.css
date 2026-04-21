@@ -527,3 +527,16 @@ ul.navbar {
   max-height: 321px;
   object-fit: contain;
 }
+
+@media (max-width: 1023px) {
+  .about-page img {
+    width: auto;
+    height: auto;
+    max-width: 95%;
+  }
+
+  .about-page .about-art-carousel-frame img,
+  .about-page .about-vinyl-shelf img {
+    max-width: 95%;
+  }
+}
