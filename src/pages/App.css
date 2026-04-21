@@ -203,6 +203,12 @@ p1 {
 }
 
 @font-face {
+  font-family: "pepi";
+  src: url("fonts/pepi_medium.otf") format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Moto";
   src: url("fonts/Moto.otf") format("OpenType");
   font-display: swap;

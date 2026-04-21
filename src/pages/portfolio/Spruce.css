@@ -367,7 +367,6 @@
   .spruce-feature-title {
     font-family: 'ESRebond_regular', sans-serif;
     font-size: 20px;
-    letter-spacing: 1.3px;
     font-weight: 600;
     color: #374151;
     margin-bottom: 0.5rem;
@@ -461,6 +460,20 @@
     color: #6b7280;
     line-height: 1.7;
     margin: 0;
+  }
+
+  .spruce-process-image-wrap {
+    margin: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+  }
+
+  .spruce-process-image {
+    width: 100%;
+    height: auto;
+    display: block;
   }
   
   /* ── Impact ── */
