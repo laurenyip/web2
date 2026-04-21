@@ -1,0 +1,14 @@
+.aurora-page .spruce-hero-title,
+.aurora-page .spruce-section-title,
+.aurora-page .spruce-meta-value,
+.aurora-page .spruce-feature-title,
+.aurora-page .spruce-impact-label,
+.aurora-page .spruce-step-title,
+.aurora-page .spruce-reflection-title {
+  font-family: 'pepi', sans-serif !important;
+}
+
+.aurora-page .spruce-features-grid .spruce-feature-title {
+  font-family: 'pepi', sans-serif !important;
+  font-weight: 500;
+}

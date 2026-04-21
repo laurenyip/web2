@@ -86,28 +86,21 @@ export default function Spruce() {
       {/* ── Overview ── */}
       <section className="spruce-section spruce-container">
         <div className="spruce-section-tag">Overview</div>
-        <div className="spruce-two-col">
-          <div className="spruce-col-wide">
-            <p className="spruce-body">
-              Spruce is a free platform that helps low-income families in Vancouver
-              discover free and low-cost "third-space" activities — art gallery
-              workshops, swim lessons, concerts, coding camps — all in one simple
-              search. Built during UXathon 2026 in 48 hours, it won <strong>Best UI
-              Design</strong> by delivering a warm, trustable experience that feels
-              socially safe and easy to keep up.
-            </p>
-            <p className="spruce-body">
-              Third spaces — the places between home and school where kids can play,
-              learn, and build social skills outside of a screen — are disproportionately
-              inaccessible to families without disposable income. Spruce removes the
-              friction of finding them.
-            </p>
-          </div>
-          <div className="spruce-col-narrow">
-            <div className="spruce-img-placeholder">
-              <span>Overview / app overview image</span>
-            </div>
-          </div>
+        <div className="spruce-col-wide">
+          <p className="spruce-body">
+            Spruce is a free platform that helps low-income families in Vancouver
+            discover free and low-cost "third-space" activities — art gallery
+            workshops, swim lessons, concerts, coding camps — all in one simple
+            search. Built during UXathon 2026 in 48 hours, it won <strong>Best UI
+            Design</strong> by delivering a warm, trustable experience that feels
+            socially safe and easy to keep up.
+          </p>
+          <p className="spruce-body">
+            Third spaces — the places between home and school where kids can play,
+            learn, and build social skills outside of a screen — are disproportionately
+            inaccessible to families without disposable income. Spruce removes the
+            friction of finding them.
+          </p>
         </div>
       </section>
 
@@ -132,9 +125,6 @@ export default function Spruce() {
               to participate in third-spaces, to create self-sustainable habits that
               prevent digital fatigue and long-term phone addiction?
             </p>
-          </div>
-          <div className="spruce-img-placeholder spruce-img-wide" style={{ marginTop: '2.5rem' }}>
-            <span>Problem space / research framing image</span>
           </div>
         </div>
       </section>
@@ -165,9 +155,16 @@ export default function Spruce() {
             </ul>
           </div>
           <div className="spruce-col-narrow">
-            <div className="spruce-img-placeholder">
-              <span>Team / process photo or design system preview</span>
-            </div>
+            <figure className="spruce-impact-team" style={{ marginTop: 0 }}>
+              <img
+                src="/images/projects/spruce/team.jpg"
+                alt="Team 19 — Spruce, Best UI Design award at UXathon 2026"
+                loading="lazy"
+              />
+              <figcaption className="spruce-impact-team-caption">
+                Best UI Design · UXathon 2026 — Team Spruce
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -360,9 +357,14 @@ export default function Spruce() {
             </div>
           </div>
 
-          <div className="spruce-img-placeholder spruce-img-wide" style={{ marginTop: '2.5rem' }}>
-            <span>Process / journey map or design jam image</span>
-          </div>
+          <figure className="spruce-process-image-wrap" style={{ marginTop: '2.5rem' }}>
+            <img
+              src="/images/projects/spruce/progress.png"
+              alt="Spruce process board and design progress"
+              className="spruce-process-image"
+              loading="lazy"
+            />
+          </figure>
         </div>
       </section>
 
@@ -387,16 +389,6 @@ export default function Spruce() {
           </div>
         </div>
 
-        <figure className="spruce-impact-team">
-          <img
-            src="/images/projects/spruce/team.jpg"
-            alt="Team 19 — Spruce, Best UI Design award at UXathon 2026"
-            loading="lazy"
-          />
-          <figcaption className="spruce-impact-team-caption">
-            Best UI Design · UXathon 2026 — Team Spruce
-          </figcaption>
-        </figure>
       </section>
 
       {/* ── Reflections ── */}
