@@ -1,3 +1,34 @@
+/* Tighter, more even vertical rhythm than default Spruce */
+.rosie-page .spruce-hero {
+  padding-top: 3rem;
+  padding-bottom: 2.5rem;
+}
+
+.rosie-page .spruce-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.rosie-page .spruce-hero + .spruce-section {
+  padding-top: 2rem;
+}
+
+.rosie-page .spruce-section-tag {
+  margin-bottom: 1rem;
+}
+
+.rosie-page .spruce-back-row {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 600px) {
+  .rosie-page .spruce-section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
 .rosie-page .spruce-hero-title,
 .rosie-page .spruce-section-title,
 .rosie-page .spruce-meta-value,

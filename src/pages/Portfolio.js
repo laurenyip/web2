@@ -1,17 +1,38 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import './App.css'
 import './Portfolio.css'
 
+const CASE_STUDIES = [
+  {
+    to: '/spruce',
+    title: 'Spruce',
+    meta: 'Product design · UXathon 2026',
+    blurb: 'Helping low-income families in Vancouver find free and low-cost third-space activities.',
+    thumb: '/images/projects/spruce/spruce_home.png',
+    alt: 'Spruce home screen',
+  },
+  {
+    to: '/aurora',
+    title: 'Simple Ventures — Aurora Pet Co.',
+    meta: 'Product design & PM · Cansbridge x Simple Ventures, 2024',
+    blurb: 'Vet-backed subscription pet pharmacy focused on chronic conditions and affordability across Canada.',
+    thumb: '/images/projects/aurora/aurora_home.png',
+    alt: 'Aurora Pet Co. home screen',
+  },
+  {
+    to: '/rosie',
+    title: 'React to This!',
+    meta: 'Research assistant · ROSIE Lab · 2023–2024',
+    blurb: 'Dataset and study of how people physically and emotionally react to virtual social agents.',
+    thumb: '/images/projects/rosie/rosielab.github.io.png',
+    alt: 'React to This! project site',
+  },
+]
 
 function Portfolio() {
-  const [currentImage, setCurrentImage] = useState(null)
-  const [currentDescription, setCurrentDescription] = useState('')
-  const location = useLocation()
-
   useEffect(() => {
-    // Add the navbar dark effect on scroll, matching the About page
     const header = document.querySelector('.navbar')
     if (header) {
       const handleScroll = () => {
@@ -29,144 +50,59 @@ function Portfolio() {
     }
   }, [])
 
-  useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === 'Escape') {
-        setCurrentImage(null)
-      }
-    }
-
-    window.addEventListener('keydown', handleEscape)
-    return () => window.removeEventListener('keydown', handleEscape)
-  }, [])
-
-  const cardData = [
-    {
-      imgSrc: '/images/art/lily.png',
-      description: 'dedicated to my friends [2021-08]',
-      scale: 1.4,
-    },
-    {
-      imgSrc: '/images/art/dance.png',
-      description: '[2021-01]',
-      scale: 1.6,
-    },
-    {
-      imgSrc: '/images/art/ecola.png',
-      description: 'ecola beach state park, oregon',
-    },
-    {
-      imgSrc: '/images/art/bridge.png',
-      description: 'two figures by the water',
-      scale: 1.5,
-    },
-    {
-      imgSrc: '/images/art/pool.png',
-      description: 'abstract · light on water',
-    },
-    {
-      imgSrc: '/images/art/blue.png',
-      description: 'blue hydrangeas [2021-07]',
-    },
-    {
-      imgSrc: '/images/art/optimist.png',
-      description: 'OPTIMIST mural · Vancouver',
-    },
-  ]
-
-  const handleImageClick = (imgSrc, description) => {
-    setCurrentImage(imgSrc)
-    setCurrentDescription(description)
-  }
-
   return (
     <div className="bg-white min-h-screen">
       <Navbar />
 
-      {/* Main content with padding to account for fixed navbar */}
-      <div className="pt-20 pb-12 px-8 max-w-xl mx-auto">
-        <div className="prose text-gray-700 prose-sm prose-headings:font-normal prose-headings:text-xl mt-16 mb-8">
-          <div>
-            <div className="text-4xl text-gray-700" style={{ fontFamily: "'Melo', sans-serif" }} >Side B of what I like to work on</div>
-            <p className="text-balance mt-2">
-              Click on any image to view it in full screen
-            </p>
-          </div>
-        </div>
-
-        {/* File folder tabs */}
-        <div className="folder-tabs">
-          <Link
-            to="/portfolio"
-            className={`folder-tab ${location.pathname === '/portfolio' ? 'folder-tab-active' : ''}`}
-            style={{ fontFamily: "'Moto', serif" }}
+      <div className="portfolio-case-studies pt-20 pb-16 px-6 md:px-10 max-w-5xl mx-auto">
+        <header className="mb-10 md:mb-12">
+          <h1
+            className="text-3xl md:text-4xl text-gray-800 tracking-tight"
+            style={{ fontFamily: "'Melo', sans-serif" }}
           >
-            Painting
-          </Link>
-          <Link
-            to="/writing"
-            className={`folder-tab ${location.pathname === '/writing' ? 'folder-tab-active' : ''}`}
-            style={{ fontFamily: "'Moto', serif" }}
-          >
-            Writing
-          </Link>
-        </div>
+            Case studies
+          </h1>
+          <p className="mt-3 text-gray-600 text-balance max-w-2xl" style={{ fontFamily: 'Arial, sans-serif' }}>
+            Selected product and research work — open a project for the full write-up.
+          </p>
+        </header>
 
-        <div className="folder-content">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {cardData.map((card, index) => (
-              <div
-                key={index}
-                onClick={() => handleImageClick(card.imgSrc, card.description)}
-                className="cursor-pointer overflow-hidden aspect-[3/4]"
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 list-none m-0 p-0">
+          {CASE_STUDIES.map((project) => (
+            <li key={project.to}>
+              <Link
+                to={project.to}
+                className="group block rounded-xl border border-gray-200 bg-white overflow-hidden shadow-sm transition hover:border-gray-300 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
               >
-                <img
-                  src={card.imgSrc}
-                  alt={`Portfolio ${index + 1}`}
-                  className="w-full h-full object-cover"
-                  style={{ transform: `scale(${card.scale || 1.3})` }}
-                  loading="lazy"
-                  width={300}
-                  height={400}
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Modal with large image display */}
-          {currentImage && (
-            <div
-              className="fixed inset-0 flex items-center justify-center bg-gray-200 bg-opacity-80 transition-opacity duration-300 z-50"
-              onClick={() => setCurrentImage(null)}
-            >
-              <div
-                className="max-w-[100%] max-h-[100%] overflow-auto py-8"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="prose text-gray-700 mx-auto prose-sm prose-headings:font-normal prose-headings:text-xl">
-                  <div className="text-center max-w-sm mx-auto">
-                    <h1>{currentDescription}</h1>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setCurrentImage(null)}
-                  className="rounded-full bg-white border-2 border-slate-700 px-8 py-2 h-12 text-sm font-semibold flex items-center text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-slate-700 justify-center mx-auto w-auto focus:ring-offset-2 mt-4"
-                >
-                  Close
-                </button>
-                <div className="flex justify-center mt-8">
+                <div className="aspect-[4/3] w-full overflow-hidden bg-gray-50 border-b border-gray-100">
                   <img
-                    src={currentImage}
-                    alt="Full Size"
-                    className="max-w-[150vw] max-h-[120vh] object-contain"
-                    width={800}
-                    height={600}
+                    src={project.thumb}
+                    alt={project.alt}
+                    className="h-full w-full object-cover object-top transition duration-300 group-hover:scale-[1.02]"
+                    loading="lazy"
                   />
                 </div>
-              </div>
-            </div>
-          )}
-        </div>
+                <div className="p-4 md:p-5">
+                  <h2
+                    className="text-lg md:text-xl text-gray-800 font-medium m-0 leading-snug"
+                    style={{ fontFamily: "'Melo', sans-serif" }}
+                  >
+                    {project.title}
+                  </h2>
+                  <p className="text-xs md:text-sm text-gray-500 mt-1 mb-2" style={{ fontFamily: 'Arial, sans-serif' }}>
+                    {project.meta}
+                  </p>
+                  <p className="text-sm text-gray-600 m-0 leading-relaxed" style={{ fontFamily: 'Arial, sans-serif' }}>
+                    {project.blurb}
+                  </p>
+                  <span className="inline-block mt-3 text-sm text-[#001c80] font-medium group-hover:underline">
+                    View project →
+                  </span>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   )
