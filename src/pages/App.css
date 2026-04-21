@@ -209,6 +209,12 @@ p1 {
 }
 
 @font-face {
+  font-family: "urania";
+  src: url("fonts/Urania-Medium.otf") format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Moto";
   src: url("fonts/Moto.otf") format("OpenType");
   font-display: swap;
