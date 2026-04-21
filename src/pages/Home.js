@@ -8,14 +8,14 @@ import resumePdf from './Resume___Lauren_Yip.pdf'
 const FIGMA_HOME = {
   portrait: '/images/home/portrait.png',
   row2: [
-    { src: '/images/home/love-you.png', caption: 'Love you' },
-    { src: '/images/home/lion.png', caption: 'Lion dance' },
-    { src: '/images/home/chacha.png', caption: 'Cha cha' },
+    { src: '/images/home/love-you.png', caption: 'west village' },
+    { src: '/images/home/lion.png', caption: 'in chinatown' },
+    { src: '/images/home/chacha.png', caption: 'at bruce lee\'s house' },
   ],
   row3: [
-    { src: '/images/home/paris_wip.png', caption: 'in progress' },
-    { src: '/images/home/chilies.png', caption: 'Drying chilies' },
-    { src: '/images/home/beads.png', caption: 'Beads' },
+    { src: '/images/home/paris_wip.png', caption: 'in progress - aux artistes, paris' },
+    { src: '/images/home/chilies.png', caption: '凤凰古城' },
+    { src: '/images/home/beads.png', caption: '凤凰古城' },
   ],
 }
 
@@ -107,7 +107,7 @@ function Home() {
             {/* Portrait — fills remaining width */}
             <button
               type="button"
-              onClick={() => openModal(FIGMA_HOME.portrait, 'Lauren Yip')}
+              onClick={() => openModal(FIGMA_HOME.portrait, 'LY')}
               aria-label="Open portrait fullscreen"
               style={{
                 display: 'block', flex: 1, minWidth: 0, cursor: 'zoom-in',
