@@ -55,41 +55,54 @@
   transition: transform 320ms ease;
 }
 
+/* Spruce: remove top padding and let image occupy full card height */
+.portfolio-card-media--spruce {
+  padding-top: 0;
+}
+
+.portfolio-card-image--spruce {
+  height: 100%;
+  width: auto;
+  max-width: 90%;
+}
+
+/* Rosie: pin image to top, keep color space below */
+.portfolio-card-media--rosie {
+  align-items: flex-start;
+  padding-top: 2.6rem;
+  padding-bottom: 0rem;
+}
+
+.portfolio-card-image--rosie {
+  width: 90%;
+  object-position: top center;
+}
+
 .portfolio-card-body {
   padding: 0.95rem 0.2rem 0.1rem;
 }
 
 .portfolio-card-title {
-  margin: 0;
+  margin: 0 0 0.28rem;
   color: #1f2937;
-  font-family: 'Moto', sans-serif;
+  font-family: 'urania', sans-serif;
   font-size: clamp(1.1rem, 2vw, 1.5rem);
   line-height: 1.25;
 }
 
 .portfolio-card-meta {
-  margin: 0.35rem 0 0;
+  margin: 0 0 0.72rem;
   color: #6b7280;
   font-family: Arial, sans-serif;
   font-size: 0.82rem;
 }
 
 .portfolio-card-blurb {
-  margin: 0.55rem 0 0;
+  margin: 0;
   color: #4b5563;
   font-family: Arial, sans-serif;
   font-size: 0.95rem;
   line-height: 1.52;
-}
-
-.portfolio-card-cta {
-  display: inline-block;
-  margin-top: 0.75rem;
-  color: #374151;
-  font-family: Arial, sans-serif;
-  font-size: 0.94rem;
-  font-weight: 600;
-  transition: transform 260ms ease;
 }
 
 .portfolio-card:hover {
@@ -103,10 +116,6 @@
 
 .portfolio-card:hover .portfolio-card-image {
   transform: scale3d(1.08, 1.08, 1);
-}
-
-.portfolio-card:hover .portfolio-card-cta {
-  transform: translate3d(3px, 0, 0);
 }
 
 @media (max-width: 1024px) {

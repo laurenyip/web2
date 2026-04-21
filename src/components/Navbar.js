@@ -5,7 +5,7 @@ import '../pages/App.css'
 function Navbar({ className = '' }) {
   return (
     <ul
-      className={`navbar fixed top-1 left-0 w-full max-w-md px-2 md:max-w-none z-[50] bg-white opacity-70 text-gray-700 font-[Moto] text-lg flex list-none justify-start p-2 ${className}`}
+      className={`navbar fixed top-0 left-0 w-full max-w-md px-4 md:max-w-none z-[50] bg-white opacity-90 text-gray-700 font-[Moto] text-lg flex list-none justify-start p-4   ${className}`}
     >
 
       <li className="nav-item">
