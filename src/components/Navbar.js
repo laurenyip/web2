@@ -6,6 +6,14 @@ function Navbar({ className = '' }) {
   return (
     <ul
       className={`navbar fixed top-0 left-0 w-full max-w-md px-4 md:max-w-none z-[50] bg-white opacity-90 text-gray-700 font-[Moto] text-lg flex list-none justify-start p-4   ${className}`}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        marginTop: 0,
+        zIndex: 999,
+      }}
     >
 
       <li className="nav-item">
