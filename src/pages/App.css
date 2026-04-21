@@ -215,6 +215,12 @@ p1 {
 }
 
 @font-face {
+  font-family: "sohne";
+  src: url("fonts/sohne.otf") format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Moto";
   src: url("fonts/Moto.otf") format("OpenType");
   font-display: swap;

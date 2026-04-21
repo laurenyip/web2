@@ -256,7 +256,7 @@ export default function About() {
           <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
             <div className="w-full max-w-3xl lg:max-w-[58%]">
               <div className="about-art-carousel flex flex-col gap-3">
-                <div className="about-art-carousel-frame relative flex min-h-[200px] items-center justify-center overflow-hidden rounded-[10px] border border-gray-200/80 bg-gray-50 shadow-sm sm:min-h-[280px]">
+                <div className="about-art-carousel-frame relative flex min-h-[200px] items-center justify-center overflow-hidden sm:min-h-[280px]">
                   <button
                     type="button"
                     className="flex w-full cursor-zoom-in items-center justify-center border-0 bg-transparent p-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 sm:p-3"
@@ -269,7 +269,7 @@ export default function About() {
                     <img
                       src={ART_CAROUSEL[artSlide]?.src}
                       alt={ART_CAROUSEL[artSlide]?.caption || ''}
-                      className="max-h-[min(70vh,620px)] w-full max-w-full object-contain"
+                      className="max-h-[min(70vh,620px)] w-full max-w-full rounded-[5px] object-contain"
                       loading="lazy"
                     />
                   </button>
