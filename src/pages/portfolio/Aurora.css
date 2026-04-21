@@ -1,3 +1,34 @@
+/* Tighter, more even vertical rhythm than default Spruce (5rem × 2 per boundary) */
+.aurora-page .spruce-hero {
+  padding-top: 3rem;
+  padding-bottom: 2.5rem;
+}
+
+.aurora-page .spruce-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.aurora-page .spruce-hero + .spruce-section {
+  padding-top: 2rem;
+}
+
+.aurora-page .spruce-section-tag {
+  margin-bottom: 1rem;
+}
+
+.aurora-page .spruce-back-row {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 600px) {
+  .aurora-page .spruce-section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
 .aurora-page .spruce-hero-title,
 .aurora-page .spruce-section-title,
 .aurora-page .spruce-meta-value,
