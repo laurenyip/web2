@@ -110,17 +110,33 @@ export default function Starmap() {
       </section>
 
       <section className="spruce-section spruce-container">
-        <div className="spruce-section-tag">Overview</div>
-        <div className="spruce-col-wide">
-          <p className="spruce-body">
-            starmap is a relationship management tool for people who care deeply but struggle to keep every detail in
-            their head. Instead of treating your network as a flat contact list, it models your social world as a
-            living graph: people, clusters, and connections.
-          </p>
-          <p className="spruce-body">
-            The goal is simple: remember the little things, follow through on plans, and maintain relationships with
-            more consistency and intention over time.
-          </p>
+        <div className="spruce-section-tag">THE PRODUCT</div>
+        <div className="spruce-product-layout">
+          <div className="spruce-col-wide">
+            <p className="spruce-body">
+              starmap is a relationship management tool for people who care deeply but struggle to keep every detail in
+              their head. Instead of treating your network as a flat contact list, it models your social world as a
+              living graph: people, clusters, and connections.
+            </p>
+            <p className="spruce-body">
+              The goal is simple: remember the little things, follow through on plans, and maintain relationships with
+              more consistency and intention over time.
+            </p>
+          </div>
+          <div className="spruce-meta-row spruce-meta-row--stacked">
+            <div className="spruce-meta-item">
+              <div className="spruce-meta-label">Timeline</div>
+              <div className="spruce-meta-value">Ongoing</div>
+            </div>
+            <div className="spruce-meta-item">
+              <div className="spruce-meta-label">Role</div>
+              <div className="spruce-meta-value">Founder · Product Design · Engineering</div>
+            </div>
+            <div className="spruce-meta-item">
+              <div className="spruce-meta-label">Recognition</div>
+              <div className="spruce-meta-value">Live product · starmap.lol</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -150,28 +166,30 @@ export default function Starmap() {
             constellations, and track relationships as they evolve.
           </p>
 
-          <div className="spruce-tabs">
-            {Object.keys(SHOWCASE_SCREENS).map((key) => (
-              <button
-                key={key}
-                type="button"
-                className={`spruce-tab ${activeTab === key ? 'spruce-tab--active' : ''}`}
-                onClick={() => setActiveTab(key)}
-              >
-                {key}
-              </button>
-            ))}
-          </div>
+          <div className="spruce-showcase-layout">
+            <div className="spruce-tabs">
+              {Object.keys(SHOWCASE_SCREENS).map((key) => (
+                <button
+                  key={key}
+                  type="button"
+                  className={`spruce-tab ${activeTab === key ? 'spruce-tab--active' : ''}`}
+                  onClick={() => setActiveTab(key)}
+                >
+                  {key}
+                </button>
+              ))}
+            </div>
 
-          <div className="spruce-showcase-frame">
-            <p className="spruce-showcase-hint">Scroll inside the frame to see the full page</p>
-            <div
-              className="spruce-showcase-scroll"
-              tabIndex={0}
-              role="region"
-              aria-label={`Full-page ${activeTab} design — scroll for full length`}
-            >
-              <img src={showcase.src} alt={showcase.alt} loading="lazy" />
+            <div className="spruce-showcase-frame">
+              <p className="spruce-showcase-hint">Scroll inside the frame to see the full page</p>
+              <div
+                className="spruce-showcase-scroll"
+                tabIndex={0}
+                role="region"
+                aria-label={`Full-page ${activeTab} design — scroll for full length`}
+              >
+                <img src={showcase.src} alt={showcase.alt} loading="lazy" />
+              </div>
             </div>
           </div>
         </div>

@@ -18,24 +18,38 @@ export default function Rosie() {
       </section>
 
       <section className="spruce-section spruce-container">
-        <div className="spruce-section-tag">Overview</div>
-        <p className="spruce-body">
-          React to This! is a research project with ROSIE Lab (Robots with Social Intelligence and Empathy) that
-          explores how people interact with and respond to virtual agents. As a research assistant, I contributed
-          across multiple dimensions of the project, from participant recruitment to multimedia production and data
-          analysis.
-        </p>
+        <div className="spruce-section-tag">THE PRODUCT</div>
+        <div className="spruce-product-layout">
+          <div className="spruce-col-wide">
+            <p className="spruce-body">
+              React to This! is a research project with ROSIE Lab (Robots with Social Intelligence and Empathy) that
+              explores how people interact with and respond to virtual agents. The project focuses on creating a comprehensive, annotated dataset of common physical and emotional
+              reactions to non-verbal virtual agents. The dataset is used to train and evaluate the performance of virtual agents
+              in social interaction tasks.
+            </p>
+          </div>
+          <div className="spruce-meta-row spruce-meta-row--stacked">
+            <div className="spruce-meta-item">
+              <div className="spruce-meta-label">Timeline</div>
+              <div className="spruce-meta-value">2023–2024</div>
+            </div>
+            <div className="spruce-meta-item">
+              <div className="spruce-meta-label">Role</div>
+              <div className="spruce-meta-value">Research Assistant</div>
+            </div>
+            <div className="spruce-meta-item">
+              <div className="spruce-meta-label">Recognition</div>
+              <div className="spruce-meta-value">ROSIE Lab collaboration</div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="spruce-section spruce-section--tinted">
         <div className="spruce-container">
           <div className="spruce-section-tag">Design Showcase</div>
           <h2 className="spruce-section-title">Project Website</h2>
-          <p className="spruce-meta-value">
-            The project focuses on creating a comprehensive, annotated dataset of common physical and emotional
-            reactions to virtual agents. The dataset is used to train and evaluate the performance of virtual agents
-            in social interaction tasks. I created a website to showcase the findings, common interactions, and an overview of the project.
-          </p>
+       
 
           <div className="spruce-showcase-frame">
             <div

@@ -79,13 +79,29 @@ export default function Aurora() {
       </section>
 
       <section className="spruce-section spruce-container">
-        <div className="spruce-section-tag">Overview</div>
-        <div className="spruce-col-wide">
-          <p className="spruce-body">
-            Aurora Pet Co. is a seamless subscription platform with vet-backed delivery and a focus on chronic
-            conditions, designed to make pet health more affordable and accessible across Canada. The solution
-            addresses the unmet need for an online pet pharmacy in the Canadian market.
-          </p>
+        <div className="spruce-section-tag">THE PRODUCT</div>
+        <div className="spruce-product-layout">
+          <div className="spruce-col-wide">
+            <p className="spruce-body">
+              Aurora Pet Co. is a seamless subscription platform with vet-backed delivery and a focus on chronic
+              conditions, designed to make pet health more affordable and accessible across Canada. The solution
+              addresses the unmet need for an online pet pharmacy in the Canadian market.
+            </p>
+          </div>
+          <div className="spruce-meta-row spruce-meta-row--stacked">
+            <div className="spruce-meta-item">
+              <div className="spruce-meta-label">Timeline</div>
+              <div className="spruce-meta-value">2025</div>
+            </div>
+            <div className="spruce-meta-item">
+              <div className="spruce-meta-label">Role</div>
+              <div className="spruce-meta-value">Product Designer &amp; PM</div>
+            </div>
+            <div className="spruce-meta-item">
+              <div className="spruce-meta-label">Recognition</div>
+              <div className="spruce-meta-value">Top 4 finalist</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -110,28 +126,30 @@ export default function Aurora() {
             subscription management, and reliable delivery, helping pet owners save $50-$100+ per year on medications.
           </p>
 
-          <div className="spruce-tabs">
-            {Object.keys(SHOWCASE_SCREENS).map((key) => (
-              <button
-                key={key}
-                type="button"
-                className={`spruce-tab ${activeTab === key ? 'spruce-tab--active' : ''}`}
-                onClick={() => setActiveTab(key)}
-              >
-                {key}
-              </button>
-            ))}
-          </div>
+          <div className="spruce-showcase-layout">
+            <div className="spruce-tabs">
+              {Object.keys(SHOWCASE_SCREENS).map((key) => (
+                <button
+                  key={key}
+                  type="button"
+                  className={`spruce-tab ${activeTab === key ? 'spruce-tab--active' : ''}`}
+                  onClick={() => setActiveTab(key)}
+                >
+                  {key}
+                </button>
+              ))}
+            </div>
 
-          <div className="spruce-showcase-frame">
-            <p className="spruce-showcase-hint">Scroll inside the frame to see the full page</p>
-            <div
-              className="spruce-showcase-scroll"
-              tabIndex={0}
-              role="region"
-              aria-label={`Full-page ${activeTab} design — scroll for full length`}
-            >
-              <img src={showcase.src} alt={showcase.alt} loading="lazy" />
+            <div className="spruce-showcase-frame">
+              <p className="spruce-showcase-hint">Scroll inside the frame to see the full page</p>
+              <div
+                className="spruce-showcase-scroll"
+                tabIndex={0}
+                role="region"
+                aria-label={`Full-page ${activeTab} design — scroll for full length`}
+              >
+                <img src={showcase.src} alt={showcase.alt} loading="lazy" />
+              </div>
             </div>
           </div>
         </div>

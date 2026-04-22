@@ -64,9 +64,23 @@ export default function Spruce() {
           </div>
         </div>
 
-        {/* Meta row */}
-        <div className="spruce-container">
-          <div className="spruce-meta-row">
+      </section>
+
+      {/* ── Overview ── */}
+      <section className="spruce-section spruce-container">
+        <div className="spruce-section-tag">THE PRODUCT</div>
+        <div className="spruce-product-layout">
+          <div className="spruce-col-wide">
+            <p className="spruce-body">
+              Spruce is a free platform that helps low-income families in Vancouver
+              discover free and low-cost "third-space" activities — art gallery
+              workshops, swim lessons, concerts, coding camps — all in one simple
+              search. Built during UXathon 2026 in 48 hours, it won <strong>Best UI
+              Design</strong> by delivering a warm, trustable experience that feels
+              socially safe and easy to keep up.
+            </p>
+          </div>
+          <div className="spruce-meta-row spruce-meta-row--stacked">
             <div className="spruce-meta-item">
               <div className="spruce-meta-label">Timeline</div>
               <div className="spruce-meta-value">48 hours (UXathon 2026)</div>
@@ -83,31 +97,19 @@ export default function Spruce() {
         </div>
       </section>
 
-      {/* ── Overview ── */}
-      <section className="spruce-section spruce-container">
-        <div className="spruce-section-tag">Overview</div>
-        <div className="spruce-col-wide">
-          <p className="spruce-body">
-            Spruce is a free platform that helps low-income families in Vancouver
-            discover free and low-cost "third-space" activities — art gallery
-            workshops, swim lessons, concerts, coding camps — all in one simple
-            search. Built during UXathon 2026 in 48 hours, it won <strong>Best UI
-            Design</strong> by delivering a warm, trustable experience that feels
-            socially safe and easy to keep up.
-          </p>
+      {/* ── The Challenge ── */}
+      <section className="spruce-section spruce-section--tinted">
+        <div className="spruce-container">
+          <div className="spruce-section-tag">DESIGN CHALLENGE</div>
+          <h2 className="spruce-section-title spruce-section-title--large">
+            How might we help families give kids a life <em>offline</em>?
+          </h2>
           <p className="spruce-body">
             Third spaces — the places between home and school where kids can play,
             learn, and build social skills outside of a screen — are disproportionately
             inaccessible to families without disposable income. Spruce removes the
             friction of finding them.
           </p>
-        </div>
-      </section>
-
-      {/* ── The Challenge ── */}
-      <section className="spruce-section spruce-section--tinted">
-        <div className="spruce-container">
-          <div className="spruce-section-tag">The Challenge</div>
           <div className="spruce-callout-block">
             <div className="spruce-callout-prompt">
               The original prompt:
@@ -131,20 +133,20 @@ export default function Spruce() {
 
       {/* ── My Contribution ── */}
       <section className="spruce-section spruce-container">
-        <div className="spruce-section-tag">My Contribution</div>
+        <div className="spruce-section-tag">MY ROLE</div>
         <div className="spruce-two-col">
           <div className="spruce-col-wide">
             <p className="spruce-body">
               I led the reframing of the original hackathon prompt into our focused
-              problem statement — the pivot that shaped everything downstream. From
-              there, I mapped and presented the journey for low-income families,
-              identifying the key moments of friction and opportunity.
+              problem statement — the pivot that shaped everything downstream.
+              From there, I mapped and presented the journey for low-income families,
+              identifying key moments of friction and opportunity.
             </p>
             <p className="spruce-body">
               On the visual side, I built the full design system from scratch:
               the Spruce logo, colour palette, and typography. I led the slide
-              design for our final presentation, and collaborated on the profile,
-              home, and activities pages in Figma.
+              design for our final presentation, and my team and I collaborated on
+              the profile, home, and activities pages in Figma.
             </p>
             <ul className="spruce-contrib-list">
               <li>Problem reframing & research synthesis</li>
@@ -172,55 +174,56 @@ export default function Spruce() {
       {/* ── Design Showcase ── */}
       <section className="spruce-section spruce-section--tinted">
         <div className="spruce-container">
-          <div className="spruce-section-tag">Design Showcase</div>
-          <h2 className="spruce-section-title">The Solution</h2>
-          <p className="spruce-meta-value">
+          <div className="spruce-section-tag">THE SOLUTION</div>
+          <h2 className="spruce-section-title spruce-section-title--large">
             What if art gallery workshops, swim lessons, concerts, and coding camps
             could all be found in one simple search — filtered by cost, age, and
             neighbourhood?
-          </p>
+          </h2>
 
-          {/* Showcase tabs */}
-          <div className="spruce-tabs">
-            <button
-              type="button"
-              className={`spruce-tab ${activeTab === 'home' ? 'spruce-tab--active' : ''}`}
-              onClick={() => setActiveTab('home')}
-            >
-              Home
-            </button>
-            <button
-              type="button"
-              className={`spruce-tab ${activeTab === 'activities' ? 'spruce-tab--active' : ''}`}
-              onClick={() => setActiveTab('activities')}
-            >
-              Activities
-            </button>
-            <button
-              type="button"
-              className={`spruce-tab ${activeTab === 'resources' ? 'spruce-tab--active' : ''}`}
-              onClick={() => setActiveTab('resources')}
-            >
-              Resources
-            </button>
-            <button
-              type="button"
-              className={`spruce-tab ${activeTab === 'profile' ? 'spruce-tab--active' : ''}`}
-              onClick={() => setActiveTab('profile')}
-            >
-              Profile
-            </button>
-          </div>
+          <div className="spruce-showcase-layout">
+            {/* Showcase tabs */}
+            <div className="spruce-tabs">
+              <button
+                type="button"
+                className={`spruce-tab ${activeTab === 'home' ? 'spruce-tab--active' : ''}`}
+                onClick={() => setActiveTab('home')}
+              >
+                Home
+              </button>
+              <button
+                type="button"
+                className={`spruce-tab ${activeTab === 'activities' ? 'spruce-tab--active' : ''}`}
+                onClick={() => setActiveTab('activities')}
+              >
+                Activities
+              </button>
+              <button
+                type="button"
+                className={`spruce-tab ${activeTab === 'resources' ? 'spruce-tab--active' : ''}`}
+                onClick={() => setActiveTab('resources')}
+              >
+                Resources
+              </button>
+              <button
+                type="button"
+                className={`spruce-tab ${activeTab === 'profile' ? 'spruce-tab--active' : ''}`}
+                onClick={() => setActiveTab('profile')}
+              >
+                Profile
+              </button>
+            </div>
 
-          <div className="spruce-showcase-frame">
-            <p className="spruce-showcase-hint">Scroll inside the frame to see the full page</p>
-            <div
-              className="spruce-showcase-scroll"
-              tabIndex={0}
-              role="region"
-              aria-label={`Full-page ${activeTab} design — scroll for full length`}
-            >
-              <img src={showcase.src} alt={showcase.alt} loading="lazy" />
+            <div className="spruce-showcase-frame">
+              <p className="spruce-showcase-hint">Scroll inside the frame to see the full page</p>
+              <div
+                className="spruce-showcase-scroll"
+                tabIndex={0}
+                role="region"
+                aria-label={`Full-page ${activeTab} design — scroll for full length`}
+              >
+                <img src={showcase.src} alt={showcase.alt} loading="lazy" />
+              </div>
             </div>
           </div>
         </div>
@@ -228,7 +231,10 @@ export default function Spruce() {
 
       {/* ── Key Features ── */}
       <section className="spruce-section spruce-container">
-        <div className="spruce-section-tag">Key Features</div>
+        <div className="spruce-section-tag">KEY FEATURES</div>
+        <h2 className="spruce-section-title spruce-section-title--large">
+          Four features that make Spruce <em>work</em> for families.
+        </h2>
         <div className="spruce-features-grid">
 
           <div className="spruce-feature-card">
@@ -306,8 +312,10 @@ export default function Spruce() {
       {/* ── Process ── */}
       <section className="spruce-section spruce-section--tinted">
         <div className="spruce-container">
-          <div className="spruce-section-tag">Process</div>
-          <h2 className="spruce-section-title">From prompt to product in 48 hours</h2>
+          <div className="spruce-section-tag">PROCESS</div>
+          <h2 className="spruce-section-title spruce-section-title--large">
+            From a broad prompt to a focused product — in 48 hours.
+          </h2>
 
           <div className="spruce-process-steps">
             <div className="spruce-process-step">
@@ -370,7 +378,10 @@ export default function Spruce() {
 
       {/* ── Impact ── */}
       <section className="spruce-section spruce-container">
-        <div className="spruce-section-tag">Impact</div>
+        <div className="spruce-section-tag">IMPACT</div>
+        <h2 className="spruce-section-title spruce-section-title--large">
+          Won <em>Best UI Design</em> — here&apos;s what we built.
+        </h2>
         <div className="spruce-impact-row">
           <div className="spruce-impact-stat">
             <div className="spruce-impact-num">🏆</div>
@@ -433,6 +444,16 @@ export default function Spruce() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="spruce-next-case">
+        <div className="spruce-container">
+          <Link to="/projects" className="spruce-next-card">
+            <div className="spruce-next-eyebrow">Next case study</div>
+            <div className="spruce-next-title">View all projects →</div>
+            <div className="spruce-next-sub">Aurora Pet Co. · Starmap · React to This!</div>
+          </Link>
         </div>
       </section>
 

@@ -184,6 +184,34 @@
     
     color: #374151;
   }
+
+  .spruce-product-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .spruce-meta-row--stacked {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 1px solid #e5e7eb;
+    padding-left: 1.5rem;
+    margin-top: 0.2rem;
+  }
+
+  .spruce-meta-row--stacked .spruce-meta-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .spruce-meta-row--stacked .spruce-meta-item:last-child {
+    border-bottom: none;
+  }
   
   /* ── Section tag ── */
   
@@ -198,12 +226,30 @@
   
   .spruce-section-title {
     font-family: 'ESRebond_regular', sans-serif;
-    font-size: clamp(1.5rem, 3vw, 36px);
+    font-size: clamp(1.6rem, 3.1vw, 30px);
     font-weight: 400;
     color: #374151;
     margin: 0 0 1.5rem;
-    letter-spacing: -0.5px;
+  
   }
+
+.spruce-section-title em {
+  font-style: italic;
+  font-family: inherit;
+}
+
+.spruce-section-title--large {
+  font-family: 'ESRebond_title', sans-serif;
+  font-size: clamp(1.75rem, 3.2vw, 38px);
+  font-weight: 400;
+  color: #374151;
+  margin: 0 0 2rem;
+  line-height: 1.2;
+}
+
+.spruce-section-title--large em {
+  font-style: italic;
+}
   
   /* ── Body text ── */
   
@@ -311,27 +357,35 @@
   
   /* ── Tabs ── */
   
+  .spruce-showcase-layout {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 1.6rem;
+    align-items: start;
+    margin-top: 2.2rem;
+  }
+
   .spruce-tabs {
     display: flex;
-    gap: 0;
-    border-bottom: 1px solid #e5e7eb;
-    margin-bottom: 2rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: sticky;
+    top: 104px;
+    align-self: start;
   }
   
   .spruce-tab {
     font-family: 'arial', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     color: #9ca3af;
     background: transparent;
-    border: none;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
     letter-spacing: 1.15px;
-    padding: 0.6rem 1.2rem;
+    padding: 0.65rem 0.85rem;
+    text-align: left;
     cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    transition: color 0.2s, border-color 0.2s;
+    transition: color 0.2s, border-color 0.2s, background-color 0.2s;
   }
   
   .spruce-tab:hover {
@@ -340,7 +394,8 @@
   
   .spruce-tab--active {
     color: #374151;
-    border-bottom-color: #001c80;
+    border-color: #001c80;
+    background-color: #fff;
     font-weight: 500;
   }
   
@@ -368,6 +423,7 @@
   .spruce-feature-title {
     font-family: 'ESRebond_regular', sans-serif;
     font-size: 20px;
+    font-weight: 700;
     color: #374151;
     margin-bottom: 0.5rem;
   }
@@ -580,6 +636,48 @@
   .spruce-back-link:hover {
     color: #001c80;
   }
+
+.spruce-next-case {
+  background: #001c80;
+  padding: 0;
+}
+
+.spruce-next-card {
+  display: block;
+  text-decoration: none;
+  padding: 4rem 0;
+  transition: opacity 0.2s;
+}
+
+.spruce-next-card:hover {
+  opacity: 0.88;
+}
+
+.spruce-next-eyebrow {
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 0.75rem;
+}
+
+.spruce-next-title {
+  font-family: 'ESRebond_title', sans-serif;
+  font-size: clamp(2rem, 5vw, 56px);
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: -0.5px;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+
+.spruce-next-sub {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.04em;
+}
   
   /* ── Image placeholders ── */
   
@@ -629,7 +727,33 @@
       grid-template-columns: 1fr;
       gap: 2rem;
     }
+
+    .spruce-product-layout {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .spruce-meta-row--stacked {
+      border-left: 0;
+      border-top: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 1rem 0;
+      margin-top: 0;
+    }
   
+    .spruce-showcase-layout {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .spruce-tabs {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
     .spruce-features-grid {
       grid-template-columns: 1fr;
     }
@@ -672,11 +796,11 @@
     }
   
     .spruce-tabs {
-      gap: 0;
+      gap: 0.4rem;
     }
   
     .spruce-tab {
       font-size: 13px;
-      padding: 0.5rem 0.8rem;
+      padding: 0.5rem 0.7rem;
     }
   }
