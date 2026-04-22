@@ -105,9 +105,14 @@
 
 .starmap-page .spruce-hero-title,
 .starmap-page .spruce-section-title,
-.starmap-page .spruce-section-tag,
+.starmap-page .spruce-section-tag{
+  font-family: 'sohne', sans-serif;
+}
+
+.starmap-page .spruce-meta-value,
 .starmap-page .spruce-feature-title {
   font-family: 'sohne', sans-serif;
+  font-weight: 400;
 }
 
 .starmap-main-title {
