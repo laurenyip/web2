@@ -18,8 +18,8 @@ const SHOWCASE_SCREENS = {
 
 const FEATURE_CARDS = [
   {
-    title: 'Remember everything',
-    body: "Every person gets a profile with context that actually matters: birthdays, allergies, favourite things, where you met, and notes you don't want to lose over time.",
+    title: 'List view',
+    body: "Sort people in list form for easy viewing and editing",
     src: '/images/projects/starmap/list.png',
     alt: 'Starmap list view showing profiles and relationship tags',
   },
@@ -37,7 +37,7 @@ const FEATURE_CARDS = [
   },
   {
     title: 'Fast profile capture',
-    body: 'The New Person flow is built for speed so adding someone right after meeting them takes seconds, not a full journaling session.',
+    body: 'Every person gets a profile with context that actually matters: birthdays, allergies, favourite things, where you met, and notes you don\'t want to lose over time.',
     src: '/images/projects/starmap/addnode.png',
     alt: 'New person modal with profile fields and relationship tags',
   },
@@ -59,12 +59,44 @@ export default function Starmap() {
 
       <section className="spruce-hero">
         <div className="spruce-container">
-          <div className="spruce-hero-label">Founder • Product Design • Full-Stack Build</div>
-          <h1 className="spruce-hero-title starmap-main-title">starmap</h1>
-          <p className="spruce-hero-tagline">
-            A personal relationship map that helps you remember what matters, stay intentional, and be a better
-            friend.
-          </p>
+          <div className="starmap-hero-top">
+            <div className="starmap-hero-copy">
+              <div className="spruce-hero-label">Founder • Product Design • Full-Stack Build</div>
+              <h1 className="spruce-hero-title starmap-main-title">starmap</h1>
+              <p className="spruce-hero-tagline">
+                A personal relationship map that helps you remember what matters, stay intentional, and be a better
+                friend.
+              </p>
+            </div>
+            <div className="starmap-hero-constellation-wrap" aria-hidden="true">
+              <div className="starmap-hero-constellation" role="presentation">
+                <svg
+                  className="starmap-hero-constellation-svg"
+                  viewBox="0 0 340 250"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line x1="170" y1="124" x2="78" y2="58" className="starmap-constellation-line" />
+                  <line x1="170" y1="124" x2="248" y2="70" className="starmap-constellation-line" />
+                  <line x1="170" y1="124" x2="270" y2="132" className="starmap-constellation-line" />
+                  <line x1="170" y1="124" x2="98" y2="188" className="starmap-constellation-line" />
+                  <line x1="170" y1="124" x2="236" y2="194" className="starmap-constellation-line" />
+                  <line x1="78" y1="58" x2="98" y2="188" className="starmap-constellation-line starmap-constellation-line--soft" />
+                  <line x1="248" y1="70" x2="270" y2="132" className="starmap-constellation-line starmap-constellation-line--soft" />
+                  <line x1="270" y1="132" x2="236" y2="194" className="starmap-constellation-line starmap-constellation-line--soft" />
+                  <line x1="98" y1="188" x2="236" y2="194" className="starmap-constellation-line starmap-constellation-line--soft" />
+
+                  <circle cx="170" cy="124" r="16" className="starmap-constellation-node starmap-constellation-node--core" />
+                  <circle cx="78" cy="58" r="8" className="starmap-constellation-node" />
+                  <circle cx="248" cy="70" r="7" className="starmap-constellation-node" />
+                  <circle cx="270" cy="132" r="8" className="starmap-constellation-node" />
+                  <circle cx="98" cy="188" r="7" className="starmap-constellation-node" />
+                  <circle cx="236" cy="194" r="8" className="starmap-constellation-node" />
+                  <circle cx="130" cy="94" r="5" className="starmap-constellation-node starmap-constellation-node--dim" />
+                  <circle cx="210" cy="156" r="5" className="starmap-constellation-node starmap-constellation-node--dim" />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="spruce-container">
