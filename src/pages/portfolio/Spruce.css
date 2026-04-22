@@ -72,6 +72,7 @@
 
   /* Fixed viewport “window” + cover zoom so the hero GIF reads at full scale and animates */
   .spruce-hero-img-wrap {
+  position: relative;
     overflow: hidden;
     border-radius: 12px;
     background: #f4f4f1;
@@ -649,6 +650,7 @@
       height: clamp(220px, 58vw, 420px);
       max-height: 440px;
     }
+
 
     .spruce-showcase-scroll {
       max-height: min(68vh, 600px);

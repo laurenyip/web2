@@ -27,12 +27,6 @@
   height: 250px;
   width: min(34vw, 360px);
   min-width: 260px;
-  border-radius: 12px;
-  border: 1px solid rgba(116, 130, 167, 0.35);
-  background-color: #060a14;
-  background-image: radial-gradient(rgba(104, 120, 160, 0.35) 0.75px, transparent 0.75px);
-  background-size: 12px 12px;
-  overflow: hidden;
 }
 
 .starmap-hero-constellation-svg {
@@ -42,28 +36,44 @@
 }
 
 .starmap-constellation-line {
-  stroke: rgba(175, 191, 236, 0.5);
+  stroke: rgba(128, 92, 214, 0.44);
   stroke-width: 1.6;
 }
 
 .starmap-constellation-line--soft {
-  stroke: rgba(175, 191, 236, 0.24);
+  stroke: rgba(128, 92, 214, 0.24);
 }
 
 .starmap-constellation-node {
-  fill: #eef2ff;
-  stroke: rgba(10, 20, 48, 0.7);
-  stroke-width: 1.2;
+  fill: #a78bfa;
+  stroke: rgba(91, 33, 182, 0.45);
+  stroke-width: 0.9;
+  animation: starmap-twinkle 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 0 2px rgba(167, 139, 250, 0.35));
 }
 
 .starmap-constellation-node--dim {
   opacity: 0.72;
+  animation-duration: 3.2s;
 }
 
 .starmap-constellation-node--core {
-  fill: #88e36d;
-  stroke: rgba(16, 51, 12, 0.9);
-  filter: drop-shadow(0 0 6px rgba(136, 227, 109, 0.45));
+  fill: #c4b5fd;
+  stroke: rgba(107, 33, 168, 0.5);
+  animation-duration: 1.9s;
+  filter: drop-shadow(0 0 5px rgba(196, 181, 253, 0.55));
+}
+
+@keyframes starmap-twinkle {
+  0%,
+  100% {
+    opacity: 0.45;
+    filter: drop-shadow(0 0 1px rgba(167, 139, 250, 0.2));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(167, 139, 250, 0.75));
+  }
 }
 
 .starmap-live-cta a {
