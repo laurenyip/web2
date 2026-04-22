@@ -647,27 +647,38 @@ export default function About() {
                 04
               </div>
               <p className="about-body-text mt-1 m-0">Sidequests</p>
-              <div className="about-body-text mt-8 space-y-4">
-                <p>
-                  I&apos;m also hosting treehouse.place, playing volleyball, snowboarding, dragonboating, swimming, hiking,
-                  baking, and learning new songs on the guitar and piano.
-                </p>
-                <p>
-                  Some of my favourite places I&apos;ve been to are: NYC, Hong Kong, Dublin, Dresden, Vienna, Fes,
-                  Montpellier, Thor&apos;s Well, Mabul Island, Ipoh, Datong, and the top of Mt Brunswick.
-                </p>
-                <p>
-                  I&apos;ve travelled a lot recently, so I know where the best vintage, bookstores, and chocolate shops in
-                  Europe are. Most recently I visited Toronto for the Socratica Symposium but let&apos;s be real,
-                  that&apos;s the main quest.
-                </p>
-                <p>
-                  I&apos;m always sunrise and sunset chasing, and I think that sunlight and shadows on stuff makes the
-                  best photos.
-                </p>
+              <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-5">
+                <div className="about-body-text space-y-2">
+                  <p className="m-0 text-[18px] font-medium text-gray-900">Exploring</p>
+                  <p className="m-0">
+                    Some of my favourite places I&apos;ve been to are: NYC, Dublin, the Residenzschloss Museum in
+                    Dresden, Fes, Montpellier, Mabul Island, Ipoh, Datong, and the top of Mt Brunswick.
+                  </p>
+                </div>
+                <div className="about-body-text space-y-2">
+                  <p className="m-0 text-[18px] font-medium text-gray-900">Sports</p>
+                  <p className="m-0">
+                    I love playing volleyball, snowboarding, dragonboating, swimming, and hiking. I want to play
+                    tennis.
+                  </p>
+                </div>
+                <div className="about-body-text space-y-2">
+                  <p className="m-0 text-[18px] font-medium text-gray-900">Languages</p>
+                  <p className="m-0">
+                    I spend a solid amount of time trying to learn to become literate in Chinese and proficient in
+                    spoken Mandarin. I always watch movies and shows with French or Spanish subtitles.
+                  </p>
+                </div>
+                <div className="about-body-text space-y-2">
+                  <p className="m-0 text-[18px] font-medium text-gray-900">Hobbies</p>
+                  <p className="m-0">
+                    I&apos;m always sunrise and sunset chasing, and I think that sunlight and shadows on stuff makes the
+                    best photos. I like baking, and I&apos;m often learning new songs on the guitar and piano.
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2 lg:grid-cols-4">
               {SIDEQUEST_GRID_ITEMS.map(({ src, caption, objectPosition }) => (
                 <button
                   key={src}
