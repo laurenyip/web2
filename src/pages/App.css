@@ -215,6 +215,17 @@ p1 {
 }
 
 @font-face {
+  font-family: "boring_reg";
+  src: url("fonts/boring_reg.ttf") format("trueType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "boring_med";
+  src: url("fonts/boring_med.ttf") format("trueType");
+  font-display: swap;
+}
+@font-face {
   font-family: "sohne";
   src: url("fonts/sohne.otf") format("OpenType");
   font-display: swap;
