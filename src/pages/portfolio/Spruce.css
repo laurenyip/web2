@@ -137,7 +137,7 @@
   grid-template-columns: minmax(0, 765px) 320px;
   column-gap: max(0px, min(40px, calc(100% - 765px - 320px)));
   row-gap: 24px;
-  padding: 74px 95px 0;
+  padding: 74px var(--spruce-pad-x) 0;
   align-items: flex-start;
   justify-content: start;
 }
@@ -270,7 +270,7 @@
   color: #000000;
   max-width: 924px;
   padding-top: 15px;
-  
+
   text-align: center;
 }
 
@@ -289,15 +289,17 @@
 
 .spruce-figma-insight-grid {
   display: grid;
-  grid-template-columns: repeat(2, 365px);
+  grid-template-columns: repeat(2, minmax(0, 365px));
+  justify-content: center;
   gap: 22px;
-  padding-left: 90px;
-  padding-right: 90px;
+  padding-left: var(--spruce-pad-x);
+  padding-right: var(--spruce-pad-x);
   padding-bottom: 24px;
 }
 
 .spruce-figma-insight-card {
-  width: 365px;
+  width: 100%;
+  max-width: 365px;
   height: 296px;
   background: rgba(107, 139, 205, 0.48);
   border-radius: 2px;
@@ -1030,17 +1032,22 @@
 
   .spruce-figma-split,
   .spruce-figma-split--reverse,
+  .spruce-figma-insight-grid,
   .spruce-figma-ds-inner,
   .spruce-figma-evidence-panels,
   .spruce-figma-reflect-grid {
     grid-template-columns: 1fr;
   }
 
+  .spruce-figma-insight-grid {
+    justify-items: center;
+    justify-content: stretch;
+  }
+
   .spruce-figma-design-challenge-label {
-    max-width: 253px;
-    margin-left: auto;
-    margin-right: 0;
-    text-align: right;
+    max-width: none;
+    margin: 0;
+    text-align: center;
   }
 
   .spruce-figma-pmc {
