@@ -640,6 +640,8 @@
   border-radius: 0;
   box-shadow: none;
   background: transparent;
+  margin-top: -6px;
+  margin-bottom: 32px;
 }
 
 /* Resources row: card image left */
