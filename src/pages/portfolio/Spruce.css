@@ -11,7 +11,7 @@
   --spruce-tint-blue: rgba(107, 139, 205, 0.48);
   --spruce-athens: #e5e7eb;
   --spruce-catskill: #f3f4f6;
-  --spruce-gutter: #eceef2;
+  --spruce-gutter: #ffffff;
   --spruce-pad-x: 95px;
   --spruce-container: 1280px;
   --sf-body: 16px;
@@ -48,7 +48,7 @@
   max-width: var(--spruce-container);
   margin: 0 auto;
   min-width: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   background: #fff;
   padding: 0;
 }
@@ -68,11 +68,6 @@
   height: auto;
 }
 
-.spruce-figma-canvas .spruce-figma-hero-gif {
-  width: auto;
-  max-width: 737px;
-}
-
 .spruce-figma-canvas img.spruce-figma-trans-img {
   width: 123px;
   max-width: min(123px, 100%);
@@ -80,7 +75,7 @@
 
 /* —— Hero only: Figma green bar + in-frame nav + centered GIF —— */
 .spruce-figma-hero {
-  position: relative;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -88,23 +83,26 @@
   background: #3f5d39;
 }
 
+.spruce-figma-hero-inner {
+  width: 100%;
+  max-width: var(--spruce-container);
+  margin: 0 auto;
+}
+
 .spruce-figma-nav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0 4px;
-  padding: 25px 25px 12px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  justify-content: flex-end;
+  width: 100%;
+  padding: 18px 25px 12px;
+  background: #ffffff;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: var(--sf-body);
   line-height: var(--sf-body-lh);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .spruce-figma-nav a {
@@ -121,9 +119,12 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding: 76px 0 0;
 }
 
 .spruce-figma-hero-gif {
+  width: min(100%, 960px);
+  max-width: 960px;
   height: auto;
   max-height: 477px;
   object-fit: contain;
@@ -257,6 +258,7 @@
   text-transform: uppercase;
   width: 100%;
   margin: 0;
+  padding-bottom: 20px;
   text-align: center;
 }
 
@@ -276,7 +278,8 @@
 
 /* Collage asset under HMW — 40px 95px 24px at desktop (via --spruce-pad-x) */
 .spruce-figma-ipadkids {
-  padding: 40px var(--spruce-pad-x) 24px;
+  padding: 00px var(--spruce-pad-x) 24px;
+  padding-bottom: 50px;
 }
 
 .spruce-figma-ipadkids img {
@@ -290,11 +293,12 @@
 .spruce-figma-insight-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 365px));
-  justify-content: center;
+  justify-content: start;
   gap: 22px;
   padding-left: var(--spruce-pad-x);
   padding-right: var(--spruce-pad-x);
-  padding-bottom: 24px;
+  padding-bottom: 64px;
+  padding-top: 44px;
 }
 
 .spruce-figma-insight-card {
@@ -607,7 +611,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   gap: 40px 48px;
-  align-items: flex-start;
+  align-items: start;
   padding: 12px var(--spruce-pad-x) 48px;
 }
 
@@ -621,7 +625,7 @@
 
 .spruce-figma-card-shot {
   width: 100%;
-  max-width: 570px;
+  max-width: 300px;
   height: auto;
   display: block;
   border-radius: 17px;
@@ -631,7 +635,7 @@
 .spruce-figma-friction-shot {
   display: block;
   width: 100%;
-  max-width: 350px;
+  max-width: 300px;
   border-radius: 0;
   box-shadow: none;
   background: transparent;
@@ -810,8 +814,10 @@
 .spruce-figma-profile-img {
   width: 100%;
   max-width: 100%;
-  border-radius: 17px;
   display: block;
+  margin-left: 0;
+  margin-right: auto;
+  justify-self: start;
 }
 
 .spruce-figma-feature-copy {
@@ -840,11 +846,24 @@
   padding-top: 4px;
 }
 
+.spruce-figma-translate-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 66px;
+}
+
 .spruce-figma-trans-img {
   width: 123px;
   height: auto;
   flex-shrink: 0;
   mix-blend-mode: multiply;
+  display: block;
+}
+
+.spruce-figma-trans-spanish-img {
+  width: 250px;
+  height: auto;
+  flex-shrink: 0;
   display: block;
 }
 
@@ -861,6 +880,7 @@
 .spruce-figma-section-label--reflections {
   color: #6b8bcd;
   text-transform: uppercase;
+  padding-bottom: 15px;
 }
 
 .spruce-figma-final-browser {
@@ -868,7 +888,7 @@
   flex-direction: row;
   align-items: stretch;
   gap: 20px;
-  margin-top: 28px;
+  margin-top: 68px;
   min-height: 0;
   min-width: 0;
 }
@@ -892,26 +912,26 @@
   font-family: var(--spruce-ff-boring-reg);
   font-size: var(--sf-body);
   line-height: var(--sf-body-lh);
-  color: #6b8bcd;
-  border: 1px solid #6b8bcd;
+  color: #3e5d39;
+  border: 1px solid #3e5d39;
   border-radius: 10px;
   background: #fff;
   cursor: pointer;
 }
 
 .spruce-figma-final-tab:hover {
-  background: rgba(107, 139, 205, 0.08);
+  background: rgba(62, 93, 57, 0.08);
 }
 
 .spruce-figma-final-tab:focus-visible {
-  outline: 2px solid #6b8bcd;
+  outline: 2px solid #3e5d39;
   outline-offset: 2px;
 }
 
 .spruce-figma-final-tab--active {
-  background: #6b8bcd;
+  background: #3e5d39;
   color: #fff;
-  border-color: #6b8bcd;
+  border-color: #3e5d39;
 }
 
 /* Shorter preview window; tall screenshots scroll inside */

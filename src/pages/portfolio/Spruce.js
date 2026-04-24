@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from '../../components/Navbar'
 import '../App.css'
 import './Spruce.css'
 
@@ -14,20 +15,17 @@ const I = {
   kidProfile: encodeURI('/images/projects/spruce/Kid Profile.png'),
   translate: encodeURI('/images/projects/spruce/Translate.png'),
   home: '/images/projects/spruce/spruce_home.png',
+  finalActivities: '/images/projects/spruce/spruce_activities.png',
+  finalResources: '/images/projects/spruce/spruce_resources.png',
+  profile: '/images/projects/spruce/spruce_profile.png',
   activities: '/images/projects/spruce/activities.png',
   resources: '/images/projects/spruce/resources.png',
-  profile: '/images/projects/spruce/spruce_profile.png',
   ipadkids: '/images/projects/spruce/ipadkids.png',
   laura: '/images/projects/spruce/laura.png',
+  spanish: '/images/projects/spruce/spanish.png',
 }
 
 const FINAL_SCREENS = [
-  {
-    id: 'activities',
-    label: 'Activities',
-    src: I.activities,
-    alt: 'Spruce activities — map, filters, and program cards',
-  },
   {
     id: 'home',
     label: 'Home',
@@ -35,16 +33,22 @@ const FINAL_SCREENS = [
     alt: 'Spruce home — marketing page and product overview',
   },
   {
-    id: 'profile',
-    label: 'Profile',
-    src: I.profile,
-    alt: 'Spruce profile — family members and saved filters',
+    id: 'activities',
+    label: 'Activities',
+    src: I.finalActivities,
+    alt: 'Spruce activities — map, filters, and program cards',
   },
   {
     id: 'resources',
     label: 'Resources',
-    src: I.resources,
+    src: I.finalResources,
     alt: 'Spruce resources — grants and support programs',
+  },
+  {
+    id: 'profile',
+    label: 'Profile',
+    src: I.profile,
+    alt: 'Spruce profile — family members and saved filters',
   },
 ]
 
@@ -74,24 +78,20 @@ export default function Spruce() {
 
   return (
     <div className="spruce-figma-page">
+      <Navbar />
+      <header className="spruce-figma-hero">
+        <div className="spruce-figma-hero-inner">
+          <div className="spruce-figma-hero-stage">
+            <img
+              className="spruce-figma-hero-gif"
+              src={I.gif}
+              alt="Spruce product UI preview"
+            />
+          </div>
+        </div>
+      </header>
       <div className="spruce-figma-gutter">
         <div className="spruce-figma-canvas">
-          <header className="spruce-figma-hero">
-            <nav className="spruce-figma-nav" aria-label="Primary">
-              <Link to="/">Home&nbsp;|</Link>
-              <Link to="/about">About&nbsp;|</Link>
-              <Link to="/projects">Projects&nbsp;|</Link>
-              <Link to="/portfolio">Portfolio</Link>
-            </nav>
-            <div className="spruce-figma-hero-stage">
-              <img
-                className="spruce-figma-hero-gif"
-                src={I.gif}
-                alt="Spruce product UI preview"
-              />
-            </div>
-          </header>
-
           <section className="spruce-figma-intro">
             <div className="spruce-figma-intro-main">
               <p className="spruce-figma-tagline">
@@ -126,7 +126,7 @@ export default function Spruce() {
             >
               DESIGN CHALLENGE
             </h2>
-            <h3 className="spruce-figma-hmw-title">
+            <h3 className="spruce-figma-ds-question">
               How might we help families give their kids a life offline?
             </h3>
           </section>
@@ -239,7 +239,7 @@ export default function Spruce() {
             <h2 className="spruce-figma-section-label">FEATURES THAT WORK FOR EVERYONE</h2>
           </section>
 
-          <section className="spruce-figma-split spruce-figma-split--tight">
+          <section className="spruce-figma-split spruce-figma-split--tight spruce-figma-split--profiles">
             <img
               className="spruce-figma-profile-img"
               src={I.laura}
@@ -255,7 +255,10 @@ export default function Spruce() {
           </section>
 
           <section className="spruce-figma-split spruce-figma-split--translation">
-            <img src={I.translate} alt="Language translation controls" className="spruce-figma-trans-img" />
+            <div className="spruce-figma-translate-row">
+              <img src={I.translate} alt="Language translation controls" className="spruce-figma-trans-img" />
+              <img src={I.spanish} alt="Spanish translation screen" className="spruce-figma-trans-spanish-img" />
+            </div>
             <div className="spruce-figma-feature-copy">
               <h3 className="spruce-figma-feature-title">Translation</h3>
               <p className="spruce-figma-body">
@@ -333,7 +336,7 @@ export default function Spruce() {
             <img
               src="/images/projects/spruce/orca.png"
               alt="Orca illustration"
-              style={{ display: 'block', margin: '2rem auto', maxWidth: '320px', height: 'auto' }}
+              style={{ display: 'block', margin: '4rem auto', maxWidth: '460px', height: 'auto' }}
             />
           </section>
 
