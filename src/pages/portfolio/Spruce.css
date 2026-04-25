@@ -8,7 +8,7 @@
   --spruce-section-blue: #6b8bcd;
   --spruce-cream: #fbf9ed;
   --spruce-card-blue: #3a4c6f;
-  --spruce-tint-blue: rgba(107, 139, 205, 0.48);
+  --spruce-tint-blue: rgba(107, 139, 205, 0.3);
   --spruce-athens: #e5e7eb;
   --spruce-catskill: #f3f4f6;
   --spruce-gutter: #ffffff;
@@ -294,6 +294,13 @@
   margin: 0 auto;
 }
 
+.spruce-figma-insight-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 28px;
+  align-items: center;
+}
+
 .spruce-figma-insight-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 365px));
@@ -305,11 +312,18 @@
   padding-top: 44px;
 }
 
+.spruce-figma-sleeping {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  display: block;
+}
+
 .spruce-figma-insight-card {
   width: 100%;
   max-width: 365px;
   height: 296px;
-  background: rgba(107, 139, 205, 0.48);
+  background: rgba(107, 139, 205, 0.3);
   border-radius: 2px;
   padding: 24px 22px;
   overflow: hidden;
@@ -382,7 +396,7 @@
   width: 100%;
   margin: 0 auto;
   padding: 24px 22px;
-  background: rgba(107, 139, 205, 0.48);
+  background: rgba(107, 139, 205, 0.3);
   border-radius: 2px;
 }
 
@@ -452,7 +466,7 @@
   height: 200px;
   width: 100%;
   margin: 0;
-  background: rgba(107, 139, 205, 0.48);
+  background: rgba(107, 139, 205, 0.3);
   border-radius: 2px;
 }
 
@@ -589,6 +603,19 @@
   padding: 20px var(--spruce-pad-x) 48px;
 }
 
+.spruce-friction-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  align-items: start;
+}
+
+.spruce-friction-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 /* Figma 301:124 — boring_med 20px */
 .spruce-figma-friction-title {
   font-family: var(--spruce-ff-boring-med);
@@ -691,6 +718,7 @@
   line-height: var(--sf-body-lh);
   letter-spacing: 0.06em;
   color: var(--spruce-ink);
+  max-width: 700px;
 }
 
 .spruce-figma-body--tight {
@@ -789,7 +817,7 @@
 }
 
 /* Centered question below DESIGN SYSTEM label */
-.spruce-figma-ds-question {
+.spruce-figma-page .spruce-figma-ds-question {
   font-family: var(--spruce-ff-boring-reg);
   font-weight: 400;
   font-size: 36px;
@@ -805,7 +833,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 32px 40px;
-  align-items: center;
+  align-items: start;
 }
 
 .spruce-figma-ds-logo {
@@ -826,6 +854,102 @@
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: var(--sf-body-lh);
+}
+
+.spruce-ds-swatches {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
+}
+
+.spruce-ds-swatch-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.spruce-ds-swatch-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.spruce-ds-swatch-label {
+  font-family: var(--spruce-ff-boring-med);
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+  line-height: 1.2;
+}
+
+.spruce-ds-num-label {
+  font-family: Arial, sans-serif;
+}
+
+.spruce-ds-swatch-hex {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  color: #6b7280;
+  letter-spacing: 0.06em;
+}
+
+.spruce-ds-swatch-note {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #374151;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+.spruce-ds-type-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.spruce-ds-type-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.spruce-ds-type-sample {
+  color: #000;
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.spruce-ds-type-role {
+  font-family: var(--spruce-ff-boring-med);
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b8bcd;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.spruce-ds-radius-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.spruce-ds-radius-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.spruce-ds-radius-box {
+  width: 48px;
+  height: 48px;
+  background: rgba(107, 139, 205, 0.3);
+  border: 1px solid #6b8bcd;
+  flex-shrink: 0;
 }
 
 /* —— Profiles + translation splits —— */
@@ -1014,6 +1138,14 @@
     height: min(56dvh, 62vh);
     max-height: min(56dvh, 62vh);
   }
+
+  .spruce-ds-swatches {
+    grid-template-columns: 1fr;
+  }
+
+  .spruce-ds-radius-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* —— Reflections + journey image —— */
@@ -1088,12 +1220,32 @@
 
   .spruce-figma-split,
   .spruce-figma-split--reverse,
+  .spruce-figma-insight-wrap,
   .spruce-figma-insight-grid,
   .spruce-figma-ds-inner,
   .spruce-figma-evidence-panels,
   .spruce-figma-reflect-grid {
     grid-template-columns: 1fr;
   }
+
+  .spruce-figma-sleeping {
+    max-width: 180px;
+    margin: 0 auto;
+  }
+
+  .spruce-friction-row {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .spruce-ds-swatches {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .spruce-ds-radius-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 
   .spruce-figma-insight-grid {
     justify-items: center;

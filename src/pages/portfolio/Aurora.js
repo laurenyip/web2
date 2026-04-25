@@ -104,15 +104,11 @@ export default function Aurora() {
 
       <div className="spruce-figma-gutter">
         <div className="spruce-figma-canvas aurora-page">
-          <section className="spruce-figma-challenge">
-            <h2 className="spruce-figma-section-label spruce-figma-section-label--center">Product Designer & Product Manager</h2>
-            <h1 className="spruce-figma-hmw-title">Aurora Pet Co.</h1>
-          </section>
-
+        
           <section className="spruce-figma-intro">
             <div className="spruce-figma-intro-main">
               <p className="spruce-figma-section-label">THE PRODUCT</p>
-              <p className="spruce-figma-body">
+              <p className="spruce-figma-body" style={{ maxWidth: '700px' }}>
               Aurora Pet Co. is a seamless subscription platform with vet-backed delivery and a focus on chronic
               conditions, designed to make pet health more affordable and accessible across Canada. The solution
               addresses the unmet need for an online pet pharmacy in the Canadian market.
@@ -121,7 +117,7 @@ export default function Aurora() {
             <aside className="spruce-figma-meta" aria-label="Project details">
               <div className="spruce-figma-meta-row">
                 <div className="spruce-figma-meta-label">Timeline</div>
-                <div className="spruce-figma-meta-value">2025</div>
+                <div className="spruce-figma-meta-value">October 2025 — December 2025</div>
               </div>
               <div className="spruce-figma-meta-row">
                 <div className="spruce-figma-meta-label">Role</div>
@@ -131,16 +127,12 @@ export default function Aurora() {
                 <div className="spruce-figma-meta-label">Recognition</div>
                 <div className="spruce-figma-meta-value">Top 4 finalist</div>
               </div>
-              <div className="spruce-figma-meta-row spruce-figma-meta-row--last">
-                <div className="spruce-figma-meta-label">Competition</div>
-                <div className="spruce-figma-meta-value">Cansbridge x Simple Ventures</div>
-              </div>
             </aside>
           </section>
 
           <section className="spruce-figma-challenge">
             <h2 className="spruce-figma-section-label spruce-figma-section-label--center">DESIGN CHALLENGE</h2>
-            <h2 className="spruce-figma-hmw-title">
+            <h2 className="spruce-figma-ds-question">
             How might we make pet medication affordable and accessible for every Canadian pet owner?
             </h2>
             <p className="spruce-figma-body">
@@ -155,35 +147,11 @@ export default function Aurora() {
             </p>
           </section>
 
-          <section className="spruce-figma-split">
-            <div>
-              <h2 className="spruce-figma-section-label">MY ROLE</h2>
-              <p className="spruce-figma-body">
-              I joined Simple Ventures as a Product Designer and PM on Aurora Pet Co., working across the full
-              product surface — from information architecture to visual design to pitch deck narrative.
-              </p>
-              <p className="spruce-figma-body">
-              I led the design of all seven product screens, defined the pricing and subscription model UX, and
-              collaborated on the competitive positioning that shaped our finalist presentation.
-              </p>
-              <ul className="spruce-contrib-list">
-                <li>Product screen design (7 screens end-to-end)</li>
-                <li>Subscription model UX and pricing architecture</li>
-                <li>Competitive landscape research</li>
-                <li>Pitch deck design and narrative</li>
-                <li>Prototype build for finalist presentation</li>
-              </ul>
-            </div>
-            <div className="spruce-img-placeholder" aria-label="Team or process placeholder">
-              Team / process photo
-            </div>
-          </section>
-
           <section className="spruce-figma-final" aria-labelledby="aurora-showcase-heading">
             <h2 id="aurora-showcase-heading" className="spruce-figma-section-label spruce-figma-section-label--center">
               DESIGN SHOWCASE
             </h2>
-            <h2 className="spruce-figma-hmw-title">The Solution</h2>
+            <h2 className="spruce-figma-ds-question">The Solution</h2>
             <div className="spruce-figma-final-browser-h">
               <div className="spruce-figma-final-tabs-h" role="tablist" aria-label="Choose a screen to preview">
                 {SHOWCASE_SCREENS.map((screen) => (
@@ -216,41 +184,14 @@ export default function Aurora() {
 
           <section className="spruce-figma-challenge">
             <h2 className="spruce-figma-section-label spruce-figma-section-label--center">KEY FEATURES</h2>
-            <h2 className="spruce-figma-hmw-title">Four features that make Aurora work for pet owners.</h2>
+            <h2 className="spruce-figma-ds-question">Four features that make Aurora work for pet owners.</h2>
             <div className="spruce-features-grid">
               {FEATURE_CARDS.map((feature) => (
                 <div key={feature.title} className="spruce-feature-card">
-                  <div className="spruce-feature-title">{feature.title}</div>
-                  <p className="spruce-feature-body">{feature.body}</p>
+                  <div className="spruce-figma-feature-title">{feature.title}</div>
+                  <p className="spruce-figma-feature-body">{feature.body}</p>
                 </div>
               ))}
-            </div>
-          </section>
-
-          <section className="spruce-figma-challenge">
-            <h2 className="spruce-figma-section-label spruce-figma-section-label--center">IMPACT</h2>
-            <div className="spruce-impact-row">
-              <article className="spruce-impact-card">
-                <div className="spruce-impact-icon" aria-hidden>
-                  🏆
-                </div>
-                <h3 className="spruce-impact-label">Top 4 finalist</h3>
-                <p className="spruce-impact-sub">Cansbridge x Simple Ventures</p>
-              </article>
-              <article className="spruce-impact-card">
-                <div className="spruce-impact-icon" aria-hidden>
-                  ✦
-                </div>
-                <h3 className="spruce-impact-label">Best prototype</h3>
-                <p className="spruce-impact-sub">acknowledged for design and slide quality</p>
-              </article>
-              <article className="spruce-impact-card">
-                <div className="spruce-impact-icon" aria-hidden>
-                  $
-                </div>
-                <h3 className="spruce-impact-label">$50–$100+ saved</h3>
-                <p className="spruce-impact-sub">per pet owner per year on chronic medications</p>
-              </article>
             </div>
           </section>
 
@@ -277,10 +218,7 @@ export default function Aurora() {
           </section>
 
           <footer className="spruce-figma-footer">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Link to="/projects" className="spruce-figma-next">
-                ← Back to Projects
-              </Link>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
               <Link to="/rosie" className="spruce-figma-next">
                 See next case study →
               </Link>

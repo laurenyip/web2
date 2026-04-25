@@ -442,11 +442,8 @@ export default function Starmap() {
 
           <div
             className="spruce-container spruce-back-row"
-            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+            style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
           >
-            <Link to="/portfolio" className="spruce-back-link">
-              ← Back to Case Studies
-            </Link>
             <Link to="/spruce" className="spruce-back-link">
               See next case study &nbsp;→
             </Link>
