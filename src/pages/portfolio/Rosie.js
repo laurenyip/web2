@@ -7,7 +7,7 @@ import './Spruce.css'
 import './Rosie.css'
 
 const I = {
-  hero: '/images/projects/rosie/rosielab.github.io.png',
+  hero: '/images/projects/rosie/rosie_t.png',
   website: '/images/projects/rosie/rosielab.github.io.png',
 }
 
