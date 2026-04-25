@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import ScrollToTop from '../../components/ScrollToTop'
@@ -56,26 +56,6 @@ const FINAL_SCREENS = [
 export default function Spruce() {
   const [finalScreenId, setFinalScreenId] = useState(FINAL_SCREENS[0].id)
   const activeFinal = FINAL_SCREENS.find((s) => s.id === finalScreenId) ?? FINAL_SCREENS[0]
-
-  const onFinalTabKeyDown = useCallback((e, index) => {
-    if (
-      e.key !== 'ArrowRight' &&
-      e.key !== 'ArrowLeft' &&
-      e.key !== 'ArrowDown' &&
-      e.key !== 'ArrowUp'
-    ) {
-      return
-    }
-    e.preventDefault()
-    const n = FINAL_SCREENS.length
-    const delta = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : -1
-    const next = (index + delta + n) % n
-    const nextId = FINAL_SCREENS[next].id
-    setFinalScreenId(nextId)
-    requestAnimationFrame(() => {
-      document.getElementById(`spruce-final-tab-${nextId}`)?.focus()
-    })
-  }, [])
 
   return (
     <div className="spruce-figma-page">
@@ -141,6 +121,7 @@ export default function Spruce() {
 
           <section className="spruce-figma-insight-grid" aria-label="Prompt and research highlights">
             <article className="spruce-figma-insight-card">
+              <div className="spruce-insight-num">01</div>
               <h3 className="spruce-figma-insight-title">THE ORIGINAL PROMPT</h3>
               <p className="spruce-figma-insight-body spruce-figma-insight-body--italic">
                 In a world that rewards being always on, how might we design an experience that helps people
@@ -149,6 +130,7 @@ export default function Spruce() {
               </p>
             </article>
             <article className="spruce-figma-insight-card">
+              <div className="spruce-insight-num">02</div>
               <h3 className="spruce-figma-insight-title">Lower-Income Predicts Increased Smartphone Use and...</h3>
               <p className="spruce-figma-insight-body">
                 As the coronavirus disease 2019 (COVID-19) has continued for a...
@@ -163,6 +145,7 @@ export default function Spruce() {
               </a>
             </article>
             <article className="spruce-figma-insight-card">
+              <div className="spruce-insight-num">03</div>
               <h3 className="spruce-figma-insight-title">Spruce removes friction.</h3>
               <p className="spruce-figma-insight-body">
                 Third spaces — the places between home and school where kids can play and learn — are
@@ -170,6 +153,7 @@ export default function Spruce() {
               </p>
             </article>
             <article className="spruce-figma-insight-card">
+              <div className="spruce-insight-num">04</div>
               <h3 className="spruce-figma-insight-title">OUR REFRAME</h3>
               <p className="spruce-figma-insight-body spruce-figma-insight-body--italic">
                 How might we help low-income families give their children opportunities to participate in
@@ -276,20 +260,19 @@ export default function Spruce() {
             >
               Final screens
             </h2>
-            <div className="spruce-figma-final-browser">
-              <div className="spruce-figma-final-tabs" role="tablist" aria-label="Choose a full screen to preview">
-                {FINAL_SCREENS.map((s, i) => (
+            <div className="spruce-figma-final-browser-h">
+              <div className="spruce-figma-final-tabs-h" role="tablist" aria-label="Choose a screen to preview">
+                {FINAL_SCREENS.map((s) => (
                   <button
                     key={s.id}
                     type="button"
                     role="tab"
-                    id={`spruce-final-tab-${s.id}`}
-                    className={`spruce-figma-final-tab${finalScreenId === s.id ? ' spruce-figma-final-tab--active' : ''}`}
+                    id={`tab-${s.id}`}
+                    className={`spruce-figma-final-tab-h${finalScreenId === s.id ? ' spruce-figma-final-tab-h--active' : ''}`}
                     aria-selected={finalScreenId === s.id}
                     aria-controls="spruce-final-tabpanel"
                     tabIndex={finalScreenId === s.id ? 0 : -1}
                     onClick={() => setFinalScreenId(s.id)}
-                    onKeyDown={(e) => onFinalTabKeyDown(e, i)}
                   >
                     {s.label}
                   </button>
@@ -299,7 +282,7 @@ export default function Spruce() {
                 id="spruce-final-tabpanel"
                 className="spruce-figma-final-viewport"
                 role="tabpanel"
-                aria-labelledby={`spruce-final-tab-${finalScreenId}`}
+                aria-labelledby={`tab-${finalScreenId}`}
                 tabIndex={0}
               >
                 <img

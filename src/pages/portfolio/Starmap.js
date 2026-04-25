@@ -330,13 +330,18 @@ export default function Starmap() {
           <section className="spruce-section">
             <div className="spruce-container">
               <div className="spruce-section-tag">Design Showcase</div>
-              <div className="spruce-showcase-layout">
-                <div className="spruce-tabs">
+              <div className="spruce-figma-final-browser-h">
+                <div className="spruce-figma-final-tabs-h" role="tablist" aria-label="Choose a screen to preview">
                   {Object.keys(SHOWCASE_SCREENS).map((key) => (
                     <button
                       key={key}
                       type="button"
-                      className={`spruce-tab ${activeTab === key ? 'spruce-tab--active' : ''}`}
+                      role="tab"
+                      id={`tab-${key}`}
+                      className={`spruce-figma-final-tab-h${activeTab === key ? ' spruce-figma-final-tab-h--active' : ''}`}
+                      aria-selected={activeTab === key}
+                      aria-controls="spruce-final-tabpanel"
+                      tabIndex={activeTab === key ? 0 : -1}
                       onClick={() => setActiveTab(key)}
                     >
                       {key}
@@ -346,9 +351,11 @@ export default function Starmap() {
 
                 <div className="spruce-showcase-frame">
                   <div
+                    id="spruce-final-tabpanel"
                     className="spruce-showcase-scroll"
                     tabIndex={0}
-                    role="region"
+                    role="tabpanel"
+                    aria-labelledby={`tab-${activeTab}`}
                     aria-label={`Full-page ${activeTab} design — scroll for full length`}
                   >
                     <img src={showcase.src} alt={showcase.alt} loading="lazy" />
@@ -358,7 +365,7 @@ export default function Starmap() {
             </div>
           </section>
 
-          <section className="spruce-section spruce-container">
+          <section className="spruce-section spruce-container" style={{ paddingTop: '50px', paddingBottom: '50px' }}>
             <div className="spruce-section-tag">Reflections</div>
             <div className="spruce-reflect-grid">
               <div className="spruce-reflect-item">
@@ -381,7 +388,7 @@ export default function Starmap() {
             </div>
           </section>
 
-          <section className="spruce-section spruce-container">
+          <section className="spruce-section spruce-container" style={{ paddingTop: '50px', paddingBottom: '50px' }}>
             <div className="spruce-section-tag">Next Steps</div>
             <div className="spruce-reflect-grid">
               <div className="spruce-reflect-item">
@@ -423,7 +430,7 @@ export default function Starmap() {
             </div>
           </section>
 
-          <section className="spruce-section spruce-container">
+          <section className="spruce-section spruce-container" style={{ paddingTop: '50px', paddingBottom: '50px' }}>
             <div className="spruce-section-tag">Impact</div>
             <ul className="spruce-contrib-list">
               <li>Transforms long-form relationship journaling into a structured product workflow</li>

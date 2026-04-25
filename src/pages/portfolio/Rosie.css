@@ -30,21 +30,6 @@
   color: #2d9ab8;
 }
 
-.rosie-figma-page .spruce-figma-final-tab {
-  color: #2d9ab8;
-  border-color: #2d9ab8;
-}
-
-.rosie-figma-page .spruce-figma-final-tab:hover {
-  background: rgba(45, 154, 184, 0.08);
-}
-
-.rosie-figma-page .spruce-figma-final-tab--active {
-  background: #2d9ab8;
-  color: #fff;
-  border-color: #2d9ab8;
-}
-
 .rosie-figma-page .spruce-figma-next {
   color: #2d9ab8;
 }
@@ -70,7 +55,7 @@
 .rosie-figma-page .spruce-figma-insight-title,
 .rosie-figma-page .spruce-figma-reframe-label,
 .rosie-figma-page .spruce-figma-prompt-label,
-.rosie-figma-page .spruce-figma-final-tab,
+.rosie-figma-page .spruce-figma-final-tab-h,
 .rosie-figma-page .spruce-figma-next {
   font-family: var(--spruce-ff-boring-reg) !important;
 }

@@ -7,7 +7,7 @@ import './Spruce.css'
 import './Aurora.css'
 
 const I = {
-  home: '/images/projects/aurora/aurora_home.png',
+  home: '/images/projects/aurora/aurora_t.png',
   products: '/images/projects/aurora/products.png',
   medications: '/images/projects/aurora/medications.png',
   dropdown: '/images/projects/aurora/dropdown.png',
@@ -184,29 +184,29 @@ export default function Aurora() {
               DESIGN SHOWCASE
             </h2>
             <h2 className="spruce-figma-hmw-title">The Solution</h2>
-            <div className="spruce-figma-final-browser">
-              <div className="spruce-figma-final-tabs" role="tablist" aria-label="Choose a screen to preview">
+            <div className="spruce-figma-final-browser-h">
+              <div className="spruce-figma-final-tabs-h" role="tablist" aria-label="Choose a screen to preview">
                 {SHOWCASE_SCREENS.map((screen) => (
                   <button
                     key={screen.id}
                     type="button"
                     role="tab"
-                    id={`aurora-tab-${screen.id}`}
-                    className={`spruce-figma-final-tab${activeTab === screen.id ? ' spruce-figma-final-tab--active' : ''}`}
+                    id={`tab-${screen.id}`}
+                    className={`spruce-figma-final-tab-h${activeTab === screen.id ? ' spruce-figma-final-tab-h--active' : ''}`}
                     aria-selected={activeTab === screen.id}
-                    aria-controls="aurora-tabpanel"
+                    aria-controls="spruce-final-tabpanel"
                     tabIndex={activeTab === screen.id ? 0 : -1}
                     onClick={() => setActiveTab(screen.id)}
                   >
-                    {screen.id}
+                    {screen.label}
                   </button>
                 ))}
               </div>
               <div
-                id="aurora-tabpanel"
+                id="spruce-final-tabpanel"
                 className="spruce-figma-final-viewport"
                 role="tabpanel"
-                aria-labelledby={`aurora-tab-${activeTab}`}
+                aria-labelledby={`tab-${activeTab}`}
                 tabIndex={0}
               >
                 <img src={showcase.src} alt={showcase.alt} className="spruce-figma-final-shot" loading="lazy" />

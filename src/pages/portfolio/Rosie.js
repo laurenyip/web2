@@ -116,17 +116,17 @@ export default function Rosie() {
             <h2 id="rosie-showcase-heading" className="spruce-figma-section-label spruce-figma-section-label--center">
               DESIGN SHOWCASE
             </h2>
-            <div className="spruce-figma-final-browser">
-              <div className="spruce-figma-final-tabs" role="tablist" aria-label="Choose a screen to preview">
+            <div className="spruce-figma-final-browser-h">
+              <div className="spruce-figma-final-tabs-h" role="tablist" aria-label="Choose a screen to preview">
                 {SHOWCASE_SCREENS.map((screen) => (
                   <button
                     key={screen.id}
                     type="button"
                     role="tab"
-                    id={`rosie-tab-${screen.id}`}
-                    className={`spruce-figma-final-tab${activeTab === screen.id ? ' spruce-figma-final-tab--active' : ''}`}
+                    id={`tab-${screen.id}`}
+                    className={`spruce-figma-final-tab-h${activeTab === screen.id ? ' spruce-figma-final-tab-h--active' : ''}`}
                     aria-selected={activeTab === screen.id}
-                    aria-controls="rosie-tabpanel"
+                    aria-controls="spruce-final-tabpanel"
                     tabIndex={activeTab === screen.id ? 0 : -1}
                     onClick={() => setActiveTab(screen.id)}
                   >
@@ -135,10 +135,10 @@ export default function Rosie() {
                 ))}
               </div>
               <div
-                id="rosie-tabpanel"
+                id="spruce-final-tabpanel"
                 className="spruce-figma-final-viewport"
                 role="tabpanel"
-                aria-labelledby={`rosie-tab-${activeTab}`}
+                aria-labelledby={`tab-${activeTab}`}
                 tabIndex={0}
               >
                 <img src={showcase.src} alt={showcase.alt} className="spruce-figma-final-shot" loading="lazy" />

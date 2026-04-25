@@ -29,21 +29,6 @@
   color: #4a7c59;
 }
 
-.aurora-figma-page .spruce-figma-final-tab {
-  color: #4a7c59;
-  border-color: #4a7c59;
-}
-
-.aurora-figma-page .spruce-figma-final-tab:hover {
-  background: rgba(74, 124, 89, 0.08);
-}
-
-.aurora-figma-page .spruce-figma-final-tab--active {
-  background: #4a7c59;
-  color: #fff;
-  border-color: #4a7c59;
-}
-
 .aurora-figma-page .spruce-figma-next {
   color: #4a7c59;
 }
@@ -69,7 +54,7 @@
 .aurora-figma-page .spruce-figma-insight-title,
 .aurora-figma-page .spruce-figma-reframe-label,
 .aurora-figma-page .spruce-figma-prompt-label,
-.aurora-figma-page .spruce-figma-final-tab,
+.aurora-figma-page .spruce-figma-final-tab-h,
 .aurora-figma-page .spruce-figma-next {
   font-family: var(--spruce-ff-boring-reg) !important;
 }
