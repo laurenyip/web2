@@ -245,7 +245,7 @@ export default function Starmap() {
             >
               WHY STARMAP EXISTS
             </h2>
-            <h3 className="spruce-figma-ds-question" style={{ textAlign: 'center', marginBottom: 0 }}>
+            <h3 className="spruce-figma-ds-question">
               What if I made an app for that?
             </h3>
           </section>

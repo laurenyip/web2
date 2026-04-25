@@ -457,6 +457,19 @@
   color: #231a38;
 }
 
+.starmap-page .spruce-figma-ds-question {
+  font-family: var(--spruce-ff-boring-reg);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: 0.0278em;
+  color: #000000;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 920px;
+  margin-bottom: 0;
+}
+
 .starmap-page .spruce-figma-meta-label {
   font-family: var(--spruce-ff-boring-reg);
   font-size: 24px;
@@ -536,14 +549,14 @@
 
 .starmap-feature-quote {
   font-family: var(--spruce-ff-boring-reg, 'boring_reg', Georgia, serif);
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 400;
   font-style: normal;
   line-height: 1.15;
   color: #231a38;
   text-align: center;
-  max-width: 680px;
-  margin: 40px auto 40px;
+  max-width: 800px;
+  margin: 80px auto 80px;
   padding: 0 var(--spruce-pad-x, 95px);
 }
 
