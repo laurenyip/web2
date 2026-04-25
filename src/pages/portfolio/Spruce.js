@@ -22,6 +22,7 @@ const I = {
   activities: '/images/projects/spruce/activities.png',
   resources: '/images/projects/spruce/resources.png',
   ipadkids: '/images/projects/spruce/ipadkids.png',
+  sleeping: '/images/projects/spruce/sleeping.png',
   laura: '/images/projects/spruce/laura.png',
   spanish: '/images/projects/spruce/spanish.png',
 }
@@ -119,48 +120,255 @@ export default function Spruce() {
             />
           </section>
 
-          <section className="spruce-figma-insight-grid" aria-label="Prompt and research highlights">
-            <article className="spruce-figma-insight-card">
-              <div className="spruce-insight-num">01</div>
-              <h3 className="spruce-figma-insight-title">THE ORIGINAL PROMPT</h3>
-              <p className="spruce-figma-insight-body spruce-figma-insight-body--italic">
-                In a world that rewards being always on, how might we design an experience that helps people
-                set and keep boundaries to make recovery time feel socially safe, rewarding, and easy to
-                sustain?
-              </p>
-            </article>
-            <article className="spruce-figma-insight-card">
-              <div className="spruce-insight-num">02</div>
-              <h3 className="spruce-figma-insight-title">Lower-Income Predicts Increased Smartphone Use and...</h3>
-              <p className="spruce-figma-insight-body">
-                As the coronavirus disease 2019 (COVID-19) has continued for a...
-              </p>
-              <a
-                className="spruce-figma-insight-link"
-                href="https://pmc.ncbi.nlm.nih.gov"
-                target="_blank"
-                rel="noreferrer"
-              >
-                pmc.ncbi.nlm.nih.gov
-              </a>
-            </article>
-            <article className="spruce-figma-insight-card">
-              <div className="spruce-insight-num">03</div>
-              <h3 className="spruce-figma-insight-title">Spruce removes friction.</h3>
-              <p className="spruce-figma-insight-body">
-                Third spaces — the places between home and school where kids can play and learn — are
-                disproportionately inaccessible to families without disposable income or time to look for them.
-              </p>
-            </article>
-            <article className="spruce-figma-insight-card">
-              <div className="spruce-insight-num">04</div>
-              <h3 className="spruce-figma-insight-title">OUR REFRAME</h3>
-              <p className="spruce-figma-insight-body spruce-figma-insight-body--italic">
-                How might we help low-income families give their children opportunities to participate in
-                third-spaces, to create self-sustainable habits that prevent digital fatigue and long-term
-                phone addiction?
-              </p>
-            </article>
+          <section className="spruce-figma-insight-wrap" aria-label="Prompt and research highlights">
+            <div className="spruce-figma-insight-grid">
+              <article className="spruce-figma-insight-card">
+                <div className="spruce-insight-num">01</div>
+                <h3 className="spruce-figma-insight-title">THE ORIGINAL PROMPT</h3>
+                <p className="spruce-figma-insight-body spruce-figma-insight-body">
+                  In a world that rewards being always on, how might we design an experience that helps people
+                  set and keep boundaries to make recovery time feel socially safe, rewarding, and easy to
+                  sustain?
+                </p>
+              </article>
+              <article className="spruce-figma-insight-card">
+                <div className="spruce-insight-num">02</div>
+                <h3 className="spruce-figma-insight-title">Lower-Income Predicts Increased Smartphone Use and...</h3>
+                <p className="spruce-figma-insight-body">
+                  As the coronavirus disease 2019 (COVID-19) has continued for a...
+                </p>
+                <a
+                  className="spruce-figma-insight-link"
+                  href="https://pmc.ncbi.nlm.nih.gov"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  pmc.ncbi.nlm.nih.gov
+                </a>
+              </article>
+              <article className="spruce-figma-insight-card">
+                <div className="spruce-insight-num">03</div>
+                <h3 className="spruce-figma-insight-title">Too much friction.</h3>
+                <p className="spruce-figma-insight-body">
+                  Third spaces — the places between home and school where kids can play and learn — are
+                  disproportionately inaccessible to families without disposable income or time to look for them.
+                </p>
+              </article>
+              <article className="spruce-figma-insight-card">
+                <div className="spruce-insight-num">04</div>
+                <h3 className="spruce-figma-insight-title">OUR REFRAME</h3>
+                <p className="spruce-figma-insight-body spruce-figma-insight-body">
+                  How might we help low-income families give their children opportunities to participate in
+                  third-spaces, to create self-sustainable habits that prevent digital fatigue and long-term
+                  phone addiction?
+                </p>
+              </article>
+            </div>
+            <img
+              src={I.sleeping}
+              alt="Child sleeping illustration"
+              className="spruce-figma-sleeping"
+            />
+          </section>
+
+          <section style={{ padding: '0 var(--spruce-pad-x, 95px) 56px' }}>
+            <div className="spruce-friction-row">
+              <div className="spruce-friction-item">
+                <h3 className="spruce-figma-feature-title">Cost barriers</h3>
+                <p className="spruce-figma-body">
+                  Registration fees, equipment costs, and transportation expenses make most organized activities
+                  inaccessible before a family even considers whether they&apos;re a good fit. Even &quot;free&quot;
+                  programs carry hidden costs that quietly exclude.
+                </p>
+              </div>
+
+              <div className="spruce-friction-item">
+                <h3 className="spruce-figma-feature-title">Information gaps</h3>
+                <p className="spruce-figma-body">
+                  Free and subsidized programs exist but are scattered across city websites, community boards, and
+                  social media groups that require time and digital literacy to navigate. Families who need them most
+                  are least likely to find them.
+                </p>
+              </div>
+
+              <div className="spruce-friction-item">
+                <h3 className="spruce-figma-feature-title">Time and logistics</h3>
+                <p className="spruce-figma-body">
+                  Working multiple jobs leaves little capacity to research, register, and coordinate consistent
+                  attendance. Without a reliable way to discover and track options, the screen becomes the default -
+                  not a choice, but a fallback.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="spruce-figma-ds-band">
+            <h2 className="spruce-figma-section-label spruce-figma-section-label--center spruce-figma-section-label--ds">
+              DESIGN SYSTEM
+            </h2>
+            <p className="spruce-figma-ds-question">
+              How do we create an inviting and accessible user experience?
+            </p>
+
+            <div className="spruce-figma-ds-inner" style={{ marginBottom: '48px' }}>
+              <div className="spruce-figma-ds-copy">
+                <img src={I.spruceLogo} alt="Spruce logo" className="spruce-figma-ds-logo" />
+                <p className="spruce-figma-body">
+                  Spruce was named after the street in Vancouver. We wanted it to have real ties to the city.
+                </p>
+              </div>
+              <div className="spruce-figma-ds-copy">
+                <img src={I.bubble} alt="Speech bubble color motif" className="spruce-figma-ds-bubble" />
+                <p className="spruce-figma-body spruce-figma-body--tight">
+                  The blue was chosen for the mountains, green for the forests, and red for the salmon.
+                </p>
+              </div>
+            </div>
+
+            <div className="spruce-figma-ds-inner" style={{ marginBottom: '48px' }}>
+              <div>
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Colour
+                </h3>
+                <div className="spruce-ds-swatches">
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#3e5d39' }} />
+                    <span className="spruce-ds-swatch-label">Forest</span>
+                    <span className="spruce-ds-swatch-hex">#3E5D39</span>
+                    <span className="spruce-ds-swatch-note">
+                      Grounded and local. Feels steady and trustworthy.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#6b8bcd' }} />
+                    <span className="spruce-ds-swatch-label">Blue</span>
+                    <span className="spruce-ds-swatch-hex">#6B8BCD</span>
+                    <span className="spruce-ds-swatch-note">
+                      Calm and informational. Guides attention without shouting.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#d03419' }} />
+                    <span className="spruce-ds-swatch-label">Red</span>
+                    <span className="spruce-ds-swatch-hex">#D03419</span>
+                    <span className="spruce-ds-swatch-note">
+                      Warm contrast color used for emphasis and urgency cues.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#fbf9ed', border: '1px solid #e5e7eb' }} />
+                    <span className="spruce-ds-swatch-label">Spruce BG</span>
+                    <span className="spruce-ds-swatch-hex">#FBF9ED</span>
+                    <span className="spruce-ds-swatch-note">
+                      Warm background tone that keeps reading comfortable over long sections.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Typography
+                </h3>
+                <div className="spruce-ds-type-stack">
+                  <div className="spruce-ds-type-item">
+                    <div className="spruce-ds-type-sample" style={{ fontFamily: 'var(--spruce-ff-boring-reg)', fontSize: '28px' }}>
+                      ES Rebond
+                    </div>
+                    <span className="spruce-ds-type-role">Headings &amp; display</span>
+                    <span className="spruce-ds-swatch-note">
+                      Geometric but warm. Clear and confident without feeling corporate.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-type-item" style={{ marginTop: '20px' }}>
+                    <div
+                      className="spruce-ds-type-sample"
+                      style={{ fontFamily: 'Arial, sans-serif', fontSize: '16px', letterSpacing: '0.06em', lineHeight: 1.6 }}
+                    >
+                      Arial - body copy and captions
+                    </div>
+                    <span className="spruce-ds-type-role">Body text</span>
+                    <span className="spruce-ds-swatch-note">
+                      Highly legible at small sizes. Familiar and low-friction.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="spruce-figma-ds-inner" style={{ marginBottom: '48px' }}>
+              <div>
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Corner radius
+                </h3>
+                <div className="spruce-ds-radius-row">
+                  <div className="spruce-ds-radius-item">
+                    <div className="spruce-ds-radius-box" style={{ borderRadius: '2px' }} />
+                    <span className="spruce-ds-swatch-label spruce-ds-num-label">2px</span>
+                    <span className="spruce-ds-swatch-note">Insight cards - structured, data-forward</span>
+                  </div>
+                  <div className="spruce-ds-radius-item">
+                    <div className="spruce-ds-radius-box" style={{ borderRadius: '10px' }} />
+                    <span className="spruce-ds-swatch-label spruce-ds-num-label">10px</span>
+                    <span className="spruce-ds-swatch-note">UI cards, showcase frames - friendly</span>
+                  </div>
+                  <div className="spruce-ds-radius-item">
+                    <div className="spruce-ds-radius-box" style={{ borderRadius: '17px' }} />
+                    <span className="spruce-ds-swatch-label spruce-ds-num-label">17px</span>
+                    <span className="spruce-ds-swatch-note">Feature screenshots - soft, approachable</span>
+                  </div>
+                  <div className="spruce-ds-radius-item">
+                    <div className="spruce-ds-radius-box" style={{ borderRadius: '32px' }} />
+                    <span className="spruce-ds-swatch-label spruce-ds-num-label">32px</span>
+                    <span className="spruce-ds-swatch-note">Profile cards - the most human-facing element</span>
+                  </div>
+                </div>
+                <p className="spruce-figma-body" style={{ marginTop: '16px', maxWidth: '420px' }}>
+                  Rounder corners signal lower stakes. Personal content gets softer edges; data blocks stay sharper.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Imagery
+                </h3>
+                <p className="spruce-figma-body" style={{ marginBottom: '12px' }}>
+                  Imagery is local and specific, not stock. Vancouver context makes the problem feel immediate. I decided to have Science World featured on the home page!
+                </p>
+                <p className="spruce-figma-body" style={{ marginBottom: '12px' }}>
+                  The logo and bubble stay hand-drawn on purpose. It feels human, not institutional.
+                </p>
+                <p className="spruce-figma-body">
+                  Real Vancouver geography removes the question: &quot;does this apply to me?&quot;
+                </p>
+              </div>
+            </div>
+
+            <div className="spruce-figma-ds-inner">
+              <div>
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Visual hierarchy
+                </h3>
+                <p className="spruce-figma-body" style={{ marginBottom: '12px' }}>
+                  Bold is reserved for titles. The reading experience stays calm and scannable.
+                </p>
+                <p className="spruce-figma-body">
+                  Blue uppercase labels create a steady scan rhythm: section label → question → body.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Spacing and density
+                </h3>
+                <p className="spruce-figma-body" style={{ marginBottom: '12px' }}>
+                  Generous whitespace is intentional. Spruce should feel like relief, not another dense service portal.
+                </p>
+                <p className="spruce-figma-body">
+                  95px side padding keeps line lengths readable at 1280px and reduces cognitive load.
+                </p>
+              </div>
+            </div>
           </section>
 
           <section className="spruce-figma-features-h spruce-figma-features-h--friction">
@@ -176,8 +384,8 @@ export default function Spruce() {
             <div className="spruce-figma-split-copy" style={{ maxWidth: '300px' }}>
               <h3 className="spruce-figma-feature-title">Resources</h3>
               <p className="spruce-figma-body">
-                We provide a page full of relevant grants, subsidies, and community resources specifically
-                for low-income families.
+                I researched relevant grants, subsidies, and community resources specifically available
+                for lower-income families in Canada. This was our best solution to solve the money problem with what's in our control.
               </p>
             </div>
           </section>
@@ -191,32 +399,8 @@ export default function Spruce() {
             <div className="spruce-figma-split-copy" style={{ maxWidth: '300px' }}>
               <h3 className="spruce-figma-feature-title">Filters for activities</h3>
               <p className="spruce-figma-body">
-                Filter free and low-cost activities by neighbourhood, age group, and descriptive type tags.
+                Filter free and low-cost activities by neighbourhood, age group, and descriptive type tags. This addresses the information gap and streamlines the research flow, reducing the time it takes to find and register for activities.
               </p>
-            </div>
-          </section>
-
-          <section className="spruce-figma-ds-band">
-            <h2 className="spruce-figma-section-label spruce-figma-section-label--center spruce-figma-section-label--ds">
-              Design system
-            </h2>
-            <h3 className="spruce-figma-ds-question">
-              How do we create an inviting and accessible user experience?
-            </h3>
-            <div className="spruce-figma-ds-inner">
-              <div className="spruce-figma-ds-copy">
-                <img src={I.spruceLogo} alt="Spruce logo" className="spruce-figma-ds-logo" />
-                <p className="spruce-figma-body">
-                  Spruce was named after the street in Vancouver. We wanted it to have real ties to the
-                  city.
-                </p>
-              </div>
-              <div className="spruce-figma-ds-copy">
-                <img src={I.bubble} alt="Speech bubble color motif" className="spruce-figma-ds-bubble" />
-                <p className="spruce-figma-body spruce-figma-body--tight">
-                  The blue was chosen for the mountains, green for the forests, and red for the salmon.
-                </p>
-              </div>
             </div>
           </section>
 
@@ -325,7 +509,7 @@ export default function Spruce() {
           </section>
 
           <footer className="spruce-figma-footer">
-            <Link to="/projects" className="spruce-figma-next">
+            <Link to="/aurora" className="spruce-figma-next">
               See next case study &nbsp;
               <span
                 aria-hidden="true"

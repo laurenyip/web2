@@ -79,7 +79,7 @@ export default function Rosie() {
 
           <section className="spruce-figma-challenge">
             <h2 className="spruce-figma-section-label spruce-figma-section-label--center">DESIGN CHALLENGE</h2>
-            <h2 className="spruce-figma-hmw-title">
+            <h2 className="spruce-figma-ds-question">
               How might we capture authentic human reactions to non-verbal virtual agents at scale?
             </h2>
             <p className="spruce-figma-body">
@@ -89,7 +89,7 @@ export default function Rosie() {
             </p>
           </section>
 
-          <section className="spruce-figma-split">
+          <section className="spruce-figma-split" style={{ paddingTop: '50px' }}>
             <div>
               <h2 className="spruce-figma-section-label">MY CONTRIBUTION</h2>
               <p className="spruce-figma-body">
@@ -97,19 +97,7 @@ export default function Rosie() {
                 communicate the research, designed and built the project website, edited the research paper, annotated
                 data for analysis, and recruited participants and volunteers for data collection.
               </p>
-              <ul className="spruce-contrib-list">
-                <li>Documentary video production and direction</li>
-                <li>Project website design and development</li>
-                <li>Research paper editing and formatting</li>
-                <li>Data annotation for analysis</li>
-                <li>Participant and volunteer recruitment</li>
-              </ul>
             </div>
-            <img
-              src="/images/projects/rosie/rosielab.github.io.png"
-              alt="React to This! project website"
-              style={{ width: '100%', height: 'auto', borderRadius: '10px', border: '1px solid #e5e7eb' }}
-            />
           </section>
 
           <section className="spruce-figma-final" aria-labelledby="rosie-showcase-heading">
@@ -147,33 +135,6 @@ export default function Rosie() {
           </section>
 
           <section className="spruce-figma-challenge">
-            <h2 className="spruce-figma-section-label spruce-figma-section-label--center">IMPACT</h2>
-            <div className="spruce-impact-row">
-              <article className="spruce-impact-card">
-                <div className="spruce-impact-icon" aria-hidden>
-                  📊
-                </div>
-                <h3 className="spruce-impact-label">Annotated dataset</h3>
-                <p className="spruce-impact-sub">comprehensive multimodal reaction data for virtual agent training</p>
-              </article>
-              <article className="spruce-impact-card">
-                <div className="spruce-impact-icon" aria-hidden>
-                  🎬
-                </div>
-                <h3 className="spruce-impact-label">Documentary produced</h3>
-                <p className="spruce-impact-sub">communicating the research to broader audiences</p>
-              </article>
-              <article className="spruce-impact-card">
-                <div className="spruce-impact-icon" aria-hidden>
-                  ✦
-                </div>
-                <h3 className="spruce-impact-label">Published research</h3>
-                <p className="spruce-impact-sub">supporting academic paper on social agent interaction</p>
-              </article>
-            </div>
-          </section>
-
-          <section className="spruce-figma-challenge">
             <h2 className="spruce-figma-section-label spruce-figma-section-label--center">REFLECTIONS</h2>
             <div className="spruce-figma-reflect-grid">
               <div>
@@ -196,11 +157,8 @@ export default function Rosie() {
           </section>
 
           <footer className="spruce-figma-footer">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Link to="/projects" className="spruce-figma-next">
-                ← Back to Projects
-              </Link>
-              <Link to="/aurora" className="spruce-figma-next">
+            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+              <Link to="/starmap" className="spruce-figma-next">
                 See next case study →
               </Link>
             </div>

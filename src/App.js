@@ -11,12 +11,14 @@ import Aurora from './pages/portfolio/Aurora'
 import Rosie from './pages/portfolio/Rosie'
 import Starmap from './pages/portfolio/Starmap'
 import Webring from './components/Webring'
+import RouteScrollToTop from './components/RouteScrollToTop'
 import './index.css'
 import './pages/App.css'
 
 function App() {
   return (
     <Router>
+      <RouteScrollToTop />
       <div className='app-container flex min-h-screen flex-col'>
         <div className='flex min-h-0 w-full flex-1 flex-col'>
           <Routes>
