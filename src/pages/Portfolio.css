@@ -85,7 +85,7 @@
 .portfolio-card-title {
   margin: 0 0 0.28rem;
   color: #1f2937;
-  font-family: 'urania', sans-serif;
+  font-family: 'boring_reg', sans-serif;
   font-size: clamp(1.15rem, 2.1vw, 1.6rem);
   line-height: 1.25;
 }

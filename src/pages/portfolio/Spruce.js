@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
+import ScrollToTop from '../../components/ScrollToTop'
 import '../App.css'
 import './Spruce.css'
 
@@ -162,10 +163,10 @@ export default function Spruce() {
               </a>
             </article>
             <article className="spruce-figma-insight-card">
-              <h3 className="spruce-figma-insight-title">Spruce removes the friction of finding them.</h3>
+              <h3 className="spruce-figma-insight-title">Spruce removes friction.</h3>
               <p className="spruce-figma-insight-body">
                 Third spaces — the places between home and school where kids can play and learn — are
-                disproportionately inaccessible to families without disposable income.
+                disproportionately inaccessible to families without disposable income or time to look for them.
               </p>
             </article>
             <article className="spruce-figma-insight-card">
@@ -359,6 +360,7 @@ export default function Spruce() {
           </footer>
         </div>
       </div>
+      <ScrollToTop color="#3e5d39" />
     </div>
   )
 }
