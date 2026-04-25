@@ -1,40 +1,89 @@
-/* Tighter, more even vertical rhythm than default Spruce */
-.rosie-page .spruce-hero {
-  padding-top: 3rem;
-  padding-bottom: 2.5rem;
+/* ── React to This! — Rosie.css ── */
+
+.rosie-figma-page {
+  --spruce-ff-boring-reg: 'boring_reg', 'ESrebond_regular', Georgia, serif;
+  --spruce-ff-boring-med: 'boring_med', 'ESrebond_regular', Georgia, serif;
 }
 
-.rosie-page .spruce-section {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+/* Hero — React blue */
+.rosie-figma-page .spruce-figma-hero,
+.rosie-figma-page .rosie-figma-hero {
+  background: #61DAFB;
 }
 
-.rosie-page .spruce-hero + .spruce-section {
-  padding-top: 2rem;
+.rosie-figma-page .spruce-figma-nav {
+  background: rgba(255, 255, 255, 0.85);
 }
 
-.rosie-page .spruce-section-tag {
-  margin-bottom: 1rem;
+/* Accent color — lighter teal, similar register to Spruce blue */
+.rosie-figma-page .spruce-figma-section-label,
+.rosie-figma-page .spruce-figma-design-challenge-label,
+.rosie-figma-page .spruce-figma-section-label--final,
+.rosie-figma-page .spruce-figma-section-label--reflections {
+  color: #2d9ab8;
 }
 
-.rosie-page .spruce-back-row {
-  padding-top: 2rem;
-  padding-bottom: 3rem;
+.rosie-figma-page .spruce-figma-resource-title,
+.rosie-figma-page .spruce-figma-activities-title,
+.rosie-figma-page .spruce-figma-feature-title,
+.rosie-figma-page .spruce-figma-reflect-title {
+  color: #2d9ab8;
 }
 
-@media (max-width: 600px) {
-  .rosie-page .spruce-section {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
+.rosie-figma-page .spruce-figma-final-tab {
+  color: #2d9ab8;
+  border-color: #2d9ab8;
 }
 
-.rosie-page .spruce-hero-title,
-.rosie-page .spruce-section-title,
-.rosie-page .spruce-meta-value,
-.rosie-page .spruce-feature-title,
-.rosie-page .spruce-impact-label,
-.rosie-page .spruce-step-title,
-.rosie-page .spruce-reflection-title {
-  font-family: 'urania', sans-serif !important;
+.rosie-figma-page .spruce-figma-final-tab:hover {
+  background: rgba(45, 154, 184, 0.08);
+}
+
+.rosie-figma-page .spruce-figma-final-tab--active {
+  background: #2d9ab8;
+  color: #fff;
+  border-color: #2d9ab8;
+}
+
+.rosie-figma-page .spruce-figma-next {
+  color: #2d9ab8;
+}
+
+.rosie-figma-page .spruce-figma-next:hover {
+  color: #1a6e85;
+}
+
+/* boring font for all display/heading elements */
+.rosie-figma-page .spruce-figma-tagline,
+.rosie-figma-page .spruce-figma-hmw-title,
+.rosie-figma-page .spruce-figma-display,
+.rosie-figma-page .spruce-figma-section-label,
+.rosie-figma-page .spruce-figma-design-challenge-label,
+.rosie-figma-page .spruce-figma-resource-title,
+.rosie-figma-page .spruce-figma-activities-title,
+.rosie-figma-page .spruce-figma-feature-title,
+.rosie-figma-page .spruce-figma-reflect-title,
+.rosie-figma-page .spruce-figma-meta-label,
+.rosie-figma-page .spruce-figma-ds-question,
+.rosie-figma-page .spruce-figma-friction-title,
+.rosie-figma-page .spruce-figma-stat-head,
+.rosie-figma-page .spruce-figma-insight-title,
+.rosie-figma-page .spruce-figma-reframe-label,
+.rosie-figma-page .spruce-figma-prompt-label,
+.rosie-figma-page .spruce-figma-final-tab,
+.rosie-figma-page .spruce-figma-next {
+  font-family: var(--spruce-ff-boring-reg) !important;
+}
+
+/* Arial for all body text */
+.rosie-figma-page .spruce-figma-body,
+.rosie-figma-page .spruce-figma-lede,
+.rosie-figma-page .spruce-figma-meta-value,
+.rosie-figma-page .spruce-figma-thirdspaces,
+.rosie-figma-page .spruce-figma-stat-body,
+.rosie-figma-page .spruce-figma-insight-body,
+.rosie-figma-page .spruce-figma-reflect-body,
+.rosie-figma-page .spruce-figma-quote,
+.rosie-figma-page .spruce-figma-reframe-body {
+  font-family: Arial, sans-serif !important;
 }

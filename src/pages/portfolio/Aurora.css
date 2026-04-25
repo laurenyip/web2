@@ -1,45 +1,103 @@
-/* Tighter, more even vertical rhythm than default Spruce (5rem × 2 per boundary) */
-.aurora-page .spruce-hero {
-  padding-top: 3rem;
-  padding-bottom: 2.5rem;
+/* ── Aurora Pet Co. — Aurora.css ── */
+
+.aurora-figma-page {
+  --spruce-ff-boring-reg: 'boring_reg', 'ESrebond_regular', Georgia, serif;
+  --spruce-ff-boring-med: 'boring_med', 'ESrebond_regular', Georgia, serif;
 }
 
-.aurora-page .spruce-section {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+/* Hero — pink background */
+.aurora-figma-page .spruce-figma-hero,
+.aurora-figma-page .aurora-figma-hero {
+  background: #FCBAFF;
 }
 
-.aurora-page .spruce-hero + .spruce-section {
-  padding-top: 2rem;
+.aurora-figma-page .spruce-figma-nav {
+  background: rgba(255, 255, 255, 0.85);
 }
 
-.aurora-page .spruce-section-tag {
-  margin-bottom: 1rem;
+/* Accent color overrides — dark forest green from F6FAF2 */
+.aurora-figma-page .spruce-figma-section-label,
+.aurora-figma-page .spruce-figma-design-challenge-label,
+.aurora-figma-page .spruce-figma-section-label--final,
+.aurora-figma-page .spruce-figma-section-label--reflections {
+  color: #4a7c59;
 }
 
-.aurora-page .spruce-back-row {
-  padding-top: 2rem;
-  padding-bottom: 3rem;
+.aurora-figma-page .spruce-figma-resource-title,
+.aurora-figma-page .spruce-figma-activities-title,
+.aurora-figma-page .spruce-figma-feature-title {
+  color: #4a7c59;
 }
 
-@media (max-width: 600px) {
-  .aurora-page .spruce-section {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
+.aurora-figma-page .spruce-figma-final-tab {
+  color: #4a7c59;
+  border-color: #4a7c59;
 }
 
-.aurora-page .spruce-hero-title,
-.aurora-page .spruce-section-title,
-.aurora-page .spruce-meta-value,
-.aurora-page .spruce-feature-title,
-.aurora-page .spruce-impact-label,
-.aurora-page .spruce-step-title,
-.aurora-page .spruce-reflection-title {
-  font-family: 'pepi', sans-serif !important;
+.aurora-figma-page .spruce-figma-final-tab:hover {
+  background: rgba(74, 124, 89, 0.08);
 }
 
-.aurora-page .spruce-features-grid .spruce-feature-title {
-  font-family: 'pepi', sans-serif !important;
-  font-weight: 500;
+.aurora-figma-page .spruce-figma-final-tab--active {
+  background: #4a7c59;
+  color: #fff;
+  border-color: #4a7c59;
+}
+
+.aurora-figma-page .spruce-figma-next {
+  color: #4a7c59;
+}
+
+.aurora-figma-page .spruce-figma-next:hover {
+  color: #2d5238;
+}
+
+/* boring font for all display/heading elements */
+.aurora-figma-page .spruce-figma-tagline,
+.aurora-figma-page .spruce-figma-hmw-title,
+.aurora-figma-page .spruce-figma-display,
+.aurora-figma-page .spruce-figma-section-label,
+.aurora-figma-page .spruce-figma-design-challenge-label,
+.aurora-figma-page .spruce-figma-resource-title,
+.aurora-figma-page .spruce-figma-activities-title,
+.aurora-figma-page .spruce-figma-feature-title,
+.aurora-figma-page .spruce-figma-reflect-title,
+.aurora-figma-page .spruce-figma-meta-label,
+.aurora-figma-page .spruce-figma-ds-question,
+.aurora-figma-page .spruce-figma-friction-title,
+.aurora-figma-page .spruce-figma-stat-head,
+.aurora-figma-page .spruce-figma-insight-title,
+.aurora-figma-page .spruce-figma-reframe-label,
+.aurora-figma-page .spruce-figma-prompt-label,
+.aurora-figma-page .spruce-figma-final-tab,
+.aurora-figma-page .spruce-figma-next {
+  font-family: var(--spruce-ff-boring-reg) !important;
+}
+
+/* Arial for all body text */
+.aurora-figma-page .spruce-figma-body,
+.aurora-figma-page .spruce-figma-lede,
+.aurora-figma-page .spruce-figma-meta-value,
+.aurora-figma-page .spruce-figma-thirdspaces,
+.aurora-figma-page .spruce-figma-stat-body,
+.aurora-figma-page .spruce-figma-insight-body,
+.aurora-figma-page .spruce-figma-reflect-body,
+.aurora-figma-page .spruce-figma-quote,
+.aurora-figma-page .spruce-figma-reframe-body {
+  font-family: Arial, sans-serif !important;
+}
+
+/* Map shell + search bar — green override */
+.aurora-figma-page .spruce-figma-map-shell,
+.aurora-figma-page .spruce-figma-search,
+.aurora-figma-page .spruce-figma-map-frame {
+  border-color: #4a7c59;
+}
+
+.aurora-figma-page .spruce-figma-search {
+  color: #4a7c59;
+}
+
+.aurora-figma-page .spruce-figma-search-ic {
+  border-color: #4a7c59;
 }
