@@ -321,12 +321,17 @@
 }
 
 .spruce-figma-sleeping {
-  width: 100%;
-  max-width: var(--col-2);
+  width: 70px;
+  max-width: 70px;
   height: auto;
   display: block;
   justify-self: center;
   align-self: center;
+}
+
+.spruce-figma-canvas img.spruce-figma-sleeping {
+  width: 70px;
+  max-width: 70px;
 }
 
 .spruce-figma-insight-card {
@@ -1273,7 +1278,7 @@
   }
 
   .spruce-figma-sleeping {
-    max-width: 180px;
+    max-width: 80px;
     margin: 0 auto;
   }
 
