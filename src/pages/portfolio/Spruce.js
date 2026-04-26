@@ -272,20 +272,20 @@ export default function Spruce() {
                 </h3>
                 <div className="spruce-ds-type-stack">
                   <div className="spruce-ds-type-item">
-                    <div className="spruce-ds-type-sample" style={{ fontFamily: 'var(--spruce-ff-boring-reg)', fontSize: '28px' }}>
+                    <div className="spruce-ds-type-sample" style={{ fontFamily: 'var(--spruce-ff-boring-reg)', fontSize: '24px' }}>
                       ES Rebond
                     </div>
                     <span className="spruce-ds-type-role">Headings &amp; display</span>
                     <span className="spruce-ds-swatch-note">
-                      Geometric but warm. Clear and confident without feeling corporate.
+                      Geometric but warm. Clear and confident without feeling corporate. I found this in the "50 Fonts that will be big in 2025" collection.
                     </span>
                   </div>
                   <div className="spruce-ds-type-item" style={{ marginTop: '20px' }}>
                     <div
                       className="spruce-ds-type-sample"
-                      style={{ fontFamily: 'Arial, sans-serif', fontSize: '16px', letterSpacing: '0.06em', lineHeight: 1.6 }}
+                      style={{ fontFamily: 'Inter, sans-serif', fontSize: '24px', letterSpacing: '0.06em', lineHeight: 1.6 }}
                     >
-                      Arial - body copy and captions
+                      Inter - body copy and captions
                     </div>
                     <span className="spruce-ds-type-role">Body text</span>
                     <span className="spruce-ds-swatch-note">
