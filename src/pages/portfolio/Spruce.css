@@ -623,7 +623,6 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--gutter);
   align-items: start;
-  border-top: 0.67px solid #e5e7eb;
   padding-top: 40px;
 }
 
@@ -652,7 +651,6 @@
 /* —— Feature section headers —— */
 .spruce-figma-features-h {
   padding: 28px var(--spruce-pad-x) 16px;
-  border-top: 0.67px solid #e5e7eb;
   padding-top: 40px;
 }
 
@@ -700,7 +698,7 @@
 
 .spruce-figma-friction-shot {
   display: block;
-  width: 100%;
+  width: 80%;
   max-width: 300px;
   border-radius: 0;
   box-shadow: none;
@@ -711,8 +709,10 @@
 
 /* Resources row: card image left */
 .spruce-figma-split--resources .spruce-figma-card-shot {
-  border-radius: 17px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
 }
 
 .spruce-figma-card-shot--round {
@@ -738,9 +738,11 @@
 
 .spruce-figma-body {
   font-family: Arial, sans-serif;
-  font-size: var(--sf-body);
-  line-height: var(--sf-body-lh);
-  letter-spacing: 0.06em;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 1.3px;
   color: var(--spruce-ink);
   max-width: 700px;
 }
@@ -829,7 +831,6 @@
 /* —— Design system band —— */
 .spruce-figma-ds-band {
   padding: 36px var(--spruce-pad-x) 40px;
-  border-top: 0.67px solid #e5e7eb;
   padding-top: 48px;
 }
 
@@ -842,6 +843,10 @@
   margin-bottom: 16px;
 }
 
+.spruce-figma-ds-band .spruce-figma-reflect-title {
+  color: #3e5d39;
+}
+
 /* Centered question below DESIGN SYSTEM label */
 .spruce-figma-page .spruce-figma-ds-question {
   font-family: var(--spruce-ff-boring-reg);
@@ -851,27 +856,44 @@
   letter-spacing: 0.0278em;
   color: #000000;
   text-align: center;
-  margin: 0 auto 28px;
+  margin: 0 auto 64px;
   max-width: 920px;
 }
 
 .spruce-figma-ds-inner {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: calc(var(--gutter) * 2) var(--gutter);
+  grid-template-columns:
+    minmax(0, calc(((100% - var(--gutter)) / 2) - 20px))
+    minmax(0, calc((100% - var(--gutter)) / 2));
+  gap: calc(var(--gutter) * 2) calc(var(--gutter) + 20px);
   align-items: start;
+}
+
+.spruce-figma-ds-intro-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.spruce-figma-ds-intro-row .spruce-figma-ds-copy {
+  height: 100%;
+  min-height: 260px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-content: start;
 }
 
 .spruce-figma-ds-logo {
   display: block;
   max-width: 200px;
+  width: 200px;
   height: auto;
   margin-bottom: 16px;
 }
 
 .spruce-figma-ds-bubble {
   display: block;
-  max-width: 220px;
+  max-width: 200px;
+  width: 200px;
   height: auto;
   margin-bottom: 16px;
 }
@@ -903,30 +925,42 @@
 }
 
 .spruce-ds-swatch-label {
-  font-family: var(--spruce-ff-boring-med);
-  font-size: 20px;
-  font-weight: 500;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
   color: #000;
-  line-height: 1.2;
+  line-height: 21px;
+  letter-spacing: 1.3px;
 }
 
 .spruce-ds-num-label {
   font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 1.3px;
 }
 
 .spruce-ds-swatch-hex {
   font-family: Arial, sans-serif;
-  font-size: 12px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
   color: #6b7280;
-  letter-spacing: 0.06em;
+  line-height: 21px;
+  letter-spacing: 1.3px;
 }
 
 .spruce-ds-swatch-note {
   font-family: Arial, sans-serif;
   font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
   color: #374151;
-  line-height: 1.5;
-  letter-spacing: 0.04em;
+  line-height: 21px;
+  letter-spacing: 1.3px;
   margin-top: 2px;
 }
 
@@ -948,12 +982,14 @@
 }
 
 .spruce-ds-type-role {
-  font-family: var(--spruce-ff-boring-med);
-  font-size: 13px;
-  font-weight: 500;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
   color: #6b8bcd;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  line-height: 21px;
+  letter-spacing: 1.3px;
+  text-transform: none;
 }
 
 .spruce-ds-radius-row {
@@ -980,8 +1016,8 @@
 
 /* —— Profiles + translation splits —— */
 .spruce-figma-profile-img {
-  width: 100%;
-  max-width: 100%;
+  width: 80%;
+  max-width: 80%;
   display: block;
   margin-left: 0;
   margin-right: auto;
@@ -1021,6 +1057,10 @@
   grid-template-columns: var(--col-3) var(--col-2);
 }
 
+.spruce-figma-split--profiles .spruce-figma-profile-img {
+  margin-top: 0;
+}
+
 .spruce-figma-translate-row {
   display: flex;
   align-items: flex-start;
@@ -1045,7 +1085,6 @@
 
 /* —— Final screens: horizontal tabs + viewport-height scroll —— */
 .spruce-figma-final {
-  border-top: 0.67px solid #e5e7eb;
   padding: 48px var(--spruce-pad-x) 56px;
 }
 
@@ -1182,7 +1221,6 @@
 
 /* —— Reflections + journey image —— */
 .spruce-figma-journey {
-  border-top: 0.67px solid #e5e7eb;
   padding-top: 48px;
   padding-bottom: 24px;
   padding-left: var(--spruce-pad-x);

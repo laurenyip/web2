@@ -7,7 +7,8 @@ import './Spruce.css'
 import './Aurora.css'
 
 const I = {
-  home: '/images/projects/aurora/aurora_t.png',
+  home: '/images/projects/aurora/aurora_home.png',
+  hero: '/images/projects/aurora/aurora_t.png',
   products: '/images/projects/aurora/products.png',
   medications: '/images/projects/aurora/medications.png',
   dropdown: '/images/projects/aurora/dropdown.png',
@@ -62,33 +63,6 @@ const SHOWCASE_SCREENS = [
   },
 ]
 
-const FEATURE_CARDS = [
-  {
-    title: 'Subscription medication delivery',
-    body: 'Recurring delivery for chronic-condition meds with reminders and refill tracking built in.',
-    src: I.progress,
-    alt: 'Subscription progress tracker UI',
-  },
-  {
-    title: 'Vet-backed prescription validation',
-    body: 'Prescription-aware purchase flow with trusted checkout and safe delivery pathways.',
-    src: I.cart,
-    alt: 'Vet-backed checkout and prescription flow',
-  },
-  {
-    title: 'Transparent pricing model',
-    body: 'Clear product pricing and quantity options up front so owners can compare and plan.',
-    src: I.products,
-    alt: 'Product grid showing clear prices',
-  },
-  {
-    title: 'Accessible support and onboarding',
-    body: 'Simple sign-in, guided dropdown choices, and FAQ support reduce barriers for first-time users.',
-    src: I.signin,
-    alt: 'Sign-in and onboarding screen',
-  },
-]
-
 export default function Aurora() {
   const [activeTab, setActiveTab] = useState(SHOWCASE_SCREENS[0].id)
   const showcase = SHOWCASE_SCREENS.find((s) => s.id === activeTab) ?? SHOWCASE_SCREENS[0]
@@ -98,7 +72,7 @@ export default function Aurora() {
       <Navbar />
       <header className="spruce-figma-hero aurora-figma-hero">
         <div className="spruce-figma-hero-stage">
-          <img src={I.home} className="spruce-figma-hero-gif" alt="Aurora Pet Co. home screen preview" />
+          <img src={I.hero} className="spruce-figma-hero-gif" alt="Aurora Pet Co. home screen preview" />
         </div>
       </header>
 
@@ -135,23 +109,123 @@ export default function Aurora() {
             <h2 className="spruce-figma-ds-question">
             How might we make pet medication affordable and accessible for every Canadian pet owner?
             </h2>
-            <p className="spruce-figma-body">
-            Rising pet ownership, growing demand for affordable care, and no dominant online pet pharmacy in Canada
-            create a perfect storm of unmet need, regulatory barriers, and timing. Canada&apos;s 16M+ pet owners
-            struggle with high medication costs and limited access to affordable pet healthcare.
-            </p>
-            <p className="spruce-figma-body">
-            Canada has 16M+ pet owners but no dominant online pet pharmacy. High medication costs, limited vet
-            access, and regulatory complexity leave chronic-condition pets underserved. The opportunity is real —
-            the execution gap is larger.
-            </p>
+            <div className="spruce-figma-ds-inner" style={{ marginTop: '18px' }}>
+              <div>
+                <h3 className="spruce-figma-reflect-title">Market pressure</h3>
+                <p className="spruce-figma-body">
+                  Pet ownership is rising across Canada, but medication remains expensive and inconsistent to access.
+                  More families need chronic-condition support, yet affordable options are still fragmented.
+                </p>
+              </div>
+              <div>
+                <h3 className="spruce-figma-reflect-title">Why this gap matters</h3>
+                <p className="spruce-figma-body">
+                  Canada has 16M+ pet owners and still no dominant online pet pharmacy. Regulatory complexity and
+                  limited vet access slow care at the exact moment speed and trust matter most.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="spruce-figma-challenge">
+            <h2 className="spruce-figma-section-label spruce-figma-section-label--center">DESIGN SYSTEM</h2>
+            <h2 className="spruce-figma-ds-question">Designed to feel trustworthy, warm, and helpful.</h2>
+            <div className="spruce-figma-ds-inner" style={{ marginBottom: '36px' }}>
+              <div>
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Colours
+                </h3>
+                <div className="spruce-ds-swatches">
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#fcbaff' }} />
+                    <span className="spruce-ds-swatch-label">Aurora Pink</span>
+                    <span className="spruce-ds-swatch-hex">#FCBAFF</span>
+                    <span className="spruce-ds-swatch-note">
+                      A warm accent that keeps the brand caring and approachable.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#4a7c59' }} />
+                    <span className="spruce-ds-swatch-label">Trust Green</span>
+                    <span className="spruce-ds-swatch-hex">#4A7C59</span>
+                    <span className="spruce-ds-swatch-note">
+                      Used for labels and key actions to signal safety and reliability.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#f6faf2', border: '1px solid #dbe7d6' }} />
+                    <span className="spruce-ds-swatch-label">Soft Mint BG</span>
+                    <span className="spruce-ds-swatch-hex">#F6FAF2</span>
+                    <span className="spruce-ds-swatch-note">
+                      Keeps long reading sections calm and reduces visual fatigue.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#ffffff', border: '1px solid #e5e7eb' }} />
+                    <span className="spruce-ds-swatch-label">White</span>
+                    <span className="spruce-ds-swatch-hex">#FFFFFF</span>
+                    <span className="spruce-ds-swatch-note">
+                      High contrast canvas for product details, forms, and medication info.
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Typography
+                </h3>
+                <div className="spruce-ds-type-stack">
+                  <div className="spruce-ds-type-item">
+                    <div className="spruce-ds-type-sample" style={{ fontFamily: 'pepi, var(--spruce-ff-boring-reg)', fontSize: '36px' }}>
+                      Pepi Trial - section prompts
+                    </div>
+                    <span className="spruce-ds-swatch-note">
+                      Larger display sizes create clear wayfinding and a reassuring editorial tone.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-type-item" style={{ marginTop: '20px' }}>
+                    <div className="spruce-ds-type-sample" style={{ fontFamily: 'Inter, Arial, sans-serif', fontSize: '16px', lineHeight: 1.6 }}>
+                      Inter - product details, dosage context, and support copy
+                    </div>
+                    <span className="spruce-ds-swatch-note">
+                      Body text stays highly legible so owners can scan quickly when making care decisions.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="spruce-figma-ds-inner" style={{ marginBottom: '36px' }}>
+              <div>
+                <h3 className="spruce-figma-reflect-title">Typography and readability</h3>
+                <p className="spruce-figma-reflect-body">
+                  Display headings use a serif voice to feel professional and reassuring, while body copy stays in
+                  Arial for quick scanning and high legibility. This keeps medication details easy to read on first
+                  pass, especially for stressed pet owners making health decisions.
+                </p>
+                <p className="spruce-figma-reflect-body">
+                  The type scale is intentionally calm: large section prompts for orientation, clear subheads for
+                  hierarchy, and restrained body sizes for long-form product and prescription information.
+                </p>
+              </div>
+              <div>
+                <h3 className="spruce-figma-reflect-title">Colour, imagery, and trust signals</h3>
+                <p className="spruce-figma-reflect-body">
+                  Soft pink and forest-green accents create a caring tone without looking childish. Green carries
+                  reliability for healthcare actions, while pink keeps the product warm and approachable.
+                </p>
+                <p className="spruce-figma-reflect-body">
+                  I chose real pet photography to make the experience feel human and familiar, not clinical. Combined
+                  with clean spacing and predictable layouts, the visuals help owners feel guided through prescriptions,
+                  cart decisions, and refill workflows.
+                </p>
+              </div>
+            </div>
           </section>
 
           <section className="spruce-figma-final" aria-labelledby="aurora-showcase-heading">
             <h2 id="aurora-showcase-heading" className="spruce-figma-section-label spruce-figma-section-label--center">
               DESIGN SHOWCASE
             </h2>
-            <h2 className="spruce-figma-ds-question">The Solution</h2>
             <div className="spruce-figma-final-browser-h">
               <div className="spruce-figma-final-tabs-h" role="tablist" aria-label="Choose a screen to preview">
                 {SHOWCASE_SCREENS.map((screen) => (
@@ -179,19 +253,6 @@ export default function Aurora() {
               >
                 <img src={showcase.src} alt={showcase.alt} className="spruce-figma-final-shot" loading="lazy" />
               </div>
-            </div>
-          </section>
-
-          <section className="spruce-figma-challenge">
-            <h2 className="spruce-figma-section-label spruce-figma-section-label--center">KEY FEATURES</h2>
-            <h2 className="spruce-figma-ds-question">Four features that make Aurora work for pet owners.</h2>
-            <div className="spruce-features-grid">
-              {FEATURE_CARDS.map((feature) => (
-                <div key={feature.title} className="spruce-feature-card">
-                  <div className="spruce-figma-feature-title">{feature.title}</div>
-                  <p className="spruce-figma-feature-body">{feature.body}</p>
-                </div>
-              ))}
             </div>
           </section>
 

@@ -35,36 +35,24 @@ export default function Rosie() {
 
       <div className="spruce-figma-gutter">
         <div className="spruce-figma-canvas rosie-page">
-          <section className="spruce-figma-challenge">
-            <h2 className="spruce-figma-section-label spruce-figma-section-label--center">
-              Research Assistant • ROSIE Lab • 2023–2024
-            </h2>
-            <h1 className="spruce-figma-hmw-title">React to This!</h1>
-            <p className="spruce-figma-tagline">
-              A dataset and study of how people physically and emotionally react to virtual social agents.
-            </p>
-          </section>
-
           <section className="spruce-figma-intro">
             <div className="spruce-figma-intro-main">
               <p className="spruce-figma-section-label">THE PROJECT</p>
               <p className="spruce-figma-body">
-                React to This! is a research project with ROSIE Lab (Robots with Social Intelligence and Empathy) that
-                explores how people interact with and respond to virtual agents. The project focuses on creating a
-                comprehensive, annotated dataset of common physical and emotional reactions to non-verbal virtual
-                agents. The dataset is used to train and evaluate the performance of virtual agents in social
-                interaction tasks.
+                React to This! is a ROSIE Lab research project about how people respond to non-verbal virtual agents.
+                We built an annotated dataset to support training and evaluation of socially intelligent agent
+                behavior.
               </p>
               <p className="spruce-figma-body">
-                The dataset captures multimodal reactions - facial expressions, body language, and self-reported
-                emotions - from participants interacting with non-verbal virtual agents across different social
-                scenarios. The goal is to give future agents the data they need to respond appropriately to humans.
+                The dataset captures multimodal reactions - facial expression, body language, and self-reported
+                emotion - across different social scenarios, so future agents can respond in more appropriate human
+                contexts.
               </p>
             </div>
             <aside className="spruce-figma-meta" aria-label="Project details">
               <div className="spruce-figma-meta-row">
                 <div className="spruce-figma-meta-label">Timeline</div>
-                <div className="spruce-figma-meta-value">2023–2024</div>
+                <div className="spruce-figma-meta-value rosie-year-numeric">2023–2024</div>
               </div>
               <div className="spruce-figma-meta-row">
                 <div className="spruce-figma-meta-label">Role</div>
@@ -77,18 +65,6 @@ export default function Rosie() {
             </aside>
           </section>
 
-          <section className="spruce-figma-challenge">
-            <h2 className="spruce-figma-section-label spruce-figma-section-label--center">DESIGN CHALLENGE</h2>
-            <h2 className="spruce-figma-ds-question">
-              How might we capture authentic human reactions to non-verbal virtual agents at scale?
-            </h2>
-            <p className="spruce-figma-body">
-              Existing datasets focus on verbal interaction. ROSIE Lab identified a gap: there was no large-scale
-              annotated dataset specifically for non-verbal social agent responses. React to This! was built to fill
-              it.
-            </p>
-          </section>
-
           <section className="spruce-figma-split" style={{ paddingTop: '50px' }}>
             <div>
               <h2 className="spruce-figma-section-label">MY CONTRIBUTION</h2>
@@ -97,6 +73,110 @@ export default function Rosie() {
                 communicate the research, designed and built the project website, edited the research paper, annotated
                 data for analysis, and recruited participants and volunteers for data collection.
               </p>
+            </div>
+            <div className="rosie-project-link-col">
+              <h2 className="spruce-figma-section-label">PROJECT LINK</h2>
+              <a
+                href="https://rosielab.github.io/react-to-this/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rosie-project-link-btn"
+              >
+                rosielab.github.io/react-to-this/
+              </a>
+            </div>
+          </section>
+
+          <section className="spruce-figma-challenge">
+            <h2 className="spruce-figma-section-label spruce-figma-section-label--center">DESIGN CHOICES</h2>
+    
+            <div className="spruce-figma-ds-inner" style={{ marginBottom: '36px' }}>
+              <div>
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Colour system
+                </h3>
+                <div className="spruce-ds-swatches">
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#d03419' }} />
+                    <span className="spruce-ds-swatch-label">Sensitive-info Red</span>
+                    <span className="spruce-ds-swatch-hex">#D03419</span>
+                    <span className="spruce-ds-swatch-note">
+                      Used to flag sensitive information and caution states that need extra attention.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#61dafb' }} />
+                    <span className="spruce-ds-swatch-label">React Blue</span>
+                    <span className="spruce-ds-swatch-hex">#61DAFB</span>
+                    <span className="spruce-ds-swatch-note">
+                      Used as a supportive brand colour to keep the interface approachable.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#ffffff', border: '1px solid #e5e7eb' }} />
+                    <span className="spruce-ds-swatch-label">White</span>
+                    <span className="spruce-ds-swatch-hex">#FFFFFF</span>
+                    <span className="spruce-ds-swatch-note">
+                      Clean background so dense research content stays readable.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-swatch-item">
+                    <div className="spruce-ds-swatch-circle" style={{ background: '#f3f4f6', border: '1px solid #e5e7eb' }} />
+                    <span className="spruce-ds-swatch-label">Light Gray</span>
+                    <span className="spruce-ds-swatch-hex">#F3F4F6</span>
+                    <span className="spruce-ds-swatch-note">
+                      Subtle separators for table rows and metadata blocks.
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Typography
+                </h3>
+                <div className="spruce-ds-type-stack">
+                  <div className="spruce-ds-type-item">
+                    <div className="spruce-ds-type-sample" style={{ fontFamily: 'urania, var(--spruce-ff-boring-reg)', fontSize: '32px' }}>
+                      Urania - headings and section prompts
+                    </div>
+                    <span className="spruce-ds-swatch-note">
+                      Clear hierarchy for long case-study reading without feeling technical or cold.
+                    </span>
+                  </div>
+                  <div className="spruce-ds-type-item" style={{ marginTop: '20px' }}>
+                    <div className="spruce-ds-type-sample" style={{ fontFamily: 'Hubot, Arial, sans-serif', fontSize: '16px', lineHeight: 1.6 }}>
+                      Hubot - body copy, annotations, and captions
+                    </div>
+                    <span className="spruce-ds-swatch-note">
+                      Familiar and legible for paragraph content, notes, and supporting explanations.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="spruce-figma-ds-inner">
+              <div>
+                <h3 className="spruce-figma-reflect-title">Tables and annotation structure</h3>
+                <p className="spruce-figma-body">
+                  Dataset tables were structured for fast scanning: consistent column order, clear labels, and compact
+                  row spacing so coders could move quickly without losing context.
+                </p>
+                <p className="spruce-figma-body">
+                  Grouping fields by modality (facial, body, self-report) made annotation review easier and reduced
+                  mistakes during quality checks.
+                </p>
+              </div>
+              <div>
+                <h3 className="spruce-figma-reflect-title">Why these choices mattered</h3>
+                <p className="spruce-figma-body">
+                  The goal was not visual novelty - it was clarity and trust for researchers, participants, and future
+                  readers of the dataset.
+                </p>
+                <p className="spruce-figma-body">
+                  A calm colour system, readable typography, and structured tables made the project easier to use and
+                  easier to communicate.
+                </p>
+              </div>
             </div>
           </section>
 

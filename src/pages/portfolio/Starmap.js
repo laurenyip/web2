@@ -84,7 +84,6 @@ function ConstellationSVG() {
 
 export default function Starmap() {
   const [activeTab, setActiveTab] = useState('landing')
-  const [heroIframeReady, setHeroIframeReady] = useState(false)
   const showcase = SHOWCASE_SCREENS[activeTab] || SHOWCASE_SCREENS.landing
 
   return (
@@ -95,21 +94,10 @@ export default function Starmap() {
         <div className="spruce-container">
           <div className="starmap-hero-top">
             <div className="starmap-hero-embed-wrap">
-              {!heroIframeReady && (
-                <img
-                  src="/images/projects/starmap/dashboard.png"
-                  alt="Starmap graph view"
-                  style={{ width: '100%', height: 'auto', borderRadius: '16px' }}
-                />
-              )}
-              <iframe
-                src="https://starmap.lol"
-                title="starmap live preview"
-                className="starmap-hero-iframe"
-                loading="lazy"
-                sandbox="allow-scripts allow-same-origin"
-                onLoad={() => setHeroIframeReady(true)}
-                style={{ display: heroIframeReady ? 'block' : 'none' }}
+              <img
+                src="/images/projects/starmap/starmap.gif"
+                alt="Starmap hero preview"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
           </div>
@@ -169,7 +157,7 @@ export default function Starmap() {
             >
               MY USER JOURNEY
             </h2>
-            <h3 className="spruce-figma-hmw-title" style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <h3 className="spruce-figma-ds-question" style={{ textAlign: 'center', marginBottom: '48px' }}>
               Why does it feel like I have no time?
             </h3>
 
@@ -209,11 +197,13 @@ export default function Starmap() {
 
           <section style={{ padding: '0 var(--spruce-pad-x, 95px) 56px' }}>
             <h2
-              className="spruce-figma-section-label"
+              className="spruce-figma-design-challenge-label"
               style={{
                 color: 'var(--sm-purple, #6d4ad8)',
                 textAlign: 'left',
-                marginBottom: '24px',
+                marginTop: '26px',
+                marginBottom: '16px',
+              
               }}
             >
               FIRST SOLUTION
@@ -250,6 +240,19 @@ export default function Starmap() {
             </h3>
           </section>
 
+          <section style={{ padding: '0 var(--spruce-pad-x, 95px) 24px' }}>
+            <h2
+              className="spruce-figma-design-challenge-label"
+              style={{
+                color: 'var(--sm-purple, #6d4ad8)',
+                textAlign: 'left',
+                marginBottom: '-50px',
+              }}
+            >
+              SECOND SOLUTION
+            </h2>
+          </section>
+
           <section className="starmap-features-section">
             {/* Feature #1 */}
             <div className="starmap-feature-row" style={{ alignItems: 'flex-start', marginBottom: '16px' }}>
@@ -258,6 +261,7 @@ export default function Starmap() {
                   src="/images/projects/starmap/matthew.png"
                   alt="Matthew profile node"
                   className="starmap-feature-img"
+                  style={{ marginTop: '-8px' }}
                 />
               </div>
 
@@ -276,7 +280,17 @@ export default function Starmap() {
               </div>
             </div>
 
-            <p className="starmap-feature-quote">That took a long time, so I added AI to speed it up</p>
+            <h2
+              className="spruce-figma-design-challenge-label"
+              style={{
+                color: 'var(--sm-purple, #6d4ad8)',
+                textAlign: 'left',
+                marginTop: '46px',
+                marginBottom: '18px',
+              }}
+            >
+              ADDING AI FOR SPEED
+            </h2>
 
             {/* Feature #2 */}
             <div className="starmap-feature-row" style={{ marginTop: '16px', marginBottom: '16px' }}>
@@ -285,7 +299,6 @@ export default function Starmap() {
                   src="/images/projects/starmap/importai.png"
                   alt="Import with AI modal UI"
                   className="starmap-feature-img"
-                  style={{ borderRadius: '10px', border: '1px solid #e5e7eb' }}
                 />
               </div>
 
@@ -309,7 +322,6 @@ export default function Starmap() {
                   src="/images/projects/starmap/addconnection.png"
                   alt="Add connection UI showing node linking"
                   className="starmap-feature-img"
-                  style={{ borderRadius: '10px', border: '1px solid #e5e7eb' }}
                 />
               </div>
 
@@ -365,18 +377,9 @@ export default function Starmap() {
             </div>
           </section>
 
-          <section className="spruce-section spruce-container" style={{ paddingTop: '50px', paddingBottom: '50px' }}>
-            <div className="spruce-section-tag">Reflections</div>
+          <section className="spruce-section spruce-container" style={{ paddingTop: '50px', paddingBottom: '110px' }}>
+            <div className="spruce-section-tag">Reflections &amp; Next Steps</div>
             <div className="spruce-reflect-grid">
-              <div className="spruce-reflect-item">
-                <h3 className="spruce-feature-title">Reframing is a design skill</h3>
-                <p className="spruce-body">
-                  The most valuable thing I&apos;ve done on starmap isn&apos;t any individual feature — it&apos;s
-                  getting clearer on what the product is actually for. Relationship tools are easy to overbuild. Every
-                  iteration where I removed something taught me more than the ones where I added.
-                </p>
-              </div>
-
               <div className="spruce-reflect-item">
                 <h3 className="spruce-feature-title">Emailing users for feedback</h3>
                 <p className="spruce-body">
@@ -385,12 +388,7 @@ export default function Starmap() {
                   I&apos;d spent the most time on, and were asking for things I hadn&apos;t considered.
                 </p>
               </div>
-            </div>
-          </section>
 
-          <section className="spruce-section spruce-container" style={{ paddingTop: '50px', paddingBottom: '50px' }}>
-            <div className="spruce-section-tag">Next Steps</div>
-            <div className="spruce-reflect-grid">
               <div className="spruce-reflect-item">
                 <h3 className="spruce-feature-title">Notion integration</h3>
                 <p className="spruce-body">
@@ -410,16 +408,6 @@ export default function Starmap() {
               </div>
 
               <div className="spruce-reflect-item">
-                <h3 className="spruce-feature-title">Location as a dropdown</h3>
-                <p className="spruce-body">
-                  Location is currently a free-text field, which means the same city gets entered twelve different
-                  ways. Switching to a dropdown that saves and suggests previous entries would make filtering by
-                  location reliable — and open up a &ldquo;who&apos;s nearby&rdquo; view that currently isn&apos;t
-                  possible.
-                </p>
-              </div>
-
-              <div className="spruce-reflect-item">
                 <h3 className="spruce-feature-title">Deeper user research</h3>
                 <p className="spruce-body">
                   The next round of emails to users will be more structured — specific questions about which features
@@ -428,16 +416,6 @@ export default function Starmap() {
                 </p>
               </div>
             </div>
-          </section>
-
-          <section className="spruce-section spruce-container" style={{ paddingTop: '50px', paddingBottom: '50px' }}>
-            <div className="spruce-section-tag">Impact</div>
-            <ul className="spruce-contrib-list">
-              <li>Transforms long-form relationship journaling into a structured product workflow</li>
-              <li>Makes social memory searchable and visual through graph + list dual modes</li>
-              <li>Supports intentional follow-through with person-level notes and connection context</li>
-              <li>Creates a foundation for future relationship insights, reminders, and habit loops</li>
-            </ul>
           </section>
 
           <div

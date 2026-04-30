@@ -73,7 +73,7 @@ function Portfolio() {
         <header className="mb-10 md:mb-12">
           <h1
             className="text-3xl md:text-5xl text-gray-800 tracking-tight"
-            style={{ fontFamily: "'moto', sans-serif" }}
+            style={{ fontFamily: "'boring_reg', sans-serif" }}
           >
             Case studies
           </h1>
