@@ -206,18 +206,24 @@ export default function Spruce() {
             <h2 className="spruce-figma-section-label spruce-figma-section-label--center spruce-figma-section-label--ds">
               DESIGN SYSTEM
             </h2>
-            <p className="spruce-figma-ds-question">
+            <p className="spruce-figma-ds-question ">
               How do we create an inviting and accessible user experience?
             </p>
 
-            <div className="spruce-figma-ds-inner" style={{ marginBottom: '48px' }}>
+            <div className="spruce-figma-ds-inner spruce-figma-ds-intro-row" style={{ marginBottom: '48px' }}>
               <div className="spruce-figma-ds-copy">
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Spruce logo
+                </h3>
                 <img src={I.spruceLogo} alt="Spruce logo" className="spruce-figma-ds-logo" />
                 <p className="spruce-figma-body">
                   Spruce was named after the street in Vancouver. We wanted it to have real ties to the city.
                 </p>
               </div>
               <div className="spruce-figma-ds-copy">
+                <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
+                  Speech bubble color motif
+                </h3>
                 <img src={I.bubble} alt="Speech bubble color motif" className="spruce-figma-ds-bubble" />
                 <p className="spruce-figma-body spruce-figma-body--tight">
                   The blue was chosen for the mountains, green for the forests, and red for the salmon.

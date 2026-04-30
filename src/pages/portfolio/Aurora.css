@@ -86,3 +86,35 @@
 .aurora-figma-page .spruce-figma-search-ic {
   border-color: #4a7c59;
 }
+
+/* Remove divider above Design Showcase for Aurora only */
+.aurora-figma-page .spruce-figma-final {
+  border-top: none;
+}
+
+/* Align Aurora key features with challenge text column */
+.aurora-figma-page .spruce-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px var(--gutter);
+  max-width: var(--col-4);
+  margin-top: 18px;
+}
+
+.aurora-figma-page .spruce-feature-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.aurora-figma-page .spruce-figma-feature-body {
+  margin: 0;
+  max-width: none;
+}
+
+@media (max-width: 1100px) {
+  .aurora-figma-page .spruce-features-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+}
