@@ -558,10 +558,31 @@ ul.navbar {
   .about-page .about-sidequest-grid .about-sidequest-img {
     width: 100% !important;
     max-width: 100% !important;
-    height: auto !important;
-    aspect-ratio: auto !important;
-    object-fit: contain !important;
+    height: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
     object-position: center !important;
     display: block;
+  }
+
+  .about-page .about-hightide-btn {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .about-page .about-hightide-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .about-page .about-vinyl-shelf {
+    width: 100%;
+  }
+
+  .about-page .about-vinyl-shelf-inner {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
