@@ -97,7 +97,7 @@ export default function Starmap() {
               <img
                 src="/images/projects/starmap/starmap.gif"
                 alt="Starmap hero preview"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
               />
             </div>
           </div>

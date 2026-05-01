@@ -1199,6 +1199,24 @@
 }
 
 @media (max-width: 700px) {
+  .spruce-figma-page {
+    --spruce-pad-x: 12px;
+  }
+
+  .spruce-figma-canvas {
+    --spruce-pad-x: 12px;
+  }
+
+  .spruce-figma-hero-stage {
+    padding-top: 52px;
+  }
+
+  .spruce-figma-hero-gif {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+  }
+
   .spruce-figma-final-tab-h {
     font-size: 13px;
     padding: 10px 10px;
@@ -1216,6 +1234,36 @@
 
   .spruce-ds-radius-row {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .spruce-figma-split,
+  .spruce-figma-split--reverse,
+  .spruce-figma-split--profiles,
+  .spruce-figma-split--translation {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .spruce-figma-friction-shot,
+  .spruce-figma-profile-img {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .spruce-figma-translate-row {
+    gap: 12px;
+    margin-top: 0;
+    justify-content: center;
+  }
+
+  .spruce-figma-trans-img {
+    width: min(38%, 150px);
+  }
+
+  .spruce-figma-trans-spanish-img {
+    width: min(58%, 240px);
   }
 }
 

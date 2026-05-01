@@ -32,7 +32,7 @@ function Home() {
         OUTER: 1280px centered column, 40px gutters on each side.
         This is the only centering div — nothing inside re-centers.
       */}
-      <main style={{
+      <main className="home-main" style={{
         width: '100%',
         maxWidth: '1280px',
         margin: '0 auto',
@@ -119,6 +119,7 @@ function Home() {
               <img
                 src={FIGMA_HOME.portrait}
                 alt="Portrait"
+                className="home-row1-portrait-img"
                 style={{
                   width: '100%',
                   height: 420,
@@ -173,7 +174,13 @@ function Home() {
                   background: '#fff', padding: 0,
                 }}
               >
-                <img src={src} alt={caption} style={{ aspectRatio: '1/1', width: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
+                <img
+                  src={src}
+                  alt={caption}
+                  className="home-row3-img"
+                  style={{ aspectRatio: '1/1', width: '100%', objectFit: 'cover', display: 'block' }}
+                  loading="lazy"
+                />
               </button>
             ))}
           </div>
@@ -260,7 +267,36 @@ function Home() {
 
         /* Mobile: collapse extra offset and tighten gutters */
         @media (max-width: 640px) {
+          .home-main {
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+          }
           .home-page-rows { padding-left: 0 !important; }
+
+          .home-row1-portrait-img {
+            height: auto !important;
+            max-height: none !important;
+            object-fit: contain !important;
+          }
+
+          .home-row2-btn {
+            height: auto !important;
+          }
+
+          .home-row2-btn img,
+          .home-row2-side img,
+          .home-row2-middle img {
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+            object-position: center !important;
+          }
+
+          .home-row3-img {
+            aspect-ratio: auto !important;
+            object-fit: contain !important;
+            height: auto !important;
+          }
         }
       `}</style>
     </div>

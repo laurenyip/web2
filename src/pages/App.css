@@ -550,4 +550,18 @@ ul.navbar {
   .about-page .about-vinyl-shelf img {
     max-width: 95%;
   }
+
+  .about-page .about-sidequest-grid .about-sidequest-tile {
+    width: 100%;
+  }
+
+  .about-page .about-sidequest-grid .about-sidequest-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block;
+  }
 }
