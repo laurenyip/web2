@@ -108,19 +108,17 @@ export default function Starmap() {
         <div className="spruce-figma-canvas">
           <section className="spruce-figma-intro">
             <div className="spruce-figma-intro-main">
-              <p className="spruce-figma-tagline">
-                A personal relationship map that helps you remember what matters, stay intentional, and be a better
-                friend.
+              <p className="spruce-figma-section-label">THE PRODUCT</p>
+              <p className="spruce-figma-body" style={{ maxWidth: '700px' }}>
+                starmap is a personal relationship map that helps you remember what matters, stay intentional, and be a
+                better friend. Instead of treating your network as a flat contact list, it models your social world as
+                a living graph: people, clusters, and connections.
               </p>
-              <p className="spruce-figma-lede">
-                starmap is a relationship management tool. Instead of treating your network as a flat contact list, it
-                models your social world as a living graph: people, clusters, and connections.
-              </p>
-              <p className="spruce-figma-lede" style={{ marginTop: '12px' }}>
+              <p className="spruce-figma-body" style={{ marginTop: '12px', maxWidth: '700px' }}>
                 The goal is simple: remember the little things, follow through on plans, and maintain relationships
                 with more consistency and intention over time.
               </p>
-              <p className="spruce-figma-lede" style={{ marginTop: '16px' }}>
+              <p className="spruce-figma-body" style={{ marginTop: '16px', maxWidth: '700px' }}>
                 Curious? Go try starmap live at{' '}
                 <a
                   href="https://starmap.lol"
