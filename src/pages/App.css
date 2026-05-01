@@ -290,6 +290,14 @@ ul.navbar {
   line-height: 1.35;
 }
 
+/* Force taller navbar on mobile across all pages */
+@media (max-width: 767px) {
+  ul.navbar {
+    padding-top: 1.75rem !important;
+    padding-bottom: 1.75rem !important;
+  }
+}
+
 /* Passport charm + decorative numerals: gentle swing on hover */
 .charm-swing {
   transform-origin: top center;
