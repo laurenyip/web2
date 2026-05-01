@@ -510,7 +510,7 @@ export default function Spruce() {
             <img
               src="/images/projects/spruce/orca.png"
               alt="Orca illustration"
-              style={{ display: 'block', margin: '4rem auto', maxWidth: '460px', height: 'auto' }}
+              style={{ display: 'block', margin: '4rem auto', width: '100%', maxWidth: '460px', height: 'auto' }}
             />
           </section>
 

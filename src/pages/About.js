@@ -678,19 +678,19 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2 lg:grid-cols-4">
+            <div className="about-sidequest-grid grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2 lg:grid-cols-4">
               {SIDEQUEST_GRID_ITEMS.map(({ src, caption, objectPosition }) => (
                 <button
                   key={src}
                   type="button"
-                  className={imgTile}
+                  className={`${imgTile} about-sidequest-tile`}
                   onClick={() => open(src, caption)}
                   aria-label="Open photo"
                 >
                   <img
                     src={src}
                     alt={caption}
-                    className="aspect-square w-full object-cover"
+                    className="about-sidequest-img aspect-square w-full object-cover"
                     style={objectPosition ? { objectPosition } : undefined}
                     loading="lazy"
                   />
