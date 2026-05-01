@@ -70,7 +70,7 @@ const SIDEQUEST_GRID_ITEMS = [
   { src: '/images/about/sidequests/gzbike.jpg', caption: '廣州' },
   { src: '/images/about/sidequests/gzcat.jpg', caption: '廣州' },
   { src: '/images/about/sidequests/gzfish.jpg', caption: '锦鲤' },
-  { src: '/images/about/sidequests/gztree.jpg', caption: '廣州' },
+  { src: '/images/about/sidequests/gztree.png', caption: '廣州' },
   {
     src: '/images/about/sidequests/hike.jpg',
     caption: 'best hike ever',

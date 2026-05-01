@@ -34,10 +34,10 @@ function Projects() {
       hasCaseStudy: true,
     },
     {
-      title: 'Spruce',
-      link: 'https://devpost.com/software/spruce',
-      description: "Finding third spaces for kids in Vancouver — Best UI Design Award",
-      image: '/images/projects/spruce.png',
+      title: 'The Lyre',
+      link: 'https://www.sfu.ca/world-languages.html',
+      description: 'SFU literary magazine — editorial design, Vol. 16 & 17',
+      image: '/images/projects/lyre-poster-flux.png',
       hasCaseStudy: true,
     },
     {
@@ -74,24 +74,10 @@ function Projects() {
       hasCaseStudy: true,
     },
     {
-      title: 'Simple Ventures',
-      link: 'https://framer.com/projects/Aurora-Pet-Co--1Nqr9CaWcgbGtWCJijK3-2x9Gy',
-      description: 'Cansbridge x SV pitch competition top 4, best design.',
-      image: '/images/projects/sv.png',
-      hasCaseStudy: true,
-    },
-    {
       title: 'jellyfish umbrella',
       link: '/rolypolyzine.pdf',
       description: 'zine',
       image: '/images/projects/jellyfish-umbrella.png',
-      hasCaseStudy: true,
-    },
-    {
-      title: 'The Lyre',
-      link: 'https://www.sfu.ca/world-languages.html',
-      description: 'SFU literary magazine — editorial design, Vol. 16 & 17',
-      image: '/images/projects/lyre-poster-flux.png',
       hasCaseStudy: true,
     },
   ]
