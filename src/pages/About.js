@@ -125,14 +125,14 @@ const MUSIC_ITEMS = [
 
 const VINYL_SLEEVE_PX = 100
 
-function getMusicShelfPositions(items, mobile) {
+function getMusicShelfPositions(items, mobile, viewportW) {
   const positions = []
   const padding = mobile ? 10 : 16
   const shelfSpacing = mobile ? 6 : 10
 
   let vinylSize = VINYL_SLEEVE_PX
   if (mobile && items.length > 0) {
-    const containerWidth = 360
+    const containerWidth = Math.max(280, Math.min((viewportW || 360) - 64, 440))
     const inner = containerWidth - padding * 2 - (items.length - 1) * shelfSpacing
     vinylSize = Math.max(56, Math.floor(inner / items.length))
   }
@@ -178,7 +178,10 @@ export default function About() {
 
   const isMobile = viewportW < 1024
 
-  const musicShelf = useMemo(() => getMusicShelfPositions(MUSIC_ITEMS, isMobile), [isMobile])
+  const musicShelf = useMemo(
+    () => getMusicShelfPositions(MUSIC_ITEMS, isMobile, viewportW),
+    [isMobile, viewportW]
+  )
 
   return (
     <div className="about-page min-h-screen overflow-x-hidden bg-white">
@@ -417,7 +420,7 @@ export default function About() {
               <div className="mt-[calc(2.5rem+50px)] flex max-w-xl flex-row flex-wrap items-center gap-4 sm:flex-nowrap">
                 <button
                   type="button"
-                  className="shrink-0 cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200/80 bg-white p-0 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+                  className="about-hightide-btn shrink-0 cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200/80 bg-white p-0 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
                   onClick={() =>
                     open('/images/about/favorites/hightide.png', 'High Tide by Jan Toorop — My favorite painting!')
                   }
@@ -426,7 +429,7 @@ export default function About() {
                   <img
                     src="/images/about/favorites/hightide.png"
                     alt="High Tide by Jan Toorop"
-                    className="block h-auto w-[80vw] max-w-[220px] sm:w-[min(220px,100%)] sm:max-w-[220px] rounded-none lg:rounded-[5px] object-cover"
+                    className="about-hightide-img block h-auto w-[80vw] max-w-[220px] sm:w-[min(220px,100%)] sm:max-w-[220px] rounded-none lg:rounded-[5px] object-cover"
                     loading="lazy"
                   />
                 </button>
@@ -466,7 +469,7 @@ export default function About() {
           {MUSIC_ITEMS.length > 0 && (
             <div className="about-vinyl-shelf flex w-full justify-start">
               <div
-                className="relative"
+                className="about-vinyl-shelf-inner relative"
                 style={{
                   width: `${Math.max(musicShelf.shelfWidth || 0, 1)}px`,
                   maxWidth: '100%',
