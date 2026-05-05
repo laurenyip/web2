@@ -16,7 +16,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/sync-out-to-build.js",
     "start": "next start",
     "lint": "next lint"
   },
