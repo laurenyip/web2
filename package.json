@@ -21,7 +21,6 @@
     "lint": "next lint"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5.15.10",
     "@tailwindcss/typography": "^0.5.9",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
