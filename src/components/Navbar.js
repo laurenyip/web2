@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import '../pages/App.css'
 
 function Navbar({ className = '' }) {
@@ -17,22 +17,22 @@ function Navbar({ className = '' }) {
     >
 
       <li className="nav-item">
-        <Link className="nav-link" to="/">
+        <Link className="nav-link" href="/">
           Home<span className="nav-pipe">&nbsp;|</span>
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/about">
+        <Link className="nav-link" href="/about">
           About<span className="nav-pipe">&nbsp;|</span>
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/projects">
+        <Link className="nav-link" href="/projects">
           Projects<span className="nav-pipe">&nbsp;|</span>
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/portfolio">
+        <Link className="nav-link" href="/portfolio">
           Portfolio
         </Link>
       </li>

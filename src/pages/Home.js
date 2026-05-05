@@ -1,8 +1,13 @@
+'use client'
+
 import React, { useState } from 'react'
+import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import ImageModal from '../components/ImageModal'
+import Webring from '../components/Webring'
 import './App.css'
-import resumePdf from './Resume___Lauren_Yip.pdf'
+/** Served from /public — do not import PDFs in Next.js (no file loader by default). */
+const RESUME_PDF_HREF = '/Resume___Lauren_Yip.pdf'
 
 /** Images live under `public/images/home/` */
 const FIGMA_HOME = {
@@ -91,7 +96,7 @@ function Home() {
                 <br />
                 <p3>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <a href={resumePdf} target="_blank" rel="noopener noreferrer">RESUME</a>
+                  <a href={RESUME_PDF_HREF} target="_blank" rel="noopener noreferrer">RESUME</a>
                 </p3>
                 <br />
                 <p2>
@@ -116,10 +121,13 @@ function Home() {
                 background: '#f9fafb', padding: 0, textAlign: 'left',
               }}
             >
-              <img
+              <Image
                 src={FIGMA_HOME.portrait}
                 alt="Portrait"
                 className="home-row1-portrait-img"
+                width={1200}
+                height={900}
+                priority
                 style={{
                   width: '100%',
                   height: 420,
@@ -127,7 +135,6 @@ function Home() {
                   objectPosition: 'center',
                   display: 'block',
                 }}
-                loading="eager"
               />
             </button>
           </div>
@@ -144,7 +151,7 @@ function Home() {
                   onClick={() => openModal(src, caption)}
                   aria-label={`Open image: ${caption}`}
                 >
-                  <img src={src} alt={caption} loading="lazy" />
+                  <Image src={src} alt={caption} width={1200} height={900} priority={false} />
                 </button>
               )
             })}
@@ -174,12 +181,14 @@ function Home() {
                   background: '#fff', padding: 0,
                 }}
               >
-                <img
+                <Image
                   src={src}
                   alt={caption}
                   className="home-row3-img"
+                  width={1000}
+                  height={1000}
+                  priority={false}
                   style={{ aspectRatio: '1/1', width: '100%', objectFit: 'cover', display: 'block' }}
-                  loading="lazy"
                 />
               </button>
             ))}
@@ -187,6 +196,8 @@ function Home() {
 
         </div>
       </main>
+
+      <Webring />
 
       <ImageModal open={!!modal} src={modal?.src} caption={modal?.caption} onClose={closeModal} />
 

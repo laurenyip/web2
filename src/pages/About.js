@@ -1,6 +1,10 @@
+'use client'
+
 import React, { useEffect, useMemo, useState } from 'react'
+import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import ImageModal from '../components/ImageModal'
+import Webring from '../components/Webring'
 import './App.css'
 
 /** §01 Art — carousel slides (`public/images/about/art/`) */
@@ -228,11 +232,13 @@ export default function About() {
                   onClick={() => open('/images/about/whoami/optimist.png', 'OPTIMIST mural · Vancouver')}
                   aria-label="Open OPTIMIST mural"
                 >
-                  <img
+                  <Image
                     src="/images/about/whoami/optimist.png"
                     alt="OPTIMIST mural"
                     className="about-hero-optimist-img"
-                    loading="lazy"
+                    width={800}
+                    height={1100}
+                    priority={false}
                   />
                 </button>
                 <button
@@ -242,11 +248,13 @@ export default function About() {
                   aria-label="Open charm sketch"
                 >
                   <span className="charm-swing block w-full">
-                    <img
+                    <Image
                       src="/images/about/whoami/charm.png"
                       alt="Charm sketch"
                       className="about-hero-charm-img rounded-[10px]"
-                      loading="lazy"
+                      width={900}
+                      height={1200}
+                      priority={false}
                     />
                   </span>
                 </button>
@@ -270,11 +278,13 @@ export default function About() {
                     }}
                     aria-label={`Open painting: ${ART_CAROUSEL[artSlide]?.caption || ''}`}
                   >
-                    <img
+                    <Image
                       src={ART_CAROUSEL[artSlide]?.src}
                       alt={ART_CAROUSEL[artSlide]?.caption || ''}
-                    className="max-h-[min(70vh,620px)] w-full max-w-full rounded-none lg:rounded-[5px] object-contain"
-                      loading="lazy"
+                      className="max-h-[min(70vh,620px)] w-full max-w-full rounded-none lg:rounded-[5px] object-contain"
+                      width={1200}
+                      height={900}
+                      priority={false}
                     />
                   </button>
                 </div>
@@ -392,11 +402,13 @@ export default function About() {
                 onClick={() => open('/images/about/favorites/fish.gif', 'Koi · ink sketch')}
                 aria-label="Open koi sketch"
               >
-                <img
+                <Image
                   src="/images/about/favorites/fish.gif"
                   alt="Koi fish ink sketch"
                   className="max-h-[208px] w-auto rounded-[10px] object-contain shadow-sm"
-                  loading="lazy"
+                  width={900}
+                  height={500}
+                  priority={false}
                 />
               </button>
               <div className="mx-auto grid w-full max-w-[220px] grid-cols-2 gap-3 sm:max-w-[240px] lg:mx-0 lg:max-w-[170px] lg:ml-[320px]">
@@ -408,11 +420,13 @@ export default function About() {
                     onClick={() => open(src, caption)}
                     aria-label={caption}
                   >
-                    <img
+                    <Image
                       src={src}
                       alt={caption}
                       className="aspect-[2/3] w-full object-cover"
-                      loading="lazy"
+                      width={400}
+                      height={600}
+                      priority={false}
                     />
                   </button>
                 ))}
@@ -426,11 +440,13 @@ export default function About() {
                   }
                   aria-label="favorite painting"
                 >
-                  <img
+                  <Image
                     src="/images/about/favorites/hightide.png"
                     alt="High Tide by Jan Toorop"
                     className="about-hightide-img block h-auto w-[80vw] max-w-[220px] sm:w-[min(220px,100%)] sm:max-w-[220px] rounded-none lg:rounded-[5px] object-cover"
-                    loading="lazy"
+                    width={440}
+                    height={560}
+                    priority={false}
                   />
                 </button>
                 <div className="about-body-text min-w-0 space-y-1 text-left">
@@ -558,15 +574,17 @@ export default function About() {
                         }}
                       >
                         {item.image ? (
-                          <img
+                          <Image
                             src={item.image}
                             alt={item.text}
                             className="h-full w-full"
+                            width={400}
+                            height={400}
+                            priority={false}
                             style={{
                               objectFit: 'cover',
                               display: 'block',
                             }}
-                            loading="lazy"
                           />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-gray-800 to-gray-600">
@@ -690,12 +708,14 @@ export default function About() {
                   onClick={() => open(src, caption)}
                   aria-label="Open photo"
                 >
-                  <img
+                  <Image
                     src={src}
                     alt={caption}
                     className="about-sidequest-img aspect-square w-full object-cover"
                     style={objectPosition ? { objectPosition } : undefined}
-                    loading="lazy"
+                    width={600}
+                    height={600}
+                    priority={false}
                   />
                 </button>
               ))}
@@ -706,6 +726,8 @@ export default function About() {
         {/* —— FOOTER — section end (painting lives in §03 Favorites; Figma 160-548) —— */}
         <div className="about-figma-footer border-t border-gray-200" role="presentation" />
       </main>
+
+      <Webring />
 
       <ImageModal open={!!modal} src={modal?.src} caption={modal?.caption} onClose={close} />
     </div>

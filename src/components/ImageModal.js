@@ -1,4 +1,7 @@
+'use client'
+
 import React, { useEffect } from 'react'
+import Image from 'next/image'
 
 /**
  * Fullscreen image modal: dark overlay, image at max readable size, caption below.
@@ -36,10 +39,13 @@ export default function ImageModal({ open, src, caption, onClose }) {
         >
           ×
         </button>
-        <img
+        <Image
           src={src}
           alt={caption || 'Enlarged'}
           className="max-h-[calc(92vh-88px)] w-auto max-w-full object-contain shadow-2xl"
+          width={1600}
+          height={1200}
+          priority={false}
         />
         {caption ? (
           <p

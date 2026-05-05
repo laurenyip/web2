@@ -1,4 +1,7 @@
+"use client";
+
 import React, { useMemo, useState } from "react";
+import Image from "next/image";
 import Navbar from "../components/Navbar";
 
 function BookModal({ book, onClose }) {
@@ -24,9 +27,12 @@ function BookModal({ book, onClose }) {
           ×
         </button>
 
-        <img
+        <Image
           src={book.src}
           alt={book.title}
+          width={800}
+          height={1200}
+          priority={false}
           style={{
             maxWidth: "95vw",
             maxHeight: "80vh",
@@ -229,10 +235,12 @@ export default function ReadingList() {
                     }}
                     aria-label={`Open ${b.title}`}
                   >
-                    <img
+                    <Image
                       src={b.src}
                       alt={b.title}
-                      loading="lazy"
+                      width={400}
+                      height={600}
+                      priority={false}
                       style={{
                         width: "100%",
                         height: "100%",

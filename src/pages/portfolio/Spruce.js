@@ -1,5 +1,8 @@
+'use client'
+
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Image from 'next/image'
+import Link from 'next/link'
 import Navbar from '../../components/Navbar'
 import ScrollToTop from '../../components/ScrollToTop'
 import '../App.css'
@@ -64,10 +67,13 @@ export default function Spruce() {
       <header className="spruce-figma-hero">
         <div className="spruce-figma-hero-inner">
           <div className="spruce-figma-hero-stage">
-            <img
+            <Image
               className="spruce-figma-hero-gif"
               src={I.gif}
               alt="Spruce product UI preview"
+              width={1400}
+              height={900}
+              priority
             />
           </div>
         </div>
@@ -114,9 +120,12 @@ export default function Spruce() {
           </section>
 
           <section className="spruce-figma-ipadkids" aria-label="Research collage on screen time and play">
-            <img
+            <Image
               src={I.ipadkids}
               alt="Collage: character figure, weekly screen time stats, child with tablet, and phone illustration"
+              width={1400}
+              height={900}
+              priority={false}
             />
           </section>
 
@@ -164,10 +173,13 @@ export default function Spruce() {
                 </p>
               </article>
             </div>
-            <img
+            <Image
               src={I.sleeping}
               alt="Child sleeping illustration"
               className="spruce-figma-sleeping"
+              width={600}
+              height={600}
+              priority={false}
             />
           </section>
 
@@ -215,7 +227,14 @@ export default function Spruce() {
                 <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
                   Spruce logo
                 </h3>
-                <img src={I.spruceLogo} alt="Spruce logo" className="spruce-figma-ds-logo" />
+                <Image
+                  src={I.spruceLogo}
+                  alt="Spruce logo"
+                  className="spruce-figma-ds-logo"
+                  width={400}
+                  height={160}
+                  priority={false}
+                />
                 <p className="spruce-figma-body">
                   Spruce was named after the street in Vancouver. We wanted it to have real ties to the city.
                 </p>
@@ -224,7 +243,14 @@ export default function Spruce() {
                 <h3 className="spruce-figma-reflect-title" style={{ marginBottom: '16px' }}>
                   Speech bubble color motif
                 </h3>
-                <img src={I.bubble} alt="Speech bubble color motif" className="spruce-figma-ds-bubble" />
+                <Image
+                  src={I.bubble}
+                  alt="Speech bubble color motif"
+                  className="spruce-figma-ds-bubble"
+                  width={500}
+                  height={220}
+                  priority={false}
+                />
                 <p className="spruce-figma-body spruce-figma-body--tight">
                   The blue was chosen for the mountains, green for the forests, and red for the salmon.
                 </p>
@@ -382,10 +408,13 @@ export default function Spruce() {
           </section>
 
           <section className="spruce-figma-split spruce-figma-split--resources">
-            <img
+            <Image
               className="spruce-figma-card-shot spruce-figma-friction-shot"
               src={I.resources}
               alt="Jumpstart resource card listing grants and sports tags"
+              width={900}
+              height={1400}
+              priority={false}
             />
             <div className="spruce-figma-split-copy" style={{ maxWidth: '300px' }}>
               <h3 className="spruce-figma-feature-title">Resources</h3>
@@ -397,10 +426,13 @@ export default function Spruce() {
           </section>
 
           <section className="spruce-figma-split spruce-figma-split--reverse spruce-figma-split--activities">
-            <img
+            <Image
               className="spruce-figma-card-shot spruce-figma-friction-shot"
               src={I.activities}
               alt="Filters for activities screen"
+              width={900}
+              height={1400}
+              priority={false}
             />
             <div className="spruce-figma-split-copy" style={{ maxWidth: '300px' }}>
               <h3 className="spruce-figma-feature-title">Filters for activities</h3>
@@ -415,10 +447,13 @@ export default function Spruce() {
           </section>
 
           <section className="spruce-figma-split spruce-figma-split--tight spruce-figma-split--profiles">
-            <img
+            <Image
               className="spruce-figma-profile-img"
               src={I.laura}
               alt="Profile card for a family member"
+              width={900}
+              height={1200}
+              priority={false}
             />
             <div className="spruce-figma-feature-copy">
               <h3 className="spruce-figma-feature-title">Profiles for each family member</h3>
@@ -431,8 +466,22 @@ export default function Spruce() {
 
           <section className="spruce-figma-split spruce-figma-split--translation">
             <div className="spruce-figma-translate-row">
-              <img src={I.translate} alt="Language translation controls" className="spruce-figma-trans-img" />
-              <img src={I.spanish} alt="Spanish translation screen" className="spruce-figma-trans-spanish-img" />
+              <Image
+                src={I.translate}
+                alt="Language translation controls"
+                className="spruce-figma-trans-img"
+                width={900}
+                height={1400}
+                priority={false}
+              />
+              <Image
+                src={I.spanish}
+                alt="Spanish translation screen"
+                className="spruce-figma-trans-spanish-img"
+                width={900}
+                height={1400}
+                priority={false}
+              />
             </div>
             <div className="spruce-figma-feature-copy">
               <h3 className="spruce-figma-feature-title">Translation</h3>
@@ -475,11 +524,14 @@ export default function Spruce() {
                 aria-labelledby={`tab-${finalScreenId}`}
                 tabIndex={0}
               >
-                <img
+                <Image
                   key={activeFinal.id}
                   src={activeFinal.src}
                   alt={activeFinal.alt}
                   className="spruce-figma-final-shot"
+                  width={900}
+                  height={1400}
+                  priority={false}
                 />
               </div>
             </div>
@@ -507,15 +559,18 @@ export default function Spruce() {
                 </p>
               </div>
             </div>
-            <img
+            <Image
               src="/images/projects/spruce/orca.png"
               alt="Orca illustration"
+              width={920}
+              height={520}
+              priority={false}
               style={{ display: 'block', margin: '4rem auto', width: '100%', maxWidth: '460px', height: 'auto' }}
             />
           </section>
 
           <footer className="spruce-figma-footer">
-            <Link to="/aurora" className="spruce-figma-next">
+            <Link href="/aurora" className="spruce-figma-next">
               See next case study &nbsp;
               <span
                 aria-hidden="true"
