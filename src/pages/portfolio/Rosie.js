@@ -1,5 +1,8 @@
+'use client'
+
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Image from 'next/image'
+import Link from 'next/link'
 import ScrollToTop from '../../components/ScrollToTop'
 import Navbar from '../../components/Navbar'
 import '../App.css'
@@ -29,7 +32,14 @@ export default function Rosie() {
       <Navbar />
       <header className="spruce-figma-hero rosie-figma-hero">
         <div className="spruce-figma-hero-stage">
-          <img src={I.hero} className="spruce-figma-hero-gif" alt="React to This! project website preview" />
+          <Image
+            src={I.hero}
+            className="spruce-figma-hero-gif"
+            alt="React to This! project website preview"
+            width={1400}
+            height={900}
+            priority
+          />
         </div>
       </header>
 
@@ -209,7 +219,14 @@ export default function Rosie() {
                 aria-labelledby={`tab-${activeTab}`}
                 tabIndex={0}
               >
-                <img src={showcase.src} alt={showcase.alt} className="spruce-figma-final-shot" loading="lazy" />
+                <Image
+                  src={showcase.src}
+                  alt={showcase.alt}
+                  className="spruce-figma-final-shot"
+                  width={1200}
+                  height={1600}
+                  priority={false}
+                />
               </div>
             </div>
           </section>
@@ -238,7 +255,7 @@ export default function Rosie() {
 
           <footer className="spruce-figma-footer">
             <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-              <Link to="/starmap" className="spruce-figma-next">
+              <Link href="/starmap" className="spruce-figma-next">
                 See next case study →
               </Link>
             </div>

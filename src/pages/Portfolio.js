@@ -1,5 +1,8 @@
+'use client'
+
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import Image from 'next/image'
+import Link from 'next/link'
 import Navbar from '../components/Navbar'
 import './App.css'
 import './Portfolio.css'
@@ -86,18 +89,20 @@ function Portfolio() {
           {CASE_STUDIES.map((project) => (
             <li key={project.to} className="portfolio-card-item">
               <Link
-                to={project.to}
+                href={project.to}
                 className={`portfolio-card group ${project.darkCard ? 'portfolio-card--dark' : ''}`}
               >
                 <div
                   className={`portfolio-card-media portfolio-card-media--${project.to.replace('/', '')}`}
                   style={{ backgroundColor: project.cardBg }}
                 >
-                  <img
+                  <Image
                     src={project.thumb}
                     alt={project.alt}
                     className={`portfolio-card-image portfolio-card-image--${project.to.replace('/', '')}`}
-                    loading="lazy"
+                    width={1000}
+                    height={700}
+                    priority={false}
                   />
                 </div>
                 <div className="portfolio-card-body">

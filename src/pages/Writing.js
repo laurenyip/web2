@@ -1,11 +1,15 @@
+'use client'
+
 import React, { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import Navbar from '../components/Navbar'
 import './App.css'
 import './Portfolio.css'
 
 function Writing() {
-  const location = useLocation()
+  const pathname = usePathname()
   useEffect(() => {
     // Add the navbar dark effect on scroll, matching the About page
     const header = document.querySelector('.navbar')
@@ -80,15 +84,15 @@ function Writing() {
         {/* File folder tabs */}
         <div className="folder-tabs">
           <Link
-            to="/portfolio"
-            className={`folder-tab ${location.pathname === '/portfolio' ? 'folder-tab-active' : ''}`}
+            href="/portfolio"
+            className={`folder-tab ${pathname === '/portfolio' ? 'folder-tab-active' : ''}`}
             style={{ fontFamily: "'Moto', serif" }}
           >
             Painting
           </Link>
           <Link
-            to="/writing"
-            className={`folder-tab ${location.pathname === '/writing' ? 'folder-tab-active' : ''}`}
+            href="/writing"
+            className={`folder-tab ${pathname === '/writing' ? 'folder-tab-active' : ''}`}
             style={{ fontFamily: "'Moto', serif" }}
           >
             Writing
@@ -106,13 +110,13 @@ function Writing() {
                 className="block cursor-pointer group"
               >
                 <div className="border border-gray-300 rounded-lg overflow-hidden hover:border-gray-400 transition-colors bg-white">
-                  <img
+                  <Image
                     src={piece.imgSrc}
                     alt={piece.title}
                     className="w-full md:h-48 object-contain md:object-cover"
-                    loading="lazy"
                     width={300}
                     height={200}
+                    priority={false}
                   />
                 </div>
               </a>

@@ -1,4 +1,7 @@
+'use client'
+
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import './App.css'
 import Navbar from '../components/Navbar'
 
@@ -83,7 +86,7 @@ function Projects() {
   ]
 
   return (
-    <div className="min-h-screen bg-white relative pb-40">
+    <div className="min-h-screen bg-white relative pb-[calc(10rem+1in)]">
       <Navbar />
 
       {/* Desktop Layout - same as before */}
@@ -197,10 +200,13 @@ function Projects() {
             >
               ×
             </button>
-            <img
+            <Image
               src={expandedImage}
               alt="Expanded project"
               className="max-w-full max-h-[90vh] object-contain"
+              width={1600}
+              height={1200}
+              priority={false}
               onClick={(e) => e.stopPropagation()}
             />
           </div>
@@ -654,10 +660,13 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
                 </>
               )
             })()}
-            <img
+            <Image
               src={expandedShowcaseImage}
               alt="Expanded showcase"
               className="max-w-full max-h-[90vh] object-contain"
+              width={1600}
+              height={1200}
+              priority={false}
               onClick={(e) => e.stopPropagation()}
             />
           </div>

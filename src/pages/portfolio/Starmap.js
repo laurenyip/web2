@@ -1,5 +1,8 @@
+'use client'
+
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Image from 'next/image'
+import Link from 'next/link'
 import Navbar from '../../components/Navbar'
 import ScrollToTop from '../../components/ScrollToTop'
 import '../App.css'
@@ -94,9 +97,12 @@ export default function Starmap() {
         <div className="spruce-container">
           <div className="starmap-hero-top">
             <div className="starmap-hero-embed-wrap">
-              <img
+              <Image
                 src="/images/projects/starmap/starmap.gif"
                 alt="Starmap hero preview"
+                width={1400}
+                height={900}
+                priority
                 style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
               />
             </div>
@@ -163,10 +169,13 @@ export default function Starmap() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
               <div className="starmap-journey-row">
-                <img
+                <Image
                   src="/images/projects/starmap/people.png"
                   alt="Many people illustration"
                   className="starmap-journey-img"
+                  width={700}
+                  height={700}
+                  priority={false}
                 />
                 <div className="starmap-journey-copy">
                   <h4 className="starmap-journey-heading">Time tracking</h4>
@@ -179,10 +188,13 @@ export default function Starmap() {
               </div>
 
               <div className="starmap-journey-row">
-                <img
+                <Image
                   src="/images/projects/starmap/confused.jpg"
                   alt="Person with question marks illustration"
                   className="starmap-journey-img"
+                  width={700}
+                  height={700}
+                  priority={false}
                 />
                 <div className="starmap-journey-copy">
                   <h4 className="starmap-journey-heading">Being picky</h4>
@@ -257,10 +269,13 @@ export default function Starmap() {
             {/* Feature #1 */}
             <div className="starmap-feature-row" style={{ alignItems: 'flex-start', marginBottom: '16px' }}>
               <div className="starmap-feature-img-col">
-                <img
+                <Image
                   src="/images/projects/starmap/matthew.png"
                   alt="Matthew profile node"
                   className="starmap-feature-img"
+                  width={900}
+                  height={1400}
+                  priority={false}
                   style={{ marginTop: '-8px' }}
                 />
               </div>
@@ -295,10 +310,13 @@ export default function Starmap() {
             {/* Feature #2 */}
             <div className="starmap-feature-row" style={{ marginTop: '16px', marginBottom: '16px' }}>
               <div className="starmap-feature-img-col">
-                <img
+                <Image
                   src="/images/projects/starmap/importai.png"
                   alt="Import with AI modal UI"
                   className="starmap-feature-img"
+                  width={900}
+                  height={1400}
+                  priority={false}
                 />
               </div>
 
@@ -318,10 +336,13 @@ export default function Starmap() {
             {/* Feature #3 */}
             <div className="starmap-feature-row" style={{ marginTop: '16px' }}>
               <div className="starmap-feature-img-col">
-                <img
+                <Image
                   src="/images/projects/starmap/addconnection.png"
                   alt="Add connection UI showing node linking"
                   className="starmap-feature-img"
+                  width={900}
+                  height={1400}
+                  priority={false}
                 />
               </div>
 
@@ -370,7 +391,7 @@ export default function Starmap() {
                     aria-labelledby={`tab-${activeTab}`}
                     aria-label={`Full-page ${activeTab} design — scroll for full length`}
                   >
-                    <img src={showcase.src} alt={showcase.alt} loading="lazy" />
+                    <Image src={showcase.src} alt={showcase.alt} width={1200} height={2600} priority={false} />
                   </div>
                 </div>
               </div>
@@ -422,7 +443,7 @@ export default function Starmap() {
             className="spruce-container spruce-back-row"
             style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}
           >
-            <Link to="/spruce" className="spruce-back-link">
+            <Link href="/spruce" className="spruce-back-link">
               See next case study &nbsp;→
             </Link>
           </div>

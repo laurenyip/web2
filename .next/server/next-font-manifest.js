@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST='{"pages":{"/Home":[],"/About":[],"/Portfolio":[],"/ReadingList":[],"/Writing":[],"/Projects":[],"/portfolio/Aurora":[],"/portfolio/Rosie":[],"/portfolio/Spruce":[],"/portfolio/Starmap":[]},"app":{},"appUsingSizeAdjust":false,"pagesUsingSizeAdjust":false}';
