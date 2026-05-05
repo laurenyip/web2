@@ -1,13 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/aurora/page": "app/aurora/page.js",
-  "/about/page": "app/about/page.js",
-  "/portfolio/page": "app/portfolio/page.js",
   "/page": "app/page.js",
-  "/spruce/page": "app/spruce/page.js",
-  "/reading-list/page": "app/reading-list/page.js",
-  "/starmap/page": "app/starmap/page.js",
-  "/writing/page": "app/writing/page.js",
-  "/rosie/page": "app/rosie/page.js",
-  "/projects/page": "app/projects/page.js"
+  "/about/page": "app/about/page.js"
 }
