@@ -120,7 +120,7 @@ export default function Starmap() {
               </p>
               <p className="spruce-figma-lede">
                 starmap is a relationship management tool. Instead of treating your network as a flat contact list, it
-                models your social world as a living graph: people, clusters, and connections.
+                models your social world as a living graph: people, clusters, and connections. 
               </p>
               <p className="spruce-figma-lede" style={{ marginTop: '12px' }}>
                 The goal is simple: remember the little things, follow through on plans, and maintain relationships
@@ -258,11 +258,39 @@ export default function Starmap() {
               style={{
                 color: 'var(--sm-purple, #6d4ad8)',
                 textAlign: 'left',
-                marginBottom: '-50px',
+                marginBottom: '12px',
               }}
             >
-              SECOND SOLUTION
+              SECOND SOLUTION — your social world as a living graph
             </h2>
+          </section>
+
+          <section className="starmap-focus-section">
+            <p className="starmap-focus-eyebrow">Focus Areas</p>
+            <h3 className="starmap-focus-heading">three things that needed to work</h3>
+            <div className="starmap-focus-grid">
+              <div className="starmap-focus-card">
+                <div className="starmap-focus-num">01</div>
+                <h4 className="starmap-focus-title">Holding relationship context</h4>
+                <p className="starmap-focus-body">
+                  Replacing the Notion doc with structured, per-person profiles.
+                </p>
+              </div>
+              <div className="starmap-focus-card">
+                <div className="starmap-focus-num">02</div>
+                <h4 className="starmap-focus-title">Making data entry fast</h4>
+                <p className="starmap-focus-body">
+                  The doc failed partly because updating it was a chore.
+                </p>
+              </div>
+              <div className="starmap-focus-card">
+                <div className="starmap-focus-num">03</div>
+                <h4 className="starmap-focus-title">Visualizing the social graph</h4>
+                <p className="starmap-focus-body">
+                  Seeing not just who you know, but how they connect.
+                </p>
+              </div>
+            </div>
           </section>
 
           <section className="starmap-features-section">
@@ -282,11 +310,16 @@ export default function Starmap() {
 
               <div className="starmap-feature-text-col">
                 <h3 className="starmap-feature-heading">
-                  Profiles — Feature #<span className="starmap-feature-num">1</span>
+                  Profiles &amp; Nodes — Feature #<span className="starmap-feature-num">1</span>
                 </h3>
+                <p className="starmap-feature-subhead">making the notion doc obsolete</p>
                 <p className="spruce-figma-body" style={{ marginTop: '12px' }}>
-                  After creating the nodes feature, I had accomplished what my Notion doc previously did. I could hold
-                  my information entries in a clean, organized way, and view my friends as nodes across a map.
+                  The first thing I built was the nodes feature — each person gets a profile card where you can log
+                  relationship notes, memories, and context. Visually, they exist as nodes on the map.
+                </p>
+                <p className="spruce-figma-body" style={{ marginTop: '12px' }}>
+                  This accomplished what my Notion doc did, but in a clean, browsable, spatial format instead of an
+                  infinite scroll of text.
                 </p>
 
                 <div className="starmap-constellation-wrap">
@@ -295,20 +328,8 @@ export default function Starmap() {
               </div>
             </div>
 
-            <h2
-              className="spruce-figma-design-challenge-label"
-              style={{
-                color: 'var(--sm-purple, #6d4ad8)',
-                textAlign: 'left',
-                marginTop: '46px',
-                marginBottom: '18px',
-              }}
-            >
-              ADDING AI FOR SPEED
-            </h2>
-
             {/* Feature #2 */}
-            <div className="starmap-feature-row" style={{ marginTop: '16px', marginBottom: '16px' }}>
+            <div className="starmap-feature-row" style={{ marginTop: '64px', marginBottom: '16px' }}>
               <div className="starmap-feature-img-col">
                 <Image
                   src="/images/projects/starmap/importai.png"
@@ -324,10 +345,15 @@ export default function Starmap() {
                 <h3 className="starmap-feature-heading">
                   Import with AI — Feature #<span className="starmap-feature-num">2</span>
                 </h3>
-                <p className="spruce-figma-body" style={{ marginTop: '12px' }}>
-                  I made a little Gemini wrapper to let me paste in my whole doc and have it fill out information
-                  automatically.
+                <p className="starmap-feature-subhead">
+                  because nobody wants to type <span className="starmap-feature-num">60</span> names
                 </p>
+                <p className="spruce-figma-body" style={{ marginTop: '12px' }}>
+                  The biggest friction point for new users was getting started — copying years of relationship notes
+                  into a new tool is a hard ask. I built a small Gemini wrapper that lets you paste your existing doc
+                  and have it auto-populate profiles.
+                </p>
+                <p className="starmap-feature-punch">One paste. Done.</p>
               </div>
             </div>
 
@@ -348,13 +374,28 @@ export default function Starmap() {
 
               <div className="starmap-feature-text-col">
                 <h3 className="starmap-feature-heading">
-                  Constellations, Connections, and Locations — Feature #
+                  Constellations, Connections &amp; Locations — Feature #
                   <span className="starmap-feature-num">3</span>
                 </h3>
+                <p className="starmap-feature-subhead">what if you could see how your worlds overlap?</p>
                 <p className="spruce-figma-body" style={{ marginTop: '12px' }}>
-                  By shift-clicking two nodes, you can add a connection type between them. Constellations help you
-                  organize the communities or categories you know people from. Location helps you keep your friends
-                  organized as people move around.
+                  The graph view becomes most powerful when you can map relationships between people, not just people
+                  themselves.
+                </p>
+                <ul className="starmap-feature-list">
+                  <li>
+                    <strong>Connections</strong> — shift-click two nodes to define how they know each other
+                  </li>
+                  <li>
+                    <strong>Constellations</strong> — group people into communities (work, college, family, etc.)
+                  </li>
+                  <li>
+                    <strong>Locations</strong> — track where people are as they move around
+                  </li>
+                </ul>
+                <p className="spruce-figma-body" style={{ marginTop: '12px' }}>
+                  This turned Starmap from a glorified contact list into something that actually reflected how my
+                  social world was structured.
                 </p>
               </div>
             </div>
@@ -398,45 +439,73 @@ export default function Starmap() {
             </div>
           </section>
 
-          <section className="spruce-section spruce-container" style={{ paddingTop: '50px', paddingBottom: '110px' }}>
-            <div className="spruce-section-tag">Reflections &amp; Next Steps</div>
-            <div className="spruce-reflect-grid">
+          <section className="spruce-section spruce-container" style={{ paddingTop: '50px', paddingBottom: '24px' }}>
+            <div className="spruce-section-tag">Key Takeaways</div>
+            <div className="spruce-reflect-grid spruce-reflect-grid--3">
               <div className="spruce-reflect-item">
-                <h3 className="spruce-feature-title">Emailing users for feedback</h3>
+                <h3 className="spruce-feature-title">Talk to your users directly, not just through analytics.</h3>
                 <p className="spruce-body">
-                  I reached out directly to early users by email to understand how they were actually using the graph.
-                  The responses shaped the roadmap more than any analytics could — people weren&apos;t using features
-                  I&apos;d spent the most time on, and were asking for things I hadn&apos;t considered.
+                  Emailing early users revealed that the features I&apos;d spent the most time on weren&apos;t the
+                  ones people returned to. Direct conversations shaped the roadmap faster than any dashboard could.
                 </p>
               </div>
 
               <div className="spruce-reflect-item">
-                <h3 className="spruce-feature-title">Notion integration</h3>
+                <h3 className="spruce-feature-title">Fit into existing workflows, don&apos;t replace them.</h3>
                 <p className="spruce-body">
-                  Most people who care about relationship context already live in Notion. A two-way sync would let
-                  users pull existing notes into starmap profiles and push updates back — so it fits into an existing
-                  workflow rather than asking people to build a new one from scratch.
+                  Most people who care about relationship context already live in Notion. A two-way sync isn&apos;t a
+                  nice-to-have — it&apos;s the difference between Starmap being a tool people adopt vs. one they try
+                  and abandon.
                 </p>
               </div>
 
               <div className="spruce-reflect-item">
-                <h3 className="spruce-feature-title">Shift-click to connect nodes</h3>
+                <h3 className="spruce-feature-title">Interactions should feel spatial.</h3>
                 <p className="spruce-body">
-                  Right now creating a connection requires opening a modal. The faster interaction would be: hold
-                  Shift, click two nodes, and they connect — with a lightweight inline label prompt. This makes the
-                  graph feel more direct and spatial, like drawing on a canvas rather than filling out a form.
-                </p>
-              </div>
-
-              <div className="spruce-reflect-item">
-                <h3 className="spruce-feature-title">Deeper user research</h3>
-                <p className="spruce-body">
-                  The next round of emails to users will be more structured — specific questions about which features
-                  they actually return to, what&apos;s missing before they&apos;d recommend it, and whether the graph
-                  view or list view is doing more work for them day-to-day.
+                  Shift-click to connect nodes. Draw on a canvas, don&apos;t fill out a form. The graph metaphor only
+                  works if the interactions reinforce it.
                 </p>
               </div>
             </div>
+          </section>
+
+          <section className="spruce-section spruce-container" style={{ paddingTop: '24px', paddingBottom: '60px' }}>
+            <div className="spruce-section-tag">What&apos;s Next</div>
+            <div className="spruce-reflect-grid spruce-reflect-grid--3">
+              <div className="spruce-reflect-item">
+                <h3 className="spruce-feature-title">Notion integration</h3>
+                <p className="spruce-body">
+                  Two-way sync so Starmap fits into existing workflows rather than asking people to build a new one
+                  from scratch.
+                </p>
+              </div>
+
+              <div className="spruce-reflect-item">
+                <h3 className="spruce-feature-title">Shift-click to connect</h3>
+                <p className="spruce-body">
+                  Replace the modal with a faster, more direct interaction — hold Shift, click two nodes, and they
+                  connect.
+                </p>
+              </div>
+
+              <div className="spruce-reflect-item">
+                <h3 className="spruce-feature-title">Structured user research</h3>
+                <p className="spruce-body">
+                  Targeted questions about which features people actually return to, and what&apos;s missing before
+                  they&apos;d recommend it.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="starmap-try-live spruce-container">
+            <p className="starmap-try-live-text">
+              Try it live at{' '}
+              <a href="https://starmap.lol" target="_blank" rel="noreferrer">
+                starmap.lol
+              </a>
+              {' '}→
+            </p>
           </section>
 
           <div
