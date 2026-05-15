@@ -1,79 +1,21 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
-import Image from "next/image";
+import React, { useMemo } from "react";
 import Navbar from "../components/Navbar";
-
-function BookModal({ book, onClose }) {
-  if (!book) return null;
-
-  return (
-    <div
-      className="fixed inset-0 z-[80] flex items-center justify-center bg-black/70 p-4"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-    >
-      <div
-        className="relative flex flex-col items-center"
-        onClick={(e) => e.stopPropagation()}
-        style={{ maxWidth: "95vw", maxHeight: "95vh" }}
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-0 right-0 -translate-y-2 translate-x-2 rounded-full bg-black/50 hover:bg-black/70 text-white text-4xl font-light leading-none w-10 h-10 flex items-center justify-center"
-          aria-label="Close"
-        >
-          ×
-        </button>
-
-        <Image
-          src={book.src}
-          alt={book.title}
-          width={800}
-          height={1200}
-          priority={false}
-          style={{
-            maxWidth: "95vw",
-            maxHeight: "80vh",
-            objectFit: "contain",
-            borderRadius: "12px",
-            boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
-          }}
-        />
-
-        {book.title ? (
-          <div
-            style={{
-              marginTop: "12px",
-              fontFamily: "'Arial', sans-serif",
-              fontSize: "13px",
-              color: "#6b7280",
-              textAlign: "center",
-            }}
-          >
-            {book.title}
-          </div>
-        ) : null}
-      </div>
-    </div>
-  );
-}
 
 export default function ReadingList() {
   const isMobile = typeof window !== "undefined" ? window.innerWidth < 1024 : false;
 
-  const [openBook, setOpenBook] = useState(null);
-
-  const bookCovers = useMemo(
+  const booksOnHand = useMemo(
     () => [
-      { src: "/images/about/current/milena.jpg", title: "Milena" },
-      { src: "/images/about/current/henry-and-june.png", title: "Henry and June" },
-      { src: "/images/about/current/anne.png", title: "Anne" },
-      { src: "/images/about/current/power-broker-cover.png", title: "The Power Broker" },
-      { src: "/images/about/current/third-world-cover.png", title: "Third World" },
-      { src: "/images/about/current/never-let-me-go.png", title: "Never Let Me Go" },
-      { src: "/images/about/current/oxford-american-essays.png", title: "Oxford American Essays" },
+      { title: "Henry and June", author: "Anaïs Nin" },
+      { title: "From Third World to First", author: "Lee Kuan Yew" },
+      { title: "Pictures from Brueghel", author: "William Carlos Williams" },
+      { title: "Wuthering Heights", author: "Emily Brontë" },
+      { title: "Never Let Me Go", author: "Kazuo Ishiguro" },
+      { title: "Middlemarch", author: "George Eliot" },
+      { title: "The Ersatz Elevator", author: "Lemony Snicket" },
+      { title: "Chez toi en France", author: "G. Brame and B. Tollu" },
     ],
     []
   );
@@ -186,85 +128,47 @@ export default function ReadingList() {
               marginTop: "2px",
             }}
           >
-            books
+            books I read this year or have
+            open in my room somewhere
           </div>
 
-          <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", paddingTop: "0px" }}>
-            <div style={{ position: "relative", paddingBottom: "22px" }}>
-              {/* bookshelf base */}
-              <div
-                style={{
-                  position: "absolute",
-                  left: 0,
-                  right: 0,
-                  bottom: 45,
-                  height: "10px",
-                  borderRadius: "8px",
-                  background:
-                    "linear-gradient(to bottom, rgba(139,105,20,0.95) 0%, rgba(107,78,15,0.95) 100%)",
-                  boxShadow:
-                    "inset 0 2px 4px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.10)",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                  zIndex: 0,
-                }}
-              />
-
-              {/* 7 across shelf */}
-              <div
-                style={{
-                  position: "relative",
-                  zIndex: 1,
-                  display: "grid",
-                  gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
-                  gap: "clamp(6px, 1.2vw, 14px)",
-                  alignItems: "end",
-                }}
-              >
-                {bookCovers.map((b) => (
-                  <button
-                    key={b.src}
-                    type="button"
-                    onClick={() => setOpenBook({ src: b.src, title: b.title })}
-                    className="p-0 bg-transparent border-0 cursor-pointer"
-                    style={{
-                      height: "clamp(110px, 16vw, 175px)",
-                      width: "100%",
-                      display: "flex",
-                      alignItems: "flex-end",
-                      justifyContent: "center",
-                    }}
-                    aria-label={`Open ${b.title}`}
-                  >
-                    <Image
-                      src={b.src}
-                      alt={b.title}
-                      width={400}
-                      height={600}
-                      priority={false}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                        display: "block",
-                        userSelect: "none",
-                        pointerEvents: "none",
-                      }}
-                    />
-                  </button>
-                ))}
+          <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", paddingTop: "16px" }}>
+            {booksOnHand.map((b) => (
+              <div key={`${b.title}-${b.author}`} style={{ marginBottom: "22px" }}>
+                <div
+                  className="text-gray-700"
+                  style={{
+                    fontFamily: "'Moto', serif",
+                    fontSize: isMobile ? "13px" : "14px",
+                    lineHeight: "1.35",
+                  }}
+                >
+                  {b.title}
+                </div>
+                <div
+                  className="text-gray-500"
+                  style={{
+                    fontFamily: "'Arial', sans-serif",
+                    fontSize: "11px",
+                    marginTop: "2px",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  {b.author}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
 
           <div
-            className="text-gray-500 text-[11px] mb-4"
+            className="text-gray-500 text-[11px] mb-4 mt-8"
             style={{
               fontFamily: "'Arial', sans-serif",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
             }}
           >
-            essays i like
+            Essays I like
           </div>
 
           <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", paddingTop: "16px" }}>
@@ -302,8 +206,6 @@ export default function ReadingList() {
 
         </div>
       </div>
-
-      <BookModal book={openBook} onClose={() => setOpenBook(null)} />
     </div>
   );
 }

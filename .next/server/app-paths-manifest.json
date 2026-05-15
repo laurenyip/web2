@@ -1,6 +1,4 @@
 {
-  "/page": "app/page.js",
-  "/starmap/page": "app/starmap/page.js",
-  "/spruce/page": "app/spruce/page.js",
-  "/aurora/page": "app/aurora/page.js"
+  "/about/page": "app/about/page.js",
+  "/reading-list/page": "app/reading-list/page.js"
 }

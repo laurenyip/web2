@@ -52,11 +52,11 @@ const FAVORITES_POSTERS = [
 const FAVORITES_LINKS = [
   {
     label: 'Essays about frames, fashion, movies, and making stuff',
-    href: 'https://laurenyip.com/reading-list',
+    href: '/reading-list',
   },
   {
     label: "Books that let me experience a world I wouldn't have otherwise known",
-    href: 'https://laurenyip.com/reading-list',
+    href: '/reading-list',
   },
   {
     label: 'Love songs with some angst and yearning (also Irish music)',
