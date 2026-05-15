@@ -16,6 +16,10 @@ export default function ReadingList() {
       { title: "Middlemarch", author: "George Eliot" },
       { title: "The Ersatz Elevator", author: "Lemony Snicket" },
       { title: "Chez toi en France", author: "G. Brame and B. Tollu" },
+      { title: "Ella Enchanted", author: "Gail Carson Levine" },
+      { title: "A Man Without a Country", author: "Kurt Vonnegut" },
+      { title: "Anne's House of Dreams", author: "Lucy Maud Montgomery" },
+      { title: "To the Lighthouse", author: "Virginia Woolf" },
     ],
     []
   );
