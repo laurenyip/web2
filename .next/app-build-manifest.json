@@ -35,6 +35,12 @@
       "static/chunks/main-app.js",
       "static/css/app/reading-list/page.css",
       "static/chunks/app/reading-list/page.js"
+    ],
+    "/starmap/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/starmap/page.css",
+      "static/chunks/app/starmap/page.js"
     ]
   }
 }
