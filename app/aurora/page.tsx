@@ -5,8 +5,7 @@ import { buildPageMetadata } from '../metadata'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Aurora Case Study | Lauren Yip',
-  description:
-    'Case study: Aurora Pet Co., an ecommerce and product experience designed for pet health and nutrition workflows.',
+  description: 'Aurora Pet Co. case study — in progress.',
   path: '/aurora',
   image: '/images/projects/aurora/aurora_t.png',
 })
