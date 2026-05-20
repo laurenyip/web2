@@ -5,8 +5,7 @@ import { buildPageMetadata } from '../metadata'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'React to This! Case Study | Lauren Yip',
-  description:
-    'Case study: React to This!, a research-focused web experience exploring emotional and behavioral dataset interactions.',
+  description: 'React to This! case study — in progress.',
   path: '/rosie',
   image: '/images/projects/rosie/rosie_t.png',
 })

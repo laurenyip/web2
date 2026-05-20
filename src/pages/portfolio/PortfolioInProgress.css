@@ -1,0 +1,38 @@
+.portfolio-in-progress-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  color: #111;
+}
+
+.portfolio-in-progress-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 6rem 1.5rem 4rem;
+  text-align: center;
+}
+
+.portfolio-in-progress-heading {
+  margin: 0;
+  font-family: var(--spruce-ff-boring-reg, inherit);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+}
+
+.portfolio-in-progress-back {
+  font-size: 0.95rem;
+  color: #444;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.portfolio-in-progress-back:hover {
+  color: #111;
+}
