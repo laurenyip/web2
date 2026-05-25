@@ -4,7 +4,6 @@ import Portfolio from '../../src/pages/Portfolio'
 import { buildPageMetadata } from '../metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Portfolio | Lauren Yip',
   description:
     'Read portfolio case studies by Lauren Yip, including product design process, user research, and interface decisions.',
   path: '/portfolio',
