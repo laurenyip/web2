@@ -19,5 +19,12 @@ if (fs.existsSync(buildDir)) {
   fs.rmSync(buildDir, { recursive: true, force: true })
 }
 
+// Ensure _redirects is in out/ before mirroring to build/
+const redirectsSrc = path.join(root, 'public', '_redirects')
+const redirectsDest = path.join(outDir, '_redirects')
+if (fs.existsSync(redirectsSrc)) {
+  fs.copyFileSync(redirectsSrc, redirectsDest)
+}
+
 fs.cpSync(outDir, buildDir, { recursive: true })
 console.log('sync-out-to-build: copied out/ → build/')

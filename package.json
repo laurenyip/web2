@@ -16,7 +16,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/sync-out-to-build.js",
+    "build": "next build && node scripts/copy-redirects.js && node scripts/sync-out-to-build.js",
     "start": "next start",
     "lint": "next lint"
   },
