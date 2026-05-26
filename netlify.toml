@@ -2,9 +2,16 @@
   command = "npm run build"
   publish = "out"
 
-# This is the new redirects section for the proxy
+# Rule for /aurora (no trailing slash)
+[[redirects]]
+  from = "/aurora"
+  to = "https://laurenyip.framer.website/aurora"
+  status = 200
+  force = true
+
+# Rule for /aurora/anything (with trailing slash)
 [[redirects]]
   from = "/aurora/*"
-  to = "https://laurenyip.framer.website/aurora"
+  to = "https://laurenyip.framer.website/aurora/:splat"
   status = 200
   force = true
