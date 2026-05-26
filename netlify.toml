@@ -2,16 +2,23 @@
   command = "npm run build"
   publish = "out"
 
-# Rule for /aurora (no trailing slash)
+# Redirect the exact /aurora path
 [[redirects]]
   from = "/aurora"
   to = "https://laurenyip.framer.website/aurora"
   status = 200
   force = true
 
-# Rule for /aurora/anything (with trailing slash)
+# Redirect /aurora/anything (for subpages, assets, etc.)
 [[redirects]]
   from = "/aurora/*"
   to = "https://laurenyip.framer.website/aurora/:splat"
+  status = 200
+  force = true
+
+# IMPORTANT: Handle the trailing slash case
+[[redirects]]
+  from = "/aurora/"
+  to = "https://laurenyip.framer.website/aurora"
   status = 200
   force = true
