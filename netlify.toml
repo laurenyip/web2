@@ -2,11 +2,14 @@
   command = "npm run build"
   publish = "out"
 
-[functions]
-  directory = "netlify/functions"
+# Edge function: proxies /aurora to Framer (file: netlify/edge-functions/aurora-proxy.ts)
+[[edge_functions]]
+  function = "aurora-proxy"
+  path = "/aurora"
 
-[edge_functions]
-  directory = "netlify/edge-functions"
+[[edge_functions]]
+  function = "aurora-proxy"
+  path = "/aurora/*"
 
 # Redirect the exact /aurora path
 [[redirects]]

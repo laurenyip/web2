@@ -12,7 +12,3 @@ export default async (request: Request, context: Context) => {
   const framerUrl = new URL(url.pathname + url.search, FRAMER_ORIGIN);
   return context.rewrite(framerUrl.toString());
 };
-
-export const config = {
-  path: "/aurora",
-};
