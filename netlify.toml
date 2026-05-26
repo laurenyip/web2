@@ -2,14 +2,8 @@
   command = "npm run build"
   publish = "out"
 
-# Edge function: proxies /aurora to Framer (file: netlify/edge-functions/aurora-proxy.ts)
-[[edge_functions]]
-  function = "aurora-proxy"
-  path = "/aurora"
-
-[[edge_functions]]
-  function = "aurora-proxy"
-  path = "/aurora/*"
+# /aurora → Framer via 200 redirects (see public/_redirects and rules below).
+# Do not use an edge function here: context.rewrite() only works for same-site paths.
 
 # Redirect the exact /aurora path
 [[redirects]]
