@@ -1,3 +1,10 @@
 [build]
   command = "npm run build"
   publish = "out"
+
+# This is the new redirects section for the proxy
+[[redirects]]
+  from = "/aurora/*"
+  to = "https://laurenyip.framer.website/aurora"
+  status = 200
+  force = true
