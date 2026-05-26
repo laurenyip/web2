@@ -2,6 +2,12 @@
   command = "npm run build"
   publish = "out"
 
+[functions]
+  directory = "netlify/functions"
+
+[edge_functions]
+  directory = "netlify/edge-functions"
+
 # Redirect the exact /aurora path
 [[redirects]]
   from = "/aurora"
