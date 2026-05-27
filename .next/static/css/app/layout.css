@@ -2476,6 +2476,9 @@ video {
   font-size: 0.75rem;
   line-height: 1rem;
 }
+.text-\[13px\] {
+  font-size: 13px;
+}
 .font-light {
   font-weight: 300;
 }

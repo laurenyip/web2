@@ -6,20 +6,30 @@ import Navbar from "../components/Navbar";
 export default function ReadingList() {
   const isMobile = typeof window !== "undefined" ? window.innerWidth < 1024 : false;
 
-  const booksOnHand = useMemo(
+  const booksOpenInRoom = useMemo(
     () => [
       { title: "Henry and June", author: "Anaïs Nin" },
-      { title: "From Third World to First", author: "Lee Kuan Yew" },
       { title: "Pictures from Brueghel", author: "William Carlos Williams" },
+      { title: "Middlemarch", author: "George Eliot" },
+      { title: "Chez toi en France", author: "G. Brame and B. Tollu" },
+      { title: "To the Lighthouse", author: "Virginia Woolf" },
+      { title: "The Sun Also Rises", author: "Ernest Hemingway" },
+      { title: "The Wicked King", author: "Holly Black" },
+    ],
+    []
+  );
+
+  const booksFinishedThisYear = useMemo(
+    () => [
+      { title: "From Third World to First", author: "Lee Kuan Yew" },
       { title: "Wuthering Heights", author: "Emily Brontë" },
       { title: "Never Let Me Go", author: "Kazuo Ishiguro" },
-      { title: "Middlemarch", author: "George Eliot" },
       { title: "The Ersatz Elevator", author: "Lemony Snicket" },
-      { title: "Chez toi en France", author: "G. Brame and B. Tollu" },
       { title: "Ella Enchanted", author: "Gail Carson Levine" },
       { title: "A Man Without a Country", author: "Kurt Vonnegut" },
       { title: "Anne's House of Dreams", author: "Lucy Maud Montgomery" },
-      { title: "To the Lighthouse", author: "Virginia Woolf" },
+      { title: "Six of Crows, Crooked Kingdom", author: "Leigh Bardugo" },
+      { title: "The Cruel Prince", author: "Holly Black" },
     ],
     []
   );
@@ -110,12 +120,12 @@ export default function ReadingList() {
 
       <div
         className="pt-20 pb-12 px-8 max-w-2xl mx-auto"
-        style={{ marginTop: "100px", textAlign: isMobile ? "center" : "left" }}
+        style={{ marginTop: "0px", textAlign: isMobile ? "center" : "left" }}
       >
         <div className="text-4xl text-gray-700 mb-2" style={{ fontFamily: "'Melo', sans-serif" }}>
           reading list
         </div>
-        <div className="text-gray-500" style={{ fontFamily: "'Arial', sans-serif", fontSize: "14px", marginBottom: "24px" }}>
+        <div className="text-gray-500" style={{ fontFamily: "'Arial', sans-serif", fontSize: "16px", marginBottom: "24px" }}>
           A small collection of essays and books I wholeheartedly recommend.
         </div>
 
@@ -124,7 +134,7 @@ export default function ReadingList() {
           style={{ borderRadius: "8px", boxShadow: "0 10px 28px rgba(0,0,0,0.05)", padding: isMobile ? "14px 14px" : "18px 20px" }}
         >
           <div
-            className="text-gray-500 text-[11px] mb-4"
+            className="text-gray-500 text-[13px] mb-4"
             style={{
               fontFamily: "'Arial', sans-serif",
               letterSpacing: "0.18em",
@@ -132,18 +142,17 @@ export default function ReadingList() {
               marginTop: "2px",
             }}
           >
-            books I read this year or have
-            open in my room somewhere
+            books I have open in my room somewhere
           </div>
 
           <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", paddingTop: "16px" }}>
-            {booksOnHand.map((b) => (
+            {booksOpenInRoom.map((b) => (
               <div key={`${b.title}-${b.author}`} style={{ marginBottom: "22px" }}>
                 <div
                   className="text-gray-700"
                   style={{
                     fontFamily: "'Moto', serif",
-                    fontSize: isMobile ? "13px" : "14px",
+                    fontSize: isMobile ? "16px" : "18px",
                     lineHeight: "1.35",
                   }}
                 >
@@ -153,9 +162,11 @@ export default function ReadingList() {
                   className="text-gray-500"
                   style={{
                     fontFamily: "'Arial', sans-serif",
-                    fontSize: "11px",
+                    fontSize: "16px",
+                    fontWeight: "400",
+                    lineHeight: "21px",
                     marginTop: "2px",
-                    letterSpacing: "0.02em",
+                    letterSpacing: "1.3px",
                   }}
                 >
                   {b.author}
@@ -165,7 +176,48 @@ export default function ReadingList() {
           </div>
 
           <div
-            className="text-gray-500 text-[11px] mb-4 mt-8"
+            className="text-gray-500 text-[13px] mb-4 mt-8"
+            style={{
+              fontFamily: "'Arial', sans-serif",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+            }}
+          >
+            books I finished this year
+          </div>
+
+          <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", paddingTop: "16px" }}>
+            {booksFinishedThisYear.map((b) => (
+              <div key={`${b.title}-${b.author}`} style={{ marginBottom: "22px" }}>
+                <div
+                  className="text-gray-700"
+                  style={{
+                    fontFamily: "'Moto', serif",
+                    fontSize: isMobile ? "16px" : "18px",
+                    lineHeight: "1.35",
+                  }}
+                >
+                  {b.title}
+                </div>
+                <div
+                  className="text-gray-500"
+                  style={{
+                    fontFamily: "'Arial', sans-serif",
+                    fontSize: "16px",
+                    fontWeight: "400",
+                    lineHeight: "21px",
+                    marginTop: "2px",
+                    letterSpacing: "1.3px",
+                  }}
+                >
+                  {b.author}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className="text-gray-500 text-[13px] mb-4 mt-8"
             style={{
               fontFamily: "'Arial', sans-serif",
               letterSpacing: "0.18em",
@@ -185,7 +237,7 @@ export default function ReadingList() {
                   className="text-gray-700 hover:underline"
                   style={{
                     fontFamily: "'Moto', serif",
-                    fontSize: isMobile ? "13px" : "14px",
+                    fontSize: isMobile ? "14px" : "15px",
                     lineHeight: "1.35",
                     display: "inline",
                   }}
@@ -196,9 +248,11 @@ export default function ReadingList() {
                   className="text-gray-500"
                   style={{
                     fontFamily: "'Arial', sans-serif",
-                    fontSize: "11px",
+                    fontSize: "16px",
+                    fontWeight: "400",
+                    lineHeight: "21px",
                     marginTop: "2px",
-                    letterSpacing: "0.02em",
+                    letterSpacing: "1.3px",
                   }}
                 >
                   {e.author ? `${e.author} · ` : ""}
@@ -208,6 +262,12 @@ export default function ReadingList() {
             ))}
           </div>
 
+        </div>
+        <div
+          className="text-gray-500 mt-6"
+          style={{ fontFamily: "'Arial', sans-serif", fontSize: "12px", textAlign: isMobile ? "center" : "left" }}
+        >
+          message me for all time favorites
         </div>
       </div>
     </div>
