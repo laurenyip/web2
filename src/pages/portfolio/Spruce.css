@@ -1283,6 +1283,13 @@
   margin-bottom: 36px;
 }
 
+.spruce-figma-reflect-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .spruce-figma-reflect-title {
   font-family: var(--spruce-ff-boring-reg);
   font-weight: 400;

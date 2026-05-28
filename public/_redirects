@@ -1,4 +1,7 @@
 /aurora           https://laurenyip.framer.website/aurora          200
 /aurora/          https://laurenyip.framer.website/aurora          200
 /aurora/*         https://laurenyip.framer.website/aurora/:splat   200
+/spruce           https://laurenyip.framer.website/spruce          200
+/spruce/          https://laurenyip.framer.website/spruce          200
+/spruce/*         https://laurenyip.framer.website/spruce/:splat   200
 /*    /index.html   200

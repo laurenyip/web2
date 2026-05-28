@@ -2,7 +2,7 @@
   command = "npm run build"
   publish = "out"
 
-# /aurora → Framer via 200 redirects (see public/_redirects and rules below).
+# /aurora and /spruce → Framer via 200 redirects (see public/_redirects and rules below).
 # Do not use an edge function here: context.rewrite() only works for same-site paths.
 
 # Redirect the exact /aurora path
@@ -23,5 +23,26 @@
 [[redirects]]
   from = "/aurora/"
   to = "https://laurenyip.framer.website/aurora"
+  status = 200
+  force = true
+
+# Redirect the exact /spruce path
+[[redirects]]
+  from = "/spruce"
+  to = "https://laurenyip.framer.website/spruce"
+  status = 200
+  force = true
+
+# Redirect /spruce/anything (for subpages, assets, etc.)
+[[redirects]]
+  from = "/spruce/*"
+  to = "https://laurenyip.framer.website/spruce/:splat"
+  status = 200
+  force = true
+
+# IMPORTANT: Handle the trailing slash case
+[[redirects]]
+  from = "/spruce/"
+  to = "https://laurenyip.framer.website/spruce"
   status = 200
   force = true
