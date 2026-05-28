@@ -30,6 +30,15 @@ const CASE_STUDIES = [
     darkCard: true,
   },
   {
+    to: '/amazon-giftwrapping',
+    meta: 'SPARKJAM 2026',
+    title: 'Amazon gift wrapping',
+    blurb: 'An improved gift wrapping and card customization experience for Amazon shoppers.',
+    thumb: '/images/projects/amazon-giftwrapping/amazon_hero.gif',
+    alt: 'Amazon cart with gift wrapping option',
+    cardBg: '#90BCFF',
+  },
+  {
     to: '/aurora',
     title: 'Aurora Pet Co.',
     meta: 'SIMPLE VENTURES · 2025',

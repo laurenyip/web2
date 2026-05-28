@@ -9,7 +9,7 @@ const nextConfig = {
   },
   // Legacy UI lives in src/pages as .js files; only `app/` should define routes (tsx/ts).
   pageExtensions: ['tsx', 'ts'],
-  // Proxy /aurora and /spruce to Framer in local dev (redirects handle production).
+  // Proxy Framer case studies in local dev (redirects handle production).
   async rewrites() {
     return [
       {
@@ -35,6 +35,18 @@ const nextConfig = {
       {
         source: '/spruce/:path*',
         destination: `${FRAMER_ORIGIN}/spruce/:path*`,
+      },
+      {
+        source: '/amazon-giftwrapping',
+        destination: `${FRAMER_ORIGIN}/amazon-giftwrapping`,
+      },
+      {
+        source: '/amazon-giftwrapping/',
+        destination: `${FRAMER_ORIGIN}/amazon-giftwrapping`,
+      },
+      {
+        source: '/amazon-giftwrapping/:path*',
+        destination: `${FRAMER_ORIGIN}/amazon-giftwrapping/:path*`,
       },
     ]
   },

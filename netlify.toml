@@ -2,7 +2,7 @@
   command = "npm run build"
   publish = "out"
 
-# /aurora and /spruce → Framer via 200 redirects (see public/_redirects and rules below).
+# /aurora, /spruce, and /amazon-giftwrapping → Framer via 200 redirects (see public/_redirects and rules below).
 # Do not use an edge function here: context.rewrite() only works for same-site paths.
 
 # Redirect the exact /aurora path
@@ -44,5 +44,26 @@
 [[redirects]]
   from = "/spruce/"
   to = "https://laurenyip.framer.website/spruce"
+  status = 200
+  force = true
+
+# Redirect the exact /amazon-giftwrapping path
+[[redirects]]
+  from = "/amazon-giftwrapping"
+  to = "https://laurenyip.framer.website/amazon-giftwrapping"
+  status = 200
+  force = true
+
+# Redirect /amazon-giftwrapping/anything (for subpages, assets, etc.)
+[[redirects]]
+  from = "/amazon-giftwrapping/*"
+  to = "https://laurenyip.framer.website/amazon-giftwrapping/:splat"
+  status = 200
+  force = true
+
+# IMPORTANT: Handle the trailing slash case
+[[redirects]]
+  from = "/amazon-giftwrapping/"
+  to = "https://laurenyip.framer.website/amazon-giftwrapping"
   status = 200
   force = true
