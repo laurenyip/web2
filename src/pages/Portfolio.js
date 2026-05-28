@@ -24,7 +24,7 @@ const CASE_STUDIES = [
     title: 'spruce',
     
     blurb: 'Helping low-income families in Vancouver find free and low-cost third-space activities.',
-    thumb: '/images/projects/spruce/spruce_t.png',
+    thumb: '/images/projects/spruce/spruce_hero.gif',
     alt: 'Spruce home screen',
     cardBg: '#3E5D39',
     darkCard: true,
@@ -43,7 +43,7 @@ const CASE_STUDIES = [
     title: 'Aurora Pet Co.',
     meta: 'SIMPLE VENTURES · 2025',
     blurb: 'Vet-backed subscription pet pharmacy focused on chronic conditions and affordability across Canada.',
-    thumb: '/images/projects/aurora/aurora_t.png',
+    thumb: '/images/projects/aurora/aurora_hero.gif',
     alt: 'Aurora Pet Co. home screen',
     cardBg: '#FCBAFF',
   },
