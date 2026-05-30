@@ -609,6 +609,11 @@ ul.navbar .nav-pipe {
   }
 
   .about-page .about-art-carousel-frame img,
+  .about-page .about-art-painting-img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
   .about-page .about-vinyl-shelf img {
     max-width: 95%;
   }
@@ -649,6 +654,139 @@ ul.navbar .nav-pipe {
   .about-page .about-vinyl-shelf-inner {
     width: 100% !important;
     max-width: 100% !important;
+  }
+}
+
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/pages/About.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+/* About — content constrained to 1200px canvas */
+
+.about-page .about-main-inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  overflow-x: hidden;
+}
+
+.about-page .about-main-inner > * {
+  max-width: 100%;
+}
+
+.about-page .about-section-num {
+  color: #374151;
+  font-family: Melo, sans-serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+/* Shared 12-column grid — matches §00 so left edges line up */
+.about-page .about-grid-12,
+.about-page .about-layout-12 {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .about-page .about-grid-12,
+  .about-page .about-layout-12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+    row-gap: 0;
+    align-items: start;
+  }
+
+  .about-page .about-layout-media {
+    grid-column: 1 / 8;
+    min-width: 0;
+  }
+
+  .about-page .about-layout-rail {
+    grid-column: 8 / 13;
+    min-width: 0;
+  }
+
+  /* §02 Writing — text/number on the left again */
+  .about-page .about-section--02 .about-layout-rail-left {
+    grid-column: 1 / 6;
+    grid-row: 1;
+  }
+
+  .about-page .about-section--02 .about-layout-aside {
+    grid-column: 8 / 13;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  /* §04 — copy left; photo grid beside it on the right (same row) */
+  .about-page .about-section--04 .about-layout-rail-left {
+    grid-column: 1 / 7;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  .about-page .about-section--04 .about-layout-media {
+    grid-column: 7 / 13;
+    grid-row: 1;
+    align-self: start;
+    justify-self: start;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .about-page .about-section--04 .about-sidequest-grid {
+    justify-items: start;
+  }
+
+  /* §01 — narrower art column + more air before 01 */
+  .about-page .about-section--01 .about-layout-12 {
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+  }
+
+  .about-page .about-section--01 .about-layout-media {
+    grid-column: 1 / 7;
+    padding-right: 2rem;
+  }
+
+  .about-page .about-section--01 .about-layout-rail {
+    grid-column: 8 / 13;
+    padding-left: 0.25rem;
+  }
+}
+
+/* §01 — all art paintings: 10px corners, frame hugs image width */
+.about-page .about-section--01 .about-art-carousel-frame > button {
+  justify-content: flex-start;
+  padding: 0.5rem 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.about-page .about-art-carousel-frame {
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.about-page .about-art-carousel-frame img,
+.about-page .about-art-painting-img {
+  display: block;
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .about-page .about-favorites-posters-offset {
+    margin-left: min(320px, calc(100% - 170px));
   }
 }
 

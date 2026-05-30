@@ -601,6 +601,11 @@ ul.navbar .nav-pipe {
   }
 
   .about-page .about-art-carousel-frame img,
+  .about-page .about-art-painting-img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
   .about-page .about-vinyl-shelf img {
     max-width: 95%;
   }

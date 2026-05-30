@@ -1,521 +1,125 @@
-.About {
-  margin: 0;
-  padding: 0;
-}
+/* About — content constrained to 1200px canvas */
 
-/* logo image */
-
-body.main {
-  background-color: #ffffff;
-
-  /* border: rgb(18, 79, 120, 0.8) solid 1.5vw;*/
-}
-
-body {
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  color: #374151;
-  background-color: #ffffff;
+.about-page .about-main-inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
   overflow-x: hidden;
 }
 
-/* Ensure hero images don't get cropped by small viewports */
-img.aboutImage {
+.about-page .about-main-inner > * {
   max-width: 100%;
-  height: auto !important;
-  object-fit: contain;
-  display: block;
 }
 
-/* hero background image */
-
-.imageAboutPage {
-  /* You can adjust the value to your preference */
-  width: auto; /* To maintain the aspect ratio */
-}
-
-.overlay-home {
-  position: relative;
-  top: 24%;
-  left: 12%;
-  width: 5%;
-  height: 11%;
-  object-fit: 20; /* Maintain aspect ratio and cover the container */
-  z-index: 1; /* Set the overlay "width: 100%; max-width: 100%; height: auto;" above the background image */
-}
-
-.overlay-head {
-  position: absolute;
-  top: 20%;
-  left: 3%;
-  width: 2%;
-  height: 70%;
-  object-fit: 80; /* Maintain aspect ratio and cover the container */
-  z-index: 1; /* Set the overlay image above the background image */
-}
-
-/* ~~~ TEXT STYLING ~~~ */
-
-.centered p {
-  margin: 1px 0; /* Add some margin between paragraphs */
-  font-family: 'Moto', sans-serif;
-  font-size: large;
-  font-weight: 300;
-}
-
-.middle p {
-  margin: 1px 0; /* Add some margin between paragraphs */
-  font-family: 'Moto', serif;
-  text-align: center;
-  font-size: large;
-}
-
-.middle p1 {
-  margin: 1px 0; /* Add some margin between paragraphs */
-  font-family: 'URWGeometricRegular', sans-serif;
-  text-align: left;
-  font-size: medium;
-}
-
-.left-aligned {
-  text-align: left;
-  font-weight: 100;
-}
-
-.centered p1 {
-  margin: 1px 0; /* Add some margin between paragraphs */
-  font-family: 'Moto', serif;
-  font-size: medium;
-  font-weight: lighter;
-  justify-content: left;
-}
-
-h1.text-left {
-  font-family: 'Moto', serif;
-  text-align: left;
-  background-color: #ffc2c2;
-  border-radius: 15px;
-  /* You can change the color (#000) and border width (2px) as needed */
-  /* Adjust the padding to create space between the text and the border */
-  display: inline-block; /* Ensures that the border wraps around the text */
-  padding: 1.5%;
-}
-
-h1.text-center {
-  font-family: 'Moto', serif;
-  text-align: center;
-  font-size: 20px;
-  /* You can change the color (#000) and border width (2px) as needed */
-  /* Adjust the padding to create space between the text and the border */
-  display: inline-block; /* Ensures that the border wraps around the text */
-}
-
-/* Centered text */
-.centered {
-  position: relative;
-  padding-top: 90%;
-  padding-bottom: 2%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -45%);
-  font-family: 'Moto', serif;
-  text-align: center; /* Center-align the text */
-}
-
-p {
-  position: relative;
-  text-align: left; /* Center-align the text */
-  font-family: 'Arial', sans-serif;
+.about-page .about-section-num {
   color: #374151;
-}
-p3 {
-  position: relative;
-  text-align: left; /* Center-align the text */
-  font-family: 'F25', serif;
-  color: #374151;
-}
-p3b {
-  position: relative;
-  text-align: left; /* Center-align the text */
-  font-family: 'F25', serif;
-  font-size: xx-large;
-  color: #374151;
+  font-family: Melo, sans-serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 400;
+  line-height: 0.95;
 }
 
-p2 {
-  position: relative;
-  text-align: left; /* Center-align the text */
-  font-family: 'Arial', serif;
-  font-size: 10px;
-  color: #374151;
-}
-p1 {
-  font-family: 'URWGeometricRegular', sans-serif;
-  font-weight: 100;
-}
-
-.btn.btn-success {
-  color: #ffb2b2; /* Set the text color for the blue button */
-  /* You can add more styles here if needed */
-}
-/* Assuming .btn-outline-secondary is the class for your button */
-.btn.btn-outline-secondary:hover {
-  background-color: #ffb2b2;
-  color: #a7b7f4 /* Specify the text color you want on hover */;
-}
-
-/* ~~~ CONTENT CONTAINER STYLING ~~~ */
-
-.content {
-  max-width: 567px; /* Adjust as needed */
-  margin: auto;
-  border: #001c80 solid 1px;
-  padding-inline: 5%;
-}
-
-.container {
-  border: #001c80 solid 1px;
-  padding: 8%;
-
-  max-width: fit-content;
-}
-
-/* ~~~ NAVBAR STYLING ~~~ */
-
-
-/* footer styling */
-
-/* spacing on all sections */
-#about,
-#services,
-#portfolio {
-  margin-top: 4rem;
-  padding: 2rem;
-  max-width: 1100px;
-  background-color: rgb(255, 255, 255);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/* social media icons styling */
-.social-icons {
-  font-size: 25px;
-  cursor: pointer;
-  text-align: center;
-}
-.social-icons:hover {
-  color: #ffb2b2;
-}
-
-/* additional styling for positioning */
-.d-flex.justify-content-center {
-  position: relative;
-  padding-top: 10%;
-}
-
-.fab,
-.fa-solid {
-  color: #092c79;
-}
-.fab:hover,
-.fa-solid:hover {
-  color: #ffb2b2;
-}
-
-/* ~~~ SLIDESHOW CSS ~~~ */
-/* Slideshow container */
-
-.slideshow-container {
-  max-width: 1100px;
-  position: relative;
-  margin: 25px;
-}
-
-.slide-container {
-  overflow: auto;
-  white-space: nowrap;
-}
-
-/* Hide the images by default */
-.mySlides {
-  display: block;
-}
-
-/* Next & previous buttons */
-.prevR,
-.nextR {
-  cursor: pointer;
-  position: rel;
-  top: 40%;
-  padding: 3px;
-  padding-left: 8px;
-  padding-right: 8px;
-  color: rgb(40, 0, 202);
-  font-weight: bold;
-  font-size: 12px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  background-color: #ffb2b2;
-  z-index: 2; /* Ensure buttons appear above images */
-}
-
-/* Position the "next button" to the right */
-.nextR {
-  border-radius: 3px 0 0 3px;
-}
-
-.nextA {
-  color: rgb(40, 0, 202);
-  background-color: #ffc2c2;
-  padding: 3px;
-  padding-right: 9px;
-  padding-left: 9px;
-
-  border-radius: 3px 0 0 3px;
-  user-select: none;
-}
-
-.nextA:hover {
-  background-color: rgba(93, 150, 255, 0.811);
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prevR:hover,
-.nextR:hover {
-  background-color: rgba(93, 150, 255, 0.811);
-}
-
-/* Caption text */
-.text {
-  color: rgb(8, 0, 84);
-  font-size: 15px;
-  font-weight: normal;
-  padding: 8px 16px;
-  position: relative;
-  bottom: 0px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 7px;
-  width: 7px;
-  margin: 0 4px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.swipe {
-  overflow: auto;
-  white-space: nowrap;
-}
-
-.active,
-.dot:hover {
-  background-color: rgb(112, 162, 255);
-}
-
-/* About.css */
-.About .about-content {
+/* Shared 12-column grid — matches §00 so left edges line up */
+.about-page .about-grid-12,
+.about-page .about-layout-12 {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px; /* Adds space between the image and slideshow */
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
-.About .imageAboutPage {
-  width: 40%;
+@media (min-width: 1024px) {
+  .about-page .about-grid-12,
+  .about-page .about-layout-12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 2rem;
+    row-gap: 0;
+    align-items: start;
+  }
+
+  .about-page .about-layout-media {
+    grid-column: 1 / 8;
+    min-width: 0;
+  }
+
+  .about-page .about-layout-rail {
+    grid-column: 8 / 13;
+    min-width: 0;
+  }
+
+  /* §02 Writing — text/number on the left again */
+  .about-page .about-section--02 .about-layout-rail-left {
+    grid-column: 1 / 6;
+    grid-row: 1;
+  }
+
+  .about-page .about-section--02 .about-layout-aside {
+    grid-column: 8 / 13;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  /* §04 — copy left; photo grid beside it on the right (same row) */
+  .about-page .about-section--04 .about-layout-rail-left {
+    grid-column: 1 / 7;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  .about-page .about-section--04 .about-layout-media {
+    grid-column: 7 / 13;
+    grid-row: 1;
+    align-self: start;
+    justify-self: start;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .about-page .about-section--04 .about-sidequest-grid {
+    justify-items: start;
+  }
+
+  /* §01 — narrower art column + more air before 01 */
+  .about-page .about-section--01 .about-layout-12 {
+    column-gap: 2rem;
+  }
+
+  .about-page .about-section--01 .about-layout-media {
+    grid-column: 1 / 7;
+    padding-right: 2rem;
+  }
+
+  .about-page .about-section--01 .about-layout-rail {
+    grid-column: 8 / 13;
+    padding-left: 0.25rem;
+  }
+}
+
+/* §01 — all art paintings: 10px corners, frame hugs image width */
+.about-page .about-section--01 .about-art-carousel-frame > button {
+  justify-content: flex-start;
+  padding: 0.5rem 0;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.about-page .about-art-carousel-frame {
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.about-page .about-art-carousel-frame img,
+.about-page .about-art-painting-img {
+  display: block;
+  border-radius: 10px;
+  max-width: 100%;
   height: auto;
 }
 
-.About .slideshow-container {
-  width: 50%;
-}
-
-.mySlides1 img {
-  width: 100%;
-  height: auto;
-}
-
-.nextA {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  font-size: 24px;
-  color: black;
-  user-select: none;
-}
-
-@font-face {
-  font-family: 'Chobani';
-  src: url('fonts/Chobani.ttf') format('truetype');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Apercu';
-  src: url('fonts/Apercu.otf') format('OpenType');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'URWGeometricHeavy';
-  src: url('fonts/URWGeometricHeavy.otf') format('OpenType');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'URWGeometricSemiBold';
-  src: url('fonts/URWGeometricSemiBold.otf') format('OpenType');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Moto';
-  src: url('fonts/Moto.otf') format('OpenType');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Melo';
-  src: url('fonts/melo.ttf') format('truetype');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'URWGeometricRegular';
-  src: url('fonts/URWGeometricRegular.otf') format('OpenType');
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'F25';
-  src: url('fonts/f25.otf') format('OpenType');
-  font-display: swap;
-}
-
-/* Spray paint effect animations for essay hover */
-@keyframes sprayFadeIn {
-  from {
-    opacity: 0;
+@media (min-width: 1024px) {
+  .about-page .about-favorites-posters-offset {
+    margin-left: min(320px, calc(100% - 170px));
   }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes sprayFadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-/* Slow rotation animation for vinyl records */
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 3s linear infinite;
-}
-
-/* Mystical moving border animation for secret albums */
-@keyframes mystical-border-glow {
-  0%, 100% {
-    border-color: rgba(138, 43, 226, 0.5);
-    box-shadow: 0 0 10px rgba(138, 43, 226, 0.3), 
-                0 0 20px rgba(75, 0, 130, 0.2),
-                inset 0 0 10px rgba(138, 43, 226, 0.1);
-  }
-  25% {
-    border-color: rgba(75, 0, 130, 0.6);
-    box-shadow: 0 0 15px rgba(75, 0, 130, 0.4), 
-                0 0 25px rgba(138, 43, 226, 0.3),
-                inset 0 0 15px rgba(75, 0, 130, 0.2);
-  }
-  50% {
-    border-color: rgba(138, 43, 226, 0.7);
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5), 
-                0 0 30px rgba(75, 0, 130, 0.4),
-                inset 0 0 20px rgba(138, 43, 226, 0.3);
-  }
-  75% {
-    border-color: rgba(75, 0, 130, 0.6);
-    box-shadow: 0 0 15px rgba(75, 0, 130, 0.4), 
-                0 0 25px rgba(138, 43, 226, 0.3),
-                inset 0 0 15px rgba(75, 0, 130, 0.2);
-  }
-}
-
-.mystical-border {
-  animation: mystical-border-glow 3s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes bounceIn {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-10px) scale(1.05);
-  }
-  70% {
-    transform: translateY(5px) scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.animate-bounce-in {
-  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }

@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar'
 import ImageModal from '../components/ImageModal'
 import Webring from '../components/Webring'
 import './App.css'
+import './About.css'
 
 /** §01 Art — carousel slides (`public/images/about/art/`) */
 const ART_CAROUSEL = [
@@ -191,17 +192,12 @@ export default function About() {
     <div className="about-page min-h-screen overflow-x-hidden bg-white">
       <Navbar />
 
-      <main className="mx-auto w-full max-w-[1280px] px-4 pb-24 pt-[calc(7rem+50px)] md:px-6 lg:px-8">
+      <main className="about-main-inner mx-auto w-full px-4 pb-24 pt-[calc(7rem+50px)] md:px-6 lg:px-8">
         {/* —— SECTION 00 — Who Am I (Figma 156-545, 159-546, 159-547) —— */}
         <section className="about-figma-section relative">
-          <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-0">
+          <div className="about-grid-12 grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-0">
             <div className="order-2 flex flex-col lg:order-1 lg:col-span-2">
-              <div
-                className="text-[clamp(4rem,14vw,7.5rem)] leading-none text-gray-800"
-                style={{ fontFamily: "'Melo', sans-serif" }}
-              >
-                00
-              </div>
+              <div className="about-section-num">00</div>
               <p className="about-body-text mt-2 m-0">Who Am I</p>
             </div>
 
@@ -264,14 +260,14 @@ export default function About() {
         </section>
 
         {/* —— SECTION 01 — Art (Figma 151-414, 153-541) —— */}
-        <section className="about-figma-section">
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-            <div className="w-full max-w-3xl lg:max-w-[58%]">
+        <section className="about-figma-section about-section--01">
+          <div className="about-layout-12">
+            <div className="about-layout-media w-full min-w-0">
               <div className="about-art-carousel flex flex-col gap-3">
-                <div className="about-art-carousel-frame relative flex min-h-[200px] items-center justify-center overflow-hidden sm:min-h-[280px]">
+                <div className="about-art-carousel-frame relative flex min-h-[200px] items-center justify-center sm:min-h-[280px]">
                   <button
                     type="button"
-                    className="flex w-full cursor-zoom-in items-center justify-center border-0 bg-transparent p-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 sm:p-3"
+                    className="flex w-full cursor-zoom-in items-center justify-start border-0 bg-transparent px-0 py-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 sm:py-3"
                     onClick={() => {
                       const slide = ART_CAROUSEL[artSlide]
                       if (slide) open(slide.src, slide.caption)
@@ -281,7 +277,7 @@ export default function About() {
                     <Image
                       src={ART_CAROUSEL[artSlide]?.src}
                       alt={ART_CAROUSEL[artSlide]?.caption || ''}
-                      className="max-h-[min(70vh,620px)] w-full max-w-full rounded-none lg:rounded-[5px] object-contain"
+                      className="about-art-painting-img max-h-[min(70vh,620px)] w-full max-w-full object-contain"
                       width={1200}
                       height={900}
                       priority={false}
@@ -325,13 +321,8 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-1 flex-col items-start text-left lg:max-w-sm">
-              <div
-                className="text-[clamp(3rem,10vw,5rem)] leading-none text-gray-800"
-                style={{ fontFamily: "'Melo', sans-serif" }}
-              >
-                01
-              </div>
+            <div className="about-layout-rail flex flex-col items-start text-left">
+              <div className="about-section-num">01</div>
               <p className="about-body-text mt-1 m-0">Art</p>
               <p className="about-body-text mt-3 max-w-md text-left">
                 Painting to capture the big chapters of my life. Use the arrows to browse, or click the image to view
@@ -342,15 +333,10 @@ export default function About() {
         </section>
 
         {/* —— SECTION 02 — Writing (Figma 151-415, 154-543) —— */}
-        <section className="about-figma-section">
-          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <div
-                className="text-[clamp(3rem,10vw,5rem)] leading-none text-gray-800"
-                style={{ fontFamily: "'Melo', sans-serif" }}
-              >
-                02
-              </div>
+        <section className="about-figma-section about-section--02">
+          <div className="about-layout-12">
+            <div className="about-layout-rail-left">
+              <div className="about-section-num">02</div>
               <p className="about-body-text mt-1 m-0">Writing</p>
               <div className="about-body-text mt-8 space-y-4">
                 <p>
@@ -364,7 +350,7 @@ export default function About() {
                 <p>I also want to write a fashion blog (please collab with me).</p>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-3 sm:gap-y-3">
+            <div className="about-layout-aside grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-3 sm:gap-y-3">
               {WRITING_LINKS.map((item) =>
                 item.href ? (
                   <a
@@ -393,9 +379,9 @@ export default function About() {
           Left: koi, poster grid, favorite painting + copy. Right: 03 + subtitle (paired),
           links, vinyl shelf aligned under that header group.
         */}
-        <section className="about-figma-section">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-start">
-            <div className="lg:col-span-7">
+        <section className="about-figma-section about-section--03">
+          <div className="about-layout-12">
+            <div className="about-layout-media w-full min-w-0">
               <button
                 type="button"
                 className="mb-4 block max-h-[228px] w-auto cursor-zoom-in rounded-[10px] border-0 bg-transparent p-0"
@@ -411,7 +397,7 @@ export default function About() {
                   priority={false}
                 />
               </button>
-              <div className="mx-auto grid w-full max-w-[220px] grid-cols-2 gap-3 sm:max-w-[240px] lg:mx-0 lg:max-w-[170px] lg:ml-[320px]">
+              <div className="about-favorites-posters-offset mx-auto grid w-full max-w-[220px] grid-cols-2 gap-3 sm:max-w-[240px] lg:mx-0 lg:max-w-[170px]">
                 {FAVORITES_POSTERS.map(({ src, caption }) => (
                   <button
                     key={src}
@@ -456,14 +442,9 @@ export default function About() {
               </div>
             </div>
 
-            <div className="flex flex-col items-start gap-8 text-left lg:col-span-5">
+            <div className="about-layout-rail flex flex-col items-start gap-8 text-left">
               <div className="flex w-full flex-col items-start">
-                <div
-                  className="text-[clamp(3rem,10vw,5rem)] leading-none text-gray-800"
-                  style={{ fontFamily: "'Melo', sans-serif" }}
-                >
-                  03
-                </div>
+                <div className="about-section-num">03</div>
                 <p className="about-body-text mt-1 m-0">Favorites</p>
               </div>
 
@@ -658,15 +639,10 @@ export default function About() {
         </section>
 
         {/* —— SECTION 04 — Sidequests (Figma 167-717) —— */}
-        <section className="about-figma-section">
-          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <div
-                className="text-[clamp(3rem,10vw,5rem)] leading-none text-gray-800"
-                style={{ fontFamily: "'Melo', sans-serif" }}
-              >
-                04
-              </div>
+        <section className="about-figma-section about-section--04">
+          <div className="about-layout-12">
+            <div className="about-layout-rail-left">
+              <div className="about-section-num">04</div>
               <p className="about-body-text mt-1 m-0">Sidequests</p>
               <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-5">
                 <div className="about-body-text space-y-2">
@@ -699,7 +675,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-            <div className="about-sidequest-grid grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2 lg:grid-cols-4">
+            <div className="about-layout-media about-sidequest-grid grid w-full min-w-0 grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2 lg:grid-cols-4">
               {SIDEQUEST_GRID_ITEMS.map(({ src, caption, objectPosition }) => (
                 <button
                   key={src}
