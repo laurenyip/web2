@@ -132,20 +132,22 @@ const VINYL_SLEEVE_PX = 100
 
 function getMusicShelfPositions(items, mobile, viewportW) {
   const positions = []
-  const padding = mobile ? 10 : 16
+  const padding = mobile ? 8 : 16
   const shelfSpacing = mobile ? 6 : 10
 
   let vinylSize = VINYL_SLEEVE_PX
+  let shelfWidth = items.length * vinylSize + (items.length - 1) * shelfSpacing + padding * 2
+
   if (mobile && items.length > 0) {
-    const containerWidth = Math.max(280, Math.min((viewportW || 360) - 64, 440))
+    // about-main-inner uses px-4 (32px total) on mobile
+    const containerWidth = Math.max(280, (viewportW || 360) - 32)
     const inner = containerWidth - padding * 2 - (items.length - 1) * shelfSpacing
     vinylSize = Math.max(56, Math.floor(inner / items.length))
+    shelfWidth = items.length * vinylSize + (items.length - 1) * shelfSpacing + padding * 2
   }
 
   const shelfHeight = vinylSize + 28
   const shelfThickness = 12
-
-  const shelfWidth = items.length * vinylSize + (items.length - 1) * shelfSpacing + padding * 2
   const shelfLeft = 0
 
   for (let i = 0; i < items.length; i++) {
@@ -153,6 +155,8 @@ function getMusicShelfPositions(items, mobile, viewportW) {
     positions.push({
       top: `${shelfHeight - vinylSize}px`,
       left: `${leftPosition}px`,
+      leftPercent: (leftPosition / shelfWidth) * 100,
+      widthPercent: (vinylSize / shelfWidth) * 100,
       rotation: 0,
       height: vinylSize,
       isMusic: true,
@@ -220,7 +224,7 @@ export default function About() {
               </div>
             </div>
 
-            <div className="order-1 flex justify-center lg:order-3 lg:col-span-5 lg:justify-end lg:pt-2">
+            <div className="order-1 flex w-full justify-center lg:order-3 lg:col-span-5 lg:justify-end lg:pt-2">
               <div className="about-hero-collage w-full max-w-[min(100%,360px)] pl-2 lg:max-w-[340px] lg:pl-0">
                 <button
                   type="button"
@@ -397,7 +401,7 @@ export default function About() {
                   priority={false}
                 />
               </button>
-              <div className="about-favorites-posters-offset mx-auto grid w-full max-w-[220px] grid-cols-2 gap-3 sm:max-w-[240px] lg:mx-0 lg:max-w-[170px]">
+              <div className="about-favorites-posters-offset grid w-full grid-cols-2 gap-3 lg:max-w-[170px]">
                 {FAVORITES_POSTERS.map(({ src, caption }) => (
                   <button
                     key={src}
@@ -464,21 +468,22 @@ export default function About() {
               </ul>
 
           {MUSIC_ITEMS.length > 0 && (
-            <div className="about-vinyl-shelf flex w-full justify-start">
+            <div className="about-vinyl-shelf flex w-full max-w-full justify-start">
               <div
-                className="about-vinyl-shelf-inner relative"
+                className="about-vinyl-shelf-inner relative w-full max-w-full"
                 style={{
-                  width: `${Math.max(musicShelf.shelfWidth || 0, 1)}px`,
+                  width: isMobile ? '100%' : `${Math.max(musicShelf.shelfWidth || 0, 1)}px`,
                   maxWidth: '100%',
-                  height: `${(musicShelf.shelfBottom || 352) + 40}px`,
+                  height: isMobile ? 'auto' : `${(musicShelf.shelfBottom || 352) + 40}px`,
                 }}
               >
                 <div
-                  className="absolute z-[15]"
+                  className="about-vinyl-shelf-board absolute z-[15]"
                   style={{
-                    top: `${(musicShelf.shelfBottom || 352) - 12}px`,
-                    left: `${musicShelf.shelfLeft || 0}px`,
-                    width: `${musicShelf.shelfWidth || (isMobile ? 400 : 400)}px`,
+                    top: isMobile ? undefined : `${(musicShelf.shelfBottom || 352) - 12}px`,
+                    bottom: isMobile ? 28 : undefined,
+                    left: isMobile ? 0 : `${musicShelf.shelfLeft || 0}px`,
+                    width: isMobile ? '100%' : `${musicShelf.shelfWidth || 400}px`,
                     height: '12px',
                   }}
                 >
@@ -528,14 +533,18 @@ export default function About() {
                   return (
                     <div
                       key={`music-${index}`}
-                      className="group absolute z-20 cursor-pointer transition-transform hover:scale-105"
-                      style={{
-                        top: pos.top,
-                        left: pos.left,
-                        transform: `rotate(${pos.rotation}deg)`,
-                        width: `${vinylSize}px`,
-                        height: `${vinylSize}px`,
-                      }}
+                      className={`about-vinyl-record group z-20 cursor-pointer transition-transform ${isMobile ? 'relative' : 'absolute hover:scale-105'}`}
+                      style={
+                        isMobile
+                          ? undefined
+                          : {
+                              top: pos.top,
+                              left: pos.left,
+                              transform: `rotate(${pos.rotation}deg)`,
+                              width: `${vinylSize}px`,
+                              height: `${vinylSize}px`,
+                            }
+                      }
                       onClick={() => {
                         if (item.link) {
                           window.open(item.link, '_blank', 'noopener,noreferrer')
@@ -549,8 +558,8 @@ export default function About() {
                         style={{
                           transformOrigin: 'center center',
                           zIndex: 2,
-                          width: `${vinylSize}px`,
-                          height: `${vinylSize}px`,
+                          width: isMobile ? '100%' : `${vinylSize}px`,
+                          height: isMobile ? '100%' : `${vinylSize}px`,
                           boxShadow: '0 4px 8px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
                         }}
                       >
@@ -582,8 +591,8 @@ export default function About() {
                         <div
                           className="about-vinyl-disc relative mx-auto rounded-full"
                           style={{
-                            width: `${vinylSize}px`,
-                            height: `${vinylSize}px`,
+                            width: isMobile ? '100%' : `${vinylSize}px`,
+                            height: isMobile ? '100%' : `${vinylSize}px`,
                             background: `linear-gradient(135deg, ${colors.from} 0%, ${colors.via} 50%, ${colors.to} 100%)`,
                             boxShadow:
                               'inset 0 0 20px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.3)',
