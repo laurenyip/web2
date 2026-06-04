@@ -10,7 +10,23 @@
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.1rem;
+  gap: 12px;
+}
+
+@media (min-width: 1025px) {
+  .portfolio-grid {
+    row-gap: 12px;
+    column-gap: 12px;
+  }
+
+  .portfolio-card-body {
+    padding: 0 0.2rem 0;
+  }
+
+  .portfolio-card:hover .portfolio-card-body,
+  .portfolio-card:focus-within .portfolio-card-body {
+    padding-top: 0.35rem;
+  }
 }
 
 .portfolio-card-item {
@@ -28,12 +44,12 @@
 .portfolio-card:focus-visible {
   outline: 2px solid #6b7280;
   outline-offset: 4px;
-  border-radius: 18px;
+  border-radius: 10px;
 }
 
 .portfolio-card-media {
   width: 100%;
-  border-radius: 18px;
+  border-radius: 10px;
   overflow: hidden;
   border: none;
   min-height: 280px;
@@ -66,6 +82,20 @@
   max-width: 90%;
 }
 
+.portfolio-card-media--starmap {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #000;
+}
+
+.portfolio-card-media--amazon-giftwrapping {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #000;
+}
+
 .portfolio-card-body {
   padding: 0.95rem 0.2rem 0.1rem;
 }
@@ -91,6 +121,51 @@
   font-family: Arial, sans-serif;
   font-size: 0.88rem;
   line-height: 1.52;
+}
+
+@media (min-width: 1025px) {
+  .portfolio-card-meta,
+  .portfolio-card-title,
+  .portfolio-card-blurb {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+    transform: translateY(6px);
+    transition:
+      opacity 0.24s ease,
+      max-height 0.32s ease,
+      margin 0.24s ease,
+      transform 0.24s ease,
+      visibility 0.24s;
+  }
+
+  .portfolio-card:hover .portfolio-card-meta,
+  .portfolio-card:focus-within .portfolio-card-meta {
+    opacity: 1;
+    visibility: visible;
+    max-height: 2rem;
+    margin: 0 0 0.4rem;
+    transform: translateY(0);
+  }
+
+  .portfolio-card:hover .portfolio-card-title,
+  .portfolio-card:focus-within .portfolio-card-title {
+    opacity: 1;
+    visibility: visible;
+    max-height: 2.5rem;
+    margin: 0 0 0.15rem;
+    transform: translateY(0);
+  }
+
+  .portfolio-card:hover .portfolio-card-blurb,
+  .portfolio-card:focus-within .portfolio-card-blurb {
+    opacity: 1;
+    visibility: visible;
+    max-height: 5rem;
+    transform: translateY(0);
+  }
 }
 
 .portfolio-card:hover {

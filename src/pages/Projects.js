@@ -93,7 +93,7 @@ function Projects() {
       <div className="hidden md:block pt-20">
         {/* Top Left Grid */}
         <div className="absolute top-[40%] left-[28%] transform -translate-x-1/4 -translate-y-1/4 w-[25%]">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {projects.slice(4, 8).map((project, index) => (
               <ProjectCard key={`bottom-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} onImageExpand={() => setExpandedImage(project.image)} />
             ))}
@@ -116,7 +116,7 @@ function Projects() {
           >
             Experiences
           </div>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {projects.slice(0, 4).map((project, index) => (
               <ProjectCard key={`bottom-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} onImageExpand={() => setExpandedImage(project.image)} />
             ))}
@@ -126,7 +126,7 @@ function Projects() {
         {/* Extra project(s) below the 8 squares - in line with top left square */}
         {projects.length > 8 && (
           <div className="absolute left-[28%] transform -translate-x-1/4 w-[25%] pb-20" style={{ bottom: 'calc(2% - 350px)' }}>
-            <div className="grid grid-cols-2 gap-6 place-items-start">
+            <div className="grid grid-cols-2 gap-3 place-items-start">
               {projects.slice(8).map((project, index) => (
                 <ProjectCard key={`extra-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} onImageExpand={() => setExpandedImage(project.image)} />
               ))}
@@ -138,7 +138,7 @@ function Projects() {
       {/* Mobile Layout */}
       <div className="block md:hidden pt-24 px-4 max-w-xl mx-auto text-center">
         {/* Top Grid (1x4) */}
-        <div className="grid grid-cols-1 gap-6 mb-12">
+        <div className="grid grid-cols-1 gap-3 mb-12">
           {projects.slice(0, 4).map((project, index) => (
             <ProjectCard key={`mobile-top-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} onImageExpand={() => setExpandedImage(project.image)} />
           ))}
@@ -161,7 +161,7 @@ function Projects() {
         </div>
 
         {/* Bottom Grid (1x4) */}
-        <div className="grid grid-cols-1 gap-6 mt-6">
+        <div className="grid grid-cols-1 gap-3 mt-6">
           {projects.slice(4, 8).map((project, index) => (
             <ProjectCard key={`mobile-bottom-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} />
           ))}
@@ -169,7 +169,7 @@ function Projects() {
 
         {/* Extra project(s) below the 8 squares */}
         {projects.length > 8 && (
-          <div className="grid grid-cols-1 gap-6 mt-6 max-w-sm mx-auto">
+          <div className="grid grid-cols-1 gap-3 mt-6 max-w-sm mx-auto">
             {projects.slice(8).map((project, index) => (
               <ProjectCard key={`mobile-extra-${index}`} project={project} onCaseStudyClick={() => setOpenCaseStudy(project.title)} onImageExpand={() => setExpandedImage(project.image)} />
             ))}

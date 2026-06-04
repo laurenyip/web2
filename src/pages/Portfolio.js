@@ -4,24 +4,29 @@ import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '../components/Navbar'
+import StarmapThumb from '../components/StarmapThumb'
+import AmazonGiftThumb from '../components/AmazonGiftThumb'
 import './App.css'
 import './Portfolio.css'
+
+const THUMB_BY_ROUTE = {
+  '/starmap': StarmapThumb,
+  '/amazon-giftwrapping': AmazonGiftThumb,
+}
 
 const CASE_STUDIES = [
   {
     to: '/starmap',
-    title: 'starmap',
-    meta: 'FOUNDER',
+  
     blurb: 'A personal relationship management tool to map people, connections, and social context over time.',
     thumb: '/images/projects/starmap/starmap_t.png',
     alt: 'Starmap landing page',
     cardBg: '#000000',
     darkCard: true,
+    animatedThumb: true,
   },
   {
     to: '/spruce',
-    meta: 'UXATHON 2026',
-    title: 'spruce',
     
     blurb: 'Helping low-income families in Vancouver find free and low-cost third-space activities.',
     thumb: '/images/projects/spruce/spruce_hero.gif',
@@ -31,17 +36,15 @@ const CASE_STUDIES = [
   },
   {
     to: '/amazon-giftwrapping',
-    meta: 'SPARKJAM 2026',
-    title: 'Amazon gift wrapping',
     blurb: 'An improved gift wrapping and card customization experience for Amazon shoppers.',
     thumb: '/images/projects/amazon-giftwrapping/amazon_hero.gif',
     alt: 'Amazon cart with gift wrapping option',
     cardBg: '#90BCFF',
+    animatedThumb: true,
   },
   {
     to: '/aurora',
-    title: 'Aurora Pet Co.',
-    meta: 'SIMPLE VENTURES · 2025',
+    
     blurb: 'Vet-backed subscription pet pharmacy focused on chronic conditions and affordability across Canada.',
     thumb: '/images/projects/aurora/aurora_hero.gif',
     alt: 'Aurora Pet Co. home screen',
@@ -96,14 +99,20 @@ function Portfolio() {
                   className={`portfolio-card-media portfolio-card-media--${project.to.replace('/', '')}`}
                   style={{ backgroundColor: project.cardBg }}
                 >
-                  <Image
-                    src={project.thumb}
-                    alt={project.alt}
-                    className={`portfolio-card-image portfolio-card-image--${project.to.replace('/', '')}`}
-                    width={1000}
-                    height={700}
-                    priority={false}
-                  />
+                  {(() => {
+                    const Thumb = project.animatedThumb ? THUMB_BY_ROUTE[project.to] : null
+                    if (Thumb) return <Thumb />
+                    return (
+                      <Image
+                        src={project.thumb}
+                        alt={project.alt}
+                        className={`portfolio-card-image portfolio-card-image--${project.to.replace('/', '')}`}
+                        width={1000}
+                        height={700}
+                        priority={false}
+                      />
+                    )
+                  })()}
                 </div>
                 <div className="portfolio-card-body">
                   <p className="portfolio-card-meta">
