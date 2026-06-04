@@ -1,0 +1,201 @@
+@font-face {
+  font-family: 'Sohne Kraftig';
+  src: url('/fonts/sohne-font-family/TestSohne-Kraftig-BF663d89cd37e26.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+.starmap-thumb {
+  --starmap-cycle: 8s;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  flex-shrink: 0;
+  container-type: inline-size;
+}
+
+.starmap-thumb-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.starmap-thumb-logo {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.starmap-thumb-text {
+  font-family: 'Sohne Kraftig', 'sohne', sans-serif;
+  font-weight: 600;
+  font-size: calc(40 / 360 * 100cqi);
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -0.03em;
+  animation: starmap-thumb-text var(--starmap-cycle) infinite;
+}
+
+.starmap-thumb-star-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+  width: calc(22 / 360 * 100cqi);
+  height: calc(22 / 360 * 100cqi);
+}
+
+.starmap-thumb-star-icon {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  animation: starmap-thumb-star var(--starmap-cycle) infinite;
+}
+
+.starmap-thumb-constellation {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  width: calc(240 / 360 * 100cqi);
+  max-width: 240px;
+  height: auto;
+  transform: translateX(-50%);
+  animation: starmap-thumb-constellation var(--starmap-cycle) infinite;
+}
+
+.starmap-thumb-node {
+  transform-origin: 7px 7px;
+  transform-box: fill-box;
+  animation: starmap-thumb-twinkle 2.2s ease-in-out infinite;
+  animation-delay: var(--twinkle-delay, 0s);
+}
+
+.starmap-thumb-export-btn {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  z-index: 20;
+  padding: 4px 8px;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1.2;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.starmap-thumb-export-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.starmap-thumb-export-btn:disabled {
+  cursor: wait;
+  opacity: 0.85;
+}
+
+.starmap-thumb--exportable:hover .starmap-thumb-export-btn,
+.starmap-thumb-export-btn:focus-visible {
+  opacity: 1;
+}
+
+/* 8s loop — text 0.4s delay; star zip 1.05s; spin 0.6s; constellation 1.9s delay */
+@keyframes starmap-thumb-star {
+  0%,
+  13.125% {
+    opacity: 0;
+    transform: translate(160px, -80px) scale(0.3) rotate(0deg);
+  }
+  13.125% {
+    animation-timing-function: cubic-bezier(0.2, 0, 0.8, 1);
+  }
+  16.625% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    animation-timing-function: linear;
+  }
+  24.125%,
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(1080deg);
+  }
+}
+
+@keyframes starmap-thumb-constellation {
+  0%,
+  23.75% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+    animation-timing-function: ease;
+  }
+  31.25%,
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes starmap-thumb-text {
+  0%,
+  5% {
+    opacity: 0;
+    transform: translateY(18px);
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  13.75%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes starmap-thumb-twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starmap-thumb-text,
+  .starmap-thumb-star-icon,
+  .starmap-thumb-constellation,
+  .starmap-thumb-node {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .starmap-thumb-constellation {
+    transform: translateX(-50%);
+  }
+
+  .starmap-thumb-text {
+    transform: translateY(0);
+  }
+
+  .starmap-thumb-star-icon {
+    transform: scale(1) rotate(0deg);
+  }
+}

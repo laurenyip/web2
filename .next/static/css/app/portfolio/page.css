@@ -845,6 +845,437 @@ ul.navbar .nav-link:visited {
   }
 }
 
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/components/StarmapThumb.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: 'Sohne Kraftig';
+  src: url('/fonts/sohne-font-family/TestSohne-Kraftig-BF663d89cd37e26.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+.starmap-thumb {
+  --starmap-cycle: 8s;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  flex-shrink: 0;
+  container-type: inline-size;
+}
+
+.starmap-thumb-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  display: block;
+}
+
+.starmap-thumb-logo {
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.starmap-thumb-text {
+  font-family: 'Sohne Kraftig', 'sohne', sans-serif;
+  font-weight: 600;
+  font-size: calc(40 / 360 * 100cqi);
+  line-height: 1;
+  color: #fff;
+  letter-spacing: -0.03em;
+  animation: starmap-thumb-text var(--starmap-cycle) infinite;
+}
+
+.starmap-thumb-star-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+  width: calc(22 / 360 * 100cqi);
+  height: calc(22 / 360 * 100cqi);
+}
+
+.starmap-thumb-star-icon {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  animation: starmap-thumb-star var(--starmap-cycle) infinite;
+}
+
+.starmap-thumb-constellation {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  width: calc(240 / 360 * 100cqi);
+  max-width: 240px;
+  height: auto;
+  transform: translateX(-50%);
+  animation: starmap-thumb-constellation var(--starmap-cycle) infinite;
+}
+
+.starmap-thumb-node {
+  transform-origin: 7px 7px;
+  transform-box: fill-box;
+  animation: starmap-thumb-twinkle 2.2s ease-in-out infinite;
+  animation-delay: var(--twinkle-delay, 0s);
+}
+
+.starmap-thumb-export-btn {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  z-index: 20;
+  padding: 4px 8px;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1.2;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.starmap-thumb-export-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.starmap-thumb-export-btn:disabled {
+  cursor: wait;
+  opacity: 0.85;
+}
+
+.starmap-thumb--exportable:hover .starmap-thumb-export-btn,
+.starmap-thumb-export-btn:focus-visible {
+  opacity: 1;
+}
+
+/* 8s loop — text 0.4s delay; star zip 1.05s; spin 0.6s; constellation 1.9s delay */
+@keyframes starmap-thumb-star {
+  0%,
+  13.125% {
+    opacity: 0;
+    transform: translate(160px, -80px) scale(0.3) rotate(0deg);
+  }
+  13.125% {
+    animation-timing-function: cubic-bezier(0.2, 0, 0.8, 1);
+  }
+  16.625% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    animation-timing-function: linear;
+  }
+  24.125%,
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(1080deg);
+  }
+}
+
+@keyframes starmap-thumb-constellation {
+  0%,
+  23.75% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+    animation-timing-function: ease;
+  }
+  31.25%,
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes starmap-thumb-text {
+  0%,
+  5% {
+    opacity: 0;
+    transform: translateY(18px);
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  13.75%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes starmap-thumb-twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starmap-thumb-text,
+  .starmap-thumb-star-icon,
+  .starmap-thumb-constellation,
+  .starmap-thumb-node {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .starmap-thumb-constellation {
+    transform: translateX(-50%);
+  }
+
+  .starmap-thumb-text {
+    transform: translateY(0);
+  }
+
+  .starmap-thumb-star-icon {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/components/AmazonGiftThumb.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
+.amazon-gift-thumb {
+  --amazon-cycle: 8s;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  flex-shrink: 0;
+  container-type: inline-size;
+}
+
+.amazon-gift-thumb-bg-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.amazon-gift-thumb-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center 38%;
+     object-position: center 38%;
+  display: block;
+}
+
+.amazon-gift-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.amazon-gift-logo-wrap {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  width: calc(280 / 360 * 100cqi);
+  max-width: 280px;
+  transform: translateX(-50%);
+  animation: amazon-gift-logo-in var(--amazon-cycle) infinite;
+}
+
+.amazon-gift-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.amazon-gift-logo-base {
+  clip-path: polygon(
+    0% 0%,
+    76% 0%,
+    76% 28%,
+    88% 28%,
+    88% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%
+  );
+}
+
+.amazon-gift-logo-bow {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 12% 72% 76%);
+  transform-origin: 82% 28%;
+  animation: amazon-gift-bow-sway var(--amazon-cycle) infinite;
+}
+
+.amazon-gift-thumb-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  animation: amazon-gift-sparkles-in var(--amazon-cycle) infinite;
+}
+
+.amazon-gift-sparkle {
+  position: absolute;
+  display: block;
+  opacity: 0;
+  transform: scale(0);
+  animation-name: amazon-gift-sparkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.amazon-gift-sparkle svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.amazon-gift-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 213, 128, 0.15) 0%, rgba(255, 213, 128, 0) 70%);
+  opacity: 0;
+  animation-name: amazon-gift-glow-pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  transform: translate(-50%, -50%);
+}
+
+/* Logo entrance — delay 0.3s, duration 0.8s */
+@keyframes amazon-gift-logo-in {
+  0%,
+  3.75% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(120%) scale(0.7);
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  13.75%,
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* Bow sway — 1.2s and 3.5s within 8s cycle */
+@keyframes amazon-gift-bow-sway {
+  0%,
+  14.9%,
+  24.1%,
+  43.6%,
+  50.1%,
+  100% {
+    transform: rotate(0deg);
+  }
+  15.5% {
+    transform: rotate(-8deg);
+  }
+  17.5% {
+    transform: rotate(6deg);
+  }
+  19.5% {
+    transform: rotate(-4deg);
+  }
+  21.5% {
+    transform: rotate(3deg);
+  }
+  44.5% {
+    transform: rotate(-6deg);
+  }
+  46.5% {
+    transform: rotate(4deg);
+  }
+  48.5% {
+    transform: rotate(-2deg);
+  }
+}
+
+/* Sparkle field visible from ~2s */
+@keyframes amazon-gift-sparkles-in {
+  0%,
+  24.9% {
+    opacity: 0;
+  }
+  25%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes amazon-gift-sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  45% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+@keyframes amazon-gift-glow-pulse {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .amazon-gift-thumb-bg {
+    display: none;
+  }
+
+  .amazon-gift-thumb-bg-wrap {
+    background: #2a2a2a center / cover no-repeat
+      url('/images/projects/amazon-giftwrapping/birthday.jpg');
+  }
+
+  .amazon-gift-logo-wrap,
+  .amazon-gift-logo-bow,
+  .amazon-gift-thumb-sparkles,
+  .amazon-gift-sparkle,
+  .amazon-gift-glow {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .amazon-gift-logo-wrap {
+    transform: translateX(-50%);
+  }
+
+  .amazon-gift-sparkle {
+    opacity: 0.6;
+    transform: scale(0.85);
+  }
+}
+
 /*!*********************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/pages/Portfolio.css ***!
   \*********************************************************************************************************************************************************************************************************************************************************************/
@@ -860,7 +1291,24 @@ ul.navbar .nav-link:visited {
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.1rem;
+  gap: 12px;
+}
+
+@media (min-width: 1025px) {
+  .portfolio-grid {
+    row-gap: 12px;
+    -moz-column-gap: 12px;
+         column-gap: 12px;
+  }
+
+  .portfolio-card-body {
+    padding: 0 0.2rem 0;
+  }
+
+  .portfolio-card:hover .portfolio-card-body,
+  .portfolio-card:focus-within .portfolio-card-body {
+    padding-top: 0.35rem;
+  }
 }
 
 .portfolio-card-item {
@@ -878,12 +1326,12 @@ ul.navbar .nav-link:visited {
 .portfolio-card:focus-visible {
   outline: 2px solid #6b7280;
   outline-offset: 4px;
-  border-radius: 18px;
+  border-radius: 10px;
 }
 
 .portfolio-card-media {
   width: 100%;
-  border-radius: 18px;
+  border-radius: 10px;
   overflow: hidden;
   border: none;
   min-height: 280px;
@@ -918,6 +1366,20 @@ ul.navbar .nav-link:visited {
   max-width: 90%;
 }
 
+.portfolio-card-media--starmap {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #000;
+}
+
+.portfolio-card-media--amazon-giftwrapping {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #000;
+}
+
 .portfolio-card-body {
   padding: 0.95rem 0.2rem 0.1rem;
 }
@@ -943,6 +1405,51 @@ ul.navbar .nav-link:visited {
   font-family: Arial, sans-serif;
   font-size: 0.88rem;
   line-height: 1.52;
+}
+
+@media (min-width: 1025px) {
+  .portfolio-card-meta,
+  .portfolio-card-title,
+  .portfolio-card-blurb {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+    transform: translateY(6px);
+    transition:
+      opacity 0.24s ease,
+      max-height 0.32s ease,
+      margin 0.24s ease,
+      transform 0.24s ease,
+      visibility 0.24s;
+  }
+
+  .portfolio-card:hover .portfolio-card-meta,
+  .portfolio-card:focus-within .portfolio-card-meta {
+    opacity: 1;
+    visibility: visible;
+    max-height: 2rem;
+    margin: 0 0 0.4rem;
+    transform: translateY(0);
+  }
+
+  .portfolio-card:hover .portfolio-card-title,
+  .portfolio-card:focus-within .portfolio-card-title {
+    opacity: 1;
+    visibility: visible;
+    max-height: 2.5rem;
+    margin: 0 0 0.15rem;
+    transform: translateY(0);
+  }
+
+  .portfolio-card:hover .portfolio-card-blurb,
+  .portfolio-card:focus-within .portfolio-card-blurb {
+    opacity: 1;
+    visibility: visible;
+    max-height: 5rem;
+    transform: translateY(0);
+  }
 }
 
 .portfolio-card:hover {
