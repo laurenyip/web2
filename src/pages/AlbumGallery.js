@@ -9,7 +9,7 @@ import './AlbumGallery.css'
 const GROOVE_RATIOS = [0.22, 0.32, 0.42, 0.52, 0.62, 0.72, 0.82]
 
 const PRIORITY_TOP = [
-  'bts-hyyh-pt2',
+  'sour',
   'london-calling',
   'stop-making-sense',
   'graceland',
@@ -39,24 +39,23 @@ const ALBUMS = [
     artist: 'Talking Heads',
     image: '/images/about/favorites/music/sms.jpg',
     link: 'https://letterboxd.com/laurenyip/film/stop-making-sense/',
-    tracks: ['Psycho Killer', 'This Must Be the Place', 'Once in a Lifetime'],
-    thought: 'Big suit energy. The concert film I rewatch most.',
+    tracks: ['Heaven', 'This Must Be the Place', 'Genius of Love'],
+    thought: 'please let me watch this in a theatre before i die',
   },
   {
     id: 'graceland',
     artist: 'Paul Simon',
     image: '/images/about/favorites/music/graceland.jpg',
     link: 'https://open.spotify.com/album/6WgGWYw6XXQyLTsWt7tXky',
-    tracks: ['Diamonds on the Soles of Her Shoes', 'Graceland', 'Boy in the Bubble'],
-    thought: 'Road-trip sunlight — Paul Simon at his most generous.',
+    tracks: ['Diamonds on the Soles of Her Shoes'],
+    thought: 'A PERFECT ALBUM',
   },
   {
     id: 'your-name',
     artist: 'RADWIMPS',
     image: '/images/about/favorites/music/yn.jpg',
     link: 'https://open.spotify.com/album/4qApTp9557qYZzRLEih4uP',
-    tracks: ['夢灯籠', '前前前世', 'スパークル'],
-    thought: 'The score that made me cry in a packed theatre.',
+    tracks: ['no skips'],
   },
   {
     id: 'the-bends',
@@ -87,7 +86,7 @@ const ALBUMS = [
     artist: 'The Cardigans',
     image: '/images/albums/first-band-on-moon.jpg',
     link: 'https://open.spotify.com/album/0YI7QPNUGq8NTB6Nd8nWfd',
-    tracks: ['Lovefool', 'Been It', 'Your New Cuckoo'],
+    tracks: ['Lovefool', 'Your New Cuckoo'],
     thought: '90s pop perfection — grainy cover, sparkly hooks.',
   },
   {
@@ -217,6 +216,22 @@ const ALBUMS = [
     link: 'https://open.spotify.com/album/4NIqCxqP9o8Tp6tGLBqd8O',
     tracks: ['Fake Love', 'The Truth Untold', '134340'],
     thought: 'Minimal 轉 on navy — elegant heartbreak.',
+  },
+  {
+    id: 'name-of-love',
+    artist: 'cinema staff',
+    image: '/images/albums/name-of-love.jpg',
+    link: 'https://open.spotify.com/album/1ISP5p4p9DKnw7LUIpoSjA',
+    tracks: ['Name of Love', 'OCEAN', 'great escape'],
+    thought: 'Monochrome portrait, bold type — the AOT ending that wrecked me.',
+  },
+  {
+    id: 'ningen-kaika',
+    artist: 'RADWIMPS',
+    image: '/images/albums/ningen-kaika.jpg',
+    link: 'https://open.spotify.com/album/5TZ0bVy0tqIriXse4qk1HY',
+    tracks: ['光', '前前前世', 'スパークル'],
+    thought: 'Tongue out, freckles, 人間開花 — playful and unfiltered.',
   },
 ]
 
