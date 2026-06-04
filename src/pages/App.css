@@ -538,6 +538,18 @@ ul.navbar .nav-link:visited {
   animation: about-vinyl-spin-slow 3s linear infinite;
 }
 
+@media (min-width: 1024px) {
+  .about-page .about-vinyl-shelf-records {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .about-page .about-vinyl-shelf-records .about-vinyl-record {
+    pointer-events: auto;
+  }
+}
+
 /* About — section rhythm (+ Favorites frames 162-708, 171-769, 167-736/739/742/745, 171-771, 151-446, 152-530, 167-733, 152-534, 151-421, 152-525, 151-420; 151-414/415, 153-541, 154-543, 156-545, 159-546/547, 160-548, 167-717) */
 .about-page .about-figma-section {
   margin-bottom: 5rem; /* 80px */
@@ -732,50 +744,85 @@ ul.navbar .nav-link:visited {
   .about-page .about-vinyl-shelf {
     width: 100%;
     max-width: 100%;
-    overflow: hidden;
+    overflow: visible;
+    margin-bottom: 0.5rem;
   }
 
   .about-page .about-vinyl-shelf-inner {
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: clamp(3px, 1.2vw, 8px);
+    flex-direction: column;
+    align-items: stretch;
     box-sizing: border-box;
     width: 100% !important;
     max-width: 100% !important;
     height: auto !important;
     min-height: 0;
-    padding: 0 clamp(2px, 1vw, 6px) 52px;
-    overflow: hidden;
+    padding: 0 0 0.5rem;
+    overflow: visible;
+    gap: 0;
   }
 
-  .about-page .about-vinyl-shelf-board {
+  .about-page .about-vinyl-shelf-records {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    order: 1;
+  }
+
+  .about-page .about-vinyl-shelf-inner > .about-vinyl-shelf-board {
+    position: relative !important;
     top: auto !important;
-    bottom: 28px !important;
-    left: 0 !important;
+    bottom: auto !important;
+    left: auto !important;
     width: 100% !important;
+    margin-top: 2px;
+    flex-shrink: 0;
+    order: 2;
+  }
+
+  .about-page .about-albums-charm-slot {
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    align-self: flex-end;
+    margin-top: 0.65rem;
+    pointer-events: none;
+    order: 3;
   }
 
   .about-page .about-vinyl-record {
     position: relative !important;
     top: auto !important;
     left: auto !important;
-    flex: 1 1 0;
     min-width: 0;
-    max-width: 25%;
-    width: auto !important;
-    height: auto !important;
+    max-width: 100%;
+    width: 100%;
     aspect-ratio: 1 / 1;
+    overflow: hidden;
     transform: none !important;
   }
 
-  .about-page .about-vinyl-record:hover {
-    transform: none !important;
+  .about-page .about-vinyl-record .absolute.inset-0.z-\[1\] {
+    display: none;
   }
 
   .about-page .about-vinyl-record .absolute.inset-0.bg-white {
     transform: none !important;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .about-page .about-vinyl-record img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    object-fit: cover;
+    display: block;
   }
 
   .about-page .about-vinyl-record .group-hover\:-translate-x-\[12\%\] {

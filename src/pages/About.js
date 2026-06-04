@@ -140,11 +140,11 @@ function getMusicShelfPositions(items, mobile, viewportW) {
   let shelfWidth = items.length * vinylSize + (items.length - 1) * shelfSpacing + padding * 2
 
   if (mobile && items.length > 0) {
-    // about-main-inner uses px-4 (32px total) on mobile
+    const gap = 6
+    const count = items.length
     const containerWidth = Math.max(280, (viewportW || 360) - 32)
-    const inner = containerWidth - padding * 2 - (items.length - 1) * shelfSpacing
-    vinylSize = Math.max(56, Math.floor(inner / items.length))
-    shelfWidth = items.length * vinylSize + (items.length - 1) * shelfSpacing + padding * 2
+    vinylSize = Math.floor((containerWidth - gap * (count - 1)) / count)
+    shelfWidth = containerWidth
   }
 
   const shelfHeight = vinylSize + 28
@@ -447,7 +447,7 @@ export default function About() {
               </div>
             </div>
 
-            <div className="about-layout-rail flex flex-col items-start gap-8 text-left">
+            <div className="about-layout-rail flex w-full min-w-0 flex-col items-start gap-8 text-left">
               <div className="flex w-full flex-col items-start">
                 <div className="about-section-num">03</div>
                 <p className="about-body-text mt-1 m-0">Favorites</p>
@@ -469,53 +469,16 @@ export default function About() {
               </ul>
 
           {MUSIC_ITEMS.length > 0 && (
-            <div className="about-vinyl-shelf flex w-full max-w-full justify-start">
+            <div className="about-vinyl-shelf flex w-full min-w-0 max-w-full justify-start">
               <div
-                className="about-vinyl-shelf-inner relative w-full max-w-full"
+                className="about-vinyl-shelf-inner relative w-full min-w-0 max-w-full"
                 style={{
                   width: isMobile ? '100%' : `${Math.max(musicShelf.shelfWidth || 0, 1)}px`,
                   maxWidth: '100%',
                   height: isMobile ? 'auto' : `${(musicShelf.shelfBottom || 352) + 106}px`,
-                  paddingBottom: isMobile ? 'calc(3.5rem + 50px)' : undefined,
                 }}
               >
-                <div
-                  className="about-vinyl-shelf-board absolute z-[15]"
-                  style={{
-                    top: isMobile ? undefined : `${(musicShelf.shelfBottom || 352) - 12}px`,
-                    bottom: isMobile ? 28 : undefined,
-                    left: isMobile ? 0 : `${musicShelf.shelfLeft || 0}px`,
-                    width: isMobile ? '100%' : `${musicShelf.shelfWidth || 400}px`,
-                    height: '12px',
-                  }}
-                >
-                  <div
-                    className="relative h-full w-full"
-                    style={{
-                      background:
-                        'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
-                      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-                      borderTop: '1px solid rgba(139, 105, 20, 0.5)',
-                      borderBottom: '1px solid rgba(107, 78, 15, 0.8)',
-                    }}
-                  >
-                    {[...Array(5)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute w-full opacity-20"
-                        style={{
-                          height: '1px',
-                          top: `${i * 2.4}px`,
-                          background:
-                            i % 2 === 0
-                              ? 'linear-gradient(to right, transparent, rgba(107, 78, 15, 0.5), transparent)'
-                              : 'linear-gradient(to left, transparent, rgba(139, 105, 20, 0.5), transparent)',
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
-
+                <div className="about-vinyl-shelf-records">
                 {MUSIC_ITEMS.map((item, index) => {
                   const pos = musicShelf.positions[index]
                   if (!pos) return null
@@ -560,9 +523,9 @@ export default function About() {
                         style={{
                           transformOrigin: 'center center',
                           zIndex: 2,
-                          width: isMobile ? '100%' : `${vinylSize}px`,
-                          height: isMobile ? '100%' : `${vinylSize}px`,
-                          boxShadow: '0 4px 8px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
+                          boxShadow: isMobile
+                            ? '0 1px 3px rgba(0,0,0,0.2)'
+                            : '0 4px 8px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
                         }}
                       >
                         {item.image ? (
@@ -591,10 +554,8 @@ export default function About() {
 
                       <div className="absolute inset-0 z-[1] origin-center opacity-0 transition-all duration-500 ease-out group-hover:translate-x-[18%] group-hover:opacity-100">
                         <div
-                          className="about-vinyl-disc relative mx-auto rounded-full"
+                          className="about-vinyl-disc relative mx-auto h-full w-full rounded-full"
                           style={{
-                            width: isMobile ? '100%' : `${vinylSize}px`,
-                            height: isMobile ? '100%' : `${vinylSize}px`,
                             background: `linear-gradient(135deg, ${colors.from} 0%, ${colors.via} 50%, ${colors.to} 100%)`,
                             boxShadow:
                               'inset 0 0 20px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.3)',
@@ -642,6 +603,44 @@ export default function About() {
                     </div>
                   )
                 })}
+                </div>
+
+                <div
+                  className={`about-vinyl-shelf-board z-[15]${isMobile ? '' : ' absolute'}`}
+                  style={{
+                    top: isMobile ? undefined : `${(musicShelf.shelfBottom || 352) - 12}px`,
+                    bottom: undefined,
+                    left: isMobile ? undefined : `${musicShelf.shelfLeft || 0}px`,
+                    width: isMobile ? '100%' : `${musicShelf.shelfWidth || 400}px`,
+                    height: '12px',
+                  }}
+                >
+                  <div
+                    className="relative h-full w-full"
+                    style={{
+                      background:
+                        'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
+                      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
+                      borderTop: '1px solid rgba(139, 105, 20, 0.5)',
+                      borderBottom: '1px solid rgba(107, 78, 15, 0.8)',
+                    }}
+                  >
+                    {[...Array(5)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute w-full opacity-20"
+                        style={{
+                          height: '1px',
+                          top: `${i * 2.4}px`,
+                          background:
+                            i % 2 === 0
+                              ? 'linear-gradient(to right, transparent, rgba(107, 78, 15, 0.5), transparent)'
+                              : 'linear-gradient(to left, transparent, rgba(139, 105, 20, 0.5), transparent)',
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
 
                 <div className="about-albums-charm-slot">
                   <AboutAlbumsCharm />
