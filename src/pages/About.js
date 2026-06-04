@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import ImageModal from '../components/ImageModal'
 import Webring from '../components/Webring'
+import AboutAlbumsCharm from '../components/AboutAlbumsCharm'
 import './App.css'
 import './About.css'
 
@@ -474,7 +475,8 @@ export default function About() {
                 style={{
                   width: isMobile ? '100%' : `${Math.max(musicShelf.shelfWidth || 0, 1)}px`,
                   maxWidth: '100%',
-                  height: isMobile ? 'auto' : `${(musicShelf.shelfBottom || 352) + 40}px`,
+                  height: isMobile ? 'auto' : `${(musicShelf.shelfBottom || 352) + 106}px`,
+                  paddingBottom: isMobile ? 'calc(3.5rem + 50px)' : undefined,
                 }}
               >
                 <div
@@ -640,6 +642,10 @@ export default function About() {
                     </div>
                   )
                 })}
+
+                <div className="about-albums-charm-slot">
+                  <AboutAlbumsCharm />
+                </div>
               </div>
             </div>
           )}

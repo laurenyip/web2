@@ -86,7 +86,7 @@ function Projects() {
   ]
 
   return (
-    <div className="min-h-screen bg-white relative pb-[calc(10rem+1in)]">
+    <div className="projects-page min-h-screen bg-white relative pb-[calc(10rem+1in)]">
       <Navbar />
 
       {/* Desktop Layout - same as before */}
@@ -460,7 +460,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
             <h2 className="text-3xl md:text-4xl font-semibold text-gray-700 mb-2" style={{ fontFamily: "'Melo', sans-serif" }}>
               {projectTitle}
             </h2>
-            <p className="text-gray-700 text-sm">{caseStudy.role} • {caseStudy.timeline}</p>
+            <p className="about-body-text m-0">{caseStudy.role} • {caseStudy.timeline}</p>
           </div>
           <button
             onClick={onClose}
@@ -476,14 +476,14 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           {/* Overview */}
           <section>
             <h3 className="text-xl font-semibold text-gray-700 mb-3">Overview</h3>
-            <p className="text-gray-700 leading-relaxed">{caseStudy.overview}</p>
+            <p className="about-body-text m-0">{caseStudy.overview}</p>
           </section>
 
           {/* Challenge */}
           {caseStudy.challenge && (
             <section>
               <h3 className="text-xl font-semibold text-gray-700 mb-3">The Challenge</h3>
-              <p className="text-gray-700 leading-relaxed">{caseStudy.challenge}</p>
+              <p className="about-body-text m-0 whitespace-pre-line">{caseStudy.challenge}</p>
             </section>
           )}
 
@@ -512,7 +512,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           {caseStudy.solution && (
             <section>
               <h3 className="text-xl font-semibold text-gray-700 mb-3">The Solution</h3>
-              <p className="text-gray-700 leading-relaxed">{caseStudy.solution}</p>
+              <p className="about-body-text m-0 whitespace-pre-line">{caseStudy.solution}</p>
             </section>
           )}
 
@@ -557,7 +557,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           {caseStudy.myContribution && (
             <section>
               <h3 className="text-xl font-semibold text-gray-700 mb-3">My Contribution</h3>
-              <p className="text-gray-700 leading-relaxed">{caseStudy.myContribution}</p>
+              <p className="about-body-text m-0">{caseStudy.myContribution}</p>
             </section>
           )}
 
@@ -565,10 +565,10 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           {caseStudy.keyFeatures && caseStudy.keyFeatures.length > 0 && (
             <section>
               <h3 className="text-xl font-semibold text-gray-700 mb-3">Key Features</h3>
-              <ul className="space-y-2">
+              <ul className="space-y-2 list-none m-0 p-0">
                 {caseStudy.keyFeatures.map((feature, index) => (
-                  <li key={index} className="text-gray-700 flex items-start">
-                    <span className="text-gray-700 mr-2">•</span>
+                  <li key={index} className="about-body-text flex items-start m-0">
+                    <span className="mr-2 shrink-0">•</span>
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -580,10 +580,10 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           {caseStudy.impact && caseStudy.impact.length > 0 && (
             <section>
               <h3 className="text-xl font-semibold text-gray-700 mb-3">Impact</h3>
-              <ul className="space-y-2">
+              <ul className="space-y-2 list-none m-0 p-0">
                 {caseStudy.impact.map((impact, index) => (
-                  <li key={index} className="text-gray-700 flex items-start">
-                    <span className="text-gray-700 mr-2">•</span>
+                  <li key={index} className="about-body-text flex items-start m-0">
+                    <span className="mr-2 shrink-0">•</span>
                     <span>{impact}</span>
                   </li>
                 ))}
@@ -706,7 +706,7 @@ function ProjectCard({ project, onCaseStudyClick, onImageExpand }) {
       </div>
 
       <div className="absolute inset-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-center bg-black bg-opacity-70">
-        <p className="text-white text-xs mb-3 pointer-events-none">{project.description}</p>
+        <p className="about-body-text about-body-text--on-dark m-0 mb-3 pointer-events-none">{project.description}</p>
         {project.hasCaseStudy ? (
           <button
             onClick={(e) => {
