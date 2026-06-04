@@ -1,0 +1,793 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/pages/App.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************/
+.App {
+  margin: 2% 20%;
+}
+
+/* logo image */
+
+body.main {
+  background-color: #ffffff;
+
+  /* border: rgb(18, 79, 120, 0.8) solid 1.5vw;*/
+}
+
+body {
+  font-family: "Moto", serif;
+  font-size: 16px;
+  color: #374151;
+  background-color: #ffffff;
+}
+
+/* hero background image */
+
+.imageAboutPage {
+  /* You can adjust the value to your preference */
+  width: auto; /* To maintain the aspect ratio */
+}
+
+
+
+
+/* ~~~ TEXT STYLING ~~~ */
+
+.centered p {
+  margin: 1px 0; /* Add some margin between paragraphs */
+  font-family: "Moto", sans-serif;
+  font-size: large;
+  font-weight: 300;
+}
+
+.middle p {
+  margin: 1px 0; /* Add some margin between paragraphs */
+  font-family: "Moto", serif;
+  text-align: center;
+  font-size: large;
+}
+
+.middle p1 {
+  margin: 1px 0; /* Add some margin between paragraphs */
+  font-family: "URWGeometricRegular", sans-serif;
+  text-align: left;
+  font-size: medium;
+}
+
+.left-aligned {
+  text-align: left;
+  font-weight: 100;
+}
+
+.centered p1 {
+  margin: 1px 0; /* Add some margin between paragraphs */
+  font-family: "Moto", serif;
+  font-size: medium;
+  font-weight: lighter;
+  justify-content: left;
+}
+
+
+h1.text-center {
+  font-family: "Moto", serif;
+  text-align: center;
+  font-size: 20px;
+  /* You can change the color (#000) and border width (2px) as needed */
+  /* Adjust the padding to create space between the text and the border */
+  display: inline-block; /* Ensures that the border wraps around the text */
+}
+
+/* Centered text */
+.centered {
+  position: relative;
+  padding-top: 90%;
+  padding-bottom: 2%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  font-family: "Moto", serif;
+  text-align: center; /* Center-align the text */
+}
+
+p {
+  position: relative;
+  text-align: left; /* Center-align the text */
+  font-family: "Arial", sans-serif;
+  color: #374151;
+}
+p3 {
+  position: relative;
+  text-align: left; /* Center-align the text */
+  font-family: "F25", serif;
+  color: #374151;
+}
+p3b {
+  position: relative;
+  text-align: left; /* Center-align the text */
+  font-family: "F25", serif;
+  font-size: xx-large;
+  color: #374151;
+}
+
+p2 {
+  position: relative;
+  text-align: left; /* Center-align the text */
+  font-family: "Arial", serif;
+  font-size: 10px;
+  color: #374151;
+}
+p1 {
+  font-family: "URWGeometricRegular", sans-serif;
+  font-weight: 100;
+}
+
+.btn.btn-success {
+  color: #ffb2b2; /* Set the text color for the blue button */
+  /* You can add more styles here if needed */
+}
+/* Assuming .btn-outline-secondary is the class for your button */
+.btn.btn-outline-secondary:hover {
+  background-color: #ffb2b2;
+  color: #a7b7f4 /* Specify the text color you want on hover */;
+}
+
+/* ~~~ CONTENT CONTAINER STYLING ~~~ */
+
+.content {
+  max-width: 567px; /* Adjust as needed */
+  margin: auto;
+  border: #001c80 solid 1px;
+  padding-inline: 5%;
+}
+
+.containermain {
+  border: #001c80 solid 1px;
+  padding: 5%;
+  background-image: url(/_next/static/media/stamp.3ef5cc67.png);
+  background-repeat: no-repeat;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  border-radius: 10px;
+}
+
+/* About page: Centered container for images and text */
+.about-center-container {
+  width: 100%;
+  max-width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  /* Add some vertical spacing if needed */
+  min-height: 500px;
+}
+
+@media (min-width: 768px) {
+  .about-center-container {
+    width: 60%;
+    max-width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+@font-face {
+  font-family: "Chobani";
+  src: url(/_next/static/media/Chobani.d21fc589.ttf) format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Apercu";
+  src: url(/_next/static/media/Apercu.78ba0a4e.otf) format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "URWGeometricHeavy";
+  src: url(/_next/static/media/URWGeometricHeavy.cabe8fee.otf) format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "URWGeometricSemiBold";
+  src: url(/_next/static/media/URWGeometricSemiBold.14b42c3b.otf) format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ESrebond_title";
+  src: url(/_next/static/media/ESRebond_title.19201620.otf) format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ESrebond_regular";
+  src: url(/_next/static/media/ESRebond_regular.d24d0cc6.otf) format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "pepi";
+  src: url(/_next/static/media/pepi_medium.dd594c72.otf) format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "urania";
+  src: url(/_next/static/media/Urania-Medium.b39e7ec3.otf) format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "boring_reg";
+  src: url(/_next/static/media/boring_reg.c4ac9a75.ttf) format("trueType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "boring_med";
+  src: url(/_next/static/media/boring_med.165dc385.ttf) format("trueType");
+  font-display: swap;
+}
+@font-face {
+  font-family: "sohne";
+  src: url(/_next/static/media/sohne.5c23151d.otf) format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Moto";
+  src: url(/_next/static/media/Moto.4e8e75e0.otf) format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "URWGeometricRegular";
+  src: url(/_next/static/media/URWGeometricRegular.da01dd82.otf) format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "F25";
+  src: url(/_next/static/media/f25.c670e5fd.otf) format("OpenType");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Melo';
+  src: url(/_next/static/media/melo.dd374917.ttf) format('truetype');
+  font-display: swap;
+}
+
+/* Custom scrollbar for essay window */
+.essay-scrollbar {
+  --scrollbar-color: rgba(237, 190, 228, 0.3);
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.essay-scrollbar::-webkit-scrollbar {
+  width: 14px;
+}
+
+.essay-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.essay-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(237, 190, 228, 0.3);
+  background-repeat: repeat-y;
+  background-position: center;
+  border-radius: 7px;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  border: 1px solid rgba(237, 190, 228, 0.3);
+}
+
+/* Firefox */
+.essay-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-color) transparent;
+}
+
+/* Navbar — pre–Figma scale (larger than text-lg / 18px) */
+ul.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  z-index: 999;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  list-style: none;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #374151;
+  font-family: Moto, serif;
+  font-size: 1.15rem; /* 22px */
+  line-height: 1.35;
+  padding: 1.35rem 2rem;
+  gap: 0.15rem 0.45rem;
+}
+
+ul.navbar .nav-item {
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+ul.navbar .nav-sep {
+  margin: 0;
+  padding: 0 0.6em;
+  list-style: none;
+  flex: 0 0 auto;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+ul.navbar .nav-link {
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+
+ul.navbar .nav-link:visited {
+  color: inherit;
+}
+
+@media (max-width: 767px) {
+  ul.navbar {
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1rem, 4.5vw, 1.125rem);
+    line-height: 1.3;
+    padding: 1.15rem 0.75rem;
+    gap: clamp(0.45rem, 3.2vw, 0.85rem);
+  }
+
+  ul.navbar .nav-item,
+  ul.navbar .nav-sep {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    text-align: center;
+  }
+
+  ul.navbar .nav-link {
+    display: block;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  ul.navbar .nav-sep {
+    padding: 0;
+    opacity: 0.45;
+  }
+}
+
+/* Passport charm + decorative numerals: gentle swing on hover */
+.charm-swing {
+  transform-origin: top center;
+  transition: transform 0.55s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+.charm-swing:hover {
+  transform: rotate(6.5deg);
+}
+
+/* Home — thank-you card (F25 body) */
+.home-page .home-f25-body {
+  font-family: "F25", serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  color: #374151;
+}
+
+/* Home — hero subtitle (Figma Arial / Oxford Blue) */
+.home-page .home-hero-subtitle {
+  color: #374151;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 1.3px;
+}
+
+/* Home — passport charm: fluid on small screens; Figma 456×420 from lg */
+.home-page .containermain.home-charm-box {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: min(100%, 456px);
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+
+@media (min-width: 1024px) {
+  .home-page .containermain.home-charm-box {
+    width: 456px;
+    max-width: 456px;
+    height: 420px;
+    overflow-y: auto;
+  }
+}
+
+/* Charm column: no extra padding — horizontal offset comes from .home-page-rows */
+.home-page .home-charm-track {
+  box-sizing: border-box;
+}
+
+/*
+ * Home main: max 1280px, lg+ horizontal padding 40px (Tailwind px-10).
+ * Rows 1–3: lg+ padding-left 50px → content starts at 90px from main’s left border.
+ */
+.home-page .home-page-rows {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .home-page .home-page-rows {
+    padding-left: 50px;
+  }
+}
+
+/* About page — Figma body (Oxford Blue / Arial) */
+.about-page .about-body-text {
+  color: #374151;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 1.3px;
+}
+
+.about-page .about-body-text > p {
+  margin: 0;
+}
+
+/* About — Writing links (Figma) */
+.about-page a.about-writing-link {
+  color: #000000;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 1.3px;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+
+.about-page a.about-writing-link:hover {
+  color: #374151;
+}
+
+/* About §01 — art carousel */
+.about-page .about-art-carousel-nav {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #374151;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.about-page .about-art-carousel-nav:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.about-page .about-art-carousel-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  background: #d1d5db;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.about-page .about-art-carousel-dot:hover {
+  background: #9ca3af;
+}
+
+.about-page .about-art-carousel-dot--active {
+  background: #374151;
+  transform: scale(1.15);
+}
+
+/* About — vinyl record hover spin */
+@keyframes about-vinyl-spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.about-page .about-vinyl-shelf .group:hover .about-vinyl-disc {
+  animation: about-vinyl-spin-slow 3s linear infinite;
+}
+
+/* About — section rhythm (+ Favorites frames 162-708, 171-769, 167-736/739/742/745, 171-771, 151-446, 152-530, 167-733, 152-534, 151-421, 152-525, 151-420; 151-414/415, 153-541, 154-543, 156-545, 159-546/547, 160-548, 167-717) */
+.about-page .about-figma-section {
+  margin-bottom: 5rem; /* 80px */
+}
+
+@media (min-width: 1024px) {
+  .about-page .about-figma-section {
+    margin-bottom: 7rem; /* 112px */
+  }
+}
+
+.about-page .about-figma-footer {
+  margin-top: 1.5rem;
+  padding-top: 3rem; /* 48px */
+}
+
+/* About §00 hero — OPTIMIST untilted, behind charm (z); charm swing on hover */
+.about-page .about-hero-collage {
+  position: relative;
+  isolation: isolate;
+  min-height: 220px;
+}
+
+@media (min-width: 1024px) {
+  .about-page .about-hero-collage {
+    min-height: 260px;
+  }
+}
+
+/* Background layer */
+.about-page .about-hero-optimist-btn {
+  position: absolute;
+  display: block;
+  left: 2.75rem;
+  right: 0;
+  top: 50%;
+  z-index: 0;
+  transform: translateY(-50%);
+  width: auto;
+  max-width: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s ease;
+}
+
+.about-page .about-hero-optimist-btn:hover {
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.1);
+}
+
+.about-page .about-hero-optimist-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 302 / 225;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Foreground */
+.about-page .about-hero-charm-btn {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  z-index: 10;
+  transform: translateY(-50%);
+  width: 116px;
+  max-width: 32%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+}
+
+.about-page .about-hero-charm-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 321px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+@media (max-width: 1023px) {
+  .about-page img {
+    width: auto;
+    height: auto;
+    max-width: 95%;
+  }
+
+  /* §00 hero — in-flow layout so OPTIMIST + charm render on mobile */
+  .about-page .about-hero-collage {
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .about-page .about-hero-optimist-btn {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    transform: none;
+    z-index: 0;
+    width: calc(100% - 2.75rem);
+    max-width: none;
+    margin-left: 2.75rem;
+  }
+
+  .about-page .about-hero-charm-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 32%;
+    min-width: 80px;
+    max-width: 116px;
+  }
+
+  .about-page .about-hero-optimist-img,
+  .about-page .about-hero-charm-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  .about-page .about-hero-charm-img {
+    max-height: none;
+  }
+
+  .about-page .about-art-carousel-frame img,
+  .about-page .about-art-painting-img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  .about-page .about-favorites-posters-offset {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .about-page .about-favorites-posters-offset button {
+    width: 100%;
+  }
+
+  .about-page .about-favorites-posters-offset img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    aspect-ratio: 2 / 3;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+
+  .about-page .about-vinyl-shelf img {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .about-page .about-sidequest-grid .about-sidequest-tile {
+    width: 100%;
+  }
+
+  .about-page .about-sidequest-grid .about-sidequest-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    -o-object-fit: cover !important;
+       object-fit: cover !important;
+    -o-object-position: center !important;
+       object-position: center !important;
+    display: block;
+  }
+
+  .about-page .about-hightide-btn {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .about-page .about-hightide-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    -o-object-fit: contain !important;
+       object-fit: contain !important;
+  }
+
+  .about-page .about-vinyl-shelf {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .about-page .about-vinyl-shelf-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: clamp(3px, 1.2vw, 8px);
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0;
+    padding: 0 clamp(2px, 1vw, 6px) 52px;
+    overflow: hidden;
+  }
+
+  .about-page .about-vinyl-shelf-board {
+    top: auto !important;
+    bottom: 28px !important;
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  .about-page .about-vinyl-record {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 25%;
+    width: auto !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    transform: none !important;
+  }
+
+  .about-page .about-vinyl-record:hover {
+    transform: none !important;
+  }
+
+  .about-page .about-vinyl-record .absolute.inset-0.bg-white {
+    transform: none !important;
+  }
+
+  .about-page .about-vinyl-record .group-hover\:-translate-x-\[12\%\] {
+    transform: none !important;
+  }
+}
+

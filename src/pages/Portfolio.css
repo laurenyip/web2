@@ -66,18 +66,6 @@
   max-width: 90%;
 }
 
-/* Rosie: pin image to top, keep color space below */
-.portfolio-card-media--rosie {
-  align-items: flex-start;
-  padding-top: 2.6rem;
-  padding-bottom: 0rem;
-}
-
-.portfolio-card-image--rosie {
-  width: 90%;
-  object-position: top center;
-}
-
 .portfolio-card-body {
   padding: 0.95rem 0.2rem 0.1rem;
 }

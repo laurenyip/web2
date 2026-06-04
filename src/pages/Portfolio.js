@@ -47,15 +47,6 @@ const CASE_STUDIES = [
     alt: 'Aurora Pet Co. home screen',
     cardBg: '#FCBAFF',
   },
-  {
-    to: '/rosie',
-    title: 'React to This!',
-    meta: 'ROSIE Lab · 2023–2024',
-    blurb: 'Dataset and study of how people physically and emotionally react to virtual social agents.',
-    thumb: '/images/projects/rosie/rosie_t.png',
-    alt: 'React to This! project site',
-    cardBg: '#61dafb',
-  },
 ]
 
 function Portfolio() {

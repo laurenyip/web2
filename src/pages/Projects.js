@@ -73,7 +73,7 @@ function Projects() {
       title: 'React to This!',
       link: 'https://rosielab.github.io/react-to-this/',
       description: 'Research assistantship with ROSIE Lab',
-      image: './images/Rosie/elan.png',
+      image: '/images/Rosie/elan.png',
       hasCaseStudy: true,
     },
     {
@@ -304,6 +304,13 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
       showcaseImages: [
         '/images/projects/react-to-this.png',
         '/images/projects/react-to-this-paper.png',
+        '/images/projects/rosie/rosielab.github.io.png',
+        '/images/Rosie/elan.png',
+        '/images/Rosie/rosie.png',
+        '/images/Rosie/characters.png',
+        '/images/Rosie/character_specific.png',
+        '/images/Rosie/social.png',
+        '/images/Rosie/study.png',
       ],
     },
     Spruce: {
