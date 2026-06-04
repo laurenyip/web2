@@ -48,6 +48,18 @@ const nextConfig = {
         source: '/amazon-giftwrapping/:path*',
         destination: `${FRAMER_ORIGIN}/amazon-giftwrapping/:path*`,
       },
+      {
+        source: '/starmap',
+        destination: `${FRAMER_ORIGIN}/starmap`,
+      },
+      {
+        source: '/starmap/',
+        destination: `${FRAMER_ORIGIN}/starmap`,
+      },
+      {
+        source: '/starmap/:path*',
+        destination: `${FRAMER_ORIGIN}/starmap/:path*`,
+      },
     ]
   },
 }

@@ -43,6 +43,14 @@ function ReadingSection({ label, children }) {
 }
 
 export default function ReadingList() {
+  const currentlyReading = useMemo(
+    () => [
+      { title: 'How Music Works', author: 'David Byrne' },
+      { title: 'The Poison Eaters', author: 'Holly Black' },
+    ],
+    []
+  )
+
   const booksOpenInRoom = useMemo(
     () => [
       { title: 'Henry and June', author: 'Anaïs Nin' },
@@ -51,13 +59,13 @@ export default function ReadingList() {
       { title: 'Chez toi en France', author: 'G. Brame and B. Tollu' },
       { title: 'To the Lighthouse', author: 'Virginia Woolf' },
       { title: 'The Sun Also Rises', author: 'Ernest Hemingway' },
-      { title: 'The Queen of Nothing', author: 'Holly Black' },
     ],
     []
   )
 
   const booksFinishedThisYear = useMemo(
     () => [
+      { title: 'The Queen of Nothing', author: 'Holly Black' },
       { title: 'From Third World to First', author: 'Lee Kuan Yew' },
       { title: 'Wuthering Heights', author: 'Emily Brontë' },
       { title: 'Never Let Me Go', author: 'Kazuo Ishiguro' },
@@ -164,6 +172,12 @@ export default function ReadingList() {
         </header>
 
         <div className="reading-list-card">
+          <ReadingSection label="currently reading">
+            {currentlyReading.map((b) => (
+              <BookEntry key={`${b.title}-${b.author}`} title={b.title} author={b.author} />
+            ))}
+          </ReadingSection>
+
           <ReadingSection label="books I have open in my room somewhere">
             {booksOpenInRoom.map((b) => (
               <BookEntry key={`${b.title}-${b.author}`} title={b.title} author={b.author} />
