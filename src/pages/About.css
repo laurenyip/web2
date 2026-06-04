@@ -212,10 +212,10 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .about-page .about-albums-charm-slot {
-    right: 0.25rem;
-    bottom: -50px;
+    right: auto;
+    bottom: auto;
   }
 }
 
