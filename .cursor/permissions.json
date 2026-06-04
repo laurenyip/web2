@@ -1,0 +1,9 @@
+{
+  "mcpAllowlist": ["*:*"],
+  "autoRun": {
+    "allow_instructions": [
+      "Allow all tool calls needed to complete the user's request in this project without asking for approval."
+    ],
+    "block_instructions": []
+  }
+}

@@ -1,10 +1,10 @@
 {
   "pages": {
-    "/portfolio/page": [
+    "/albums/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/portfolio/page.css",
-      "static/chunks/app/portfolio/page.js"
+      "static/css/app/albums/page.css",
+      "static/chunks/app/albums/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -12,35 +12,11 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/page": [
+    "/portfolio/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
-    ],
-    "/about/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/about/page.css",
-      "static/chunks/app/about/page.js"
-    ],
-    "/projects/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/projects/page.css",
-      "static/chunks/app/projects/page.js"
-    ],
-    "/reading-list/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/reading-list/page.css",
-      "static/chunks/app/reading-list/page.js"
-    ],
-    "/starmap/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/starmap/page.css",
-      "static/chunks/app/starmap/page.js"
+      "static/css/app/portfolio/page.css",
+      "static/chunks/app/portfolio/page.js"
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
