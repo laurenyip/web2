@@ -19,6 +19,27 @@ const PRIORITY_TOP = [
 /** Albums — edit tracks, thoughts, and links in this list */
 const ALBUMS = [
   {
+    id: '52nd-street',
+    artist: 'Billy Joel',
+    image: '/images/albums/52nd-street.jpg',
+    link: 'https://open.spotify.com/album/1HmCO8VK98AU6EXPOjGYyI',
+    tracks: ['My Life', 'Honesty', 'Big Shot'],
+  },
+  {
+    id: 'pogues-peace-and-love',
+    artist: 'The Pogues',
+    image: '/images/albums/pogues-peace-and-love.jpg',
+    link: 'https://open.spotify.com/album/3tXDO01loDIUNfOWqBK4XD',
+    tracks: ['Misty Morning, Albert Bridge', 'Streets of Sorrow/Birmingham Six'],
+  },
+  {
+    id: 'naked',
+    artist: 'Talking Heads',
+    image: '/images/albums/naked.jpg',
+    link: 'https://open.spotify.com/album/45wuU0jx8Lh0x3Xy8qJ5KP',
+    tracks: ['(Nothing But) Flowers', 'Blind', 'Wild Wild Life'],
+  },
+  {
     id: 'bts-hyyh-pt2',
     artist: 'BTS',
     image: '/images/albums/bts-hyyh-pt2.jpg',
