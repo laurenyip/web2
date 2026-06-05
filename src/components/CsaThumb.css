@@ -1,0 +1,76 @@
+.csa-thumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  flex-shrink: 0;
+  container-type: inline-size;
+  border-radius: 10px;
+}
+
+.csa-thumb-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.csa-thumb-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(126 / 360 * 100cqi);
+  height: auto;
+  display: block;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.35));
+}
+
+.csa-nda-caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 1.5rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.58);
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  pointer-events: none;
+}
+
+.csa-nda-caption-title {
+  margin: 0;
+  font-family: 'boring_reg', Georgia, serif;
+  font-size: clamp(1.35rem, calc(32 / 360 * 100cqi), 2rem);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.csa-nda-caption-note {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: clamp(0.78rem, calc(14 / 360 * 100cqi), 0.92rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.4;
+}
+
+.portfolio-card--nda:hover .csa-nda-caption,
+.portfolio-card--nda:focus-within .csa-nda-caption,
+.portfolio-card--nda:active .csa-nda-caption,
+.portfolio-card--nda-open .csa-nda-caption,
+.csa-thumb--revealed .csa-nda-caption {
+  opacity: 1;
+}

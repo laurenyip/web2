@@ -20,7 +20,9 @@
     "dev": "next dev",
     "build": "next build && node scripts/copy-redirects.js && node scripts/sync-out-to-build.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export:spruce-thumb": "node scripts/export-spruce-thumbnail.mjs",
+    "export:aurora-thumb": "node scripts/export-aurora-thumbnail.mjs"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
@@ -30,7 +32,9 @@
     "autoprefixer": "^10.4.14",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.35",
+    "pngjs": "^7.0.0",
     "postcss": "^8.4.21",
+    "puppeteer": "^25.1.0",
     "tailwindcss": "^3.3.0"
   }
 }

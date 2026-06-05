@@ -71,11 +71,6 @@
   transition: transform 320ms ease;
 }
 
-/* Spruce: remove top padding and let image occupy full card height */
-.portfolio-card-media--spruce {
-  padding-top: 0;
-}
-
 .portfolio-card-image--spruce {
   height: 100%;
   width: auto;
@@ -94,6 +89,49 @@
   align-items: stretch;
   justify-content: stretch;
   background: #000;
+}
+
+.portfolio-card-media--spruce {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #3e5d39;
+}
+
+.portfolio-card-media--aurora {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #1a1a1a;
+}
+
+.portfolio-card-media--aurora .aurora-thumb {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+}
+
+.portfolio-card-media--csa {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #0a0a12;
+}
+
+.portfolio-card-media--csa .csa-thumb {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+}
+
+.portfolio-card--nda {
+  cursor: pointer;
+}
+
+.portfolio-card--nda:focus-visible {
+  outline: 2px solid #6b7280;
+  outline-offset: 4px;
+  border-radius: 10px;
 }
 
 .portfolio-card-body {

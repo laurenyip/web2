@@ -1,0 +1,215 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/components/AuroraThumb.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: 'Pepi Trial';
+  src: url('/fonts/PepiTrial.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.aurora-thumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  flex-shrink: 0;
+  container-type: inline-size;
+  border-radius: 10px;
+}
+
+.aurora-thumb--fixed {
+  min-height: 0;
+  height: 100%;
+}
+
+.aurora-thumb-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+
+.aurora-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  pointer-events: none;
+}
+
+.aurora-thumb-logo-wrap {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  animation: aurora-logo-float 2.6s ease-in-out 1.5s infinite;
+}
+
+.aurora-word {
+  font-family: 'Pepi Trial', Georgia, serif;
+  font-weight: 500;
+  font-size: calc(30 / 360 * 100cqi);
+  color: #ffffff;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+  transform-origin: bottom center;
+  opacity: 0;
+}
+
+.aurora-word--aurora {
+  animation:
+    word-bounce-in 0.75s cubic-bezier(0.34, 1.4, 0.64, 1) 0.2s forwards,
+    aurora-word-wobble 3.4s ease-in-out 1.5s infinite;
+}
+
+.aurora-word--pet {
+  animation:
+    word-bounce-in 0.75s cubic-bezier(0.34, 1.4, 0.64, 1) 0.45s forwards,
+    aurora-word-wobble 3.8s ease-in-out 1.7s infinite;
+}
+
+.aurora-word--co {
+  animation:
+    word-bounce-in 0.75s cubic-bezier(0.34, 1.4, 0.64, 1) 0.65s forwards,
+    aurora-word-wobble 3.2s ease-in-out 1.9s infinite;
+}
+
+.aurora-thumb-sparkles,
+.aurora-thumb-glows {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.aurora-sparkle {
+  position: absolute;
+  display: block;
+  opacity: 0;
+  transform: scale(0);
+  animation:
+    aurora-sparkle-pop 0.45s cubic-bezier(0.34, 1.5, 0.64, 1) var(--pop-delay, 1.2s) forwards,
+    aurora-sparkle-twinkle var(--twinkle-duration, 2s) ease-in-out var(--twinkle-delay, 1.7s) infinite;
+}
+
+.aurora-sparkle svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.aurora-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 186, 255, 0.2) 0%, rgba(212, 186, 255, 0) 70%);
+  transform: translate(-50%, -50%);
+  animation: aurora-glow-drift 5s ease-in-out infinite alternate;
+}
+
+@keyframes word-bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) rotate(-6deg) scale(0.6);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-12px) rotate(3deg) scale(1.15);
+  }
+  60% {
+    transform: translateY(6px) rotate(-2deg) scale(0.95);
+  }
+  75% {
+    transform: translateY(-4px) rotate(1deg) scale(1.04);
+  }
+  88% {
+    transform: translateY(2px) rotate(0deg) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes aurora-logo-float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-5px);
+  }
+}
+
+@keyframes aurora-word-wobble {
+  0%,
+  100% {
+    rotate: -1deg;
+  }
+  50% {
+    rotate: 1deg;
+  }
+}
+
+@keyframes aurora-sparkle-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes aurora-sparkle-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+@keyframes aurora-glow-drift {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0);
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(8px, -6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-thumb-logo-wrap,
+  .aurora-word,
+  .aurora-sparkle,
+  .aurora-glow {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .aurora-thumb-logo-wrap {
+    transform: translate(-50%, -50%);
+  }
+}
+
