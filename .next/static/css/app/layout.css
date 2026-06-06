@@ -2234,6 +2234,9 @@ video {
 .max-w-2xl {
   max-width: 42rem;
 }
+.max-w-3xl {
+  max-width: 48rem;
+}
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -2800,6 +2803,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+       user-select: none;
+}
+
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -2982,6 +2993,10 @@ code {
     top: 0px;
   }
 
+  .md\:mb-10 {
+    margin-bottom: 2.5rem;
+  }
+
   .md\:mb-12 {
     margin-bottom: 3rem;
   }
@@ -3119,5 +3134,134 @@ code {
   .lg\:pt-2 {
     padding-top: 0.5rem;
   }
+}
+
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/components/SiteFooter.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
+.site-footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(17, 24, 39, 0.12);
+  background: linear-gradient(180deg, rgba(249, 250, 251, 0) 0%, rgba(243, 244, 246, 0.95) 100%);
+}
+
+.site-footer--projects {
+  margin-top: 80px;
+}
+
+.site-footer-inner {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 2.75rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.site-footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.site-footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 999px;
+  color: #4b5563;
+  background: #fff;
+  border: 1px solid rgba(17, 24, 39, 0.14);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.site-footer-social-link svg {
+  width: 1.12rem;
+  height: 1.12rem;
+  display: block;
+}
+
+.site-footer-social-link:hover,
+.site-footer-social-link:focus-visible {
+  color: #111827;
+  background: #fff;
+  border-color: rgba(17, 24, 39, 0.22);
+  transform: translateY(-1px);
+}
+
+.site-footer-copy {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #4b5563;
+}
+
+.site-footer-note {
+  margin: 0;
+  max-width: 28rem;
+  font-family: Arial, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #6b7280;
+}
+
+.site-footer-link {
+  margin-top: 0.15rem;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-footer-link:hover,
+.site-footer-link:focus-visible {
+  color: #111827;
+}
+
+.site-footer-webring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65em;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(17, 24, 39, 0.08);
+  width: 100%;
+  color: #6b7280;
+  font-size: 1.15rem;
+}
+
+.site-footer-webring-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.site-footer-webring-link:hover,
+.site-footer-webring-link:focus-visible {
+  color: #374151;
+  transform: translateY(-1px);
+}
+
+.site-footer-webring-link svg {
+  display: block;
 }
 

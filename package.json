@@ -22,7 +22,8 @@
     "start": "next start",
     "lint": "next lint",
     "export:spruce-thumb": "node scripts/export-spruce-thumbnail.mjs",
-    "export:aurora-thumb": "node scripts/export-aurora-thumbnail.mjs"
+    "export:aurora-thumb": "node scripts/export-aurora-thumbnail.mjs",
+    "exif": "node scripts/add-exif.js"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
@@ -32,6 +33,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.35",
+    "exiftool-vendored": "^36.0.0",
     "pngjs": "^7.0.0",
     "postcss": "^8.4.21",
     "puppeteer": "^25.1.0",

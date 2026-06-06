@@ -1634,6 +1634,12 @@ ul.navbar .nav-link:visited {
   border-radius: 10px;
 }
 
+.csa-thumb-bg-stack {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
 .csa-thumb-bg {
   position: absolute;
   inset: 0;
@@ -1641,24 +1647,83 @@ ul.navbar .nav-link:visited {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
   display: block;
 }
 
-.csa-thumb-logo {
+.csa-thumb-bg--base {
+  z-index: 0;
+}
+
+.csa-thumb-bg--incoming {
+  z-index: 1;
+  animation: csa-bg-slide-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes csa-bg-slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.csa-thumb-logo-wrap {
   position: absolute;
   left: 50%;
   top: 50%;
+  z-index: 2;
   transform: translate(-50%, -50%);
   width: calc(126 / 360 * 100cqi);
-  height: auto;
-  display: block;
-  pointer-events: none;
   filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.35));
+}
+
+.csa-thumb-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.csa-thumb-logo-shine {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(60% 25% 30% 25%);
+  -webkit-mask-image: url('/images/projects/csa.png');
+  mask-image: url('/images/projects/csa.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  background: linear-gradient(
+    105deg,
+    transparent 44%,
+    rgba(255, 255, 255, 0.18) 48%,
+    rgba(255, 255, 255, 0.62) 50%,
+    rgba(255, 255, 255, 0.18) 52%,
+    transparent 56%
+  );
+  transform: translateX(-120%) skewX(-18deg);
+  animation: csa-logo-shine 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes csa-logo-shine {
+  0%,
+  72% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(120%) skewX(-18deg);
+  }
 }
 
 .csa-nda-caption {
   position: absolute;
   inset: 0;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1699,6 +1764,17 @@ ul.navbar .nav-link:visited {
 .portfolio-card--nda-open .csa-nda-caption,
 .csa-thumb--revealed .csa-nda-caption {
   opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .csa-thumb-bg--incoming {
+    animation: none;
+  }
+
+  .csa-thumb-logo-shine {
+    animation: none;
+    display: none;
+  }
 }
 
 /*!*********************************************************************************************************************************************************************************************************************************************************************!*\

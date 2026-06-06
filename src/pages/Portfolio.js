@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '../components/Navbar'
+import { getProtectedImageProps } from '../../lib/getProtectedImageProps'
 import StarmapThumb from '../components/StarmapThumb'
 import AmazonGiftThumb from '../components/AmazonGiftThumb'
 import SpruceThumb from '../components/SpruceThumb'
@@ -84,6 +85,7 @@ function PortfolioCardMedia({ project, ndaRevealed }) {
       width={1000}
       height={700}
       priority={false}
+      {...getProtectedImageProps()}
     />
   )
 }
