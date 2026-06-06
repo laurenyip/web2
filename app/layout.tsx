@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
+import ImageProtection from '../src/components/ImageProtection'
+import SiteFooter from '../src/components/SiteFooter'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -27,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ImageProtection />
         {children}
+        <SiteFooter />
         <Script
           src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "1c506b985d154649921fb0fb18d0cc34"}'

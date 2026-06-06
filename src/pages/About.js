@@ -4,7 +4,6 @@ import React, { useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import ImageModal from '../components/ImageModal'
-import Webring from '../components/Webring'
 import AboutAlbumsCharm from '../components/AboutAlbumsCharm'
 import './App.css'
 import './About.css'
@@ -716,8 +715,6 @@ export default function About() {
         {/* —— FOOTER — section end (painting lives in §03 Favorites; Figma 160-548) —— */}
         <div className="about-figma-footer border-t border-gray-200" role="presentation" />
       </main>
-
-      <Webring />
 
       <ImageModal open={!!modal} src={modal?.src} caption={modal?.caption} onClose={close} />
     </div>

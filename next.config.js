@@ -5,7 +5,13 @@ const nextConfig = {
   // Static site output → folder `out/`. On Cloudflare Pages, set build output directory to `out` (not `build`).
   output: 'export',
   images: {
+    // Static export has no Image Optimization API — unoptimized is required.
+    // getProtectedImageProps (quality + sizes + width) still caps display resolution in markup.
     unoptimized: true,
+    formats: ['image/webp'],
+    deviceSizes: [640, 1080, 1200],
+    imageSizes: [64, 128, 256, 384],
+    minimumCacheTTL: 60,
   },
   // Legacy UI lives in src/pages as .js files; only `app/` should define routes (tsx/ts).
   pageExtensions: ['tsx', 'ts'],

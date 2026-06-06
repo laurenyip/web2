@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import ImageModal from '../components/ImageModal'
-import Webring from '../components/Webring'
 import './App.css'
 /** Served from /public — do not import PDFs in Next.js (no file loader by default). */
 const RESUME_PDF_HREF = '/Resume___Lauren_Yip.pdf'
@@ -196,8 +195,6 @@ function Home() {
 
         </div>
       </main>
-
-      <Webring />
 
       <ImageModal open={!!modal} src={modal?.src} caption={modal?.caption} onClose={closeModal} />
 

@@ -2,12 +2,13 @@
 
 import React, { useEffect } from 'react'
 import Image from 'next/image'
+import { getProtectedImageProps } from '../../lib/getProtectedImageProps'
 
 /**
  * Fullscreen image modal: dark overlay, image at max readable size, caption below.
  * Closes on backdrop click, X button, or Escape.
  */
-export default function ImageModal({ open, src, caption, onClose }) {
+export default function ImageModal({ open, src, caption, onClose, useProtectedImage = false }) {
   useEffect(() => {
     if (!open) return
     const onKey = (e) => {
@@ -43,9 +44,10 @@ export default function ImageModal({ open, src, caption, onClose }) {
           src={src}
           alt={caption || 'Enlarged'}
           className="max-h-[calc(92vh-88px)] w-auto max-w-full object-contain shadow-2xl"
-          width={1600}
-          height={1200}
+          width={1200}
+          height={900}
           priority={false}
+          {...(useProtectedImage ? getProtectedImageProps() : {})}
         />
         {caption ? (
           <p
