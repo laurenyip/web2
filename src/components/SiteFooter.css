@@ -55,8 +55,8 @@
   position: absolute;
   right: 0.85rem;
   bottom: calc(0.65rem + 55px);
-  z-index: 2;
-  pointer-events: none;
+  z-index: 5;
+  pointer-events: auto;
   width: 108px;
   min-height: 86px;
 }
@@ -141,4 +141,41 @@
 
 .site-footer-webring-link svg {
   display: block;
+}
+
+@media (max-width: 640px) {
+  .site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-footer-fortune {
+    position: static;
+    order: -1;
+    width: 100%;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem 1rem 0.75rem;
+    pointer-events: auto;
+    z-index: 3;
+  }
+
+  .site-footer-fortune > * {
+    pointer-events: auto;
+  }
+
+  .site-footer-fortune:has(.fortune-cookie-wrap--open) {
+    width: 100%;
+    padding-bottom: 1rem;
+  }
+
+  .site-footer-inner {
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 }

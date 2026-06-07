@@ -73,9 +73,9 @@ function FortuneSlipText({ fortune, visible }: { fortune: string; visible: boole
     const fitText = () => {
       if (box.clientWidth === 0 || box.clientHeight === 0) return
 
-      text.style.fontSize = '9px'
+      text.style.fontSize = '8px'
 
-      let size = 9
+      let size = 8
       while (size > 4.5 && (text.scrollHeight > box.clientHeight || text.scrollWidth > box.clientWidth)) {
         size -= 0.25
         text.style.fontSize = `${size}px`
@@ -133,9 +133,20 @@ export default function FortuneCookie() {
   }, [phase])
 
   const handleCrackEnd = useCallback((event: AnimationEvent<HTMLDivElement>) => {
-    if (event.animationName !== 'fortune-cookie-crack') return
+    if (event.target !== event.currentTarget) return
+    if (!event.animationName.includes('fortune-cookie-crack')) return
     setPhase('open')
   }, [])
+
+  useEffect(() => {
+    if (phase !== 'breaking') return
+
+    const fallback = window.setTimeout(() => {
+      setPhase((current) => (current === 'breaking' ? 'open' : current))
+    }, 550)
+
+    return () => window.clearTimeout(fallback)
+  }, [phase])
 
   const handleClose = useCallback(() => {
     setPhase('dismissing')

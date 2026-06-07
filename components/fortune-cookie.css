@@ -40,6 +40,8 @@
   cursor: pointer;
   line-height: 0;
   transition: transform 0.2s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .fortune-cookie-btn:hover:not(.fortune-cookie-btn--disabled) {
@@ -92,7 +94,6 @@
 
 .fortune-cookie-half {
   overflow: hidden;
-  pointer-events: none;
 }
 
 .fortune-cookie-whole .fortune-cookie-half {
@@ -203,12 +204,15 @@
 .fortune-slip-text {
   margin: 0;
   width: 100%;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-size: 9px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8px;
   line-height: 1.25;
+  letter-spacing: 0.03em;
   text-align: center;
-  color: #2a2218;
+  text-transform: uppercase;
+  color: #c62828;
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -224,6 +228,30 @@
   outline: 1px solid #d4bf80;
   outline-offset: 2px;
   border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+  .fortune-cookie-wrap {
+    align-items: center;
+    width: 100%;
+  }
+
+  .fortune-cookie-wrap--open {
+    align-items: center;
+  }
+
+  .fortune-cookie-hint {
+    text-align: center;
+  }
+
+  .fortune-cookie-reveal {
+    width: min(300px, calc(100vw - 2rem));
+    margin: 0 auto;
+  }
+
+  .fortune-slip-close {
+    align-self: center;
+  }
 }
 
 @media (max-width: 420px) {
