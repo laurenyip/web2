@@ -46,6 +46,10 @@ export default function SiteFooter() {
 
   return (
     <footer className={`site-footer${isProjects ? ' site-footer--projects' : ''}`}>
+      <div className="site-footer-fortune">
+        <FortuneCookie />
+      </div>
+
       <div className="site-footer-inner">
         <nav className="site-footer-social" aria-label="Social links">
           {SOCIAL_LINKS.map((item) => (
@@ -74,10 +78,6 @@ export default function SiteFooter() {
         </Link>
 
         {showWebring && <Webring />}
-      </div>
-
-      <div className="site-footer-fortune">
-        <FortuneCookie />
       </div>
     </footer>
   )

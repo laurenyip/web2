@@ -1,14 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/thumbnail-preview/aurora/page": "app/thumbnail-preview/aurora/page.js",
-  "/thumbnail-preview/page": "app/thumbnail-preview/page.js",
-  "/art/page": "app/art/page.js",
-  "/albums/page": "app/albums/page.js",
-  "/projects/page": "app/projects/page.js",
-  "/about/page": "app/about/page.js",
-  "/reading-list/page": "app/reading-list/page.js",
-  "/portfolio/page": "app/portfolio/page.js",
-  "/rights/page": "app/rights/page.js",
-  "/page": "app/page.js",
-  "/writing/page": "app/writing/page.js"
+  "/about/page": "app/about/page.js"
 }
