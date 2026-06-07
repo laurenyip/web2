@@ -67,3 +67,55 @@
   to = "https://laurenyip.framer.website/amazon-giftwrapping"
   status = 200
   force = true
+
+# Redirect the exact /starmap path
+[[redirects]]
+  from = "/starmap"
+  to = "https://laurenyip.framer.website/starmap"
+  status = 200
+  force = true
+
+# Redirect /starmap/anything (for subpages, assets, etc.)
+[[redirects]]
+  from = "/starmap/*"
+  to = "https://laurenyip.framer.website/starmap/:splat"
+  status = 200
+  force = true
+
+# IMPORTANT: Handle the trailing slash case
+[[redirects]]
+  from = "/starmap/"
+  to = "https://laurenyip.framer.website/starmap"
+  status = 200
+  force = true
+
+# Next.js static export pages (direct URL access)
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio.html"
+  status = 200
+
+[[redirects]]
+  from = "/portfolio/"
+  to = "/portfolio.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects"
+  to = "/projects.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects/"
+  to = "/projects.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/about/"
+  to = "/about.html"
+  status = 200

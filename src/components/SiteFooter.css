@@ -6,7 +6,7 @@
 }
 
 .site-footer--projects {
-  margin-top: clamp(5rem, 10vh, 8rem);
+  margin-top: clamp(9rem, 18vh, 15rem);
 }
 
 .site-footer-inner {
