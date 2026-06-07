@@ -240,6 +240,27 @@ const ALBUMS = [
     
   },
   {
+    id: 'ella-louis-verve',
+    artist: 'Ella Fitzgerald & Louis Armstrong',
+    image: '/images/albums/ella-louis-verve.jpg',
+    link: 'https://open.spotify.com/album/2uqlkJu6vckJahCsp6Hfcn',
+    tracks: ['Dream a Little Dream of Me', 'Summertime', 'Cheek to Cheek'],
+  },
+  {
+    id: 'fear-of-music',
+    artist: 'Talking Heads',
+    image: '/images/albums/fear-of-music.jpg',
+    link: 'https://open.spotify.com/album/5dVZpNJraoqCo3BssinMoo',
+    tracks: ['Heaven', 'Life During Wartime', 'Cities'],
+  },
+  {
+    id: 'yours-truly',
+    artist: 'Ariana Grande',
+    image: '/images/albums/yours-truly.jpg',
+    link: 'https://open.spotify.com/album/2VSBGJ8bUuNgmOYXHIQagM',
+    tracks: ['The Way', 'Honeymoon Avenue', 'Tattooed Heart'],
+  },
+  {
     id: 'ningen-kaika',
     artist: 'RADWIMPS',
     image: '/images/albums/ningen-kaika.jpg',

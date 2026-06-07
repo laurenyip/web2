@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import FortuneCookie from '../../components/fortune-cookie'
 import Webring from './Webring'
 import './SiteFooter.css'
 
@@ -73,6 +74,10 @@ export default function SiteFooter() {
         </Link>
 
         {showWebring && <Webring />}
+      </div>
+
+      <div className="site-footer-fortune">
+        <FortuneCookie />
       </div>
     </footer>
   )
