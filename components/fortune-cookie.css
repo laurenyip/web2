@@ -232,6 +232,34 @@
   border-radius: 2px;
 }
 
+@media (min-width: 641px) {
+  .fortune-cookie-wrap {
+    align-items: center;
+    width: 100%;
+  }
+
+  .fortune-cookie-wrap--open {
+    align-items: center;
+  }
+
+  .fortune-cookie-hint {
+    text-align: center;
+    align-self: center;
+  }
+
+  .fortune-cookie-btn {
+    margin-inline: auto;
+  }
+
+  .fortune-cookie-reveal {
+    margin-inline: auto;
+  }
+
+  .fortune-slip-close {
+    align-self: center;
+  }
+}
+
 @media (max-width: 640px) {
   .fortune-cookie-whole {
     width: 162px;
