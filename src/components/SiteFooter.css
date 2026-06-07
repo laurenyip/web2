@@ -57,12 +57,12 @@
   bottom: calc(0.65rem + 55px);
   z-index: 5;
   pointer-events: auto;
-  width: 108px;
-  min-height: 86px;
+  width: 130px;
+  min-height: 103px;
 }
 
 .site-footer-fortune:has(.fortune-cookie-wrap--open) {
-  width: min(18rem, calc(100vw - 1.5rem));
+  width: min(21.6rem, calc(100vw - 1.5rem));
 }
 
 .site-footer-fortune > * {

@@ -5,8 +5,6 @@ import './fortune-cookie.css'
 
 const COOKIE_SRC = '/images/fortune-cookie.png'
 const BROKEN_SRC = '/images/fortune-cookie-broken.png'
-const COOKIE_W = 108
-const COOKIE_H = 86
 
 const FORTUNES = [
   'An old acquaintance will re-enter your life',
@@ -48,14 +46,13 @@ function WholeCookie({
   return (
     <div
       className={['fortune-cookie-whole', cracking ? 'fortune-cookie-whole--cracking' : ''].filter(Boolean).join(' ')}
-      style={{ width: COOKIE_W, height: COOKIE_H }}
       onAnimationEnd={cracking ? onCrackEnd : undefined}
     >
       <div className="fortune-cookie-half fortune-cookie-half--left" aria-hidden="true">
-        <img src={COOKIE_SRC} alt="" draggable={false} width={COOKIE_W} height={COOKIE_H} />
+        <img src={COOKIE_SRC} alt="" draggable={false} />
       </div>
       <div className="fortune-cookie-half fortune-cookie-half--right" aria-hidden="true">
-        <img src={COOKIE_SRC} alt="" draggable={false} width={COOKIE_W} height={COOKIE_H} />
+        <img src={COOKIE_SRC} alt="" draggable={false} />
       </div>
     </div>
   )

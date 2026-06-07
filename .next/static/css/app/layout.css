@@ -3203,10 +3203,12 @@ img {
   pointer-events: none;
 }
 
-/* whole cookie — two clipped halves flush together */
+/* whole cookie — two clipped halves flush together (base 108×86, desktop 1.2×, mobile 1.5×) */
 .fortune-cookie-whole {
   position: relative;
   flex-shrink: 0;
+  width: 130px;
+  height: 103px;
 }
 
 .fortune-cookie-whole--cracking {
@@ -3263,15 +3265,15 @@ img {
 }
 
 .fortune-cookie-half img {
-  width: 108px;
-  height: 86px;
+  width: 130px;
+  height: 103px;
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-/* broken cookie frame — fortune text overlays the paper strip */
+/* broken cookie frame — fortune text overlays the paper strip (280px base × 1.2 desktop) */
 .fortune-cookie-reveal {
-  width: 280px;
+  width: 336px;
   max-width: 100%;
   opacity: 0;
   transform: scale(0.92);
@@ -3378,6 +3380,16 @@ img {
 }
 
 @media (max-width: 640px) {
+  .fortune-cookie-whole {
+    width: 162px;
+    height: 129px;
+  }
+
+  .fortune-cookie-half img {
+    width: 162px;
+    height: 129px;
+  }
+
   .fortune-cookie-wrap {
     align-items: center;
     width: 100%;
@@ -3392,23 +3404,12 @@ img {
   }
 
   .fortune-cookie-reveal {
-    width: min(300px, calc(100vw - 2rem));
+    width: min(450px, calc(100vw - 2rem));
     margin: 0 auto;
   }
 
   .fortune-slip-close {
     align-self: center;
-  }
-}
-
-@media (max-width: 420px) {
-  .fortune-cookie-reveal {
-    width: min(280px, calc(100vw - 2rem));
-  }
-
-  .fortune-cookie-half img {
-    width: 96px;
-    height: 76px;
   }
 }
 
@@ -3474,12 +3475,12 @@ img {
   bottom: calc(0.65rem + 55px);
   z-index: 5;
   pointer-events: auto;
-  width: 108px;
-  min-height: 86px;
+  width: 130px;
+  min-height: 103px;
 }
 
 .site-footer-fortune:has(.fortune-cookie-wrap--open) {
-  width: min(18rem, calc(100vw - 1.5rem));
+  width: min(21.6rem, calc(100vw - 1.5rem));
 }
 
 .site-footer-fortune > * {
