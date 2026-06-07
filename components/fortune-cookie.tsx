@@ -38,7 +38,13 @@ function pickFortune() {
   return FORTUNES[Math.floor(Math.random() * FORTUNES.length)]
 }
 
-function WholeCookie({ cracking = false, onCrackEnd }: { cracking?: boolean; onCrackEnd?: () => void }) {
+function WholeCookie({
+  cracking = false,
+  onCrackEnd,
+}: {
+  cracking?: boolean
+  onCrackEnd?: (event: AnimationEvent<HTMLDivElement>) => void
+}) {
   return (
     <div
       className={['fortune-cookie-whole', cracking ? 'fortune-cookie-whole--cracking' : ''].filter(Boolean).join(' ')}
