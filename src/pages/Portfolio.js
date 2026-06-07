@@ -113,7 +113,7 @@ function Portfolio() {
     <div className="bg-white min-h-screen">
       <Navbar />
 
-      <div className="portfolio-case-studies pt-[100px] pb-16 px-6 md:px-10 max-w-5xl mx-auto">
+      <div className="portfolio-case-studies pt-[100px] pb-16 px-5 md:px-10 max-w-5xl mx-auto">
         <header className="mb-10 md:mb-12">
           <h1
             className="text-3xl md:text-5xl text-gray-800 tracking-tight"

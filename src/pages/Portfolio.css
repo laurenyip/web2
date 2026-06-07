@@ -225,6 +225,45 @@
   }
 }
 
+@media (max-width: 640px) {
+  .portfolio-case-studies {
+    max-width: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .portfolio-grid {
+    width: 100%;
+  }
+
+  .portfolio-card-media {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+    height: auto;
+    padding: 0;
+  }
+
+  .portfolio-card-media :is(
+    .aurora-thumb,
+    .csa-thumb,
+    .starmap-thumb,
+    .spruce-thumb,
+    .amazon-gift-thumb
+  ) {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .portfolio-card:hover {
+    transform: none;
+  }
+
+  .portfolio-card:hover .portfolio-card-media {
+    transform: none;
+    box-shadow: 0 12px 24px rgba(55, 65, 81, 0.08);
+  }
+}
+
 /* File folder tabs */
 .folder-tabs {
   display: flex;

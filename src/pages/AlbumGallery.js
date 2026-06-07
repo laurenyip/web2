@@ -244,7 +244,7 @@ const ALBUMS = [
     artist: 'Ella Fitzgerald & Louis Armstrong',
     image: '/images/albums/ella-louis-verve.jpg',
     link: 'https://open.spotify.com/album/2uqlkJu6vckJahCsp6Hfcn',
-    tracks: ['Dream a Little Dream of Me', 'Summertime', 'Cheek to Cheek'],
+    tracks: ['Under a Blanket of Blue', 'Cheek to Cheek', 'Stompin\' at the Savoy'], 
   },
   {
     id: 'fear-of-music',
@@ -258,8 +258,8 @@ const ALBUMS = [
     artist: 'Ariana Grande',
     image: '/images/albums/yours-truly.jpg',
     link: 'https://open.spotify.com/album/2VSBGJ8bUuNgmOYXHIQagM',
-    tracks: ['The Way', 'Honeymoon Avenue', 'Tattooed Heart'],
-  },
+    tracks: ['Daydreaming', 'Honeymoon Avenue', 'Tattooed Heart'],
+  }, 
   {
     id: 'ningen-kaika',
     artist: 'RADWIMPS',
