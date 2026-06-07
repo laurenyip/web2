@@ -1,0 +1,238 @@
+.fortune-cookie-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  position: relative;
+}
+
+.fortune-cookie-wrap--open {
+  align-items: stretch;
+  width: 100%;
+}
+
+.fortune-cookie-wrap--out {
+  animation: fortune-wrap-out 0.35s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes fortune-wrap-out {
+  to {
+    opacity: 0;
+  }
+}
+
+.fortune-cookie-hint {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.fortune-cookie-btn {
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  line-height: 0;
+  transition: transform 0.2s ease;
+}
+
+.fortune-cookie-btn:hover:not(.fortune-cookie-btn--disabled) {
+  transform: scale(1.05);
+}
+
+.fortune-cookie-btn:focus-visible {
+  outline: 2px solid #d4923a;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.fortune-cookie-btn--disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* whole cookie — two clipped halves flush together */
+.fortune-cookie-whole {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.fortune-cookie-whole--cracking {
+  animation: fortune-cookie-crack 0.45s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+}
+
+@keyframes fortune-cookie-crack {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(1.1) rotate(-4deg);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(0.94) rotate(3deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(1.06) rotate(-2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.85) rotate(6deg);
+    opacity: 0;
+  }
+}
+
+.fortune-cookie-half {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fortune-cookie-whole .fortune-cookie-half {
+  position: absolute;
+  inset: 0;
+}
+
+.fortune-cookie-whole .fortune-cookie-half--left {
+  clip-path: inset(0 50% 0 0);
+}
+
+.fortune-cookie-whole .fortune-cookie-half--right {
+  clip-path: inset(0 0 0 50%);
+}
+
+.fortune-cookie-half img,
+.fortune-cookie-broken-img {
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.fortune-cookie-half img {
+  width: 108px;
+  height: 86px;
+  object-fit: contain;
+}
+
+/* broken cookie frame — fortune text overlays the paper strip */
+.fortune-cookie-reveal {
+  width: 280px;
+  max-width: 100%;
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.fortune-cookie-reveal-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  line-height: 0;
+}
+
+.fortune-cookie-reveal--in {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  animation: fortune-reveal-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fortune-cookie-reveal--in {
+    animation: none;
+  }
+}
+
+@keyframes fortune-reveal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.fortune-cookie-broken-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.fortune-slip-overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 36%;
+  height: 28%;
+  min-height: 18px;
+  transform: translate(-50%, calc(-50% - 2px)) rotate(5deg);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1%;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fortune-slip-overlay--visible {
+  opacity: 1;
+}
+
+.fortune-slip-close {
+  align-self: flex-end;
+  padding: 0.15rem 0.35rem;
+  border: none;
+  background: transparent;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.fortune-slip-text {
+  margin: 0;
+  width: 100%;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 9px;
+  line-height: 1.25;
+  text-align: center;
+  color: #2a2218;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.fortune-slip-close:hover,
+.fortune-slip-close:focus-visible {
+  color: #6b7280;
+}
+
+.fortune-slip-close:focus-visible {
+  outline: 1px solid #d4bf80;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (max-width: 420px) {
+  .fortune-cookie-reveal {
+    width: min(280px, calc(100vw - 2rem));
+  }
+
+  .fortune-cookie-half img {
+    width: 96px;
+    height: 76px;
+  }
+}
