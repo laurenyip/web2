@@ -9,7 +9,7 @@ import './SiteFooter.css'
 const SOCIAL_LINKS = [
   {
     label: 'Instagram',
-    href: 'https://www.instagram.com/lauren.yip_/',
+    href: 'https://www.instagram.com/studio.laurenyip/',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
         <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />

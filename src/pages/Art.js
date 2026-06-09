@@ -54,10 +54,16 @@ export default function Art() {
           >
             Art
           </h1>
-          <p className="about-body-text mt-3 max-w-xl text-gray-600">
-            Painting to capture the big chapters of my life. Use the arrows to browse, or click the image to view full
-            screen.
-          </p>
+          <div className="about-body-text mt-3 max-w-xl text-gray-600">
+            <p className="m-0">
+              Painting to capture the big chapters of my life.
+              <br />
+              Use the arrows to browse, or click the image to view full screen.
+            </p>
+            <p className="mt-4 mb-0">
+              I&apos;m posting 100 times in 100 days. Follow along on my X or Instagram, linked in the footer!
+            </p>
+          </div>
         </header>
 
         <div className="about-art-carousel flex flex-col gap-3">
