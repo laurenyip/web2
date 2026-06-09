@@ -328,10 +328,17 @@ export default function About() {
             <div className="about-layout-rail flex flex-col items-start text-left">
               <div className="about-section-num">01</div>
               <p className="about-body-text mt-1 m-0">Art</p>
-              <p className="about-body-text mt-3 max-w-md text-left">
-                Painting to capture the big chapters of my life. Use the arrows to browse, or click the image to view
-                full screen.
-              </p>
+              <div className="about-body-text mt-3 max-w-md text-left">
+                <p className="m-0">
+                  Painting to capture the big chapters of my life.
+                  <br />
+                  Use the arrows to browse, or click the image to view full screen.
+                </p>
+                <p className="mt-4 mb-0">
+                  <br />
+                  I&apos;m posting 100 times in 100 days. Follow along on my X or Instagram, linked in the footer!
+                </p>
+              </div>
             </div>
           </div>
         </section>
