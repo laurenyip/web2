@@ -1,0 +1,55 @@
+@media (pointer: fine) {
+  html.site-cursor-active,
+  html.site-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+@keyframes site-cursor-pop {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.45);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+}
+
+.site-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  pointer-events: none;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.site-cursor--visible {
+  opacity: 1;
+}
+
+.site-cursor-bubble {
+  display: block;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.site-cursor-bubble--pop {
+  animation: site-cursor-pop 0.25s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-cursor {
+    display: none;
+  }
+}

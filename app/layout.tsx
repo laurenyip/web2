@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import ImageProtection from '../src/components/ImageProtection'
 import SiteFooter from '../src/components/SiteFooter'
+import SiteCursor from '../components/site-cursor'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ImageProtection />
+        <SiteCursor />
         {children}
         <SiteFooter />
         <Script
