@@ -241,23 +241,16 @@ export default function About() {
                     priority={false}
                   />
                 </button>
-                <button
-                  type="button"
-                  className="about-hero-charm-btn"
-                  onClick={() => open('/images/about/whoami/charm.png', 'Charm study')}
-                  aria-label="Open charm sketch"
-                >
-                  <span className="charm-swing block w-full">
-                    <Image
-                      src="/images/about/whoami/charm.png"
-                      alt="Charm sketch"
-                      className="about-hero-charm-img rounded-[10px]"
-                      width={900}
-                      height={1200}
-                      priority={false}
-                    />
-                  </span>
-                </button>
+                <div className="about-hero-charm-btn charm-swing" aria-hidden="true">
+                  <Image
+                    src="/images/about/whoami/charm.png"
+                    alt=""
+                    className="about-hero-charm-img rounded-[10px]"
+                    width={900}
+                    height={1200}
+                    priority={false}
+                  />
+                </div>
               </div>
             </div>
           </div>
