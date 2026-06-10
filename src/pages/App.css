@@ -409,6 +409,53 @@ ul.navbar .nav-link:visited {
   overflow: visible;
 }
 
+@media (max-width: 640px) {
+  .home-page .charm-swing {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .home-page .containermain.home-charm-box {
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .home-page .home-charm-content {
+    transform: scale(0.99);
+    transform-origin: top left;
+    width: 101.01%;
+  }
+
+  .home-page .containermain.home-charm-box p2,
+  .home-page .containermain.home-charm-box p3,
+  .home-page .containermain.home-charm-box p3b {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .home-page .containermain.home-charm-box p2 {
+    font-size: 9px;
+  }
+
+  .home-page .home-charm-meta {
+    display: block;
+    font-size: 7.5px;
+    line-height: 1.35;
+  }
+
+  .home-page .home-charm-contact {
+    display: block;
+    font-size: 8px;
+    line-height: 1.45;
+  }
+
+  .home-page .containermain.home-charm-box p3b {
+    font-size: clamp(1.15rem, 5.5vw, 1.35rem);
+  }
+}
+
 @media (min-width: 1024px) {
   .home-page .containermain.home-charm-box {
     width: 456px;
@@ -624,8 +671,13 @@ ul.navbar .nav-link:visited {
   padding: 0;
   border: 0;
   background: transparent;
-  cursor: zoom-in;
+  cursor: default;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+  transform-origin: top center;
+}
+
+.about-page .about-hero-charm-btn.charm-swing:hover {
+  transform: translateY(-50%) rotate(6.5deg);
 }
 
 .about-page .about-hero-charm-img {

@@ -81,6 +81,7 @@ function Home() {
             {/* Charm: align-self start so it doesn't stretch to portrait height */}
             <div className="charm-swing" style={{ width: '100%', maxWidth: '456px', flexShrink: 0, alignSelf: 'flex-start' }}>
               <div className="containermain home-charm-box" style={{ padding: '5%', width: '100%', boxSizing: 'border-box' }}>
+                <div className="home-charm-content">
                 <p3>YIP/LAUREN宝怡</p3>
                 <br /><br />
                 <p3>the website &nbsp; 09FEB 2003</p3>
@@ -88,7 +89,7 @@ function Home() {
                 <p2>FM</p2><p3>&nbsp;&nbsp;VANCOUVER/YVR</p3>
                 <br /><p2>TO</p2><p3>&nbsp;&nbsp;THEWORLD/!!!</p3>
                 <br /><br /><br />
-                <p2>
+                <p2 className="home-charm-meta">
                   &nbsp;&nbsp;Age&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status @ SFU
                 </p2>
                 <br /><p3b>23A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YEAR4</p3b>
@@ -98,13 +99,14 @@ function Home() {
                   <a href={RESUME_PDF_HREF} target="_blank" rel="noopener noreferrer">RESUME</a>
                 </p3>
                 <br />
-                <p2>
+                <p2 className="home-charm-contact">
                   <a href="mailto:laurenyip20@gmail.com" style={{ color: 'inherit' }}>laurenyip20@gmail.com</a>
                   {' --- '}
                   <a href="https://www.linkedin.com/in/lauren-yip" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>
                     linkedin.com/in/lauren-yip
                   </a>
                 </p2>
+                </div>
               </div>
             </div>
 
