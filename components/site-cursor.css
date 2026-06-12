@@ -15,8 +15,8 @@
     opacity: 0.4;
   }
   100% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
 }
 
@@ -45,7 +45,7 @@
 }
 
 .site-cursor-bubble--pop {
-  animation: site-cursor-pop 0.25s ease-out forwards;
+  animation: site-cursor-pop 0.25s ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {

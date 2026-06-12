@@ -229,7 +229,7 @@ export default function About() {
                 <button
                   type="button"
                   className="about-hero-optimist-btn"
-                  onClick={() => open('/images/about/whoami/optimist.png', 'OPTIMIST mural · Vancouver')}
+                  onClick={() => open('/images/about/whoami/optimist.png', 'SF chinatown')}
                   aria-label="Open OPTIMIST mural"
                 >
                   <Image
