@@ -17,7 +17,7 @@ const FIGMA_HOME = {
     { src: '/images/home/chacha.png', caption: 'at bruce lee\'s house' },
   ],
   row3: [
-    { src: '/images/home/paris_wip.png', caption: 'in progress - aux artistes, paris' },
+    { src: '/images/home/paris_wip.png', caption: 'aux artistes, paris' },
     { src: '/images/home/chilies.png', caption: '凤凰古城' },
     { src: '/images/home/beads.png', caption: '凤凰古城' },
   ],

@@ -9,13 +9,14 @@ import '../pages/App.css'
 import '../pages/About.css'
 
 const ART_CAROUSEL = [
-  { src: '/images/about/art/january.jpg', caption: 'january [2025-01]' },
+  { src: '/images/about/art/january.png', caption: 'january [2025-01]' },
   { src: '/images/about/art/lily.png', caption: 'dedicated to my friends [2021-08]' },
   { src: '/images/about/art/ecola.png', caption: 'ecola beach [2025-04]' },
   { src: '/images/about/art/dance.png', caption: 'high school dance [2021-01]' },
   { src: '/images/about/art/blue.png', caption: 'blue hydrangeas [2021-07]' },
   { src: '/images/about/art/pool.png', caption: 'belcarra tidepools [2022-02]' },
   { src: '/images/about/art/bridge.png', caption: 'the bridge [2023-09]' },
+  { src: '/images/about/art/paris-aux.png', caption: 'aux artistes, paris' },
 ]
 
 export default function Art() {
