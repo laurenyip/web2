@@ -96,10 +96,10 @@ const SIDEQUEST_GRID_ITEMS = [
 const MUSIC_ITEMS = [
   {
     type: 'music',
-    text: 'Clash',
-    date: '2025-12-28',
-    image: '/images/about/favorites/music/clash.jpg',
-    link: 'https://en.wikipedia.org/wiki/London_Calling',
+    text: 'you seem pretty sad for a girl so in love',
+    date: '2026-06-12',
+    image: '/images/about/favorites/music/olivia-yspasfgial.jpg',
+    link: 'https://open.spotify.com/album/18qJgKH8dyYe2RRp6TbnNY',
     songs: [],
   },
   {

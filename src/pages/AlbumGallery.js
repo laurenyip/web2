@@ -9,8 +9,9 @@ import './AlbumGallery.css'
 const GROOVE_RATIOS = [0.22, 0.32, 0.42, 0.52, 0.62, 0.72, 0.82]
 
 const PRIORITY_TOP = [
-  'sour',
+  'you-seem-pretty-sad',
   'london-calling',
+  'sour',
   'stop-making-sense',
   'graceland',
   'your-name',
@@ -47,12 +48,18 @@ const ALBUMS = [
     tracks: ['Run', 'Butterfly', 'Autumn Leaves'],
   },
   {
+    id: 'you-seem-pretty-sad',
+    artist: 'Olivia Rodrigo',
+    image: '/images/albums/you-seem-pretty-sad.jpg',
+    link: 'https://open.spotify.com/album/18qJgKH8dyYe2RRp6TbnNY',
+    tracks: ['maggots for brains', 'cigarette smoke', 'the cure'],
+  },
+  {
     id: 'london-calling',
     artist: 'The Clash',
     image: '/images/about/favorites/music/clash.jpg',
     link: 'https://en.wikipedia.org/wiki/London_Calling',
     tracks: ['The Guns of Brixton', 'Lost in the Supermarket'],
- 
   },
   {
     id: 'stop-making-sense',
