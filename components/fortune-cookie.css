@@ -12,7 +12,7 @@
 }
 
 .fortune-cookie-wrap--out {
-  animation: fortune-wrap-out 0.35s ease forwards;
+  animation: fortune-wrap-out 0.22s ease forwards;
   pointer-events: none;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .fortune-cookie-whole--cracking {
-  animation: fortune-cookie-crack 0.45s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+  animation: fortune-cookie-crack 0.28s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
 }
 
 @keyframes fortune-cookie-crack {
@@ -142,7 +142,7 @@
 .fortune-cookie-reveal--in {
   opacity: 1;
   transform: scale(1) translateY(0);
-  animation: fortune-reveal-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fortune-reveal-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -123,6 +123,13 @@ export default function FortuneCookie() {
   const [fortune, setFortune] = useState('')
   const [showHint, setShowHint] = useState(true)
 
+  useEffect(() => {
+    ;[COOKIE_SRC, BROKEN_SRC].forEach((src) => {
+      const img = new Image()
+      img.src = src
+    })
+  }, [])
+
   const handleCookieClick = useCallback(() => {
     if (phase !== 'idle') return
     setShowHint(false)
@@ -141,7 +148,7 @@ export default function FortuneCookie() {
 
     const fallback = window.setTimeout(() => {
       setPhase((current) => (current === 'breaking' ? 'open' : current))
-    }, 550)
+    }, 300)
 
     return () => window.clearTimeout(fallback)
   }, [phase])
