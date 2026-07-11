@@ -1,0 +1,219 @@
+.work-row1 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.work-row2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* Portfolio-style cards on Work page */
+.work-page button.work-portfolio-card {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.work-portfolio-card--featured {
+  flex: 1;
+  min-width: 0;
+}
+
+.work-portfolio-card--featured .portfolio-card-media {
+  min-height: 0;
+  height: 420px;
+}
+
+.work-row2 .work-portfolio-card .portfolio-card-media {
+  min-height: 0;
+  height: 357px;
+}
+
+.work-row3-card.work-portfolio-card .portfolio-card-media {
+  min-height: 0;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  position: relative;
+}
+
+.work-portfolio-card--overlay .portfolio-card-media {
+  position: relative;
+}
+
+.work-portfolio-card--overlay .work-card-static-hover {
+  z-index: 3;
+}
+
+.work-portfolio-card--overlay:hover .portfolio-card-media,
+.work-portfolio-card--overlay:focus-visible .portfolio-card-media {
+  transform: none;
+  box-shadow: 0 12px 24px rgba(55, 65, 81, 0.08);
+}
+
+.work-portfolio-card--overlay:hover,
+.work-portfolio-card--overlay:focus-visible {
+  transform: none;
+}
+
+/* Static row-3 cards (Projects-style hover overlay) */
+.work-card {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid rgba(209, 213, 219, 0.8);
+  background: #fff;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-card--static:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.12);
+}
+
+.work-card:focus-visible {
+  outline: 2px solid #374151;
+  outline-offset: 2px;
+}
+
+.work-card-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.work-card-media--static {
+  aspect-ratio: 1 / 1;
+}
+
+.work-card-img--static {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.work-card-static-dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.work-card-static-hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+  text-align: center;
+}
+
+.work-card-static-hover-title {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1.3px;
+}
+
+.work-card--static:hover .work-card-static-hover,
+.work-card--static:focus-visible .work-card-static-hover,
+.work-portfolio-card--overlay:hover .work-card-static-hover,
+.work-portfolio-card--overlay:focus-visible .work-card-static-hover {
+  opacity: 1;
+}
+
+.work-page .portfolio-card-blurb.about-body-text {
+  color: #374151;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 1.3px;
+}
+
+.work-row3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .work-row2 {
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: start;
+    gap: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .work-row1 {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .work-page-rows {
+    padding-left: 50px;
+  }
+
+  .work-row3 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .work-main {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .work-page-rows {
+    padding-left: 0 !important;
+  }
+
+  .work-portfolio-card--featured .portfolio-card-media {
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .work-row2 .work-portfolio-card .portfolio-card-media {
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .work-card-img--static {
+    object-fit: contain !important;
+  }
+
+  .work-page .portfolio-card:hover {
+    transform: none;
+  }
+
+  .work-page .portfolio-card:hover .portfolio-card-media {
+    transform: none;
+    box-shadow: 0 12px 24px rgba(55, 65, 81, 0.08);
+  }
+
+  .work-card--static:hover {
+    transform: none;
+  }
+}

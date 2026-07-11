@@ -486,9 +486,10 @@ ul.navbar .nav-link:visited {
   }
 }
 
-/* About + Projects — Figma body (Oxford Blue / Arial) */
+/* About + Projects + Work — Figma body (Oxford Blue / Arial) */
 .about-page .about-body-text,
-.projects-page .about-body-text {
+.projects-page .about-body-text,
+.work-page .about-body-text {
   color: #374151;
   font-family: Arial, sans-serif;
   font-size: 16px;
@@ -499,11 +500,13 @@ ul.navbar .nav-link:visited {
 }
 
 .about-page .about-body-text > p,
-.projects-page .about-body-text > p {
+.projects-page .about-body-text > p,
+.work-page .about-body-text > p {
   margin: 0;
 }
 
-.projects-page .about-body-text--on-dark {
+.projects-page .about-body-text--on-dark,
+.work-page .about-body-text--on-dark {
   color: #ffffff;
 }
 
