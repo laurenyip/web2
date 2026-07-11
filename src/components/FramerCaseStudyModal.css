@@ -1,0 +1,96 @@
+.framer-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(17, 24, 39, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.framer-modal-window {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(1100px, calc(100% - 2rem));
+  height: min(94vh, 920px);
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 24px 48px rgba(17, 24, 39, 0.2);
+}
+
+.framer-modal-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #6b7280;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(17, 24, 39, 0.12);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.framer-modal-close:hover {
+  color: #111827;
+  background: #fff;
+}
+
+.framer-modal-frame-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.framer-modal-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Hide Framer title bars — only where needed */
+.framer-modal-frame-wrap--starmap .framer-modal-frame,
+.framer-modal-frame-wrap--amazon-giftwrapping .framer-modal-frame {
+  margin-top: 36px;
+  height: calc(100% - 36px);
+}
+
+/* Spruce has a thin white strip — light crop only */
+.framer-modal-frame-wrap--spruce .framer-modal-frame {
+  margin-top: 0px;
+  height: calc(100%);
+}
+
+/* Aurora is full-bleed — no top crop */
+.framer-modal-frame-wrap--aurora .framer-modal-frame {
+  margin-top: 0;
+  height: 100%;
+}
+
+@media (max-width: 640px) {
+  .framer-modal-backdrop {
+    padding: 0;
+  }
+
+  .framer-modal-window {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+  }
+}

@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 
-import Home from '../src/pages/Home'
+import Work from '../src/pages/Work'
 import { buildPageMetadata } from './metadata'
 
 export const metadata: Metadata = buildPageMetadata({
   description:
-    'Lauren Yip is a product designer and computer science student sharing projects, portfolio case studies, writing, and creative work.',
+    'Selected product design work by Lauren Yip — case studies, experiments, and creative projects.',
   path: '/',
-  image: '/images/home/portrait.png',
+  image: '/images/projects/starmap/starmap_t.png',
 })
 
 export default function Page() {
-  return <Home />
+  return <Work />
 }
