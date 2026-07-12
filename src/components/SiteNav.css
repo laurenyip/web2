@@ -3,155 +3,132 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  padding: 1rem 1.25rem 0;
+  z-index: 40;
+  width: 100%;
   pointer-events: none;
 }
 
-.site-nav-inner {
+:root {
+  --site-nav-block-height: 6.85rem;
+}
+
+.site-nav-stack {
   pointer-events: auto;
+  background: #fff;
+}
+
+.site-nav-logo-row {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
-  width: min(100%, 42rem);
-  padding: 0.45rem 0.55rem 0.45rem 0.85rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.48);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow:
-    0 10px 30px rgba(17, 24, 39, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  padding: 0.7rem 1rem 0.55rem;
+  overflow: visible;
 }
 
 .site-nav-mark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: auto;
-  min-width: 2rem;
-  height: 2rem;
-  padding: 0 0.1rem;
-  border-radius: 999px;
-  background: transparent;
   text-decoration: none;
-  flex-shrink: 0;
-  transition: transform 0.2s ease;
+  line-height: 0;
+  overflow: visible;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .site-nav-logo {
   display: block;
-  width: auto;
-  height: 1.65rem;
+  height: 3rem;
+  width: 3rem;
   object-fit: contain;
 }
 
 .site-nav-mark:hover,
 .site-nav-mark:focus-visible {
-  transform: scale(1.04);
+  transform: scale(1.03);
+  opacity: 0.88;
 }
 
-.site-nav-links {
-  display: flex;
-  align-items: center;
-  gap: 0.2rem;
-  list-style: none;
+.site-nav-band {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.site-nav-rule--dark {
+  display: block;
+  width: 100%;
+  height: 0;
   margin: 0;
   padding: 0;
-  flex: 1;
-  justify-content: flex-end;
+  border: 0;
+  border-top: 2.7px solid #374151;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
-.site-nav-item {
+.site-nav-links-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  width: 100%;
   margin: 0;
+  padding: 0.42rem clamp(1rem, 4vw, 2.5rem);
+  box-sizing: border-box;
 }
 
 .site-nav-link {
-  --site-nav-oil: linear-gradient(
-    112deg,
-    #1f2937 0%,
-    #312e81 14%,
-    #581c87 28%,
-    #134e4a 42%,
-    #1e3a5f 56%,
-    #4a1942 70%,
-    #1f2937 84%,
-    #111827 100%
-  );
-  display: inline-block;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
   font-family: Moto, serif;
-  font-size: 1rem;
-  line-height: 1.2;
+  font-size: 0.81rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #374151;
   text-decoration: none;
-  background-image: var(--site-nav-oil);
-  background-size: 220% 100%;
-  background-position: 0% 50%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  animation: site-nav-oil-shimmer 10s ease-in-out infinite;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.site-nav-link--start {
+  justify-self: start;
+}
+
+.site-nav-link--center {
+  justify-self: center;
+}
+
+.site-nav-link--end {
+  justify-self: end;
 }
 
 .site-nav-link:hover,
 .site-nav-link:focus-visible {
-  animation-duration: 6s;
-  background-color: rgba(17, 24, 39, 0.04);
+  color: #374151;
 }
 
 .site-nav-link--active {
-  background-image: linear-gradient(
-    112deg,
-    #111827 0%,
-    #4338ca 16%,
-    #6b21a8 32%,
-    #0f766e 48%,
-    #1d4ed8 64%,
-    #701a75 80%,
-    #111827 100%
-  );
-  background-size: 220% 100%;
-  background-color: rgba(17, 24, 39, 0.06);
-}
-
-@keyframes site-nav-oil-shimmer {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
+  color: #374151;
 }
 
 @media (max-width: 640px) {
-  .site-nav {
-    padding: 0.75rem 0.75rem 0;
+  :root {
+    --site-nav-block-height: 6.1rem;
   }
 
-  .site-nav-inner {
-    width: 100%;
-    gap: 0.65rem;
-    padding: 0.4rem 0.45rem 0.4rem 0.65rem;
+  .site-nav-logo-row {
+    padding: 0.55rem 0.75rem 0.45rem;
+  }
+
+  .site-nav-logo {
+    height: 2.625rem;
+  }
+
+  .site-nav-links-row {
+    padding: 0.38rem 0.85rem;
   }
 
   .site-nav-link {
-    padding: 0.4rem 0.7rem;
-    font-size: 0.92rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .site-nav-link {
-    animation: none;
-    background-position: 0% 50%;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
   }
 }

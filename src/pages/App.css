@@ -379,6 +379,15 @@ ul.navbar .nav-link:visited {
 }
 
 /* Home — thank-you card (F25 body) */
+.home-page .home-thank-you-card {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #001c80;
+  background: #fff;
+  padding: 12px;
+}
+
 .home-page .home-f25-body {
   font-family: "F25", serif;
   font-size: 16px;
@@ -499,7 +508,34 @@ ul.navbar .nav-link:visited {
   letter-spacing: 1.3px;
 }
 
-.about-page .about-body-text > p,
+.about-page .about-body-text > p {
+  margin: 0;
+}
+
+.about-page .about-body-text > p + p {
+  margin-top: 1.5rem;
+}
+
+/* About — default paragraph styling in content sections */
+.about-page .about-layout-rail-left p,
+.about-page .about-body-text p {
+  color: #374151;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 1.3px;
+}
+
+.about-page .about-layout-rail-left > p {
+  margin: 1.5rem 0 0;
+}
+
+.about-page .about-layout-rail-left > p.about-body-text.mt-1 {
+  margin-top: 0.25rem;
+}
+
 .projects-page .about-body-text > p,
 .work-page .about-body-text > p {
   margin: 0;
@@ -531,47 +567,105 @@ ul.navbar .nav-link:visited {
   color: #374151;
 }
 
-/* About §01 — art carousel */
+/* About — inline body links (Who Am I, etc.) */
+.about-page a.about-inline-link {
+  color: #4a6fa5;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-decoration: none;
+  display: inline-block;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  transform-origin: center bottom;
+}
+
+.about-page a.about-inline-link:hover,
+.about-page a.about-inline-link:focus-visible {
+  color: #3b5f94;
+  transform: scale(1.04);
+}
+
+.about-page section[id] {
+  scroll-margin-top: calc(var(--site-nav-block-height, 5.85rem) + 50px + 1rem);
+}
+
+/* About + Playground — art carousel controls */
 .about-page .about-art-carousel-nav {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
-  background: #fff;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(55, 65, 81, 0.16);
+  background: rgba(255, 255, 255, 0.95);
   color: #374151;
-  font-size: 1.5rem;
+  font-family: Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
   line-height: 1;
+  letter-spacing: 0;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  box-shadow:
+    0 1px 2px rgba(17, 24, 39, 0.05),
+    0 4px 14px rgba(17, 24, 39, 0.04);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .about-page .about-art-carousel-nav:hover {
-  background: #f9fafb;
-  border-color: #9ca3af;
+  background: #fff;
+  border-color: rgba(55, 65, 81, 0.32);
+  color: #111827;
+  transform: translateY(-1px);
+  box-shadow:
+    0 2px 4px rgba(17, 24, 39, 0.06),
+    0 8px 20px rgba(17, 24, 39, 0.08);
+}
+
+.about-page .about-art-carousel-nav:focus-visible {
+  outline: 2px solid #9ca3af;
+  outline-offset: 3px;
+}
+
+.about-page .about-art-carousel-nav:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(17, 24, 39, 0.05);
 }
 
 .about-page .about-art-carousel-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   padding: 0;
   border: none;
   border-radius: 9999px;
   background: #d1d5db;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.15s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .about-page .about-art-carousel-dot:hover {
   background: #9ca3af;
+  transform: scale(1.12);
 }
 
 .about-page .about-art-carousel-dot--active {
   background: #374151;
-  transform: scale(1.15);
+  transform: scale(1.2);
+}
+
+.about-page .about-art-carousel-dot:focus-visible {
+  outline: 2px solid #9ca3af;
+  outline-offset: 3px;
 }
 
 /* About — vinyl record hover spin */
@@ -616,7 +710,41 @@ ul.navbar .nav-link:visited {
   padding-top: 3rem; /* 48px */
 }
 
-/* About §00 hero — OPTIMIST untilted, behind charm (z); charm swing on hover */
+/* About §00 hero — portrait */
+.about-page .about-hero-portrait-btn {
+  display: block;
+  width: 100%;
+  max-width: min(100%, 420px);
+  padding: 0;
+  border: 1px solid rgba(209, 213, 219, 0.8);
+  border-radius: 10px;
+  background: #f9fafb;
+  cursor: zoom-in;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease;
+}
+
+.about-page .about-hero-portrait-btn:hover {
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.1);
+}
+
+.about-page .about-hero-portrait-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 1023px) {
+  .about-page .about-hero-portrait-btn {
+    max-width: min(100%, 320px);
+  }
+}
+
+/* About §01 — OPTIMIST + charm collage */
 .about-page .about-hero-collage {
   position: relative;
   isolation: isolate;

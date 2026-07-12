@@ -69,8 +69,7 @@ export default function SiteFooter() {
         <p className="site-footer-copy">© {year} Lauren Yip. All rights reserved.</p>
 
         <p className="site-footer-note">
-          All artwork and photography on this site is original work. Do not reproduce, distribute, or use without
-          written permission.
+          All artwork and photography on this site is original work. Do not reproduce, distribute, or use without written permission.
         </p>
 
         <Link href="/rights" className="site-footer-link">

@@ -1,35 +1,13 @@
 'use client'
 
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import Navbar from '../components/Navbar'
 import ImageModal from '../components/ImageModal'
-import AboutAlbumsCharm from '../components/AboutAlbumsCharm'
+import VinylMusicShelf from '../components/VinylMusicShelf'
 import './App.css'
 import './About.css'
-
-/** §01 Art — carousel slides (`public/images/about/art/`) */
-const ART_CAROUSEL = [
-  { src: '/images/about/art/january.png', caption: 'january [2025-01]' },
-  { src: '/images/about/art/lily.png', caption: 'dedicated to my friends [2021-08]' },
-  { src: '/images/about/art/ecola.png', caption: 'ecola beach [2025-04]' },
-  { src: '/images/about/art/dance.png', caption: 'high school dance [2021-01]' },
-  { src: '/images/about/art/blue.png', caption: 'blue hydrangeas [2021-07]' },
-  { src: '/images/about/art/pool.png', caption: 'belcarra tidepools [2022-02]' },
-  { src: '/images/about/art/bridge.png', caption: 'the bridge [2023-09]' },
-  { src: '/images/about/art/paris-aux.png', caption: 'aux artistes, paris' },
-]
-
-const WRITING_LINKS = [
-  { label: 'aftersun (2025)', href: 'https://laurenyip.substack.com/p/aftersun-2025' },
-  { label: '花樣年華', href: 'https://substack.com/home/post/p-181468973' },
-  { label: 'mercurial world', href: 'https://laurenyip.substack.com/p/mercurial-world' },
-  {
-    label: 'the best air mattress in the world',
-    href: 'https://laurenyip.substack.com/p/the-best-air-mattress-in-the-world',
-  },
-  { label: 'drafts', href: null },
-]
 
 const FAVORITES_POSTERS = [
   {
@@ -67,165 +45,109 @@ const FAVORITES_LINKS = [
   { label: 'Movies that I rate 5 stars', href: 'https://letterboxd.com/laurenyip/' },
 ]
 
-/** §04 Sidequests — grid (`public/images/about/sidequests/`) */
-const SIDEQUEST_GRID_ITEMS = [
-  { src: '/images/about/sidequests/cz.jpg', caption: '潮州 stone portal' },
-  { src: '/images/about/sidequests/datong.jpg', caption: '大同 after rain' },
-  { src: '/images/about/sidequests/gzapt.jpg', caption: '廣州' },
-  { src: '/images/about/sidequests/gzbike.jpg', caption: '廣州' },
-  { src: '/images/about/sidequests/gzcat.jpg', caption: '廣州' },
-  { src: '/images/about/sidequests/gzfish.jpg', caption: '锦鲤' },
-  { src: '/images/about/sidequests/gztree.png', caption: '廣州' },
-  {
-    src: '/images/about/sidequests/hike.jpg',
-    caption: 'best hike ever',
-  },
-  {
-    src: '/images/about/sidequests/ipoh.jpg',
-    caption: '怡保',
-    /** Landscape photo — bias crop toward the lit shop & figures in the square thumb */
-    objectPosition: 'center 42%',
-  },
-  {
-    src: '/images/about/sidequests/kaya.jpg',
-    caption: 'kaya puff shophouse',
-  },
-]
-
-/** Vinyl shelf — sleeve art (paths under `public/`); links match prior About. */
-const MUSIC_ITEMS = [
-  {
-    type: 'music',
-    text: 'you seem pretty sad for a girl so in love',
-    date: '2026-06-12',
-    image: '/images/about/favorites/music/olivia-yspasfgial.jpg',
-    link: 'https://open.spotify.com/album/18qJgKH8dyYe2RRp6TbnNY',
-    songs: [],
-  },
-  {
-    type: 'music',
-    text: 'Stop Making Sense',
-    date: '2025-08-04',
-    image: '/images/about/favorites/music/sms.jpg',
-    link: 'https://letterboxd.com/laurenyip/film/stop-making-sense/',
-    songs: [],
-  },
-  {
-    type: 'music',
-    text: 'Graceland',
-    date: '2025-12-26',
-    image: '/images/about/favorites/music/graceland.jpg',
-    link: 'https://open.spotify.com/album/6WgGWYw6XXQyLTsWt7tXky',
-    songs: [],
-  },
-  {
-    type: 'music',
-    text: '君の名は',
-    date: '2025-12-27',
-    image: '/images/about/favorites/music/yn.jpg',
-    link: 'https://open.spotify.com/album/4qApTp9557qYZzRLEih4uP',
-    songs: [],
-  },
-]
-
-const VINYL_SLEEVE_PX = 100
-
-function getMusicShelfPositions(items, mobile, viewportW) {
-  const positions = []
-  const padding = mobile ? 8 : 16
-  const shelfSpacing = mobile ? 6 : 10
-
-  let vinylSize = VINYL_SLEEVE_PX
-  let shelfWidth = items.length * vinylSize + (items.length - 1) * shelfSpacing + padding * 2
-
-  if (mobile && items.length > 0) {
-    const gap = 6
-    const count = items.length
-    const containerWidth = Math.max(280, (viewportW || 360) - 32)
-    vinylSize = Math.floor((containerWidth - gap * (count - 1)) / count)
-    shelfWidth = containerWidth
-  }
-
-  const shelfHeight = vinylSize + 28
-  const shelfThickness = 12
-  const shelfLeft = 0
-
-  for (let i = 0; i < items.length; i++) {
-    const leftPosition = shelfLeft + padding + i * (vinylSize + shelfSpacing)
-    positions.push({
-      top: `${shelfHeight - vinylSize}px`,
-      left: `${leftPosition}px`,
-      leftPercent: (leftPosition / shelfWidth) * 100,
-      widthPercent: (vinylSize / shelfWidth) * 100,
-      rotation: 0,
-      height: vinylSize,
-      isMusic: true,
-    })
-  }
-
-  return { positions, shelfBottom: shelfHeight + shelfThickness, shelfWidth, shelfHeight, shelfLeft }
-}
-
 const imgTile =
   'block w-full cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200/80 bg-white p-0 shadow-sm transition hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400'
 
 export default function About() {
   const [modal, setModal] = useState(null)
-  const [artSlide, setArtSlide] = useState(0)
-  const [viewportW, setViewportW] = useState(
-    () => (typeof window !== 'undefined' ? window.innerWidth : 1200)
-  )
   const open = (src, caption) => setModal({ src, caption })
   const close = () => setModal(null)
-
-  useEffect(() => {
-    const onResize = () => setViewportW(window.innerWidth)
-    onResize()
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
-
-  const isMobile = viewportW < 1024
-
-  const musicShelf = useMemo(
-    () => getMusicShelfPositions(MUSIC_ITEMS, isMobile, viewportW),
-    [isMobile, viewportW]
-  )
 
   return (
     <div className="about-page min-h-screen overflow-x-hidden bg-white">
       <Navbar />
 
-      <main className="about-main-inner mx-auto w-full px-4 pb-24 pt-[calc(7rem+50px)] md:px-6 lg:px-8">
-        {/* —— SECTION 00 — Who Am I (Figma 156-545, 159-546, 159-547) —— */}
-        <section className="about-figma-section relative">
+      <main className="about-main-inner mx-auto w-full px-4 pb-24 pt-[calc(var(--site-nav-block-height,5.85rem)+50px)] md:px-6 lg:px-8">
+        <section className="about-figma-section relative about-section--00">
           <div className="about-grid-12 grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-0">
-            <div className="order-2 flex flex-col lg:order-1 lg:col-span-2">
-              <div className="about-section-num">00</div>
-              <p className="about-body-text mt-2 m-0">Who Am I</p>
+            <div className="order-1 flex w-full justify-center lg:col-span-6 lg:justify-start lg:pt-2">
+              <button
+                type="button"
+                className="about-hero-portrait-btn"
+                onClick={() => open('/images/home/portrait.png', 'LY')}
+                aria-label="Open portrait"
+              >
+                <Image
+                  src="/images/home/portrait.png"
+                  alt="Lauren Yip"
+                  className="about-hero-portrait-img"
+                  width={1200}
+                  height={900}
+                  priority={false}
+                />
+              </button>
             </div>
 
-            <div className="order-3 lg:order-2 lg:col-span-5">
-              <h2
-                className="font-normal italic leading-none tracking-tight text-gray-800"
-                style={{
-                  fontFamily: "'Melo', sans-serif",
-                  fontSize: 'clamp(2.25rem, 11vw, 96px)',
-                }}
-              >
-                I&apos;m Lauren!
-              </h2>
-              <div className="about-body-text mt-6 max-w-xl">
-                <p>
-                  I&apos;m optimizing for curiosity and happiness through sidequests and meaningful work. I want to know
-                  more about everything. I believe that with intention, knowledge and understanding compound and lead to
-                  fulfillment and fun.
-                </p>
+            <div className="order-2 flex flex-col lg:col-span-6">
+              <div className="about-whoami-intro">
+                <div className="about-whoami-rail">
+                  <div className="about-section-num">00</div>
+                  <p className="about-body-text about-whoami-label mt-2 m-0">Who Am I</p>
+                </div>
+                <h2
+                  className="about-whoami-title m-0 font-normal italic leading-none tracking-tight text-gray-800"
+                  style={{
+                    fontFamily: "'Melo', sans-serif",
+                    fontSize: 'clamp(2.25rem, 11vw, 96px)',
+                  }}
+                >
+                  I&apos;m Lauren!
+                </h2>
+                <div className="about-whoami-body about-body-text max-w-xl">
+                  <p>
+                    <a
+                      href="https://open.spotify.com/track/3qlnSUQ6AroH5DazK38ch4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="about-inline-link"
+                    >
+                      In my life
+                    </a>
+                    , I most value curiosity and happiness.
+                  </p>
+                  <p>
+                    Curiosity: I&apos;m fulfilling through the pursuit of new knowledge and experiences. [see{' '}
+                    <Link href="/reading-list" className="about-inline-link">
+                      reading list
+                    </Link>{' '}
+                    and{' '}
+                    <Link href="/playground#sidequests" className="about-inline-link">
+                      sidequests
+                    </Link>
+                    ]
+                  </p>
+
+                  <p>
+                    Happiness: Through meaningful work and the love of everything! [see{' '}
+                    <Link href="/playground#art" className="about-inline-link">
+                      art
+                    </Link>{' '}
+                    and{' '}
+                    <Link href="/playground#writing" className="about-inline-link">
+                      writing
+                    </Link>
+                    ]
+                  </p>
+                </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="order-1 flex w-full justify-center lg:order-3 lg:col-span-5 lg:justify-end lg:pt-2">
-              <div className="about-hero-collage w-full max-w-[min(100%,360px)] pl-2 lg:max-w-[340px] lg:pl-0">
+        <section className="about-figma-section about-section--01">
+          <div className="about-layout-12">
+            <div className="about-layout-rail-left max-w-xl">
+              <div className="about-section-num">01</div>
+              <p className="about-body-text mt-1 m-0">Objectives</p>
+
+              <p>(of my website)</p>
+              <p>1. to get me a job. (or money, in general)</p>
+              <p>2. to hold all my art and writing</p>
+              <p>3. to connect with new people and make some cool friends</p>
+              <p>4. to delight and surprise</p>
+            </div>
+            <div className="about-layout-media about-objectives-media flex w-full justify-center lg:justify-end lg:pt-2">
+              <div className="about-hero-collage about-objectives-collage w-full max-w-[min(100%,360px)] pl-2 lg:max-w-[340px] lg:pl-0">
                 <button
                   type="button"
                   className="about-hero-optimist-btn"
@@ -256,134 +178,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* —— SECTION 01 — Art (Figma 151-414, 153-541) —— */}
-        <section className="about-figma-section about-section--01">
-          <div className="about-layout-12">
-            <div className="about-layout-media w-full min-w-0">
-              <div className="about-art-carousel flex flex-col gap-3">
-                <div className="about-art-carousel-frame relative flex min-h-[200px] items-center justify-center sm:min-h-[280px]">
-                  <button
-                    type="button"
-                    className="flex w-full cursor-zoom-in items-center justify-start border-0 bg-transparent px-0 py-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 sm:py-3"
-                    onClick={() => {
-                      const slide = ART_CAROUSEL[artSlide]
-                      if (slide) open(slide.src, slide.caption)
-                    }}
-                    aria-label={`Open painting: ${ART_CAROUSEL[artSlide]?.caption || ''}`}
-                  >
-                    <Image
-                      src={ART_CAROUSEL[artSlide]?.src}
-                      alt={ART_CAROUSEL[artSlide]?.caption || ''}
-                      className="about-art-painting-img max-h-[min(70vh,620px)] w-full max-w-full object-contain"
-                      width={1200}
-                      height={900}
-                      priority={false}
-                    />
-                  </button>
-                </div>
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <button
-                    type="button"
-                    className="about-art-carousel-nav"
-                    aria-label="Previous painting"
-                    onClick={() =>
-                      setArtSlide((i) => (i - 1 + ART_CAROUSEL.length) % ART_CAROUSEL.length)
-                    }
-                  >
-                    ‹
-                  </button>
-                  <p className="about-body-text m-0 min-w-0 flex-1 text-center text-sm sm:text-base">
-                    {ART_CAROUSEL[artSlide]?.caption}
-                  </p>
-                  <button
-                    type="button"
-                    className="about-art-carousel-nav"
-                    aria-label="Next painting"
-                    onClick={() => setArtSlide((i) => (i + 1) % ART_CAROUSEL.length)}
-                  >
-                    ›
-                  </button>
-                </div>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {ART_CAROUSEL.map((slide, i) => (
-                    <button
-                      key={slide.src}
-                      type="button"
-                      className={`about-art-carousel-dot ${i === artSlide ? 'about-art-carousel-dot--active' : ''}`}
-                      aria-label={`Show painting ${i + 1}`}
-                      aria-current={i === artSlide ? 'true' : undefined}
-                      onClick={() => setArtSlide(i)}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="about-layout-rail flex flex-col items-start text-left">
-              <div className="about-section-num">01</div>
-              <p className="about-body-text mt-1 m-0">Art</p>
-              <div className="about-body-text mt-3 max-w-md text-left">
-                <p className="m-0">
-                  Painting to capture the big chapters of my life.
-                  <br />
-                  Use the arrows to browse, or click the image to view full screen.
-                </p>
-                <p className="mt-4 mb-0">
-                  <br />
-                  I&apos;m posting 100 times in 100 days. Follow along on my X or Instagram, linked in the footer!
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* —— SECTION 02 — Writing (Figma 151-415, 154-543) —— */}
         <section className="about-figma-section about-section--02">
-          <div className="about-layout-12">
-            <div className="about-layout-rail-left">
-              <div className="about-section-num">02</div>
-              <p className="about-body-text mt-1 m-0">Writing</p>
-              <div className="about-body-text mt-8 space-y-4">
-                <p>
-                  I want to write a book (or many) someday, but for now I write my life into personal essays that help
-                  me understand my experience of the world!
-                </p>
-                <p>
-                  My current journal has this message on the front cover: &quot;The book is an extension of memory and
-                  imagination&quot;
-                </p>
-                <p>I also want to write a fashion blog (please collab with me).</p>
-              </div>
-            </div>
-            <div className="about-layout-aside grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-3 sm:gap-y-3">
-              {WRITING_LINKS.map((item) =>
-                item.href ? (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="about-writing-link transition sm:inline-block"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <span key={item.label} className="about-body-text sm:inline-block">
-                    {item.label}
-                  </span>
-                )
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/*
-          SECTION 03 — Favorites (Figma dev nodes — layout reference):
-          162-708, 171-769, 167-736, 167-745, 167-739, 171-771, 167-742, 151-446, 152-530,
-          167-733, 152-534, 151-421, 152-525, 151-420
-          Left: koi, poster grid, favorite painting + copy. Right: 03 + subtitle (paired),
-          links, vinyl shelf aligned under that header group.
-        */}
-        <section className="about-figma-section about-section--03">
           <div className="about-layout-12">
             <div className="about-layout-media w-full min-w-0">
               <button
@@ -421,7 +216,46 @@ export default function About() {
                   </button>
                 ))}
               </div>
-              <div className="mt-[calc(2.5rem+50px)] flex max-w-xl flex-row flex-wrap items-center gap-4 sm:flex-nowrap">
+            </div>
+
+            <div className="about-layout-rail flex w-full min-w-0 flex-col items-start gap-8 text-left">
+              <div className="flex w-full flex-col items-start">
+                <div className="about-section-num">02</div>
+                <p className="about-body-text mt-1 m-0">Favorites</p>
+              </div>
+
+              <ul className="m-0 list-none space-y-3 p-0">
+                {FAVORITES_LINKS.map((item) => (
+                  <li key={item.href + item.label}>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="about-writing-link transition"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <VinylMusicShelf onImageOpen={open} />
+            </div>
+          </div>
+        </section>
+
+        <section className="about-figma-section about-section--03">
+          <div className="about-layout-12">
+            <div className="about-layout-rail-left max-w-xl">
+              <div className="about-section-num">03</div>
+              <p className="about-body-text mt-1 m-0">Wishes</p>
+              <p>1. for all my family and friends to be happy and healthy.</p>
+              <p>2. to have a bright future.</p>
+              <p>3. to find true love</p>
+            </div>
+
+            <div className="about-layout-media w-full min-w-0">
+              <div className="flex max-w-xl flex-row flex-wrap items-center gap-4 sm:flex-nowrap">
                 <button
                   type="button"
                   className="about-hightide-btn shrink-0 cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200/80 bg-white p-0 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
@@ -445,275 +279,10 @@ export default function About() {
                 </div>
               </div>
             </div>
-
-            <div className="about-layout-rail flex w-full min-w-0 flex-col items-start gap-8 text-left">
-              <div className="flex w-full flex-col items-start">
-                <div className="about-section-num">03</div>
-                <p className="about-body-text mt-1 m-0">Favorites</p>
-              </div>
-
-              <ul className="m-0 list-none space-y-3 p-0">
-                {FAVORITES_LINKS.map((item) => (
-                  <li key={item.href + item.label}>
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="about-writing-link transition"
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-          {MUSIC_ITEMS.length > 0 && (
-            <div className="about-vinyl-shelf flex w-full min-w-0 max-w-full justify-start">
-              <div
-                className="about-vinyl-shelf-inner relative w-full min-w-0 max-w-full"
-                style={{
-                  width: isMobile ? '100%' : `${Math.max(musicShelf.shelfWidth || 0, 1)}px`,
-                  maxWidth: '100%',
-                  height: isMobile ? 'auto' : `${(musicShelf.shelfBottom || 352) + 106}px`,
-                }}
-              >
-                <div className="about-vinyl-shelf-records">
-                {MUSIC_ITEMS.map((item, index) => {
-                  const pos = musicShelf.positions[index]
-                  if (!pos) return null
-                  const vinylSize = pos.height
-                  const centerHole = vinylSize * 0.15
-
-                  const colors = [
-                    { from: '#1a1a1a', via: '#0d0d0d', to: '#000000' },
-                    { from: '#2b2b2b', via: '#101010', to: '#000000' },
-                    { from: '#1f1f1f', via: '#0d0d0d', to: '#000000' },
-                    { from: '#222222', via: '#0f0f0f', to: '#000000' },
-                  ][index % 4]
-
-                  const textSize = isMobile ? 'text-[10px]' : 'text-xs'
-                  const dateSize = isMobile ? 'text-[9px]' : 'text-[10px]'
-
-                  return (
-                    <div
-                      key={`music-${index}`}
-                      className={`about-vinyl-record group z-20 cursor-pointer transition-transform ${isMobile ? 'relative' : 'absolute hover:scale-105'}`}
-                      style={
-                        isMobile
-                          ? undefined
-                          : {
-                              top: pos.top,
-                              left: pos.left,
-                              transform: `rotate(${pos.rotation}deg)`,
-                              width: `${vinylSize}px`,
-                              height: `${vinylSize}px`,
-                            }
-                      }
-                      onClick={() => {
-                        if (item.link) {
-                          window.open(item.link, '_blank', 'noopener,noreferrer')
-                          return
-                        }
-                        if (item.image) open(item.image, item.text)
-                      }}
-                    >
-                      <div
-                        className="absolute inset-0 bg-white transition-all duration-500 ease-out group-hover:-translate-x-[12%]"
-                        style={{
-                          transformOrigin: 'center center',
-                          zIndex: 2,
-                          boxShadow: isMobile
-                            ? '0 1px 3px rgba(0,0,0,0.2)'
-                            : '0 4px 8px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-                        }}
-                      >
-                        {item.image ? (
-                          <Image
-                            src={item.image}
-                            alt={item.text}
-                            className="h-full w-full"
-                            width={400}
-                            height={400}
-                            priority={false}
-                            style={{
-                              objectFit: 'cover',
-                              display: 'block',
-                            }}
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-gray-800 to-gray-600">
-                            <div className="px-2 py-4 text-center text-white">
-                              <p className={`${textSize} mb-1 font-medium`}>{item.text}</p>
-                              <p className={`${dateSize} opacity-80`}>{item.date}</p>
-                            </div>
-                          </div>
-                        )}
-                        <div className="absolute top-0 right-0 bottom-0 w-1 bg-black opacity-10" />
-                      </div>
-
-                      <div className="absolute inset-0 z-[1] origin-center opacity-0 transition-all duration-500 ease-out group-hover:translate-x-[18%] group-hover:opacity-100">
-                        <div
-                          className="about-vinyl-disc relative mx-auto h-full w-full rounded-full"
-                          style={{
-                            background: `linear-gradient(135deg, ${colors.from} 0%, ${colors.via} 50%, ${colors.to} 100%)`,
-                            boxShadow:
-                              'inset 0 0 20px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.3)',
-                          }}
-                        >
-                          {[0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9].map((radius, idx) => (
-                            <div
-                              key={idx}
-                              className="absolute rounded-full border opacity-20"
-                              style={{
-                                width: `${vinylSize * radius}px`,
-                                height: `${vinylSize * radius}px`,
-                                top: '50%',
-                                left: '50%',
-                                transform: 'translate(-50%, -50%)',
-                                borderColor: 'rgba(0,0,0,0.3)',
-                              }}
-                            />
-                          ))}
-
-                          <div
-                            className="absolute rounded-full bg-white shadow-inner"
-                            style={{
-                              width: `${centerHole * 2}px`,
-                              height: `${centerHole * 2}px`,
-                              top: '50%',
-                              left: '50%',
-                              transform: 'translate(-50%, -50%)',
-                              boxShadow: 'inset 0 0 10px rgba(0,0,0,0.2)',
-                            }}
-                          >
-                            <div
-                              className="absolute rounded-full bg-black"
-                              style={{
-                                width: `${centerHole * 0.4}px`,
-                                height: `${centerHole * 0.4}px`,
-                                top: '50%',
-                                left: '50%',
-                                transform: 'translate(-50%, -50%)',
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
-                </div>
-
-                <div
-                  className={`about-vinyl-shelf-board z-[15]${isMobile ? '' : ' absolute'}`}
-                  style={{
-                    top: isMobile ? undefined : `${(musicShelf.shelfBottom || 352) - 12}px`,
-                    bottom: undefined,
-                    left: isMobile ? undefined : `${musicShelf.shelfLeft || 0}px`,
-                    width: isMobile ? '100%' : `${musicShelf.shelfWidth || 400}px`,
-                    height: '12px',
-                  }}
-                >
-                  <div
-                    className="relative h-full w-full"
-                    style={{
-                      background:
-                        'linear-gradient(to bottom, #8B6914 0%, #A0822D 25%, #8B6914 50%, #6B4E0F 75%, #8B6914 100%)',
-                      boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2)',
-                      borderTop: '1px solid rgba(139, 105, 20, 0.5)',
-                      borderBottom: '1px solid rgba(107, 78, 15, 0.8)',
-                    }}
-                  >
-                    {[...Array(5)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute w-full opacity-20"
-                        style={{
-                          height: '1px',
-                          top: `${i * 2.4}px`,
-                          background:
-                            i % 2 === 0
-                              ? 'linear-gradient(to right, transparent, rgba(107, 78, 15, 0.5), transparent)'
-                              : 'linear-gradient(to left, transparent, rgba(139, 105, 20, 0.5), transparent)',
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                <div className="about-albums-charm-slot">
-                  <AboutAlbumsCharm />
-                </div>
-              </div>
-            </div>
-          )}
-            </div>
           </div>
         </section>
 
-        {/* —— SECTION 04 — Sidequests (Figma 167-717) —— */}
-        <section className="about-figma-section about-section--04">
-          <div className="about-layout-12">
-            <div className="about-layout-rail-left">
-              <div className="about-section-num">04</div>
-              <p className="about-body-text mt-1 m-0">Sidequests</p>
-              <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-5">
-                <div className="about-body-text space-y-2">
-                  <p className="m-0 text-[18px] font-medium text-gray-900">Exploring</p>
-                  <p className="m-0">
-                    Some of my favourite places I&apos;ve been to are: NYC, Dublin, the Residenzschloss Museum in
-                    Dresden, Fes, Montpellier, Mabul Island, Ipoh, Datong, and the top of Mt Brunswick.
-                  </p>
-                </div>
-                <div className="about-body-text space-y-2">
-                  <p className="m-0 text-[18px] font-medium text-gray-900">Sports</p>
-                  <p className="m-0">
-                    I love playing volleyball, snowboarding, dragonboating, swimming, and hiking. I want to play
-                    tennis.
-                  </p>
-                </div>
-                <div className="about-body-text space-y-2">
-                  <p className="m-0 text-[18px] font-medium text-gray-900">Languages</p>
-                  <p className="m-0">
-                    I spend a solid amount of time trying to learn to become literate in Chinese and proficient in
-                    spoken Mandarin. I always watch movies and shows with French or Spanish subtitles.
-                  </p>
-                </div>
-                <div className="about-body-text space-y-2">
-                  <p className="m-0 text-[18px] font-medium text-gray-900">Hobbies</p>
-                  <p className="m-0">
-                    I&apos;m always sunrise and sunset chasing, and I think that sunlight and shadows on stuff makes the
-                    best photos. I like baking, and I&apos;m often learning new songs on the guitar and piano.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="about-layout-media about-sidequest-grid grid w-full min-w-0 grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2 lg:grid-cols-4">
-              {SIDEQUEST_GRID_ITEMS.map(({ src, caption, objectPosition }) => (
-                <button
-                  key={src}
-                  type="button"
-                  className={`${imgTile} about-sidequest-tile`}
-                  onClick={() => open(src, caption)}
-                  aria-label="Open photo"
-                >
-                  <Image
-                    src={src}
-                    alt={caption}
-                    className="about-sidequest-img aspect-square w-full object-cover"
-                    style={objectPosition ? { objectPosition } : undefined}
-                    width={600}
-                    height={600}
-                    priority={false}
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* —— FOOTER — section end (painting lives in §03 Favorites; Figma 160-548) —— */}
-        <div className="about-figma-footer border-t border-gray-200" role="presentation" />
+        <div className="about-figma-footer" role="presentation" />
       </main>
 
       <ImageModal open={!!modal} src={modal?.src} caption={modal?.caption} onClose={close} />

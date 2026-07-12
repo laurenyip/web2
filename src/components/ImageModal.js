@@ -22,7 +22,7 @@ export default function ImageModal({ open, src, caption, onClose, useProtectedIm
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 px-4 py-10"
+      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/85 px-4 py-10"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -43,7 +43,7 @@ export default function ImageModal({ open, src, caption, onClose, useProtectedIm
         <Image
           src={src}
           alt={caption || 'Enlarged'}
-          className="max-h-[calc(92vh-88px)] w-auto max-w-full object-contain shadow-2xl"
+          className="max-h-[calc(92vh-88px)] w-auto max-w-full rounded-xl object-contain shadow-2xl"
           width={1200}
           height={900}
           priority={false}

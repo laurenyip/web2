@@ -16,7 +16,7 @@ import './App.css'
 import './Work.css'
 
 const RESUME_PDF_HREF = '/Resume___Lauren_Yip.pdf'
-const ROW3_TITLE_IDS = new Set(['jellyfish-umbrella', 'the-lyre', 'byline'])
+const ROW3_TITLE_IDS = new Set(['the-lyre', 'byline'])
 
 export default function Work() {
   const [openCaseStudy, setOpenCaseStudy] = useState(null)
@@ -67,7 +67,7 @@ export default function Work() {
           maxWidth: '1280px',
           margin: '0 auto',
           boxSizing: 'border-box',
-          paddingTop: 'calc(7rem + 50px)',
+          paddingTop: 'calc(var(--site-nav-block-height, 5.85rem) + 50px)',
           paddingBottom: '4rem',
           paddingLeft: '40px',
           paddingRight: '40px',
@@ -160,6 +160,13 @@ export default function Work() {
           </div>
 
           <div className="home-row3 work-row3">
+            <div className="home-thank-you-card">
+              <div className="home-f25-body">
+                Thanks for visiting my website!{' '}
+                <p>If anything on this website resonated, or you want to make something cool together,</p>{' '}
+                please reach out!
+              </div>
+            </div>
             {row3.map((project) => (
               <WorkProjectCard
                 key={project.id}

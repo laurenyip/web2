@@ -4,7 +4,7 @@ import Playground from '../../src/pages/Playground'
 import { buildPageMetadata } from '../metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  description: 'Experiments and side projects by Lauren Yip.',
+  description: 'Art, writing, photos, and sidequests — Lauren Yip’s playground.',
   path: '/playground',
 })
 
