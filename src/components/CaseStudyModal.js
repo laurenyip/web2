@@ -42,23 +42,27 @@ export default function CaseStudyModal({ projectTitle, onClose, project }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300"
+      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300"
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-8 py-4 flex justify-end items-center z-10">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center gap-4 z-10 shrink-0">
+          <h2 className="m-0 min-w-0 truncate text-2xl font-semibold text-gray-800">
+            {project?.title || projectTitle}
+          </h2>
           <button
             onClick={onClose}
-            className="text-gray-700 hover:text-gray-900 text-2xl font-light leading-none"
+            className="shrink-0 text-gray-700 hover:text-gray-900 text-2xl font-light leading-none"
             aria-label="Close"
           >
             ×
           </button>
         </div>
 
+        <div className="overflow-y-auto flex-1 min-h-0">
         <div className="px-8 py-8 space-y-8">
           <p className="about-body-text m-0 text-gray-600">
             {caseStudy.role} • {caseStudy.timeline}
@@ -190,11 +194,12 @@ export default function CaseStudyModal({ projectTitle, onClose, project }) {
             </section>
           )}
         </div>
+        </div>
       </div>
 
       {expandedShowcaseImage && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black bg-opacity-90 transition-opacity duration-300"
+          className="fixed inset-0 z-[1010] flex items-center justify-center bg-black bg-opacity-90 transition-opacity duration-300"
           onClick={closeExpandedImage}
         >
           <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
@@ -240,7 +245,7 @@ export default function CaseStudyModal({ projectTitle, onClose, project }) {
             <Image
               src={expandedShowcaseImage}
               alt="Expanded showcase"
-              className="max-w-full max-h-[90vh] object-contain"
+              className="max-w-full max-h-[90vh] object-contain rounded-xl"
               width={1600}
               height={1200}
               priority={false}

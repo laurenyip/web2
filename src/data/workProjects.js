@@ -3,7 +3,7 @@ export const WORK_ROW1_FEATURED = 'starmap'
 
 export const WORK_ROW2 = ['spruce', 'aurora', 'amazon-giftwrapping']
 
-export const WORK_ROW3 = ['csa', 'jellyfish-umbrella', 'the-lyre', 'byline']
+export const WORK_ROW3 = ['csa', 'the-lyre', 'byline']
 
 export const WORK_PROJECTS = {
   starmap: {

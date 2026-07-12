@@ -96,7 +96,7 @@ export default function Art() {
               aria-label="Previous painting"
               onClick={() => setArtSlide((i) => (i - 1 + ART_CAROUSEL.length) % ART_CAROUSEL.length)}
             >
-              ‹
+              ←
             </button>
             <p className="about-body-text m-0 min-w-0 flex-1 text-center text-sm sm:text-base">
               {ART_CAROUSEL[artSlide]?.caption}
@@ -107,7 +107,7 @@ export default function Art() {
               aria-label="Next painting"
               onClick={() => setArtSlide((i) => (i + 1) % ART_CAROUSEL.length)}
             >
-              ›
+              →
             </button>
           </div>
           <div className="flex flex-wrap justify-center gap-2">
