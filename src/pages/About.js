@@ -147,7 +147,7 @@ export default function About() {
               <p>4. to delight and surprise</p>
             </div>
             <div className="about-layout-media about-objectives-media flex w-full justify-center lg:justify-end lg:pt-2">
-              <div className="about-hero-collage about-objectives-collage w-full max-w-[min(100%,360px)] pl-2 lg:max-w-[340px] lg:pl-0">
+              <div className="about-hero-collage about-objectives-collage w-full max-w-[min(100%,450px)] pl-2 lg:max-w-[425px] lg:pl-0">
                 <button
                   type="button"
                   className="about-hero-optimist-btn"
@@ -196,7 +196,7 @@ export default function About() {
                   priority={false}
                 />
               </button>
-              <div className="about-favorites-posters-offset grid w-full grid-cols-2 gap-3 lg:max-w-[170px]">
+              <div className="about-favorites-posters-offset grid w-full grid-cols-2 gap-3 lg:max-w-[213px]">
                 {FAVORITES_POSTERS.map(({ src, caption }) => (
                   <button
                     key={src}

@@ -322,7 +322,8 @@
 @media (min-width: 1024px) {
   .about-page .about-favorites-posters-offset,
   .playground-page .about-favorites-posters-offset {
-    margin-left: min(320px, calc(100% - 170px));
+    margin-left: max(0px, min(320px, calc(100% - 213px)) - 150px);
+    margin-top: 100px;
   }
 }
 

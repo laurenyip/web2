@@ -29,20 +29,32 @@
 }
 
 .work-portfolio-card--featured .portfolio-card-media {
+  position: relative;
+  overflow: hidden;
   min-height: 0;
   height: 420px;
 }
 
 .work-row2 .work-portfolio-card .portfolio-card-media {
+  position: relative;
+  overflow: hidden;
   min-height: 0;
   height: 357px;
 }
 
+.work-portfolio-card--featured.work-portfolio-card--overlay,
+.work-row2 .work-portfolio-card--overlay {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+
 .work-row3-card.work-portfolio-card .portfolio-card-media {
+  position: relative;
+  overflow: hidden;
   min-height: 0;
   aspect-ratio: 1 / 1;
   height: auto;
-  position: relative;
 }
 
 .work-portfolio-card--overlay .portfolio-card-media {
@@ -111,24 +123,35 @@
 .work-card-static-dim {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.3s ease;
   pointer-events: none;
+  z-index: 1;
 }
 
 .work-card-static-hover {
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.7);
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  padding: 1.5rem 0.9rem 0.95rem;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.55) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
   z-index: 2;
-  text-align: center;
+  text-align: left;
 }
 
 .work-card-static-hover-title {
@@ -137,11 +160,58 @@
   letter-spacing: 1.3px;
 }
 
+.work-card-static-hover-nda {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: 0.35rem;
+}
+
+.work-card-static-hover-nda-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.work-card-static-hover-nda-note {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.work-card--static:hover .work-card-static-dim,
+.work-card--static:focus-visible .work-card-static-dim,
+.work-portfolio-card--overlay:hover .work-card-static-dim,
+.work-portfolio-card--overlay:focus-visible .work-card-static-dim,
 .work-card--static:hover .work-card-static-hover,
 .work-card--static:focus-visible .work-card-static-hover,
 .work-portfolio-card--overlay:hover .work-card-static-hover,
 .work-portfolio-card--overlay:focus-visible .work-card-static-hover {
   opacity: 1;
+}
+
+/* Keep overlays inside the thumbnail; CSA matches square row-3 height */
+.work-row3-card.work-portfolio-card,
+.work-row3-card.work-card--static {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.work-row3-card.work-portfolio-card .portfolio-card-media,
+.work-row3-card.work-card--static .work-card-media--static {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  min-height: 0;
+}
+
+.work-row3-card .csa-thumb {
+  min-height: 0;
+  height: 100%;
+}
+
+.work-portfolio-card--overlay .csa-nda-caption {
+  display: none;
 }
 
 .work-page .portfolio-card-blurb.about-body-text {

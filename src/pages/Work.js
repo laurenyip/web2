@@ -143,6 +143,7 @@ export default function Work() {
                 className="work-portfolio-card--featured"
                 onOpen={handleOpen}
                 showTitle={false}
+                overlayCaption
               />
             )}
           </div>
@@ -155,6 +156,7 @@ export default function Work() {
                 className={index === 1 ? 'home-row2-middle work-row2-middle' : 'home-row2-side work-row2-side'}
                 onOpen={handleOpen}
                 showTitle={false}
+                overlayCaption
               />
             ))}
           </div>
@@ -174,7 +176,7 @@ export default function Work() {
                 className="work-row3-card"
                 onOpen={handleOpen}
                 showTitle={project.id === 'csa' || ROW3_TITLE_IDS.has(project.id)}
-                overlayCaption={project.id !== 'csa'}
+                overlayCaption
               />
             ))}
           </div>
