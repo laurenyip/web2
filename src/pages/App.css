@@ -748,12 +748,12 @@ ul.navbar .nav-link:visited {
 .about-page .about-hero-collage {
   position: relative;
   isolation: isolate;
-  min-height: 220px;
+  min-height: 275px;
 }
 
 @media (min-width: 1024px) {
   .about-page .about-hero-collage {
-    min-height: 260px;
+    min-height: 325px;
   }
 }
 
@@ -797,7 +797,7 @@ ul.navbar .nav-link:visited {
   top: 50%;
   z-index: 10;
   transform: translateY(-50%);
-  width: 116px;
+  width: 145px;
   max-width: 32%;
   padding: 0;
   border: 0;
@@ -815,7 +815,7 @@ ul.navbar .nav-link:visited {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 321px;
+  max-height: 401px;
   object-fit: contain;
 }
 
@@ -851,8 +851,8 @@ ul.navbar .nav-link:visited {
     transform: translateY(-50%);
     z-index: 10;
     width: 32%;
-    min-width: 80px;
-    max-width: 116px;
+    min-width: 100px;
+    max-width: 145px;
   }
 
   .about-page .about-hero-optimist-img,

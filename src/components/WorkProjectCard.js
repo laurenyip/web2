@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import StarmapThumb from '../components/StarmapThumb'
 import AmazonGiftThumb from '../components/AmazonGiftThumb'
@@ -41,13 +41,8 @@ function WorkProjectCardMedia({ project, csaRevealed, portfolio }) {
 }
 
 function PortfolioStyleCard({ project, className, onOpen, showTitle = true, overlayCaption = false }) {
-  const [csaRevealed, setCsaRevealed] = useState(false)
-
   const handleClick = () => {
-    if (project.nda && !csaRevealed) {
-      setCsaRevealed(true)
-      return
-    }
+    if (project.nda) return
     onOpen(project)
   }
 
@@ -56,16 +51,26 @@ function PortfolioStyleCard({ project, className, onOpen, showTitle = true, over
       className={`portfolio-card-media portfolio-card-media--${project.id}`}
       style={{ backgroundColor: project.cardBg }}
     >
-      <WorkProjectCardMedia project={project} csaRevealed={csaRevealed} portfolio />
+      <WorkProjectCardMedia project={project} csaRevealed={false} portfolio />
       {overlayCaption ? <div className="work-card-static-dim" aria-hidden="true" /> : null}
       {overlayCaption ? (
         <div className="work-card-static-hover">
           {showTitle ? (
-            <p className="work-card-static-hover-title about-body-text about-body-text--on-dark m-0 mb-2">
+            <p className="work-card-static-hover-title about-body-text about-body-text--on-dark m-0">
               {project.title}
             </p>
           ) : null}
           <p className="about-body-text about-body-text--on-dark m-0">{project.description}</p>
+          {project.nda ? (
+            <div className="work-card-static-hover-nda">
+              <p className="work-card-static-hover-nda-title about-body-text about-body-text--on-dark m-0">
+                Under NDA
+              </p>
+              <p className="work-card-static-hover-nda-note about-body-text about-body-text--on-dark m-0">
+                Details available upon request
+              </p>
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>
@@ -74,9 +79,9 @@ function PortfolioStyleCard({ project, className, onOpen, showTitle = true, over
   return (
     <button
       type="button"
-      className={`portfolio-card work-portfolio-card ${className}${overlayCaption ? ' work-portfolio-card--overlay' : ''}${project.nda && !csaRevealed ? ' portfolio-card--nda' : ''}${csaRevealed ? ' portfolio-card--nda-open' : ''}`}
+      className={`portfolio-card work-portfolio-card ${className}${overlayCaption ? ' work-portfolio-card--overlay' : ''}${project.nda ? ' portfolio-card--nda' : ''}`}
       onClick={handleClick}
-      aria-label={`Open ${project.title}`}
+      aria-label={project.nda ? `${project.title} (under NDA)` : `Open ${project.title}`}
     >
       {media}
       {!overlayCaption ? (

@@ -50,7 +50,6 @@
 
 .site-nav-band {
   width: 100%;
-  max-width: 1280px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -68,12 +67,14 @@
 }
 
 .site-nav-links-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin: 0;
-  padding: 0.42rem clamp(1rem, 4vw, 2.5rem);
+  max-width: 1230px;
+  margin: 0 auto;
+  padding: 0.42rem clamp(1rem, 3vw, 1.5rem);
   box-sizing: border-box;
 }
 
@@ -89,16 +90,10 @@
   transition: color 0.2s ease;
 }
 
-.site-nav-link--start {
-  justify-self: start;
-}
-
 .site-nav-link--center {
-  justify-self: center;
-}
-
-.site-nav-link--end {
-  justify-self: end;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .site-nav-link:hover,
@@ -121,14 +116,25 @@
 
   .site-nav-logo {
     height: 2.625rem;
+    width: 2.625rem;
   }
 
   .site-nav-links-row {
-    padding: 0.38rem 0.85rem;
+    max-width: 100%;
+    justify-content: space-evenly;
+    gap: 1.25rem;
+    padding: 0.38rem 1rem;
+  }
+
+  .site-nav-link--center {
+    position: static;
+    transform: none;
   }
 
   .site-nav-link {
+    flex: 0 0 auto;
     font-size: 0.66rem;
     letter-spacing: 0.08em;
+    white-space: nowrap;
   }
 }
