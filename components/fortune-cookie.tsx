@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState, type AnimationEvent } from 'react'
+import posthog from 'posthog-js'
 import './fortune-cookie.css'
 
 const COOKIE_SRC = '/images/fortune-cookie.png'
@@ -132,6 +133,7 @@ export default function FortuneCookie() {
 
   const handleCookieClick = useCallback(() => {
     if (phase !== 'idle') return
+    posthog.capture('fortune_cookie_opened')
     setShowHint(false)
     setFortune(pickFortune())
     setPhase('breaking')
