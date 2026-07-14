@@ -252,6 +252,7 @@ export default function About() {
               <p>1. for all my family and friends to be happy and healthy.</p>
               <p>2. to have a bright future.</p>
               <p>3. to find true love</p>
+            
             </div>
 
             <div className="about-layout-media w-full min-w-0">

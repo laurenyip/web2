@@ -41,7 +41,7 @@ const SOCIAL_LINKS = [
 export default function SiteFooter() {
   const pathname = usePathname()
   const year = new Date().getFullYear()
-  const showWebring = pathname === '/' || pathname === '/about'
+  const showWebring = pathname === '/' || pathname === '/about' || pathname === '/playground'
   const isProjects = pathname === '/projects'
 
   return (

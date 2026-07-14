@@ -228,6 +228,7 @@ export default function Playground() {
                 <p className="m-0">
                   Currently posting 100 times in 100 days because it is probably the best option for my future. + building some cool stuff (like my jellyfish umbrella!)
                 </p>
+                <p>Trying to do all the things I say I'll do but never do, like tennis, dancing, and Chinese.</p>
               </div>
             </div>
             <div className="about-layout-media w-full min-w-0">
