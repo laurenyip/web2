@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import posthog from 'posthog-js'
 import Image from 'next/image'
 import { caseStudies } from '../data/caseStudies'
 
@@ -9,6 +10,9 @@ export default function CaseStudyModal({ projectTitle, onClose, project }) {
   const [expandedShowcaseGallery, setExpandedShowcaseGallery] = useState(null)
 
   const openExpandedImage = (img, gallery) => {
+    posthog.capture('showcase_image_expanded', {
+      project_title: project?.title || projectTitle,
+    })
     setExpandedShowcaseImage(img)
     setExpandedShowcaseGallery(gallery?.length ? gallery : [img])
   }
@@ -176,6 +180,12 @@ export default function CaseStudyModal({ projectTitle, onClose, project }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block px-6 py-3 bg-gray-700 text-white rounded-md hover:bg-gray-800 transition-colors text-sm font-medium"
+                    onClick={() =>
+                      posthog.capture('case_study_project_link_clicked', {
+                        project_title: project?.title || projectTitle,
+                        link_type: 'project',
+                      })
+                    }
                   >
                     View Project →
                   </a>
@@ -186,6 +196,12 @@ export default function CaseStudyModal({ projectTitle, onClose, project }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block px-6 py-3 bg-white border-2 border-gray-700 text-gray-700 rounded-md hover:bg-gray-50 transition-colors text-sm font-medium"
+                    onClick={() =>
+                      posthog.capture('case_study_project_link_clicked', {
+                        project_title: project?.title || projectTitle,
+                        link_type: 'design',
+                      })
+                    }
                   >
                     View Design →
                   </a>

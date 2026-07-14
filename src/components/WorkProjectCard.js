@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import posthog from 'posthog-js'
 import Image from 'next/image'
 import StarmapThumb from '../components/StarmapThumb'
 import AmazonGiftThumb from '../components/AmazonGiftThumb'
@@ -45,6 +46,7 @@ function PortfolioStyleCard({ project, className, onOpen, showTitle = true, over
 
   const handleClick = () => {
     if (project.nda && !csaRevealed) {
+      posthog.capture('nda_project_revealed', { project_id: project.id, project_title: project.title })
       setCsaRevealed(true)
       return
     }
