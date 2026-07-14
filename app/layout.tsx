@@ -3,6 +3,7 @@ import Script from 'next/script'
 import ImageProtection from '../src/components/ImageProtection'
 import SiteFooter from '../src/components/SiteFooter'
 import SiteCursor from '../components/site-cursor'
+import { PostHogProvider } from './providers'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <PostHogProvider>
         <ImageProtection />
         <SiteCursor />
         {children}
@@ -43,6 +45,7 @@ export default function RootLayout({
           data-cf-beacon='{"token": "1c506b985d154649921fb0fb18d0cc34"}'
           strategy="afterInteractive"
         />
+        </PostHogProvider>
       </body>
     </html>
   )

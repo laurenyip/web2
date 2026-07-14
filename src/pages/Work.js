@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import posthog from 'posthog-js'
 import Navbar from '../components/Navbar'
 import CaseStudyModal from '../components/CaseStudyModal'
 import FramerCaseStudyModal from '../components/FramerCaseStudyModal'
@@ -28,6 +29,11 @@ export default function Work() {
   const row3 = WORK_ROW3.map((id) => WORK_PROJECTS[id])
 
   const handleOpen = (project) => {
+    posthog.capture('project_opened', {
+      project_id: project.id,
+      project_title: project.title,
+      modal_type: project.framerPath ? 'framer' : 'case_study',
+    })
     if (project.framerPath) {
       setOpenFramer({ path: project.framerPath })
       return
@@ -119,7 +125,12 @@ export default function Work() {
                   <br />
                   <p3>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href={RESUME_PDF_HREF} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={RESUME_PDF_HREF}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => posthog.capture('resume_clicked')}
+                    >
                       RESUME
                     </a>
                   </p3>
