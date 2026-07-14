@@ -5,7 +5,7 @@ import { buildPageMetadata } from './metadata'
 
 export const metadata: Metadata = buildPageMetadata({
   description:
-    'Selected product design work by Lauren Yip — case studies, experiments, and creative projects.',
+    'how did you get here? let me show you my website!',
   path: '/',
   image: '/images/home/og-preview.png',
 })
