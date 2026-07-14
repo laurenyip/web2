@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import posthog from 'posthog-js'
 import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '../components/Navbar'
@@ -155,7 +156,16 @@ function PortfolioCardItem({ project }) {
           role="button"
           tabIndex={0}
           className={`portfolio-card portfolio-card--nda group${project.darkCard ? ' portfolio-card--dark' : ''}${ndaRevealed ? ' portfolio-card--nda-open' : ''}`}
-          onClick={() => setNdaRevealed((open) => !open)}
+          onClick={() => {
+            if (!ndaRevealed) {
+              posthog.capture('portfolio_case_study_clicked', {
+                project_slug: routeSlug,
+                project_title: project.title,
+                type: 'nda_reveal',
+              })
+            }
+            setNdaRevealed((open) => !open)
+          }}
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === ' ') {
               event.preventDefault()
@@ -179,6 +189,13 @@ function PortfolioCardItem({ project }) {
       <Link
         href={project.to}
         className={`portfolio-card group ${project.darkCard ? 'portfolio-card--dark' : ''}`}
+        onClick={() =>
+          posthog.capture('portfolio_case_study_clicked', {
+            project_slug: routeSlug,
+            project_title: project.title,
+            type: 'link',
+          })
+        }
       >
         {media}
         <div className="portfolio-card-body">
