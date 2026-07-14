@@ -30,3 +30,4 @@ Thumbs.db
 # IDE / local tooling
 .cursor/mcp.json
 *.tsbuildinfo
+.env.local

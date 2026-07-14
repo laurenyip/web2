@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import posthog from 'posthog-js'
 import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import ImageModal from '../components/ImageModal'
@@ -74,7 +75,10 @@ export default function Playground() {
                     className="flex w-full cursor-zoom-in items-center justify-start border-0 bg-transparent px-0 py-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 sm:py-3"
                     onClick={() => {
                       const slide = ART_CAROUSEL[artSlide]
-                      if (slide) open(slide.src, slide.caption)
+                      if (slide) {
+                        posthog.capture('art_painting_expanded', { caption: slide.caption })
+                        open(slide.src, slide.caption)
+                      }
                     }}
                     aria-label={`Open painting: ${ART_CAROUSEL[artSlide]?.caption || ''}`}
                   >
@@ -93,9 +97,10 @@ export default function Playground() {
                     type="button"
                     className="about-art-carousel-nav"
                     aria-label="Previous painting"
-                    onClick={() =>
+                    onClick={() => {
+                      posthog.capture('art_carousel_navigated', { direction: 'prev' })
                       setArtSlide((i) => (i - 1 + ART_CAROUSEL.length) % ART_CAROUSEL.length)
-                    }
+                    }}
                   >
                     ←
                   </button>
@@ -106,7 +111,10 @@ export default function Playground() {
                     type="button"
                     className="about-art-carousel-nav"
                     aria-label="Next painting"
-                    onClick={() => setArtSlide((i) => (i + 1) % ART_CAROUSEL.length)}
+                    onClick={() => {
+                      posthog.capture('art_carousel_navigated', { direction: 'next' })
+                      setArtSlide((i) => (i + 1) % ART_CAROUSEL.length)
+                    }}
                   >
                     →
                   </button>
@@ -169,6 +177,7 @@ export default function Playground() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="about-writing-link transition sm:inline-block"
+                    onClick={() => posthog.capture('writing_link_clicked', { label: item.label })}
                   >
                     {item.label}
                   </a>
@@ -202,6 +211,7 @@ export default function Playground() {
                 rel="noopener noreferrer"
                 className="playground-guitar-link"
                 aria-label="Open guitar + piano practice playlist on Spotify"
+                onClick={() => posthog.capture('guitar_playlist_clicked')}
               >
                 <Image
                   src={GUITAR_IMAGE}
