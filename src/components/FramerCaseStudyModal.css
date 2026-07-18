@@ -64,6 +64,29 @@
   border: none;
 }
 
+.framer-modal-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #6b7280;
+  font-family: Arial, sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.framer-modal-frame-wrap:not(.framer-modal-frame-wrap--ready) {
+  opacity: 0;
+}
+
+.framer-modal-frame-wrap--ready {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
 /* Hide Framer title bars — only where needed */
 .framer-modal-frame-wrap--starmap .framer-modal-frame,
 .framer-modal-frame-wrap--amazon-giftwrapping .framer-modal-frame {

@@ -40,7 +40,14 @@ function WorkProjectCardMedia({ project, csaRevealed, portfolio }) {
   )
 }
 
-function PortfolioStyleCard({ project, className, onOpen, showTitle = true, overlayCaption = false }) {
+function PortfolioStyleCard({
+  project,
+  className,
+  onOpen,
+  onPrefetch,
+  showTitle = true,
+  overlayCaption = false,
+}) {
   const handleClick = () => {
     if (project.nda) return
     onOpen(project)
@@ -81,6 +88,8 @@ function PortfolioStyleCard({ project, className, onOpen, showTitle = true, over
       type="button"
       className={`portfolio-card work-portfolio-card ${className}${overlayCaption ? ' work-portfolio-card--overlay' : ''}${project.nda ? ' portfolio-card--nda' : ''}`}
       onClick={handleClick}
+      onPointerEnter={onPrefetch}
+      onFocus={onPrefetch}
       aria-label={project.nda ? `${project.title} (under NDA)` : `Open ${project.title}`}
     >
       {media}
@@ -123,6 +132,7 @@ export default function WorkProjectCard({
   project,
   className = '',
   onOpen,
+  onPrefetch,
   showTitle = true,
   overlayCaption = false,
 }) {
@@ -132,6 +142,7 @@ export default function WorkProjectCard({
         project={project}
         className={className}
         onOpen={onOpen}
+        onPrefetch={onPrefetch}
         showTitle={showTitle}
         overlayCaption={overlayCaption}
       />
