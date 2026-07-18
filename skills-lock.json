@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "vocabulary": {
+      "source": "index-how/vocabulary",
+      "sourceType": "github",
+      "skillPath": "skills/vocabulary/SKILL.md",
+      "computedHash": "4970d250a053d6c2a9c14122f101f47f89178ad4c1599864c147fc4e660cb8b2"
+    }
+  }
+}

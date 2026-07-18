@@ -4,7 +4,10 @@ import React, { useEffect, useState } from 'react'
 import posthog from 'posthog-js'
 import Navbar from '../components/Navbar'
 import CaseStudyModal from '../components/CaseStudyModal'
-import FramerCaseStudyModal from '../components/FramerCaseStudyModal'
+import FramerCaseStudyModal, {
+  FRAMER_ORIGIN,
+  prefetchFramerPath,
+} from '../components/FramerCaseStudyModal'
 import WorkProjectCard from '../components/WorkProjectCard'
 import {
   CASE_STUDY_KEYS,
@@ -27,6 +30,10 @@ export default function Work() {
   const featured = WORK_PROJECTS[WORK_ROW1_FEATURED]
   const row2 = WORK_ROW2.map((id) => WORK_PROJECTS[id])
   const row3 = WORK_ROW3.map((id) => WORK_PROJECTS[id])
+  const framerPathsKey = [featured, ...row2, ...row3]
+    .filter((project) => project?.framerPath)
+    .map((project) => project.framerPath)
+    .join('|')
 
   const handleOpen = (project) => {
     posthog.capture('project_opened', {
@@ -42,6 +49,38 @@ export default function Work() {
     setActiveProject(project)
     setOpenCaseStudy(CASE_STUDY_KEYS[project.id])
   }
+
+  useEffect(() => {
+    const framerPaths = framerPathsKey ? framerPathsKey.split('|') : []
+    const preconnect = document.createElement('link')
+    preconnect.rel = 'preconnect'
+    preconnect.href = FRAMER_ORIGIN
+    preconnect.crossOrigin = 'anonymous'
+    document.head.appendChild(preconnect)
+
+    const dnsPrefetch = document.createElement('link')
+    dnsPrefetch.rel = 'dns-prefetch'
+    dnsPrefetch.href = FRAMER_ORIGIN
+    document.head.appendChild(dnsPrefetch)
+
+    const warm = () => {
+      framerPaths.forEach((path) => prefetchFramerPath(path))
+    }
+    const idleId =
+      typeof window.requestIdleCallback === 'function'
+        ? window.requestIdleCallback(warm, { timeout: 2500 })
+        : window.setTimeout(warm, 900)
+
+    return () => {
+      preconnect.remove()
+      dnsPrefetch.remove()
+      if (typeof window.cancelIdleCallback === 'function' && typeof idleId === 'number') {
+        window.cancelIdleCallback(idleId)
+      } else {
+        window.clearTimeout(idleId)
+      }
+    }
+  }, [framerPathsKey])
 
   useEffect(() => {
     const handleEscape = (event) => {
@@ -100,7 +139,7 @@ export default function Work() {
 
         <div className="home-page-rows work-page-rows" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <div className="home-row1 work-row1">
-            <div className="charm-swing" style={{ width: '100%', maxWidth: '456px', flexShrink: 0, alignSelf: 'flex-start' }}>
+            <div style={{ width: '100%', maxWidth: '456px', flexShrink: 0, alignSelf: 'flex-start' }}>
               <div className="containermain home-charm-box" style={{ padding: '5%', width: '100%', boxSizing: 'border-box' }}>
                 <div className="home-charm-content">
                   <p3>YIP/LAUREN宝怡</p3>
@@ -153,6 +192,7 @@ export default function Work() {
                 project={featured}
                 className="work-portfolio-card--featured"
                 onOpen={handleOpen}
+                onPrefetch={() => prefetchFramerPath(featured.framerPath)}
                 showTitle={false}
                 overlayCaption
               />
@@ -166,6 +206,9 @@ export default function Work() {
                 project={project}
                 className={index === 1 ? 'home-row2-middle work-row2-middle' : 'home-row2-side work-row2-side'}
                 onOpen={handleOpen}
+                onPrefetch={
+                  project.framerPath ? () => prefetchFramerPath(project.framerPath) : undefined
+                }
                 showTitle={false}
                 overlayCaption
               />
