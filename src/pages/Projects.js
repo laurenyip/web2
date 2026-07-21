@@ -38,7 +38,7 @@ function Projects() {
     },
     {
       title: 'The Lyre',
-      link: 'https://www.sfu.ca/world-languages.html',
+      link: 'https://journals.lib.sfu.ca/index.php/lyre/index',
       description: 'SFU literary magazine — editorial design, Vol. 16 & 17',
       image: '/images/projects/lyre-poster-flux.png',
       hasCaseStudy: true,

@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
-/** Spinning circle + 4-point star — links to /albums from About vinyl shelf */
+/** White Lotus mark — links to /albums from About vinyl shelf */
 export default function AboutAlbumsCharm() {
   return (
     <Link
@@ -9,17 +10,14 @@ export default function AboutAlbumsCharm() {
       aria-label="Open record shelf — full album gallery"
     >
       <span className="about-albums-charm-orbit" aria-hidden="true">
-        <svg className="about-albums-charm-circle" viewBox="0 0 56 56" fill="none">
-          <circle cx="28" cy="28" r="24" stroke="currentColor" strokeWidth="1.25" />
-        </svg>
-        <svg className="about-albums-charm-star" viewBox="0 0 56 56" fill="none">
-          <path
-            d="M28 14 L29.6 24.4 L40 26 L29.6 27.6 L28 38 L26.4 27.6 L16 26 L26.4 24.4 Z"
-            stroke="currentColor"
-            strokeWidth="1.25"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <Image
+          src="/images/about/favorites/music/white-lotus.png"
+          alt=""
+          className="about-albums-charm-icon"
+          width={120}
+          height={120}
+          priority={false}
+        />
       </span>
       <span className="about-albums-charm-label about-body-text">record shelf</span>
     </Link>

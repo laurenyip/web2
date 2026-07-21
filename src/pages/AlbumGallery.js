@@ -85,6 +85,13 @@ const ALBUMS = [
     tracks: ['no skips'],
   },
   {
+    id: 'encore',
+    artist: 'Joe Hisaishi',
+    image: '/images/albums/encore.jpg',
+    link: 'https://open.spotify.com/album/1xcyRQYdFJ3zHOdCiucghn',
+    tracks: ["One Summer's Day", 'Ashitaka and San', 'Summer'],
+  },
+  {
     id: 'the-bends',
     artist: 'Radiohead',
     image: '/images/albums/the-bends.jpg',
@@ -417,7 +424,7 @@ export default function AlbumGallery() {
         </ul>
 
         <p className="album-gallery-footer">
-          hover for tracks · tap twice on mobile to open Spotify
+          hover for tracks · tap twice on mobile to open Spotify - yeah i have a record player
         </p>
       </main>
     </div>

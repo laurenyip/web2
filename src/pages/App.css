@@ -542,7 +542,8 @@ ul.navbar .nav-link:visited {
 }
 
 .projects-page .about-body-text--on-dark,
-.work-page .about-body-text--on-dark {
+.work-page .about-body-text--on-dark,
+.playground-page .about-body-text--on-dark {
   color: #ffffff;
 }
 
