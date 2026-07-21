@@ -369,20 +369,16 @@
   height: 3.75rem;
 }
 
-.about-page .about-albums-charm-circle,
-.about-page .about-albums-charm-star {
-  position: absolute;
-  inset: 0;
+.about-page .about-albums-charm-icon {
+  display: block;
   width: 100%;
   height: 100%;
-}
-
-.about-page .about-albums-charm-circle {
+  object-fit: contain;
   animation: about-albums-spin-cw 10s linear infinite;
 }
 
-.about-page .about-albums-charm-star {
-  animation: about-albums-spin-ccw 6.5s linear infinite;
+.about-page .about-albums-charm:hover .about-albums-charm-icon {
+  animation-duration: 4s;
 }
 
 .about-page .about-albums-charm-label {
@@ -407,15 +403,6 @@
   }
 }
 
-@keyframes about-albums-spin-ccw {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-}
-
 @media (max-width: 1023px) {
   .about-page .about-albums-charm-slot {
     right: auto;
@@ -424,8 +411,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .about-page .about-albums-charm-circle,
-  .about-page .about-albums-charm-star {
+  .about-page .about-albums-charm-icon {
     animation: none;
   }
 }

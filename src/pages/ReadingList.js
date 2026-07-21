@@ -46,7 +46,10 @@ export default function ReadingList() {
   const currentlyReading = useMemo(
     () => [
       { title: 'How Music Works', author: 'David Byrne' },
-      { title: 'The Poison Eaters', author: 'Holly Black' },
+      {
+        title: 'You Can Just Do Things: How High-Agency People Get What They Want Out of Life',
+        author: 'Cate Hall and Sasha Chapin',
+      },
     ],
     []
   )
@@ -58,13 +61,14 @@ export default function ReadingList() {
       { title: 'Middlemarch', author: 'George Eliot' },
       { title: 'Chez toi en France', author: 'G. Brame and B. Tollu' },
       { title: 'To the Lighthouse', author: 'Virginia Woolf' },
-      { title: 'The Sun Also Rises', author: 'Ernest Hemingway' },
     ],
     []
   )
 
   const booksFinishedThisYear = useMemo(
     () => [
+      { title: 'The Sun Also Rises', author: 'Ernest Hemingway' },
+      { title: 'The Poison Eaters', author: 'Holly Black' },
       { title: 'The Queen of Nothing', author: 'Holly Black' },
       { title: 'From Third World to First', author: 'Lee Kuan Yew' },
       { title: 'Wuthering Heights', author: 'Emily Brontë' },
@@ -166,9 +170,6 @@ export default function ReadingList() {
       <main className="reading-list-main">
         <header className="reading-list-header">
           <h1 className="reading-list-title">reading list</h1>
-          <p className="reading-list-lede">
-            A small collection of essays and books on my mind lately.
-          </p>
         </header>
 
         <div className="reading-list-card">
