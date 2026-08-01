@@ -45,11 +45,7 @@ function ReadingSection({ label, children }) {
 export default function ReadingList() {
   const currentlyReading = useMemo(
     () => [
-      { title: 'How Music Works', author: 'David Byrne' },
-      {
-        title: 'You Can Just Do Things: How High-Agency People Get What They Want Out of Life',
-        author: 'Cate Hall and Sasha Chapin',
-      },
+      { title: 'One Hundred Years of Solitude', author: 'Gabriel García Márquez' },
     ],
     []
   )
@@ -67,6 +63,11 @@ export default function ReadingList() {
 
   const booksFinishedThisYear = useMemo(
     () => [
+      {
+        title: 'You Can Just Do Things: How High-Agency People Get What They Want Out of Life',
+        author: 'Cate Hall and Sasha Chapin',
+      },
+      { title: 'How Music Works', author: 'David Byrne' },
       { title: 'The Sun Also Rises', author: 'Ernest Hemingway' },
       { title: 'The Poison Eaters', author: 'Holly Black' },
       { title: 'The Queen of Nothing', author: 'Holly Black' },
