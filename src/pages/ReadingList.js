@@ -46,6 +46,7 @@ export default function ReadingList() {
   const currentlyReading = useMemo(
     () => [
       { title: 'One Hundred Years of Solitude', author: 'Gabriel García Márquez' },
+      { title: 'Love in the Time of Cholera', author: 'Gabriel García Márquez' },
     ],
     []
   )
@@ -63,6 +64,7 @@ export default function ReadingList() {
 
   const booksFinishedThisYear = useMemo(
     () => [
+      { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
       {
         title: 'You Can Just Do Things: How High-Agency People Get What They Want Out of Life',
         author: 'Cate Hall and Sasha Chapin',
