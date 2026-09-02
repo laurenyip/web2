@@ -80,6 +80,8 @@ async function main() {
     { timeout: 15000 }
   )
 
+  await page.evaluate(() => document.fonts?.ready)
+
   const frameCount = Math.ceil(DURATION_MS / FRAME_DELAY)
   const gif = GIFEncoder()
   let sharedPalette = null

@@ -56,7 +56,7 @@ const CASE_STUDIES = [
     blurb: 'Vet-backed subscription pet pharmacy focused on chronic conditions and affordability across Canada.',
     thumb: '/images/projects/aurora/aurora_hero.gif',
     alt: 'Aurora Pet Co. home screen',
-    cardBg: '#FCBAFF',
+    cardBg: '#1a1a1a',
     animatedThumb: true,
   },
   {
