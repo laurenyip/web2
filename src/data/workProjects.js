@@ -34,7 +34,7 @@ export const WORK_PROJECTS = {
     image: '/images/projects/aurora/aurora_hero.gif',
     hasCaseStudy: true,
     portfolioThumb: true,
-    cardBg: '#FCBAFF',
+    cardBg: '#1a1a1a',
     framerPath: '/aurora',
   },
   'amazon-giftwrapping': {
