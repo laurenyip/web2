@@ -46,14 +46,12 @@ export default function ReadingList() {
   const currentlyReading = useMemo(
     () => [
       { title: 'One Hundred Years of Solitude', author: 'Gabriel García Márquez' },
-      { title: 'Love in the Time of Cholera', author: 'Gabriel García Márquez' },
     ],
     []
   )
 
   const booksOpenInRoom = useMemo(
     () => [
-      { title: 'Henry and June', author: 'Anaïs Nin' },
       { title: 'Pictures from Brueghel', author: 'William Carlos Williams' },
       { title: 'Middlemarch', author: 'George Eliot' },
       { title: 'Chez toi en France', author: 'G. Brame and B. Tollu' },
@@ -64,6 +62,8 @@ export default function ReadingList() {
 
   const booksFinishedThisYear = useMemo(
     () => [
+      { title: 'Love in the Time of Cholera', author: 'Gabriel García Márquez' },
+      { title: 'Henry and June', author: 'Anaïs Nin' },
       { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
       {
         title: 'You Can Just Do Things: How High-Agency People Get What They Want Out of Life',
