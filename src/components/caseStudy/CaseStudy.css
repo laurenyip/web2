@@ -92,6 +92,16 @@
   margin-top: 24px;
 }
 
+.cs-body a {
+  color: #166d75;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cs-body a:hover {
+  color: #0f5258;
+}
+
 /* —— Layout only (no extra type styles) —— */
 
 .cs-hero {
