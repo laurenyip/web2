@@ -1,0 +1,83 @@
+/* Layout only — type classes come from CaseStudy.css (header / subheader / body) */
+
+.cs-cover-demo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 20px;
+  margin: 48px auto 0;
+  max-width: 720px;
+}
+
+.cs-cover-demo-card {
+  display: block;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.cs-cover-demo-card:focus-visible .cs-cover-demo-frame {
+  outline: 2px solid #166d75;
+  outline-offset: 4px;
+}
+
+.cs-cover-demo-frame {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #0a0a0a;
+  border-radius: 10px;
+}
+
+.cs-cover-demo-img,
+.cs-cover-demo-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cs-cover-demo-video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+
+.cs-cover-demo-video.is-playing {
+  opacity: 1;
+}
+
+.cs-cover-demo-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: 0.15em;
+}
+
+.cs-cover-demo-title {
+  margin: 14px 0 6px;
+  color: #000000;
+}
+
+.cs-cover-demo-card .cs-body {
+  margin: 0;
+}
+
+@media (max-width: 800px) {
+  .cs-cover-demo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 100%;
+    gap: 12px;
+  }
+}
+
+@media (hover: none) {
+  .cs-cover-demo-card .cs-body::after {
+    content: none;
+  }
+}

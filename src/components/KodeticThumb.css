@@ -1,0 +1,249 @@
+.kodetic-thumb {
+  --kodetic-cycle: 7s;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  container-type: inline-size;
+  border-radius: 10px;
+  background: #020202;
+}
+
+.kodetic-thumb-bg-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.kodetic-thumb-bg {
+  position: absolute;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
+  object-fit: cover;
+  object-position: center 38%;
+  display: block;
+  filter: contrast(1.05) saturate(0.92);
+  animation: kodetic-ken-burns 12s ease-in-out infinite alternate;
+}
+
+.kodetic-thumb-canvas {
+  position: absolute;
+  inset: -20%;
+  background-size: 160px 160px;
+  background-repeat: repeat;
+  opacity: 0.34;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  animation: kodetic-canvas-drift 22s linear infinite;
+}
+
+.kodetic-thumb-haze {
+  position: absolute;
+  inset: -30% -20%;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(201, 154, 45, 0.08) 48%,
+    rgba(107, 63, 160, 0.16) 52%,
+    transparent 65%
+  );
+  pointer-events: none;
+  animation: kodetic-haze-sweep 5.5s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+.kodetic-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(2, 2, 2, 0.05) 0%, rgba(2, 2, 2, 0.62) 78%),
+    linear-gradient(180deg, rgba(2, 2, 2, 0.15) 0%, transparent 30%, rgba(2, 2, 2, 0.55) 100%);
+  pointer-events: none;
+}
+
+.kodetic-thumb-dust {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.kodetic-dust {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(247, 246, 243, 0.55);
+  opacity: 0;
+  animation-name: kodetic-dust-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.kodetic-thumb-labels {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 14%;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.kodetic-thumb-label {
+  font-family: 'Red Hat Display', Arial, sans-serif;
+  font-size: calc(7 / 360 * 100cqi);
+  letter-spacing: 0.16em;
+  color: rgba(247, 246, 243, 0.38);
+  opacity: 0;
+  animation: kodetic-label-pulse var(--kodetic-cycle) ease-in-out infinite;
+}
+
+.kodetic-thumb-label:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.kodetic-thumb-label:nth-child(2) {
+  animation-delay: 0.9s;
+}
+.kodetic-thumb-label:nth-child(3) {
+  animation-delay: 1.6s;
+}
+.kodetic-thumb-label:nth-child(4) {
+  animation-delay: 2.3s;
+}
+
+.kodetic-thumb-logo-wrap {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: kodetic-logo-in var(--kodetic-cycle) cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.kodetic-thumb-logo {
+  width: calc(38 / 360 * 100cqi);
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+
+.kodetic-thumb-wordmark {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: calc(20 / 360 * 100cqi);
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
+  color: #f7f6f3;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
+}
+
+.kodetic-thumb-sub {
+  font-family: Arial, sans-serif;
+  font-size: calc(8 / 360 * 100cqi);
+  letter-spacing: 0.18em;
+  color: rgba(247, 246, 243, 0.55);
+  text-transform: lowercase;
+}
+
+@keyframes kodetic-ken-burns {
+  0% {
+    transform: scale(1.04) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.12) translate(-2%, -1.5%);
+  }
+}
+
+@keyframes kodetic-canvas-drift {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(40px, 28px) rotate(1.5deg);
+  }
+}
+
+@keyframes kodetic-haze-sweep {
+  0%,
+  100% {
+    transform: translateX(-12%) rotate(-2deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(12%) rotate(2deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes kodetic-dust-float {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  40% {
+    opacity: 0.7;
+  }
+  70% {
+    opacity: 0.15;
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes kodetic-label-pulse {
+  0%,
+  12%,
+  100% {
+    opacity: 0.15;
+    color: rgba(247, 246, 243, 0.35);
+  }
+  18%,
+  28% {
+    opacity: 1;
+    color: #f7f6f3;
+  }
+  40% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes kodetic-logo-in {
+  0%,
+  4% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(18px) scale(0.94);
+  }
+  14% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(-2px) scale(1.02);
+  }
+  20%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kodetic-thumb-bg,
+  .kodetic-thumb-canvas,
+  .kodetic-thumb-haze,
+  .kodetic-dust,
+  .kodetic-thumb-label,
+  .kodetic-thumb-logo-wrap {
+    animation: none;
+  }
+
+  .kodetic-thumb-logo-wrap {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .kodetic-thumb-label {
+    opacity: 0.45;
+  }
+}

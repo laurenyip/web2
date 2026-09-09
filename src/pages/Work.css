@@ -227,6 +227,55 @@
   gap: 12px;
 }
 
+.work-continued {
+  display: flex;
+  justify-content: flex-start;
+  padding: 28px 0 4px;
+}
+
+.work-continued-label {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: 'boring_reg', Georgia, serif;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  color: #374151;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.work-continued-label:hover,
+.work-continued-label:focus-visible {
+  color: #111827;
+}
+
+.work-continued-label:focus-visible {
+  outline: 2px solid #9ca3af;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.work-row4 {
+  animation: work-continued-reveal 0.35s ease;
+}
+
+@keyframes work-continued-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.work-row4-card.work-portfolio-card .portfolio-card-media {
+  background: #111;
+}
+
 @media (min-width: 640px) {
   .work-row2 {
     grid-template-columns: 1fr 2fr 1fr;

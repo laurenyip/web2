@@ -5,6 +5,9 @@ export const WORK_ROW2 = ['spruce', 'aurora', 'amazon-giftwrapping']
 
 export const WORK_ROW3 = ['csa', 'the-lyre', 'byline']
 
+/** Continued work — square thumbs below the main grid (revealed on click) */
+export const WORK_ROW4 = ['kodetic', 'annaviola']
+
 export const WORK_PROJECTS = {
   starmap: {
     id: 'starmap',
@@ -90,6 +93,30 @@ export const WORK_PROJECTS = {
     imagePosition: 'top center',
     hasCaseStudy: true,
   },
+  kodetic: {
+    id: 'kodetic',
+    title: 'Kodetic',
+    description:
+      'Editorial portfolio for photographer Ezra Gillera — IA from a media kit, expand-in-place gallery, and a tactile brand system.',
+    image: '/images/projects/kodetic/hero.webp',
+    hasCaseStudy: true,
+    portfolioThumb: true,
+    cardBg: '#020202',
+    localCaseStudy: 'kodetic',
+    link: 'https://laurenyip.github.io/kodetic/',
+  },
+  annaviola: {
+    id: 'annaviola',
+    title: 'Anna Viola',
+    description:
+      'Brand stage for a Vancouver pop artist — release bulletin IA, hover canvases, and Indian Glam × Old Hollywood craft.',
+    image: '/images/projects/annaviola/silver-secrets-cover.png',
+    hasCaseStudy: true,
+    portfolioThumb: true,
+    cardBg: '#0a0a0a',
+    localCaseStudy: 'annaviola',
+    link: 'https://annaviolamusic.com/',
+  },
 }
 
 /** Maps work card id → case study object key in caseStudies.js */
@@ -103,4 +130,6 @@ export const CASE_STUDY_KEYS = {
   'react-to-this': 'React to This!',
   'the-lyre': 'The Lyre',
   byline: 'byline',
+  kodetic: 'Kodetic',
+  annaviola: 'Anna Viola',
 }

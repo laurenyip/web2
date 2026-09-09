@@ -8,6 +8,7 @@ import FramerCaseStudyModal, {
   FRAMER_ORIGIN,
   prefetchFramerPath,
 } from '../components/FramerCaseStudyModal'
+import LocalCaseStudyModal from '../components/LocalCaseStudyModal'
 import WorkProjectCard from '../components/WorkProjectCard'
 import {
   CASE_STUDY_KEYS,
@@ -15,6 +16,7 @@ import {
   WORK_ROW1_FEATURED,
   WORK_ROW2,
   WORK_ROW3,
+  WORK_ROW4,
 } from '../data/workProjects'
 import './App.css'
 import './Work.css'
@@ -25,12 +27,15 @@ const ROW3_TITLE_IDS = new Set(['the-lyre', 'byline'])
 export default function Work() {
   const [openCaseStudy, setOpenCaseStudy] = useState(null)
   const [openFramer, setOpenFramer] = useState(null)
+  const [openLocalStudy, setOpenLocalStudy] = useState(null)
   const [activeProject, setActiveProject] = useState(null)
+  const [continuedOpen, setContinuedOpen] = useState(false)
 
   const featured = WORK_PROJECTS[WORK_ROW1_FEATURED]
   const row2 = WORK_ROW2.map((id) => WORK_PROJECTS[id])
   const row3 = WORK_ROW3.map((id) => WORK_PROJECTS[id])
-  const framerPathsKey = [featured, ...row2, ...row3]
+  const row4 = WORK_ROW4.map((id) => WORK_PROJECTS[id]).filter(Boolean)
+  const framerPathsKey = [featured, ...row2, ...row3, ...row4]
     .filter((project) => project?.framerPath)
     .map((project) => project.framerPath)
     .join('|')
@@ -39,10 +44,18 @@ export default function Work() {
     posthog.capture('project_opened', {
       project_id: project.id,
       project_title: project.title,
-      modal_type: project.framerPath ? 'framer' : 'case_study',
+      modal_type: project.framerPath
+        ? 'framer'
+        : project.localCaseStudy
+          ? 'local_case_study'
+          : 'case_study',
     })
     if (project.framerPath) {
       setOpenFramer({ path: project.framerPath })
+      return
+    }
+    if (project.localCaseStudy) {
+      setOpenLocalStudy(project.localCaseStudy)
       return
     }
     if (!project.hasCaseStudy) return
@@ -86,10 +99,11 @@ export default function Work() {
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
         setOpenFramer(null)
+        setOpenLocalStudy(null)
         setOpenCaseStudy(null)
       }
     }
-    if (openCaseStudy || openFramer) {
+    if (openCaseStudy || openFramer || openLocalStudy) {
       window.addEventListener('keydown', handleEscape)
       document.body.style.overflow = 'hidden'
     } else {
@@ -99,7 +113,7 @@ export default function Work() {
       window.removeEventListener('keydown', handleEscape)
       document.body.style.overflow = 'unset'
     }
-  }, [openCaseStudy, openFramer])
+  }, [openCaseStudy, openFramer, openLocalStudy])
 
   return (
     <div className="home-page work-page min-h-screen bg-white">
@@ -234,11 +248,46 @@ export default function Work() {
               />
             ))}
           </div>
+
+          <div className="work-continued" aria-label="More case studies">
+            <button
+              type="button"
+              className={`work-continued-label${continuedOpen ? ' work-continued-label--open' : ''}`}
+              onClick={() => setContinuedOpen((open) => !open)}
+              aria-expanded={continuedOpen}
+              aria-controls="work-continued-row"
+            >
+              {continuedOpen ? 'work continued ↑' : 'work continued →'}
+            </button>
+          </div>
+
+          {continuedOpen ? (
+            <div id="work-continued-row" className="home-row3 work-row3 work-row4">
+              {row4.map((project) => (
+                <WorkProjectCard
+                  key={project.id}
+                  project={project}
+                  className="work-row3-card work-row4-card"
+                  onOpen={handleOpen}
+                  showTitle={false}
+                  overlayCaption
+                />
+              ))}
+            </div>
+          ) : null}
         </div>
       </main>
 
       {openFramer && (
         <FramerCaseStudyModal framerPath={openFramer.path} onClose={() => setOpenFramer(null)} />
+      )}
+
+      {openLocalStudy && (
+        <LocalCaseStudyModal
+          studyId={openLocalStudy}
+          onClose={() => setOpenLocalStudy(null)}
+          onChangeStudy={setOpenLocalStudy}
+        />
       )}
 
       {openCaseStudy && (

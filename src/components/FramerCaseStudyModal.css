@@ -106,6 +106,15 @@
   height: 100%;
 }
 
+.framer-modal-frame-wrap--local {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.framer-modal-local-scroll {
+  min-height: 100%;
+}
+
 @media (max-width: 640px) {
   .framer-modal-backdrop {
     padding: 0.75rem;

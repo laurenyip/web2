@@ -124,6 +124,36 @@
   width: 100%;
 }
 
+.portfolio-card-media--kodetic {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #020202;
+}
+
+.portfolio-card-media--kodetic .kodetic-thumb {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+}
+
+.portfolio-card-media--annaviola {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #0a0a0a;
+}
+
+.portfolio-card-media--annaviola .annaviola-thumb {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+}
+
 .portfolio-card--nda {
   cursor: pointer;
 }
@@ -248,7 +278,9 @@
     .csa-thumb,
     .starmap-thumb,
     .spruce-thumb,
-    .amazon-gift-thumb
+    .amazon-gift-thumb,
+    .kodetic-thumb,
+    .annaviola-thumb
   ) {
     min-height: 0;
     height: 100%;
