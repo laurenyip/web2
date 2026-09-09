@@ -108,8 +108,7 @@ export const WORK_PROJECTS = {
   annaviola: {
     id: 'annaviola',
     title: 'Anna Viola',
-    description:
-      'Brand stage for a Vancouver pop artist — release bulletin IA, hover canvases, and Indian Glam × Old Hollywood craft.',
+    description: 'Brand stage for a Vancouver-based pop artist.',
     image: '/images/projects/annaviola/silver-secrets-cover.png',
     hasCaseStudy: true,
     portfolioThumb: true,

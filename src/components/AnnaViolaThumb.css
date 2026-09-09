@@ -1,5 +1,5 @@
 .annaviola-thumb {
-  --av-cycle: 6.5s;
+  --av-cycle: 7s;
   position: relative;
   width: 100%;
   height: 100%;
@@ -29,10 +29,23 @@
   animation: annaviola-ken-burns 11s ease-in-out infinite alternate;
 }
 
+.annaviola-thumb-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+  opacity: 0;
+  animation: annaviola-canvas-fade var(--av-cycle) ease-in-out infinite;
+  pointer-events: none;
+}
+
 .annaviola-thumb-grain {
   position: absolute;
   inset: 0;
-  opacity: 0.18;
+  opacity: 0.16;
   pointer-events: none;
   background-image: radial-gradient(rgba(255, 255, 255, 0.35) 0.5px, transparent 0.6px);
   background-size: 3px 3px;
@@ -44,8 +57,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 40%, rgba(10, 10, 10, 0.05) 0%, rgba(10, 10, 10, 0.7) 80%),
-    linear-gradient(180deg, rgba(126, 200, 220, 0.08) 0%, transparent 40%, rgba(10, 10, 10, 0.55) 100%);
+    radial-gradient(ellipse at 50% 40%, rgba(10, 10, 10, 0.02) 0%, rgba(10, 10, 10, 0.45) 85%),
+    linear-gradient(180deg, rgba(126, 200, 220, 0.06) 0%, transparent 42%, rgba(10, 10, 10, 0.4) 100%);
   pointer-events: none;
 }
 
@@ -71,50 +84,27 @@
   box-shadow: 0 0 8px rgba(126, 200, 220, 0.55);
 }
 
-.annaviola-thumb-mark {
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  animation: annaviola-mark-in var(--av-cycle) cubic-bezier(0.22, 1, 0.36, 1) infinite;
-}
-
-.annaviola-thumb-ornament {
-  width: calc(72 / 360 * 100cqi);
-  max-width: 88px;
-  height: auto;
-  display: block;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
-  animation: annaviola-ornament-shimmer 3.2s ease-in-out infinite;
-}
-
-.annaviola-thumb-wordmark {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-size: calc(22 / 360 * 100cqi);
-  letter-spacing: 0.08em;
-  color: #fafafa;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
-}
-
-.annaviola-thumb-tag {
-  font-family: Arial, sans-serif;
-  font-size: calc(8 / 360 * 100cqi);
-  letter-spacing: 0.22em;
-  color: rgba(168, 224, 240, 0.85);
-  text-transform: lowercase;
-}
-
 @keyframes annaviola-ken-burns {
   0% {
     transform: scale(1.03);
   }
   100% {
     transform: scale(1.1) translate(-1.5%, -1%);
+  }
+}
+
+@keyframes annaviola-canvas-fade {
+  0%,
+  18% {
+    opacity: 0;
+  }
+  32%,
+  68% {
+    opacity: 1;
+  }
+  82%,
+  100% {
+    opacity: 0;
   }
 }
 
@@ -143,42 +133,15 @@
   }
 }
 
-@keyframes annaviola-mark-in {
-  0%,
-  5% {
-    opacity: 0;
-    transform: translate(-50%, -50%) translateY(16px);
-  }
-  16%,
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) translateY(0);
-  }
-}
-
-@keyframes annaviola-ornament-shimmer {
-  0%,
-  100% {
-    opacity: 0.75;
-    filter: brightness(0) invert(1);
-  }
-  50% {
-    opacity: 1;
-    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(168, 224, 240, 0.55));
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .annaviola-thumb-bg,
+  .annaviola-thumb-canvas,
   .annaviola-thumb-grain,
-  .annaviola-glitter,
-  .annaviola-thumb-mark,
-  .annaviola-thumb-ornament {
+  .annaviola-glitter {
     animation: none;
   }
 
-  .annaviola-thumb-mark {
-    opacity: 1;
-    transform: translate(-50%, -50%);
+  .annaviola-thumb-canvas {
+    display: none;
   }
 }
