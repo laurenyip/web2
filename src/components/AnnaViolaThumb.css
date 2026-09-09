@@ -1,0 +1,184 @@
+.annaviola-thumb {
+  --av-cycle: 6.5s;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  container-type: inline-size;
+  border-radius: 10px;
+  background: #0a0a0a;
+}
+
+.annaviola-thumb-bg-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.annaviola-thumb-bg {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: grayscale(0.15) contrast(1.08);
+  animation: annaviola-ken-burns 11s ease-in-out infinite alternate;
+}
+
+.annaviola-thumb-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.35) 0.5px, transparent 0.6px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+  animation: annaviola-grain 0.45s steps(2) infinite;
+}
+
+.annaviola-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(10, 10, 10, 0.05) 0%, rgba(10, 10, 10, 0.7) 80%),
+    linear-gradient(180deg, rgba(126, 200, 220, 0.08) 0%, transparent 40%, rgba(10, 10, 10, 0.55) 100%);
+  pointer-events: none;
+}
+
+.annaviola-thumb-glitter {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.annaviola-glitter {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(250, 250, 250, 0.85);
+  box-shadow: 0 0 6px rgba(250, 250, 250, 0.35);
+  opacity: 0;
+  animation-name: annaviola-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.annaviola-glitter--cyan {
+  background: #a8e0f0;
+  box-shadow: 0 0 8px rgba(126, 200, 220, 0.55);
+}
+
+.annaviola-thumb-mark {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: annaviola-mark-in var(--av-cycle) cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.annaviola-thumb-ornament {
+  width: calc(72 / 360 * 100cqi);
+  max-width: 88px;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  animation: annaviola-ornament-shimmer 3.2s ease-in-out infinite;
+}
+
+.annaviola-thumb-wordmark {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: calc(22 / 360 * 100cqi);
+  letter-spacing: 0.08em;
+  color: #fafafa;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+}
+
+.annaviola-thumb-tag {
+  font-family: Arial, sans-serif;
+  font-size: calc(8 / 360 * 100cqi);
+  letter-spacing: 0.22em;
+  color: rgba(168, 224, 240, 0.85);
+  text-transform: lowercase;
+}
+
+@keyframes annaviola-ken-burns {
+  0% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1.1) translate(-1.5%, -1%);
+  }
+}
+
+@keyframes annaviola-grain {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-1px, 1px);
+  }
+}
+
+@keyframes annaviola-twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  40% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  70% {
+    opacity: 0.2;
+    transform: scale(0.7);
+  }
+}
+
+@keyframes annaviola-mark-in {
+  0%,
+  5% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(16px);
+  }
+  16%,
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+}
+
+@keyframes annaviola-ornament-shimmer {
+  0%,
+  100% {
+    opacity: 0.75;
+    filter: brightness(0) invert(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(168, 224, 240, 0.55));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .annaviola-thumb-bg,
+  .annaviola-thumb-grain,
+  .annaviola-glitter,
+  .annaviola-thumb-mark,
+  .annaviola-thumb-ornament {
+    animation: none;
+  }
+
+  .annaviola-thumb-mark {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,0 +1,325 @@
+/* Case study type system — only 3 Framer text styles */
+
+.cs {
+  --cs-bg: #ffffff;
+  --cs-page-padding: clamp(20px, 5vw, 64px);
+  --cs-content-max: 900px;
+  --cs-radius: 10px;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  background: var(--cs-bg);
+  padding: 64px var(--cs-page-padding) 120px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Banner flush to top of the case study window */
+.cs:has(> .cs-image-block--wide:first-child) {
+  padding-top: 0;
+}
+
+.cs *,
+.cs *::before,
+.cs *::after {
+  box-sizing: border-box;
+}
+
+/*
+ * 1. HEADER
+ * Boring Sans · 36px · 400 · lh 1.2 · #000
+ */
+.cs-header {
+  margin: 0;
+  max-width: var(--cs-content-max);
+  font-family: 'boring_reg', 'Boring Sans A Trial Regular', 'ESrebond_regular', sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  font-variation-settings: normal;
+  font-feature-settings: normal;
+  letter-spacing: 0em;
+  line-height: 1.2em;
+  text-align: start;
+  text-transform: none;
+  text-decoration: none;
+  color: #000000;
+}
+
+/*
+ * 2. BLUE SUB HEADER
+ * Arial · 18px · 400 · ls .08em · lh 1.2em · #166d75
+ */
+.cs-subheader {
+  margin: 0 0 14px;
+  max-width: var(--cs-content-max);
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  font-variation-settings: normal;
+  font-feature-settings: normal;
+  letter-spacing: 0.08em;
+  line-height: 1.2em;
+  text-align: start;
+  text-transform: none;
+  text-decoration: none;
+  color: #166d75;
+}
+
+/*
+ * 3. ARIAL BODY
+ * Arial · 16px · 400 · ls 1.3px · lh 21px · #374151
+ */
+.cs-body {
+  margin: 0;
+  max-width: var(--cs-content-max);
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  font-variation-settings: normal;
+  font-feature-settings: normal;
+  letter-spacing: 1.3px;
+  line-height: 21px;
+  text-align: start;
+  text-transform: none;
+  text-decoration: none;
+  color: #374151;
+}
+
+.cs-body + .cs-body {
+  margin-top: 24px;
+}
+
+/* —— Layout only (no extra type styles) —— */
+
+.cs-hero {
+  max-width: var(--cs-content-max);
+  margin: 48px auto 80px;
+}
+
+.cs-hero .cs-body {
+  margin-top: 14px;
+}
+
+.cs-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 40px;
+  max-width: var(--cs-content-max);
+  margin: 24px auto 0;
+  padding: 0;
+}
+
+.cs-meta-item {
+  margin: 0;
+  min-width: 0;
+}
+
+.cs-meta-item .cs-subheader {
+  margin-bottom: 10px;
+}
+
+.cs-section {
+  max-width: var(--cs-content-max);
+  margin: 0 auto;
+  padding-top: 72px;
+}
+
+.cs-section > .cs-header {
+  margin-bottom: 20px;
+}
+
+.cs-image-block {
+  margin: 48px auto 0;
+  max-width: var(--cs-content-max);
+}
+
+.cs > .cs-image-block:first-child {
+  margin-top: 0;
+}
+
+.cs-image-block--wide {
+  max-width: none;
+  width: calc(100% + (2 * var(--cs-page-padding)));
+  margin-left: calc(-1 * var(--cs-page-padding));
+  margin-right: calc(-1 * var(--cs-page-padding));
+}
+
+.cs-image-block img,
+.cs-image-grid-item img,
+.cs-image-text-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--cs-radius);
+  background: #f3f4f6;
+}
+
+/* Full-bleed images stay square — no corner curve */
+.cs-image-block--wide img {
+  border-radius: 0;
+  background: transparent;
+}
+
+.cs-image-block .cs-body,
+.cs-image-grid-item .cs-body,
+.cs-image-text-media .cs-body {
+  margin-top: 12px;
+}
+
+.cs-image-grid {
+  display: grid;
+  gap: 24px;
+  margin: 48px 0 0;
+  max-width: var(--cs-content-max);
+}
+
+.cs-image-grid--2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.cs-image-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cs-image-grid-item {
+  margin: 0;
+  min-width: 0;
+}
+
+.cs-image-grid-item img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.cs-image-text {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 40px;
+  align-items: start;
+  margin: 48px 0 0;
+  max-width: var(--cs-content-max);
+}
+
+.cs-image-text--reverse {
+  grid-template-columns: 0.75fr 1.25fr;
+}
+
+.cs-image-text--reverse .cs-image-text-media {
+  order: 2;
+}
+
+.cs-image-text--reverse .cs-image-text-copy {
+  order: 1;
+}
+
+.cs-image-text-media {
+  margin: 0;
+  min-width: 0;
+}
+
+.cs-image-text-copy .cs-header {
+  margin-bottom: 16px;
+}
+
+.cs-image-text-copy .cs-body {
+  max-width: none;
+}
+
+.cs-list {
+  margin: 24px 0 0;
+  padding-left: 1.15rem;
+  max-width: var(--cs-content-max);
+}
+
+.cs-list li + li {
+  margin-top: 12px;
+}
+
+.cs-list strong {
+  font-weight: 400;
+  color: #000000;
+}
+
+.cs-reflection {
+  max-width: var(--cs-content-max);
+}
+
+.cs-next {
+  max-width: var(--cs-content-max);
+  margin: 96px auto 0;
+  padding-top: 32px;
+}
+
+/* Aurora Framer next link — Boring Sans 20 / .08em / #166d75 */
+.cs-next a,
+.cs-next button {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: 'boring_reg', 'Boring Sans A Trial Regular', 'ESrebond_regular', sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.2em;
+  text-align: start;
+  text-transform: none;
+  text-decoration: none;
+  color: #166d75;
+}
+
+.cs-next a:hover,
+.cs-next button:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 800px) {
+  .cs {
+    --cs-page-padding: 22px;
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+
+  .cs:has(> .cs-image-block--wide:first-child) {
+    padding-top: 0;
+  }
+
+  .cs-header {
+    font-size: 28px;
+  }
+
+  .cs-section {
+    padding-top: 56px;
+  }
+
+  .cs-meta {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cs-image-grid--2,
+  .cs-image-grid--3,
+  .cs-image-text,
+  .cs-image-text--reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-image-text--reverse .cs-image-text-media,
+  .cs-image-text--reverse .cs-image-text-copy {
+    order: initial;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

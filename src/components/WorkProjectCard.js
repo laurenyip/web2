@@ -7,6 +7,8 @@ import AmazonGiftThumb from '../components/AmazonGiftThumb'
 import SpruceThumb from '../components/SpruceThumb'
 import AuroraThumb from '../components/AuroraThumb'
 import CsaThumb from '../components/CsaThumb'
+import KodeticThumb from '../components/KodeticThumb'
+import AnnaViolaThumb from '../components/AnnaViolaThumb'
 import { getProtectedImageProps } from '../../lib/getProtectedImageProps'
 import '../pages/Portfolio.css'
 
@@ -16,6 +18,8 @@ const THUMB_BY_ID = {
   aurora: AuroraThumb,
   'amazon-giftwrapping': AmazonGiftThumb,
   csa: CsaThumb,
+  kodetic: KodeticThumb,
+  annaviola: AnnaViolaThumb,
 }
 
 function WorkProjectCardMedia({ project, csaRevealed, portfolio }) {

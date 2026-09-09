@@ -52,7 +52,7 @@ const ALBUMS = [
     artist: 'Olivia Rodrigo',
     image: '/images/albums/you-seem-pretty-sad.jpg',
     link: 'https://open.spotify.com/album/18qJgKH8dyYe2RRp6TbnNY',
-    tracks: ['maggots for brains', 'cigarette smoke', 'the cure'],
+    tracks: ['maggots for brains', 'cigarette smoke', 'honeybee'],
   },
   {
     id: 'london-calling',
@@ -281,6 +281,39 @@ const ALBUMS = [
     link: 'https://open.spotify.com/album/5TZ0bVy0tqIriXse4qk1HY',
 
     thought: 'underrated',
+  },
+  {
+    id: 'essex-honey',
+    artist: 'Blood Orange',
+    image: '/images/albums/essex-honey.jpg',
+    link: 'https://open.spotify.com/album/5RUma3H9uzDLXxwT7JzTel',
+  },
+  {
+    id: 'pure-heroine',
+    artist: 'Lorde',
+    image: '/images/albums/pure-heroine.jpg',
+    link: 'https://open.spotify.com/album/0rmhjUgoVa17LZuS8xWQ3v',
+    tracks: ['Ribs', 'A World Alone', '400 Lux'],
+  },
+  {
+    id: 'negro-swan',
+    artist: 'Blood Orange',
+    image: '/images/albums/negro-swan.jpg',
+    link: 'https://open.spotify.com/album/7bvmGyFDwpHNRRRZJ0AHvn',
+  },
+  {
+    id: '1989',
+    artist: 'Taylor Swift',
+    image: '/images/albums/1989.jpg',
+    link: 'https://open.spotify.com/album/5fy0X0JmZRZnVa2UEicIOl',
+    tracks: ['How You Get The Girl', 'Clean', 'Style'],
+  },
+  {
+    id: 'dopamine',
+    artist: 'BØRNS',
+    image: '/images/albums/dopamine.jpg',
+    link: 'https://open.spotify.com/album/17l7MIu0Jh0tdgK7or9ovw',
+    tracks: ['Dug My Heart', '10,000 Emerald Pools', 'Electric Love'],
   },
 ]
 
