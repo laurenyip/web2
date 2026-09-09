@@ -212,10 +212,7 @@ export default function KodeticCaseStudy({ onNext }) {
             accent — and defending those quiet choices until the site felt like Kodetic, not “a photographer
             template with his photos.”
           </BodyText>
-          <BodyText>
-            The outcome I care about is that a client can scan by category, inspect a frame, read About in his
-            voice, and email for licensing without fighting the interface.
-          </BodyText>
+
         </Reflection>
       </CaseStudySection>
 
