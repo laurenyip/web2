@@ -1,10 +1,10 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import './AnnaViolaThumb.css'
 
 const BG_SRC = '/images/projects/annaviola/silver-secrets-cover.png'
-const ORNAMENT_SRC = '/images/projects/annaviola/logo-ornament-top.png'
+const CANVAS_SRC = '/images/projects/annaviola/videos/silver-secrets.mov'
 
 function seeded(index, salt = 0) {
   const x = Math.sin(index * 127.1 + salt * 311.7) * 43758.5453
@@ -24,12 +24,33 @@ function buildGlitter(count) {
 }
 
 export default function AnnaViolaThumb() {
-  const glitter = useMemo(() => buildGlitter(22), [])
+  const videoRef = useRef(null)
+  const glitter = useMemo(() => buildGlitter(18), [])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    video.muted = true
+    video.volume = 0
+    const play = video.play()
+    if (play?.catch) play.catch(() => {})
+  }, [])
 
   return (
     <div className="annaviola-thumb" aria-hidden="true">
       <div className="annaviola-thumb-bg-wrap">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="annaviola-thumb-bg" src={BG_SRC} alt="" draggable={false} />
+        <video
+          ref={videoRef}
+          className="annaviola-thumb-canvas"
+          src={CANVAS_SRC}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        />
       </div>
       <div className="annaviola-thumb-grain" />
       <div className="annaviola-thumb-overlay" />
@@ -49,12 +70,6 @@ export default function AnnaViolaThumb() {
             }}
           />
         ))}
-      </div>
-
-      <div className="annaviola-thumb-mark">
-        <img className="annaviola-thumb-ornament" src={ORNAMENT_SRC} alt="" draggable={false} />
-        <span className="annaviola-thumb-wordmark">anna viola</span>
-        <span className="annaviola-thumb-tag">pop · poetry · glitter</span>
       </div>
     </div>
   )
