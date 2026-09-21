@@ -27,3 +27,138 @@ img {
   -webkit-user-select: none;
   user-select: none;
 }
+
+html.intro-lock,
+html.intro-lock body {
+  overflow: hidden;
+}
+
+.intro-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #243140;
+  overflow: hidden;
+  pointer-events: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.intro-loader__sky {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: #243140;
+}
+
+.intro-loader__extend {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.intro-loader__scene {
+  position: relative;
+  z-index: 1;
+  line-height: 0;
+  flex: 0 0 auto;
+  width: min(498px, 100vw);
+  max-height: 100vh;
+  overflow: visible;
+}
+
+.intro-loader__gif {
+  display: block;
+  width: min(498px, 100vw);
+  height: auto;
+  max-width: 498px;
+  max-height: 100vh;
+  object-fit: contain;
+  object-position: center;
+}
+
+.intro-loader__moon-orbit {
+  position: absolute;
+  left: 53.4%;
+  top: 42%;
+  width: 54%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.intro-loader__moon-orbit svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: intro-orbit 12s linear infinite;
+  transform-origin: 50% 50%;
+  filter: drop-shadow(0 1px 2px rgba(8, 12, 18, 0.55));
+}
+
+.intro-loader__orbit-text {
+  fill: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+.intro-loader.is-exit {
+  animation: intro-exit 0.52s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.intro-loader.is-exit .intro-loader__scene {
+  animation: intro-stage-exit 0.4s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.intro-loader.is-gone {
+  display: none;
+}
+
+@keyframes intro-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes intro-stage-exit {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes intro-exit {
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-loader__moon-orbit svg {
+    animation: none;
+  }
+
+  .intro-loader.is-exit {
+    animation: intro-exit-fade 0.22s ease forwards;
+  }
+
+  .intro-loader.is-exit .intro-loader__scene {
+    animation: none;
+  }
+}
+
+@keyframes intro-exit-fade {
+  to {
+    opacity: 0;
+  }
+}

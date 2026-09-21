@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import ImageProtection from '../src/components/ImageProtection'
+import IntroLoader from '../src/components/IntroLoader'
 import SiteFooter from '../src/components/SiteFooter'
 import SiteCursor from '../components/site-cursor'
 import { PostHogProvider } from './providers'
@@ -33,9 +34,40 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="intro-lock">
       <body>
+        <div id="intro-loader" className="intro-loader" aria-hidden="true">
+          <div className="intro-loader__sky">
+            <canvas className="intro-loader__extend" aria-hidden="true" />
+          </div>
+          <div className="intro-loader__scene">
+            <img
+              className="intro-loader__gif"
+              src="/images/intro-appa.gif"
+              alt=""
+              width={498}
+              height={284}
+            />
+            <div className="intro-loader__moon-orbit">
+              <svg viewBox="0 0 200 200" aria-hidden="true">
+                <defs>
+                  <path
+                    id="intro-orbit-path"
+                    d="M 100,100 m 0,-102 a 102,102 0 1,1 0,204 a 102,102 0 1,1 0,-204"
+                  />
+                </defs>
+                <text className="intro-loader__orbit-text">
+                  <textPath href="#intro-orbit-path">loading...</textPath>
+                </text>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <noscript>
+          <style>{`#intro-loader{display:none!important}html.intro-lock,html.intro-lock body{overflow:auto!important}`}</style>
+        </noscript>
         <PostHogProvider>
+          <IntroLoader />
           <ImageProtection />
           <SiteCursor />
           {children}
