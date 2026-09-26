@@ -16,6 +16,18 @@ import './caseStudy/CaseStudy.css'
 
 const LYRE_PAGES = [
   {
+    src: '/images/projects/lyre-poster-flux.png',
+    alt: 'The Lyre Vol. 17 promotional poster — Flux',
+  },
+  {
+    src: '/images/projects/lyre-poster-constant-motion.png',
+    alt: 'The Lyre Vol. 17 promotional poster — Constant Motion',
+  },
+  {
+    src: '/images/projects/lyre-vol16-cover.png',
+    alt: 'The Lyre printed issue cover',
+  },
+  {
     src: '/images/projects/lyre-vol17/lyre-17-02.png',
     alt: 'The Lyre Vol. 17, page 2',
   },
