@@ -3,16 +3,25 @@
 import React, { useEffect } from 'react'
 import KodeticCaseStudy from './KodeticCaseStudy'
 import AnnaViolaCaseStudy from './AnnaViolaCaseStudy'
+import CradleCaseStudy from './CradleCaseStudy'
+import CsaSystemsCaseStudy from './CsaSystemsCaseStudy'
+import LyreCaseStudy from './LyreCaseStudy'
 import './FramerCaseStudyModal.css'
 
 const LOCAL_STUDIES = {
   kodetic: KodeticCaseStudy,
   annaviola: AnnaViolaCaseStudy,
+  cradle: CradleCaseStudy,
+  'csa-content': CsaSystemsCaseStudy,
+  lyre: LyreCaseStudy,
 }
 
 const NEXT_STUDY = {
   kodetic: 'annaviola',
   annaviola: null,
+  cradle: 'csa-content',
+  'csa-content': 'lyre',
+  lyre: null,
 }
 
 export default function LocalCaseStudyModal({ studyId, onClose, onChangeStudy }) {

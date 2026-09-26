@@ -115,6 +115,20 @@
   min-height: 100%;
 }
 
+.framer-modal-local-scroll .cs {
+  padding-top: 40px;
+  padding-bottom: 72px;
+}
+
+.framer-modal-local-scroll .cs .cs-hero {
+  margin-top: 0;
+  margin-bottom: 36px;
+}
+
+.framer-modal-local-scroll .cs:has(> .cs-image-block--wide:first-child) {
+  padding-top: 0;
+}
+
 @media (max-width: 640px) {
   .framer-modal-backdrop {
     padding: 0.75rem;

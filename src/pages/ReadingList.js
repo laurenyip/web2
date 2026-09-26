@@ -64,6 +64,7 @@ export default function ReadingList() {
 
   const booksFinishedThisYear = useMemo(
     () => [
+      { title: 'Coraline', author: 'Neil Gaiman' },
       { title: 'Taipei Story', author: 'R.F. Kuang' },
       { title: 'Love in the Time of Cholera', author: 'Gabriel García Márquez' },
       { title: 'Henry and June', author: 'Anaïs Nin' },

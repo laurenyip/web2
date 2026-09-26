@@ -72,9 +72,11 @@ export function ImageBlock({ src, alt, caption, wide = false, priority = false }
   )
 }
 
-export function ImageGrid({ images }) {
+export function ImageGrid({ images, variant }) {
+  const count = Math.min(images.length, 3)
+  const pages = variant === 'pages' ? ' cs-image-grid--pages' : ''
   return (
-    <div className={`cs-image-grid cs-image-grid--${Math.min(images.length, 3)}`}>
+    <div className={`cs-image-grid cs-image-grid--${count}${pages}`}>
       {images.map((image) => (
         <figure key={image.src} className="cs-image-grid-item">
           {/* eslint-disable-next-line @next/next/no-img-element */}
