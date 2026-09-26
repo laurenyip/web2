@@ -1,0 +1,156 @@
+.cs-systems-page {
+  background: #ffffff;
+  min-height: 100%;
+}
+
+.cs-systems-page .cs {
+  padding-top: calc(var(--site-nav-block-height, 5.85rem) + 24px);
+}
+
+.cs-systems-page .cs-hero {
+  margin-top: 0;
+  margin-bottom: 36px;
+}
+
+.cs-work-prompt {
+  max-width: var(--cs-content-max);
+  margin: 0 auto 28px;
+}
+
+.cs-work-prompt .cs-body {
+  margin-top: 0;
+}
+
+.cs-work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: var(--cs-content-max);
+  margin: 0 auto 24px;
+  align-items: stretch;
+}
+
+.cs-work-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cs-work-card:focus-visible {
+  outline: 2px solid #166d75;
+  outline-offset: 4px;
+}
+
+.cs-work-card-media {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #111;
+  box-shadow: 0 12px 24px rgba(55, 65, 81, 0.08);
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.cs-work-card-media > :first-child {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+}
+
+.cs-work-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cs-work-card-media--csa .csa-thumb {
+  min-height: 0;
+  height: 100%;
+}
+
+.cs-work-card-media--csa .csa-nda-caption {
+  display: none;
+}
+
+.cs-work-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 12px 2px 8px;
+  min-height: 0;
+}
+
+.cs-work-card-title {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 1.3px;
+  line-height: 21px;
+  color: #000000;
+}
+
+.cs-work-card-blurb {
+  margin: 6px 0 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  letter-spacing: 1.3px;
+  line-height: 21px;
+  color: #374151;
+}
+
+.cs-work-card-cta {
+  margin: auto 0 0;
+  padding-top: 10px;
+  font-family: 'boring_reg', 'Boring Sans A Trial Regular', Georgia, serif;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  color: #166d75;
+}
+
+.cs-work-card:hover .cs-work-card-media,
+.cs-work-card:focus-visible .cs-work-card-media {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(55, 65, 81, 0.12);
+}
+
+.cs-work-card:hover .cs-work-card-cta,
+.cs-work-card:focus-visible .cs-work-card-cta {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 800px) {
+  .cs-work-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-work-card-media {
+    transition: none;
+  }
+}

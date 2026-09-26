@@ -194,6 +194,27 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
+.cs-image-grid--pages {
+  align-items: start;
+  max-width: none;
+}
+
+.cs-image-grid--pages .cs-image-grid-item img {
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+
+.cs-page-embed {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--cs-radius);
+  background: #fff;
+}
+
 .cs-image-grid-item {
   margin: 0;
   min-width: 0;
@@ -319,6 +340,10 @@
   .cs-image-text,
   .cs-image-text--reverse {
     grid-template-columns: 1fr;
+  }
+
+  .cs-image-grid--pages.cs-image-grid--3 {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .cs-image-text--reverse .cs-image-text-media,
