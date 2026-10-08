@@ -12,13 +12,27 @@ const NAV_LINKS = [
   { href: '/playground', label: 'Playground', position: 'end' },
 ]
 
+function normalizePathname(pathname) {
+  if (!pathname) return '/'
+  const path = pathname.split('#')[0].split('?')[0]
+  if (path.length > 1 && path.endsWith('/')) return path.replace(/\/+$/, '')
+  return path || '/'
+}
+
+/**
+ * Work is the homepage (`/`). `/work` and `/work/*` also belong to Work when that
+ * tree exists. About and Playground own their own prefixes. At most one item matches.
+ */
+function isNavLinkActive(href, pathname) {
+  const path = normalizePathname(pathname)
+  if (href === '/') {
+    return path === '/' || path === '/work' || path.startsWith('/work/')
+  }
+  return path === href || path.startsWith(`${href}/`)
+}
+
 function Navbar({ className = '' }) {
   const pathname = usePathname()
-
-  const isActive = (href) => {
-    if (href === '/') return pathname === '/'
-    return pathname === href || pathname.startsWith(`${href}/`)
-  }
 
   return (
     <nav className={`site-nav${className ? ` ${className}` : ''}`} aria-label="Main">
@@ -41,15 +55,20 @@ function Navbar({ className = '' }) {
 
         <div className="site-nav-band">
           <div className="site-nav-links-row">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`site-nav-link site-nav-link--${link.position}${isActive(link.href) ? ' site-nav-link--active' : ''}`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const active = isNavLinkActive(link.href, pathname)
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  data-label={link.label}
+                  aria-current={active ? 'page' : undefined}
+                  className={`site-nav-link site-nav-link--${link.position}${active ? ' site-nav-link--active' : ''}`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </div>
         </div>
 

@@ -122,6 +122,56 @@ export default function KodeticCaseStudy({ onNext }) {
             },
           ]}
         />
+        <BodyText>
+          That handoff was the discovery. The boards fixed the order, the change notes fixed the revision, and
+          the About draft fixed the voice. His sequence was the constraint I designed against.
+        </BodyText>
+        <BodyText className="cs-placeholder">
+          [Add: how the discovery call ran — who was on it, what Ezra said the site was for, and who the audience was.]
+        </BodyText>
+        <BodyText className="cs-placeholder">
+          [Add: requirements beyond the boards, the PDF media kit, the change notes, and the About draft — and what was out of scope.]
+        </BodyText>
+        <BodyText>
+          The first concept was the Jordan Robson frame: image-led density, category browsing, a strong
+          header. It still read as a reference. His notes became the revision — the list above.
+        </BodyText>
+        <BodyText className="cs-placeholder">
+          [Add: how you presented that version — link, call, or file — and any option besides the reference frame.]
+        </BodyText>
+        <BodyText className="cs-placeholder">
+          [Add: his feedback in his words, how the rounds were spaced, and any note you pushed back on.]
+        </BodyText>
+        <BodyText>
+          Managing expectations meant holding that list as the spec: board order, centered grids, the carousel
+          removed and the header enlarged, logo back to home, accent toward purple, About in his words.
+          Inspection stays on the board.
+        </BodyText>
+        <BodyText className="cs-placeholder">
+          [Add: what you told him the site would and would not do, and anything you deferred past launch.]
+        </BodyText>
+      </CaseStudySection>
+
+      <CaseStudySection>
+        <SectionLabel>Business management</SectionLabel>
+        <SectionHeading>The kit already existed. The site had to carry it, across 2025–2026.</SectionHeading>
+        <BodyText>
+          The span on the project is 2025–2026. The role was website design and build: take the TransferNow
+          boards and the PDF media kit and publish them as a site. It shipped as a static site on GitHub Pages,
+          at laurenyip.github.io/kodetic.
+        </BodyText>
+        <BodyText className="cs-placeholder">
+          [Add: what you charged and how you scoped the quote.]
+        </BodyText>
+        <BodyText className="cs-placeholder">
+          [Add: the contract or agreement — included pages, revision rounds, and who owns the files.]
+        </BodyText>
+        <BodyText className="cs-placeholder">
+          [Add: when and how you invoiced, and whether payment was deposit, milestone, or on delivery.]
+        </BodyText>
+        <BodyText className="cs-placeholder">
+          [Add: the communication cadence — how often you met or wrote, and which channel.]
+        </BodyText>
       </CaseStudySection>
 
       <CaseStudySection>
@@ -132,6 +182,14 @@ export default function KodeticCaseStudy({ onNext }) {
           Client Work nested as campaigns (MEC; Get Thrifty Fashion Show 2026), Cosplay, Creative in two parts,
           then Miscellaneous. PDF / TransferNow order → WebP → grid thumbs → static GitHub Pages. Lazy in-view
           loading kept density from fighting performance.
+        </BodyText>
+        <BodyText>
+          The goal was the kit&apos;s sequence, surviving the move to the web. Equal tiles would have flattened a
+          landing spread, a Mixed Media board, and a commercial set into the same kind of object. Campaign
+          grouping is what keeps MEC and Get Thrifty Fashion Show 2026 as jobs.
+        </BodyText>
+        <BodyText className="cs-placeholder">
+          [Add: crops, swaps, or frames you chose that were not already sequenced on the boards.]
         </BodyText>
         <ImageGrid
           images={[
@@ -146,10 +204,14 @@ export default function KodeticCaseStudy({ onNext }) {
         <SectionLabel>Font choices</SectionLabel>
         <SectionHeading>Shortlisted on Fontshare — locked Zodiak + Red Hat Display.</SectionHeading>
         <BodyText>
-          We reviewed a Fontshare shortlist together: Zodiak, Gambarino, Recia, Literata, Crimson Pro,
-          Montserrat, and Red Hat Display. I chose Zodiak for display — editorial weight without fashion-template
-          gloss — and Red Hat Display for navigation, labels, and About body so UI stays calm beside dense
-          photography. One display + one UI sans keeps type from competing with the images.
+          Dense photography was the constraint: type had to stay editorial and then get out of the way. We
+          reviewed a Fontshare shortlist together — Zodiak, Gambarino, Recia, Literata, Crimson Pro, Montserrat,
+          and Red Hat Display. I locked Zodiak for display, for editorial weight without fashion-template gloss,
+          and Red Hat Display for navigation, labels, and About body. One display face plus one UI sans is the
+          tradeoff that keeps the interface calm beside the photographs.
+        </BodyText>
+        <BodyText className="cs-placeholder">
+          [Add: the type sizes, weights, and letter-spacing you set, and whether the media kit already specified a typeface you did not use.]
         </BodyText>
       </CaseStudySection>
 
@@ -171,26 +233,35 @@ export default function KodeticCaseStudy({ onNext }) {
           <BodyText>
             Nav settled on Mixed Media, Client Work, Creative, and Miscellaneous for scan order, with Client Work
             still grouped by project so commercial sets read as campaigns. Cosplay and Creative boards kept their
-            board-faithful grids even as the primary nav tightened.
+            board-faithful grids even as the primary nav tightened. The tradeoff was a shorter bar and a longer
+            page: fewer labels to scan, board order kept once you are in.
           </BodyText>
         </ImageText>
 
         <ImageText src={I.mec2} alt="Client work detail" caption="Inspect without leaving page context" reverse>
           <SectionHeading>Expand-in-place viewing</SectionHeading>
           <BodyText>
-            I chose expand-from-cell over a generic lightbox. Siblings dim, Escape closes, and caption slots stay
-            ready — so inspection never abandons the board.
+            The problem was a viewer that drops the sequence. I chose expand-from-cell over a generic lightbox:
+            siblings dim, Escape closes, and caption slots stay ready, so inspection stays on the board.
           </BodyText>
         </ImageText>
 
         <ImageText src={I.canvasBlack} alt="Black canvas atmosphere">
           <SectionHeading>Purple, canvas, centered grids</SectionHeading>
           <BodyText>
-            Centering the grids fixed the “too far right” read. Purple replaced red as the interactive accent on
-            cursor and links. Canvas weave on black/white chrome keeps atmosphere tactile without fighting the
-            photographs.
+            The grids sat too far right, and red was the accent carried over from the first version. Ezra&apos;s
+            note set the constraint: center the grids, move the accent toward purple. I kept purple on the cursor
+            and links, so colour marks interaction and the photographs stay untouched. Canvas weave on the black
+            and white chrome is the atmosphere — tactile, and off the images. That is the outcome: his boards,
+            with a purple accent instead of the reference red.
+          </BodyText>
+          <BodyText className="cs-placeholder">
+            [Add: the purple value you landed on, and any other colour notes from the boards or the kit.]
           </BodyText>
         </ImageText>
+        <BodyText className="cs-placeholder">
+          [Add: whether Ezra asked for a different navigation or a lightbox, and what you decided with him.]
+        </BodyText>
       </CaseStudySection>
 
       <CaseStudySection>

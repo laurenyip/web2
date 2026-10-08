@@ -92,6 +92,30 @@
   margin-top: 24px;
 }
 
+.cs-body.cs-placeholder {
+  padding: 12px 14px;
+  border-radius: var(--cs-radius);
+  background: #f3f7f7;
+  color: #166d75;
+}
+
+.book-viewer + .cs-body {
+  margin-top: 48px;
+}
+
+.cs > .book-viewer:first-child {
+  margin-top: 0;
+  margin-bottom: 36px;
+}
+
+.cs-subtopic {
+  margin-top: 56px;
+}
+
+.cs-subtopic > .cs-header {
+  margin-bottom: 20px;
+}
+
 .cs-body a {
   color: #166d75;
   text-decoration: underline;

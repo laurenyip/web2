@@ -1,0 +1,66 @@
+.byline-thumb {
+  position: absolute;
+  inset: 0;
+}
+
+.byline-thumb-glitter {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.byline-glitter {
+  --byline-peak: 0.62;
+  --byline-scale: 1;
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 252, 246, 0.95);
+  box-shadow: 0 0 6px 1px rgba(255, 252, 246, 0.55);
+  opacity: 0;
+  animation-name: byline-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  pointer-events: none;
+}
+
+.work-card:hover .byline-glitter,
+.work-card:focus-visible .byline-glitter {
+  --byline-peak: 0.95;
+  --byline-scale: 1.22;
+}
+
+@keyframes byline-twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  18% {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+  42% {
+    opacity: var(--byline-peak, 0.4);
+    transform: scale(var(--byline-scale, 1));
+  }
+  64% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .byline-glitter {
+    animation: none;
+    opacity: 0.28;
+    transform: none;
+  }
+
+  .work-card:hover .byline-glitter,
+  .work-card:focus-visible .byline-glitter {
+    opacity: 0.48;
+    transform: none;
+  }
+}
