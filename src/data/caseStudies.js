@@ -199,7 +199,7 @@ export const caseStudies = {
     overview:
       'Design and engineering for byline — keeping the publication’s site current and shaping new pages as the project grows.',
     role: 'Design Engineer',
-    timeline: 'Spring + Summer 2026',
+    timeline: 'June 2026–Present',
     myContribution: 'Upkeep of website, design of new webpages.',
     projectVideo: '/images/projects/byline.mp4',
   },
