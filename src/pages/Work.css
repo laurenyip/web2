@@ -214,6 +214,17 @@
   display: none;
 }
 
+/* CSA’s tags wrap to two rows at the top, so its tall caption sits tighter to the bottom. */
+.portfolio-card-media--csa .work-card-static-hover {
+  gap: 2px;
+  padding-bottom: 10px;
+}
+
+.portfolio-card-media--csa .work-card-static-hover-nda {
+  gap: 0;
+  margin-top: 0;
+}
+
 .work-page .portfolio-card-blurb.about-body-text {
   color: #374151;
   font-size: 16px;

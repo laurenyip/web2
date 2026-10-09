@@ -13,6 +13,7 @@ export const WORK_PROJECTS = {
     id: 'starmap',
     title: 'Starmap',
     description: 'A personal relationship management tool to map people, connections, and social context over time.',
+    tags: ['Interaction Design', 'Information Architecture', 'Data Visualization'],
     image: '/images/projects/starmap/starmap_t.png',
     hasCaseStudy: true,
     link: 'https://starmap.lol',
@@ -24,6 +25,7 @@ export const WORK_PROJECTS = {
     id: 'spruce',
     title: 'Spruce',
     description: 'Helping low-income families in Vancouver find free and low-cost third-space activities.',
+    tags: ['Social Impact', 'UI Design', 'Uxathon win'],
     image: '/images/projects/spruce/spruce_hero.gif',
     hasCaseStudy: true,
     portfolioThumb: true,
@@ -34,6 +36,7 @@ export const WORK_PROJECTS = {
     id: 'aurora',
     title: 'Aurora Pet Co.',
     description: 'Vet-backed subscription pet pharmacy focused on chronic conditions and affordability across Canada.',
+    tags: ['E-commerce', 'Healthcare', 'Product Strategy'],
     image: '/images/projects/aurora/aurora_hero.gif',
     hasCaseStudy: true,
     portfolioThumb: true,
@@ -44,6 +47,7 @@ export const WORK_PROJECTS = {
     id: 'amazon-giftwrapping',
     title: 'Amazon Gift Wrapping',
     description: 'An improved gift wrapping and card customization experience for Amazon shoppers.',
+    tags: ['E-commerce', 'Interaction Design', 'Redesign'],
     image: '/images/projects/amazon-giftwrapping/amazon_hero.gif',
     hasCaseStudy: true,
     portfolioThumb: true,
@@ -54,6 +58,7 @@ export const WORK_PROJECTS = {
     id: 'csa',
     title: 'Canadian Space Agency',
     description: 'Mapped satellite images across Canada for the Terrestrial Snow Mass Mission (TSMM).',
+    tags: ['Cross-Functional', 'Research Ops', 'Project Management'],
     image: '/images/projects/csa.png',
     hasCaseStudy: true,
     link: 'https://www.linkedin.com/feed/update/urn:li:activity:7348846522555342848/',
@@ -65,6 +70,7 @@ export const WORK_PROJECTS = {
     id: 'jellyfish-umbrella',
     title: 'jellyfish umbrella',
     description: 'zine',
+    tags: ['Art tech', 'Creative Direction', 'Print'],
     image: '/images/projects/jellyfish-umbrella.png',
     hasCaseStudy: true,
     link: '/rolypolyzine.pdf',
@@ -73,6 +79,7 @@ export const WORK_PROJECTS = {
     id: 'react-to-this',
     title: 'ROSIE Lab',
     description: 'Research assistantship with ROSIE Lab',
+    tags: ['Research', 'Interaction Design', 'Editorial'],
     image: '/images/Rosie/elan.png',
     hasCaseStudy: true,
     link: 'https://rosielab.github.io/react-to-this/',
@@ -81,6 +88,7 @@ export const WORK_PROJECTS = {
     id: 'the-lyre',
     title: 'The Lyre',
     description: 'SFU literary magazine — editorial design, Vol. 16 & 17',
+    tags: ['Editorial Design', 'Print', 'Visual Art'],
     image: '/images/projects/lyre-poster-flux.png',
     hasCaseStudy: true,
     localCaseStudy: 'lyre',
@@ -90,6 +98,7 @@ export const WORK_PROJECTS = {
     id: 'byline',
     title: 'byline',
     description: 'Spring + Summer 2026',
+    tags: ['Design Engineering', 'Client Work'],
     image: '/images/projects/byline.png',
     imagePosition: 'top center',
     hasCaseStudy: true,
@@ -99,6 +108,7 @@ export const WORK_PROJECTS = {
     title: 'Kodetic',
     description:
       'Editorial portfolio for photographer Ezra Gillera — IA from a media kit, expand-in-place gallery, and a tactile brand system.',
+    tags: ['Editorial', 'Branding', 'Information Architecture'],
     image: '/images/projects/kodetic/hero.webp',
     hasCaseStudy: true,
     portfolioThumb: true,
@@ -110,6 +120,7 @@ export const WORK_PROJECTS = {
     id: 'annaviola',
     title: 'Anna Viola',
     description: 'Brand stage for a Vancouver-based pop artist.',
+    tags: ['Branding', 'Visual Design', 'Interaction Design'],
     image: '/images/projects/annaviola/silver-secrets-cover.png',
     hasCaseStudy: true,
     portfolioThumb: true,
@@ -117,6 +128,15 @@ export const WORK_PROJECTS = {
     localCaseStudy: 'annaviola',
     link: 'https://annaviolamusic.com/',
   },
+}
+
+/**
+ * Case studies that open from the content-systems collection and are not work-grid cards.
+ * Lyre reuses WORK_PROJECTS['the-lyre'].tags.
+ */
+export const CONTENT_STUDY_TAGS = {
+  cradle: ['Systems Thinking', 'Research', 'Information Architecture'],
+  'csa-content': ['Systems Thinking', 'Information Architecture', 'Research'],
 }
 
 /** Maps work card id → case study object key in caseStudies.js */

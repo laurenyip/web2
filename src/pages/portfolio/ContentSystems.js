@@ -5,6 +5,8 @@ import Navbar from '../../components/Navbar'
 import ScrollToTop from '../../components/ScrollToTop'
 import LocalCaseStudyModal from '../../components/LocalCaseStudyModal'
 import CsaThumb from '../../components/CsaThumb'
+import CaseStudyTags from '../../components/CaseStudyTags'
+import { CONTENT_STUDY_TAGS, WORK_PROJECTS } from '../../data/workProjects'
 import { BodyText, CaseStudy, CaseStudyHero, ProjectMeta, SectionLabel } from '../../components/caseStudy'
 import '../../components/caseStudy/CaseStudy.css'
 import '../App.css'
@@ -15,6 +17,7 @@ const STUDIES = [
     id: 'cradle',
     title: 'Cradle',
     blurb: 'Information architecture for clinical workflows — grouped by urgency.',
+    tags: CONTENT_STUDY_TAGS.cradle,
     image: '/images/projects/cradle-referrals.png',
     alt: 'Cradle referrals board',
   },
@@ -22,12 +25,14 @@ const STUDIES = [
     id: 'csa-content',
     title: 'Canadian Space Agency',
     blurb: 'A content system for a fragmented research network.',
+    tags: CONTENT_STUDY_TAGS['csa-content'],
     Thumb: CsaThumb,
   },
   {
     id: 'lyre',
     title: 'The Lyre',
     blurb: 'Editorial voice and visual language for an issue about Flux.',
+    tags: WORK_PROJECTS['the-lyre'].tags,
     image: '/images/projects/lyre-poster-flux.png',
     alt: 'The Lyre Vol. 17 Flux poster',
   },
@@ -79,9 +84,11 @@ export default function ContentSystems() {
             <button
               key={study.id}
               type="button"
-              className="cs-work-card"
+              className={`cs-work-card cs-work-card--${study.id}`}
               onClick={() => setOpenStudy(study.id)}
-              aria-label={`Open ${study.title} case study`}
+              aria-label={`Open ${study.title} case study${
+                study.tags?.length ? `. ${study.tags.join(', ')}` : ''
+              }`}
             >
               <div
                 className={`cs-work-card-media${study.Thumb ? ' cs-work-card-media--csa' : ''}`}
@@ -91,6 +98,7 @@ export default function ContentSystems() {
                 ) : (
                   <img src={study.image} alt="" draggable={false} />
                 )}
+                <CaseStudyTags tags={study.tags} />
               </div>
               <div className="cs-work-card-body">
                 <p className="cs-work-card-title">{study.title}</p>
