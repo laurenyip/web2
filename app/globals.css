@@ -103,6 +103,24 @@ html.intro-lock body {
   letter-spacing: 0.12em;
 }
 
+.intro-loader__note {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 1;
+  margin: 0;
+  padding: 0 20px;
+  text-align: center;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
 .intro-loader.is-exit {
   animation: intro-exit-fade 0.48s cubic-bezier(0.76, 0, 0.24, 1) forwards;
 }
@@ -135,4 +153,48 @@ html.intro-lock body {
     animation-duration: 0.22s;
     animation-timing-function: ease;
   }
+}
+
+/* Page scrollbar: same oil-glass fill as the case-study scrollbar. Firefox can't paint gradients, and Chrome ignores ::-webkit-scrollbar once scrollbar-color is set, so only use these where webkit scrollbars aren't supported */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(36, 32, 64, 0.92) transparent;
+  }
+}
+
+html::-webkit-scrollbar {
+  width: 14px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 176, 206, 0.26) 0%,
+      rgba(255, 214, 150, 0.22) 30%,
+      rgba(120, 220, 255, 0.26) 62%,
+      rgba(176, 146, 255, 0.3) 100%
+    ),
+    rgba(6, 8, 16, 0.94);
+  background-clip: padding-box;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 176, 206, 0.45) 0%,
+      rgba(255, 214, 150, 0.4) 30%,
+      rgba(120, 220, 255, 0.45) 62%,
+      rgba(176, 146, 255, 0.5) 100%
+    ),
+    rgba(6, 8, 16, 0.94);
+  background-clip: padding-box;
 }

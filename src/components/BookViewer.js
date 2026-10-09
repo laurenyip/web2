@@ -37,17 +37,17 @@ function pageAt(pages, index) {
   return pages[index]
 }
 
-function pagePositionLabel(page) {
+function pagePositionLabel(page, total) {
   if (!page) return ''
-  if (/^\d+$/.test(page.label)) return `${page.label} / 76`
+  if (/^\d+$/.test(page.label)) return `${page.label} / ${total}`
   return page.label
 }
 
-function spreadPositionLabel(left, right) {
+function spreadPositionLabel(left, right, total) {
   if (!left && right?.label === 'Cover') return 'Cover'
   if (left?.label === 'Back cover' && !right) return 'Back cover'
   if (left && right && /^\d+$/.test(left.label) && /^\d+$/.test(right.label)) {
-    return `${left.label}\u2013${right.label} / 76`
+    return `${left.label}\u2013${right.label} / ${total}`
   }
   const parts = [left?.label, right?.label].filter(Boolean)
   return parts.join(' \u2013 ')
@@ -104,8 +104,23 @@ function Paper({ page, priority = false }) {
   )
 }
 
-export default function BookViewer({ pages, name = 'Magazine' }) {
+/**
+ * Page-turning viewer for a list of page images (cover, then two-page spreads).
+ * `pageWidth` / `pageHeight` set the page aspect ratio; numbered pages are labelled "n / total".
+ */
+export default function BookViewer({ pages, name = 'Magazine', kind = 'magazine', pageWidth = 430, pageHeight = 543 }) {
   const count = pages.length
+  const numberedTotal = useMemo(() => pages.filter((page) => /^\d+$/.test(page.label)).length, [pages])
+  // Same 543px max page height for every book; width follows the page aspect ratio.
+  const sizeStyle = useMemo(() => {
+    const maxPageWidth = Math.round((543 * pageWidth) / pageHeight)
+    return {
+      '--book-spread-ratio': `${pageWidth * 2} / ${pageHeight}`,
+      '--book-page-ratio': `${pageWidth} / ${pageHeight}`,
+      '--book-spread-max': `${maxPageWidth * 2}px`,
+      '--book-single-max': `${maxPageWidth + 10}px`,
+    }
+  }, [pageWidth, pageHeight])
   const maxLeaf = maxLeafFor(count)
   const rootRef = useRef(null)
   const bookRef = useRef(null)
@@ -466,8 +481,8 @@ export default function BookViewer({ pages, name = 'Magazine' }) {
 
   const view = spreadAt(leaf, count)
   const indicator = isMobile
-    ? pagePositionLabel(pages[mobileIndex])
-    : spreadPositionLabel(pageAt(pages, view.left), pageAt(pages, view.right))
+    ? pagePositionLabel(pages[mobileIndex], numberedTotal)
+    : spreadPositionLabel(pageAt(pages, view.left), pageAt(pages, view.right), numberedTotal)
 
   const canPrev = isMobile ? mobileIndex > 0 : leaf > 0
   const canNext = isMobile ? mobileIndex < count - 1 : leaf < maxLeaf
@@ -534,7 +549,8 @@ export default function BookViewer({ pages, name = 'Magazine' }) {
       className={`book-viewer${isMobile ? ' book-viewer--mobile' : ''}`}
       role="region"
       tabIndex={0}
-      aria-label={`${name} magazine`}
+      aria-label={`${name} ${kind}`}
+      style={sizeStyle}
       onKeyDown={onKeyDown}
     >
       <p className="book-viewer-sr">

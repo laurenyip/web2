@@ -6,7 +6,7 @@ export const WORK_ROW2 = ['spruce', 'aurora', 'amazon-giftwrapping']
 export const WORK_ROW3 = ['csa', 'the-lyre', 'byline']
 
 /** Continued work — square thumbs below the main grid (revealed on click) */
-export const WORK_ROW4 = ['kodetic', 'annaviola']
+export const WORK_ROW4 = ['kodetic', 'annaviola', 'jellyfish-umbrella']
 
 export const WORK_PROJECTS = {
   starmap: {
@@ -30,7 +30,7 @@ export const WORK_PROJECTS = {
     hasCaseStudy: true,
     portfolioThumb: true,
     cardBg: '#3E5D39',
-    framerPath: '/spruce',
+    localCaseStudy: 'spruce',
   },
   aurora: {
     id: 'aurora',
@@ -41,7 +41,7 @@ export const WORK_PROJECTS = {
     hasCaseStudy: true,
     portfolioThumb: true,
     cardBg: '#1a1a1a',
-    framerPath: '/aurora',
+    localCaseStudy: 'aurora',
   },
   'amazon-giftwrapping': {
     id: 'amazon-giftwrapping',
@@ -52,7 +52,7 @@ export const WORK_PROJECTS = {
     hasCaseStudy: true,
     portfolioThumb: true,
     cardBg: '#90BCFF',
-    framerPath: '/amazon-giftwrapping',
+    localCaseStudy: 'amazon-giftwrapping',
   },
   csa: {
     id: 'csa',
@@ -69,10 +69,11 @@ export const WORK_PROJECTS = {
   'jellyfish-umbrella': {
     id: 'jellyfish-umbrella',
     title: 'jellyfish umbrella',
-    description: 'zine',
+    description: "A light-up jellyfish umbrella, its control panel, and a zine, built to spark kids' interest in engineering.",
     tags: ['Art tech', 'Creative Direction', 'Print'],
     image: '/images/projects/jellyfish-umbrella.png',
     hasCaseStudy: true,
+    localCaseStudy: 'jellyfish',
     link: '/rolypolyzine.pdf',
   },
   'react-to-this': {

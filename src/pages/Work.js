@@ -65,6 +65,7 @@ export default function Work() {
 
   useEffect(() => {
     const framerPaths = framerPathsKey ? framerPathsKey.split('|') : []
+    if (!framerPaths.length) return undefined
     const preconnect = document.createElement('link')
     preconnect.rel = 'preconnect'
     preconnect.href = FRAMER_ORIGIN
