@@ -87,6 +87,9 @@ export function paletteFromGif(gif: HTMLImageElement | null): IntroPalette {
 
 export type SkyPlace = { lat: number; lon: number }
 
+/** Fixed observer for the loading sky: Vancouver, BC. */
+export const INTRO_SKY_PLACE: SkyPlace = { lat: 49.2827, lon: -123.1207 }
+
 export type IntroStar = {
   x: number
   y: number
@@ -103,53 +106,6 @@ export type IntroSky = { stars: IntroStar[]; lines: IntroLine[] }
 
 const DEG = Math.PI / 180
 
-/** Representative coordinates for a timezone. Used only when Geolocation is unavailable. */
-const ZONE_PLACE: Record<string, readonly [number, number]> = {
-  'America/Los_Angeles': [34.05, -118.24],
-  'America/Vancouver': [49.28, -123.12],
-  'America/Tijuana': [32.51, -117.04],
-  'America/Denver': [39.74, -104.99],
-  'America/Phoenix': [33.45, -112.07],
-  'America/Chicago': [41.88, -87.63],
-  'America/Mexico_City': [19.43, -99.13],
-  'America/New_York': [40.71, -74.01],
-  'America/Toronto': [43.65, -79.38],
-  'America/Anchorage': [61.22, -149.9],
-  'Pacific/Honolulu': [21.31, -157.86],
-  'America/Sao_Paulo': [-23.55, -46.63],
-  'America/Argentina/Buenos_Aires': [-34.6, -58.38],
-  'America/Santiago': [-33.45, -70.67],
-  'America/Lima': [-12.05, -77.04],
-  'Europe/London': [51.51, -0.13],
-  'Europe/Paris': [48.86, 2.35],
-  'Europe/Berlin': [52.52, 13.41],
-  'Europe/Madrid': [40.42, -3.7],
-  'Europe/Rome': [41.9, 12.5],
-  'Europe/Amsterdam': [52.37, 4.9],
-  'Europe/Stockholm': [59.33, 18.07],
-  'Europe/Moscow': [55.76, 37.62],
-  'Africa/Cairo': [30.04, 31.24],
-  'Africa/Johannesburg': [-26.2, 28.05],
-  'Africa/Lagos': [6.52, 3.38],
-  'Africa/Nairobi': [-1.29, 36.82],
-  'Asia/Dubai': [25.2, 55.27],
-  'Asia/Kolkata': [28.61, 77.21],
-  'Asia/Calcutta': [28.61, 77.21],
-  'Asia/Shanghai': [31.23, 121.47],
-  'Asia/Hong_Kong': [22.32, 114.17],
-  'Asia/Taipei': [25.03, 121.57],
-  'Asia/Tokyo': [35.68, 139.69],
-  'Asia/Seoul': [37.57, 126.98],
-  'Asia/Singapore': [1.35, 103.82],
-  'Asia/Bangkok': [13.76, 100.5],
-  'Australia/Sydney': [-33.87, 151.21],
-  'Australia/Melbourne': [-37.81, 144.96],
-  'Australia/Brisbane': [-27.47, 153.03],
-  'Australia/Perth': [-31.95, 115.86],
-  'Australia/Adelaide': [-34.93, 138.6],
-  'Pacific/Auckland': [-36.85, 174.76],
-}
-
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n))
 }
@@ -157,29 +113,6 @@ function clamp(n: number, min: number, max: number) {
 function wrap360(deg: number) {
   const x = deg % 360
   return x < 0 ? x + 360 : x
-}
-
-function fallbackLatitude(tz: string) {
-  if (tz.startsWith('Antarctica/')) return -75
-  if (
-    tz.startsWith('Australia/') ||
-    tz.startsWith('Pacific/Auckland') ||
-    tz.startsWith('Pacific/Chatham') ||
-    tz.includes('Argentina') ||
-    tz.includes('Sao_Paulo') ||
-    tz.includes('Santiago') ||
-    tz.includes('Johannesburg') ||
-    tz.includes('Maputo') ||
-    tz.includes('Harare')
-  ) {
-    return tz.startsWith('Australia/') ? -33 : -30
-  }
-  if (tz.startsWith('Europe/')) return 50
-  if (tz.startsWith('Asia/')) return 30
-  if (tz.startsWith('Africa/')) return 5
-  if (tz.startsWith('Pacific/')) return 0
-  if (tz.startsWith('America/')) return 40
-  return 37
 }
 
 /** Greenwich mean sidereal time in degrees for a UTC instant (Meeus). */
@@ -210,44 +143,6 @@ function angularSeparation(ra1: number, dec1: number, ra2: number, dec2: number)
     Math.sin(dec1 * DEG) * Math.sin(dec2 * DEG) +
     Math.cos(dec1 * DEG) * Math.cos(dec2 * DEG) * Math.cos((ra1 - ra2) * DEG)
   return Math.acos(clamp(c, -1, 1)) / DEG
-}
-
-/**
- * Coarse sky for the visitor's timezone. Paints immediately so the loader
- * never waits on a permission prompt. Precise coordinates are not logged.
- */
-export function coarseSkyPlace(now = new Date()): SkyPlace {
-  let tz = ''
-  try {
-    tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''
-  } catch {
-    tz = ''
-  }
-  const known = ZONE_PLACE[tz]
-  if (known) return { lat: known[0], lon: known[1] }
-  const offsetHours = -now.getTimezoneOffset() / 60
-  return { lat: fallbackLatitude(tz), lon: clamp(offsetHours * 15, -180, 180) }
-}
-
-/** Non-blocking Geolocation. Calls back only with a finite in-range fix; ignores denial and timeout. */
-export function watchVisitorPlace(onPlace: (place: SkyPlace) => void) {
-  if (typeof navigator === 'undefined' || !navigator.geolocation) return () => {}
-  let stopped = false
-  navigator.geolocation.getCurrentPosition(
-    (pos) => {
-      if (stopped) return
-      const lat = pos.coords.latitude
-      const lon = pos.coords.longitude
-      if (!Number.isFinite(lat) || !Number.isFinite(lon)) return
-      if (Math.abs(lat) > 90 || Math.abs(lon) > 180) return
-      onPlace({ lat, lon })
-    },
-    () => {},
-    { enableHighAccuracy: false, maximumAge: 30 * 60 * 1000, timeout: 4000 },
-  )
-  return () => {
-    stopped = true
-  }
 }
 
 function projectAbove(altDeg: number, azDeg: number, width: number, height: number) {

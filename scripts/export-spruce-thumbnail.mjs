@@ -24,7 +24,7 @@ const GIF_OUT = path.join(ROOT, 'public/thumbnails/spruce-case-study.gif')
 const POSTER_OUT = path.join(ROOT, 'public/thumbnails/spruce-poster.jpg')
 
 const ANIMATED =
-  '.spruce-thumb-logo-wrap, .spruce-sparkle'
+  '.spruce-thumb-logo-wrap, .spruce-thumb-light-drift, .spruce-thumb-light-sheen'
 
 async function seekFrame(page, timeMs) {
   await page.evaluate(
@@ -43,8 +43,8 @@ async function seekFrame(page, timeMs) {
 
         el.style.animationPlayState = 'paused'
 
-        if (el.classList.contains('spruce-sparkle')) {
-          const dur = parseFloat(styles.animationDuration) * 1000 || 1200
+        if (!el.classList.contains('spruce-thumb-logo-wrap')) {
+          const dur = parseFloat(styles.animationDuration) * 1000 || 16000
           const delay = parseFloat(styles.animationDelay) * 1000 || 0
           el.style.animationDelay = `-${((t + delay) % dur)}ms`
         } else {

@@ -36,6 +36,7 @@
   position: absolute;
   top: 58%;
   left: 50%;
+  z-index: 2;
   width: calc(280 / 360 * 100cqi);
   max-width: 280px;
   transform: translateX(-50%);
@@ -69,27 +70,112 @@
   animation: amazon-gift-bow-sway var(--amazon-cycle) infinite;
 }
 
-.amazon-gift-thumb-sparkles {
+.amazon-gift-thumb-confetti {
   position: absolute;
   inset: 0;
+  z-index: 1;
+  overflow: hidden;
   pointer-events: none;
-  animation: amazon-gift-sparkles-in var(--amazon-cycle) infinite;
+  animation: amazon-gift-confetti-in var(--amazon-cycle) forwards;
 }
 
-.amazon-gift-sparkle {
+.amazon-gift-confetti {
+  --piece-opacity: 0.72;
   position: absolute;
   display: block;
   opacity: 0;
-  transform: scale(0);
-  animation-name: amazon-gift-sparkle;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
+  border-radius: 1px;
+  background-repeat: no-repeat;
+  background-size: 260% 260%;
+  background-position: 28% 42%;
+  box-shadow: inset 0 0.5px 0 rgba(255, 252, 245, 0.72);
+  animation-name: amazon-gift-confetti-fall, amazon-gift-foil-shine;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  animation-fill-mode: backwards, none;
+  pointer-events: none;
 }
 
-.amazon-gift-sparkle svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+.amazon-gift-confetti--gold {
+  background-image: linear-gradient(
+    var(--foil-angle, 118deg),
+    #6b4e12 0%,
+    #f4e29a 18%,
+    #fffbe4 34%,
+    #d4ae45 50%,
+    #fff3bc 68%,
+    #8d671c 100%
+  );
+}
+
+.amazon-gift-confetti--champagne {
+  background-image: linear-gradient(
+    var(--foil-angle, 118deg),
+    #a8926a 0%,
+    #fff8e8 20%,
+    #ffffff 36%,
+    #e7d7b0 52%,
+    #fffdf6 70%,
+    #b39a72 100%
+  );
+}
+
+.amazon-gift-confetti--copper {
+  background-image: linear-gradient(
+    var(--foil-angle, 118deg),
+    #7a3d22 0%,
+    #f0b184 18%,
+    #ffe7d2 34%,
+    #c56d3e 52%,
+    #ffd2b0 70%,
+    #8a4424 100%
+  );
+}
+
+.amazon-gift-confetti--silver {
+  background-image: linear-gradient(
+    var(--foil-angle, 118deg),
+    #5e6c7a 0%,
+    #e7eef4 18%,
+    #ffffff 36%,
+    #b7c3ce 52%,
+    #f5f8fb 70%,
+    #6d7c8a 100%
+  );
+}
+
+.amazon-gift-confetti--rose {
+  background-image: linear-gradient(
+    var(--foil-angle, 118deg),
+    #8a4638 0%,
+    #f0b5a4 18%,
+    #fff1ea 36%,
+    #d48978 52%,
+    #ffd8cc 70%,
+    #a15a48 100%
+  );
+}
+
+.amazon-gift-confetti--patina {
+  background-image: linear-gradient(
+    var(--foil-angle, 118deg),
+    #314433 0%,
+    #c5d4ae 18%,
+    #f3f6ea 36%,
+    #6f8a62 54%,
+    #dce6cc 72%,
+    #3d5340 100%
+  );
+}
+
+.amazon-gift-confetti--circle {
+  border-radius: 50%;
+}
+
+.portfolio-card:hover .amazon-gift-confetti,
+.portfolio-card:focus-visible .amazon-gift-confetti,
+.portfolio-card:focus-within .amazon-gift-confetti {
+  --piece-opacity: 1;
 }
 
 .amazon-gift-glow {
@@ -151,8 +237,8 @@
   }
 }
 
-/* Sparkle field visible from ~2s */
-@keyframes amazon-gift-sparkles-in {
+/* Confetti field visible from ~2s */
+@keyframes amazon-gift-confetti-in {
   0%,
   24.9% {
     opacity: 0;
@@ -163,15 +249,32 @@
   }
 }
 
-@keyframes amazon-gift-sparkle {
+@keyframes amazon-gift-foil-shine {
   0%,
   100% {
-    opacity: 0;
-    transform: scale(0);
+    background-position: 8% 36%;
   }
-  45% {
-    opacity: 0.8;
-    transform: scale(1);
+  50% {
+    background-position: 92% 64%;
+  }
+}
+
+@keyframes amazon-gift-confetti-fall {
+  0% {
+    top: -12%;
+    opacity: 0;
+    transform: translateX(0) rotate(var(--rot, 0deg));
+  }
+  14% {
+    opacity: var(--piece-opacity, 0.72);
+  }
+  50% {
+    transform: translateX(calc(var(--drift, 12px) * 0.55)) rotate(calc(var(--rot, 0deg) + 80deg));
+  }
+  100% {
+    top: 114%;
+    opacity: 0;
+    transform: translateX(var(--drift, 12px)) rotate(calc(var(--rot, 0deg) + 170deg));
   }
 }
 
@@ -199,20 +302,40 @@
 
   .amazon-gift-logo-wrap,
   .amazon-gift-logo-bow,
-  .amazon-gift-thumb-sparkles,
-  .amazon-gift-sparkle,
+  .amazon-gift-thumb-confetti,
+  .amazon-gift-confetti,
   .amazon-gift-glow {
     animation: none;
+  }
+
+  .amazon-gift-logo-wrap {
+    opacity: 1;
+    transform: translateX(-50%);
+  }
+
+  .amazon-gift-logo-bow,
+  .amazon-gift-thumb-confetti {
     opacity: 1;
     transform: none;
   }
 
-  .amazon-gift-logo-wrap {
-    transform: translateX(-50%);
+  .amazon-gift-confetti {
+    opacity: 0;
+    transform: rotate(var(--rot, 0deg));
   }
 
-  .amazon-gift-sparkle {
-    opacity: 0.6;
-    transform: scale(0.85);
+  .amazon-gift-confetti--still {
+    opacity: 0.34;
+  }
+
+  .amazon-gift-glow {
+    opacity: 0.4;
+    transform: translate(-50%, -50%);
+  }
+
+  .portfolio-card:hover .amazon-gift-confetti--still,
+  .portfolio-card:focus-visible .amazon-gift-confetti--still,
+  .portfolio-card:focus-within .amazon-gift-confetti--still {
+    opacity: 0.55;
   }
 }

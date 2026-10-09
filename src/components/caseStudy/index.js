@@ -62,9 +62,9 @@ export function BodyText({ children, className = '' }) {
   return <p className={`cs-body ${className}`.trim()}>{children}</p>
 }
 
-export function ImageBlock({ src, alt, caption, wide = false, priority = false }) {
+export function ImageBlock({ src, alt, caption, wide = false, priority = false, className = '' }) {
   return (
-    <figure className={`cs-image-block${wide ? ' cs-image-block--wide' : ''}`}>
+    <figure className={`cs-image-block${wide ? ' cs-image-block--wide' : ''} ${className}`.trim()}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt={alt} loading={priority ? 'eager' : 'lazy'} />
       {caption ? <figcaption className="cs-body">{caption}</figcaption> : null}

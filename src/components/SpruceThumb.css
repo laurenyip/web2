@@ -30,6 +30,7 @@
   position: absolute;
   left: 50%;
   top: 42%;
+  z-index: 2;
   width: calc(220 / 360 * 100cqi);
   max-width: 220px;
   transform: translate(-50%, -50%);
@@ -46,30 +47,96 @@
   height: auto;
 }
 
-.spruce-thumb-sparkles {
+.spruce-thumb-light {
   position: absolute;
   inset: 0;
+  z-index: 1;
+  overflow: hidden;
   pointer-events: none;
 }
 
-.spruce-sparkle {
+.spruce-thumb-light-drift,
+.spruce-thumb-light-sheen {
   position: absolute;
   display: block;
-  opacity: 0;
-  transform: scale(0);
-  animation-name: spruce-sparkle;
+  pointer-events: none;
+}
+
+.spruce-thumb-light-drift {
+  border-radius: 50%;
+  filter: blur(22px);
+  mix-blend-mode: screen;
+  animation-name: spruce-light-drift;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
 
-.spruce-sparkle--glow {
-  filter: drop-shadow(0 0 4px rgba(255, 224, 133, 0.6));
+.spruce-thumb-light-drift--sun {
+  width: 58%;
+  height: 78%;
+  left: -12%;
+  top: -22%;
+  opacity: 0.42;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(251, 249, 237, 0.95) 0%,
+    rgba(251, 249, 237, 0.28) 42%,
+    rgba(251, 249, 237, 0) 72%
+  );
+  animation-duration: 16s;
 }
 
-.spruce-sparkle svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+.spruce-thumb-light-drift--canopy {
+  width: 52%;
+  height: 70%;
+  right: -10%;
+  bottom: -16%;
+  opacity: 0.28;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(186, 206, 154, 0.7) 0%,
+    rgba(62, 93, 57, 0.18) 46%,
+    rgba(62, 93, 57, 0) 74%
+  );
+  animation-duration: 22s;
+  animation-delay: -9s;
+}
+
+.spruce-thumb-light-sheen {
+  top: -30%;
+  left: -46%;
+  width: 38%;
+  height: 160%;
+  opacity: 0.55;
+  background: linear-gradient(
+    102deg,
+    rgba(251, 249, 237, 0) 0%,
+    rgba(251, 249, 237, 0.05) 42%,
+    rgba(251, 249, 237, 0.28) 50%,
+    rgba(251, 249, 237, 0.05) 58%,
+    rgba(251, 249, 237, 0) 100%
+  );
+  mix-blend-mode: soft-light;
+  transform: translate3d(0, 0, 0) rotate(16deg);
+  animation: spruce-light-sheen 18s ease-in-out infinite;
+}
+
+.portfolio-card:hover .spruce-thumb-light-drift--sun,
+.portfolio-card:focus-visible .spruce-thumb-light-drift--sun,
+.portfolio-card:focus-within .spruce-thumb-light-drift--sun {
+  opacity: 0.72;
+}
+
+.portfolio-card:hover .spruce-thumb-light-drift--canopy,
+.portfolio-card:focus-visible .spruce-thumb-light-drift--canopy,
+.portfolio-card:focus-within .spruce-thumb-light-drift--canopy {
+  opacity: 0.48;
+}
+
+.portfolio-card:hover .spruce-thumb-light-sheen,
+.portfolio-card:focus-visible .spruce-thumb-light-sheen,
+.portfolio-card:focus-within .spruce-thumb-light-sheen {
+  opacity: 0.9;
 }
 
 /* 0.3s delay, 0.75s slide; pulse 1.1–1.5s */
@@ -97,28 +164,69 @@
   }
 }
 
-@keyframes spruce-sparkle {
+@keyframes spruce-light-drift {
   0%,
   100% {
-    opacity: 0;
-    transform: scale(0);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    opacity: 1;
-    transform: scale(1);
+    transform: translate3d(7%, 5%, 0) scale(1.06);
+  }
+}
+
+@keyframes spruce-light-sheen {
+  0%,
+  100% {
+    transform: translate3d(-6%, 0, 0) rotate(16deg);
+  }
+  50% {
+    transform: translate3d(420%, 0, 0) rotate(16deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spruce-thumb-logo-wrap,
-  .spruce-sparkle {
+  .spruce-thumb-logo-wrap {
     animation: none;
     opacity: 1;
     transform: translate(-50%, -50%);
   }
 
-  .spruce-sparkle {
-    opacity: 0.65;
-    transform: scale(0.85);
+  .spruce-thumb-light-drift,
+  .spruce-thumb-light-sheen {
+    animation: none;
+  }
+
+  .spruce-thumb-light-drift--sun {
+    opacity: 0.36;
+    transform: none;
+  }
+
+  .spruce-thumb-light-drift--canopy {
+    opacity: 0.22;
+    transform: none;
+  }
+
+  .spruce-thumb-light-sheen {
+    opacity: 0.28;
+    transform: translate3d(42%, 0, 0) rotate(16deg);
+  }
+
+  .portfolio-card:hover .spruce-thumb-light-drift--sun,
+  .portfolio-card:focus-visible .spruce-thumb-light-drift--sun,
+  .portfolio-card:focus-within .spruce-thumb-light-drift--sun {
+    opacity: 0.55;
+  }
+
+  .portfolio-card:hover .spruce-thumb-light-drift--canopy,
+  .portfolio-card:focus-visible .spruce-thumb-light-drift--canopy,
+  .portfolio-card:focus-within .spruce-thumb-light-drift--canopy {
+    opacity: 0.36;
+  }
+
+  .portfolio-card:hover .spruce-thumb-light-sheen,
+  .portfolio-card:focus-visible .spruce-thumb-light-sheen,
+  .portfolio-card:focus-within .spruce-thumb-light-sheen {
+    opacity: 0.42;
+    transform: translate3d(42%, 0, 0) rotate(16deg);
   }
 }
