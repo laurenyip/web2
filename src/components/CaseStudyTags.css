@@ -15,7 +15,7 @@
   align-content: flex-start;
   gap: 6px;
   width: max-content;
-  max-width: min(16rem, 62%);
+  max-width: min(22rem, calc(100% - 20px));
   margin: 0;
   padding: 0;
   list-style: none;
@@ -24,82 +24,50 @@
 }
 
 .case-study-tag {
-  position: relative;
-  isolation: isolate;
   margin: 0;
-  padding: 7px 15px;
+  padding: 5px 12px;
   border-radius: 999px;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.92);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.04) 46%, rgba(255, 255, 255, 0.06) 100%),
-    linear-gradient(125deg, rgba(255, 186, 214, 0.07), rgba(255, 216, 156, 0.05) 38%, rgba(140, 220, 255, 0.06) 68%, rgba(186, 156, 255, 0.07)),
-    rgba(12, 14, 24, 0.4);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.72),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.14),
-    0 0 6px rgba(255, 186, 214, 0.32),
-    0 0 10px rgba(255, 216, 156, 0.18),
-    0 0 12px rgba(130, 216, 255, 0.26),
-    0 0 16px rgba(186, 156, 255, 0.22);
-  backdrop-filter: blur(10px) saturate(1.4);
-  -webkit-backdrop-filter: blur(10px) saturate(1.4);
-  text-shadow: 0 1px 1.5px rgba(0, 0, 0, 0.45);
+    linear-gradient(
+      118deg,
+      rgba(255, 176, 206, 0.18) 0%,
+      rgba(255, 214, 150, 0.13) 30%,
+      rgba(120, 220, 255, 0.15) 62%,
+      rgba(176, 146, 255, 0.17) 100%
+    ),
+    rgba(10, 12, 20, 0.62);
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
   font-family: Arial, sans-serif;
-  font-size: 11px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 1.3px;
-  line-height: 1.3;
+  line-height: 21px;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   white-space: nowrap;
-}
-
-/* Iridescent ring only — the center stays clear glass, not a colored sticker. */
-.case-study-tag::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: -3px;
-  border-radius: inherit;
-  padding: 3px;
-  background: conic-gradient(
-    from 210deg,
-    rgba(255, 186, 214, 0.02),
-    rgba(255, 186, 214, 0.72),
-    rgba(255, 216, 156, 0.58),
-    rgba(255, 255, 255, 0.22),
-    rgba(140, 224, 255, 0.66),
-    rgba(186, 156, 255, 0.68),
-    rgba(255, 186, 214, 0.02)
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  filter: blur(1.25px);
-  opacity: 0.9;
-  pointer-events: none;
 }
 
 /* Lyre’s QR and masthead sit in the top-right of the crop. */
 .work-card--the-lyre .case-study-tags {
-  top: 42%;
-  max-width: 7.2rem;
+  top: 26%;
+  gap: 4px;
+  max-width: 9rem;
 }
 
 /* Content-systems Lyre crop also keeps the QR in the top-right. */
 .cs-work-card--lyre .case-study-tags {
   top: 38%;
-  max-width: 7.2rem;
+  max-width: 9rem;
 }
 
-/* Cradle’s patient table starts just under a thin header, so keep the pills in that top band. */
-.cs-work-card--cradle .case-study-tags {
-  max-width: 12.5rem;
+/* Cradle’s patient table starts just under a thin header; tighter pills keep it to two rows. */
+.cs-work-card--cradle .case-study-tag {
+  padding-inline: 8px;
 }
 
 /* Byline’s wordmark and season line occupy the top. */
@@ -108,28 +76,24 @@
   right: auto;
   left: 10px;
   justify-content: flex-start;
-  max-width: 11rem;
+  max-width: 13.5rem;
 }
 
-/* CSA labels are long; one row across the top stays above the caption. */
-.portfolio-card-media--csa,
-.cs-work-card-media--csa {
-  container-type: inline-size;
-  container-name: csa-card;
-}
-
+/* CSA labels are long; they wrap from the top-left and the hover caption tightens below them. */
 .portfolio-card-media--csa .case-study-tags,
 .cs-work-card-media--csa .case-study-tags {
-  --csa-row: 386px;
   top: 10px;
-  right: auto;
-  left: 50%;
-  width: max-content;
+  right: 6px;
+  left: 10px;
+  width: auto;
   max-width: none;
-  flex-wrap: nowrap;
-  justify-content: center;
-  transform: translateX(-50%) scale(min(1, (100cqi - 16px) / var(--csa-row)));
-  transform-origin: top center;
+  gap: 4px;
+  justify-content: flex-start;
+}
+
+.portfolio-card-media--csa .case-study-tag,
+.cs-work-card-media--csa .case-study-tag {
+  padding-inline: 5px;
 }
 
 @media (hover: hover) and (pointer: fine) {

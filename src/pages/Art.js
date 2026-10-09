@@ -61,9 +61,6 @@ export default function Art() {
               <br />
               Use the arrows to browse, or click the image to view full screen.
             </p>
-            <p className="mt-4 mb-0">
-              I&apos;m posting 100 times in 100 days. Follow along on my X or Instagram, linked in the footer!
-            </p>
           </div>
         </header>
 

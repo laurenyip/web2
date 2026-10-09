@@ -3,13 +3,11 @@
 import { useEffect } from 'react'
 import {
   buildIntroSky,
-  coarseSkyPlace,
+  INTRO_SKY_PLACE,
   paintIntroSky,
   paletteFromGif,
-  watchVisitorPlace,
   type IntroPalette,
   type IntroSky,
-  type SkyPlace,
 } from './introSkyExtend'
 
 const MIN_HOLD_MS = 1100
@@ -61,7 +59,7 @@ export default function IntroLoader() {
     const canvas = el.querySelector<HTMLCanvasElement>('.intro-loader__sky')
     const gif = el.querySelector<HTMLImageElement>('.intro-loader__gif')
     let palette: IntroPalette = paletteFromGif(null)
-    let place: SkyPlace = coarseSkyPlace()
+    const place = INTRO_SKY_PLACE
     let sky: IntroSky = EMPTY_SKY
     let sized = { w: 0, h: 0 }
     let skyKey = ''
@@ -104,13 +102,6 @@ export default function IntroLoader() {
       raf = window.requestAnimationFrame(loop)
     }
 
-    const stopWatch = watchVisitorPlace((next) => {
-      if (cancelled) return
-      place = next
-      skyKey = ''
-      if (reduced) paint(0)
-    })
-
     const onGif = () => {
       if (cancelled || !gif) return
       palette = paletteFromGif(gif)
@@ -142,7 +133,6 @@ export default function IntroLoader() {
 
     return () => {
       cancelled = true
-      stopWatch()
       if (raf) window.cancelAnimationFrame(raf)
       if (exitTimer) window.clearTimeout(exitTimer)
       if (resizeTimer) window.clearTimeout(resizeTimer)
