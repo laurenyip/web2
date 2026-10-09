@@ -16,7 +16,7 @@ import {
 import './caseStudy/CaseStudy.css'
 
 const I = {
-  banner: '/images/projects/annaviola/banner-home.png',
+  banner: '/images/projects/annaviola/annaviola-home.jpg',
   cover: '/images/projects/annaviola/silver-secrets-cover.png',
   parallel: '/images/projects/annaviola/parallel-lines.png',
   rtwp: '/images/projects/annaviola/right-time-wrong-person.png',
@@ -36,7 +36,7 @@ export default function AnnaViolaCaseStudy({ onNext }) {
     <CaseStudy>
       <ImageBlock
         src={I.banner}
-        alt="Anna Viola site banner — Listen, ornament wordmark, socials, hero portrait, Releases"
+        alt="Anna Viola website homepage — starry black background with white filigree borders, script wordmark, Listen link, social icons, and a black-and-white portrait above the Releases section"
         wide
         priority
       />
