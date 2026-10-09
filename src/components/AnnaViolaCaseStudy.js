@@ -33,7 +33,7 @@ const I = {
 
 export default function AnnaViolaCaseStudy({ onNext }) {
   return (
-    <CaseStudy>
+    <CaseStudy className="cs--annaviola">
       <ImageBlock
         src={I.banner}
         alt="Anna Viola website homepage — starry black background with white filigree borders, script wordmark, Listen link, social icons, and a black-and-white portrait above the Releases section"
@@ -74,7 +74,7 @@ export default function AnnaViolaCaseStudy({ onNext }) {
         <ImageBlock
           src={I.moodboard}
           alt="Animated slides from the Silver Secrets website moodboard"
-          wide
+          className="cs-image-block--moodboard"
         />
       </CaseStudySection>
 
@@ -87,7 +87,6 @@ export default function AnnaViolaCaseStudy({ onNext }) {
         <ImageBlock
           src={I.navbarEarly}
           alt="Earlier Anna Viola layout — Listen, News, Follow with centered ornament and portrait"
-          wide
         />
         <BodyText>
           I revised it to the navbar that shipped. Follow was an extra click once fans already knew the social
@@ -97,7 +96,6 @@ export default function AnnaViolaCaseStudy({ onNext }) {
         <ImageBlock
           src={I.navbarCurrent}
           alt="Current Anna Viola navbar with Listen, ornament logo, and social icons"
-          wide
         />
       </CaseStudySection>
 

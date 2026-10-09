@@ -174,12 +174,14 @@
   margin-top: 0;
 }
 
-/* Text after a visual gets the same breathing room as a visual after text */
+/* Text after a visual gets the same breathing room as a visual after text (see shared rhythm below) */
 .cs-image-block + .cs-body,
 .cs-image-grid + .cs-body,
 .cs-image-text + .cs-body,
-.cs-cover-demo + .cs-body {
-  margin-top: 48px;
+.cs-cover-demo + .cs-body,
+.cs-lyre-pair + .cs-body,
+.cs-lyre-gallery + .cs-body {
+  margin-top: var(--cs-media-gap);
 }
 
 /* Screen-recorded UI clips — shown near native size so they stay crisp */
@@ -476,4 +478,49 @@
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Anna Viola — breathing room under the full-bleed banner (the modal zeroes the hero's top margin) */
+.framer-modal-local-scroll .cs.cs--annaviola .cs-hero,
+.cs.cs--annaviola .cs-hero {
+  margin-top: 56px;
+}
+
+.cs-image-block--moodboard {
+  max-width: 560px;
+}
+
+/* —— Shared rhythm ——
+   Everything starts on the text column's left edge, and text and media sit one gap apart. */
+.cs {
+  --cs-media-gap: 32px;
+}
+
+.cs-section .cs-image-block,
+.cs-section .cs-image-grid,
+.cs-section .cs-image-text,
+.cs-section .cs-lyre-pair,
+.cs-section .cs-lyre-gallery,
+.cs-section .cs-cover-demo,
+.cs-hero + .cs-image-block {
+  margin-top: var(--cs-media-gap);
+}
+
+/* Narrower media hug the left edge instead of floating in the middle */
+.cs-section .cs-image-block,
+.cs-section .cs-cover-demo {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Only an opening banner runs edge to edge; wide images further down keep the text margins */
+.cs > .cs-image-block--wide:not(:first-child) {
+  width: auto;
+  max-width: var(--cs-content-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cs > .cs-image-block--wide:not(:first-child) img {
+  border-radius: var(--cs-radius);
 }

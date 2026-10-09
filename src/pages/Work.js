@@ -286,7 +286,15 @@ export default function Work() {
         <LocalCaseStudyModal
           studyId={openLocalStudy}
           onClose={() => setOpenLocalStudy(null)}
-          onChangeStudy={setOpenLocalStudy}
+          onChangeStudy={(id) => {
+            const framerPath = WORK_PROJECTS[id]?.framerPath
+            if (framerPath) {
+              setOpenLocalStudy(null)
+              setOpenFramer({ path: framerPath })
+              return
+            }
+            setOpenLocalStudy(id)
+          }}
         />
       )}
 

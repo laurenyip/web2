@@ -19,7 +19,7 @@ export const WORK_PROJECTS = {
     link: 'https://starmap.lol',
     portfolioThumb: true,
     cardBg: '#000000',
-    framerPath: '/starmap',
+    localCaseStudy: 'starmap',
   },
   spruce: {
     id: 'spruce',
