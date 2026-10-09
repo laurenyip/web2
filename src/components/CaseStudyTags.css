@@ -96,6 +96,29 @@
   padding-inline: 5px;
 }
 
+/* Under-the-card row (phones): normal flow, light pills on the page background */
+.case-study-tags.case-study-tags--inline {
+  position: static;
+  width: auto;
+  max-width: none;
+  justify-content: flex-start;
+  gap: 6px;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.case-study-tags--inline .case-study-tag {
+  padding: 4px 10px;
+  color: #374151;
+  border-color: rgba(156, 163, 175, 0.7);
+  background: #f9fafb;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  font-size: 12px;
+  letter-spacing: 1px;
+  line-height: 18px;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .case-study-tags {
     opacity: 0;

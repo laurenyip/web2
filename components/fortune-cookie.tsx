@@ -30,6 +30,9 @@ const FORTUNES = [
   'Dreaming is believing',
   'swim faster',
   'Life happens wherever you are, whether you make it or not.',
+  'May you live all the days of your life',
+  'Stop acting the maggot',
+  "Can't you be in love without determining your future first?",
 ]
 
 type Phase = 'idle' | 'breaking' | 'open' | 'dismissing' | 'done'
