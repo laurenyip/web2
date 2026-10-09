@@ -6,6 +6,7 @@ import AnnaViolaCaseStudy from './AnnaViolaCaseStudy'
 import CradleCaseStudy from './CradleCaseStudy'
 import CsaSystemsCaseStudy from './CsaSystemsCaseStudy'
 import LyreCaseStudy from './LyreCaseStudy'
+import StarmapCaseStudy from './StarmapCaseStudy'
 import './FramerCaseStudyModal.css'
 
 const LOCAL_STUDIES = {
@@ -14,6 +15,7 @@ const LOCAL_STUDIES = {
   cradle: CradleCaseStudy,
   'csa-content': CsaSystemsCaseStudy,
   lyre: LyreCaseStudy,
+  starmap: StarmapCaseStudy,
 }
 
 const NEXT_STUDY = {
@@ -22,6 +24,8 @@ const NEXT_STUDY = {
   cradle: 'csa-content',
   'csa-content': 'lyre',
   lyre: null,
+  // Aurora is still on Framer; Work opens it in the Framer modal.
+  starmap: 'aurora',
 }
 
 export default function LocalCaseStudyModal({ studyId, onClose, onChangeStudy }) {

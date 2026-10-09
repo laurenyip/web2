@@ -1,0 +1,421 @@
+/* Starmap case study — rebuilt from the Framer page.
+   Two layouts like the original: a 900px desktop column, and a phone layout below 900px.
+   Breakpoints use the container width so the page behaves the same inside the case study modal. */
+
+@font-face {
+  font-family: 'Boring Sans A Trial Regular';
+  src: url('/fonts/case-study/boring-sans-a-trial-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Urania Medium';
+  src: url('/fonts/case-study/urania-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.smcs {
+  container-type: inline-size;
+  background: #fff;
+}
+
+.smcs-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 900px;
+  margin: 0 auto;
+}
+
+.smcs .smcs-page > * {
+  margin: var(--gap, 0) 0 0;
+}
+
+/* Type */
+.smcs-heading {
+  font-family: 'Boring Sans A Trial Regular', sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 43.2px;
+  letter-spacing: 0;
+  color: #000;
+}
+
+.smcs-body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 1.3px;
+  color: #374151;
+}
+
+.smcs-body a {
+  color: #166d75;
+  text-decoration: none;
+}
+
+.smcs-label {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.6px;
+  letter-spacing: 1.44px;
+  color: #166d75;
+}
+
+/* Images */
+.smcs-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.smcs-rounded {
+  border-radius: 10px;
+}
+
+.smcs-no-time {
+  width: 500px;
+  align-self: center;
+}
+
+.smcs-w600 {
+  width: 600px;
+}
+
+.smcs-center {
+  align-self: center;
+}
+
+.smcs-constellation-shot {
+  width: 593px;
+}
+
+.smcs-home-page {
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+}
+
+/* Timeline / role / recognition */
+.smcs-meta {
+  display: grid;
+  grid-template-columns: 306px 307px 1fr;
+  align-items: start;
+  width: 100%;
+  height: 93px;
+}
+
+.smcs-meta > div {
+  height: 65px;
+}
+
+.smcs-meta dd {
+  margin-top: 6px;
+}
+
+/* 01 / 02 cards */
+.smcs-cards {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.smcs-card {
+  box-sizing: border-box;
+  width: 287px;
+  height: 258px;
+  padding: 17px 19px 0 23px;
+  background: #ccf;
+}
+
+.smcs-card-number {
+  margin: 0;
+  font-family: 'Urania Medium', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 33.6px;
+  letter-spacing: 2.24px;
+  color: #596880;
+}
+
+.smcs-card-title {
+  margin: 8px 0 0 -1px;
+  font-family: 'Boring Sans A Trial Regular', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 1.6px;
+  color: #000;
+}
+
+.smcs-card .smcs-body {
+  margin-top: 11px;
+}
+
+.smcs-confused {
+  width: 138px;
+  height: 120px;
+  object-fit: cover;
+}
+
+/* Remembering stuff */
+.smcs-pair {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding-left: 54px;
+}
+
+.smcs-pair .smcs-img:first-child {
+  width: 439px;
+}
+
+.smcs-pair .smcs-img:last-child {
+  width: 341px;
+}
+
+/* Mobile works too */
+.smcs-mobile {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+}
+
+.smcs-mobile .smcs-img {
+  width: 262px;
+}
+
+.smcs-mobile .smcs-body {
+  width: 300px;
+}
+
+/* Closing constellation */
+.smcs-outro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+  height: 400px;
+}
+
+.smcs-constellation-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 0;
+}
+
+.smcs-constellation {
+  width: min(100%, 240px);
+  height: auto;
+  aspect-ratio: 220 / 120;
+  overflow: visible;
+}
+
+.smcs-line {
+  fill: none;
+  stroke-width: 1;
+  animation: smcs-line-breathe 4s ease-in-out infinite;
+}
+
+.smcs-line--main {
+  stroke: rgba(109, 40, 217, 0.4);
+}
+
+.smcs-line--sub {
+  stroke: rgba(109, 40, 217, 0.32);
+}
+
+.smcs-line--faint {
+  stroke: rgba(109, 40, 217, 0.26);
+}
+
+@media (prefers-color-scheme: dark) {
+  .smcs-line--main {
+    stroke: rgba(200, 180, 255, 0.5);
+    stroke-width: 1.2;
+  }
+
+  .smcs-line--sub {
+    stroke: rgba(200, 180, 255, 0.42);
+    stroke-width: 1.1;
+  }
+
+  .smcs-line--faint {
+    stroke: rgba(200, 180, 255, 0.38);
+    stroke-width: 1.1;
+  }
+}
+
+@keyframes smcs-line-breathe {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+[class^='smcs-twinkle-'] {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.smcs-twinkle-a {
+  animation-name: smcs-twinkle-a;
+  animation-duration: 2.1s;
+}
+
+.smcs-twinkle-b {
+  animation-name: smcs-twinkle-b;
+  animation-duration: 1.8s;
+}
+
+.smcs-twinkle-c {
+  animation-name: smcs-twinkle-c;
+  animation-duration: 2.5s;
+}
+
+.smcs-twinkle-d {
+  animation-name: smcs-twinkle-d;
+  animation-duration: 1.6s;
+}
+
+.smcs-twinkle-e {
+  animation-name: smcs-twinkle-e;
+  animation-duration: 2.3s;
+}
+
+@keyframes smcs-twinkle-a {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  40% { opacity: 0.68; transform: scale(0.9); }
+  70% { opacity: 1; transform: scale(1.07); }
+}
+
+@keyframes smcs-twinkle-b {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  35% { opacity: 0.62; transform: scale(0.88); }
+  65% { opacity: 0.95; transform: scale(1.1); }
+}
+
+@keyframes smcs-twinkle-c {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  45% { opacity: 0.7; transform: scale(0.93); }
+  72% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes smcs-twinkle-d {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  38% { opacity: 0.58; transform: scale(0.87); }
+  68% { opacity: 1; transform: scale(1.09); }
+}
+
+@keyframes smcs-twinkle-e {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  42% { opacity: 0.72; transform: scale(0.91); }
+  74% { opacity: 1; transform: scale(1.06); }
+}
+
+/* Next link sits flush against the right edge, outside the column */
+.smcs-next {
+  margin: 32px 0 0;
+  padding-bottom: 52px;
+  text-align: right;
+}
+
+.smcs-next button {
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: 'Boring Sans A Trial Regular', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 1.6px;
+  color: #166d75;
+  cursor: pointer;
+}
+
+/* Phone layout */
+@container (max-width: 899.98px) {
+  .smcs-page {
+    width: auto;
+    padding: 0 20px;
+  }
+
+  .smcs .smcs-page > * {
+    margin-top: var(--gap-sm, var(--gap, 0));
+  }
+
+  .smcs .smcs-page > .smcs-hero {
+    width: calc(100% + 40px);
+    max-width: none;
+    margin-left: -20px;
+  }
+
+  .smcs-meta {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 65px;
+    align-content: start;
+    height: 232px;
+  }
+
+  .smcs .smcs-page > .smcs-no-time {
+    width: calc(100% - 3px);
+    align-self: flex-start;
+    margin-left: 3px;
+  }
+
+  .smcs-w600,
+  .smcs-constellation-shot {
+    width: 100%;
+  }
+
+  .smcs-home-page {
+    aspect-ratio: 350 / 199;
+  }
+
+  .smcs-cards,
+  .smcs-pair,
+  .smcs-mobile {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .smcs-pair {
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .smcs-pair .smcs-img:first-child,
+  .smcs-pair .smcs-img:last-child {
+    width: 100%;
+  }
+
+  .smcs-mobile {
+    gap: 36px;
+  }
+
+  .smcs-mobile .smcs-body {
+    margin-top: 1px;
+  }
+
+  .smcs-outro {
+    width: 100%;
+    height: auto;
+  }
+
+  .smcs-next {
+    margin-top: 136px;
+  }
+}
