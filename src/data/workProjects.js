@@ -83,6 +83,7 @@ export const WORK_PROJECTS = {
     description: 'SFU literary magazine — editorial design, Vol. 16 & 17',
     image: '/images/projects/lyre-poster-flux.png',
     hasCaseStudy: true,
+    localCaseStudy: 'lyre',
     link: 'https://journals.lib.sfu.ca/index.php/lyre/index',
   },
   byline: {

@@ -92,6 +92,23 @@
   margin-top: 24px;
 }
 
+.book-viewer + .cs-body {
+  margin-top: 48px;
+}
+
+.cs > .book-viewer:first-child {
+  margin-top: 0;
+  margin-bottom: 36px;
+}
+
+.cs-subtopic {
+  margin-top: 56px;
+}
+
+.cs-subtopic > .cs-header {
+  margin-bottom: 20px;
+}
+
 .cs-body a {
   color: #166d75;
   text-decoration: underline;
@@ -177,6 +194,79 @@
 .cs-image-grid-item .cs-body,
 .cs-image-text-media .cs-body {
   margin-top: 12px;
+}
+
+/* Lyre only — modest pair in the through-line, compact gallery under final thoughts */
+.cs-lyre-pair {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+  max-width: none;
+  margin: 28px 0 0;
+}
+
+.cs-lyre-pair + .cs-body {
+  margin-top: 24px;
+}
+
+.cs-lyre-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 48px 0 0;
+}
+
+.cs-lyre-pair figure,
+.cs-lyre-gallery figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.cs-lyre-pair img,
+.cs-lyre-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--cs-radius);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+
+.cs-lyre-gallery img {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cs-lyre-gallery button {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+  text-align: inherit;
+}
+
+.cs-lyre-gallery button:focus-visible {
+  outline: 2px solid #166d75;
+  outline-offset: 3px;
+}
+
+.cs-body.cs-lyre-type-freight {
+  font-family: "Freight Text Pro", Freight, serif;
+}
+
+.cs-body.cs-lyre-type-aileron {
+  font-family: Aileron, sans-serif;
+}
+
+.cs-body.cs-lyre-type-inter {
+  font-family: var(--font-inter), Inter, sans-serif;
 }
 
 .cs-image-grid {
@@ -349,6 +439,15 @@
   .cs-image-text--reverse .cs-image-text-media,
   .cs-image-text--reverse .cs-image-text-copy {
     order: initial;
+  }
+
+  .cs-lyre-pair {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    max-width: none;
+  }
+
+  .cs-lyre-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
