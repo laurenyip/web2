@@ -141,3 +141,53 @@
     border-radius: 12px;
   }
 }
+
+/* Case-study scrollbar: same dark-glass + pink/peach/cyan/violet fill as the project pills */
+/* Firefox can't paint gradients on scrollbars, and Chrome ignores ::-webkit-scrollbar once scrollbar-color is set, so only use this where webkit scrollbars aren't supported */
+@supports not selector(::-webkit-scrollbar) {
+  .framer-modal-frame-wrap--local,
+  .case-study-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(36, 32, 64, 0.92) transparent;
+  }
+}
+
+.framer-modal-frame-wrap--local::-webkit-scrollbar,
+.case-study-scroll::-webkit-scrollbar {
+  width: 14px;
+}
+
+.framer-modal-frame-wrap--local::-webkit-scrollbar-track,
+.case-study-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.framer-modal-frame-wrap--local::-webkit-scrollbar-thumb,
+.case-study-scroll::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 176, 206, 0.26) 0%,
+      rgba(255, 214, 150, 0.22) 30%,
+      rgba(120, 220, 255, 0.26) 62%,
+      rgba(176, 146, 255, 0.3) 100%
+    ),
+    rgba(6, 8, 16, 0.94);
+  background-clip: padding-box;
+}
+
+.framer-modal-frame-wrap--local::-webkit-scrollbar-thumb:hover,
+.case-study-scroll::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 176, 206, 0.45) 0%,
+      rgba(255, 214, 150, 0.4) 30%,
+      rgba(120, 220, 255, 0.45) 62%,
+      rgba(176, 146, 255, 0.5) 100%
+    ),
+    rgba(6, 8, 16, 0.94);
+  background-clip: padding-box;
+}

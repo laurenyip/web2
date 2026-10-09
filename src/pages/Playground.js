@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import ImageModal from '../components/ImageModal'
 import CaseStudyModal from '../components/CaseStudyModal'
+import LocalCaseStudyModal from '../components/LocalCaseStudyModal'
 import WorkProjectCard from '../components/WorkProjectCard'
 import { CASE_STUDY_KEYS, WORK_PROJECTS } from '../data/workProjects'
 import {
@@ -25,6 +26,7 @@ export default function Playground() {
   const [artSlide, setArtSlide] = useState(0)
   const [openCaseStudy, setOpenCaseStudy] = useState(null)
   const [activeProject, setActiveProject] = useState(null)
+  const [openLocalStudy, setOpenLocalStudy] = useState(null)
   const open = (src, caption) => setModal({ src, caption })
   const close = () => setModal(null)
 
@@ -32,6 +34,10 @@ export default function Playground() {
 
   const handleOpenProject = (project) => {
     if (!project?.hasCaseStudy) return
+    if (project.localCaseStudy) {
+      setOpenLocalStudy(project.localCaseStudy)
+      return
+    }
     setActiveProject(project)
     setOpenCaseStudy(CASE_STUDY_KEYS[project.id])
   }
@@ -40,7 +46,9 @@ export default function Playground() {
     const handleEscape = (event) => {
       if (event.key === 'Escape') setOpenCaseStudy(null)
     }
-    if (openCaseStudy) {
+    if (openLocalStudy) {
+      document.body.style.overflow = 'hidden'
+    } else if (openCaseStudy) {
       window.addEventListener('keydown', handleEscape)
       document.body.style.overflow = 'hidden'
     } else {
@@ -50,7 +58,7 @@ export default function Playground() {
       window.removeEventListener('keydown', handleEscape)
       document.body.style.overflow = 'unset'
     }
-  }, [openCaseStudy])
+  }, [openCaseStudy, openLocalStudy])
 
   return (
     <div className="about-page playground-page min-h-screen overflow-x-hidden bg-white">
@@ -277,6 +285,10 @@ export default function Playground() {
       </main>
 
       <ImageModal open={!!modal} src={modal?.src} caption={modal?.caption} onClose={close} />
+
+      {openLocalStudy ? (
+        <LocalCaseStudyModal studyId={openLocalStudy} onClose={() => setOpenLocalStudy(null)} />
+      ) : null}
 
       {openCaseStudy ? (
         <CaseStudyModal

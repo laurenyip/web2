@@ -121,6 +121,7 @@ function PortfolioStyleCard({
   return (
     <button
       type="button"
+      data-case-cursor={project.hasCaseStudy && !project.nda ? '' : undefined}
       className={`portfolio-card work-portfolio-card ${className}${overlayCaption ? ' work-portfolio-card--overlay' : ''}${project.nda ? ' portfolio-card--nda' : ''}`}
       onClick={handleClick}
       onPointerEnter={onPrefetch}
@@ -148,6 +149,7 @@ function StaticProjectCard({ project, className, onOpen, showTitle = false }) {
   return (
     <button
       type="button"
+      data-case-cursor={project.hasCaseStudy && !project.nda ? '' : undefined}
       className={`work-card work-card--static work-card--${project.id} group ${className}`}
       onClick={() => onOpen(project)}
       aria-label={`Open ${project.title}${tagSuffix(project)}`}

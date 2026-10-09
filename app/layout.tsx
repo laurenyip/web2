@@ -60,6 +60,9 @@ export default function RootLayout({
               </svg>
             </div>
           </div>
+          <p className="intro-loader__note">
+            Lauren Yip is currently watching the stars from Vancouver, BC
+          </p>
         </div>
         <noscript>
           <style>{`#intro-loader{display:none!important}html.intro-lock,html.intro-lock body{overflow:auto!important}`}</style>

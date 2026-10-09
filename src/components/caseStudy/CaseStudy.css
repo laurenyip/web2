@@ -196,6 +196,7 @@
   margin-right: calc(-1 * var(--cs-page-padding));
 }
 
+.cs-video,
 .cs-image-block img,
 .cs-image-grid-item img,
 .cs-image-text-media img {
@@ -523,4 +524,12 @@
 
 .cs > .cs-image-block--wide:not(:first-child) img {
   border-radius: var(--cs-radius);
+}
+
+/* Phones: the content-systems page adds nav-height top padding to .cs, which leaks into the modal
+   (blank band above the title). Keep the modal's own 40px. */
+@media (max-width: 800px) {
+  .framer-modal-local-scroll .cs:not(:has(> .cs-image-block--wide:first-child)) {
+    padding-top: 40px;
+  }
 }

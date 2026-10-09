@@ -1,0 +1,199 @@
+/* Shared styles for the case studies rebuilt from Framer (Spruce, Aurora, Amazon Gift Wrapping).
+   Two layouts like the originals: a 900px desktop column, and a phone layout below 900px.
+   Breakpoints use the container width so pages behave the same inside the case study modal. */
+
+@font-face {
+  font-family: 'Boring Sans A Trial Regular';
+  src: url('/fonts/case-study/boring-sans-a-trial-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Urania Medium';
+  src: url('/fonts/case-study/urania-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter Case Study';
+  src: url('/fonts/case-study/inter-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.fs {
+  container-type: inline-size;
+  background: #fff;
+}
+
+.fs-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 900px;
+  margin: 0 auto;
+}
+
+.fs .fs-page > * {
+  margin: var(--gap, 0) 0 0;
+}
+
+/* Type */
+.fs-heading {
+  font-family: 'Boring Sans A Trial Regular', sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 43.2px;
+  letter-spacing: 0;
+  color: #000;
+}
+
+.fs-body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 1.3px;
+  color: #374151;
+}
+
+.fs-body a {
+  color: #166d75;
+  text-decoration: none;
+}
+
+.fs-label {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.6px;
+  letter-spacing: 1.44px;
+  color: #166d75;
+}
+
+/* Images */
+.fs-img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+.fs-rounded {
+  border-radius: 10px;
+}
+
+/* 1px teal frame drawn over the image, like the original's image borders */
+.fs-framed {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.fs-framed::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid #166d75;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.fs-framed > .fs-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Full-width band that escapes the 900px column */
+.fs .fs-page > .fs-bleed {
+  align-self: center;
+  width: 100cqw;
+  max-width: none;
+}
+
+/* Timeline / role / recognition */
+.fs-meta {
+  display: grid;
+  grid-template-columns: 306px 307px 1fr;
+  align-items: start;
+  width: 100%;
+  height: 93px;
+}
+
+.fs-meta > div {
+  height: 65px;
+}
+
+.fs-meta dd {
+  margin-top: 6px;
+}
+
+.fs-phone-only {
+  display: none;
+}
+
+/* Next link */
+.fs-next {
+  align-self: stretch;
+  text-align: right;
+}
+
+.fs-next button {
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: 'Boring Sans A Trial Regular', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 1.6px;
+  color: #166d75;
+  cursor: pointer;
+}
+
+/* Phone layout */
+@container (max-width: 899.98px) {
+  .fs-page {
+    width: auto;
+    padding: 0 20px;
+  }
+
+  .fs .fs-page > * {
+    min-height: var(--min-sm, auto);
+    margin-top: var(--gap-sm, var(--gap, 0));
+  }
+
+  .fs .fs-page > .fs-bleed {
+    align-self: flex-start;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
+  .fs-meta {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 65px;
+    align-content: start;
+    height: 190px;
+  }
+
+  .fs-desktop-only {
+    display: none;
+  }
+
+  .fs-phone-only {
+    display: inline;
+  }
+
+  .fs-next {
+    text-align: center;
+  }
+}

@@ -1,0 +1,321 @@
+/* Aurora Pet Co. case study — rebuilt from the Framer page. Shared type and layout live in caseStudy/FramerStudy.css. */
+
+/* Hero: a fixed-height window onto the full-width GIF, cropped at the bottom */
+.aucs-hero {
+  height: 547px;
+  overflow: hidden;
+}
+
+/* Early ideas: five logos in a centred row */
+.fs .fs-page > .aucs-ideas {
+  align-self: center;
+  display: flex;
+  align-items: flex-start;
+  gap: 29px;
+}
+
+.aucs-ideas .fs-img {
+  height: 140px;
+  object-fit: cover;
+}
+
+.aucs-ideas .aucs-idea-question {
+  width: 128px;
+}
+
+.aucs-ideas .aucs-idea-square {
+  width: 140px;
+}
+
+.aucs-ideas .aucs-idea-wide {
+  width: 224px;
+}
+
+.aucs-idea-notes {
+  display: grid;
+  grid-template-columns: 290px 286px 288px;
+  column-gap: 18px;
+  align-items: start;
+}
+
+.aucs-gap {
+  height: 328px;
+  object-fit: contain;
+}
+
+/* First prototype on a teal band */
+.aucs-prototype {
+  box-sizing: border-box;
+  height: 500px;
+  padding-top: 25px;
+  background: #166d75;
+}
+
+.aucs-felis {
+  width: 632px;
+  height: 449px;
+  margin: 0 auto;
+}
+
+.aucs-koala {
+  width: 100%;
+  aspect-ratio: 1900 / 866;
+}
+
+/* Two images side by side */
+.aucs-pair {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  width: 100%;
+}
+
+.aucs-pair > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Koala's menu next to Aurora's, cropped to the same height */
+.aucs-menus > * {
+  aspect-ratio: 440 / 185;
+}
+
+.aucs-faq {
+  width: 100%;
+}
+
+/* Design challenge: how the customer should feel / what the brand needs to be */
+.aucs-trust {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 18px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 24px 28px 28px;
+  border-radius: 10px;
+  background: #f4f7f2;
+}
+
+.aucs-trust .aucs-list {
+  margin-top: 12px;
+}
+
+.aucs-trust .aucs-list li + li {
+  margin-top: 6px;
+}
+
+.aucs-directions {
+  width: 100%;
+}
+
+.aucs-list {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 0;
+  padding-left: 18px;
+  list-style: none;
+}
+
+.aucs-list li {
+  position: relative;
+}
+
+.aucs-list li + li {
+  margin-top: 8px;
+}
+
+.aucs-list li::before {
+  content: '•';
+  position: absolute;
+  left: -18px;
+}
+
+/* Design decisions: deck crops run the full column width */
+.fs .fs-page > .fs-framed {
+  width: 100%;
+}
+
+/* Confirmation: tracker and order summary share one height (widths follow each image's ratio) */
+.aucs-confirm > :first-child {
+  flex-grow: 1192;
+  aspect-ratio: 1760 / 1476;
+}
+
+.aucs-confirm > :last-child {
+  flex-grow: 1530;
+  aspect-ratio: 1760 / 1150;
+}
+
+/* The guarantee crop is small in the deck, so it stays narrow */
+.aucs-guarantees {
+  flex-direction: column;
+  gap: 16px;
+}
+
+.aucs-guarantees > * {
+  flex: none;
+  width: 100%;
+}
+
+.aucs-guarantees > :first-child {
+  max-width: 560px;
+}
+
+/* Visual system: Felis RX next to Aurora's brand guidelines, same height */
+.aucs-system > :first-child {
+  flex-grow: 1406;
+  aspect-ratio: 1440 / 1024;
+}
+
+.aucs-system > :last-child {
+  flex-grow: 1873;
+  aspect-ratio: 2240 / 1196;
+}
+
+.aucs-brand {
+  overflow: hidden;
+}
+
+.aucs-brand .fs-img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.aucs-next {
+  padding-bottom: 89px;
+}
+
+/* Phone layout */
+@container (max-width: 899.98px) {
+  .aucs-hero {
+    height: 217px;
+  }
+
+  .fs .fs-page > .aucs-ideas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .aucs-idea-notes {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .aucs-idea-notes > :nth-child(2) {
+    margin-top: 57px;
+  }
+
+  .aucs-idea-notes > :nth-child(3) {
+    margin-top: 53px;
+  }
+
+  .aucs-gap {
+    height: 204px;
+  }
+
+  .aucs-prototype {
+    height: 354px;
+    padding-top: 49px;
+  }
+
+  .aucs-felis {
+    width: 360px;
+    max-width: calc(100% - 24px);
+    height: auto;
+    aspect-ratio: 360 / 256;
+  }
+
+  .aucs-pair {
+    flex-direction: column;
+  }
+
+  .aucs-pair > * {
+    flex: none;
+    width: 100%;
+  }
+
+  .aucs-trust {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+    padding: 20px;
+  }
+
+  .aucs-idea-notes .fs-body {
+    min-height: var(--min-sm, auto);
+  }
+}
+
+/* Checkout crop: smaller, left-aligned */
+.fs .fs-page > .aucs-checkout {
+  width: 62%;
+  align-self: flex-start;
+}
+
+/* Confirmation, laid out like the real page: tracker over order summary on the left, guarantee on the right */
+.aucs-confirm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+  width: 100%;
+}
+
+.aucs-confirm-left {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.aucs-confirm-grid > .fs-framed {
+  margin: 0;
+}
+
+.fs .fs-page > .aucs-support {
+  width: 100%;
+}
+
+@container (max-width: 899.98px) {
+  .fs .fs-page > .aucs-checkout {
+    width: 100%;
+  }
+
+  .aucs-confirm-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* How it works: two thirds width, left-aligned, with white padding inside the frame so the content reads smaller */
+.fs .fs-page > .aucs-how {
+  width: 66.667%;
+  align-self: flex-start;
+  box-sizing: border-box;
+  padding: 28px;
+  background: #fff;
+}
+
+@container (max-width: 899.98px) {
+  .fs .fs-page > .aucs-how {
+    width: 100%;
+    padding: 14px;
+  }
+}
+
+/* Phone: dense screenshots keep a readable size and pan sideways inside their frame */
+@container (max-width: 899.98px) {
+  .aucs .fs-framed.aucs-pan {
+    overflow-x: auto;
+    aspect-ratio: auto;
+    height: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #166d75 transparent;
+  }
+
+  .aucs .fs-framed.aucs-pan > .fs-img {
+    width: 620px;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: fill;
+  }
+}

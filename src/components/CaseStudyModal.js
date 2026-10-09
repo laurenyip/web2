@@ -66,7 +66,7 @@ export default function CaseStudyModal({ projectTitle, onClose, project }) {
           </button>
         </div>
 
-        <div className="overflow-y-auto flex-1 min-h-0">
+        <div className="overflow-y-auto flex-1 min-h-0 case-study-scroll">
         <div className="px-8 py-8 space-y-8">
           <p className="about-body-text m-0 text-gray-600">
             {caseStudy.role} • {caseStudy.timeline}

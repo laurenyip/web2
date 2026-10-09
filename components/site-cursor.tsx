@@ -132,6 +132,9 @@ export default function SiteCursor() {
 
       node.style.transform = `translate3d(${x}px, ${y}px, 0)`
 
+      const overCase = !!document.elementFromPoint(x, y)?.closest('[data-case-cursor]')
+      node.classList.toggle('site-cursor--pill', overCase)
+
       const useLight = isOverWhiteBackground(x, y)
       const nextVariant = useLight ? 'light' : 'default'
       if (nextVariant !== variantRef.current) {
@@ -192,6 +195,7 @@ export default function SiteCursor() {
         alt=""
         draggable={false}
       />
+      <span className="site-cursor-pill">View case study</span>
     </div>
   )
 }

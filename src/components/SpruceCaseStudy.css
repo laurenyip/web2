@@ -1,0 +1,330 @@
+/* Spruce case study — rebuilt from the Framer page. Shared type and layout live in caseStudy/FramerStudy.css. */
+
+/* Black space above the first heading */
+.spcs-topbar {
+  height: 40px;
+  background: #000;
+}
+
+/* Laptop gif sits directly under the black bar; its own background is black */
+.fs .fs-page > .spcs-hero {
+  margin-top: 0;
+  aspect-ratio: 1300 / 721;
+  object-fit: cover;
+  background: #000;
+}
+
+/* Team photo at a quarter of its column width */
+.spcs-team {
+  width: 25%;
+}
+
+.spcs-brief {
+  height: 328px;
+  object-fit: contain;
+}
+
+/* Problem cards: 2 × 2 grid, inset from the column like the original */
+.fs .fs-page > .spcs-problems {
+  margin-left: 153px;
+  display: grid;
+  grid-template-columns: repeat(2, 287px);
+  column-gap: 18px;
+  row-gap: 22px;
+}
+
+.spcs-problem {
+  position: relative;
+  box-sizing: border-box;
+  height: 258px;
+  padding: 17px 23px 0;
+  background: #d2dcf0;
+}
+
+.spcs-problem-number {
+  margin: 0;
+  font-family: 'Urania Medium', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 33.6px;
+  letter-spacing: 2.24px;
+  color: #596880;
+}
+
+.spcs-problem-title {
+  width: 237px;
+  min-height: 72px;
+  margin: 8px 0 0;
+  font-family: 'Boring Sans A Trial Regular', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 1.6px;
+  color: #000;
+}
+
+.spcs-problem .fs-body {
+  margin-top: 8px;
+}
+
+/* Sits at a fixed spot near the bottom of the card */
+.spcs-problem-source {
+  position: absolute;
+  top: 213px;
+  left: 23px;
+  margin: 0;
+  font-family: 'Inter Case Study', Inter, sans-serif;
+  font-size: 16px;
+  line-height: 19.2px;
+  color: #374151;
+}
+
+/* Features on a green panel */
+.spcs-features {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 28px 0;
+  background: #3e5d39;
+}
+
+.spcs-features .fs-img {
+  width: 683px;
+  height: 331px;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+/* Scrollable final-screen windows */
+.spcs-window {
+  width: 100%;
+  height: 638px;
+  overflow: auto;
+  background: #fff;
+}
+
+.spcs-edit-filters {
+  width: 220px;
+}
+
+.fs .fs-page > .spcs-resource-card {
+  align-self: center;
+  width: 450px;
+}
+
+/* Two child profiles side by side */
+.spcs-profiles {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+}
+
+.spcs-profiles .fs-img {
+  width: calc(50% - 9px);
+}
+
+/* Translation: floating button next to the English → Spanish clip */
+.spcs-translate {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+.spcs-translate > .fs-img:first-child {
+  width: 400px;
+}
+
+.spcs-translate > video {
+  width: 482px;
+}
+
+/* Mobile or desktop */
+.spcs-mobile {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+  width: 100%;
+  height: 685px;
+}
+
+.spcs-mobile > .fs-img {
+  width: 293px;
+  height: 599px;
+  object-fit: cover;
+}
+
+.spcs-mobile-copy {
+  width: 569px;
+}
+
+.spcs-mobile-copy .fs-body + .fs-body {
+  margin-top: 24px;
+}
+
+.fs .fs-page > .spcs-outro {
+  align-self: center;
+  width: 400px;
+  height: 218px;
+  object-fit: cover;
+}
+
+/* Next link sits flush against the right edge, outside the column */
+.spcs-next {
+  padding-bottom: 52px;
+}
+
+.spcs-pan {
+  width: 100%;
+}
+
+.spcs-pan.fs-rounded {
+  overflow: hidden;
+}
+
+/* Phone layout: Spruce's text runs edge to edge, with no side padding */
+@container (max-width: 899.98px) {
+  .spcs .fs-page {
+    padding: 0;
+  }
+
+  /* A little breathing room so text never touches the edge of the card */
+  .spcs .fs-page > .fs-heading,
+  .spcs .fs-page > .fs-body,
+  .spcs .fs-page > .fs-label,
+  .spcs .fs-page > .fs-meta,
+  .spcs-mobile-copy .fs-body {
+    box-sizing: border-box;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .spcs-pan,
+  .spcs-pan.fs-rounded {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .spcs-pan > .fs-img {
+    width: 640px;
+    max-width: none;
+  }
+
+  .spcs-brief {
+    height: 169px;
+  }
+
+  .fs .fs-page > .spcs-problems {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-left: 0;
+  }
+
+  .spcs-problem {
+    padding-left: 31px;
+    padding-right: 23px;
+  }
+
+  .spcs-problem-source {
+    left: 31px;
+  }
+
+  .spcs-problem + .spcs-problem {
+    margin-top: 18px;
+  }
+
+  .spcs-problem:nth-child(3) {
+    margin-top: 25px;
+  }
+
+  .fs .fs-page > .spcs-features {
+    width: 100%;
+    padding: 38px 0;
+  }
+
+  .fs .fs-page > .spcs-features {
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .spcs-features .fs-img {
+    width: 620px;
+    max-width: none;
+    height: auto;
+    aspect-ratio: 683 / 331;
+  }
+
+  .spcs-window {
+    height: 400px;
+  }
+
+  .spcs-window .fs-img {
+    width: calc(100% - 20px);
+  }
+
+  .spcs-window--home .fs-img {
+    width: 100%;
+  }
+
+  .fs .fs-page > .spcs-team {
+    width: 45%;
+    margin-left: 16px;
+  }
+
+  /* Hero and top bar span the full width; the page has no side padding here */
+  .fs .fs-page > .spcs-topbar,
+  .fs .fs-page > .spcs-hero {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .fs .fs-page > .spcs-resource-card {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .spcs-translate,
+  .spcs-profiles {
+    flex-direction: column;
+  }
+
+  .spcs-profiles .fs-img {
+    width: 100%;
+  }
+
+  .spcs-translate > .fs-img:first-child,
+  .spcs-translate > video {
+    width: 100%;
+  }
+
+  .spcs-mobile {
+    flex-direction: column;
+    gap: 37px;
+    height: auto;
+  }
+
+  .spcs-mobile > .fs-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 293 / 599;
+  }
+
+  .spcs-mobile-copy {
+    width: 100%;
+  }
+
+  .fs .fs-page > .spcs-outro {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 400 / 218;
+  }
+
+  .fs .fs-page > .spcs-next {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 89px;
+  }
+}

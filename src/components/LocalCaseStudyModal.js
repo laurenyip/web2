@@ -7,6 +7,10 @@ import CradleCaseStudy from './CradleCaseStudy'
 import CsaSystemsCaseStudy from './CsaSystemsCaseStudy'
 import LyreCaseStudy from './LyreCaseStudy'
 import StarmapCaseStudy from './StarmapCaseStudy'
+import SpruceCaseStudy from './SpruceCaseStudy'
+import AuroraCaseStudy from './AuroraCaseStudy'
+import AmazonGiftCaseStudy from './AmazonGiftCaseStudy'
+import JellyfishCaseStudy from './JellyfishCaseStudy'
 import './FramerCaseStudyModal.css'
 
 const LOCAL_STUDIES = {
@@ -16,6 +20,10 @@ const LOCAL_STUDIES = {
   'csa-content': CsaSystemsCaseStudy,
   lyre: LyreCaseStudy,
   starmap: StarmapCaseStudy,
+  spruce: SpruceCaseStudy,
+  aurora: AuroraCaseStudy,
+  'amazon-giftwrapping': AmazonGiftCaseStudy,
+  jellyfish: JellyfishCaseStudy,
 }
 
 const NEXT_STUDY = {
@@ -24,8 +32,10 @@ const NEXT_STUDY = {
   cradle: 'csa-content',
   'csa-content': 'lyre',
   lyre: null,
-  // Aurora is still on Framer; Work opens it in the Framer modal.
   starmap: 'aurora',
+  aurora: 'spruce',
+  spruce: 'amazon-giftwrapping',
+  'amazon-giftwrapping': 'starmap',
 }
 
 export default function LocalCaseStudyModal({ studyId, onClose, onChangeStudy }) {

@@ -1,0 +1,41 @@
+/* Kodetic — only what the shared caseStudy primitives don't cover */
+
+/* Revision doc vs live site: tall pages, never cropped */
+.cs--kodetic .kcs-compare {
+  align-items: start;
+}
+
+.cs--kodetic .kcs-compare .cs-image-grid-item img {
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+
+/* Four portrait photos in one row (landing + MEC) */
+.cs--kodetic .kcs-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cs--kodetic .kcs-grid-4 .cs-image-grid-item img {
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+/* Canvas textures read as swatches */
+.cs--kodetic .kcs-swatches .cs-image-grid-item img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border: 1px solid #e5e7eb;
+}
+
+.cs--kodetic .cs-image-block video.cs-video {
+  background: #000;
+}
+
+@media (max-width: 800px) {
+  .cs--kodetic .kcs-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

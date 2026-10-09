@@ -33,9 +33,9 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: min(100%, 860px);
+  width: min(100%, var(--book-spread-max, 860px));
   margin: 0 auto;
-  aspect-ratio: 860 / 543;
+  aspect-ratio: var(--book-spread-ratio, 860 / 543);
   transform-style: preserve-3d;
 }
 
@@ -143,9 +143,9 @@
 
 .book--single {
   position: relative;
-  width: min(100%, 440px);
+  width: min(100%, var(--book-single-max, 440px));
   margin: 0 auto;
-  aspect-ratio: 430 / 543;
+  aspect-ratio: var(--book-page-ratio, 430 / 543);
   overflow: hidden;
   background: #f7f4ef;
   touch-action: none;
@@ -238,5 +238,13 @@
   .book-leaf--animate,
   .book--single .book-page--animate {
     transition-duration: 1ms;
+  }
+}
+
+@media (max-width: 720px) {
+  .book-toolbar button {
+    min-height: 44px;
+    min-width: 64px;
+    padding: 12px 4px;
   }
 }

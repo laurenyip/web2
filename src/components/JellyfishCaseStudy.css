@@ -1,0 +1,232 @@
+/* Jellyfish Umbrella: media at natural aspect ratio. Scoped to .cs--jellyfish so other case studies don't change. */
+
+.cs--jellyfish .jf-intro + .jf-beat {
+  margin-top: 40px;
+}
+
+.cs--jellyfish .jf-beat {
+  margin-top: 56px;
+}
+
+.cs--jellyfish .jf-beat .cs-body strong {
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Narrow crops sit beside their copy; wide crops stack under it. */
+.cs--jellyfish .jf-beat--side {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 40px;
+  align-items: start;
+}
+
+.cs--jellyfish .jf-beat--side .jf-media {
+  margin-top: 0;
+}
+
+.cs--jellyfish .jf-media {
+  margin: 24px 0 0;
+  min-width: 0;
+}
+
+.cs--jellyfish .jf-media img,
+.cs--jellyfish .jf-media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--cs-radius);
+  background: #0f1424;
+}
+
+.cs--jellyfish .jf-media figcaption {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+/* One shared media column: side beats get a fixed-width column, stacked beats run the full text width. */
+.cs--jellyfish .jf-beat--side {
+  grid-template-columns: minmax(0, 1fr) 420px;
+}
+
+.cs--jellyfish .jf-beat--side .jf-media,
+.cs--jellyfish .jf-beat:not(.jf-beat--side) > .jf-media,
+.cs--jellyfish .jf-beat:not(.jf-beat--side) > .jf-clip-wide {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* The two live previews, with room between them */
+.cs--jellyfish .jf-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  margin-top: 24px;
+}
+
+.cs--jellyfish .jf-pair .jf-media {
+  margin: 0;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* Key features: copy on the left, a closeup of the project on the right */
+.cs--jellyfish .jf-features {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cs--jellyfish .jf-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px;
+  gap: 40px;
+  align-items: center;
+}
+
+.cs--jellyfish .jf-feature img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--cs-radius);
+  background: #f3f4f6;
+}
+
+/* Send → glow: a single clip, kept to a modest width */
+.cs--jellyfish .jf-media--glow {
+  width: 100%;
+  max-width: 360px;
+}
+
+/* Progress video is portrait: keep it small */
+.cs--jellyfish .cs-video {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+}
+
+/* Small UI crops (badge + button) shown together, each at its own width */
+.cs--jellyfish .jf-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.cs--jellyfish .jf-stack .jf-media {
+  margin: 0;
+}
+
+/* Clips side by side */
+.cs--jellyfish .jf-clips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.cs--jellyfish .jf-clips .jf-media {
+  margin-top: 0;
+}
+
+/* Progress photos: masonry columns keep every photo uncropped */
+.cs--jellyfish .jf-masonry {
+  columns: 3 220px;
+  column-gap: 24px;
+  margin-top: 24px;
+}
+
+.cs--jellyfish .jf-masonry .jf-media {
+  break-inside: avoid;
+  margin: 0 0 24px;
+}
+
+.cs--jellyfish .jf-masonry .jf-media img {
+  background: #f3f4f6;
+}
+
+.cs--jellyfish .cs-video + .jf-masonry {
+  margin-top: 24px;
+}
+
+@media (max-width: 800px) {
+  .cs--jellyfish .jf-beat {
+    margin-top: 44px;
+  }
+
+  .cs--jellyfish .jf-beat--side {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .cs--jellyfish .jf-beat--side .jf-media {
+    margin-top: 20px;
+  }
+
+  .cs--jellyfish .jf-clips {
+    grid-template-columns: 1fr;
+  }
+
+  .cs--jellyfish .jf-beat--side {
+    grid-template-columns: 1fr;
+  }
+
+  .cs--jellyfish .jf-pair {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .cs--jellyfish .jf-feature {
+    grid-template-columns: minmax(0, 1fr) 120px;
+    gap: 20px;
+  }
+}
+
+/* Phones: wide UI captures have baked-in small text, so they scroll sideways at a legible size
+   instead of shrinking to fit. Photos go two-up to keep the page short. */
+@media (max-width: 600px) {
+  .cs--jellyfish .jf-media--ui {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--cs-radius);
+  }
+
+  .cs--jellyfish .jf-media--ui img,
+  .cs--jellyfish .jf-media--ui video {
+    min-width: 560px;
+  }
+
+  .cs--jellyfish .jf-media--ui-lg img {
+    min-width: 760px;
+  }
+
+  .cs--jellyfish .jf-masonry {
+    columns: 2;
+    column-gap: 12px;
+  }
+
+  .cs--jellyfish .jf-masonry .jf-media {
+    margin-bottom: 12px;
+  }
+
+  .cs--jellyfish .cs-video {
+    max-width: 100%;
+  }
+
+  .cs--jellyfish .jf-feature {
+    grid-template-columns: minmax(0, 1fr) 110px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cs--jellyfish .cs-section .cs-next {
+    margin-top: 24px;
+    padding-top: 8px;
+  }
+}
