@@ -142,10 +142,6 @@ export default function Playground() {
                   <br />
                   Use the arrows to browse, or click the image to view full screen.
                 </p>
-                <p className="mt-4 mb-0">
-                  <br />
-                  I&apos;m posting 100 times in 100 days. Follow along on my X or Instagram, linked in the footer!
-                </p>
               </div>
             </div>
           </div>
@@ -165,7 +161,6 @@ export default function Playground() {
                   My current journal has this message on the front cover: &quot;The book is an extension of memory and
                   imagination&quot;
                 </p>
-                <p>I also want to write a fashion blog (please collab with me).</p>
               </div>
             </div>
             <div className="about-layout-aside grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-3 sm:gap-y-3">

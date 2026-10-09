@@ -37,9 +37,7 @@ export default function RootLayout({
     <html lang="en" className="intro-lock">
       <body>
         <div id="intro-loader" className="intro-loader" aria-hidden="true">
-          <div className="intro-loader__sky">
-            <canvas className="intro-loader__extend" aria-hidden="true" />
-          </div>
+          <canvas className="intro-loader__sky" aria-hidden="true" />
           <div className="intro-loader__scene">
             <img
               className="intro-loader__gif"

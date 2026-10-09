@@ -8,7 +8,7 @@ import { getProtectedImageProps } from '../../lib/getProtectedImageProps'
  * Fullscreen image modal: dark overlay, image at max readable size, caption below.
  * Closes on backdrop click, X button, or Escape.
  */
-export default function ImageModal({ open, src, caption, onClose, useProtectedImage = false }) {
+export default function ImageModal({ open, src, caption, alt, onClose, useProtectedImage = false }) {
   useEffect(() => {
     if (!open) return
     const onKey = (e) => {
@@ -22,7 +22,7 @@ export default function ImageModal({ open, src, caption, onClose, useProtectedIm
 
   return (
     <div
-      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/85 px-4 py-10"
+      className="fixed inset-0 z-[1200] flex items-center justify-center bg-black/85 px-4 py-10"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -35,6 +35,7 @@ export default function ImageModal({ open, src, caption, onClose, useProtectedIm
         <button
           type="button"
           onClick={onClose}
+          autoFocus
           className="absolute -top-1 right-0 z-10 flex h-9 w-9 -translate-y-full items-center justify-center rounded-full bg-white/15 text-2xl font-light leading-none text-white transition hover:bg-white/25 md:right-0 md:top-0 md:translate-x-full md:translate-y-0"
           aria-label="Close"
         >
@@ -42,7 +43,7 @@ export default function ImageModal({ open, src, caption, onClose, useProtectedIm
         </button>
         <Image
           src={src}
-          alt={caption || 'Enlarged'}
+          alt={alt || caption || 'Enlarged'}
           className="max-h-[calc(92vh-88px)] w-auto max-w-full rounded-xl object-contain shadow-2xl"
           width={1200}
           height={900}
