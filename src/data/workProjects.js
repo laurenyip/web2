@@ -13,7 +13,7 @@ export const WORK_PROJECTS = {
     id: 'starmap',
     title: 'Starmap',
     description: 'A personal relationship management tool to map people, connections, and social context over time.',
-    tags: ['Interaction Design', 'Information Architecture', 'Data Visualization'],
+    tags: ['Interaction Design', 'Information Architecture', 'Data Viz'],
     image: '/images/projects/starmap/starmap_t.png',
     hasCaseStudy: true,
     link: 'https://starmap.lol',
