@@ -225,6 +225,23 @@
   margin-top: 0;
 }
 
+/* Shown only on phones (see the max-width: 640px block) */
+.work-card-mobile-info {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 2px 6px;
+  text-align: left;
+}
+
+.work-page .work-card-mobile-description.about-body-text {
+  color: #374151;
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: 1px;
+}
+
 .work-page .portfolio-card-blurb.about-body-text {
   color: #374151;
   font-size: 16px;
@@ -332,6 +349,47 @@
 
   .work-card-img--static {
     object-fit: contain !important;
+  }
+
+  /* Lyre and byline fill their square instead of letterboxing */
+  .work-card--the-lyre .work-card-img--static,
+  .work-card--byline .work-card-img--static {
+    object-fit: cover !important;
+  }
+
+  /* Tags and description move under the card, so the on-image overlays go away */
+  .work-page .work-card-media .case-study-tags,
+  .work-page .portfolio-card-media .case-study-tags,
+  .work-page .work-card-static-dim,
+  .work-page .work-card-static-hover {
+    display: none;
+  }
+
+  .work-page .work-card-mobile-info {
+    display: flex;
+  }
+
+  /* Static cards lose their outer frame so the info reads as below the card, not inside it */
+  .work-page .work-card {
+    overflow: visible;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .work-page .work-card-media--static {
+    border: 1px solid rgba(209, 213, 219, 0.8);
+    border-radius: 10px;
+  }
+
+  .work-page .work-row3-card.work-portfolio-card {
+    overflow: visible;
+    border-radius: 0;
+  }
+
+  .work-page .work-row3-card.work-portfolio-card .portfolio-card-media {
+    overflow: hidden;
+    border-radius: 10px;
   }
 
   .work-page .portfolio-card:hover {

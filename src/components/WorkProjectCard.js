@@ -19,6 +19,18 @@ function tagSuffix(project) {
   return `. ${project.tags.join(', ')}`
 }
 
+// Phones have no hover, so tags and the description sit under the card instead of over it.
+function MobileCardInfo({ project }) {
+  return (
+    <div className="work-card-mobile-info">
+      <CaseStudyTags tags={project.tags} className="case-study-tags--inline" />
+      {project.description ? (
+        <p className="work-card-mobile-description about-body-text m-0">{project.description}</p>
+      ) : null}
+    </div>
+  )
+}
+
 const THUMB_BY_ID = {
   starmap: StarmapThumb,
   spruce: SpruceThumb,
@@ -120,6 +132,7 @@ function PortfolioStyleCard({
       }
     >
       {media}
+      {overlayCaption ? <MobileCardInfo project={project} /> : null}
       {!overlayCaption ? (
         <div className="portfolio-card-body">
           {project.meta ? <p className="portfolio-card-meta about-body-text m-0">{project.meta}</p> : null}
@@ -152,6 +165,7 @@ function StaticProjectCard({ project, className, onOpen, showTitle = false }) {
         ) : null}
         <p className="about-body-text about-body-text--on-dark m-0">{project.description}</p>
       </div>
+      <MobileCardInfo project={project} />
     </button>
   )
 }
