@@ -1,0 +1,120 @@
+.portfolio-card-media,
+.work-card-media,
+.cs-work-card-media {
+  position: relative;
+}
+
+.case-study-tags {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-content: flex-start;
+  gap: 6px;
+  width: max-content;
+  max-width: min(22rem, calc(100% - 20px));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.case-study-tag {
+  margin: 0;
+  padding: 5px 12px;
+  border-radius: 999px;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  background:
+    linear-gradient(
+      118deg,
+      rgba(255, 176, 206, 0.18) 0%,
+      rgba(255, 214, 150, 0.13) 30%,
+      rgba(120, 220, 255, 0.15) 62%,
+      rgba(176, 146, 255, 0.17) 100%
+    ),
+    rgba(10, 12, 20, 0.62);
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 1.3px;
+  line-height: 21px;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  white-space: nowrap;
+}
+
+/* Lyre’s QR and masthead sit in the top-right of the crop. */
+.work-card--the-lyre .case-study-tags {
+  top: 26%;
+  gap: 4px;
+  max-width: 9rem;
+}
+
+/* Content-systems Lyre crop also keeps the QR in the top-right. */
+.cs-work-card--lyre .case-study-tags {
+  top: 38%;
+  max-width: 9rem;
+}
+
+/* Cradle’s patient table starts just under a thin header; tighter pills keep it to two rows. */
+.cs-work-card--cradle .case-study-tag {
+  padding-inline: 8px;
+}
+
+/* Byline’s wordmark and season line occupy the top. */
+.work-card--byline .case-study-tags {
+  top: 27%;
+  right: auto;
+  left: 10px;
+  justify-content: flex-start;
+  max-width: 13.5rem;
+}
+
+/* CSA labels are long; they wrap from the top-left and the hover caption tightens below them. */
+.portfolio-card-media--csa .case-study-tags,
+.cs-work-card-media--csa .case-study-tags {
+  top: 10px;
+  right: 6px;
+  left: 10px;
+  width: auto;
+  max-width: none;
+  gap: 4px;
+  justify-content: flex-start;
+}
+
+.portfolio-card-media--csa .case-study-tag,
+.cs-work-card-media--csa .case-study-tag {
+  padding-inline: 5px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .case-study-tags {
+    opacity: 0;
+    transition: opacity 260ms ease;
+  }
+
+  .portfolio-card:hover .case-study-tags,
+  .portfolio-card:focus-visible .case-study-tags,
+  .portfolio-card:focus-within .case-study-tags,
+  .work-card:hover .case-study-tags,
+  .work-card:focus-visible .case-study-tags,
+  .cs-work-card:hover .case-study-tags,
+  .cs-work-card:focus-visible .case-study-tags {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-study-tags {
+    transition: none;
+  }
+}

@@ -9,8 +9,15 @@ import AuroraThumb from '../components/AuroraThumb'
 import CsaThumb from '../components/CsaThumb'
 import KodeticThumb from '../components/KodeticThumb'
 import AnnaViolaThumb from '../components/AnnaViolaThumb'
+import BylineThumb from '../components/BylineThumb'
 import { getProtectedImageProps } from '../../lib/getProtectedImageProps'
+import CaseStudyTags from './CaseStudyTags'
 import '../pages/Portfolio.css'
+
+function tagSuffix(project) {
+  if (!project.tags?.length) return ''
+  return `. ${project.tags.join(', ')}`
+}
 
 const THUMB_BY_ID = {
   starmap: StarmapThumb,
@@ -28,6 +35,17 @@ function WorkProjectCardMedia({ project, csaRevealed, portfolio }) {
   if (Thumb) {
     if (project.nda) return <Thumb revealed={csaRevealed} />
     return <Thumb />
+  }
+
+  if (project.id === 'byline') {
+    return (
+      <BylineThumb
+        src={project.image}
+        alt={project.title}
+        portfolio={portfolio}
+        imagePosition={project.imagePosition}
+      />
+    )
   }
 
   return (
@@ -63,6 +81,7 @@ function PortfolioStyleCard({
       style={{ backgroundColor: project.cardBg }}
     >
       <WorkProjectCardMedia project={project} csaRevealed={false} portfolio />
+      <CaseStudyTags tags={project.tags} />
       {overlayCaption ? <div className="work-card-static-dim" aria-hidden="true" /> : null}
       {overlayCaption ? (
         <div className="work-card-static-hover">
@@ -94,7 +113,11 @@ function PortfolioStyleCard({
       onClick={handleClick}
       onPointerEnter={onPrefetch}
       onFocus={onPrefetch}
-      aria-label={project.nda ? `${project.title} (under NDA)` : `Open ${project.title}`}
+      aria-label={
+        project.nda
+          ? `${project.title} (under NDA)${tagSuffix(project)}`
+          : `Open ${project.title}${tagSuffix(project)}`
+      }
     >
       {media}
       {!overlayCaption ? (
@@ -112,13 +135,14 @@ function StaticProjectCard({ project, className, onOpen, showTitle = false }) {
   return (
     <button
       type="button"
-      className={`work-card work-card--static group ${className}`}
+      className={`work-card work-card--static work-card--${project.id} group ${className}`}
       onClick={() => onOpen(project)}
-      aria-label={`Open ${project.title}`}
+      aria-label={`Open ${project.title}${tagSuffix(project)}`}
     >
       <div className="work-card-media work-card-media--static">
         <WorkProjectCardMedia project={project} portfolio={false} />
         <div className="work-card-static-dim" aria-hidden="true" />
+        <CaseStudyTags tags={project.tags} />
       </div>
       <div className="work-card-static-hover">
         {showTitle ? (

@@ -11,6 +11,8 @@ import AmazonGiftThumb from '../components/AmazonGiftThumb'
 import SpruceThumb from '../components/SpruceThumb'
 import AuroraThumb from '../components/AuroraThumb'
 import CsaThumb from '../components/CsaThumb'
+import CaseStudyTags from '../components/CaseStudyTags'
+import { WORK_PROJECTS } from '../data/workProjects'
 import './App.css'
 import './Portfolio.css'
 
@@ -25,7 +27,7 @@ const THUMB_BY_ROUTE = {
 const CASE_STUDIES = [
   {
     to: '/starmap',
-  
+    tags: WORK_PROJECTS.starmap.tags,
     blurb: 'A personal relationship management tool to map people, connections, and social context over time.',
     thumb: '/images/projects/starmap/starmap_t.png',
     alt: 'Starmap landing page',
@@ -35,6 +37,7 @@ const CASE_STUDIES = [
   },
   {
     to: '/spruce',
+    tags: WORK_PROJECTS.spruce.tags,
     blurb: 'Helping low-income families in Vancouver find free and low-cost third-space activities.',
     thumb: '/images/projects/spruce/spruce_hero.gif',
     alt: 'Spruce home screen',
@@ -44,6 +47,7 @@ const CASE_STUDIES = [
   },
   {
     to: '/amazon-giftwrapping',
+    tags: WORK_PROJECTS['amazon-giftwrapping'].tags,
     blurb: 'An improved gift wrapping and card customization experience for Amazon shoppers.',
     thumb: '/images/projects/amazon-giftwrapping/amazon_hero.gif',
     alt: 'Amazon cart with gift wrapping option',
@@ -52,7 +56,7 @@ const CASE_STUDIES = [
   },
   {
     to: '/aurora',
-    
+    tags: WORK_PROJECTS.aurora.tags,
     blurb: 'Vet-backed subscription pet pharmacy focused on chronic conditions and affordability across Canada.',
     thumb: '/images/projects/aurora/aurora_hero.gif',
     alt: 'Aurora Pet Co. home screen',
@@ -62,6 +66,7 @@ const CASE_STUDIES = [
   {
     to: '/csa',
     title: 'Canadian Space Agency',
+    tags: WORK_PROJECTS.csa.tags,
     blurb: 'Mapped satellite images across Canada for the Terrestrial Snow Mass Mission (TSMM)',
     thumb: '/images/projects/csa.png',
     alt: 'Canadian Space Agency',
@@ -146,6 +151,7 @@ function PortfolioCardItem({ project }) {
       style={{ backgroundColor: project.cardBg }}
     >
       <PortfolioCardMedia project={project} ndaRevealed={ndaRevealed} />
+      <CaseStudyTags tags={project.tags} />
     </div>
   )
 
