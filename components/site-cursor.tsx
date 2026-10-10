@@ -162,6 +162,8 @@ export default function SiteCursor() {
     }
 
     const down = () => {
+      // a click on a case-study card opens a modal under the pointer: drop the pill until the mouse moves again
+      cursorRef.current?.classList.remove('site-cursor--pill')
       const bubble = bubbleRef.current
       if (!bubble) return
       bubble.classList.remove('site-cursor-bubble--pop')

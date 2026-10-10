@@ -2,20 +2,25 @@
 
 import './StarmapCaseStudy.css'
 
+const BASE = '/images/projects/starmap/case-study'
 const I = {
-  hero: '/images/projects/starmap/case-study/hero.webp',
-  noTime: '/images/projects/starmap/case-study/no-time.png',
-  confused: '/images/projects/starmap/case-study/confused.png',
-  importAi: '/images/projects/starmap/case-study/import-ai.png',
-  constellation: '/images/projects/starmap/case-study/constellation.png',
-  rememberProfile: '/images/projects/starmap/case-study/remember-profile.png',
-  rememberEdit: '/images/projects/starmap/case-study/remember-edit.webp',
-  testing: '/images/projects/starmap/case-study/testing-feedback.webp',
-  homePage: '/images/projects/starmap/case-study/home-page.webp',
-  friends: '/images/projects/starmap/case-study/friends-marquee.webp',
-  feedback: '/images/projects/starmap/case-study/feedback-email.png',
-  mobileHome: '/images/projects/starmap/case-study/mobile-home.png',
-  mobileMap: '/images/projects/starmap/case-study/mobile-map.png',
+  noTime: `${BASE}/no-time.png`,
+  confused: `${BASE}/confused.png`,
+  importAi: `${BASE}/import-ai.png`,
+  feedback: `${BASE}/feedback-email.png`,
+  mobileHome: `${BASE}/mobile-home.png`,
+  mobileMap: `${BASE}/mobile-map.png`,
+  graphLight: `${BASE}/graph-light.webp`,
+  emptyState: `${BASE}/empty-state.webp`,
+  annNodes: `${BASE}/annotated-node-hierarchy.webp`,
+  annActions: `${BASE}/annotated-action-bar.webp`,
+  annPanel: `${BASE}/annotated-constellation-panel.webp`,
+  annSelected: `${BASE}/annotated-constellation-selected.webp`,
+  annDrawer: `${BASE}/annotated-profile-drawer.webp`,
+  locations: `${BASE}/locations-list.webp`,
+  sharedGraphs: `${BASE}/shared-graphs-button.webp`,
+  minimap: `${BASE}/minimap-zoom.webp`,
+  highlighted: `${BASE}/highlighted-node.webp`,
 }
 
 // Space above a block: [desktop, phone] in px, measured from the original page.
@@ -45,9 +50,55 @@ function Body({ children, space }) {
   )
 }
 
-function Img({ src, className = '', space, alt = '' }) {
+function Img({ src, className = '', space, alt = '', w }) {
+  const style = w ? { ...space, '--w': `${w}px` } : space
+  const cls = `smcs-img ${w ? 'smcs-fixed' : ''} ${className}`.replace(/\s+/g, ' ').trim()
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src={src} alt={alt} className={`smcs-img ${className}`.trim()} style={space} loading="lazy" />
+  return <img src={src} alt={alt} className={cls} style={style} loading="lazy" />
+}
+
+// Looping clip with a poster still: <video autoPlay loop muted playsInline>
+function Clip({ name, ratio, className = '', space, alt = '', w }) {
+  const style = { ...space, ...(w ? { '--w': `${w}px` } : {}), ...(ratio ? { aspectRatio: ratio } : {}) }
+  const cls = `smcs-img ${w ? 'smcs-fixed' : ''} ${className}`.replace(/\s+/g, ' ').trim()
+  return (
+    <video
+      className={cls}
+      style={style}
+      src={`${BASE}/${name}.mp4`}
+      poster={`${BASE}/${name}-poster.webp`}
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="metadata"
+      aria-label={alt}
+    />
+  )
+}
+
+function Sub({ children, space }) {
+  return (
+    <h3 className="smcs-sub" style={space}>
+      {children}
+    </h3>
+  )
+}
+
+function Caption({ children, space }) {
+  return (
+    <p className="smcs-caption" style={space}>
+      {children}
+    </p>
+  )
+}
+
+function Todo({ children, space }) {
+  return (
+    <p className="smcs-todo" style={space}>
+      [TODO: Lauren — {children}]
+    </p>
+  )
 }
 
 function Constellation() {
@@ -118,7 +169,7 @@ export default function StarmapCaseStudy({ onNext }) {
   return (
     <div className="smcs">
       <article className="smcs-page">
-        <Img src={I.hero} alt="starmap app — relationship graph" className="smcs-hero" space={gap(5, 6)} />
+        <Clip name="hero-app-functions" ratio="1440 / 900" alt="Starmap in use: switching between graph and list, opening a profile, flipping to dark mode and selecting a constellation" className="smcs-hero" space={gap(5, 6)} />
 
         <Heading as="h1" space={gap(29)}>
           A personal relationship map that helps you remember what matters, stay intentional, and be a better
@@ -155,7 +206,15 @@ export default function StarmapCaseStudy({ onNext }) {
           </div>
         </dl>
 
-        <Label space={gap(0)}>MY USER JOURNEY</Label>
+        <Img
+          src={I.graphLight}
+          alt="A full starmap graph: the user in the centre with friends around them, grouped into constellations"
+          className="smcs-rounded smcs-bordered"
+          space={gap(40, 36)}
+        />
+        <Caption space={gap(10)}>A full graph. Demo account, made-up names.</Caption>
+
+        <Label space={gap(60, 66)}>MY USER JOURNEY</Label>
         <Heading space={gap(16)}>Why does it feel like I have no time?</Heading>
         <Body space={gap(18, 36)}>
           It was the busiest summer of my life between my job, travelling, courses, and time with friends and
@@ -202,33 +261,67 @@ export default function StarmapCaseStudy({ onNext }) {
         <Heading space={gap(24)}>Making data entry fast</Heading>
         <Body space={gap(24)}>
           Updating the doc manually was helpful for staying intentional, but ultimately it was a chore and taking
-          more time than I would have liked. So.. obviously I made an Import with AI feature.
+          more time than I would have liked. That&apos;s why I built an Import with AI feature: paste in a pile of
+          notes about people and it turns them into profiles for you to review.
         </Body>
-        <Img src={I.importAi} alt="Import People with AI dialog" className="smcs-w600" space={gap(44, 38)} />
+        <Clip
+          name="import-with-ai"
+          ratio="1440 / 900"
+          alt="Pasting notes into Import with AI, waiting for it to extract people, reviewing the cards, then adding them to the graph"
+          className="smcs-rounded smcs-bordered"
+          space={gap(44, 38)}
+        />
+        <Body space={gap(20)}>
+          I went with AI over a CSV import or a faster manual form because not everyone has a CSV, but everyone has
+          something they can paste into AI. A faster manual form would still not save that much time.
+        </Body>
+        <Body space={gap(12)}>
+          I show review cards before anything gets added because I don&apos;t want to miss things.
+        </Body>
 
-        <Heading space={gap(24, 23)}>Visualizing the social graph</Heading>
+        <Heading space={gap(48, 40)}>Visualizing the social graph</Heading>
         <Body space={gap(24, 25)}>
           What brought the &quot;starmap&quot; concept together for me was making constellations. I wanted to
           visualize my high school friend group, volleyball friends, school friends, and international ones as
-          clusters of stars across a night sky. Here&apos;s me and 2 Cansbridge friends lit up as I selected the
-          Cansbridge constellation.
+          clusters of stars across a night sky. Select a constellation and just that group lights up.
         </Body>
-        <Img
-          src={I.constellation}
-          alt="Constellations panel with the Cansbridge constellation selected"
-          className="smcs-constellation-shot smcs-rounded"
-          space={gap(23, 44)}
+        <Clip
+          name="select-constellation"
+          ratio="1440 / 900"
+          alt="Selecting a constellation lights up its group of people, then another"
+          className="smcs-rounded smcs-bordered"
+          space={gap(23, 30)}
         />
+        <Body space={gap(20)}>
+          Constellation colours are chosen by the user, so each person picks what represents their groups.
+        </Body>
+        <Body space={gap(12)}>
+          I went with constellations over tags or folders for the vibes, branding and style. Folders don&apos;t display
+          or visualize anything.
+        </Body>
 
-        <Heading space={gap(24, 23)}>Remembering stuff</Heading>
+        <Heading space={gap(48, 40)}>Remembering stuff</Heading>
         <Body space={gap(25)}>
           What I actually ended up using the Notion doc more for was writing down my friends&apos; favourite books,
           shows and songs they recommended to me, their birthdays and plans we wanted to make.
         </Body>
-        <div className="smcs-pair" style={gap(57, 43)}>
-          <Img src={I.rememberProfile} alt="A friend's profile with tags and things to remember" className="smcs-rounded" />
-          <Img src={I.rememberEdit} alt="Editing things to remember" className="smcs-rounded" />
-        </div>
+        <Clip
+          name="profile-drawer"
+          ratio="1440 / 900"
+          alt="Opening a person's profile, picking a relationship, adding a custom tag and expanding the edit history"
+          className="smcs-rounded smcs-bordered"
+          space={gap(32, 30)}
+        />
+
+        <Label space={gap(60, 57)}>FIRST RUN</Label>
+        <Heading space={gap(16)}>The empty state</Heading>
+        <Body space={gap(16)}>This is what a brand new user sees: just you, ready to add your first person.</Body>
+        <Img
+          src={I.emptyState}
+          alt="An empty starmap graph with only the You node"
+          className="smcs-rounded smcs-bordered"
+          space={gap(28, 30)}
+        />
 
         <Label space={gap(69, 57)}>TESTING</Label>
         <Heading space={gap(16)}>More brains = better</Heading>
@@ -236,33 +329,122 @@ export default function StarmapCaseStudy({ onNext }) {
           I voluntold about 10 friends to help me test my MVP and give me suggestions. I also demoed at a
           Treehouse session to get comfortable explaining everything.
         </Body>
-        <Img src={I.testing} alt="Feedback from friends who tested the MVP" className="smcs-w600 smcs-center" space={gap(27, 59)} />
+        <Clip name="testing-feedback" ratio="1024 / 576" alt="Feedback from friends who tested the MVP" className="smcs-w600 smcs-center" space={gap(27, 59)} />
 
         <Label space={gap(58, 90)}>BUILDING A BEAUTIFUL DESIGN SYSTEM</Label>
-        <Heading space={gap(16)}>Home page</Heading>
+        <Heading space={gap(16)}>Nodes</Heading>
+        <Body space={gap(16)}>
+          &quot;You&quot; is larger with a dark ring. You can add profile pictures for your friends, and save any other
+          significant photos in their node. Letters keep it simple. I think generated or AI avatars feel tacky.
+        </Body>
+        <Img src={I.annNodes} alt="Node types: You with a dark ring, a photo avatar, and a letter circle" w={618} space={gap(24, 24)} />
+        <Caption space={gap(8)}>You (larger, dark ring) · Photo avatar · Letter circle</Caption>
+
+        <Heading space={gap(48, 40)}>Button hierarchy</Heading>
+        <Body space={gap(16)}>
+          &quot;+ Add person&quot; is primary because adding someone is the most common action. Import with AI is
+          secondary: you only need it when you have a lot of data at once.
+        </Body>
+        <Img src={I.annActions} alt="The action bar: a filled + Add person button and outlined secondary buttons" w={576} space={gap(24, 24)} />
+        <Caption space={gap(8)}>Primary: + Add person · Secondary: the outlined buttons</Caption>
+
+        <Heading space={gap(48, 40)}>Type</Heading>
+        <Body space={gap(16)}>
+          &quot;Sohne&quot; was the perfect font for my vision: futuristic, grotesque, clean. It fit the vibe (found
+          it on 50 fonts for 2025, where I find all my fonts).
+        </Body>
+
+        <Heading space={gap(48, 40)}>Dark and light</Heading>
+        <Body space={gap(16)}>
+          I kept going back and forth between black and white backgrounds, so I made both.
+        </Body>
+        <Clip
+          name="dark-light-toggle"
+          ratio="1440 / 900"
+          alt="Toggling between dark and light mode"
+          className="smcs-rounded smcs-bordered"
+          space={gap(24, 24)}
+        />
+
+        <Heading space={gap(48, 40)}>Home page</Heading>
         <Body space={gap(22)}>
           For the home page, I wanted some kind of motion— and the twinkling star animation worked perfectly! I
           researched lots of other landing pages, and a &quot;call to action&quot;/&quot;what we do&quot; short
-          tagline worked best in the hero section. &quot;Sohne&quot; was the perfect font for my vision (found it
-          on 50 fonts for 2025 (where I find all my fonts)).
+          tagline worked best in the hero section.
         </Body>
-        <Img src={I.homePage} alt="starmap home page with twinkling stars" className="smcs-home-page" space={gap(43, 50)} />
+        <Clip name="landing-hero-twinkle" ratio="2160 / 936" alt="starmap home page with twinkling stars" className="smcs-rounded" space={gap(43, 50)} />
         <Body space={gap(16)}>
-          I kept going back and forth between black and white backgrounds, while desperately wanting it to be
-          colourful. Cursor understood my vibes and gave my a super pretty pastel gradient. I put my friends&apos;
-          names into this section if you can find them. I&apos;m learning a lot about motion graphics and
-          animation.
+          I loved the shifting colourful background. I put my friends&apos; names into this section if you can find
+          them. I&apos;m learning a lot about motion graphics and animation.
         </Body>
-        <Img src={I.friends} alt="Pastel gradient section with friends' names" space={gap(39, 50)} />
+        <Clip name="landing-adopted" ratio="2160 / 392" alt="Pastel gradient section with friends' names scrolling past" space={gap(39, 50)} />
+
+        <Label space={gap(60, 57)}>FEATURES</Label>
+        <Heading space={gap(16)}>The small stuff</Heading>
+
+        <Sub space={gap(32, 28)}>Graph ⇄ List</Sub>
+        <Body space={gap(10)}>The same people, as a graph or as a list. One toggle to switch.</Body>
+        <Clip name="graph-list-toggle" ratio="1440 / 900" alt="Switching between graph and list view" className="smcs-rounded smcs-bordered" space={gap(16)} />
+
+        <Sub space={gap(44, 40)}>Constellation panel</Sub>
+        <Body space={gap(10)}>
+          Show or hide a group with the eye, edit it with the pencil, or collapse the whole panel with the ‹ tab.
+        </Body>
+        <Clip name="constellation-panel" ratio="1440 / 900" alt="Hiding and showing a group, then collapsing the panel" className="smcs-rounded smcs-bordered" space={gap(16)} />
+        <div className="smcs-duo" style={gap(24)}>
+          <figure className="smcs-fig">
+            <Img src={I.annPanel} alt="Constellation panel with the eye and pencil icons labelled" w={374} />
+            <Caption>eye icon = show / hide · pencil = edit</Caption>
+          </figure>
+          <figure className="smcs-fig">
+            <Img src={I.annSelected} alt="A selected group is outlined by a rounded box" w={356} />
+            <Caption>rounded box = selected group</Caption>
+          </figure>
+        </div>
+
+        <Sub space={gap(44, 40)}>Locations and Shared Graphs</Sub>
+        <Body space={gap(10)}>Locations come with counts so you can see where your people are. Shared Graphs sits up top.</Body>
+        <div className="smcs-duo" style={gap(16)}>
+          <figure className="smcs-fig">
+            <Img src={I.locations} alt="Locations list with count badges" w={216} />
+            <Caption>Locations, with counts</Caption>
+          </figure>
+          <figure className="smcs-fig">
+            <Img src={I.sharedGraphs} alt="The Shared Graphs button" w={140} />
+            <Caption>Shared Graphs</Caption>
+          </figure>
+        </div>
+
+        <Sub space={gap(44, 40)}>Profile drawer</Sub>
+        <Body space={gap(10)}>
+          Relationship chips, custom tags, and &quot;Things to remember&quot; with an edit history.
+        </Body>
+        <Img src={I.annDrawer} alt="Profile drawer with the relationship chip, custom tag field and edit history toggle labelled" w={468} space={gap(16)} />
+        <Caption space={gap(8)}>Filled relationship chip · Add custom tag · Edit-history toggle</Caption>
+
+        <Sub space={gap(44, 40)}>Minimap and zoom</Sub>
+        <Body space={gap(10)}>Zoom controls and a minimap, for when the graph gets big.</Body>
+        <Img src={I.minimap} alt="The zoom controls and minimap" w={295} space={gap(16)} />
 
         <Label space={gap(36, 67)}>VERSION 2</Label>
         <Heading space={gap(15, 16)}>Real users gave me feedback</Heading>
         <Body space={gap(33, 38)}>
           I posted my project on LinkedIn and gained 30+ new users. After a week or so I emailed all of them for
-          feedback on the app and got some interesting responses. I was able to immediately implement their
-          suggested improvements (you might notice if you try it out!)
+          feedback on the app and got some interesting responses. One reply had four things in it:
         </Body>
         <Img src={I.feedback} alt="An email reply with feedback on starmap" space={gap(24, 49)} />
+        <ol className="smcs-list smcs-body" style={gap(24)}>
+          <li>A way to get to the home page from the dashboard.</li>
+          <li>Location on the profile as a dropdown of existing locations, instead of typing it every time.</li>
+          <li>The person whose profile you&apos;re viewing highlighted on the map, not just their connection to you.</li>
+          <li>A bug: a new connection&apos;s relationship didn&apos;t save, even after clicking save changes.</li>
+        </ol>
+        <Body space={gap(16)}>
+          I shipped all of her requested changes, because they all aligned with my vision for the app and what&apos;s best
+          for users.
+        </Body>
+        <Img src={I.highlighted} alt="The person whose profile is open glows with a cyan ring on the map" w={310} space={gap(24, 24)} />
+        <Caption space={gap(8)}>Now: the node you&apos;re viewing glows on the map while its drawer is open.</Caption>
 
         <Heading space={gap(33)}>Mobile works too</Heading>
         <div className="smcs-mobile" style={gap(18, 29)}>
@@ -273,6 +455,10 @@ export default function StarmapCaseStudy({ onNext }) {
 
         <Label space={gap(61, 36)}>REFLECTIONS</Label>
         <Body space={gap(10)}>It&apos;s fun to make stuff that real people use.</Body>
+        <Body space={gap(16)}>
+          Next time I&apos;d build integrations with tools I already use, like Notion, so starmap fits into my
+          existing workflows instead of being one more place to update.
+        </Body>
 
         <div className="smcs-outro" style={gap(10, 92)}>
           <Constellation />
