@@ -98,6 +98,19 @@
   background: #3e5d39;
 }
 
+.portfolio-card-media--jellyfish-umbrella {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #030918;
+}
+
+.portfolio-card-media--jellyfish-umbrella .jelly-thumb {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+}
+
 .portfolio-card-media--aurora {
   padding: 0;
   align-items: stretch;

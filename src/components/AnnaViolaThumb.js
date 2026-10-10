@@ -55,6 +55,17 @@ export default function AnnaViolaThumb() {
       <div className="annaviola-thumb-grain" />
       <div className="annaviola-thumb-overlay" />
 
+      <div className="annaviola-thumb-logo">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          className="annaviola-thumb-logo-ornament"
+          src="/images/projects/annaviola/logo-ornament-top-transparent.png"
+          alt=""
+          draggable={false}
+        />
+        <span className="annaviola-thumb-logo-word">anna viola</span>
+      </div>
+
       <div className="annaviola-thumb-glitter">
         {glitter.map((g) => (
           <span

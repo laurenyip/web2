@@ -266,7 +266,7 @@ export default function StarmapCaseStudy({ onNext }) {
         </Body>
         <Clip
           name="import-with-ai"
-          ratio="1440 / 900"
+          ratio="1440 / 1080"
           alt="Pasting notes into Import with AI, waiting for it to extract people, reviewing the cards, then adding them to the graph"
           className="smcs-rounded smcs-bordered"
           space={gap(44, 38)}

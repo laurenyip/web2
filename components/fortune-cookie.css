@@ -12,13 +12,14 @@
 }
 
 .fortune-cookie-wrap--out {
-  animation: fortune-wrap-out 0.22s ease forwards;
+  animation: fortune-wrap-out 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   pointer-events: none;
 }
 
 @keyframes fortune-wrap-out {
   to {
     opacity: 0;
+    transform: translateY(6px) scale(0.97);
   }
 }
 
@@ -39,7 +40,7 @@
   background: transparent;
   cursor: pointer;
   line-height: 0;
-  transition: transform 0.2s ease;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   z-index: 1;
 }
@@ -68,7 +69,7 @@
 }
 
 .fortune-cookie-whole--cracking {
-  animation: fortune-cookie-crack 0.28s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;
+  animation: fortune-cookie-crack 0.62s cubic-bezier(0.45, 0, 0.25, 1) forwards;
 }
 
 @keyframes fortune-cookie-crack {
@@ -76,20 +77,20 @@
     transform: scale(1) rotate(0deg);
     opacity: 1;
   }
-  30% {
-    transform: scale(1.1) rotate(-4deg);
+  22% {
+    transform: scale(1.08) rotate(-3deg);
     opacity: 1;
   }
-  60% {
-    transform: scale(0.94) rotate(3deg);
+  44% {
+    transform: scale(0.97) rotate(2.5deg);
     opacity: 1;
   }
-  80% {
-    transform: scale(1.06) rotate(-2deg);
+  64% {
+    transform: scale(1.05) rotate(-1.5deg);
     opacity: 1;
   }
   100% {
-    transform: scale(0.85) rotate(6deg);
+    transform: scale(0.9) rotate(3deg);
     opacity: 0;
   }
 }
@@ -129,7 +130,7 @@
   width: 336px;
   max-width: 100%;
   opacity: 0;
-  transform: scale(0.92);
+  transform: scale(0.94);
 }
 
 .fortune-cookie-reveal-inner {
@@ -142,7 +143,7 @@
 .fortune-cookie-reveal--in {
   opacity: 1;
   transform: scale(1) translateY(0);
-  animation: fortune-reveal-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fortune-reveal-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -154,7 +155,7 @@
 @keyframes fortune-reveal-in {
   from {
     opacity: 0;
-    transform: scale(0.92) translateY(4px);
+    transform: scale(0.94) translateY(10px);
   }
   to {
     opacity: 1;
@@ -184,6 +185,7 @@
   opacity: 0;
   overflow: hidden;
   pointer-events: none;
+  transition: opacity 0.5s ease 0.25s;
 }
 
 .fortune-slip-overlay--visible {

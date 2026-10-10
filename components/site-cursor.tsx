@@ -108,6 +108,7 @@ function isOverWhiteBackground(x: number, y: number): boolean {
 export default function SiteCursor() {
   const cursorRef = useRef<HTMLDivElement>(null)
   const bubbleRef = useRef<HTMLImageElement>(null)
+  const pillRef = useRef<HTMLSpanElement>(null)
   const [enabled, setEnabled] = useState(false)
   const visibleRef = useRef(false)
   const variantRef = useRef<'light' | 'default'>('default')
@@ -132,8 +133,12 @@ export default function SiteCursor() {
 
       node.style.transform = `translate3d(${x}px, ${y}px, 0)`
 
-      const overCase = !!document.elementFromPoint(x, y)?.closest('[data-case-cursor]')
-      node.classList.toggle('site-cursor--pill', overCase)
+      const target = document.elementFromPoint(x, y)?.closest('[data-case-cursor], [data-cursor-label]') as HTMLElement | null
+      node.classList.toggle('site-cursor--pill', !!target)
+      if (target && pillRef.current) {
+        const label = target.dataset.cursorLabel || 'View case study'
+        if (pillRef.current.textContent !== label) pillRef.current.textContent = label
+      }
 
       const useLight = isOverWhiteBackground(x, y)
       const nextVariant = useLight ? 'light' : 'default'
@@ -197,7 +202,30 @@ export default function SiteCursor() {
         alt=""
         draggable={false}
       />
-      <span className="site-cursor-pill">View case study</span>
+      <span ref={pillRef} className="site-cursor-pill">View case study</span>
+      <svg className="site-cursor-star" viewBox="-30 -30 60 60" aria-hidden="true">
+        <path
+          className="site-cursor-star__main"
+          d="M0 -11 C1.2 -4 4 -1.2 11 0 C4 1.2 1.2 4 0 11 C-1.2 4 -4 1.2 -11 0 C-4 -1.2 -1.2 -4 0 -11Z"
+        />
+        <path
+          className="site-cursor-star__glint site-cursor-star__glint--a"
+          d="M0 -5 C0.5 -1.8 1.8 -0.5 5 0 C1.8 0.5 0.5 1.8 0 5 C-0.5 1.8 -1.8 0.5 -5 0 C-1.8 -0.5 -0.5 -1.8 0 -5Z"
+          transform="translate(-17 -12)"
+        />
+        <path
+          className="site-cursor-star__glint site-cursor-star__glint--b"
+          d="M0 -4 C0.4 -1.4 1.4 -0.4 4 0 C1.4 0.4 0.4 1.4 0 4 C-0.4 1.4 -1.4 0.4 -4 0 C-1.4 -0.4 -0.4 -1.4 0 -4Z"
+          transform="translate(16 -15)"
+        />
+        <path
+          className="site-cursor-star__glint site-cursor-star__glint--c"
+          d="M0 -4.5 C0.4 -1.6 1.6 -0.4 4.5 0 C1.6 0.4 0.4 1.6 0 4.5 C-0.4 1.6 -1.6 0.4 -4.5 0 C-1.6 -0.4 -0.4 -1.6 0 -4.5Z"
+          transform="translate(14 15)"
+        />
+        <circle className="site-cursor-star__dot site-cursor-star__dot--a" cx="-15" cy="14" r="1.3" />
+        <circle className="site-cursor-star__dot site-cursor-star__dot--b" cx="4" cy="-20" r="1.1" />
+      </svg>
     </div>
   )
 }

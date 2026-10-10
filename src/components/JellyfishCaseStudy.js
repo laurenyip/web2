@@ -76,6 +76,14 @@ const FEATURES = [
   },
 ]
 
+// Team (add each person's site or LinkedIn as href)
+const TEAM = [
+  { name: 'Chloe Yip', href: 'https://chloeyip.xyz' },
+  { name: 'Lauren Yip', href: 'https://laurenyip.com' },
+  { name: 'Eric Cosma', href: null },
+  { name: 'Matthew Nikolic', href: 'https://matthewnikolic.ca' },
+]
+
 const PROGRESS = [
   { n: 1, width: 1024, height: 768 },
   { n: 2, width: 685, height: 913 },
@@ -354,8 +362,10 @@ export default function JellyfishCaseStudy({ onNext }) {
 
       <CaseStudySection>
         <SectionLabel>Project progress</SectionLabel>
-        <video className="cs-video" src="/images/projects/jellyfish-progress-video.mp4" controls playsInline />
         <div className="jf-masonry">
+          <figure className="jf-media jf-media--video">
+            <video className="cs-video" src="/images/projects/jellyfish-progress-video.mp4" controls playsInline />
+          </figure>
           {PROGRESS.map((image) => (
             <figure key={image.src} className="jf-media">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -363,6 +373,25 @@ export default function JellyfishCaseStudy({ onNext }) {
             </figure>
           ))}
         </div>
+      </CaseStudySection>
+
+      <CaseStudySection>
+        <SectionLabel>The team</SectionLabel>
+        <BodyText>
+          Built with the rest of the Roly-Polies:{' '}
+          {TEAM.map((member, i) => (
+            <span key={member.name}>
+              {member.href ? (
+                <a href={member.href} target="_blank" rel="noopener noreferrer">
+                  {member.name}
+                </a>
+              ) : (
+                member.name
+              )}
+              {i < TEAM.length - 1 ? ', ' : '.'}
+            </span>
+          ))}
+        </BodyText>
       </CaseStudySection>
 
       {onNext ? <NextCaseStudy onClick={onNext} /> : null}

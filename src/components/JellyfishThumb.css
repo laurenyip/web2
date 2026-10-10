@@ -1,0 +1,187 @@
+@font-face {
+  font-family: 'Syne';
+  src: url('/fonts/syne-800.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+
+/* Jellyfish thumbnail, styled after the FAS comp slide */
+.jelly-thumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  container-type: inline-size;
+  background: #050505;
+  isolation: isolate;
+}
+
+/* marbled black swirl, drifting slowly */
+.jelly-thumb-swirl {
+  position: absolute;
+  left: -12%;
+  top: -12%;
+  width: 124%;
+  height: 124%;
+  object-fit: cover;
+  opacity: 0.32;
+  filter: brightness(0.8) contrast(1.15);
+  animation: jt-drift 16s ease-in-out infinite alternate;
+  user-select: none;
+}
+
+.jelly-thumb-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 42%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.55) 100%);
+  pointer-events: none;
+}
+
+.jelly-thumb-glow {
+  position: absolute;
+  left: 20%;
+  top: 8%;
+  width: 60%;
+  height: 56%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(170, 205, 255, 0.28), rgba(170, 205, 255, 0) 70%);
+  filter: blur(18px);
+  mix-blend-mode: screen;
+  animation: jt-glow 5.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* the ink-line jellyfish, centred and tall like the slide */
+.jelly-thumb-figure {
+  position: absolute;
+  left: 50%;
+  top: 2%;
+  height: 94%;
+  aspect-ratio: 492 / 884;
+  transform: translateX(-50%);
+  animation: jt-bob 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.jelly-thumb-drawing {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+}
+
+/* white base ink: kept faint so the colour reads */
+.jelly-thumb-drawing:not(.jelly-thumb-drawing--glow) {
+  opacity: 0.38;
+}
+
+.jelly-thumb-drawing--glow {
+  mix-blend-mode: screen;
+  filter: blur(2.5px) brightness(1.2) saturate(0.4) drop-shadow(0 0 6px rgba(150, 195, 255, 0.8));
+  opacity: 0;
+  animation: jt-ink 4.2s ease-in-out infinite;
+}
+
+.jelly-thumb-specks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.jelly-thumb-speck {
+  position: absolute;
+  bottom: -4%;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 6px 1px rgba(200, 225, 255, 0.7);
+  opacity: 0;
+  animation: jt-rise linear infinite;
+}
+
+/* type from the slide: Syne ExtraBold */
+.jelly-thumb-titles {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  pointer-events: none;
+  text-align: center;
+  gap: 0.2em;
+  color: #ffffff;
+  font-family: 'Syne', 'Arial Black', sans-serif;
+  font-weight: 800;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+}
+
+.jelly-thumb-title {
+  font-size: 5.6cqw;
+  white-space: nowrap;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+
+/* tint: gradient masked to the drawing; hue-rotate steps it through pink/cyan, violet/blue, green/gold */
+.jelly-thumb-tint {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: url('/images/projects/jellyfish/thumb-drawing.webp');
+  mask-image: url('/images/projects/jellyfish/thumb-drawing.webp');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  background: linear-gradient(170deg, #ff7bd5 0%, #7be9ff 38%, #b69bff 68%, #ffd37b 100%);
+  background-size: 100% 220%;
+  filter: saturate(1.35) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+  animation: jt-tint-flow 6s ease-in-out infinite alternate, jt-tint-palette 15s linear infinite;
+}
+
+@keyframes jt-tint-flow {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+
+@keyframes jt-tint-palette {
+  0%, 18% { filter: hue-rotate(0deg) saturate(1.35) drop-shadow(0 0 5px rgba(255, 130, 220, 0.55)); }
+  33%, 51% { filter: hue-rotate(95deg) saturate(1.4) drop-shadow(0 0 5px rgba(120, 140, 255, 0.55)); }
+  66%, 84% { filter: hue-rotate(205deg) saturate(1.4) drop-shadow(0 0 5px rgba(120, 255, 190, 0.5)); }
+  100% { filter: hue-rotate(360deg) saturate(1.35) drop-shadow(0 0 5px rgba(255, 130, 220, 0.55)); }
+}
+
+@keyframes jt-drift {
+  from { transform: translate(-3%, -2%) rotate(-1.5deg) scale(1); }
+  to { transform: translate(3%, 2%) rotate(1.5deg) scale(1.06); }
+}
+
+@keyframes jt-glow {
+  0%, 100% { opacity: 0.55; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes jt-bob {
+  0%, 100% { transform: translateX(-50%) translateY(3px) rotate(-0.8deg); }
+  50% { transform: translateX(-50%) translateY(-5px) rotate(0.8deg); }
+}
+
+@keyframes jt-ink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.85; }
+}
+
+@keyframes jt-rise {
+  0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+  14% { opacity: 0.9; }
+  100% { transform: translate(var(--drift, 0px), -108cqh) scale(1.1); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jelly-thumb *,
+  .jelly-thumb-figure {
+    animation-play-state: paused !important;
+  }
+}

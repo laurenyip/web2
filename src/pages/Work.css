@@ -405,3 +405,14 @@
     transform: none;
   }
 }
+
+/* Room under the last row: on desktop the fortune cookie hangs over the bottom of the page, so leave 50px clear above it */
+.home-main.work-main {
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 641px) {
+  .home-main.work-main {
+    padding-bottom: 161px;
+  }
+}
