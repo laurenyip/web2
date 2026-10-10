@@ -230,3 +230,15 @@
     padding-top: 8px;
   }
 }
+
+/* Progress: the portrait video is the first tile of the gallery, photos fill in beside it */
+.cs--jellyfish .jf-media--video {
+  break-inside: avoid;
+  margin: 0 0 24px;
+}
+
+.cs--jellyfish .jf-media--video .cs-video {
+  max-width: none;
+  width: 100%;
+  background: #0f1424;
+}

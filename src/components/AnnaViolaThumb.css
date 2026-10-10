@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'AVDisplay';
+  src: url('/fonts/annaviola-UVNMuaThu.woff2') format('woff2');
+  font-display: swap;
+}
+
 .annaviola-thumb {
   --av-cycle: 7s;
   position: relative;
@@ -143,5 +149,51 @@
 
   .annaviola-thumb-canvas {
     display: none;
+  }
+}
+
+/* Her mark on top of the thumbnail: ornament crown + wordmark (transparent PNG) */
+.annaviola-thumb-logo {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  z-index: 4;
+  width: 56%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  animation: annaviola-logo-in 1.4s ease both;
+}
+
+.annaviola-thumb-logo-ornament {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.28));
+}
+
+.annaviola-thumb-logo-word {
+  margin-top: 1.5cqw;
+  font-family: 'AVDisplay', 'Brush Script MT', cursive;
+  font-size: 9.5cqw;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: lowercase;
+  color: #f7f1e6;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
+  white-space: nowrap;
+}
+
+@keyframes annaviola-logo-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }

@@ -128,7 +128,6 @@ export default function Work() {
           margin: '0 auto',
           boxSizing: 'border-box',
           paddingTop: 'calc(var(--site-nav-block-height, 5.85rem) + 50px)',
-          paddingBottom: '4rem',
           paddingLeft: '40px',
           paddingRight: '40px',
         }}
@@ -254,6 +253,7 @@ export default function Work() {
             <button
               type="button"
               className={`work-continued-label${continuedOpen ? ' work-continued-label--open' : ''}`}
+              data-cursor-label="Freelance and art tech"
               onClick={() => setContinuedOpen((open) => !open)}
               aria-expanded={continuedOpen}
               aria-controls="work-continued-row"

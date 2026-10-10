@@ -73,6 +73,8 @@ export const WORK_PROJECTS = {
     tags: ['Art tech', 'Creative Direction', 'Print'],
     image: '/images/projects/jellyfish-umbrella.png',
     hasCaseStudy: true,
+    portfolioThumb: true,
+    cardBg: '#030918',
     localCaseStudy: 'jellyfish',
     link: '/rolypolyzine.pdf',
   },
