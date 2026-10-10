@@ -78,9 +78,9 @@ const FEATURES = [
 
 // Team (add each person's site or LinkedIn as href)
 const TEAM = [
-  { name: 'Chloe Yip', href: 'https://chloeyip.xyz' },
+  { name: 'Chloe Yip', href: 'https://chloeyip.ca' },
   { name: 'Lauren Yip', href: 'https://laurenyip.com' },
-  { name: 'Eric Cosma', href: null },
+  { name: 'Eric Cosma', href: 'https://www.linkedin.com/in/ericcosma/' },
   { name: 'Matthew Nikolic', href: 'https://matthewnikolic.ca' },
 ]
 

@@ -10,7 +10,7 @@ type PageMetadataInput = {
   image?: string
 }
 
-export function buildPageMetadata({ description, path, image = '/images/home/og-preview.png' }: PageMetadataInput): Metadata {
+export function buildPageMetadata({ description, path, image = '/images/home/og-preview-v2.png' }: PageMetadataInput): Metadata {
   const absoluteUrl = `${SITE_URL}${path}`
   const absoluteImage = image.startsWith('http') ? image : `${SITE_URL}${image}`
 
