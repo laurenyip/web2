@@ -11,6 +11,7 @@ import SpruceCaseStudy from './SpruceCaseStudy'
 import AuroraCaseStudy from './AuroraCaseStudy'
 import AmazonGiftCaseStudy from './AmazonGiftCaseStudy'
 import JellyfishCaseStudy from './JellyfishCaseStudy'
+import RosieCaseStudy from './RosieCaseStudy'
 import './FramerCaseStudyModal.css'
 
 const LOCAL_STUDIES = {
@@ -24,6 +25,7 @@ const LOCAL_STUDIES = {
   aurora: AuroraCaseStudy,
   'amazon-giftwrapping': AmazonGiftCaseStudy,
   jellyfish: JellyfishCaseStudy,
+  rosie: RosieCaseStudy,
 }
 
 const NEXT_STUDY = {

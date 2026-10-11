@@ -249,60 +249,21 @@
   transition: filter 0.28s ease;
 }
 
-.playground-page .playground-jellyfish-card {
-  width: 100%;
-  max-width: none;
-  height: 100%;
-  align-self: stretch;
-}
-
-.playground-page .playground-jellyfish-card.work-portfolio-card {
-  width: 100%;
-  max-width: none;
-  height: 100%;
-}
-
 .playground-page .about-sidequest-grid--4x4 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-auto-rows: auto;
 }
 
 .playground-page .about-sidequest-grid--4x4 > .about-sidequest-tile,
-.playground-page .about-sidequest-jellyfish-cell {
+.playground-page .about-sidequest-feature {
   aspect-ratio: 1 / 1;
   min-width: 0;
 }
 
-.playground-page .about-sidequest-jellyfish-cell {
+.playground-page .about-sidequest-feature {
+  aspect-ratio: 1 / 1;
   grid-column: span 2;
   grid-row: span 2;
-}
-
-.playground-page .about-sidequest-jellyfish-cell .playground-jellyfish-card.work-portfolio-card,
-.playground-page .about-sidequest-jellyfish-cell .playground-jellyfish-card.work-card--static {
-  display: block;
-  height: 100%;
-  width: 100%;
-}
-
-.playground-page .about-sidequest-jellyfish-cell .work-card-media--static,
-.playground-page .about-sidequest-jellyfish-cell .work-row3-card.work-portfolio-card .portfolio-card-media,
-.playground-page .about-sidequest-jellyfish-cell .playground-jellyfish-card .portfolio-card-media {
-  aspect-ratio: auto;
-  height: 100%;
-  min-height: 0;
-}
-
-.playground-page .about-sidequest-jellyfish-cell .work-card--static {
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.playground-page .about-sidequest-jellyfish-cell .work-card-img--static,
-.playground-page .about-sidequest-jellyfish-cell .portfolio-card-image {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
 }
 
 @media (min-width: 640px) {

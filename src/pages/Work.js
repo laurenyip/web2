@@ -253,7 +253,7 @@ export default function Work() {
             <button
               type="button"
               className={`work-continued-label${continuedOpen ? ' work-continued-label--open' : ''}`}
-              data-cursor-label="Freelance and art tech"
+              data-cursor-label="Freelance, research and art tech"
               onClick={() => setContinuedOpen((open) => !open)}
               aria-expanded={continuedOpen}
               aria-controls="work-continued-row"

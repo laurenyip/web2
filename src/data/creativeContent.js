@@ -87,5 +87,8 @@ export const SIDEQUEST_GRID_ITEMS = [
   { src: '/images/home/lion.png', caption: 'Lion dance' },
 ]
 
+// Large 2x2 tile at the start of the sidequest grid (was the jellyfish umbrella card)
+export const FEATURE_TILE = { src: '/images/about/sidequests/vienna-library.jpg', caption: 'Vienna, Austrian National Library' }
+
 export const IMG_TILE_CLASS =
   'block w-full cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200/80 bg-white p-0 shadow-sm transition hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400'

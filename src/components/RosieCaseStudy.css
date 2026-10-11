@@ -1,0 +1,48 @@
+/* ROSIE Lab case study: figures at their natural proportions */
+.cs--rosie .rs-fig {
+  margin: 32px 0 0;
+  min-width: 0;
+}
+
+.cs--rosie .rs-fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--cs-radius);
+  border: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.cs--rosie .rs-fig figcaption {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.cs--rosie .rs-fig--wide {
+  max-width: var(--cs-content-max);
+  margin: 56px auto 0;
+}
+
+.cs--rosie .rs-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-top: 32px;
+}
+
+.cs--rosie .rs-duo .rs-fig {
+  margin: 0;
+}
+
+.cs--rosie .rs-link {
+  margin-top: 24px;
+}
+
+@media (max-width: 800px) {
+  .cs--rosie .rs-duo {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

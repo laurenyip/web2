@@ -6,7 +6,7 @@ export const WORK_ROW2 = ['spruce', 'aurora', 'amazon-giftwrapping']
 export const WORK_ROW3 = ['csa', 'the-lyre', 'byline']
 
 /** Continued work — square thumbs below the main grid (revealed on click) */
-export const WORK_ROW4 = ['kodetic', 'annaviola', 'jellyfish-umbrella']
+export const WORK_ROW4 = ['kodetic', 'annaviola', 'jellyfish-umbrella', 'react-to-this']
 
 export const WORK_PROJECTS = {
   starmap: {
@@ -83,8 +83,10 @@ export const WORK_PROJECTS = {
     title: 'ROSIE Lab',
     description: 'Research assistantship with ROSIE Lab',
     tags: ['Research', 'Interaction Design', 'Editorial'],
-    image: '/images/Rosie/elan.png',
+    image: '/images/projects/rosie/case-study/website-hero.webp',
+    imagePosition: 'top center',
     hasCaseStudy: true,
+    localCaseStudy: 'rosie',
     link: 'https://rosielab.github.io/react-to-this/',
   },
   'the-lyre': {

@@ -5,14 +5,11 @@ import posthog from 'posthog-js'
 import Image from 'next/image'
 import Navbar from '../components/Navbar'
 import ImageModal from '../components/ImageModal'
-import CaseStudyModal from '../components/CaseStudyModal'
-import LocalCaseStudyModal from '../components/LocalCaseStudyModal'
-import WorkProjectCard from '../components/WorkProjectCard'
-import { CASE_STUDY_KEYS, WORK_PROJECTS } from '../data/workProjects'
 import {
   ART_CAROUSEL,
   GUITAR_IMAGE,
   GUITAR_PLAYLIST_HREF,
+  FEATURE_TILE,
   IMG_TILE_CLASS,
   SIDEQUEST_GRID_ITEMS,
   WRITING_LINKS,
@@ -24,41 +21,8 @@ import './Work.css'
 export default function Playground() {
   const [modal, setModal] = useState(null)
   const [artSlide, setArtSlide] = useState(0)
-  const [openCaseStudy, setOpenCaseStudy] = useState(null)
-  const [activeProject, setActiveProject] = useState(null)
-  const [openLocalStudy, setOpenLocalStudy] = useState(null)
   const open = (src, caption) => setModal({ src, caption })
   const close = () => setModal(null)
-
-  const jellyfishProject = WORK_PROJECTS['jellyfish-umbrella']
-
-  const handleOpenProject = (project) => {
-    if (!project?.hasCaseStudy) return
-    if (project.localCaseStudy) {
-      setOpenLocalStudy(project.localCaseStudy)
-      return
-    }
-    setActiveProject(project)
-    setOpenCaseStudy(CASE_STUDY_KEYS[project.id])
-  }
-
-  useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === 'Escape') setOpenCaseStudy(null)
-    }
-    if (openLocalStudy) {
-      document.body.style.overflow = 'hidden'
-    } else if (openCaseStudy) {
-      window.addEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-    return () => {
-      window.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'unset'
-    }
-  }, [openCaseStudy, openLocalStudy])
 
   return (
     <div className="about-page playground-page min-h-screen overflow-x-hidden bg-white">
@@ -239,24 +203,28 @@ export default function Playground() {
                   Travelling, sunrise and sunset chasing, hiking, swimming, volleyball & dragonboat.
                 </p>
                 <p className="m-0">
-                  Currently posting 100 times in 100 days because it is probably the best option for my future. + building some cool stuff (like my jellyfish umbrella!)
+                  Currently posting 100 times in 100 days because it is probably the best option for my future. + building some cool stuff.
                 </p>
                 <p>Trying to do all the things I say I'll do but never do, like tennis, dancing, and Chinese.</p>
               </div>
             </div>
             <div className="about-layout-media w-full min-w-0">
               <div className="about-sidequest-grid about-sidequest-grid--4x4 grid w-full min-w-0 gap-2">
-                {jellyfishProject ? (
-                  <div className="about-sidequest-jellyfish-cell">
-                    <WorkProjectCard
-                      project={jellyfishProject}
-                      className="work-row3-card playground-jellyfish-card h-full w-full"
-                      onOpen={handleOpenProject}
-                      showTitle
-                      overlayCaption
-                    />
-                  </div>
-                ) : null}
+                <button
+                  type="button"
+                  className={`${IMG_TILE_CLASS} about-sidequest-feature`}
+                  onClick={() => open(FEATURE_TILE.src, FEATURE_TILE.caption)}
+                  aria-label="Open photo"
+                >
+                  <Image
+                    src={FEATURE_TILE.src}
+                    alt={FEATURE_TILE.caption}
+                    className="about-sidequest-img h-full w-full object-cover"
+                    width={1200}
+                    height={1200}
+                    priority={false}
+                  />
+                </button>
                 {SIDEQUEST_GRID_ITEMS.map(({ src, caption, objectPosition }) => (
                   <button
                     key={src}
@@ -286,20 +254,7 @@ export default function Playground() {
 
       <ImageModal open={!!modal} src={modal?.src} caption={modal?.caption} onClose={close} />
 
-      {openLocalStudy ? (
-        <LocalCaseStudyModal studyId={openLocalStudy} onClose={() => setOpenLocalStudy(null)} />
-      ) : null}
 
-      {openCaseStudy ? (
-        <CaseStudyModal
-          projectTitle={openCaseStudy}
-          onClose={() => {
-            setOpenCaseStudy(null)
-            setActiveProject(null)
-          }}
-          project={activeProject}
-        />
-      ) : null}
     </div>
   )
 }
