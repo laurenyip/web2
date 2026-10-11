@@ -184,17 +184,16 @@
 
 .rosie-thumb-ch {
   display: inline-block;
-  transform-origin: 50% 100%;
-  animation: rt-bounce 2s cubic-bezier(0.3, 0, 0.3, 1) infinite;
-  animation-delay: var(--d);
 }
 
-@keyframes rt-bounce {
-  0%, 38%, 100% { transform: translateY(0) scale(1, 1); }
-  10% { transform: translateY(-34%) scale(0.94, 1.1); }
-  20% { transform: translateY(0) scale(1.12, 0.86); }
-  27% { transform: translateY(-9%) scale(0.98, 1.03); }
-  33% { transform: translateY(0) scale(1.04, 0.96); }
+/* the whole title floats together, slow and soft */
+.rosie-thumb-title {
+  animation: rt-title-float 3.6s ease-in-out infinite;
+}
+
+@keyframes rt-title-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -6%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
