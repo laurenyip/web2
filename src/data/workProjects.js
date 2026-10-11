@@ -87,7 +87,7 @@ export const WORK_PROJECTS = {
     imagePosition: 'top center',
     hasCaseStudy: true,
     portfolioThumb: true,
-    cardBg: '#0b0b0c',
+    cardBg: '#000000',
     localCaseStudy: 'rosie',
     link: 'https://rosielab.github.io/react-to-this/',
   },
@@ -113,8 +113,7 @@ export const WORK_PROJECTS = {
   kodetic: {
     id: 'kodetic',
     title: 'Kodetic',
-    description:
-      'Editorial portfolio for photographer Ezra Gillera — IA from a media kit, expand-in-place gallery, and a tactile brand system.',
+    description: 'Portfolio website for local photographer Ezra Gillera',
     tags: ['Editorial', 'Branding', 'Information Architecture'],
     image: '/images/projects/kodetic/hero.webp',
     hasCaseStudy: true,
