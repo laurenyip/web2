@@ -204,3 +204,70 @@ html::-webkit-scrollbar-thumb:hover {
     rgba(6, 8, 16, 0.94);
   background-clip: padding-box;
 }
+
+/* Oil-glass controls: art carousel arrows and every modal close button */
+.about-page .about-art-carousel-nav,
+.framer-modal-close,
+button[aria-label="Close"] {
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.92) !important;
+  background:
+    linear-gradient(
+      118deg,
+      rgba(255, 176, 206, 0.34) 0%,
+      rgba(255, 214, 150, 0.26) 30%,
+      rgba(120, 220, 255, 0.3) 62%,
+      rgba(176, 146, 255, 0.34) 100%
+    ),
+    rgba(10, 12, 20, 0.82) !important;
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  box-shadow: 0 2px 8px rgba(10, 12, 20, 0.25) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.about-page .about-art-carousel-nav:hover,
+.framer-modal-close:hover,
+button[aria-label="Close"]:hover {
+  filter: brightness(1.25) saturate(1.15);
+  box-shadow: 0 4px 14px rgba(120, 140, 255, 0.35) !important;
+}
+
+/* Close "x": smaller, with a crisp drawn cross instead of the soft glyph */
+.framer-modal-close,
+button[aria-label="Close"] {
+  position: relative;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  min-width: 0;
+  padding: 0 !important;
+  flex-shrink: 0;
+  border-radius: 999px !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+button.framer-modal-close[aria-label="Close"] {
+  position: absolute;
+  flex-shrink: 0;
+}
+
+.framer-modal-close::before,
+.framer-modal-close::after,
+button[aria-label="Close"]::before,
+button[aria-label="Close"]::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.62rem;
+  height: 1.5px;
+  border-radius: 1px;
+  background: #ffffff;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.framer-modal-close::after,
+button[aria-label="Close"]::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}

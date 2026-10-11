@@ -374,7 +374,8 @@
 
 .cs-list {
   margin: 24px 0 0;
-  padding-left: 1.15rem;
+  padding-left: 0;
+  list-style-position: inside;
   max-width: var(--cs-content-max);
 }
 

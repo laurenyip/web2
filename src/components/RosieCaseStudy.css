@@ -1,27 +1,41 @@
-/* ROSIE Lab case study: figures at their natural proportions */
+/* ROSIE Lab case study: one spacing rhythm, everything flush with the text column's left edge.
+   text -> figure: 24px   figure -> caption: 10px   caption/figure -> next text: 32px */
 .cs--rosie .rs-fig {
-  margin: 32px 0 0;
+  margin: 24px 0 0;
+  padding: 0;
   min-width: 0;
+  width: 100%;
+  text-align: left;
 }
 
-.cs--rosie .rs-fig img {
+.cs--rosie .cs-hero + .rs-fig {
+  margin-top: 40px;
+}
+
+.cs--rosie .rs-fig img,
+.cs--rosie .rs-fig video {
   display: block;
   width: 100%;
   height: auto;
+  margin: 0;
   border-radius: var(--cs-radius);
   border: 1px solid #e5e7eb;
   background: #fff;
 }
 
 .cs--rosie .rs-fig figcaption {
-  margin-top: 10px;
+  margin: 10px 0 0;
+  padding: 0;
   font-size: 14px;
   line-height: 19px;
+  text-align: left;
 }
 
-.cs--rosie .rs-fig--wide {
-  max-width: var(--cs-content-max);
-  margin: 56px auto 0;
+/* text that follows a figure gets one consistent gap */
+.cs--rosie .rs-fig + .cs-body,
+.cs--rosie .rs-fig + .rs-duo,
+.cs--rosie .rs-after-fig {
+  margin-top: 32px;
 }
 
 .cs--rosie .rs-duo {
@@ -29,20 +43,20 @@
   grid-template-columns: 1fr 1fr;
   gap: 24px;
   align-items: start;
-  margin-top: 32px;
+  margin-top: 24px;
 }
 
 .cs--rosie .rs-duo .rs-fig {
   margin: 0;
 }
 
-.cs--rosie .rs-link {
+/* a body paragraph right after the text above it */
+.cs--rosie .cs-body + .cs-body {
   margin-top: 24px;
 }
 
 @media (max-width: 800px) {
   .cs--rosie .rs-duo {
     grid-template-columns: 1fr;
-    gap: 24px;
   }
 }

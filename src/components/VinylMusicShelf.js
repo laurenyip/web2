@@ -90,6 +90,7 @@ export default function VinylMusicShelf({ onImageOpen }) {
             return (
               <div
                 key={`music-${index}`}
+                data-cursor-label={item.link ? 'Listen' : 'View'}
                 className={`about-vinyl-record group z-20 cursor-pointer transition-transform ${isMobile ? 'relative' : 'absolute hover:scale-105'}`}
                 style={
                   isMobile

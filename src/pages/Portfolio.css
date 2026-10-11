@@ -98,6 +98,19 @@
   background: #3e5d39;
 }
 
+.portfolio-card-media--react-to-this {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #0b0b0c;
+}
+
+.portfolio-card-media--react-to-this .rosie-thumb {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+}
+
 .portfolio-card-media--jellyfish-umbrella {
   padding: 0;
   align-items: stretch;

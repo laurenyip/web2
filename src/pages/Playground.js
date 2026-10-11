@@ -141,6 +141,7 @@ export default function Playground() {
                   <a
                     key={item.label}
                     href={item.href}
+                    data-cursor-label="View"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="about-writing-link transition sm:inline-block"
@@ -177,6 +178,7 @@ export default function Playground() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="playground-guitar-link"
+                data-cursor-label="Listen"
                 aria-label="Open guitar + piano practice playlist on Spotify"
                 onClick={() => posthog.capture('guitar_playlist_clicked')}
               >

@@ -32,17 +32,20 @@ const FAVORITES_LINKS = [
   {
     label: 'Essays about frames, fashion, movies, and making stuff',
     href: '/reading-list',
+    cursorLabel: 'View',
   },
   {
     label: "Books that let me experience a world I wouldn't have otherwise known",
     href: '/reading-list',
+    cursorLabel: 'View',
   },
   {
     label: 'Love songs with some angst and yearning (also Irish music)',
     href:
       'https://open.spotify.com/playlist/7nTtTPZW33up9yRhi7DTd9?si=dcf3c7640d934d7c&pt=4a9277e20074441d8ccca963598ca157',
+    cursorLabel: 'Listen',
   },
-  { label: 'Movies that I rate 5 stars', href: 'https://letterboxd.com/laurenyip/' },
+  { label: 'Movies that I rate 5 stars', href: 'https://letterboxd.com/laurenyip/', cursorLabel: 'View' },
 ]
 
 const imgTile =
@@ -107,7 +110,7 @@ export default function About() {
                   </p>
                   <p>
                     Curiosity: I&apos;m fulfilling through the pursuit of new knowledge and experiences. [see{' '}
-                    <Link href="/reading-list" className="about-inline-link">
+                    <Link href="/reading-list" className="about-inline-link" data-cursor-label="View">
                       reading list
                     </Link>{' '}
                     and{' '}
@@ -229,6 +232,7 @@ export default function About() {
                   <li key={item.href + item.label}>
                     <a
                       href={item.href}
+                      data-cursor-label={item.cursorLabel}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="about-writing-link transition"

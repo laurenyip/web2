@@ -1,0 +1,205 @@
+/* ROSIE Lab thumbnail: the project site's title (Urania) over a black-and-white peeling slideshow */
+@font-face {
+  font-family: 'Urania';
+  src: url('/fonts/Urania-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@property --peel {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 130%;
+}
+
+.rosie-thumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  container-type: inline-size;
+  background: #0b0b0c;
+  isolation: isolate;
+}
+
+.rosie-thumb-slide {
+  --peel: 130%;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* visible area is everything up to the peel line, which sweeps from bottom-right to top-left */
+  -webkit-mask-image: linear-gradient(135deg, #000 var(--peel), transparent calc(var(--peel) + 0.4%));
+  mask-image: linear-gradient(135deg, #000 var(--peel), transparent calc(var(--peel) + 0.4%));
+}
+
+.rosie-thumb-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.58) contrast(1.12);
+  transform: scale(var(--zoom, 1.2));
+  animation: rt-zoom 16s ease-in-out infinite alternate;
+  user-select: none;
+}
+
+/* curled-paper light along the peel line */
+.rosie-thumb-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) calc(var(--peel) - 14%),
+    rgba(255, 255, 255, 0.22) calc(var(--peel) - 3%),
+    rgba(255, 255, 255, 0.7) calc(var(--peel) - 0.6%),
+    rgba(255, 60, 160, 0.95) calc(var(--peel) - 0.1%),
+    rgba(40, 230, 255, 0.95) calc(var(--peel) + 0.5%),
+    rgba(0, 0, 0, 0) calc(var(--peel) + 1.2%)
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* four slides, 4s each, 16s loop. Stack order while waiting: 0 above 1 above 2 above 3; once peeled a slide
+   drops back under the stack in the order it left, so the loop is seamless. */
+.rosie-thumb-slide--0 { z-index: 8; animation: rt-peel-0 16s linear infinite; }
+.rosie-thumb-slide--1 { z-index: 7; animation: rt-peel-1 16s linear infinite; }
+.rosie-thumb-slide--2 { z-index: 6; animation: rt-peel-2 16s linear infinite; }
+.rosie-thumb-slide--3 { z-index: 5; animation: rt-peel-3 16s linear infinite; }
+
+@keyframes rt-peel-0 {
+  0%, 21.9% { --peel: 130%; z-index: 8; animation-timing-function: cubic-bezier(0.6, 0, 0.3, 1); }
+  24.9% { --peel: -6%; z-index: 8; }
+  25%, 99.9% { --peel: 130%; z-index: 4; }
+  100% { --peel: 130%; z-index: 8; }
+}
+
+@keyframes rt-peel-1 {
+  0%, 46.9% { --peel: 130%; z-index: 7; animation-timing-function: cubic-bezier(0.6, 0, 0.3, 1); }
+  49.9% { --peel: -6%; z-index: 7; }
+  50%, 99.9% { --peel: 130%; z-index: 3; }
+  100% { --peel: 130%; z-index: 7; }
+}
+
+@keyframes rt-peel-2 {
+  0%, 71.9% { --peel: 130%; z-index: 6; animation-timing-function: cubic-bezier(0.6, 0, 0.3, 1); }
+  74.9% { --peel: -6%; z-index: 6; }
+  75%, 99.9% { --peel: 130%; z-index: 2; }
+  100% { --peel: 130%; z-index: 6; }
+}
+
+@keyframes rt-peel-3 {
+  0%, 96.9% { --peel: 130%; z-index: 5; animation-timing-function: cubic-bezier(0.6, 0, 0.3, 1); }
+  99.9% { --peel: -6%; z-index: 5; }
+  100% { --peel: 130%; z-index: 5; }
+}
+
+@keyframes rt-punch {
+  0%, 84% { transform: scale(1) rotate(0deg); }
+  91% { transform: scale(1.1) rotate(-0.8deg); }
+  96% { transform: scale(1.04) rotate(0.6deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes rt-flash {
+  0%, 86% { opacity: 0; }
+  92% { opacity: 0.95; }
+  97% { opacity: 0.25; }
+  100% { opacity: 0; }
+}
+
+@keyframes rt-glitch {
+  0%, 88% { opacity: 0; transform: translateX(0); }
+  90% { opacity: 1; transform: translateX(-3%); }
+  93% { opacity: 0.8; transform: translateX(2.5%); }
+  96% { opacity: 1; transform: translateX(-1.5%); }
+  98%, 100% { opacity: 0; transform: translateX(0); }
+}
+
+@keyframes rt-zoom {
+  from { transform: scale(var(--zoom, 1.2)) translate(0, 0); }
+  to { transform: scale(calc(var(--zoom, 1.2) * 1.08)) translate(-1.5%, -1%); }
+}
+
+/* a punch-in on every cut */
+.rosie-thumb-stage {
+  position: absolute;
+  inset: 0;
+  animation: rt-punch 4s ease-in-out infinite;
+}
+
+/* white flash + RGB-split stripes at the moment of each peel (every 4s) */
+.rosie-thumb-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 19;
+  background: #fff;
+  opacity: 0;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  animation: rt-flash 4s linear infinite;
+}
+
+.rosie-thumb-glitch {
+  position: absolute;
+  inset: 0;
+  z-index: 18;
+  opacity: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(255, 40, 140, 0.35) 0 3px, transparent 3px 11px),
+    repeating-linear-gradient(0deg, rgba(40, 230, 255, 0.3) 5px 8px, transparent 8px 11px);
+  mix-blend-mode: screen;
+  animation: rt-glitch 4s linear infinite;
+}
+
+.rosie-thumb-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+}
+
+.rosie-thumb-title {
+  position: absolute;
+  z-index: 21;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-family: 'Urania', 'Moto', Georgia, serif;
+  font-weight: 500;
+  font-size: 10.5cqw;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.rosie-thumb-ch {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  animation: rt-bounce 2s cubic-bezier(0.3, 0, 0.3, 1) infinite;
+  animation-delay: var(--d);
+}
+
+@keyframes rt-bounce {
+  0%, 38%, 100% { transform: translateY(0) scale(1, 1); }
+  10% { transform: translateY(-34%) scale(0.94, 1.1); }
+  20% { transform: translateY(0) scale(1.12, 0.86); }
+  27% { transform: translateY(-9%) scale(0.98, 1.03); }
+  33% { transform: translateY(0) scale(1.04, 0.96); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rosie-thumb-slide,
+  .rosie-thumb-slide img {
+    animation-play-state: paused !important;
+  }
+}

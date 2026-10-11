@@ -10,6 +10,7 @@ import CsaThumb from '../components/CsaThumb'
 import KodeticThumb from '../components/KodeticThumb'
 import AnnaViolaThumb from '../components/AnnaViolaThumb'
 import JellyfishThumb from '../components/JellyfishThumb'
+import RosieThumb from '../components/RosieThumb'
 import BylineThumb from '../components/BylineThumb'
 import { getProtectedImageProps } from '../../lib/getProtectedImageProps'
 import CaseStudyTags from './CaseStudyTags'
@@ -41,6 +42,7 @@ const THUMB_BY_ID = {
   kodetic: KodeticThumb,
   annaviola: AnnaViolaThumb,
   'jellyfish-umbrella': JellyfishThumb,
+  'react-to-this': RosieThumb,
 }
 
 function WorkProjectCardMedia({ project, csaRevealed, portfolio }) {

@@ -26,6 +26,23 @@ function Figure({ src, alt, caption, width, height, className = '' }) {
   )
 }
 
+function Clip({ name, label, caption }) {
+  return (
+    <figure className="rs-fig">
+      <video
+        src={`${P}/${name}.mp4`}
+        poster={`${P}/${name}-poster.webp`}
+        aria-label={label}
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+      {caption ? <figcaption className="cs-body">{caption}</figcaption> : null}
+    </figure>
+  )
+}
+
 export default function RosieCaseStudy({ onNext }) {
   return (
     <CaseStudy className="cs--rosie">
@@ -33,24 +50,20 @@ export default function RosieCaseStudy({ onNext }) {
         <SectionHeading as="h1">React to This! A research project on how people test virtual agents</SectionHeading>
         <BodyText>
           React to This! is a research project with ROSIE Lab (Robots with Social Intelligence and Empathy) at SFU. It
-          explores how people interact with and respond to virtual agents, and I contributed across it, from recruiting
-          participants to making the video and the website.
+          explores how people interact with and respond to virtual agents.
         </BodyText>
         <ProjectMeta
           items={[
             { label: 'Timeline', value: '2023 - 2024' },
             { label: 'Role', value: 'Research Assistant' },
-            { label: 'Recognition', value: 'Co-author on the paper' },
+            { label: 'Recognition', value: 'Co-author on the paper, presented at IROS 2024' },
           ]}
         />
       </header>
 
-      <Figure
-        src={`${P}/website-hero.webp`}
-        alt="The React to This! project website"
-        width={1800}
-        height={1131}
-        className="rs-fig--wide"
+      <Clip
+        name="website-scroll"
+        label="Scrolling through the React to This! project website"
         caption="The project website I designed and built."
       />
 
@@ -67,11 +80,11 @@ export default function RosieCaseStudy({ onNext }) {
           the behaviours people used to challenge the characters physically, emotionally and socially, and turned them
           into a codebook of 188 unique nonverbal behaviours.
         </BodyText>
-        <p className="cs-body rs-link">
+        <BodyText>
           <a href={PROJECT_URL} target="_blank" rel="noopener noreferrer">
             rosielab.github.io/react-to-this →
           </a>
-        </p>
+        </BodyText>
       </CaseStudySection>
 
       <CaseStudySection>
@@ -120,7 +133,7 @@ export default function RosieCaseStudy({ onNext }) {
           height={535}
           caption="Annotating in ELAN."
         />
-        <BodyText>
+        <BodyText className="rs-after-fig">
           The behaviours fell into two groups: social ones people used with every agent, like greeting, affection and
           approval, and ones aimed at a specific character, like peeling the banana or flushing the toilet.
         </BodyText>
@@ -164,12 +177,16 @@ export default function RosieCaseStudy({ onNext }) {
           keeps a calm, light layout so dense research content stays readable, with a light blue accent. Red is only for
           the note about the video data still being anonymised.
         </BodyText>
-        <Figure
-          src={`${P}/website-title.webp`}
-          alt="The top of the project website: the title, the authors, and Paper, Video and Annotations buttons"
-          width={1024}
-          height={467}
+        <Clip
+          name="website-design-zoom"
+          label="Zooming in on the project website's title, buttons and notice"
+          caption="Zooming in on the details."
         />
+        <BodyText className="rs-after-fig">
+          Headings and buttons are set in Urania, and body text in Hubot, with Hubot Italic for the author list. The
+          title and the page&apos;s accent are a light blue (#61DAFB), a nod to React, and everything else is plain black
+          on white. Tables use a pale grey header row (#F2F2F2) with thin dividers, so rows scan quickly.
+        </BodyText>
         <Figure
           src={`${P}/paper-abstract.webp`}
           alt="The paper's abstract and the table of character-specific nonverbal behaviours on the site"
@@ -181,17 +198,16 @@ export default function RosieCaseStudy({ onNext }) {
 
       <CaseStudySection>
         <SectionLabel>Reflections</SectionLabel>
-        <SectionHeading>Research as design</SectionHeading>
+        <SectionHeading>My first research experience</SectionHeading>
         <BodyText>
-          Working in a research lab taught me that defining the right question is harder, and more important, than
-          building the answer. Designing the data collection process and the participant experience was as much a
-          design problem as the website.
+          This was my first research experience, and I learned a lot about how a study is actually run: how it works,
+          and how the data is collected, used and presented.
         </BodyText>
-        <SectionHeading>Making research accessible</SectionHeading>
         <BodyText>
-          The website and the documentary weren&apos;t afterthoughts. They were the bridge between the paper and the
-          people it could help. I learned how much communication design matters in academic work, where the default is
-          to assume the audience will find you.
+          There are three things I&apos;ll bring into my own work. Rigor: every claim needs data behind it, and a
+          process other people can check. Consistency: coding hundreds of reactions only works if everyone applies the
+          same rules, every time. And asking what a finding actually means, not just what the numbers say, before
+          deciding what to do with it.
         </BodyText>
       </CaseStudySection>
 
