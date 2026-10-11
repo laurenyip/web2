@@ -141,7 +141,7 @@ export default function Playground() {
                   <a
                     key={item.label}
                     href={item.href}
-                    data-cursor-label="View"
+                    data-cursor-label="Read"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="about-writing-link transition sm:inline-block"

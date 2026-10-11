@@ -32,7 +32,7 @@ const FAVORITES_LINKS = [
   {
     label: 'Essays about frames, fashion, movies, and making stuff',
     href: '/reading-list',
-    cursorLabel: 'View',
+    cursorLabel: 'Read',
   },
   {
     label: "Books that let me experience a world I wouldn't have otherwise known",

@@ -19,7 +19,7 @@ function EssayEntry({ text, author, link, date }) {
     <div className="reading-list-entry">
       <a
         href={link}
-        data-cursor-label="View"
+        data-cursor-label="Read"
         target="_blank"
         rel="noreferrer"
         className="reading-list-entry-title reading-list-entry-title--link"
