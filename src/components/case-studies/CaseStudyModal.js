@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import posthog from 'posthog-js'
 import Image from 'next/image'
-import { caseStudies } from '../data/caseStudies'
+import { caseStudies } from '../../data/caseStudies'
 
 export default function CaseStudyModal({ projectTitle, onClose, project }) {
   const [expandedShowcaseImage, setExpandedShowcaseImage] = useState(null)

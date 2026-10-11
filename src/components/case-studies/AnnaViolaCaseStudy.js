@@ -12,8 +12,8 @@ import {
   Reflection,
   SectionHeading,
   SectionLabel,
-} from './caseStudy'
-import './caseStudy/CaseStudy.css'
+} from './shared'
+import './shared/CaseStudy.css'
 
 const I = {
   banner: '/images/projects/annaviola/annaviola-home.jpg',

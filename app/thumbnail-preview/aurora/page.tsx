@@ -1,6 +1,6 @@
 'use client'
 
-import AuroraThumb from '../../../src/components/AuroraThumb'
+import AuroraThumb from '../../../src/components/thumbnails/AuroraThumb'
 
 export default function AuroraThumbnailPreviewPage() {
   return (

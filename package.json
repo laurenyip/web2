@@ -19,12 +19,12 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/copy-redirects.js && node scripts/sync-out-to-build.js",
+    "build": "next build && node scripts/build/copy-redirects.js && node scripts/build/sync-out-to-build.js",
     "start": "next start",
     "lint": "next lint",
-    "export:spruce-thumb": "node scripts/export-spruce-thumbnail.mjs",
-    "export:aurora-thumb": "node scripts/export-aurora-thumbnail.mjs",
-    "exif": "node scripts/add-exif.js"
+    "export:spruce-thumb": "node scripts/images/export-spruce-thumbnail.mjs",
+    "export:aurora-thumb": "node scripts/images/export-aurora-thumbnail.mjs",
+    "exif": "node scripts/images/add-exif.js"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",

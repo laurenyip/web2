@@ -1,7 +1,7 @@
 'use client'
 
-import BookViewer from './BookViewer'
-import { ROLY_POLY_ZINE_PAGES, ROLY_POLY_ZINE_PDF } from '../data/rolyPolyZinePages'
+import BookViewer from '../ui/BookViewer'
+import { ROLY_POLY_ZINE_PAGES, ROLY_POLY_ZINE_PDF } from '../../data/rolyPolyZinePages'
 import {
   BodyText,
   CaseStudy,
@@ -10,8 +10,8 @@ import {
   ProjectMeta,
   SectionHeading,
   SectionLabel,
-} from './caseStudy'
-import './caseStudy/CaseStudy.css'
+} from './shared'
+import './shared/CaseStudy.css'
 import './JellyfishCaseStudy.css'
 
 const DIR = '/images/projects/jellyfish'

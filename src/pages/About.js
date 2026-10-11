@@ -3,9 +3,9 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Navbar from '../components/Navbar'
-import ImageModal from '../components/ImageModal'
-import VinylMusicShelf from '../components/VinylMusicShelf'
+import Navbar from '../components/layout/Navbar'
+import ImageModal from '../components/ui/ImageModal'
+import VinylMusicShelf from '../components/ui/VinylMusicShelf'
 import './App.css'
 import './About.css'
 

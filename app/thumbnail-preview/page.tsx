@@ -1,6 +1,6 @@
 'use client'
 
-import SpruceThumb from '../../src/components/SpruceThumb'
+import SpruceThumb from '../../src/components/thumbnails/SpruceThumb'
 
 export default function ThumbnailPreviewPage() {
   return (

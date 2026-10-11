@@ -14,7 +14,7 @@ import gifenc from 'gifenc'
 const { GIFEncoder, quantize, applyPalette } = gifenc
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const ROOT = path.join(__dirname, '..')
+const ROOT = path.join(__dirname, '..', '..')
 const OUT_DIR = path.join(ROOT, 'public/images/projects/annaviola')
 const SITE_URL = 'https://annaviolamusic.com/'
 const CHROME_PATH =

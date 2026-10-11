@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/layout/Navbar'
 import './App.css'
 import './Portfolio.css'
 

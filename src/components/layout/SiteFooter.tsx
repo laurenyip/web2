@@ -3,7 +3,7 @@
 import posthog from 'posthog-js'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import FortuneCookie from '../../components/fortune-cookie'
+import FortuneCookie from '../effects/fortune-cookie'
 import Webring from './Webring'
 import './SiteFooter.css'
 

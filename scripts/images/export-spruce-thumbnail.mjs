@@ -12,7 +12,7 @@ import { PNG } from 'pngjs'
 import { GIFEncoder, quantize, applyPalette } from 'gifenc'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const ROOT = path.join(__dirname, '..')
+const ROOT = path.join(__dirname, '..', '..')
 
 const WIDTH = 360
 const HEIGHT = 240

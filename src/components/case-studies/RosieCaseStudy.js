@@ -9,8 +9,8 @@ import {
   ProjectMeta,
   SectionHeading,
   SectionLabel,
-} from './caseStudy'
-import './caseStudy/CaseStudy.css'
+} from './shared'
+import './shared/CaseStudy.css'
 import './RosieCaseStudy.css'
 
 const P = '/images/projects/rosie/case-study'

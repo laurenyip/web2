@@ -12,8 +12,8 @@ import {
   Reflection,
   SectionHeading,
   SectionLabel,
-} from './caseStudy'
-import './caseStudy/CaseStudy.css'
+} from './shared'
+import './shared/CaseStudy.css'
 
 const CRADLE_UI = '/images/projects/cradle-referrals.png'
 

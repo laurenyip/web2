@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/layout/Navbar'
 import './App.css'
 import './Rights.css'
 

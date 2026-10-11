@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Inter } from 'next/font/google'
-import BookViewer from './BookViewer'
-import ImageModal from './ImageModal'
-import { LYRE_VOL17_PAGES } from '../data/lyreVol17Pages'
+import BookViewer from '../ui/BookViewer'
+import ImageModal from '../ui/ImageModal'
+import { LYRE_VOL17_PAGES } from '../../data/lyreVol17Pages'
 import {
   BodyText,
   CaseStudy,
@@ -14,8 +14,8 @@ import {
   ProjectMeta,
   SectionHeading,
   SectionLabel,
-} from './caseStudy'
-import './caseStudy/CaseStudy.css'
+} from './shared'
+import './shared/CaseStudy.css'
 
 const inter = Inter({
   subsets: ['latin'],

@@ -7,7 +7,7 @@ const fs = require('fs')
 const path = require('path')
 const { exiftool } = require('exiftool-vendored')
 
-const ROOT = path.join(__dirname, '..')
+const ROOT = path.join(__dirname, '..', '..')
 const IMAGE_DIRS = [
   path.join(ROOT, 'public', 'art'),
   path.join(ROOT, 'public', 'photography'),

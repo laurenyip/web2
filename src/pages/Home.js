@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import Navbar from '../components/Navbar'
-import ImageModal from '../components/ImageModal'
+import Navbar from '../components/layout/Navbar'
+import ImageModal from '../components/ui/ImageModal'
 import './App.css'
 /** Served from /public — do not import PDFs in Next.js (no file loader by default). */
 const RESUME_PDF_HREF = '/Resume___Lauren_Yip.pdf'

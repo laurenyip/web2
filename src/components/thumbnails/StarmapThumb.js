@@ -1,8 +1,8 @@
 'use client'
 
 import { useCallback, useRef, useState } from 'react'
-import { StarIcon } from './StarIcon'
-import { exportStarmapGif } from './starmapGifExport'
+import { StarIcon } from '../ui/StarIcon'
+import { exportStarmapGif } from '../ui/starmapGifExport'
 import './StarmapThumb.css'
 
 export const STAR_PATH = 'M7 0 L8.2 5.8 L14 7 L8.2 8.2 L7 14 L5.8 8.2 L0 7 L5.8 5.8 Z'

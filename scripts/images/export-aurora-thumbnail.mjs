@@ -14,7 +14,7 @@ import gifenc from 'gifenc'
 const { GIFEncoder, quantize, applyPalette } = gifenc
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const ROOT = path.join(__dirname, '..')
+const ROOT = path.join(__dirname, '..', '..')
 
 const WIDTH = 360
 const HEIGHT = 240

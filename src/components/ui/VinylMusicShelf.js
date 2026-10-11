@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 import AboutAlbumsCharm from './AboutAlbumsCharm'
-import { MUSIC_ITEMS } from '../data/creativeContent'
+import { MUSIC_ITEMS } from '../../data/creativeContent'
 
 const VINYL_SLEEVE_PX = 100
 

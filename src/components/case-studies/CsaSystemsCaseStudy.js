@@ -10,8 +10,8 @@ import {
   ProjectMeta,
   SectionHeading,
   SectionLabel,
-} from './caseStudy'
-import './caseStudy/CaseStudy.css'
+} from './shared'
+import './shared/CaseStudy.css'
 
 export default function CsaSystemsCaseStudy({ onNext }) {
   return (

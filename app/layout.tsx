@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import ImageProtection from '../src/components/ImageProtection'
-import IntroLoader from '../src/components/IntroLoader'
-import SiteFooter from '../src/components/SiteFooter'
-import SiteCursor from '../components/site-cursor'
+import ImageProtection from '../src/components/layout/ImageProtection'
+import IntroLoader from '../src/components/layout/IntroLoader'
+import SiteFooter from '../src/components/layout/SiteFooter'
+import SiteCursor from '../src/components/effects/site-cursor'
 import { PostHogProvider } from './providers'
 import './globals.css'
 

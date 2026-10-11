@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { DIARY_FRAMES, DIARY_PAGE_TEXT } from '../data/creativeContent'
+import { DIARY_FRAMES, DIARY_PAGE_TEXT } from '../../data/creativeContent'
 import './PlaygroundDiary.css'
 
 const CLOSE_FRAME_MS = 220

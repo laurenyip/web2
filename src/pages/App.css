@@ -139,7 +139,7 @@ p1 {
 .containermain {
   border: #001c80 solid 1px;
   padding: 5%;
-  background-image: url("stamp.png");
+  background-image: url("../assets/images/stamp.png");
   background-repeat: no-repeat;
   max-width: fit-content;
   border-radius: 10px;
@@ -168,90 +168,90 @@ p1 {
 
 @font-face {
   font-family: "Chobani";
-  src: url("fonts/Chobani.ttf") format("truetype");
+  src: url("../assets/fonts/Chobani.ttf") format("truetype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Apercu";
-  src: url("fonts/Apercu.otf") format("OpenType");
+  src: url("../assets/fonts/Apercu.otf") format("OpenType");
   font-display: swap;
 }
 
 @font-face {
   font-family: "URWGeometricHeavy";
-  src: url("fonts/URWGeometricHeavy.otf") format("OpenType");
+  src: url("../assets/fonts/URWGeometricHeavy.otf") format("OpenType");
   font-display: swap;
 }
 
 @font-face {
   font-family: "URWGeometricSemiBold";
-  src: url("fonts/URWGeometricSemiBold.otf") format("OpenType");
+  src: url("../assets/fonts/URWGeometricSemiBold.otf") format("OpenType");
   font-display: swap;
 }
 
 @font-face {
   font-family: "ESrebond_title";
-  src: url("fonts/ESRebond_title.otf") format("OpenType");
+  src: url("../assets/fonts/ESRebond_title.otf") format("OpenType");
   font-display: swap;
 }
 
 @font-face {
   font-family: "ESrebond_regular";
-  src: url("fonts/ESRebond_regular.otf") format("OpenType");
+  src: url("../assets/fonts/ESRebond_regular.otf") format("OpenType");
   font-display: swap;
 }
 
 @font-face {
   font-family: "pepi";
-  src: url("fonts/pepi_medium.otf") format("OpenType");
+  src: url("../assets/fonts/pepi_medium.otf") format("OpenType");
   font-display: swap;
 }
 
 @font-face {
   font-family: "urania";
-  src: url("fonts/Urania-Medium.otf") format("OpenType");
+  src: url("../assets/fonts/Urania-Medium.otf") format("OpenType");
   font-display: swap;
 }
 
 @font-face {
   font-family: "boring_reg";
-  src: url("fonts/boring_reg.ttf") format("trueType");
+  src: url("../assets/fonts/boring_reg.ttf") format("trueType");
   font-display: swap;
 }
 
 @font-face {
   font-family: "boring_med";
-  src: url("fonts/boring_med.ttf") format("trueType");
+  src: url("../assets/fonts/boring_med.ttf") format("trueType");
   font-display: swap;
 }
 @font-face {
   font-family: "sohne";
-  src: url("fonts/sohne.otf") format("OpenType");
+  src: url("../assets/fonts/sohne.otf") format("OpenType");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Moto";
-  src: url("fonts/Moto.otf") format("OpenType");
+  src: url("../assets/fonts/Moto.otf") format("OpenType");
   font-display: swap;
 }
 
 @font-face {
   font-family: "URWGeometricRegular";
-  src: url("fonts/URWGeometricRegular.otf") format("OpenType");
+  src: url("../assets/fonts/URWGeometricRegular.otf") format("OpenType");
   font-display: swap;
 }
 
 @font-face {
   font-family: "F25";
-  src: url("fonts/f25.otf") format("OpenType");
+  src: url("../assets/fonts/f25.otf") format("OpenType");
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Melo';
-  src: url('fonts/melo.ttf') format('truetype');
+  src: url('../assets/fonts/melo.ttf') format('truetype');
   font-display: swap;
 }
 

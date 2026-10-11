@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import '../pages/App.css'
+import '../../pages/App.css'
 import './SiteNav.css'
 
 const NAV_LINKS = [

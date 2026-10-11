@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import './App.css'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/layout/Navbar'
 
 function Projects() {
   const [openCaseStudy, setOpenCaseStudy] = useState(null)

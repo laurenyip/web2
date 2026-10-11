@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import Navbar from '../components/Navbar'
-import ImageModal from '../components/ImageModal'
-import { getProtectedImageProps } from '../../lib/getProtectedImageProps'
+import Navbar from '../components/layout/Navbar'
+import ImageModal from '../components/ui/ImageModal'
+import { getProtectedImageProps } from '../lib/getProtectedImageProps'
 import '../pages/App.css'
 import '../pages/About.css'
 

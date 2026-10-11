@@ -2,7 +2,7 @@
 
 import React, { useCallback, useMemo, useState } from 'react'
 import Image from 'next/image'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/layout/Navbar'
 import './App.css'
 import './AlbumGallery.css'
 

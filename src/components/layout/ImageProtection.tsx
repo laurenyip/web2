@@ -1,6 +1,6 @@
 'use client'
 
-import { useImageProtection } from '../hooks/useImageProtection'
+import { useImageProtection } from '../../hooks/useImageProtection'
 
 export default function ImageProtection() {
   useImageProtection()

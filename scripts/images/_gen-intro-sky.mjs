@@ -180,7 +180,7 @@ ${groupLines}
 ]
 `
 
-const dest = new URL('../src/components/introSkyCatalog.ts', import.meta.url)
+const dest = new URL('../../src/components/layout/introSkyCatalog.ts', import.meta.url)
 fs.writeFileSync(dest, out)
 console.log({ stars: catalog.length, lines: linesOut.length, groups: groups.length, faint, extras })
 

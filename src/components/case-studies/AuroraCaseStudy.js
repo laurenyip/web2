@@ -1,6 +1,6 @@
 'use client'
 
-import { Body, Heading, Img, Label, Meta, NextLink, gap } from './caseStudy/FramerStudy'
+import { Body, Heading, Img, Label, Meta, NextLink, gap } from './shared/FramerStudy'
 import './AuroraCaseStudy.css'
 
 const I = {

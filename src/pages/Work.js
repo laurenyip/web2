@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState } from 'react'
 import posthog from 'posthog-js'
-import Navbar from '../components/Navbar'
-import CaseStudyModal from '../components/CaseStudyModal'
+import Navbar from '../components/layout/Navbar'
+import CaseStudyModal from '../components/case-studies/CaseStudyModal'
 import FramerCaseStudyModal, {
   FRAMER_ORIGIN,
   prefetchFramerPath,
-} from '../components/FramerCaseStudyModal'
-import LocalCaseStudyModal from '../components/LocalCaseStudyModal'
-import WorkProjectCard from '../components/WorkProjectCard'
+} from '../components/case-studies/FramerCaseStudyModal'
+import LocalCaseStudyModal from '../components/case-studies/LocalCaseStudyModal'
+import WorkProjectCard from '../components/ui/WorkProjectCard'
 import {
   CASE_STUDY_KEYS,
   WORK_PROJECTS,

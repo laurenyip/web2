@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react'
 import posthog from 'posthog-js'
 import Image from 'next/image'
-import Navbar from '../components/Navbar'
-import ImageModal from '../components/ImageModal'
+import Navbar from '../components/layout/Navbar'
+import ImageModal from '../components/ui/ImageModal'
 import {
   ART_CAROUSEL,
   GUITAR_IMAGE,
