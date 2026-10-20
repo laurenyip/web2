@@ -10,7 +10,7 @@ import {
   type IntroSky,
 } from './introSkyExtend'
 
-const MIN_HOLD_MS = 1100
+const MIN_HOLD_MS = 700
 const EXIT_MS = 480
 const EMPTY_SKY: IntroSky = { stars: [], lines: [] }
 

@@ -46,7 +46,36 @@ html.intro-lock body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0b1427;
+  background-color: #0b1427;
+  background-image:
+    radial-gradient(circle at 8% 12%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 17% 64%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1.2px, transparent 1.7999999999999998px),
+    radial-gradient(circle at 23% 31%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 31% 82%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 38% 9%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1.4px, transparent 2px),
+    radial-gradient(circle at 44% 47%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 52% 22%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 58% 71%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1.2px, transparent 1.7999999999999998px),
+    radial-gradient(circle at 64% 38%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 71% 14%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1.4px, transparent 2px),
+    radial-gradient(circle at 77% 58%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 84% 28%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 91% 76%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1.2px, transparent 1.7999999999999998px),
+    radial-gradient(circle at 95% 10%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 12% 90%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 28% 55%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 47% 88%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 67% 92%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 88% 50%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 3% 44%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 55% 5%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 75% 35%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 35% 68%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 60% 52%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 20% 18%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1.2px, transparent 1.7999999999999998px),
+    radial-gradient(circle at 82% 85%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px),
+    radial-gradient(circle at 41% 33%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 0.8px, transparent 1.4px),
+    radial-gradient(circle at 93% 40%, rgba(255,255,255,.85) 0, rgba(255,255,255,.85) 1px, transparent 1.6px);
   overflow: hidden;
   pointer-events: none;
   opacity: 1;
@@ -119,7 +148,7 @@ html.intro-lock body {
   padding: 0 24px;
   text-align: right;
   color: #ffffff;
-  font-family: "Moto", Georgia, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.4;

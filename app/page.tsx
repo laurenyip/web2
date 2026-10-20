@@ -7,7 +7,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     'how did you get here? let me show you my website!',
   path: '/',
-  image: '/images/home/og-preview-v2.png',
+  image: '/images/home/og-preview-v3.png',
 })
 
 export default function Page() {
