@@ -11,6 +11,7 @@ import KodeticThumb from '../thumbnails/KodeticThumb'
 import AnnaViolaThumb from '../thumbnails/AnnaViolaThumb'
 import JellyfishThumb from '../thumbnails/JellyfishThumb'
 import RosieThumb from '../thumbnails/RosieThumb'
+import SoundbookThumb from '../thumbnails/SoundbookThumb'
 import BylineThumb from '../thumbnails/BylineThumb'
 import { getProtectedImageProps } from '../../lib/getProtectedImageProps'
 import CaseStudyTags from './CaseStudyTags'
@@ -43,6 +44,7 @@ const THUMB_BY_ID = {
   annaviola: AnnaViolaThumb,
   'jellyfish-umbrella': JellyfishThumb,
   'react-to-this': RosieThumb,
+  soundbook: SoundbookThumb,
 }
 
 function WorkProjectCardMedia({ project, csaRevealed, portfolio }) {

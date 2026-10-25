@@ -1,0 +1,132 @@
+@font-face {
+  font-family: 'Bitter';
+  src: url('/fonts/bitter-700.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* SoundBook thumbnail: sized from the card's smaller side so it holds in the portrait desktop slot and the wide mobile one */
+.sb-thumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  container-type: size;
+  isolation: isolate;
+  background: #eef3ff;
+}
+
+/* a child using a phone with a parent, full bleed */
+.sb-thumb-photo-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* toned like the Spruce and Aurora cards: a little more colour and contrast (no colour cast, no zoom)… */
+.sb-thumb-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 42%;
+  filter: saturate(1.03) contrast(1.06);
+  user-select: none;
+}
+
+/* …under a flat deep-green layer (like Spruce's darkening, tinted green), at about Aurora's brightness,
+   so the white logo stands out */
+.sb-thumb-photo-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 54, 20, 0.29);
+  pointer-events: none;
+}
+
+/* glowing logo straight on the photo, in the lower half of the card */
+.sb-thumb-brand {
+  position: absolute;
+  left: 50%;
+  bottom: 18cqmin;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4cqmin;
+  padding: 3cqmin 6cqmin;
+}
+
+.sb-thumb-mark {
+  width: 25cqmin;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 1.2cqmin rgba(255, 255, 255, 0.6)) drop-shadow(0 0 4cqmin rgba(150, 225, 215, 0.55));
+}
+
+/* the arcs pulse outward in turn, like a sound leaving the sun */
+.sb-thumb-arc {
+  transform-origin: 100px 100px;
+  animation: sb-ripple 3.6s ease-in-out infinite;
+}
+
+.sb-thumb-arc--1 {
+  animation-delay: 0s;
+}
+
+.sb-thumb-arc--2 {
+  animation-delay: 0.22s;
+}
+
+.sb-thumb-arc--3 {
+  animation-delay: 0.44s;
+}
+
+.sb-thumb-dome {
+  transform-origin: 100px 116px;
+  animation: sb-dome 3.6s ease-in-out infinite;
+}
+
+.sb-thumb-title {
+  margin: 0;
+  font-family: 'Bitter', Georgia, serif;
+  font-weight: 700;
+  font-size: 10.5cqmin;
+  line-height: 1;
+  letter-spacing: -0.005em;
+  color: #fff;
+  /* no glow on the word: a dark shadow so the white reads over the bright table */
+  text-shadow:
+    0 0 0.8cqmin rgba(16, 32, 64, 0.55),
+    0 0.5cqmin 3cqmin rgba(16, 32, 64, 0.5);
+}
+
+@keyframes sb-ripple {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.97);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes sb-dome {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-thumb * {
+    animation: none !important;
+  }
+}

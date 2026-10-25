@@ -22,18 +22,14 @@ const I = {
   paperPicker: `${dir}/paper-picker.mp4`,
   paperPickerGif: `${dir}/paper-picker.gif`,
   paperPickerPoster: `${dir}/paper-picker-poster.webp`,
+  flow: `${dir}/flow.mp4`,
+  flowPoster: `${dir}/flow-poster.webp`,
   mobileWrapping: `${dir}/mobile-wrapping.jpg`,
   mobileCard: `${dir}/mobile-card.jpg`,
   mobileCardBirthday: `${dir}/mobile-card-birthday.png`,
   logo: `${dir}/logo.png`,
   logoGiftWrapping: `${dir}/logo-gift-wrapping.webp`,
 }
-
-const FINALS = [
-  { src: I.mobileWrapping, alt: 'Mobile: choose wrapping paper, ribbon colour and width', label: 'Every pick shows up on the box' },
-  { src: I.mobileCard, alt: 'Mobile: choose a card and write a message', label: 'Card and message live in the same flow' },
-  { src: I.mobileCardBirthday, alt: 'Mobile: a Happy Birthday card selected', label: 'The card preview updates with the design' },
-]
 
 // Full-width blue band holding one or two prototype shots.
 function Band({ children, className = '', space }) {
@@ -81,13 +77,26 @@ export default function AmazonGiftCaseStudy({ onNext }) {
         <Meta
           space={gap(34, 29)}
           items={[
-            { label: 'TIMELINE', value: '5.5 days (SparkJam 2026)' },
-            { label: 'ROLE', value: 'Product Designer' },
-            { label: 'RECOGNITION', value: '🏆 Best UI Design', phoneValue: 'People said it was cool' },
+            { label: 'TIMELINE', value: '5.5 days' },
+            { label: 'EVENT', value: 'Sparkjam 2026' },
+            {
+              label: 'TEAM',
+              value: (
+                <>
+                  Lauren Yip
+                  <br />
+                  Isabelle Kwan
+                  <br />
+                  Sophia Don Tran Ho
+                  <br />
+                  Kelly Nguyen
+                </>
+              ),
+            },
           ]}
         />
 
-        <Label space={gap(0, 29)}>THE BRIEF</Label>
+        <Label space={gap(48, 48)}>THE BRIEF</Label>
         <Heading space={gap(16, 16, 173)}>
           Add a new creation-centric feature to a typically non-creation-oriented experience
         </Heading>
@@ -95,7 +104,10 @@ export default function AmazonGiftCaseStudy({ onNext }) {
           Create an experience that allows users to imagine, think, and build through a research backed extension
           that would exist within or alongside a current experience.
         </Body>
-        <Img src={I.brief} alt="" className="fs-bleed agcs-brief" space={gap(51, 22)} />
+        {/* SparkJam logo at 60% width, the rest of the row filled with the logo's own yellow */}
+        <div className="fs-bleed agcs-brief-band" style={gap(51, 22)}>
+          <Img src={I.brief} alt="SparkJam" className="agcs-brief" />
+        </div>
 
         <Label space={gap(24)}>RESEARCH</Label>
         <Heading space={gap(24)}>Something Amazon has somehow never gotten right</Heading>
@@ -224,17 +236,21 @@ export default function AmazonGiftCaseStudy({ onNext }) {
         </Band>
         <Caption space={gap(12)}>Pick a paper and the box rewraps in it.</Caption>
 
-        <div className="agcs-screens" style={gap(40, 24)}>
-          {FINALS.map((s) => (
-            <figure key={s.src}>
-              <PhoneShell width={286}>
-                <Img src={s.src} alt={s.alt} className="agcs-screen-img" />
-              </PhoneShell>
-              <Body className="agcs-screen-label">{s.label}</Body>
-            </figure>
-          ))}
-        </div>
-        <Caption space={gap(12)}>The final mobile screens.</Caption>
+        <Band className="agcs-band--auto" space={gap(40, 24)}>
+          <PhoneShell width={286} className="agcs-shell--clip">
+            <video
+              className="fs-img agcs-clip"
+              src={I.flow}
+              poster={I.flowPoster}
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label="The whole flow: tick Send as a gift in the cart, pick the wrapping paper, ribbon colour and width, choose a card and write a message, then finish and check out"
+            />
+          </PhoneShell>
+        </Band>
+        <Caption space={gap(12)}>The whole flow, from the cart checkbox to checkout, zooming in on each step.</Caption>
 
         <Label space={gap(59, 33)}>IN THE FUTURE</Label>
         <Heading space={gap(9, 9, 130)}>Adding smart suggestions and auto suggestions</Heading>

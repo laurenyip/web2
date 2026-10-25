@@ -195,7 +195,7 @@ function Projects() {
           <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
             <button
               onClick={() => setExpandedImage(null)}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
+              className="image-popup-close absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
               aria-label="Close"
             >
               ×
@@ -631,7 +631,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
             <button
               onClick={closeExpandedImage}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
+              className="image-popup-close absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
               aria-label="Close"
             >
               ×

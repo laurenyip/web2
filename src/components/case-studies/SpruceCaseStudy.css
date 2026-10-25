@@ -328,3 +328,22 @@
     padding-bottom: 89px;
   }
 }
+
+/* recorded prototype flows */
+.spcs-flow video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.spcs-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .spcs-pair {
+    grid-template-columns: 1fr;
+  }
+}

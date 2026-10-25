@@ -16,7 +16,9 @@ import {
 import './shared/CaseStudy.css'
 
 const I = {
-  banner: '/images/projects/annaviola/annaviola-home.jpg',
+  // recorded with scripts/images/record-annaviola-hero.mjs
+  heroWalkthrough: '/images/projects/annaviola/hero-walkthrough.webm',
+  heroWalkthroughPoster: '/images/projects/annaviola/hero-walkthrough-poster.jpg',
   cover: '/images/projects/annaviola/silver-secrets-cover.png',
   parallel: '/images/projects/annaviola/parallel-lines.png',
   rtwp: '/images/projects/annaviola/right-time-wrong-person.png',
@@ -34,12 +36,18 @@ const I = {
 export default function AnnaViolaCaseStudy({ onNext }) {
   return (
     <CaseStudy className="cs--annaviola">
-      <ImageBlock
-        src={I.banner}
-        alt="Anna Viola website homepage — starry black background with white filigree borders, script wordmark, Listen link, social icons, and a black-and-white portrait above the Releases section"
-        wide
-        priority
-      />
+      <figure className="cs-image-block cs-image-block--wide">
+        <video
+          className="cs-video"
+          src={I.heroWalkthrough}
+          poster={I.heroWalkthroughPoster}
+          aria-label="Using annaviolamusic.com: hovering the social icons, hovering releases so their stars light up, then opening Listen and hovering covers to play their videos"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+      </figure>
 
       <CaseStudyHero
         title="Designed a brand stage for an emerging pop artist."

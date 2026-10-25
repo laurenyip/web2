@@ -5,9 +5,15 @@
   object-fit: cover;
 }
 
-.agcs-brief {
-  height: 328px;
-  object-fit: cover;
+.agcs-brief-band {
+  display: flex;
+  justify-content: center;
+  background: #f2cb24;
+}
+
+.agcs .agcs-brief-band .agcs-brief {
+  width: 60%;
+  height: auto;
 }
 
 /* Reddit screenshots, scattered across two columns */
@@ -262,10 +268,6 @@
     aspect-ratio: 390 / 216;
   }
 
-
-  .agcs-brief {
-    height: 100px;
-  }
 
   .agcs-reddit {
     display: flex;

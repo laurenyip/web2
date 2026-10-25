@@ -91,7 +91,7 @@ export default function KodeticCaseStudy({ onNext }) {
       >
         <ProjectMeta
           items={[
-            { label: 'Timeline', value: '2025–2026' },
+            { label: 'Timeline', value: 'Summer 2026' },
             { label: 'Role', value: 'Website Design & Build' },
             { label: 'Live', value: 'laurenyip.github.io/kodetic', href: I.live },
           ]}

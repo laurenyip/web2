@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import posthog from 'posthog-js'
 import Navbar from '../components/layout/Navbar'
 import CaseStudyModal from '../components/case-studies/CaseStudyModal'
@@ -29,7 +29,7 @@ export default function Work() {
   const [openFramer, setOpenFramer] = useState(null)
   const [openLocalStudy, setOpenLocalStudy] = useState(null)
   const [activeProject, setActiveProject] = useState(null)
-  const [continuedOpen, setContinuedOpen] = useState(false)
+  const [continuedScrolling, setContinuedScrolling] = useState(false)
 
   const featured = WORK_PROJECTS[WORK_ROW1_FEATURED]
   const row2 = WORK_ROW2.map((id) => WORK_PROJECTS[id])
@@ -40,7 +40,23 @@ export default function Work() {
     .map((project) => project.framerPath)
     .join('|')
 
+  const setUrlHash = (id) => {
+    if (typeof window === 'undefined') return
+    const next = id ? `#${id}` : ''
+    if (window.location.hash === next) return
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${next}`)
+  }
+
+  const closeAll = () => {
+    setOpenFramer(null)
+    setOpenLocalStudy(null)
+    setOpenCaseStudy(null)
+    setActiveProject(null)
+    setUrlHash('')
+  }
+
   const handleOpen = (project) => {
+    setUrlHash(project.id)
     posthog.capture('project_opened', {
       project_id: project.id,
       project_title: project.title,
@@ -62,6 +78,42 @@ export default function Work() {
     setActiveProject(project)
     setOpenCaseStudy(CASE_STUDY_KEYS[project.id])
   }
+
+  const handleOpenRef = useRef(handleOpen)
+  handleOpenRef.current = handleOpen
+  const closeAllRef = useRef(closeAll)
+  closeAllRef.current = closeAll
+
+  useEffect(() => {
+    const openFromHash = () => {
+      const id = decodeURIComponent(window.location.hash.replace(/^#/, ''))
+      const project = id ? WORK_PROJECTS[id] : null
+      if (!project?.hasCaseStudy || project.nda) {
+        if (!id) closeAllRef.current()
+        return
+      }
+      handleOpenRef.current(project)
+    }
+    openFromHash()
+    window.addEventListener('hashchange', openFromHash)
+    return () => window.removeEventListener('hashchange', openFromHash)
+  }, [])
+
+  // The continued rows stay faded into white at rest; they clear while the page is scrolling
+  // (and on hover/touch, in Work.css), then fade back once scrolling stops.
+  useEffect(() => {
+    let idleTimer
+    const onScroll = () => {
+      setContinuedScrolling(true)
+      window.clearTimeout(idleTimer)
+      idleTimer = window.setTimeout(() => setContinuedScrolling(false), 700)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.clearTimeout(idleTimer)
+    }
+  }, [])
 
   useEffect(() => {
     const framerPaths = framerPathsKey ? framerPathsKey.split('|') : []
@@ -98,11 +150,7 @@ export default function Work() {
 
   useEffect(() => {
     const handleEscape = (event) => {
-      if (event.key === 'Escape') {
-        setOpenFramer(null)
-        setOpenLocalStudy(null)
-        setOpenCaseStudy(null)
-      }
+      if (event.key === 'Escape') closeAll()
     }
     if (openCaseStudy || openFramer || openLocalStudy) {
       window.addEventListener('keydown', handleEscape)
@@ -147,7 +195,7 @@ export default function Work() {
             Lauren Yip
           </h1>
           <p className="home-hero-subtitle text-center" style={{ marginTop: '0.75rem' }}>
-            Product Designer · Computer Science @ SFU · Artist and Explorer
+            Design Engineer · Computer Science @ SFU · Artist and Explorer
           </p>
         </header>
 
@@ -249,45 +297,36 @@ export default function Work() {
             ))}
           </div>
 
-          <div className="work-continued" aria-label="More case studies">
-            <button
-              type="button"
-              className={`work-continued-label${continuedOpen ? ' work-continued-label--open' : ''}`}
-              data-cursor-label="Freelance, research and art tech"
-              onClick={() => setContinuedOpen((open) => !open)}
-              aria-expanded={continuedOpen}
-              aria-controls="work-continued-row"
-            >
-              {continuedOpen ? 'work continued ↑' : 'work continued →'}
-            </button>
+          <div
+            id="work-continued-row"
+            aria-label="More case studies"
+            className={`home-row3 work-row3 work-row4${continuedScrolling ? ' work-row4--scrolling' : ''}`}
+          >
+            {row4.map((project) => (
+              <WorkProjectCard
+                key={project.id}
+                project={project}
+                className="work-row3-card work-row4-card"
+                onOpen={handleOpen}
+                showTitle={false}
+                overlayCaption
+              />
+            ))}
           </div>
-
-          {continuedOpen ? (
-            <div id="work-continued-row" className="home-row3 work-row3 work-row4">
-              {row4.map((project) => (
-                <WorkProjectCard
-                  key={project.id}
-                  project={project}
-                  className="work-row3-card work-row4-card"
-                  onOpen={handleOpen}
-                  showTitle={false}
-                  overlayCaption
-                />
-              ))}
-            </div>
-          ) : null}
         </div>
       </main>
 
       {openFramer && (
-        <FramerCaseStudyModal framerPath={openFramer.path} onClose={() => setOpenFramer(null)} />
+        <FramerCaseStudyModal framerPath={openFramer.path} onClose={closeAll} />
       )}
 
       {openLocalStudy && (
         <LocalCaseStudyModal
           studyId={openLocalStudy}
-          onClose={() => setOpenLocalStudy(null)}
+          onClose={closeAll}
           onChangeStudy={(id) => {
+            const next = Object.values(WORK_PROJECTS).find((p) => p.localCaseStudy === id || p.id === id)
+            setUrlHash(next?.id || '')
             const framerPath = WORK_PROJECTS[id]?.framerPath
             if (framerPath) {
               setOpenLocalStudy(null)
@@ -302,10 +341,7 @@ export default function Work() {
       {openCaseStudy && (
         <CaseStudyModal
           projectTitle={openCaseStudy}
-          onClose={() => {
-            setOpenCaseStudy(null)
-            setActiveProject(null)
-          }}
+          onClose={closeAll}
           project={activeProject}
         />
       )}

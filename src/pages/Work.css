@@ -255,48 +255,31 @@
   gap: 12px;
 }
 
-.work-continued {
-  display: flex;
-  justify-content: flex-start;
-  padding: 28px 0 4px;
-}
-
-.work-continued-label {
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: transparent;
-  font-family: 'boring_reg', Georgia, serif;
-  font-size: 18px;
-  letter-spacing: 0.04em;
-  color: #374151;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.work-continued-label:hover,
-.work-continued-label:focus-visible {
-  color: #111827;
-}
-
-.work-continued-label:focus-visible {
-  outline: 2px solid #9ca3af;
-  outline-offset: 4px;
-  border-radius: 4px;
-}
-
+/* Continued work: faded under a white wash at rest; clears while scrolling, on hover and on touch. */
 .work-row4 {
-  animation: work-continued-reveal 0.35s ease;
+  position: relative;
+  margin-top: 16px;
 }
 
-@keyframes work-continued-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+.work-row4::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45), #ffffff 85%);
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.work-row4--scrolling::after,
+.work-row4:hover::after,
+.work-row4:focus-within::after {
+  opacity: 0;
+  transition-duration: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-row4::after {
+    transition: none;
   }
 }
 

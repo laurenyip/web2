@@ -36,7 +36,7 @@ export default function ImageModal({ open, src, caption, alt, onClose, useProtec
           type="button"
           onClick={onClose}
           autoFocus
-          className="absolute -top-1 right-0 z-10 flex h-9 w-9 -translate-y-full items-center justify-center rounded-full bg-white/15 text-2xl font-light leading-none text-white transition hover:bg-white/25 md:right-0 md:top-0 md:translate-x-full md:translate-y-0"
+          className="image-popup-close absolute -top-1 right-0 z-10 flex h-9 w-9 -translate-y-full items-center justify-center rounded-full bg-white/15 text-2xl font-light leading-none text-white transition hover:bg-white/25 md:right-0 md:top-0 md:translate-x-full md:translate-y-0"
           aria-label="Close"
         >
           ×

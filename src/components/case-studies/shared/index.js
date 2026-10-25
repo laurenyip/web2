@@ -143,3 +143,4 @@ export function NextCaseStudy({ label = 'See next case study →', onClick, href
 }
 
 export { default as CoverHoverDemo } from './CoverHoverDemo'
+export { default as CopyLinkButton } from './CopyLinkButton'

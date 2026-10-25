@@ -1,12 +1,12 @@
 /** Work page grid — order is left-to-right, top-to-bottom. */
 export const WORK_ROW1_FEATURED = 'starmap'
 
-export const WORK_ROW2 = ['spruce', 'aurora', 'amazon-giftwrapping']
+export const WORK_ROW2 = ['spruce', 'aurora', 'soundbook']
 
 export const WORK_ROW3 = ['csa', 'the-lyre', 'byline']
 
 /** Continued work — square thumbs below the main grid (revealed on click) */
-export const WORK_ROW4 = ['kodetic', 'annaviola', 'jellyfish-umbrella', 'react-to-this']
+export const WORK_ROW4 = ['jellyfish-umbrella', 'amazon-giftwrapping', 'kodetic', 'annaviola', 'react-to-this']
 
 export const WORK_PROJECTS = {
   starmap: {
@@ -42,6 +42,18 @@ export const WORK_PROJECTS = {
     portfolioThumb: true,
     cardBg: '#1a1a1a',
     localCaseStudy: 'aurora',
+  },
+  soundbook: {
+    id: 'soundbook',
+    title: 'SoundBook',
+    description: 'A storybook that lets deaf and hard-of-hearing children see their voice and practise sounds.',
+    tags: ['Accessibility', 'Mobile App', 'Interaction Design'],
+    image: '/images/projects/soundbook/case-study/hero-1.webp',
+    hasCaseStudy: true,
+    portfolioThumb: true,
+    cardBg: '#eef3ff',
+    localCaseStudy: 'soundbook',
+    link: 'https://laurenyip.github.io/svsd/',
   },
   'amazon-giftwrapping': {
     id: 'amazon-giftwrapping',
@@ -154,6 +166,7 @@ export const CASE_STUDY_KEYS = {
   csa: 'Canadian Space Agency',
   'jellyfish-umbrella': 'jellyfish umbrella',
   'react-to-this': 'React to This!',
+  soundbook: 'SoundBook',
   'the-lyre': 'The Lyre',
   byline: 'byline',
   kodetic: 'Kodetic',

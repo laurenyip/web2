@@ -300,3 +300,30 @@ button[aria-label="Close"]::after {
 button[aria-label="Close"]::after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
+
+/* Case study close buttons: 25% larger than the other close buttons */
+button.framer-modal-close,
+button.case-study-modal-close {
+  width: 1.875rem !important;
+  height: 1.875rem !important;
+}
+
+button.framer-modal-close::before,
+button.framer-modal-close::after,
+button.case-study-modal-close::before,
+button.case-study-modal-close::after {
+  width: 0.775rem;
+  height: 1.875px;
+}
+
+/* Image popup close buttons (enlarged images across the site): larger again, easy to find over a dark backdrop */
+button.image-popup-close {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+}
+
+button.image-popup-close::before,
+button.image-popup-close::after {
+  width: 1rem;
+  height: 2px;
+}

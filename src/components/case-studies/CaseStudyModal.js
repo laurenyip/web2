@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import posthog from 'posthog-js'
 import Image from 'next/image'
 import { caseStudies } from '../../data/caseStudies'
+import CopyLinkButton from './shared/CopyLinkButton'
 
 export default function CaseStudyModal({ projectTitle, onClose, project }) {
   const [expandedShowcaseImage, setExpandedShowcaseImage] = useState(null)
@@ -57,13 +58,16 @@ export default function CaseStudyModal({ projectTitle, onClose, project }) {
           <h2 className="m-0 min-w-0 truncate text-2xl font-semibold text-gray-800">
             {project?.title || projectTitle}
           </h2>
+          <div className="flex shrink-0 items-center gap-3">
+          <CopyLinkButton />
           <button
             onClick={onClose}
-            className="shrink-0 text-gray-700 hover:text-gray-900 text-2xl font-light leading-none"
+            className="case-study-modal-close shrink-0 text-gray-700 hover:text-gray-900 text-2xl font-light leading-none"
             aria-label="Close"
           >
             ×
           </button>
+          </div>
         </div>
 
         <div className="overflow-y-auto flex-1 min-h-0 case-study-scroll">
@@ -221,7 +225,7 @@ export default function CaseStudyModal({ projectTitle, onClose, project }) {
           <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
             <button
               onClick={closeExpandedImage}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
+              className="image-popup-close absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
               aria-label="Close"
             >
               ×

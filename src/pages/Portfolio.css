@@ -509,3 +509,16 @@ body {
   src: url("../assets/fonts/f25.otf") format("OpenType");
   font-display: swap;
 }
+
+.portfolio-card-media--soundbook {
+  padding: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  background: #eef3ff;
+}
+
+.portfolio-card-media--soundbook .sb-thumb {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+}

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
+import CopyLinkButton from './shared/CopyLinkButton'
 import './FramerCaseStudyModal.css'
 
 export const FRAMER_ORIGIN = 'https://laurenyip.framer.website'
@@ -104,6 +105,7 @@ export default function FramerCaseStudyModal({ framerPath, onClose }) {
         aria-modal="true"
         aria-label="Case study"
       >
+        <CopyLinkButton className="cs-copylink--float" />
         <button type="button" className="framer-modal-close" onClick={onClose} aria-label="Close">
           ×
         </button>

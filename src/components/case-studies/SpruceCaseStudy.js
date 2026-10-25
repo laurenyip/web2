@@ -46,20 +46,30 @@ const PROBLEMS = [
   },
 ]
 
-// Final screens scroll inside a fixed-height window, like the original.
-function ScreenWindow({ src, alt, space, className = '' }) {
-  return (
-    <div className={`spcs-window ${className}`.trim()} style={space}>
-      <Img src={src} alt={alt} />
-    </div>
-  )
-}
-
 // On phones, wide screenshots keep a readable size and pan sideways inside their own box.
 function Pan({ src, alt, className = '', space }) {
   return (
     <div className={`spcs-pan ${className}`.trim()} style={space}>
       <Img src={src} alt={alt} />
+    </div>
+  )
+}
+
+// A recorded pass through the Figma prototype: hover states, scrolling and zoom-ins.
+function Flow({ name, label, space }) {
+  const base = '/images/projects/spruce/case-study/flow-' + name
+  return (
+    <div className="spcs-flow" style={space}>
+      <video
+        className="fs-img fs-rounded"
+        src={base + '.mp4'}
+        poster={base + '-poster.webp'}
+        aria-label={label}
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
     </div>
   )
 }
@@ -83,7 +93,20 @@ export default function SpruceCaseStudy({ onNext }) {
           space={gap(13, 60)}
           items={[
             { label: 'TIMELINE', value: '48 hours (UBC UXathon 2026)' },
-            { label: 'ROLE', value: 'Product Designer' },
+            {
+              label: 'TEAM',
+              value: (
+                <>
+                  Lauren Yip
+                  <br />
+                  Emily Quan
+                  <br />
+                  Dora Hu
+                  <br />
+                  Clara Xu
+                </>
+              ),
+            },
             { label: 'RECOGNITION', value: '🏆 Best UI Design' },
           ]}
         />
@@ -170,7 +193,8 @@ export default function SpruceCaseStudy({ onNext }) {
           feel personal to the city. That&apos;s also the reason I suggested the name &quot;Spruce&quot;— after the
           real street in Vancouver.
         </Body>
-        <ScreenWindow src={I.homePage} alt="Spruce home page" className="spcs-window--home" space={gap(20, 71)} />
+        <Flow name="home" label="Scrolling the Spruce home page: hover states on the nav and the Discover Activities button, then each section" space={gap(20)} />
+        <Flow name="home-zoom" label="Zooming in on the home page headline and call to action" space={gap(20, 71)} />
 
         <Heading space={gap(43)}>Activities</Heading>
         <Body space={gap(16, 16, 126)}>
@@ -178,7 +202,12 @@ export default function SpruceCaseStudy({ onNext }) {
           addresses the information gap and streamlines the research flow, reducing the time it takes to find and
           register for activities.
         </Body>
-        <Pan src={I.filters} alt="Filter bar, search, the hide-past-events toggle, and tag pills on activity cards" className="fs-rounded" space={gap(20)} />
+        <Flow name="activities" label="Scrolling the Activities page: the map, the filter bar and the activity cards" space={gap(20)} />
+        <Flow name="activities-zoom" label="Zooming in on the search bar, the hide-past-events toggle and the tag pills on activity cards" space={gap(20)} />
+        <div className="spcs-pair" style={gap(20)}>
+          <Flow name="map" label="The expanded map on the Activities page, then scrolling down to the cards" />
+          <Flow name="map-zoom" label="Zooming in on the expanded map and its markers" />
+        </div>
         <Body space={gap(24)}>
           Tags have two weights on purpose. Light-green pills label each card, so they stay quiet and scannable.
           The dark-green &quot;Edit Filters&quot; button is a call to action, so it gets the heavier weight.
@@ -195,6 +224,7 @@ export default function SpruceCaseStudy({ onNext }) {
           lower-income families in Canada. This was our best solution to solve the money problem with what&apos;s
           in our control.
         </Body>
+        <Flow name="resources" label="Scrolling the Resources page: resource cards for grants, subsidies and community programs" space={gap(20)} />
         <Img src={I.resourceCard} alt="Resource card for Canadian Tire Jumpstart" className="spcs-resource-card" space={gap(20)} />
 
         <Heading space={gap(43)}>Profiles</Heading>
@@ -207,6 +237,7 @@ export default function SpruceCaseStudy({ onNext }) {
           <Img src={I.profileLaura} alt="Laura's profile: age 7, enrolled in Intro to Ballet I, with her own filters" />
           <Img src={I.profileHugo} alt="Hugo's profile: age 11, enrolled in Painting 101, with his own filters" />
         </div>
+        <Flow name="profile" label="Scrolling a family profile: the parent's details and each child's activities" space={gap(20)} />
 
         <Label space={gap(60, 39)}>DESIGN FEATURES THAT WORK FOR EVERYONE</Label>
         <Heading space={gap(10)}>Accessibility through translation</Heading>

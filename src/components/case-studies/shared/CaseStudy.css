@@ -208,7 +208,8 @@
 }
 
 /* Full-bleed images stay square — no corner curve */
-.cs-image-block--wide img {
+.cs-image-block--wide img,
+.cs-image-block--wide .cs-video {
   border-radius: 0;
   background: transparent;
 }

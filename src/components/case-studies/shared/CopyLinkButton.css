@@ -1,0 +1,63 @@
+/* Oil-glass pill that sits beside each case study's close button */
+.cs-copylink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 1.75rem;
+  padding: 0 12px 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 1.3px;
+  white-space: nowrap;
+  cursor: pointer;
+  background:
+    linear-gradient(
+      118deg,
+      rgba(255, 176, 206, 0.34) 0%,
+      rgba(255, 214, 150, 0.26) 30%,
+      rgba(120, 220, 255, 0.3) 62%,
+      rgba(176, 146, 255, 0.34) 100%
+    ),
+    rgba(10, 12, 20, 0.82);
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  box-shadow: 0 2px 8px rgba(10, 12, 20, 0.25);
+  transition: filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cs-copylink:hover,
+.cs-copylink:focus-visible {
+  filter: brightness(1.25) saturate(1.15);
+  box-shadow: 0 4px 14px rgba(120, 140, 255, 0.35);
+}
+
+/* inside the Framer-style modals it floats left of the close button,
+   matching its height and top edge (see .framer-modal-close) so the two line up */
+.cs-copylink--float {
+  position: absolute;
+  top: 0.65rem;
+  right: 3.1rem;
+  z-index: 2;
+  height: 1.875rem;
+}
+
+@media (max-width: 520px) {
+  .cs-copylink-text {
+    display: none;
+  }
+
+  .cs-copylink {
+    width: 1.75rem;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .cs-copylink--float {
+    width: 1.875rem;
+  }
+}
