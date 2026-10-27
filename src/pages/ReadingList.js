@@ -46,9 +46,8 @@ function ReadingSection({ label, children }) {
 export default function ReadingList() {
   const currentlyReading = useMemo(
     () => [
-      { title: 'Martyr!', author: 'Kaveh Akbar' },
+      { title: 'All Quiet on the Western Front', author: 'Erich Maria Remarque' },
       { title: 'Taipei Travelogue', author: 'Yáng Shuāng-zǐ' },
-      { title: 'Things Fall Apart', author: 'Chinua Achebe' },
       { title: 'One Hundred Years of Solitude', author: 'Gabriel García Márquez' },
     ],
     []
@@ -66,6 +65,8 @@ export default function ReadingList() {
 
   const booksFinishedThisYear = useMemo(
     () => [
+      { title: 'Things Fall Apart', author: 'Chinua Achebe' },
+      { title: 'Martyr!', author: 'Kaveh Akbar' },
       { title: 'The Princess Bride', author: 'William Goldman' },
       { title: 'Coraline', author: 'Neil Gaiman' },
       { title: 'Taipei Story', author: 'R.F. Kuang' },
