@@ -28,7 +28,7 @@
   font-family: Arial, sans-serif;
   font-size: 11px;
   letter-spacing: 0.04em;
-  color: #9ca3af;
+  color: #374151;
   white-space: nowrap;
 }
 
@@ -200,7 +200,7 @@
   font-family: Arial, sans-serif;
   font-size: 11px;
   line-height: 1;
-  color: #9ca3af;
+  color: #4b5563;
   cursor: pointer;
   transition: color 0.15s ease;
 }

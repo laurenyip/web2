@@ -5,8 +5,11 @@ export const WORK_ROW2 = ['spruce', 'aurora', 'soundbook']
 
 export const WORK_ROW3 = ['csa', 'the-lyre', 'byline']
 
-/** Continued work — square thumbs below the main grid (revealed on click) */
-export const WORK_ROW4 = ['jellyfish-umbrella', 'amazon-giftwrapping', 'kodetic', 'annaviola', 'react-to-this']
+/** Square thumbs below the main grid */
+export const WORK_ROW4 = ['jellyfish-umbrella', 'amazon-giftwrapping', 'kodetic', 'annaviola']
+
+/** Under the "work continued" label at the end of the grid */
+export const WORK_ROW5 = ['react-to-this']
 
 export const WORK_PROJECTS = {
   starmap: {

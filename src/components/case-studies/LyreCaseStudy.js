@@ -43,7 +43,7 @@ const RESTORED_GALLERY = [
   },
 ]
 
-export default function LyreCaseStudy({ onNext }) {
+export default function LyreCaseStudy({ onNext, nextLabel }) {
   const [preview, setPreview] = useState(null)
 
   useEffect(() => {
@@ -225,7 +225,7 @@ export default function LyreCaseStudy({ onNext }) {
           )
         : null}
 
-      {onNext ? <NextCaseStudy label="Back to collection →" onClick={onNext} /> : null}
+      {onNext ? <NextCaseStudy label={nextLabel || 'Back to collection →'} onClick={onNext} /> : null}
     </CaseStudy>
   )
 }

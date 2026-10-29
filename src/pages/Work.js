@@ -17,25 +17,39 @@ import {
   WORK_ROW2,
   WORK_ROW3,
   WORK_ROW4,
+  WORK_ROW5,
 } from '../data/workProjects'
 import './App.css'
 import './Work.css'
 
 const RESUME_PDF_HREF = '/Resume___Lauren_Yip.pdf'
 const ROW3_TITLE_IDS = new Set(['the-lyre', 'byline'])
+const EMAIL = 'laurenyip20@gmail.com'
+
+/** "Next case study" follows the grid: left to right, then the next row, wrapping back to the first. NDA cards are skipped. */
+const GRID_ORDER = [WORK_ROW1_FEATURED, ...WORK_ROW2, ...WORK_ROW3, ...WORK_ROW4, ...WORK_ROW5].filter(
+  (id) => WORK_PROJECTS[id]?.hasCaseStudy && !WORK_PROJECTS[id].nda
+)
+
+function projectAfter(id) {
+  const index = GRID_ORDER.indexOf(id)
+  return WORK_PROJECTS[GRID_ORDER[(index + 1) % GRID_ORDER.length]]
+}
 
 export default function Work() {
   const [openCaseStudy, setOpenCaseStudy] = useState(null)
   const [openFramer, setOpenFramer] = useState(null)
   const [openLocalStudy, setOpenLocalStudy] = useState(null)
   const [activeProject, setActiveProject] = useState(null)
-  const [continuedScrolling, setContinuedScrolling] = useState(false)
+  const [currentProjectId, setCurrentProjectId] = useState(null)
+  const [continuedOpen, setContinuedOpen] = useState(false)
 
   const featured = WORK_PROJECTS[WORK_ROW1_FEATURED]
   const row2 = WORK_ROW2.map((id) => WORK_PROJECTS[id])
   const row3 = WORK_ROW3.map((id) => WORK_PROJECTS[id])
   const row4 = WORK_ROW4.map((id) => WORK_PROJECTS[id]).filter(Boolean)
-  const framerPathsKey = [featured, ...row2, ...row3, ...row4]
+  const row5 = WORK_ROW5.map((id) => WORK_PROJECTS[id]).filter(Boolean)
+  const framerPathsKey = [featured, ...row2, ...row3, ...row4, ...row5]
     .filter((project) => project?.framerPath)
     .map((project) => project.framerPath)
     .join('|')
@@ -47,15 +61,33 @@ export default function Work() {
     window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${next}`)
   }
 
+  // The card that opened the first case study, so focus can return to it however many "next"s later.
+  const openerRef = useRef(null)
+
   const closeAll = () => {
     setOpenFramer(null)
     setOpenLocalStudy(null)
     setOpenCaseStudy(null)
     setActiveProject(null)
+    setCurrentProjectId(null)
     setUrlHash('')
+    const opener = openerRef.current
+    openerRef.current = null
+    if (opener && document.contains(opener)) window.requestAnimationFrame(() => opener.focus({ preventScroll: true }))
   }
 
   const handleOpen = (project) => {
+    if (!currentProjectId && document.activeElement instanceof HTMLElement && document.activeElement !== document.body) {
+      openerRef.current = document.activeElement
+    }
+    // Opening (or moving to) a study replaces whichever study is showing, whatever kind of modal it uses.
+    setOpenFramer(null)
+    setOpenLocalStudy(null)
+    setOpenCaseStudy(null)
+    setActiveProject(null)
+    setCurrentProjectId(project.id)
+    // a link or "next" that lands on a "work continued" study opens that section too
+    if (WORK_ROW5.includes(project.id)) setContinuedOpen(true)
     setUrlHash(project.id)
     posthog.capture('project_opened', {
       project_id: project.id,
@@ -79,6 +111,12 @@ export default function Work() {
     setOpenCaseStudy(CASE_STUDY_KEYS[project.id])
   }
 
+  const openNext = () => {
+    const next = currentProjectId ? projectAfter(currentProjectId) : null
+    if (next) handleOpen(next)
+    else closeAll()
+  }
+
   const handleOpenRef = useRef(handleOpen)
   handleOpenRef.current = handleOpen
   const closeAllRef = useRef(closeAll)
@@ -97,22 +135,6 @@ export default function Work() {
     openFromHash()
     window.addEventListener('hashchange', openFromHash)
     return () => window.removeEventListener('hashchange', openFromHash)
-  }, [])
-
-  // The continued rows stay faded into white at rest; they clear while the page is scrolling
-  // (and on hover/touch, in Work.css), then fade back once scrolling stops.
-  useEffect(() => {
-    let idleTimer
-    const onScroll = () => {
-      setContinuedScrolling(true)
-      window.clearTimeout(idleTimer)
-      idleTimer = window.setTimeout(() => setContinuedScrolling(false), 700)
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.clearTimeout(idleTimer)
-    }
   }, [])
 
   useEffect(() => {
@@ -180,21 +202,9 @@ export default function Work() {
           paddingRight: '40px',
         }}
       >
-        <header style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <h1
-            style={{
-              fontFamily: "'Melo', sans-serif",
-              fontSize: 'clamp(2.25rem, 11vw, 96px)',
-              fontWeight: 400,
-              color: '#374151',
-              margin: 0,
-              lineHeight: 1,
-              letterSpacing: '-1px',
-            }}
-          >
-            Lauren Yip
-          </h1>
-          <p className="home-hero-subtitle text-center" style={{ marginTop: '0.75rem' }}>
+        <header className="work-hero">
+          <h1 className="work-hero-name">Lauren Yip</h1>
+          <p className="home-hero-subtitle work-hero-subtitle">
             Design Engineer · Computer Science @ SFU · Artist and Explorer
           </p>
         </header>
@@ -202,7 +212,7 @@ export default function Work() {
         <div className="home-page-rows work-page-rows" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <div className="home-row1 work-row1">
             <div style={{ width: '100%', maxWidth: '456px', flexShrink: 0, alignSelf: 'flex-start' }}>
-              <div className="containermain home-charm-box" style={{ padding: '5%', width: '100%', boxSizing: 'border-box' }}>
+              <div className="containermain home-charm-box">
                 <div className="home-charm-content">
                   <p3>YIP/LAUREN宝怡</p3>
                   <br />
@@ -214,34 +224,30 @@ export default function Work() {
                   <br />
                   <p2>TO</p2>
                   <p3>&nbsp;&nbsp;THEWORLD/!!!</p3>
-                  <br />
-                  <br />
-                  <br />
-                  <p2 className="home-charm-meta">
-                    &nbsp;&nbsp;Age&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status
-                    @ SFU
-                  </p2>
-                  <br />
-                  <p3b>23A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YEAR4</p3b>
-                  <br />
-                  <p3>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a
-                      href={RESUME_PDF_HREF}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => posthog.capture('resume_clicked')}
-                    >
-                      RESUME
-                    </a>
-                  </p3>
-                  <br />
+                  {/* age and status in two passport-style columns, each label over its value */}
+                  <div className="home-charm-stats">
+                    <div className="home-charm-stat">
+                      <p2 className="home-charm-meta">Age</p2>
+                      <p3b>23A</p3b>
+                    </div>
+                    <div className="home-charm-stat">
+                      <p2 className="home-charm-meta">Status @ SFU</p2>
+                      <p3b>YEAR4</p3b>
+                      <a
+                        className="home-charm-resume"
+                        href={RESUME_PDF_HREF}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => posthog.capture('resume_clicked')}
+                      >
+                        RESUME
+                      </a>
+                    </div>
+                  </div>
                   <p2 className="home-charm-contact">
-                    <a href="mailto:laurenyip20@gmail.com" style={{ color: 'inherit' }}>
-                      laurenyip20@gmail.com
-                    </a>
+                    <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
                     {' --- '}
-                    <a href="https://www.linkedin.com/in/lauren-yip" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>
+                    <a href="https://www.linkedin.com/in/lauren-yip" target="_blank" rel="noopener noreferrer">
                       linkedin.com/in/lauren-yip
                     </a>
                   </p2>
@@ -283,6 +289,9 @@ export default function Work() {
                 Thanks for visiting my website!{' '}
                 <p>If anything on this website resonated, or you want to make something cool together,</p>{' '}
                 please reach out!
+                <a className="home-thank-you-email" href={`mailto:${EMAIL}`}>
+                  {EMAIL}
+                </a>
               </div>
             </div>
             {row3.map((project) => (
@@ -297,11 +306,7 @@ export default function Work() {
             ))}
           </div>
 
-          <div
-            id="work-continued-row"
-            aria-label="More case studies"
-            className={`home-row3 work-row3 work-row4${continuedScrolling ? ' work-row4--scrolling' : ''}`}
-          >
+          <div className="home-row3 work-row3 work-row4">
             {row4.map((project) => (
               <WorkProjectCard
                 key={project.id}
@@ -313,6 +318,33 @@ export default function Work() {
               />
             ))}
           </div>
+
+          {/* "work continued →" opens the last row (ROSIE) underneath */}
+          <section className="work-continued">
+            <button
+              type="button"
+              className="work-continued-label"
+              onClick={() => setContinuedOpen((open) => !open)}
+              aria-expanded={continuedOpen}
+              aria-controls="work-continued-row"
+            >
+              work continued <span aria-hidden="true">{continuedOpen ? '↑' : '→'}</span>
+            </button>
+            {continuedOpen ? (
+              <div id="work-continued-row" className="home-row3 work-row3 work-row4 work-continued-row">
+                {row5.map((project) => (
+                  <WorkProjectCard
+                    key={project.id}
+                    project={project}
+                    className="work-row3-card work-row4-card"
+                    onOpen={handleOpen}
+                    showTitle={false}
+                    overlayCaption
+                  />
+                ))}
+              </div>
+            ) : null}
+          </section>
         </div>
       </main>
 
@@ -323,18 +355,11 @@ export default function Work() {
       {openLocalStudy && (
         <LocalCaseStudyModal
           studyId={openLocalStudy}
+          title={WORK_PROJECTS[currentProjectId]?.title}
           onClose={closeAll}
-          onChangeStudy={(id) => {
-            const next = Object.values(WORK_PROJECTS).find((p) => p.localCaseStudy === id || p.id === id)
-            setUrlHash(next?.id || '')
-            const framerPath = WORK_PROJECTS[id]?.framerPath
-            if (framerPath) {
-              setOpenLocalStudy(null)
-              setOpenFramer({ path: framerPath })
-              return
-            }
-            setOpenLocalStudy(id)
-          }}
+          onNext={openNext}
+          nextLabel="See next case study →"
+          restoreFocus={false}
         />
       )}
 
@@ -343,6 +368,7 @@ export default function Work() {
           projectTitle={openCaseStudy}
           onClose={closeAll}
           project={activeProject}
+          onNext={openNext}
         />
       )}
     </div>

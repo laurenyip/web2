@@ -1,81 +1,67 @@
-.reading-list-page {
-  letter-spacing: 0.02em;
-}
+/* Reading list: a ruled ledger in the site's own language — hard #374151 rules like the nav,
+   nav-style section headings with counts, Moto titles, Arial meta. No card, no shadow. */
 
 .reading-list-main {
-  padding-top: 6.5rem;
-  padding-bottom: 3.5rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  max-width: 36rem;
+  max-width: 60rem;
   margin-left: auto;
   margin-right: auto;
+  padding: calc(var(--site-nav-block-height, 5.85rem) + 50px) 1.5rem 4rem;
 }
 
 .reading-list-header {
-  margin-top: 50px;
-  margin-bottom: 1.75rem;
+  margin-bottom: 2.5rem;
 }
 
 .reading-list-title {
-  margin: 0 0 0.5rem;
+  margin: 0;
   color: #374151;
   font-family: Melo, sans-serif;
-  font-size: clamp(2rem, 4.5vw, 2.5rem);
+  font-size: clamp(2.5rem, 7vw, 4rem);
   font-weight: 400;
-  line-height: 1.15;
+  line-height: 1;
   letter-spacing: -0.01em;
 }
 
-.reading-list-lede {
-  margin: 0;
-  color: #6b7280;
-  font-family: Arial, sans-serif;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  max-width: 28rem;
-}
-
-.reading-list-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
-  padding: 1.25rem 1.35rem;
-}
-
-@media (min-width: 768px) {
-  .reading-list-card {
-    padding: 1.35rem 1.5rem;
-  }
-}
-
-.reading-list-section + .reading-list-section {
-  margin-top: 2rem;
+/* each list is a ruled band: heading left, entries right (stacked on phones) */
+.reading-list-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1.1rem 0 2.25rem;
+  border-top: 2px solid #374151;
 }
 
 .reading-list-section-label {
-  margin: 0 0 0.85rem;
-  color: #9ca3af;
-  font-family: Arial, sans-serif;
-  font-size: 0.6875rem;
+  margin: 0;
+  color: #374151;
+  font-family: Moto, serif;
+  font-size: 0.81rem;
   font-weight: 400;
   line-height: 1.4;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  text-wrap: balance;
 }
 
-.reading-list-section-body {
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  padding-top: 0.85rem;
+.reading-list-count {
+  margin-left: 0.6em;
+  color: #4b5563;
+  font-family: Arial, sans-serif;
+  font-size: 0.8125rem;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.reading-list-entries {
+  display: grid;
+  gap: 1.1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .reading-list-entry {
-  margin-bottom: 1.15rem;
-}
-
-.reading-list-entry:last-child {
-  margin-bottom: 0;
+  min-width: 0;
 }
 
 .reading-list-entry-title {
@@ -84,22 +70,40 @@
   font-family: Moto, serif;
   font-size: 1.0625rem;
   line-height: 1.4;
+  text-wrap: pretty;
 }
 
+/* essays read as links at rest, not only on hover */
 .reading-list-entry-title--link {
-  text-decoration: none;
-  transition: color 0.15s ease;
+  text-decoration: underline;
+  text-decoration-color: rgba(55, 65, 81, 0.35);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 0.15s ease, color 0.15s ease;
 }
 
 .reading-list-entry-title--link:hover {
-  color: #1f2937;
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
+  color: #111827;
+  text-decoration-color: #111827;
+}
+
+.reading-list-entry-title--link:focus-visible {
+  outline: 2px solid #374151;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.reading-list-entry-arrow {
+  margin-left: 0.3em;
+  font-family: Arial, sans-serif;
+  font-size: 0.85em;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .reading-list-entry-meta {
   margin: 0.2rem 0 0;
-  color: #6b7280;
+  color: #4b5563;
   font-family: Arial, sans-serif;
   font-size: 0.8125rem;
   font-weight: 400;
@@ -108,24 +112,37 @@
 }
 
 .reading-list-footer {
-  margin-top: 1.35rem;
-  color: #9ca3af;
+  margin: 0;
+  padding-top: 1.1rem;
+  border-top: 2px solid #374151;
+  color: #374151;
   font-family: Arial, sans-serif;
-  font-size: 0.75rem;
-  line-height: 1.4;
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: 1px;
 }
 
-@media (max-width: 767px) {
-  .reading-list-main {
-    text-align: center;
+.reading-list-footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.reading-list-footer a:focus-visible {
+  outline: 2px solid #374151;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (min-width: 768px) {
+  .reading-list-section {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    column-gap: 2.5rem;
   }
 
-  .reading-list-lede {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .reading-list-footer {
-    text-align: center;
+  /* the long finished list runs in two columns */
+  .reading-list-section--wide .reading-list-entries {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2.5rem;
   }
 }

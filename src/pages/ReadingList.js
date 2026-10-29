@@ -5,40 +5,56 @@ import Navbar from '../components/layout/Navbar'
 import './App.css'
 import './ReadingList.css'
 
+const EMAIL = 'laurenyip20@gmail.com'
+
+// "2026-04-20" → "Apr 2026" (parsed as a calendar date, so the month never shifts with the time zone)
+function formatEssayDate(iso) {
+  const [year, month] = iso.split('-').map(Number)
+  return new Date(Date.UTC(year, month - 1, 1)).toLocaleDateString('en-US', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
 function BookEntry({ title, author }) {
   return (
-    <div className="reading-list-entry">
+    <li className="reading-list-entry">
       <p className="reading-list-entry-title">{title}</p>
       <p className="reading-list-entry-meta">{author}</p>
-    </div>
+    </li>
   )
 }
 
 function EssayEntry({ text, author, link, date }) {
   return (
-    <div className="reading-list-entry">
-      <a
-        href={link}
-        data-cursor-label="Read"
-        target="_blank"
-        rel="noreferrer"
-        className="reading-list-entry-title reading-list-entry-title--link"
-      >
+    <li className="reading-list-entry">
+      <a href={link} target="_blank" rel="noreferrer" className="reading-list-entry-title reading-list-entry-title--link">
         {text}
+        <span className="reading-list-entry-arrow" aria-hidden="true">
+          ↗
+        </span>
+        <span className="sr-only"> (opens in a new tab)</span>
       </a>
       <p className="reading-list-entry-meta">
         {author ? `${author} · ` : ''}
-        {date}
+        <time dateTime={date}>{formatEssayDate(date)}</time>
       </p>
-    </div>
+    </li>
   )
 }
 
-function ReadingSection({ label, children }) {
+/** One ruled section: heading (with a count) on the left, the list on the right from tablet up. */
+function ReadingSection({ id, label, count, wide = false, children }) {
   return (
-    <section className="reading-list-section">
-      <p className="reading-list-section-label">{label}</p>
-      <div className="reading-list-section-body">{children}</div>
+    <section className={`reading-list-section${wide ? ' reading-list-section--wide' : ''}`} aria-labelledby={id}>
+      <h2 id={id} className="reading-list-section-label">
+        {label}
+        <span className="reading-list-count">{count}</span>
+      </h2>
+      <ul className="reading-list-entries" role="list">
+        {children}
+      </ul>
     </section>
   )
 }
@@ -183,39 +199,35 @@ export default function ReadingList() {
           <h1 className="reading-list-title">reading list</h1>
         </header>
 
-        <div className="reading-list-card">
-          <ReadingSection label="currently reading">
+        <div className="reading-list-sections">
+          <ReadingSection id="rl-reading" label="currently reading" count={currentlyReading.length}>
             {currentlyReading.map((b) => (
               <BookEntry key={`${b.title}-${b.author}`} title={b.title} author={b.author} />
             ))}
           </ReadingSection>
 
-          <ReadingSection label="books I have open in my room somewhere">
+          <ReadingSection id="rl-open" label="books I have open in my room somewhere" count={booksOpenInRoom.length}>
             {booksOpenInRoom.map((b) => (
               <BookEntry key={`${b.title}-${b.author}`} title={b.title} author={b.author} />
             ))}
           </ReadingSection>
 
-          <ReadingSection label="books I finished this year">
+          <ReadingSection id="rl-essays" label="essays I like" count={essayItems.length}>
+            {essayItems.map((e) => (
+              <EssayEntry key={e.link} text={e.text} author={e.author} link={e.link} date={e.date} />
+            ))}
+          </ReadingSection>
+
+          <ReadingSection id="rl-finished" label="books I finished this year" count={booksFinishedThisYear.length} wide>
             {booksFinishedThisYear.map((b) => (
               <BookEntry key={`${b.title}-${b.author}`} title={b.title} author={b.author} />
             ))}
           </ReadingSection>
-
-          <ReadingSection label="Essays I like">
-            {essayItems.map((e) => (
-              <EssayEntry
-                key={e.link}
-                text={e.text}
-                author={e.author}
-                link={e.link}
-                date={e.date}
-              />
-            ))}
-          </ReadingSection>
         </div>
 
-        <p className="reading-list-footer">message me for all time favorites</p>
+        <p className="reading-list-footer">
+          <a href={`mailto:${EMAIL}`}>message me</a> for all time favorites
+        </p>
       </main>
     </div>
   )

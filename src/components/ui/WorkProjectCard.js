@@ -108,7 +108,7 @@ function PortfolioStyleCard({
               {project.title}
             </p>
           ) : null}
-          <p className="about-body-text about-body-text--on-dark m-0">{project.description}</p>
+          <p className="work-card-static-hover-description about-body-text about-body-text--on-dark m-0">{project.description}</p>
           {project.nda ? (
             <div className="work-card-static-hover-nda">
               <p className="work-card-static-hover-nda-title about-body-text about-body-text--on-dark m-0">
@@ -171,7 +171,7 @@ function StaticProjectCard({ project, className, onOpen, showTitle = false }) {
             {project.title}
           </p>
         ) : null}
-        <p className="about-body-text about-body-text--on-dark m-0">{project.description}</p>
+        <p className="work-card-static-hover-description about-body-text about-body-text--on-dark m-0">{project.description}</p>
       </div>
       <MobileCardInfo project={project} />
     </button>

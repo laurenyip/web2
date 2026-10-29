@@ -44,6 +44,11 @@
   transition: color 0.15s ease, background-color 0.15s ease;
 }
 
+/* the dialog takes focus when it opens; that programmatic focus needs no ring */
+.framer-modal-window:focus {
+  outline: none;
+}
+
 /* case study images open bigger on click (LocalCaseStudyModal) */
 .framer-modal-local-scroll img:not(a img):not(button img):not(.book-viewer img) {
   cursor: zoom-in;

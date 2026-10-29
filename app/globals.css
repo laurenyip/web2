@@ -316,6 +316,93 @@ button.case-study-modal-close::after {
   height: 1.875px;
 }
 
+/* Image viewer (src/components/ui/ImageModal.js): × centred above the image, ←/→ beside it for photo sets */
+.image-popup-close {
+  flex-shrink: 0;
+  margin-bottom: 14px;
+}
+
+.image-popup-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 0;
+  max-width: 100%;
+}
+
+.image-popup-step {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(10, 12, 20, 0.6);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.image-popup-step:hover {
+  background: rgba(10, 12, 20, 0.85);
+  border-color: #fff;
+}
+
+.image-popup-step:focus-visible,
+.image-popup-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.image-popup-caption {
+  margin: 14px 0 0;
+  max-width: 42rem;
+  font-family: 'Moto', serif;
+  font-size: 15px;
+  line-height: 1.4;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.image-popup-count {
+  margin-left: 0.75em;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* phones: arrows sit over the image edges so the photo keeps the full width */
+@media (max-width: 640px) {
+  .image-popup-stage {
+    gap: 0;
+  }
+
+  .image-popup-step {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    transform: translateY(-50%);
+  }
+
+  .image-popup-step--prev {
+    left: 6px;
+  }
+
+  .image-popup-step--next {
+    right: 6px;
+  }
+}
+
 /* Image popup close buttons (enlarged images across the site): larger again, easy to find over a dark backdrop */
 button.image-popup-close {
   width: 2.5rem !important;

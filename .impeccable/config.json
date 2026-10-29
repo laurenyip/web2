@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "arial",
+        "createdAt": "2026-10-29T04:31:38.450Z",
+        "reason": "Arial is the site's established body/caption face (App.css base p style, used across Work/About/case studies); the user asked for 'the melo and arial fonts like on my website' and Arial body captions earlier this session"
+      }
+    ]
+  }
+}

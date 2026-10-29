@@ -1,3 +1,23 @@
+.work-hero {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.work-hero-name {
+  margin: 0;
+  font-family: 'Melo', sans-serif;
+  font-size: clamp(2.25rem, 11vw, 96px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: #374151;
+}
+
+.work-page .work-hero-subtitle {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
 .work-row1 {
   display: flex;
   flex-direction: column;
@@ -225,7 +245,8 @@
   margin-top: 0;
 }
 
-/* Shown only on phones (see the max-width: 640px block) */
+/* Phones have no hover, so tags and the description sit under the card there (see the max-width: 640px block).
+   On larger screens they appear only on hover, over the image. */
 .work-card-mobile-info {
   display: none;
   flex-direction: column;
@@ -240,6 +261,7 @@
   font-size: 15px;
   line-height: 21px;
   letter-spacing: 1px;
+  text-wrap: pretty;
 }
 
 .work-page .portfolio-card-blurb.about-body-text {
@@ -253,32 +275,81 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
+  /* captions differ in length; keep every card's image top-aligned instead of centred in a stretched cell */
+  align-items: start;
 }
 
-/* Continued work: faded under a white wash at rest; clears while scrolling, on hover and on touch. */
+.work-row2 {
+  align-items: start;
+}
+
 .work-row4 {
-  position: relative;
   margin-top: 16px;
 }
 
-.work-row4::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45), #ffffff 85%);
-  pointer-events: none;
-  transition: opacity 0.8s ease;
+/* "work continued →": a quiet text button that opens the last row (ROSIE) underneath */
+.work-continued {
+  margin-top: 28px;
 }
 
-.work-row4--scrolling::after,
-.work-row4:hover::after,
-.work-row4:focus-within::after {
-  opacity: 0;
-  transition-duration: 0.3s;
+.work-continued-label {
+  margin: 0;
+  padding: 4px 0;
+  border: none;
+  background: transparent;
+  font-family: 'boring_reg', Georgia, serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: #374151;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.work-continued-label span {
+  display: inline-block;
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+}
+
+.work-continued-label:hover span {
+  transform: translateX(3px);
+}
+
+.work-continued-label:hover,
+.work-continued-label:focus-visible {
+  color: #111827;
+}
+
+.work-continued-label:focus-visible {
+  outline: 2px solid #374151;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.work-continued .work-continued-row {
+  margin-top: 12px;
+  animation: work-continued-reveal 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes work-continued-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .work-row4::after {
+  .work-continued .work-continued-row {
+    animation: none;
+  }
+
+  .work-continued-label span {
     transition: none;
   }
 }
@@ -307,6 +378,11 @@
 
   .work-row3 {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* the thank-you card stays square like the images beside it */
+  .work-page .work-row3 .home-thank-you-card {
+    aspect-ratio: 1 / 1;
   }
 }
 

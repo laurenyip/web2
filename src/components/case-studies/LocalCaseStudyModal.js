@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import ImageModal from '../ui/ImageModal'
 import KodeticCaseStudy from './KodeticCaseStudy'
@@ -61,10 +61,72 @@ function originalSrc(img) {
   return url.origin === window.location.origin ? url.pathname + url.search : src
 }
 
-export default function LocalCaseStudyModal({ studyId, onClose, onChangeStudy }) {
+const FOCUSABLE =
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), iframe, video[controls], [tabindex]:not([tabindex="-1"])'
+
+/**
+ * `onNext` (from the Work page) decides what "See next case study" opens; without it, NEXT_STUDY is used
+ * (the content-systems collection). `title` names the dialog for screen readers.
+ */
+export default function LocalCaseStudyModal({
+  studyId,
+  title,
+  onClose,
+  onChangeStudy,
+  onNext,
+  nextLabel,
+  restoreFocus = true,
+}) {
   const Study = LOCAL_STUDIES[studyId]
   const nextId = NEXT_STUDY[studyId]
   const [zoomed, setZoomed] = useState(null)
+  const windowRef = useRef(null)
+
+  // Return focus to whatever opened the case study (usually its card) once it closes.
+  // The Work page turns this off and does it itself, since "next" can swap between modal types.
+  useEffect(() => {
+    if (!restoreFocus) return undefined
+    const opener = document.activeElement
+    return () => {
+      if (opener instanceof HTMLElement && document.contains(opener)) opener.focus({ preventScroll: true })
+    }
+  }, [restoreFocus])
+
+  // Move focus into the dialog when it opens, and again when "next" swaps the study.
+  useEffect(() => {
+    windowRef.current?.focus({ preventScroll: true })
+  }, [studyId])
+
+  // Keep Tab inside the dialog. Paused while an image is enlarged, since that viewer sits outside it.
+  useEffect(() => {
+    if (zoomed) return undefined
+    const onKey = (event) => {
+      if (event.key !== 'Tab') return
+      const root = windowRef.current
+      if (!root) return
+      const items = [...root.querySelectorAll(FOCUSABLE)].filter((el) => el.getClientRects().length > 0)
+      if (!items.length) {
+        event.preventDefault()
+        root.focus()
+        return
+      }
+      const first = items[0]
+      const last = items[items.length - 1]
+      const active = document.activeElement
+      if (!root.contains(active)) {
+        event.preventDefault()
+        ;(event.shiftKey ? last : first).focus()
+      } else if (event.shiftKey && (active === first || active === root)) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [zoomed])
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -103,6 +165,10 @@ export default function LocalCaseStudyModal({ studyId, onClose, onChangeStudy })
   if (!Study) return null
 
   const handleNext = () => {
+    if (onNext) {
+      onNext()
+      return
+    }
     if (nextId && onChangeStudy) {
       onChangeStudy(nextId)
       return
@@ -113,11 +179,13 @@ export default function LocalCaseStudyModal({ studyId, onClose, onChangeStudy })
   return (
     <div className="framer-modal-backdrop" onClick={onClose} role="presentation">
       <div
+        ref={windowRef}
         className="framer-modal-window"
         onClick={(event) => event.stopPropagation()}
         role="dialog"
         aria-modal="true"
-        aria-label="Case study"
+        aria-label={title ? `${title} case study` : 'Case study'}
+        tabIndex={-1}
       >
         <CopyLinkButton className="cs-copylink--float" />
         <button type="button" className="framer-modal-close" onClick={onClose} aria-label="Close">
@@ -125,7 +193,7 @@ export default function LocalCaseStudyModal({ studyId, onClose, onChangeStudy })
         </button>
         <div className="framer-modal-frame-wrap framer-modal-frame-wrap--ready framer-modal-frame-wrap--local">
           <div className="framer-modal-local-scroll" onClick={handleImageClick}>
-            <Study onNext={handleNext} />
+            <Study onNext={handleNext} nextLabel={nextLabel} />
           </div>
         </div>
       </div>

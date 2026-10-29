@@ -21,8 +21,10 @@ import './Work.css'
 export default function Playground() {
   const [modal, setModal] = useState(null)
   const [artSlide, setArtSlide] = useState(0)
-  const open = (src, caption) => setModal({ src, caption })
+  // `items` lets the viewer step through a whole set (paintings, or the sidequest photos)
+  const open = (src, caption, items, index = 0) => setModal({ src, caption, items, index })
   const close = () => setModal(null)
+  const sidequestPhotos = [FEATURE_TILE, ...SIDEQUEST_GRID_ITEMS]
 
   return (
     <div className="about-page playground-page min-h-screen overflow-x-hidden bg-white">
@@ -49,7 +51,7 @@ export default function Playground() {
                       const slide = ART_CAROUSEL[artSlide]
                       if (slide) {
                         posthog.capture('art_painting_expanded', { caption: slide.caption })
-                        open(slide.src, slide.caption)
+                        open(slide.src, slide.caption, ART_CAROUSEL, artSlide)
                       }
                     }}
                     aria-label={`Open painting: ${ART_CAROUSEL[artSlide]?.caption || ''}`}
@@ -215,7 +217,7 @@ export default function Playground() {
                 <button
                   type="button"
                   className={`${IMG_TILE_CLASS} about-sidequest-feature`}
-                  onClick={() => open(FEATURE_TILE.src, FEATURE_TILE.caption)}
+                  onClick={() => open(FEATURE_TILE.src, FEATURE_TILE.caption, sidequestPhotos, 0)}
                   aria-label="Open photo"
                 >
                   <Image
@@ -227,12 +229,12 @@ export default function Playground() {
                     priority={false}
                   />
                 </button>
-                {SIDEQUEST_GRID_ITEMS.map(({ src, caption, objectPosition }) => (
+                {SIDEQUEST_GRID_ITEMS.map(({ src, caption, objectPosition }, i) => (
                   <button
                     key={src}
                     type="button"
                     className={`${IMG_TILE_CLASS} about-sidequest-tile`}
-                    onClick={() => open(src, caption)}
+                    onClick={() => open(src, caption, sidequestPhotos, i + 1)}
                     aria-label="Open photo"
                   >
                     <Image
@@ -254,7 +256,14 @@ export default function Playground() {
         <div className="about-figma-footer" role="presentation" />
       </main>
 
-      <ImageModal open={!!modal} src={modal?.src} caption={modal?.caption} onClose={close} />
+      <ImageModal
+        open={!!modal}
+        src={modal?.src}
+        caption={modal?.caption}
+        items={modal?.items}
+        index={modal?.index}
+        onClose={close}
+      />
 
 
     </div>

@@ -48,6 +48,8 @@ const FAVORITES_LINKS = [
   { label: 'Movies that I rate 5 stars', href: 'https://letterboxd.com/laurenyip/', cursorLabel: 'View' },
 ]
 
+const EMAIL = 'laurenyip20@gmail.com'
+
 const imgTile =
   'block w-full cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200/80 bg-white p-0 shadow-sm transition hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400'
 
@@ -183,10 +185,11 @@ export default function About() {
 
         <section className="about-figma-section about-section--02">
           <div className="about-layout-12">
-            <div className="about-layout-media w-full min-w-0">
+            {/* koi sketch and posters sit together as one group; on phones they follow the heading and links */}
+            <div className="about-layout-media about-favorites-media w-full min-w-0">
               <button
                 type="button"
-                className="mb-4 block max-h-[228px] w-auto cursor-zoom-in rounded-[10px] border-0 bg-transparent p-0"
+                className="about-favorites-koi block max-h-[228px] w-auto cursor-zoom-in rounded-[10px] border-0 bg-transparent p-0"
                 onClick={() => open('/images/about/favorites/fish.gif', 'Koi · ink sketch')}
                 aria-label="Open koi sketch"
               >
@@ -199,7 +202,7 @@ export default function About() {
                   priority={false}
                 />
               </button>
-              <div className="about-favorites-posters-offset grid w-full grid-cols-2 gap-3 lg:max-w-[213px]">
+              <div className="about-favorites-posters grid w-full grid-cols-2 gap-3 lg:max-w-[213px]">
                 {FAVORITES_POSTERS.map(({ src, caption }) => (
                   <button
                     key={src}
@@ -221,7 +224,7 @@ export default function About() {
               </div>
             </div>
 
-            <div className="about-layout-rail flex w-full min-w-0 flex-col items-start gap-8 text-left">
+            <div className="about-layout-rail about-favorites-rail flex w-full min-w-0 flex-col items-start gap-8 text-left">
               <div className="flex w-full flex-col items-start">
                 <div className="about-section-num">02</div>
                 <p className="about-body-text mt-1 m-0">Favorites</p>
@@ -285,6 +288,16 @@ export default function About() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* a way to say hi at the end (objective 3: meet new people) */}
+        <section className="about-figma-section about-closing" aria-label="Say hi">
+          <p className="about-body-text m-0">
+            Want to make something cool together, or just say hi?{' '}
+            <a href={`mailto:${EMAIL}`} className="about-writing-link">
+              {EMAIL}
+            </a>
+          </p>
         </section>
 
         <div className="about-figma-footer" role="presentation" />

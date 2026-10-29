@@ -1,9 +1,20 @@
 'use client'
 
 import { useMemo } from 'react'
+import { Fraunces } from 'next/font/google'
 import './JellyfishThumb.css'
 
+// Soft, slightly wonky italic: rounded like a jellyfish bell, loose like its tentacles.
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  style: ['italic'],
+  axes: ['SOFT', 'WONK', 'opsz'],
+  display: 'swap',
+  variable: '--font-jelly',
+})
+
 const DIR = '/images/projects/jellyfish'
+const TITLE_WORDS = ['Jellyfish', 'Umbrella']
 
 function seeded(index, salt = 0) {
   const x = Math.sin(index * 127.1 + salt * 311.7) * 43758.5453
@@ -22,12 +33,12 @@ function buildSpecks(count) {
   }))
 }
 
-/* Styled after the FAS comp slide: marbled black swirl, ink-line jellyfish (now tinted), Syne title. */
+/* Styled after the FAS comp slide: marbled black swirl, ink-line jellyfish (now tinted), a floating, pulsing title. */
 export default function JellyfishThumb() {
   const specks = useMemo(() => buildSpecks(16), [])
 
   return (
-    <div className="jelly-thumb" aria-hidden="true">
+    <div className={`jelly-thumb ${fraunces.variable}`} aria-hidden="true">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img className="jelly-thumb-swirl" src={`${DIR}/thumb-swirl.webp`} alt="" draggable={false} />
       <div className="jelly-thumb-vignette" />
@@ -60,8 +71,23 @@ export default function JellyfishThumb() {
         <span className="jelly-thumb-tint" />
       </div>
 
+      {/* the title floats and pulses like a jellyfish; each letter trails a beat behind the last, like tentacles */}
       <div className="jelly-thumb-titles">
-        <span className="jelly-thumb-title">Jellyfish Umbrella</span>
+        <span className="jelly-thumb-title">
+          {TITLE_WORDS.map((word, wordIndex) => (
+            <span key={word} className="jelly-thumb-word">
+              {[...word].map((letter, letterIndex) => (
+                <span
+                  key={letterIndex}
+                  className="jelly-thumb-letter"
+                  style={{ '--i': wordIndex * 3 + letterIndex }}
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
+          ))}
+        </span>
       </div>
     </div>
   )

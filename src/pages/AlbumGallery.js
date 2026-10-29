@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import Navbar from '../components/layout/Navbar'
 import './App.css'
@@ -325,23 +325,30 @@ function sortAlbumsByArtist(albums) {
   return [...top, ...rest]
 }
 
+// Two taps closer together than this count as a double tap.
+const DOUBLE_TAP_MS = 350
+
 function VinylAlbum({ album, isOpen, onToggle }) {
   const tracks = album.tracks ?? []
   const thought = album.thought ?? ''
+  const lastTapRef = useRef(0)
 
+  // Touch: first tap opens, a later tap closes, a quick double tap goes to the link.
+  // Mouse / keyboard: a click goes straight to the link (hover and focus already show the record).
   const handleClick = useCallback(() => {
     const touchPrimary =
       typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches
 
     if (touchPrimary) {
-      if (isOpen) {
-        if (album.link) {
-          window.open(album.link, '_blank', 'noopener,noreferrer')
-        }
+      const now = Date.now()
+      const isDoubleTap = now - lastTapRef.current < DOUBLE_TAP_MS
+      lastTapRef.current = isDoubleTap ? 0 : now
+      if (isDoubleTap && album.link) {
+        window.open(album.link, '_blank', 'noopener,noreferrer')
         onToggle(null)
         return
       }
-      onToggle(album.id)
+      onToggle(isOpen ? null : album.id)
       return
     }
 
@@ -420,6 +427,12 @@ function VinylAlbum({ album, isOpen, onToggle }) {
             </>
           ) : null}
           {thought ? <p className="album-gallery-thought">{thought}</p> : null}
+          {album.link ? (
+            <p className="album-gallery-listen" aria-hidden="true">
+              <span className="album-gallery-hint--mouse">click to listen ↗</span>
+              <span className="album-gallery-hint--touch">double tap to listen ↗</span>
+            </p>
+          ) : null}
         </div>
       </button>
     </li>
@@ -442,7 +455,13 @@ export default function AlbumGallery() {
       <main className="album-gallery-main">
         <header className="album-gallery-header">
           <h1 className="album-gallery-title">record shelf</h1>
-          
+          <p className="album-gallery-lede">yeah i have a record player</p>
+          <p className="album-gallery-hint">
+            <span className="album-gallery-hint--mouse">hover a record for its top tracks · click to listen</span>
+            <span className="album-gallery-hint--touch">
+              tap a record for its top tracks · tap again to close · double tap to listen
+            </span>
+          </p>
         </header>
 
         <ul className="album-gallery-grid">
@@ -456,9 +475,6 @@ export default function AlbumGallery() {
           ))}
         </ul>
 
-        <p className="album-gallery-footer">
-          hover for tracks · tap twice on mobile to open Spotify - yeah i have a record player
-        </p>
       </main>
     </div>
   )

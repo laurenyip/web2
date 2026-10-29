@@ -1,14 +1,20 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import posthog from 'posthog-js'
 import Image from 'next/image'
 import { caseStudies } from '../../data/caseStudies'
 import CopyLinkButton from './shared/CopyLinkButton'
 
-export default function CaseStudyModal({ projectTitle, onClose, project }) {
+export default function CaseStudyModal({ projectTitle, onClose, project, onNext }) {
   const [expandedShowcaseImage, setExpandedShowcaseImage] = useState(null)
   const [expandedShowcaseGallery, setExpandedShowcaseGallery] = useState(null)
+  const dialogRef = useRef(null)
+
+  // Move focus into the dialog when it opens (or when "next" swaps in another study).
+  useEffect(() => {
+    dialogRef.current?.focus({ preventScroll: true })
+  }, [projectTitle])
 
   const openExpandedImage = (img, gallery) => {
     posthog.capture('showcase_image_expanded', {
@@ -51,8 +57,13 @@ export default function CaseStudyModal({ projectTitle, onClose, project }) {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col"
+        ref={dialogRef}
+        className="bg-white rounded-xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col outline-none"
         onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${project?.title || projectTitle} case study`}
+        tabIndex={-1}
       >
         <div className="sticky top-0 bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center gap-4 z-10 shrink-0">
           <h2 className="m-0 min-w-0 truncate text-2xl font-semibold text-gray-800">
@@ -213,6 +224,14 @@ export default function CaseStudyModal({ projectTitle, onClose, project }) {
               </div>
             </section>
           )}
+
+          {onNext ? (
+            <p className="cs-next">
+              <button type="button" onClick={onNext}>
+                See next case study →
+              </button>
+            </p>
+          ) : null}
         </div>
         </div>
       </div>
