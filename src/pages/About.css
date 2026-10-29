@@ -200,28 +200,6 @@
   }
 }
 
-/* Art carousel — Playground §01 */
-.playground-page .about-section--01 .about-art-carousel-frame > button {
-  justify-content: flex-start;
-  padding: 0.5rem 0;
-  width: fit-content;
-  max-width: 100%;
-}
-
-.playground-page .about-art-carousel-frame {
-  width: fit-content;
-  max-width: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.playground-page .about-art-carousel-frame img,
-.playground-page .about-art-painting-img {
-  display: block;
-  border-radius: 10px;
-  max-width: 100%;
-  height: auto;
-}
 
 .playground-guitar-link {
   display: inline-block;
@@ -308,11 +286,6 @@
   .about-page .about-favorites-posters {
     flex: 0 0 213px;
   }
-}
-
-/* closing line: a way to say hi */
-.about-page .about-closing {
-  max-width: 36rem;
 }
 
 /* Vinyl shelf — About favorites + shared */

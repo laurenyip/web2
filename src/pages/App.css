@@ -701,8 +701,45 @@ ul.navbar .nav-link:visited {
   scroll-margin-top: calc(var(--site-nav-block-height, 5.85rem) + 50px + 1rem);
 }
 
-/* About + Playground — art carousel controls */
-.about-page .about-art-carousel-nav {
+/* Painting carousel (Art page + Playground §01): a fixed-height stage, so paintings of any shape
+   are scaled to fit and centred, and the arrows, caption and dots below never jump between slides. */
+.about-art-carousel .about-art-carousel-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: clamp(300px, 60vh, 560px);
+  min-height: 0;
+}
+
+.about-art-carousel .about-art-carousel-frame > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+/* the image box shrinks to the painting itself, so the rounded corners sit on the painting */
+.about-art-carousel .about-art-painting-img {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+@media (max-width: 640px) {
+  .about-art-carousel .about-art-carousel-frame {
+    height: clamp(240px, 52vh, 420px);
+  }
+}
+
+/* art carousel controls */
+.about-art-carousel .about-art-carousel-nav {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
@@ -731,7 +768,7 @@ ul.navbar .nav-link:visited {
     box-shadow 0.2s ease;
 }
 
-.about-page .about-art-carousel-nav:hover {
+.about-art-carousel .about-art-carousel-nav:hover {
   background: #fff;
   border-color: rgba(55, 65, 81, 0.32);
   color: #111827;
@@ -741,17 +778,17 @@ ul.navbar .nav-link:visited {
     0 8px 20px rgba(17, 24, 39, 0.08);
 }
 
-.about-page .about-art-carousel-nav:focus-visible {
+.about-art-carousel .about-art-carousel-nav:focus-visible {
   outline: 2px solid #374151;
   outline-offset: 3px;
 }
 
-.about-page .about-art-carousel-nav:active {
+.about-art-carousel .about-art-carousel-nav:active {
   transform: translateY(0);
   box-shadow: 0 1px 2px rgba(17, 24, 39, 0.05);
 }
 
-.about-page .about-art-carousel-dot {
+.about-art-carousel .about-art-carousel-dot {
   width: 7px;
   height: 7px;
   padding: 0;
@@ -762,17 +799,17 @@ ul.navbar .nav-link:visited {
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.about-page .about-art-carousel-dot:hover {
+.about-art-carousel .about-art-carousel-dot:hover {
   background: #9ca3af;
   transform: scale(1.12);
 }
 
-.about-page .about-art-carousel-dot--active {
+.about-art-carousel .about-art-carousel-dot--active {
   background: #374151;
   transform: scale(1.2);
 }
 
-.about-page .about-art-carousel-dot:focus-visible {
+.about-art-carousel .about-art-carousel-dot:focus-visible {
   outline: 2px solid #374151;
   outline-offset: 3px;
 }
@@ -976,11 +1013,6 @@ ul.navbar .nav-link:visited {
     max-height: none;
   }
 
-  .about-page .about-art-carousel-frame img,
-  .about-page .about-art-painting-img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
 
   .about-page .about-favorites-posters {
     width: 100%;

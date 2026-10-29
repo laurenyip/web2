@@ -48,8 +48,6 @@ const FAVORITES_LINKS = [
   { label: 'Movies that I rate 5 stars', href: 'https://letterboxd.com/laurenyip/', cursorLabel: 'View' },
 ]
 
-const EMAIL = 'laurenyip20@gmail.com'
-
 const imgTile =
   'block w-full cursor-zoom-in overflow-hidden rounded-[10px] border border-gray-200/80 bg-white p-0 shadow-sm transition hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-400'
 
@@ -288,16 +286,6 @@ export default function About() {
               </div>
             </div>
           </div>
-        </section>
-
-        {/* a way to say hi at the end (objective 3: meet new people) */}
-        <section className="about-figma-section about-closing" aria-label="Say hi">
-          <p className="about-body-text m-0">
-            Want to make something cool together, or just say hi?{' '}
-            <a href={`mailto:${EMAIL}`} className="about-writing-link">
-              {EMAIL}
-            </a>
-          </p>
         </section>
 
         <div className="about-figma-footer" role="presentation" />

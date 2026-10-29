@@ -134,6 +134,13 @@
   border-radius: 2px;
 }
 
+/* room at the bottom on desktop: the footer's fortune cookie hangs up over the page here (same as Work, Art, Albums) */
+@media (min-width: 641px) {
+  .reading-list-main {
+    padding-bottom: 161px;
+  }
+}
+
 @media (min-width: 768px) {
   .reading-list-section {
     grid-template-columns: 14rem minmax(0, 1fr);

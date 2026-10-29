@@ -47,7 +47,8 @@ export default function Art() {
     <div className="min-h-screen bg-white">
       <Navbar />
 
-      <main className="mx-auto max-w-3xl px-6 pb-16 pt-[100px] md:px-10">
+      {/* extra room at the bottom on desktop: the footer's fortune cookie hangs up over the page there */}
+      <main className="mx-auto max-w-3xl px-6 pb-16 pt-[100px] md:px-10 md:pb-[161px]">
         <header className="mb-8 md:mb-10">
           <h1
             className="text-3xl text-gray-800 tracking-tight md:text-4xl"

@@ -16,6 +16,8 @@
   .album-gallery-main {
     padding-left: 2rem;
     padding-right: 2rem;
+    /* room under the shelf: the footer's fortune cookie hangs up over the page here (same as Work and Art) */
+    padding-bottom: 161px;
   }
 }
 
