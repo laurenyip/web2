@@ -3,5 +3,6 @@ module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
+    './scripts/build/postcss-gate-hover.js': {},
   },
 }

@@ -1,6 +1,8 @@
 .site-footer {
   position: relative;
   margin-top: auto;
+  /* the footer colour runs down behind the home indicator; content stays above it */
+  border-bottom: env(safe-area-inset-bottom, 0px) solid transparent;
   --site-sunset-gradient: linear-gradient(
     115deg,
     #fed7aa 0%,

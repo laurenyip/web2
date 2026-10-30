@@ -97,7 +97,7 @@ export default function ImageModal({
       aria-label={shown.caption ? `Image: ${shown.caption}` : 'Image preview'}
     >
       <div
-        className="relative mx-auto flex max-h-[96vh] max-w-[min(96vw,1400px)] flex-col items-center"
+        className="relative mx-auto flex max-h-[96dvh] max-w-[min(96vw,1400px)] flex-col items-center"
         onClick={(e) => e.stopPropagation()}
       >
         <button ref={closeRef} type="button" onClick={onClose} className="image-popup-close" aria-label="Close">
@@ -118,7 +118,7 @@ export default function ImageModal({
             key={shown.src}
             src={shown.src}
             alt={shown.alt || shown.caption || 'Enlarged'}
-            className="max-h-[calc(96vh-140px)] w-auto max-w-full rounded-xl object-contain shadow-2xl"
+            className="max-h-[calc(96dvh-140px)] w-auto max-w-full rounded-xl object-contain shadow-2xl"
             width={1200}
             height={900}
             priority={false}

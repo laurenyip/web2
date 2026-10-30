@@ -148,7 +148,7 @@
   aspect-ratio: var(--book-page-ratio, 430 / 543);
   overflow: hidden;
   background: #f7f4ef;
-  touch-action: none;
+  touch-action: pan-y; /* swipes turn pages; vertical drags still scroll past the book */
 }
 
 .book--single .book-page {

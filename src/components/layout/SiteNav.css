@@ -9,12 +9,13 @@
 }
 
 :root {
-  --site-nav-block-height: 6.85rem;
+  --site-nav-block-height: calc(6.85rem + env(safe-area-inset-top, 0px));
 }
 
 .site-nav-stack {
   pointer-events: auto;
   background: #fff;
+  padding-top: env(safe-area-inset-top, 0px); /* white runs up behind the notch; the nav sits below it */
 }
 
 .site-nav-logo-row {
@@ -134,7 +135,7 @@
 
 @media (max-width: 640px) {
   :root {
-    --site-nav-block-height: 6.1rem;
+    --site-nav-block-height: calc(6.1rem + env(safe-area-inset-top, 0px));
   }
 
   .site-nav-logo-row {

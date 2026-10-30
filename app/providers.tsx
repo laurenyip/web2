@@ -13,5 +13,12 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
     })
   }, [])
 
+  // iOS Safari only applies :active (the press feedback in globals.css) once a touch listener exists.
+  useEffect(() => {
+    const noop = () => {}
+    document.addEventListener('touchstart', noop, { passive: true })
+    return () => document.removeEventListener('touchstart', noop)
+  }, [])
+
   return <>{children}</>
 }

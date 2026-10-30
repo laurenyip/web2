@@ -25,7 +25,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#000000',
+  // paint edge to edge on notched phones; globals.css pads content back with env(safe-area-inset-*)
+  viewportFit: 'cover',
+  // matches the white top of every page, so the browser bar blends in (the site has no dark theme)
+  themeColor: '#ffffff',
 }
 
 export default function RootLayout({

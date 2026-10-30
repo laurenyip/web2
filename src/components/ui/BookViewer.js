@@ -426,10 +426,13 @@ export default function BookViewer({ pages, name = 'Magazine', kind = 'magazine'
       setMobileOffset(dx)
     }
 
+    // the browser cancels the pointer when it takes over a vertical scroll: that's not a tap
+    const cancel = () => up(false)
+
     const up = (shouldTurn = true) => {
       window.removeEventListener('pointermove', move)
       window.removeEventListener('pointerup', up)
-      window.removeEventListener('pointercancel', up)
+      window.removeEventListener('pointercancel', cancel)
       dragCleanupRef.current = null
       if (!shouldTurn) {
         setMobileOffset(0)
@@ -456,7 +459,7 @@ export default function BookViewer({ pages, name = 'Magazine', kind = 'magazine'
     dragCleanupRef.current = () => up(false)
     window.addEventListener('pointermove', move)
     window.addEventListener('pointerup', up)
-    window.addEventListener('pointercancel', up)
+    window.addEventListener('pointercancel', cancel)
   }
 
   const onMobileTransitionEnd = (event) => {

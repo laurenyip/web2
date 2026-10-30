@@ -58,7 +58,7 @@ export default function CaseStudyModal({ projectTitle, onClose, project, onNext 
     >
       <div
         ref={dialogRef}
-        className="bg-white rounded-xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col outline-none"
+        className="bg-white rounded-xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90dvh] overflow-hidden flex flex-col outline-none"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
@@ -81,7 +81,7 @@ export default function CaseStudyModal({ projectTitle, onClose, project, onNext 
           </div>
         </div>
 
-        <div className="overflow-y-auto flex-1 min-h-0 case-study-scroll">
+        <div className="overflow-y-auto overscroll-contain flex-1 min-h-0 case-study-scroll">
         <div className="px-8 py-8 space-y-8">
           <p className="about-body-text m-0 text-gray-600">
             {caseStudy.role} • {caseStudy.timeline}
@@ -241,7 +241,7 @@ export default function CaseStudyModal({ projectTitle, onClose, project, onNext 
           className="fixed inset-0 z-[1010] flex items-center justify-center bg-black bg-opacity-90 transition-opacity duration-300"
           onClick={closeExpandedImage}
         >
-          <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+          <div className="relative max-w-[90vw] max-h-[90dvh] flex items-center justify-center">
             <button
               onClick={closeExpandedImage}
               className="image-popup-close absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
@@ -284,7 +284,7 @@ export default function CaseStudyModal({ projectTitle, onClose, project, onNext 
             <Image
               src={expandedShowcaseImage}
               alt="Expanded showcase"
-              className="max-w-full max-h-[90vh] object-contain rounded-xl"
+              className="max-w-full max-h-[90dvh] object-contain rounded-xl"
               width={1600}
               height={1200}
               priority={false}

@@ -192,7 +192,7 @@ function Projects() {
           className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-80 transition-opacity duration-300"
           onClick={() => setExpandedImage(null)}
         >
-          <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+          <div className="relative max-w-[90vw] max-h-[90dvh] flex items-center justify-center">
             <button
               onClick={() => setExpandedImage(null)}
               className="image-popup-close absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
@@ -203,7 +203,7 @@ function Projects() {
             <Image
               src={expandedImage}
               alt="Expanded project"
-              className="max-w-full max-h-[90vh] object-contain rounded-xl"
+              className="max-w-full max-h-[90dvh] object-contain rounded-xl"
               width={1600}
               height={1200}
               priority={false}
@@ -450,7 +450,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col"
+        className="bg-white rounded-xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90dvh] overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -471,7 +471,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
         </div>
 
         {/* Content */}
-        <div className="overflow-y-auto flex-1 min-h-0">
+        <div className="overflow-y-auto overscroll-contain flex-1 min-h-0">
         <div className="px-8 py-8 space-y-8">
           {/* Overview */}
           <section>
@@ -628,7 +628,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
           className="fixed inset-0 z-[1010] flex items-center justify-center bg-black bg-opacity-90 transition-opacity duration-300"
           onClick={closeExpandedImage}
         >
-          <div className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+          <div className="relative max-w-[90vw] max-h-[90dvh] flex items-center justify-center">
             <button
               onClick={closeExpandedImage}
               className="image-popup-close absolute top-4 right-4 text-white hover:text-gray-300 text-4xl font-light leading-none z-10"
@@ -671,7 +671,7 @@ function CaseStudyModal({ projectTitle, onClose, project }) {
             <Image
               src={expandedShowcaseImage}
               alt="Expanded showcase"
-              className="max-w-full max-h-[90vh] object-contain rounded-xl"
+              className="max-w-full max-h-[90dvh] object-contain rounded-xl"
               width={1600}
               height={1200}
               priority={false}
