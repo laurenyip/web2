@@ -95,7 +95,7 @@
   font-family: 'Red Hat Display', Arial, sans-serif;
   font-size: calc(7 / 360 * 100cqi);
   letter-spacing: 0.16em;
-  color: rgba(247, 246, 243, 0.38);
+  color: #f7f6f3;
   opacity: 0;
   animation: kodetic-label-pulse var(--kodetic-cycle) ease-in-out infinite;
 }
@@ -121,7 +121,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  animation: kodetic-logo-in var(--kodetic-cycle) cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation: kodetic-logo-in var(--kodetic-cycle) var(--ease-out) infinite;
 }
 
 .kodetic-thumb-logo {
@@ -198,16 +198,14 @@
   0%,
   12%,
   100% {
-    opacity: 0.15;
-    color: rgba(247, 246, 243, 0.35);
+    opacity: 0.05;
   }
   18%,
   28% {
     opacity: 1;
-    color: #f7f6f3;
   }
   40% {
-    opacity: 0.2;
+    opacity: 0.18;
   }
 }
 

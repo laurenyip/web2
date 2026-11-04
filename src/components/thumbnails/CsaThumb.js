@@ -19,9 +19,11 @@ export default function CsaThumb({ revealed = false }) {
   const [current, setCurrent] = useState(0)
   const [incoming, setIncoming] = useState(null)
   const indexRef = useRef(0)
+  const rootRef = useRef(null)
 
   useEffect(() => {
     const advance = () => {
+      if (rootRef.current?.closest('[data-motion-paused]')) return
       const next = (indexRef.current + 1) % BG_IMAGES.length
       setIncoming(next)
 
@@ -37,7 +39,7 @@ export default function CsaThumb({ revealed = false }) {
   }, [])
 
   return (
-    <div className={`csa-thumb${revealed ? ' csa-thumb--revealed' : ''}`} aria-hidden="true">
+    <div ref={rootRef} className={`csa-thumb${revealed ? ' csa-thumb--revealed' : ''}`} aria-hidden="true">
       <div className="csa-thumb-bg-stack">
         <img
           className="csa-thumb-bg csa-thumb-bg--base"

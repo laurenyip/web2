@@ -3,6 +3,8 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import Navbar from '../components/layout/Navbar'
+import WorstCaseToggle from '../components/dev/WorstCaseToggle'
+import { useDataset, WORST_ALBUMS } from '../data/worstCase'
 import './App.css'
 import './AlbumGallery.css'
 
@@ -329,6 +331,7 @@ function sortAlbumsByArtist(albums) {
 const DOUBLE_TAP_MS = 350
 
 function VinylAlbum({ album, isOpen, onToggle }) {
+  const [coverFailed, setCoverFailed] = useState(false)
   const tracks = album.tracks ?? []
   const thought = album.thought ?? ''
   const lastTapRef = useRef(0)
@@ -399,9 +402,11 @@ function VinylAlbum({ album, isOpen, onToggle }) {
         </div>
 
         <div className="album-gallery-sleeve">
+          {coverFailed ? <span className="album-gallery-sleeve-fallback">{album.artist}</span> : null}
           <Image
             src={album.image}
             alt=""
+            onError={() => setCoverFailed(true)}
             className="album-gallery-sleeve-img"
             width={400}
             height={400}
@@ -442,7 +447,8 @@ function VinylAlbum({ album, isOpen, onToggle }) {
 export default function AlbumGallery() {
   const [openId, setOpenId] = useState(null)
 
-  const albums = useMemo(() => sortAlbumsByArtist(ALBUMS), [])
+  const source = useDataset({ demo: ALBUMS, worst: WORST_ALBUMS, empty: [], one: ALBUMS.slice(0, 1) })
+  const albums = useMemo(() => sortAlbumsByArtist(source), [source])
 
   const onToggle = useCallback((id) => {
     setOpenId(id)
@@ -451,6 +457,7 @@ export default function AlbumGallery() {
   return (
     <div className="album-gallery-page min-h-screen">
       <Navbar />
+      <WorstCaseToggle />
 
       <main className="album-gallery-main">
         <header className="album-gallery-header">

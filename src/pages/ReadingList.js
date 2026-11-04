@@ -2,6 +2,8 @@
 
 import React, { useMemo } from 'react'
 import Navbar from '../components/layout/Navbar'
+import WorstCaseToggle from '../components/dev/WorstCaseToggle'
+import { useDataset, WORST_BOOKS, WORST_ESSAYS } from '../data/worstCase'
 import './App.css'
 import './ReadingList.css'
 
@@ -21,7 +23,7 @@ function BookEntry({ title, author }) {
   return (
     <li className="reading-list-entry">
       <p className="reading-list-entry-title">{title}</p>
-      <p className="reading-list-entry-meta">{author}</p>
+      {author ? <p className="reading-list-entry-meta">{author}</p> : null}
     </li>
   )
 }
@@ -36,16 +38,20 @@ function EssayEntry({ text, author, link, date }) {
         </span>
         <span className="sr-only"> (opens in a new tab)</span>
       </a>
-      <p className="reading-list-entry-meta">
-        {author ? `${author} · ` : ''}
-        <time dateTime={date}>{formatEssayDate(date)}</time>
-      </p>
+      {author || date ? (
+        <p className="reading-list-entry-meta">
+          {author}
+          {author && date ? ' · ' : ''}
+          {date ? <time dateTime={date}>{formatEssayDate(date)}</time> : null}
+        </p>
+      ) : null}
     </li>
   )
 }
 
 /** One ruled section: heading (with a count) on the left, the list on the right from tablet up. */
 function ReadingSection({ id, label, count, wide = false, children }) {
+  if (!count) return null
   return (
     <section className={`reading-list-section${wide ? ' reading-list-section--wide' : ''}`} aria-labelledby={id}>
       <h2 id={id} className="reading-list-section-label">
@@ -62,7 +68,7 @@ function ReadingSection({ id, label, count, wide = false, children }) {
 export default function ReadingList() {
   const currentlyReading = useMemo(
     () => [
-      { title: 'All Quiet on the Western Front', author: 'Erich Maria Remarque' },
+      { title: 'The Complete Stories', author: 'Clarice Lispector' },
       { title: 'Taipei Travelogue', author: 'Yáng Shuāng-zǐ' },
       { title: 'One Hundred Years of Solitude', author: 'Gabriel García Márquez' },
     ],
@@ -81,6 +87,7 @@ export default function ReadingList() {
 
   const booksFinishedThisYear = useMemo(
     () => [
+      { title: 'All Quiet on the Western Front', author: 'Erich Maria Remarque' },
       { title: 'Things Fall Apart', author: 'Chinua Achebe' },
       { title: 'Martyr!', author: 'Kaveh Akbar' },
       { title: 'The Princess Bride', author: 'William Goldman' },
@@ -190,9 +197,27 @@ export default function ReadingList() {
     return items.sort((a, b) => new Date(b.date) - new Date(a.date))
   }, [])
 
+  const shown = useDataset({
+    demo: { currentlyReading, booksOpenInRoom, essayItems, booksFinishedThisYear },
+    worst: {
+      currentlyReading: WORST_BOOKS,
+      booksOpenInRoom: WORST_BOOKS,
+      essayItems: WORST_ESSAYS,
+      booksFinishedThisYear: WORST_BOOKS,
+    },
+    empty: { currentlyReading: [], booksOpenInRoom: [], essayItems: [], booksFinishedThisYear: [] },
+    one: {
+      currentlyReading: currentlyReading.slice(0, 1),
+      booksOpenInRoom: booksOpenInRoom.slice(0, 1),
+      essayItems: essayItems.slice(0, 1),
+      booksFinishedThisYear: booksFinishedThisYear.slice(0, 1),
+    },
+  })
+
   return (
     <div className="reading-list-page bg-white min-h-screen">
       <Navbar />
+      <WorstCaseToggle />
 
       <main className="reading-list-main">
         <header className="reading-list-header">
@@ -200,26 +225,26 @@ export default function ReadingList() {
         </header>
 
         <div className="reading-list-sections">
-          <ReadingSection id="rl-reading" label="currently reading" count={currentlyReading.length}>
-            {currentlyReading.map((b) => (
+          <ReadingSection id="rl-reading" label="currently reading" count={shown.currentlyReading.length}>
+            {shown.currentlyReading.map((b) => (
               <BookEntry key={`${b.title}-${b.author}`} title={b.title} author={b.author} />
             ))}
           </ReadingSection>
 
-          <ReadingSection id="rl-open" label="books I have open in my room somewhere" count={booksOpenInRoom.length}>
-            {booksOpenInRoom.map((b) => (
+          <ReadingSection id="rl-open" label="books I have open in my room somewhere" count={shown.booksOpenInRoom.length}>
+            {shown.booksOpenInRoom.map((b) => (
               <BookEntry key={`${b.title}-${b.author}`} title={b.title} author={b.author} />
             ))}
           </ReadingSection>
 
-          <ReadingSection id="rl-essays" label="essays I like" count={essayItems.length}>
-            {essayItems.map((e) => (
+          <ReadingSection id="rl-essays" label="essays I like" count={shown.essayItems.length}>
+            {shown.essayItems.map((e) => (
               <EssayEntry key={e.link} text={e.text} author={e.author} link={e.link} date={e.date} />
             ))}
           </ReadingSection>
 
-          <ReadingSection id="rl-finished" label="books I finished this year" count={booksFinishedThisYear.length} wide>
-            {booksFinishedThisYear.map((b) => (
+          <ReadingSection id="rl-finished" label="books I finished this year" count={shown.booksFinishedThisYear.length} wide>
+            {shown.booksFinishedThisYear.map((b) => (
               <BookEntry key={`${b.title}-${b.author}`} title={b.title} author={b.author} />
             ))}
           </ReadingSection>

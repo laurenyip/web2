@@ -15,6 +15,7 @@ import SoundbookThumb from '../thumbnails/SoundbookThumb'
 import BylineThumb from '../thumbnails/BylineThumb'
 import { getProtectedImageProps } from '../../lib/getProtectedImageProps'
 import CaseStudyTags from './CaseStudyTags'
+import { useDataset, worstProject } from '../../data/worstCase'
 import '../../pages/Portfolio.css'
 
 function tagSuffix(project) {
@@ -179,13 +180,15 @@ function StaticProjectCard({ project, className, onOpen, showTitle = false }) {
 }
 
 export default function WorkProjectCard({
-  project,
+  project: demoProject,
   className = '',
   onOpen,
   onPrefetch,
   showTitle = true,
   overlayCaption = false,
 }) {
+  const project = useDataset({ demo: demoProject, worst: worstProject(demoProject) })
+
   if (project.portfolioThumb) {
     return (
       <PortfolioStyleCard

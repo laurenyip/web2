@@ -110,6 +110,7 @@
 }
 
 .jelly-thumb-title {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,8 +122,21 @@
   line-height: 0.95;
   letter-spacing: -0.01em;
   color: #f3f8ff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6), 0 0 8px rgba(165, 210, 255, 0.4);
   transform-origin: 50% 40%;
-  animation: jt-bell 4.2s ease-in-out infinite, jt-bio-glow 4.2s ease-in-out infinite;
+  animation: jt-bell 4.2s ease-in-out infinite;
+}
+
+/* the bioluminescent pulse, in time with the bell */
+.jelly-thumb-title::before {
+  content: '';
+  position: absolute;
+  inset: -22% -16%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(175, 215, 255, 0.32), rgba(175, 215, 255, 0) 70%);
+  opacity: 0.2;
+  animation: jt-bio-glow 4.2s ease-in-out infinite;
 }
 
 .jelly-thumb-word {
@@ -150,8 +164,8 @@
 }
 
 @keyframes jt-bio-glow {
-  0%, 100% { text-shadow: 0 2px 12px rgba(0, 0, 0, 0.65), 0 0 6px rgba(160, 205, 255, 0.25); }
-  40% { text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55), 0 0 18px rgba(175, 215, 255, 0.85); }
+  0%, 100% { opacity: 0.2; }
+  40% { opacity: 1; }
 }
 
 @keyframes jt-tentacle {
@@ -167,15 +181,24 @@
   mask-image: url('/images/projects/jellyfish/thumb-drawing.webp');
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
-  background: linear-gradient(170deg, #ff7bd5 0%, #7be9ff 38%, #b69bff 68%, #ffd37b 100%);
-  background-size: 100% 220%;
   filter: saturate(1.35) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
-  animation: jt-tint-flow 6s ease-in-out infinite alternate, jt-tint-palette 15s linear infinite;
+  animation: jt-tint-palette 15s linear infinite;
+}
+
+.jelly-thumb-tint::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 220%;
+  background: linear-gradient(170deg, #ff7bd5 0%, #7be9ff 38%, #b69bff 68%, #ffd37b 100%);
+  animation: jt-tint-flow 6s ease-in-out infinite alternate;
 }
 
 @keyframes jt-tint-flow {
-  from { background-position: 0 0; }
-  to { background-position: 0 100%; }
+  from { transform: translateY(0); }
+  to { transform: translateY(-54.545%); }
 }
 
 @keyframes jt-tint-palette {

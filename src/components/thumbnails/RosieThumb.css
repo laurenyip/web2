@@ -46,7 +46,7 @@
   opacity: 0;
   animation: rt-fade 12s ease-in-out infinite;
   transform: translate(calc(var(--mx) * -2.2%), calc(var(--my) * -2.2%)) scale(1.04);
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.5s var(--ease-out);
 }
 
 .rosie-thumb-photo--2 {
@@ -104,7 +104,7 @@
   gap: 3.4cqw;
   pointer-events: none;
   transform: translate(calc(var(--mx) * 1.6cqw), calc(var(--my) * 1.6cqw));
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.45s var(--ease-out);
   animation: rt-float 4s ease-in-out infinite;
 }
 

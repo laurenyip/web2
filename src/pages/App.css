@@ -377,6 +377,11 @@ ul.navbar .nav-link:visited {
 .charm-swing:hover {
   transform: rotate(6.5deg);
 }
+@media (prefers-reduced-motion: reduce) {
+  .charm-swing:hover {
+    transform: none;
+  }
+}
 
 /* Home — thank-you card (F25 body) */
 .home-page .home-thank-you-card {

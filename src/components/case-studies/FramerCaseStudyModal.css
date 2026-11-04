@@ -8,6 +8,14 @@
   padding: max(1rem, env(safe-area-inset-top, 0px)) max(1rem, env(safe-area-inset-right, 0px)) max(1rem, env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
   background: rgba(17, 24, 39, 0.55);
   backdrop-filter: blur(4px);
+  transition: opacity 200ms var(--ease-out);
+}
+
+@starting-style {
+  .framer-modal-backdrop,
+  .case-study-modal-backdrop {
+    opacity: 0;
+  }
 }
 
 .framer-modal-window {
@@ -21,6 +29,15 @@
   border-radius: 12px;
   background: #fff;
   box-shadow: 0 24px 48px rgba(17, 24, 39, 0.2);
+  transition: transform 240ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @starting-style {
+    .framer-modal-window {
+      transform: scale(0.97);
+    }
+  }
 }
 
 .framer-modal-close {

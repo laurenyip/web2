@@ -64,7 +64,7 @@
 
 .spruce-thumb-light-drift {
   border-radius: 50%;
-  filter: blur(22px);
+  filter: blur(16px);
   mix-blend-mode: screen;
   animation-name: spruce-light-drift;
   animation-timing-function: ease-in-out;
@@ -145,7 +145,7 @@
   6% {
     opacity: 0;
     transform: translate(-50%, -50%) translateX(-120%);
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-timing-function: var(--ease-out);
   }
   21%,
   22% {

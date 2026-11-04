@@ -112,7 +112,7 @@ export default function VinylMusicShelf({ onImageOpen }) {
                 }}
               >
                 <div
-                  className="absolute inset-0 bg-white transition-all duration-500 ease-out group-hover:-translate-x-[12%]"
+                  className="absolute inset-0 bg-white transition-transform duration-500 ease-out group-hover:-translate-x-[12%] motion-reduce:transition-none"
                   style={{
                     transformOrigin: 'center center',
                     zIndex: 2,
@@ -142,7 +142,7 @@ export default function VinylMusicShelf({ onImageOpen }) {
                   <div className="absolute top-0 right-0 bottom-0 w-1 bg-black opacity-10" />
                 </div>
 
-                <div className="absolute inset-0 z-[1] origin-center opacity-0 transition-all duration-500 ease-out group-hover:translate-x-[18%] group-hover:opacity-100">
+                <div className="absolute inset-0 z-[1] origin-center opacity-0 transition-[transform,opacity] duration-500 ease-out group-hover:translate-x-[18%] motion-reduce:transition-none group-hover:opacity-100">
                   <div
                     className="about-vinyl-disc relative mx-auto h-full w-full rounded-full"
                     style={{

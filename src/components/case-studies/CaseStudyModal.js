@@ -53,7 +53,7 @@ export default function CaseStudyModal({ projectTitle, onClose, project, onNext 
 
   return (
     <div
-      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300"
+      className="case-study-modal-backdrop fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300"
       onClick={onClose}
     >
       <div

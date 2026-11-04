@@ -10,6 +10,7 @@ import FramerCaseStudyModal, {
 } from '../components/case-studies/FramerCaseStudyModal'
 import LocalCaseStudyModal from '../components/case-studies/LocalCaseStudyModal'
 import WorkProjectCard from '../components/ui/WorkProjectCard'
+import WorstCaseToggle from '../components/dev/WorstCaseToggle'
 import {
   CASE_STUDY_KEYS,
   WORK_PROJECTS,
@@ -43,6 +44,7 @@ export default function Work() {
   const [activeProject, setActiveProject] = useState(null)
   const [currentProjectId, setCurrentProjectId] = useState(null)
   const [continuedOpen, setContinuedOpen] = useState(false)
+  const rowsRef = useRef(null)
 
   const featured = WORK_PROJECTS[WORK_ROW1_FEATURED]
   const row2 = WORK_ROW2.map((id) => WORK_PROJECTS[id])
@@ -137,6 +139,35 @@ export default function Work() {
     return () => window.removeEventListener('hashchange', openFromHash)
   }, [])
 
+  const studyOpen = !!(openFramer || openLocalStudy || openCaseStudy)
+
+  // Thumbnails only run while they can be seen: off-screen cards and everything behind an open case study sit paused.
+  useEffect(() => {
+    const rows = rowsRef.current
+    if (!rows) return undefined
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const syncVideos = (card) => {
+      if (reduced) return
+      const paused = studyOpen || card.hasAttribute('data-motion-paused')
+      card.querySelectorAll('video').forEach((video) => {
+        if (paused) video.pause()
+        else video.play().catch(() => {})
+      })
+    }
+    rows.toggleAttribute('data-motion-paused', studyOpen)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.toggleAttribute('data-motion-paused', !entry.isIntersecting)
+          syncVideos(entry.target)
+        })
+      },
+      { rootMargin: '15% 0px' },
+    )
+    rows.querySelectorAll('.portfolio-card, .work-card').forEach((card) => observer.observe(card))
+    return () => observer.disconnect()
+  }, [studyOpen, continuedOpen])
+
   useEffect(() => {
     const framerPaths = framerPathsKey ? framerPathsKey.split('|') : []
     if (!framerPaths.length) return undefined
@@ -188,6 +219,7 @@ export default function Work() {
 
   return (
     <div className="home-page work-page min-h-screen bg-white">
+      <WorstCaseToggle />
       <Navbar />
 
       <main
@@ -209,7 +241,7 @@ export default function Work() {
           </p>
         </header>
 
-        <div className="home-page-rows work-page-rows" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div ref={rowsRef} className="home-page-rows work-page-rows" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <div className="home-row1 work-row1">
             <div style={{ width: '100%', maxWidth: '456px', flexShrink: 0, alignSelf: 'flex-start' }}>
               <div className="containermain home-charm-box">

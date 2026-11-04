@@ -107,11 +107,12 @@ export default function AmazonGiftThumb() {
             className={`amazon-gift-confetti amazon-gift-confetti--${piece.shape} amazon-gift-confetti--${piece.foil}${piece.still ? ' amazon-gift-confetti--still' : ''}`}
             style={{
               left: piece.left,
-              top: piece.top,
               width: `${piece.w}px`,
               height: `${piece.h}px`,
-              animationDuration: `${piece.duration}, ${piece.shine}`,
+              animationDuration: piece.duration,
               animationDelay: piece.delay,
+              '--still-top': piece.top,
+              '--shine': piece.shine,
               '--drift': piece.drift,
               '--rot': piece.rotate,
               '--foil-angle': piece.foilAngle,
