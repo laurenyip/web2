@@ -89,6 +89,26 @@
   status = 200
   force = true
 
+# Otto take-home prototype: unlisted, proxied from Render (which also serves it
+# under /otto, so paths pass through unchanged). Not linked from the site.
+[[redirects]]
+  from = "/otto"
+  to = "https://otto-n5kj.onrender.com/otto/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/otto/*"
+  to = "https://otto-n5kj.onrender.com/otto/:splat"
+  status = 200
+  force = true
+
+# Keep it out of search results.
+[[headers]]
+  for = "/otto/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 # Next.js static export pages (direct URL access)
 [[redirects]]
   from = "/portfolio"
