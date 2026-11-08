@@ -87,6 +87,8 @@ export default function ReadingList() {
 
   const booksFinishedThisYear = useMemo(
     () => [
+      { title: 'Simple Passion', author: 'Annie Ernaux' },
+      { title: 'White Nights', author: 'Fyodor Dostoevsky' },
       { title: 'All Quiet on the Western Front', author: 'Erich Maria Remarque' },
       { title: 'Things Fall Apart', author: 'Chinua Achebe' },
       { title: 'Martyr!', author: 'Kaveh Akbar' },
