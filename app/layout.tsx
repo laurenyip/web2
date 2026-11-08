@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
-import ImageProtection from '../src/components/layout/ImageProtection'
 import IntroLoader from '../src/components/layout/IntroLoader'
 import SiteFooter from '../src/components/layout/SiteFooter'
 import SiteCursor from '../src/components/effects/site-cursor'
@@ -72,7 +71,6 @@ export default function RootLayout({
         </noscript>
         <PostHogProvider>
           <IntroLoader />
-          <ImageProtection />
           <SiteCursor />
           {children}
           <SiteFooter />
